@@ -55,7 +55,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Working Draft
+<h2 id="W3C-doctype">W3C Editor's Draft
 22 June 2010
 </h2>
 
@@ -106,8 +106,9 @@ revision of this technical report can be found in the <a href="http://www.w3.org
 http://www.w3.org/TR/.</em></p>
 
 
-
-     <p>This specification is a First Public Working Draft. It was initially developed by contributors to the <a href="mailto:www-font@w3.org">www-font@w3.org</a> mailing list. After trial implementation it became the <a href="">WOFF Submission</a> and will be further developed at W3C.
+     <p>This specification is an Editor's Draft, being readied for First Public Working Draft.
+     It was initially developed by contributors to the <a href="mailto:www-font@w3.org">www-font@w3.org</a> mailing list.
+     After trial implementation it became the <a href="">WOFF Submission</a> and will be further developed at W3C.
 </p>
 
 <p>This document was developed by the
@@ -791,7 +792,7 @@ Tools creating WOFF files MUST ensure that the results conform to these requirem
 and unless otherwise specified here,
 user agents processing or using WOFF files MUST reject any non-conforming input files.</p>
 
-<h3>WOFF header</h3>
+<h3 id="conformance-woff-header">WOFF header</h3>
 
 <dl>
 <dt>signature</dt>
@@ -808,7 +809,7 @@ including header, table directory, decompressed tables,
 and padding of all table lengths to 4-byte boundaries</dd>
 </dl>
 
-<h3>WOFF directory</h3>
+<h3 id="conformance-woff-directory">WOFF directory</h3>
 <p>The table directory entries MUST be in ascending order according to table tag.
 Within each entry:</p>
 <dl>
@@ -820,7 +821,7 @@ Within each entry:</p>
 <dd>MUST be a multiple of 4</dd>
 </dl>
 
-<h3>Font tables</h3>
+<h3 id="conformance-font-tables">Font tables</h3>
 <p>For each table where (in the WOFF table directory)
 <span class="code">compLength &lt; origLength</span>,
 processing the data with zlib's <span class="code">uncompress()</span>
@@ -829,7 +830,7 @@ decompressed data.</p>
 <p>For each table where <span class="code">compLength</span> is not a multiple of 4,
 the WOFF file MUST be padded with up to 3 zero bytes so as to reach a 4-byte boundary.</p>
 
-<h3>Metadata</h3>
+<h3 id="conformance-metadata">Metadata</h3>
 <p>Processing the metadata with zlib's  <span class="code">uncompress()</span> function
 MUST result in <span class="code">metaOrigLength</span> bytes of decompressed data.</p>
 
@@ -972,7 +973,7 @@ particularly relevant to those creating or packaging fonts in WOFF format,
 and provides recommended Best Practices for tools or workflows involved
 in WOFF file creation.</p>
 
-<h3>Ensure round-trip fidelity</h3>
+<h3 id="BP-roundtrip">Ensure round-trip fidelity</h3>
 
 <p>Any valid WOFF file can be converted back to sfnt format,
 by decompressing the individual font tables and reconstructing the sfnt
@@ -1022,7 +1023,7 @@ it is necessary to allow binary round-trip fidelity; and if this is not ensured,
 then the sfnt checksum and digital signature (if any) can no longer
 be validated, as these are affected by table ordering.</p>
 
-<h3>Distinguish WOFF packaging from other preprocessing and optimization</h3>
+<h3 id="BP-preprocess">Distinguish WOFF packaging from other preprocessing and optimization</h3>
 
 <p>The WOFF format provides a standard way to package the collection of tables
 that make up a font, together with added metadata, for delivery to a web browser
@@ -1045,7 +1046,7 @@ particularly relevant to those using fonts in WOFF format (typically
 user agents such as web browsers),
 and provides recommended Best Practices for WOFF file use.</p>
 
-<h3>Reject files that violate basic conformance requirements</h3>
+<h3 id="BP-reject-nonconform">Reject files that violate basic conformance requirements</h3>
 
 <p>Any file that claims to be a WOFF file but fails to satisfy the conformance
 requirements summarized in section&nbsp;8 is not a valid WOFF file,
@@ -1058,7 +1059,7 @@ and compressed tables&#x2014;conforms to this specification.
 The contained data must be used with just as much caution as font data
 delivered in "raw" form or via any other packaging method.</p>
 
-<h3>Check all uncompress operations for overflow</h3>
+<h3 id="BP-check-uncompress">Check all uncompress operations for overflow</h3>
 
 <p>For each compressed data block, the WOFF format specifies the uncompressed size.
 This allows the client to allocate appropriate amounts of space for decompression.
@@ -1067,7 +1068,7 @@ yields exactly the specified amount of data, and does not return an error.
 Any error in decompression or discrepancy in table size means the WOFF file is invalid
 and must not be used.</p>
 
-<h3>Ensure reconstructed sfnt resources are valid</h3>
+<h3 id="BP-ensure-sfnt-valid">Ensure reconstructed sfnt resources are valid</h3>
 
 <p>Many clients may choose to "decode" the WOFF-packaged data and construct
 an sfnt font resource in memory, for use with existing font APIs.
@@ -1085,7 +1086,7 @@ sfnt resource is valid according to the OpenType specification.</p>
 digitally signed font, it should remove the <span class="code">DSIG</span> table
 as it will not be a valid signature for the modified font resource.</p>
 
-<h3>Provide means for the user to view WOFF metadata</h3>
+<h3 id="BP-view-metadata">Provide means for the user to view WOFF metadata</h3>
 
 <p>Clients such as web browsers are encouraged to provide a means
 (such as a Page Information dialog) for users to view the metadata included in
