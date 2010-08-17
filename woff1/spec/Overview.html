@@ -8,6 +8,7 @@
       <style type="text/css">
       .toadd {background: yellow; padding-left:3px; padding-right: 3px}
       </style>
+     <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
 
      <style type="text/css">
 col.type { width: 5em; }
@@ -39,7 +40,6 @@ dl.xmlspec dd {
   background: #eee;
 }
      </style>
-       <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-WD"/>
 
    </head>
    <body>
@@ -52,25 +52,19 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Working Draft 27 July 2010
+<h2 id="W3C-doctype">W3C Editor's Draft 16 August 2010
 </h2>
 
 <dl>
   <dt>This version:</dt>
-    <!--
   <dd><a href="http://dev.w3.org/webfonts/WOFF/spec/">http://dev.w3.org/webfonts/WOFF/spec/</a></dd>
-    -->
-    <dd><a href="http://www.w3.org/TR/2010/WD-WOFF-20100727">http://www.w3.org/TR/2010/WD-WOFF-20100727</a></dd>
 
   <dt>Latest version:</dt>
-    <!--
-  <dd><a href="http://dev.w3.org/webfonts/WOFF/spec/">http://dev.w3.org/webfonts/WOFF/spec/</a></dd>
-    -->
-    <dd><a href="http://www.w3.org/TR/WOFF">http://www.w3.org/TR/WOFF</a></dd>
+  <dd><a href="http://www.w3.org/TR/2010/WD-WOFF-20100727">http://www.w3.org/TR/2010/WD-WOFF-20100727</a></dd>
 
 <!--
   <dt>Previous version:</dt>
-  <dd><a href="http://www.w3.org/Submission/2010/SUBM-WOFF-20100408/">http://www.w3.org/Submission/2010/SUBM-WOFF-20100408/</a></dd>  
+  <dd><a href="http://www.w3.org/TR/2010/WD-WOFF-20100727">http://www.w3.org/TR/2010/WD-WOFF-20100727</a></dd>
   -->
 </dl>
 
@@ -97,11 +91,11 @@ dl.xmlspec dd {
 <div id="Abstract">
 <h2>Abstract</h2>
 <p>This document specifies the WOFF font format.
-This format was designed to provide lightweight, easy-to-implement compression of the font data,
-suitable for use in conjunction with the <tt>@font-face</tt> CSS declaration.
-Any TrueType/OpenType/Open Font Format file can be losslessly converted to WOFF for Web use
-(subject to licensing of the font data);
-once decoded by a user agent, the WOFF font will display identically to the original desktop font
+This format was designed to provide lightweight, easy-to-implement compression of font data,
+suitable for use with CSS <tt>@font-face</tt> rules.
+Any properly licensed TrueType/OpenType/Open Font Format file can be packaged in WOFF format for Web use.
+User agents decode the WOFF file to restore the original font data
+such that it will display identically to the original desktop font
 from which it was created.</p>
 
 <p>The WOFF format also allows additional metadata to be attached to the file;
@@ -110,8 +104,9 @@ beyond that present in the original font.
 Such metadata does not affect the rendering of the font in any way,
 but may be displayed to the user on request.</p>
 
-<p>The WOFF format is not expected to replace other formats such as TrueType/OpenType/Open Font Format or SVG fonts,
-but provides an alternative solution for use cases where these formats may be less performant,
+<p>The WOFF format is not intended to replace other formats
+such as TrueType/OpenType/Open Font Format or SVG fonts,
+but provides an alternative solution for use cases where these formats may be less optimal,
 or where licensing considerations make their use less acceptable.</p>
 </div>
 
@@ -124,9 +119,9 @@ revision of this technical report can be found in the <a href="http://www.w3.org
 http://www.w3.org/TR/.</em></p>
 
 
-<p>This specification is an Editor's Draft, being readied for First Public Working Draft.
+<p>This specification is an Editor's Draft, incorporating minor editorial changes to the First Public Working Draft.
 It was initially developed by contributors to the <a href="mailto:www-font@w3.org">www-font@w3.org</a> mailing list.
-    After trial implementation it became the  <a href="http://www.w3.org/Submission/2010/SUBM-WOFF-20100408/">WOFF Submission</a> 
+    After trial implementation, it became the  <a href="http://www.w3.org/Submission/2010/SUBM-WOFF-20100408/">WOFF Submission</a> 
     and is being further developed at W3C.
 </p>
 
@@ -262,8 +257,8 @@ this order) by a variable-size table directory, a variable number of font
 tables, an optional block of extended metadata, and an optional block of private
 data. Except for padding with a maximum of three null bytes in places where 4-byte
 alignment of a table length or data block is specified, there MUST NOT be any
-extraneous data outside the font tables and data blocks as pointed to by the header
-and table directory entries.</p>
+extraneous data between the font tables and data blocks as pointed to by the header
+and table directory entries, or beyond the last such table or data block.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">WOFF File</th></tr>
@@ -291,6 +286,9 @@ format</td></tr>
 format</td></tr>
 </table>
 
+<p>All sizes and offsets described in this document are assumed to be in bytes unless
+otherwise noted.</p>
+
 
 <h2 id="WOFFHeader">3.&nbsp;WOFF Header</h2>
 
@@ -309,8 +307,8 @@ entries in the table directory that immediately follows the header:</p>
 tables.</td></tr>
 <tr><td>UInt16</td><td>reserved</td><td>Reserved, must be set to zero.</td></tr>
 <tr><td>UInt32</td><td>totalSfntSize</td><td>Total size needed for the
-uncompressed font data, including the sfnt header, directory, and
-tables.</td></tr>
+uncompressed font data, including the sfnt header, directory,
+and font tables (as padded).</td></tr>
 <tr><td>UInt16</td><td>majorVersion</td><td>Major version of the WOFF
 file.</td></tr>
 <tr><td>UInt16</td><td>minorVersion</td><td>Minor version of the WOFF
@@ -351,16 +349,16 @@ buffer needed to decode the complete WOFF-packaged font (but not metadata,
 which is not part of the original sfnt file) into a standard sfnt structure.
 Note that this value MUST be a multiple of 4, because all font tables
 including the last are to be padded to a 4-byte boundary. If this value
-is incorrect, a conforming WOFF processor MUST reject the file as invalid.</p>
+is incorrect, a conforming user agent MUST reject the file as invalid.</p>
 
 <p>If either or both of the metadata or private blocks is not present,
 the relevant offset and length fields MUST be set to zero.
 If the offset and length fields pointing to the metadata or private data block
 are out of range, indicating a byte range beyond the physical size
-of the file, a conforming WOFF processor MUST reject the file as invalid.</p>
+of the file, a conforming user agent MUST reject the file as invalid.</p>
 
 <p>The header includes a <tt>reserved</tt> field; this MUST be
-set to zero. If this field is non-zero, a conforming WOFF processor
+set to zero. If this field is non-zero, a conforming user agent
 MUST reject the file as invalid.</p>
 
 
@@ -399,7 +397,7 @@ font.</p>
 4-byte boundaries. Font tables whose length is not a multiple of 4 are padded
 with null bytes up to the next 4-byte boundary. Font data tables in the WOFF
 file have the same requirement: they MUST begin on 4-byte boundaries and be
-padded with nulls to the next 4-byte boundary. The <tt>compLength</tt> and <tt>origLength</tt> fields
+zero-padded to the next 4-byte boundary. The <tt>compLength</tt> and <tt>origLength</tt> fields
 in the header store the exact, unpadded length.</p>
 
 <p>If the length of a compressed font table would be the same as or greater than
@@ -415,7 +413,7 @@ MUST NOT be loaded by user agents. Files containing compressed font tables that
 decompress to a size larger than <tt>origLength</tt> are also
 considered invalid and MUST NOT be loaded.</p>
 
-<p>The sfnt-based font specifications require that the table directory entries
+<p>The sfnt-based font specifications require that table directory entries
 are sorted in ascending order of <tt>tag</tt> value. To
 simplify processing, WOFF-producing tools MUST produce a table directory with
 entries in ascending <tt>tag</tt> value order. User agents MUST
@@ -513,7 +511,7 @@ not padded to a 4-byte boundary unless it is followed by a private data block
 (below).</p>
 
 <p>If the extended metadata is invalid (for example, the data cannot be decompressed,
-or it is not well-formed XML), the WOFF processor MUST proceed as if the metadata
+or it is not well-formed XML), the user agent MUST proceed as if the metadata
 block is absent; the font itself remains valid and can still be used (provided
 its main content of font data tables is valid).</p>
 
@@ -786,7 +784,7 @@ of the content of the metadata block.</p>
 
 <p>The WOFF file MAY include a block of arbitrary data, allowing font creators
 to include whatever information they wish. The content of this data MUST NOT
-affect font usage or load behavior. WOFF processors should make no assumptions
+affect font usage or load behavior. User agents should make no assumptions
 about the content of a private block; it may (for example) contain ASCII or
 Unicode text, or some vendor-defined binary data, and it may be compressed or
 encrypted, but it has no publicly defined format. Conformant user agents will
@@ -803,7 +801,7 @@ WOFF file structure, and MUST be ignored.</p>
 
 <p>If no private data is present, the <tt>privOffset</tt> and
 <tt>privLength</tt> fields in the WOFF header MUST be set to
-zero. However, as a conforming WOFF processor does not interpret or even need to
+zero. However, as a conforming user agent does not interpret or even need to
 access the private data in any way, it will simply ignore these fields. Only a
 private vendor-specific tool would use them.</p>
 
@@ -853,6 +851,8 @@ function MUST result in exactly <tt>origLength</tt> bytes of
 decompressed data.</p>
 <p>For each table where <tt>compLength</tt> is not a multiple of 4,
 the WOFF file MUST be padded with up to 3 zero bytes so as to reach a 4-byte boundary.</p>
+<p>User agents MUST NOT load WOFF files that contain extraneous data
+between font tables.</p>
 
 <h3 id="conformance-metadata">Metadata</h3>
 <p>Processing the metadata with zlib's  <tt>uncompress()</tt> function
