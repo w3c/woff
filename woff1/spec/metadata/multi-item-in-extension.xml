@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <extension id="a7">
+        <!-- valid, name as child of extension is optional 
+        and multiple items are allowed-->
+        <item>
+            <name>Foo</name>
+            <value>Toto</value>
+        </item>
+        <item>
+            <name>Bar</name>
+            <value>Tata</value>
+        </item>
+    </extension>
+</metadata>

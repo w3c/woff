@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="metadata">
+      <attribute name="version">
+        <data type="decimal"/>
+      </attribute>
+      <interleave>
+        <optional>
+          <element name="uniqueid">
+            <attribute name="id"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="vendor">
+            <optional>
+              <attribute name="name"/>
+            </optional>
+            <optional>
+              <attribute name="url"/>
+            </optional>
+          </element>
+        </optional>
+        <optional>
+          <element name="credits">
+            <oneOrMore>
+              <element name="credit">
+                <attribute name="name"/>
+                <attribute name="role">
+                  <data type="NCName"/>
+                </attribute>
+                <optional>
+                  <attribute name="url">
+                    <data type="anyURI"/>
+                  </attribute>
+                </optional>
+              </element>
+            </oneOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="description">
+            <ref name="text"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="license">
+            <attribute name="id">
+              <data type="NCName"/>
+            </attribute>
+            <attribute name="url">
+              <data type="anyURI"/>
+            </attribute>
+            <oneOrMore>
+              <ref name="text"/>
+            </oneOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="copyright">
+            <oneOrMore>
+              <ref name="text"/>
+            </oneOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="trademark">
+            <oneOrMore>
+              <ref name="text"/>
+            </oneOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="licensee">
+            <attribute name="name"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="extension">
+            <attribute name="id">
+              <data type="NCName"/>
+            </attribute>
+
+              <zeroOrMore><ref name="name"/></zeroOrMore>
+            <oneOrMore>
+              <element name="item">
+                <optional>
+                  <attribute name="id"/>
+                </optional>
+                <oneOrMore>
+                  <ref name="name"/>
+                </oneOrMore>
+                <oneOrMore>
+                  <element name="value">
+                    <optional>
+                      <attribute name="lang">
+                        <data type="NCName"/>
+                      </attribute>
+                    </optional>
+                    <text/>
+                  </element>
+                </oneOrMore>
+              </element>
+            </oneOrMore>
+          </element>
+        </optional>
+      </interleave>
+    </element>
+  </start>
+  <define name="text">
+    <element name="text">
+      <optional>
+        <attribute name="lang">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <text/>
+    </element>
+  </define>
+  <define name="name">
+    <element name="name">
+      <optional>
+        <attribute name="lang">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <text/>
+    </element>
+  </define>
+</grammar>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <uniqueid id="com.example.fontvendor.demofont.rev12345" />
+    <vendor name="Font Vendor" url="http://fontvendor.example.com" />
+    <credits>
+        <credit
+            name="Font Designer"
+            url="http://fontdesigner.example.com"
+            role="Lead" />
+        <credit
+            name="Another Font Designer"
+            url="http://anotherdesigner.example.org"
+            role="Contributor" />
+        <credit
+            name="Yet Another"
+            role="Hinting" />
+    </credits>
+    <description>
+        <text lang="en">
+            A member of the Demo font family.
+            This font is a humanist sans serif style designed
+            for optimal legibility in low-resolution environments.
+            It can be obtained from fontvendor.example.com.
+        </text>
+    </description>
+    <license url="http://fontvendor.example.com/license"
+        id="fontvendor-web-corporate-v2">
+        <text lang="en">A license goes here.</text>
+        <text lang="fr">Un permis va ici.</text>
+    </license>
+    <copyright>
+        <text lang="en">Copyright ©2009 Font Vendor"</text>
+        <text lang="ko">저작권 ©2009 Font Vendor"</text>
+    </copyright>
+    <trademark>
+        <text lang="en">Demo Font is a trademark of Font Vendor</text>
+        <text lang="fr">Demo Font est une marque déposée de Font Vendor</text>
+        <text lang="de">Demo Font ist ein eingetragenes Warenzeichen der Font Vendor</text>
+        <text lang="ja">Demo FontはFont Vendorの商標である</text>
+    </trademark>
+    <licensee name="Wonderful Websites, Inc." />
+    <extension id="org.example.fonts.metadata.v1">
+        <name lang="en">Additional font information</name>
+        <name lang="fr">L'information supplémentaire de fonte</name>
+        <item id="org.example.fonts.metadata.v1.why">
+            <name lang="en">Purpose</name>
+            <name lang="fr">But</name>
+            <value lang="en">This font exists merely as an example of WOFF packaging.</value>
+            <value lang="fr">Cette fonte existe simplement comme exemple de l'empaquetage de WOFF.</value>
+        </item>
+    </extension>
+</metadata>
+

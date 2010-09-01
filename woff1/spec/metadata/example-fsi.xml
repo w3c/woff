@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <uniqueid id="com.fontfont.PraterScriptWeb.7.504.1002"/>
+    <vendor name="FSI FontShop International GmbH" url="http://www.fontfont.com"/>
+    <credits>
+        <credit name="Steffen Sauerteig" role="design"/>
+        <credit name="Henning Wagenbreth" role="design"/>
+        <credit name="FSI FontShop International GmbH" url="http://www.fontfont.com" role="production"/>
+    </credits>
+    <description>
+        <text lang="en">A FontFont for the web</text>
+    </description>
+    <license url="http://www.fontfont.com/eula/license_webfonts_v_1_0.html" id="fontfont-web-v1">
+        <text lang="en">
+            FontFont web license v 1.0.
+            For details see http://www.fontfont.com/eula/license_webfonts_v_1_0.html
+        </text>
+    </license>
+    <copyright>
+        <text lang="en">2009 Henning Wagenbreth, Steffen Sauerteig published by FSI FontShop International GmbH</text>
+    </copyright>
+    <trademark>
+        <text lang="en">Prater is a trademark of FSI FontShop International GmbH</text>
+    </trademark>
+</metadata>
+
