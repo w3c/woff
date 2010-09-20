@@ -11,6 +11,9 @@
      <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
 
      <style type="text/css">
+div.note { margin: 0 2.5em; padding: 0.5em 1em; background: #ccc }
+div.note p:first-child::before { content: "NOTE: "; font-weight: bold; color: #005A9C; }
+
 col.type { width: 5em; }
 col.name { width: 10em; }
 
@@ -52,7 +55,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editor's Draft 16 August 2010
+<h2 id="W3C-doctype">W3C Editor's Draft 20 September 2010
 </h2>
 
 <dl>
@@ -90,7 +93,7 @@ dl.xmlspec dd {
 
 <div id="Abstract">
 <h2>Abstract</h2>
-<p>This document specifies the WOFF font format.
+<p>This document specifies the WOFF font packaging format.
 This format was designed to provide lightweight, easy-to-implement compression of font data,
 suitable for use with CSS <tt>@font-face</tt> rules.
 Any properly licensed TrueType/OpenType/Open Font Format file can be packaged in WOFF format for Web use.
@@ -177,8 +180,6 @@ information in accordance with <a href="http://www.w3.org/Consortium/Patent-Poli
 <br/><a href="#Conformance">8.&nbsp;Summary of Conformance Requirements</a>
 </p>
 <p><a href="#appendix-a">Appendix A: Extended Metadata Examples</a>
-<br/><a href="#appendix-b">Appendix B: Best Practices for WOFF File Creators</a>
-<br/><a href="#appendix-c">Appendix C: Best Practices for WOFF File Consumers</a>
 </p>
 <p><a href="#Footnotes">Footnotes</a></p>
 
@@ -189,7 +190,12 @@ information in accordance with <a href="http://www.w3.org/Consortium/Patent-Poli
 <h2 id="Introduction">1.&nbsp;Introduction</h2>
 
 <p>This document specifies a simple compressed file format for fonts, designed
-primarily for use on the web.  The WOFF format is a container for the
+primarily for use on the web and known as WOFF (Web Open Font Format).
+Despite this name, WOFF should be regarded as a container format
+or "wrapper" for font data in already-existing formats
+rather than an actual font format in its own right.</p>
+
+<p>The WOFF format is a container for the
 table-based sfnt structure used in TrueType<a id="fn-1-ref" href="#fn-1"
 title="footnote 1" class="fnref">[1]</a>, OpenType<a id="fn-2-ref" href="#fn-2"
 title="footnote 2" class="fnref">[2]</a> and Open Font Format<a id="fn-3-ref"
@@ -205,7 +211,7 @@ sfnt-based font data for use with a web page.</p>
 those of the original font file. Tools producing WOFF files may provide other
 font editing features such as glyph subsetting, validation or font feature
 additions but these are considered outside the scope of this format. Independent
-of these features, both tools and user agents must assure that the validity of
+of these features, both tools and user agents are expected to assure that the validity of
 the underlying font data is preserved.</p>
 
 <p>The primary purpose of the WOFF format is to package fonts linked to web pages
@@ -228,6 +234,18 @@ the requirements of the CSS Fonts specification<a id="fn-6-ref" href="#fn-6"
 title="footnote 6" class="fnref">[6]</a>. In particular,
 such downloaded fonts are only available to the documents that reference them;
 they MUST NOT be made available to other applications or documents on the user's system.</p>
+
+<div class="note">
+<p>The WOFF format is intended for use with <tt>@font-face</tt> to provide
+downloadable fonts linked to specific web pages.
+It is therefore recommended that WOFF files should <strong>not</strong> be treated
+as an installable font format in desktop operating systems or similar environments.
+The WOFF-packaged data will typically be decoded to its original <tt>sfnt</tt> format
+for use by existing font-rendering APIs that expect OpenType font data,
+but such a decoded font should not be exposed as a file on disk,
+and must not be installed "globally" for use by other processes
+or documents on the system.</p>
+</div>
 
 <h3 id="Notation">Notational Conventions</h3>
 
@@ -258,7 +276,9 @@ tables, an optional block of extended metadata, and an optional block of private
 data. Except for padding with a maximum of three null bytes in places where 4-byte
 alignment of a table length or data block is specified, there MUST NOT be any
 extraneous data between the font tables and data blocks as pointed to by the header
-and table directory entries, or beyond the last such table or data block.</p>
+and table directory entries, or beyond the last such table or data block.
+If such extraneous data is present, a conforming user agent MUST reject the file as invalid.</p>
+
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">WOFF File</th></tr>
@@ -305,10 +325,10 @@ entries in the table directory that immediately follows the header:</p>
 <tr><td>UInt32</td><td>length</td><td>Total size of the WOFF file.</td></tr>
 <tr><td>UInt16</td><td>numTables</td><td>Number of entries in directory of font
 tables.</td></tr>
-<tr><td>UInt16</td><td>reserved</td><td>Reserved, must be set to zero.</td></tr>
+<tr><td>UInt16</td><td>reserved</td><td>Reserved; set to zero.</td></tr>
 <tr><td>UInt32</td><td>totalSfntSize</td><td>Total size needed for the
 uncompressed font data, including the sfnt header, directory,
-and font tables (as padded).</td></tr>
+and font tables (including padding).</td></tr>
 <tr><td>UInt16</td><td>majorVersion</td><td>Major version of the WOFF
 file.</td></tr>
 <tr><td>UInt16</td><td>minorVersion</td><td>Minor version of the WOFF
@@ -322,6 +342,11 @@ block.</td></tr>
 beginning of WOFF file.</td></tr>
 <tr><td>UInt32</td><td>privLength</td><td>Length of private data block.</td></tr>
 </table>
+
+<p>The <tt>signature</tt> field in the WOFF header
+MUST contain the "magic number" 0x774F4646.
+If the field does not contain this value,
+user agents MUST reject the file as invalid.</p>
 
 <p>The <tt>flavor</tt> field corresponds to the "sfnt version"
 field found at the beginning of an sfnt file,
@@ -426,8 +451,7 @@ directory entries, as described below.</p>
 an overall checksum for the entire font in the <tt>head</tt>
 table (see the TrueType, OpenType or Open Font Format specifications for the
 definition of each calculation). Tools producing WOFF files MUST validate these
-checksums, and correct the values and/or issue an error message if a
-discrepancy is found.</p>
+checksums, and reject the font if errors are found.</p>
 
 <p>A WOFF file contains the same set of font tables as the original font
 from which it was created. This means that the overall font checksum of a
@@ -437,19 +461,17 @@ original file included unreferenced data between or after the actual tables;
 this would affect the overall checksum of the original font, but would be
 dropped during creation of the WOFF file.</p>
 
-<p>In cases where checksum recalculation is necessary or changes to the original
-font data are made, e.g., to subset the glyphs in the font or add special tables,
-conformant tools MUST either remove any digital signature (i.e., a
-<tt>DSIG</tt> table) or regenerate the signature (if the
-necessary credentials are available), and MUST correct all affected checksum
-values and table offsets, both for individual tables and the overall font data
-checksum contained in the <tt>head</tt> table.</p>
-
-<p>Unless the original font has incorrect checksums that are corrected by the
-WOFF file generator, or extraneous data between tables (discarded by the WOFF
+<p>Unless the original font has structural anomalies such as
+incorrect padding, overlapping font tables, or
+extraneous data between tables (which will be discarded by the WOFF
 generator), the result of creating a WOFF file and then decoding this to
 regenerate an sfnt font MUST result in a final font that is bitwise-identical to
-the original.</p>
+the original.
+In the event that the original sfnt has defects or anomalies
+that make this impossible,
+the WOFF-generating tool SHOULD either reject the font
+or issue an appropriate warning
+that lossless round-trip conversion will not be possible.</p>
 
 
 <h2 id="DataTables">5.&nbsp;Font Data Tables</h2>
@@ -467,29 +489,84 @@ class="fnref">[10]</a>.</p>
 
 <p>User agents or other programs that decode WOFF files MUST be able to handle
 tables that have been compressed. However, the use of compression for font data
-tables is OPTIONAL for tools generating WOFF files; storing the tables in
+tables is OPTIONAL for tools generating WOFF files; storing some or all of the tables in
 uncompressed form is permissible.</p>
 
 <p>The font data tables MUST be stored immediately following the table
 directory, without gaps except for the padding that may be required (up to three
 null bytes at the end of each table) to ensure 4-byte alignment.</p>
 
-<p>Font tables in WOFF files SHOULD be stored in the same order as the original
-sfnt-based font and user agents SHOULD restore the original uncompressed font
-table in identical order if reconstituting the complete font into an sfnt structure.
+<p>Font tables in WOFF files MUST be stored in the same order as the original
+sfnt-based font;
+this is necessary to enable the reconstruction of an sfnt that is
+not just functionally equivalent but actually bitwise-identical to the original.
 The table order is implied by <tt>offset</tt> values in the table directory; sorting table
 directory entries into ascending <tt>offset</tt> value order
-produces a list of entries in an order equivalent to that of the font tables.</p>
+produces a list of entries in an order equivalent to that of the font tables.
+User agents MAY reorder tables when decoding the WOFF file to sfnt form,
+but should be aware that this means the resulting sfnt will no longer be
+an exact copy of the original, and checksums or digital signature data
+may be invalidated as a result.
+(Note that user agents need not necessarily reconstitute the original sfnt
+as a whole; they may access individual tables directly as needed.)</p>
+
+<div class="note">
+<p>In some cases, sites deploying WOFF files as web fonts may wish to subset the character
+repertoire, optimize table ordering for efficient text layout or rasterization,
+or remove (or add) optional font tables depending on the particular features needed for a site.
+User agents might make similar modifications to the font during decoding,
+such as omitting tables that are not needed by their particular text display system.</p>
 
 <p>If either a WOFF-creation tool or a WOFF-consuming user agent
 reorders or otherwise modifies the collection of font tables,
-it MUST recalculate the font checksum in the <tt>head</tt> table,
-which will be affected by the changed offsets in
-the sfnt table directory, and remove any <tt>DSIG</tt> table
-that is invalidated by the changes. A new signature MAY be added to the modified
-font, as described by the OpenType and Open Font Format specifications (if
-appropriate signing credentials are available to the tool involved).</p>
+the font checksum in the <tt>head</tt> table will need to be recalculated
+as it will be affected by the changed offsets in
+the sfnt table directory.
+Any <tt>DSIG</tt> table in the original font will also be invalidated by such changes, and should therefore be removed from the modified font.
+A new signature could be added to the modified font,
+as described by the OpenType and Open Font Format specifications
+(if appropriate signing credentials are available to the tool involved).
+Any such pre- and/or post-processing
+represents a modification of the font data being packaged;
+while it might be done in conjunction with WOFF packaging for Web deployment,
+it falls outside the scope of the WOFF specification.</p>
 
+<p>To ensure that lossless round-trip conversion from sfnt to WOFF and back
+will be possible, it is recommended that the original sfnt file should conform
+to certain norms that are not
+strictly required by the OpenType/OFF specification, although they are common
+practice:</p>
+
+<dl>
+<dt>Font table padding</dt>
+<dd>The OpenType/OFF specification is not entirely clear about whether <em>all</em>
+tables in an sfnt font must be padded with 0-3 zero bytes to a multiple
+of 4 bytes in length, or whether this applies only <em>between</em> tables,
+and the final table of the file may be left unpadded.
+Most current tools and fonts seem to expect all tables to be padded to a 4-byte
+boundary, including the last.
+The WOFF specification assumes this behavior, and specifies that the
+<tt>totalSfntLength</tt> field in the WOFF header provides for such padding.
+To ensure that a given font can be packaged as a WOFF file and then decoded
+to its original format and give a byte-for-byte identical result,
+the input font should therefore be padded to a multiple of 4 bytes in length.</dd>
+
+<dt>No "hidden" data</dt>
+<dd>The OpenType/OFF specification does not explicitly prohibit the
+presence of "extra" data or padding in between the font tables;
+as the table directory includes the offset and length of each actual table,
+such data would simply be ignored. However, the WOFF format makes no
+provision to preserve such non-font-table data when packaging a font,
+and therefore it would not survive a round-trip format conversion.</dd>
+
+<dt>Ensure checksums are correct</dt>
+<dd>The WOFF specification says that table checksums must be validated
+(and corrected if necessary) by WOFF creators.
+In order for complete
+round-trip fidelity, therefore, the checksums in the original sfnt file
+must also be correct prior to WOFF packaging.</dd>
+</dl>
+</div>
 
 <h2 id="Metadata">6.&nbsp;Extended Metadata Block</h2>
 
@@ -499,33 +576,33 @@ sfnt-based font file. The metadata block consists of XML data compressed by
 zlib; the file header specifies both the size of the actual compressed and the
 original uncompressed size in order to facilitate memory allocation.</p>
 
+<p>The presence (or absence) and content of the metadata block
+MUST NOT affect font loading or rendering behavior of user agents;
+it is intended to be purely informative.
+User agents MAY provide a means for users to view information about fonts
+(such as a "Font Information" panel). If such information is provided,
+then they MUST treat the metadata block as the primary source,
+and MAY fall back to presenting information from the font's <tt>name</tt>
+table entries when relevant extended metadata elements are not present.</p>
+
 <p>If present, the metadata MUST be compressed; it is never stored in
-uncompressed form. If no extended metadata is present, the
-<tt>metaOffset</tt>, <tt>metaLength</tt> and  <tt>metaOrigLength</tt> fields
-in the WOFF header MUST be set to zero.</p>
+uncompressed form.</p>
 
 <p>The metadata block MUST follow immediately after the last font table. As font
 tables MUST be padded with null bytes to a 4-byte boundary, the beginning of the
-metadata block will always be 4-byte aligned. The end of the metadata block is
-not padded to a 4-byte boundary unless it is followed by a private data block
-(below).</p>
+metadata block will always be 4-byte aligned.
+If the metadata block is followed by a private data block (see below),
+the end of the metadata block MUST be padded with null bytes to a 4-byte boundary.
+If the metadata block is not followed by a private data block,
+it MUST either be padded with null bytes to the next 4-byte boundary,
+or contain no additional padding after the end of the block.</p>
 
-<p>If the extended metadata is invalid (for example, the data cannot be decompressed,
-or it is not well-formed XML), the user agent MUST proceed as if the metadata
-block is absent; the font itself remains valid and can still be used (provided
-its main content of font data tables is valid).</p>
+<p>The extended metadata MUST be well-formed XML encoded in UTF-8 or UTF-16.
+The use of UTF-8 encoding is recommended.</p>
 
-<p>The presence (or absence) and content of the metadata block MUST NOT affect
-font loading or rendering behavior of user agents; it is intended to be purely
-informative. User agents MAY provide a means for users to view
-information about fonts (such as a "Font Information" panel).
-If such information is provided, then they MUST
-treat the metadata block as the primary source, and MAY fall back to presenting
-information from the font's <tt>name</tt> table entries when relevant extended metadata elements
-are not present.</p>
-
-<p>The extended metadata MUST be well-formed XML. The use of UTF-8 encoding is
-recommended.</p>
+<p>The schema for the extended metadata XML is described below.
+If the extended metadata does not match this schema,
+it is invalid and MUST be ignored, as if the block were not present.</p>
 
 <p>Several elements store their data in <tt>text</tt>
 subelements; this is to support localization. The <tt>text</tt>
@@ -784,7 +861,8 @@ of the content of the metadata block.</p>
 
 <p>The WOFF file MAY include a block of arbitrary data, allowing font creators
 to include whatever information they wish. The content of this data MUST NOT
-affect font usage or load behavior. User agents should make no assumptions
+affect font usage or load behavior of user agents.
+User agents should make no assumptions
 about the content of a private block; it may (for example) contain ASCII or
 Unicode text, or some vendor-defined binary data, and it may be compressed or
 encrypted, but it has no publicly defined format. Conformant user agents will
@@ -795,15 +873,10 @@ contents.</p>
 <p>The private data block, if present, MUST be the last block in the WOFF file,
 following all the font tables and any extended metadata block. The private data
 block MUST begin on a 4-byte boundary in the WOFF file, with up to three null
-bytes inserted as padding if needed to ensure this. No padding is required at
-the end of the private data block; any following data does not form part of the
-WOFF file structure, and MUST be ignored.</p>
-
-<p>If no private data is present, the <tt>privOffset</tt> and
-<tt>privLength</tt> fields in the WOFF header MUST be set to
-zero. However, as a conforming user agent does not interpret or even need to
-access the private data in any way, it will simply ignore these fields. Only a
-private vendor-specific tool would use them.</p>
+bytes inserted as padding if needed to ensure this.
+After the end of the private data block,
+the file MUST either be padded with null bytes to the next 4-byte boundary,
+or contain no additional padding after the end of the block.</p>
 
 
 <h2 id="Conformance">8.&nbsp;Summary of Conformance Requirements</h2>
@@ -813,6 +886,15 @@ derived from the more detailed specifications above.
 Tools creating WOFF files MUST ensure that the results conform to these requirements,
 and unless otherwise specified here,
 user agents processing or using WOFF files MUST reject any non-conforming input files.</p>
+
+<div class="note">
+<p>The WOFF specification does not guarantee that the actual font data
+packaged in a valid WOFF container is in fact correct and usable.
+It requires only that the WOFF packaging structure&#x2014;header, table directory,
+and compressed tables&#x2014;conforms to this specification.
+The contained data must be used with just as much caution as font data
+delivered in "raw" form or via any other packaging method.</p>
+</div>
 
 <h3 id="conformance-woff-header">WOFF header</h3>
 
@@ -838,7 +920,10 @@ Within each entry:</p>
 <dt>compLength</dt>
 <dd>MUST be less than or equal to origLength</dd>
 <dt>origChecksum</dt>
-<dd>MUST be correct for the original table data, in accordance with the OpenType specification</dd>
+<dd>MUST be correct for the original table data, in accordance with the OpenType specification.
+However, user agents are not required to validate these checskums;
+they are merely reinserted into the sfnt table directory
+when reconstructing the original font data.</dd>
 <dt>offset</dt>
 <dd>MUST be a multiple of 4</dd>
 </dl>
@@ -849,10 +934,25 @@ Within each entry:</p>
 processing the data with zlib's <tt>uncompress()</tt>
 function MUST result in exactly <tt>origLength</tt> bytes of
 decompressed data.</p>
+<div class="note">
+<p>User agents decoding WOFF files should be careful to check all uncompress
+operations for overflow or underflow of the length of decompressed data compared
+to the specified <tt>origLength</tt>, and to reject the WOFF file in case
+of any mismatch.</p>
+</div>
 <p>For each table where <tt>compLength</tt> is not a multiple of 4,
 the WOFF file MUST be padded with up to 3 zero bytes so as to reach a 4-byte boundary.</p>
 <p>User agents MUST NOT load WOFF files that contain extraneous data
 between font tables.</p>
+
+<div class="note">
+<p>The OpenType/OFF specification does not explicitly prohibit the
+presence of "extra" data or padding in between the font tables in the sfnt format;
+as the table directory includes the offset and length of each actual table,
+such data would simply be ignored. However, the WOFF format makes no
+provision to preserve such "hidden" non-font-table data when packaging a font,
+and therefore it would not survive a round-trip format conversion.</p>
+</div>
 
 <h3 id="conformance-metadata">Metadata</h3>
 <p>Processing the metadata with zlib's  <tt>uncompress()</tt> function
@@ -866,9 +966,24 @@ but MUST proceed to render the contained font as if the metadata block were abse
 This requirement is designed to maximize interoperability between clients
 that interpret the metadata block and those that do not support it at all.</p>
 
+<div class="note">
+<p>Although the metadata block is optional,
+and there is no requirement for user agents to process it
+in order to render the font,
+clients such as web browsers are encouraged to provide a means
+(such as a "Font Information" dialog for the current page)
+for users to view the metadata included in WOFF files.
+Not every client will necessarily have an appropriate context for this,
+but any client that enables the user to find out about the resources used by a web page
+should consider exposing information about the fonts used, and in the case of
+WOFF-packaged fonts, the metadata block is the primary source of this information.</p>
+</div>
+
 <hr/>
 
 <h2 id="appendix-a">Appendix A: Extended Metadata Examples</h2>
+
+<p>This appendix is informative.</p>
 
 <p>This "dummy" metadata block illustrates the use of the metadata elements
 described in section 6, including the use of multiple <tt>text</tt>
@@ -987,152 +1102,6 @@ software. If you have any questions, please contact Ascender Corp.&lt;/text&gt;
 &lt;/metadata&gt;
 </pre>
 </div>
-
-<hr/>
-
-<h2 id="appendix-b">Appendix B: Best Practices for WOFF File Creators</h2>
-
-<p>This appendix highlights aspects of the WOFF specification that are
-particularly relevant to those creating or packaging fonts in WOFF format,
-and provides recommended Best Practices for tools or workflows involved
-in WOFF file creation.</p>
-
-<h3 id="BP-roundtrip">Ensure round-trip fidelity</h3>
-
-<p>Any valid WOFF file can be converted back to sfnt format,
-by decompressing the individual font tables and reconstructing the sfnt
-header and table directory. The resulting font should always be structurally
-valid and functionally equivalent to the original font prior to packaging in
-WOFF format.</p>
-
-<p>However, it is recommended that the result of such a round-trip conversion
-to WOFF format and back to sfnt should be not only functionally equivalent
-to the original, but actually bitwise identical. For this to hold true,
-the original sfnt file should conform to certain norms that are not
-strictly required by the OpenType/OFF specification, although they are common
-practice:</p>
-
-<dl>
-<dt>Font table padding</dt>
-<dd>The OpenType/OFF specification is not entirely clear about whether <em>all</em>
-tables in an sfnt font must be padded with 0-3 zero bytes to a multiple
-of 4 bytes in length, or whether this applies only <em>between</em> tables,
-and the final table of the file may be left unpadded.
-Most current tools and fonts seem to expect all tables to be padded to a 4-byte
-boundary, including the last.
-The WOFF specification assumes this behavior, and specifies that the
-<tt>totalSfntLength</tt> field in the WOFF header provides for such padding.
-To ensure that a given font can be packaged as a WOFF file and then decoded
-to its original format and give a byte-for-byte identical result,
-the input font should therefore be padded to a multiple of 4 bytes in length.</dd>
-
-<dt>No &quot;hidden&quot; data</dt>
-<dd>The OpenType/OFF specification does not explicitly prohibit the
-presence of &quot;extra&quot; data or padding in between the font tables;
-as the table directory includes the offset and length of each actual table,
-such data would simply be ignored. However, the WOFF format makes no
-provision to preserve such non-font-table data when packaging a font,
-and therefore it would not survive a round-trip format conversion.</dd>
-
-<dt>Ensure checksums are correct</dt>
-<dd>The WOFF specification says that table checksums must be validated
-(and corrected if necessary) by WOFF creators. In order for complete
-round-trip fidelity, therefore, the checksums in the original sfnt file
-must also be correct prior to WOFF packaging.</dd>
-</dl>
-
-<p>In addition, WOFF creation tools should preserve the order of the font tables.
-While this is not required for validity or for correct functioning of the font,
-it is necessary to allow binary round-trip fidelity; and if this is not ensured,
-then the sfnt checksum and digital signature (if any) can no longer
-be validated, as these are affected by table ordering.</p>
-
-<h3 id="BP-preprocess">Distinguish WOFF packaging from other preprocessing and optimization</h3>
-
-<p>The WOFF format provides a standard way to package the collection of tables
-that make up a font, together with added metadata, for delivery to a web browser
-or other client. It is not concerned with the actual content of the font tables,
-or how they are used once decoded by the user agent.</p>
-
-<p>In some cases, sites deploying WOFF files as web fonts may wish to subset the character
-repertoire, optimize table ordering for efficient text layout or rasterization,
-or remove (or add) optional font tables depending on the particular features needed for a site.
-These or similar operations are considered modifications to the original font,
-yielding a new &quot;original&quot; font that becomes the source for WOFF packaging;
-such modifications are outside the scope of the WOFF specification itself.</p>
-
-<hr/>
-
-<h2 id="appendix-c">Appendix C: Best Practices for WOFF File Consumers</h2>
-
-<p>This appendix highlights aspects of the WOFF specification that are
-particularly relevant to those using fonts in WOFF format (typically
-user agents such as web browsers),
-and provides recommended Best Practices for WOFF file use.</p>
-
-<h3 id="BP-reject-nonconform">Reject files that violate basic conformance requirements</h3>
-
-<p>Any file that claims to be a WOFF file but fails to satisfy the conformance
-requirements summarized in section&nbsp;8 is not a valid WOFF file,
-and user agents must not attempt to decode and use font data from such a file.</p>
-
-<p>Note that the WOFF specification does not guarantee that the actual font data
-packaged in a valid WOFF container is in fact correct and usable.
-It requires only that the WOFF packaging structure&#x2014;header, table directory,
-and compressed tables&#x2014;conforms to this specification.
-The contained data must be used with just as much caution as font data
-delivered in "raw" form or via any other packaging method.</p>
-
-<h3 id="BP-check-uncompress">Check all uncompress operations for overflow</h3>
-
-<p>For each compressed data block, the WOFF format specifies the uncompressed size.
-This allows the client to allocate appropriate amounts of space for decompression.
-Clients must check that the <tt>uncompress()</tt> operation
-yields exactly the specified amount of data, and does not return an error.
-Any error in decompression or discrepancy in table size means the WOFF file is invalid
-and must not be used.</p>
-
-<h3 id="BP-ensure-sfnt-valid">Ensure reconstructed sfnt resources are valid</h3>
-
-<p>Many clients may choose to "decode" the WOFF-packaged data and construct
-an sfnt font resource in memory, for use with existing font APIs.
-This can be done either completely, reconstructing the exact same sfnt data
-as was originally packaged in the WOFF file, or partially by including or excluding
-specific font tables according to the client's requirements. For example,
-a client that does not support a particular text layout technology (such as
-OpenType layout, AAT, or Graphite) might choose to omit tables that are not
-relevant to its text-rendering system. In this case, the client should ensure
-that font-wide fields such as the <tt>head</tt> table checksum
-or any digital signature table are updated appropriately so that the resulting
-sfnt resource is valid according to the OpenType specification.</p>
-
-<p>In practice, this means that if a client does "partial" reconstruction of a
-digitally signed font, it should remove the <tt>DSIG</tt> table
-as it will not be a valid signature for the modified font resource.</p>
-
-<h3 id="BP-view-metadata">Provide means for the user to view WOFF metadata</h3>
-
-<p>Clients such as web browsers are encouraged to provide a means
-(such as a Page Information dialog) for users to view the metadata included in
-WOFF files. Not every client will necessarily have an appropriate context for this,
-but any client that enables the user to find out about the resources used by a web page
-should consider exposing information about the fonts used, and in the case of
-WOFF-packaged fonts, the metadata block is the primary source of this information.</p>
-
-<h3 id="BP-non-installable">WOFF files are not installable fonts</h3>
-
-<p>The WOFF format is intended for use with <tt>@font-face</tt> to provide
-downloadable fonts linked to specific web pages, and (in accordance with the CSS Fonts
-specification<a href="#fn-6" title="footnote 6" class="fnref">[6]</a>)
-fonts used in this manner must not be made available
-to other documents or applications.
-It is therefore recommended that WOFF files should <strong>not</strong> be treated
-as an installable font format in desktop operating systems or similar environments.
-The WOFF-packaged data will typically be decoded to its original <tt>sfnt</tt> format
-for use by existing font-rendering APIs that expect OpenType font data,
-but such a decoded font should not be exposed as a file on disk,
-and must not be installed "globally" for use by other processes
-or documents on the system.</p>
 
 <hr/>
 
