@@ -934,7 +934,9 @@ when reconstructing the original font data.</dd>
 <tt>compLength &lt; origLength</tt>,
 processing the data with zlib's <tt>uncompress()</tt>
 function MUST result in exactly <tt>origLength</tt> bytes of
-decompressed data.</p>
+decompressed data.
+User agents MUST reject the WOFF file if the decompressed length of a table
+does not match that specified in the table directory.</p>
 <div class="note">
 <p>User agents decoding WOFF files should be careful to check all uncompress
 operations for overflow or underflow of the length of decompressed data compared
