@@ -55,7 +55,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editor's Draft 20 September 2010
+<h2 id="W3C-doctype">W3C Editor's Draft 4 October 2010
 </h2>
 
 <dl>
@@ -270,14 +270,22 @@ as the original, uncompressed sfnt-based font, stored in the same order, except
 that each table MAY be compressed, and the sfnt table directory is replaced by
 the WOFF table directory.</p>
 
-<p>A complete WOFF file consists of a 44-byte header, immediately followed (in
-this order) by a variable-size table directory, a variable number of font
-tables, an optional block of extended metadata, and an optional block of private
-data. Except for padding with a maximum of three null bytes in places where 4-byte
-alignment of a table length or data block is specified, there MUST NOT be any
-extraneous data between the font tables and data blocks as pointed to by the header
-and table directory entries, or beyond the last such table or data block.
-If such extraneous data is present, a conforming user agent MUST reject the file as invalid.</p>
+<p>A complete WOFF file consists of several blocks: a 44-byte header,
+immediately followed (in this order) by a variable-size table directory,
+a variable number of font tables, an optional block of extended
+metadata, and an optional block of private data.
+Except for padding with a maximum of three null bytes
+in places where 4-byte alignment of a table length
+or block offset is specified,
+there MUST NOT be any extraneous data between the data blocks
+or font data tables indicated by the WOFF header and table directory,
+or beyond the last such block or table.
+If such extraneous data is present a conforming user agent
+MUST reject the file as invalid.
+The file MUST also be rejected as invalid
+if the offsets and lengths of any data blocks or font tables
+indicate overlapping byte ranges of the file,
+or ranges that would extend beyond the end of the file.</p>
 
 <table>
 <col class="name"/><col class="desc"/>
@@ -378,9 +386,10 @@ is incorrect, a conforming user agent MUST reject the file as invalid.</p>
 
 <p>If either or both of the metadata or private blocks is not present,
 the relevant offset and length fields MUST be set to zero.
-If the offset and length fields pointing to the metadata or private data block
-are out of range, indicating a byte range beyond the physical size
-of the file, a conforming user agent MUST reject the file as invalid.</p>
+If the metadata or private data offset and length fields indicate byte
+ranges that overlap other data blocks or tables,
+or extend beyond the end of the file,
+a conforming user agent MUST reject the file as invalid.</p>
 
 <p>The header includes a <tt>reserved</tt> field; this MUST be
 set to zero. If this field is non-zero, a conforming user agent
@@ -423,7 +432,13 @@ font.</p>
 with null bytes up to the next 4-byte boundary. Font data tables in the WOFF
 file have the same requirement: they MUST begin on 4-byte boundaries and be
 zero-padded to the next 4-byte boundary. The <tt>compLength</tt> and <tt>origLength</tt> fields
-in the header store the exact, unpadded length.</p>
+in the table directory store the exact, unpadded length.</p>
+
+<p>If the <tt>offset</tt> and <tt>compLength</tt> values
+indicate a byte range that overlaps
+other data blocks or font tables, or if the byte range extends beyond
+the end of the file, a conforming user agent MUST reject the file as
+invalid.</p>
 
 <p>If the length of a compressed font table would be the same as or greater than
 the length of the original font table, the font table MUST be stored
