@@ -195,6 +195,15 @@ Despite this name, WOFF should be regarded as a container format
 or "wrapper" for font data in already-existing formats
 rather than an actual font format in its own right.</p>
 
+<div class="note">
+<p>This document includes a number of "notes" such as this one,
+set off from the main text of the specification.
+These are intended as informative explanations or clarifications,
+to serve as hints or guides to implementers and users,
+but are not part of the normative text.
+</p>
+</div>
+
 <p>The WOFF format is a container for the
 table-based sfnt structure used in TrueType<a id="fn-1-ref" href="#fn-1"
 title="footnote 1" class="fnref">[1]</a>, OpenType<a id="fn-2-ref" href="#fn-2"
@@ -383,6 +392,17 @@ which is not part of the original sfnt file) into a standard sfnt structure.
 Note that this value MUST be a multiple of 4, because all font tables
 including the last are to be padded to a 4-byte boundary. If this value
 is incorrect, a conforming user agent MUST reject the file as invalid.</p>
+
+<div class="note">
+<p>The correct value for <tt>totalSfntSize</tt> may be computed
+as illustrated by the following pseudo-code:</p>
+<pre>
+totalSfntSize = 12 // size of sfnt header ("offset table" in the OpenType spec)
+totalSfntSize += 16 * numTables // size of table record (directory of font tables)
+for each table:
+    totalSfntSize += (table.origLength + 3) & 0xFFFFFFFC // table size, padded
+</pre>
+</div>
 
 <p>If either or both of the metadata or private blocks is not present,
 the relevant offset and length fields MUST be set to zero.
@@ -1004,7 +1024,7 @@ WOFF-packaged fonts, the metadata block is the primary source of this informatio
 
 <h2 id="appendix-a">Appendix A: Extended Metadata Examples</h2>
 
-<p>This appendix is informative.</p>
+<p>This appendix is purely informative, not a normative part of the WOFF specification.</p>
 
 <p>This "dummy" metadata block illustrates the use of the metadata elements
 described in section 6, including the use of multiple <tt>text</tt>
