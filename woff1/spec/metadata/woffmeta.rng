@@ -27,10 +27,8 @@
             <oneOrMore>
               <element name="credit">
                 <attribute name="name"/>
-                <attribute name="role">
-                  <data type="NCName"/>
-                </attribute>
-                <optional>
+                <attribute name="role"/>
+               <optional>
                   <attribute name="url">
                     <data type="anyURI"/>
                   </attribute>
