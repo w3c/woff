@@ -55,7 +55,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editor's Draft 4 October 2010
+<h2 id="W3C-doctype">W3C Editor's Draft 20 October 2010
 </h2>
 
 <dl>
@@ -195,15 +195,6 @@ Despite this name, WOFF should be regarded as a container format
 or "wrapper" for font data in already-existing formats
 rather than an actual font format in its own right.</p>
 
-<div class="note">
-<p>This document includes a number of "notes" such as this one,
-set off from the main text of the specification.
-These are intended as informative explanations or clarifications,
-to serve as hints or guides to implementers and users,
-but are not part of the normative text.
-</p>
-</div>
-
 <p>The WOFF format is a container for the
 table-based sfnt structure used in TrueType<a id="fn-1-ref" href="#fn-1"
 title="footnote 1" class="fnref">[1]</a>, OpenType<a id="fn-2-ref" href="#fn-2"
@@ -245,24 +236,32 @@ such downloaded fonts are only available to the documents that reference them;
 they MUST NOT be made available to other applications or documents on the user's system.</p>
 
 <div class="note">
-<p>The WOFF format is intended for use with <tt>@font-face</tt> to provide
-downloadable fonts linked to specific web pages.
-It is therefore recommended that WOFF files should <strong>not</strong> be treated
-as an installable font format in desktop operating systems or similar environments.
-The WOFF-packaged data will typically be decoded to its original <tt>sfnt</tt> format
+<p>The WOFF format is intended for use with <tt>@font-face</tt>
+to provide downloadable fonts linked to specific web pages.
+Therefore, WOFF files must not be treated as an installable font format
+in desktop operating systems or similar environments.
+The WOFF-packaged data will typically be decoded to its original sfnt format
 for use by existing font-rendering APIs that expect OpenType font data,
-but such a decoded font should not be exposed as a file on disk,
-and must not be installed "globally" for use by other processes
-or documents on the system.</p>
+but such decoded font must not be exposed to other documents or applications.
+</p>
 </div>
 
 <h3 id="Notation">Notational Conventions</h3>
 
-<p>The key words "must", "must not", "required", "shall", "shall not", "should",
-"should not", "recommended",  "may", and "optional" in this document are to be
+<p>The all-uppercase key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in RFC 2119<a id="fn-7-ref" href="#fn-7"
-title="footnote 7" class="fnref">[7]</a>.</p>
+title="footnote 7" class="fnref">[7]</a>.
+If these words occur in lower- or mixed case, they should be interpreted
+in accordance with their normal English meaning.
+</p>
 
+<p>This document includes sections of text that are called out as "Notes"
+and set off from the main text of the specification.
+These notes are intended as informative explanations or clarifications,
+to serve as hints or guides to implementers and users,
+but are not part of the normative text.
+</p>
 
 
 <h2 id="OverallStructure">2.&nbsp;Overall File Structure</h2>
