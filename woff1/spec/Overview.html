@@ -654,15 +654,15 @@ In the event of a discrepancy between the RelaxNG schema
 and the text of the specification, the text takes precedence.</p>
 
 <p>Several elements store their data in <tt>text</tt>
-subelements; this is to support localization. The <tt>text</tt>
-elements MAY be given a <tt>lang</tt> attribute. The possible
+subelements; this is to support localization. <span class="conform ff" id="conform-textlang">The <tt>text</tt>
+elements MAY be given a <tt>lang</tt> attribute</span>. The possible
 values for the <tt>lang</tt> attribute can be found in the IANA
 Subtag Registry<a id="fn-11-ref" href="#fn-11" title="footnote 11"
 class="fnref">[11]</a>. A user agent displaying metadata is expected to choose a
 preferred language/locale to display from among those available, following RFC 4647<a
 id="fn-12-ref" href="#fn-12" title="footnote 12" class="fnref">[12]</a>.
-The user agent SHOULD choose which of the available <tt>text</tt>
-elements to display as follows:</p>
+<span class="conform ua" id="conform-langselect">The user agent SHOULD choose which of the available <tt>text</tt>
+elements to display as follows</span>:</p>
 <ol>
 <li>If a <tt>text</tt> element is available in the user's
 preferred language, as determined via
@@ -685,13 +685,13 @@ type.</p>
 <dl class="xmlspec">
 <dt><tt>metadata</tt> element</dt>
 <dd>
-<p>The main element. This element is required.</p>
+<p>The main element. <span class="conform ff" id="conform-metadataelement-required">This element is required</span>.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>version</td><td>A version number indicating the format version of the
 <span class="code>">metadata</span> element. This is currently <tt>1.0</tt>.
-This attribute is required.</td></tr>
+<span class="conform ff" id="conform-metadataversion-required">This attribute is required</span>.</td></tr>
 </table>
 </dd>
 </dl>
@@ -702,21 +702,24 @@ element.</p>
 
 <p>The <tt>extension</tt> element is intended to allow
 vendors to include metadata that is not covered by the specific elements
-defined here, while following a standard model. User agents that provide a means
+defined here, while following a standard model. <span class="conform ua" id="conform-metadata-showextension">User agents that provide a means
 for the user to view WOFF file metadata SHOULD include such
-<tt>extension</tt> elements in the metadata presented to the user.</p>
+<tt>extension</tt> elements in the metadata presented to the user</span>.</p>
 
-<p>In addition, vendors MAY include additional types of metadata as new elements within the
+<p>In addition, <span class="conform ff" id="conform-metadata-extensionelements">vendors MAY include additional types of metadata as new elements within the
 <tt>metadata</tt> element, or as additional attributes of the
-elements specified here. Such additional elements or attributes MAY be ignored
+elements specified here</span>.
+<!-- additional attribues in the schema? -->
+<!-- next one is not testable --> 
+<span class="conform ua" id="conform-metadata-extensions-optional"> Such additional elements or attributes MAY be ignored
 by conforming user agents, or MAY be used (e.g., displayed to the user on
-request).</p>
+request)</span>.</p>
 
 <dl class="xmlspec">
 <dt><tt>uniqueid</tt> element</dt>
 <dd>
 <p>A unique identifier string for the font. This element is recommended, but not
-required for the metadata to be valid. This element must be a child of the
+required for the metadata to be valid. <!-- conform? -->This element must be a child of the
 <tt>metadata</tt> element. This is an empty element.</p>
 <table>
 <col class="name"/><col class="desc"/>
@@ -734,12 +737,12 @@ data of the vendor's own design.</p>
 <dt><tt>vendor</tt> element</dt>
 <dd>
 <p>Information about the font vendor. This element is recommended, but not
-required for the metadata to be valid. This element must be a child of the
+required for the metadata to be valid. <!-- conform? -->This element must be a child of the
 <tt>metadata</tt> element. This is an empty element.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>name</td><td>The name of the font vendor. This attribute is required.</td></tr>
+<tr><td>name</td><td>The name of the font vendor. <span class="conform ff" id="conform-metadata-vendor-required">This attribute is required</span>.</td></tr>
 <tr><td>url</td><td>The url for the font vendor. This attribute is
 optional.</td></tr>
 </table>
@@ -749,20 +752,20 @@ optional.</td></tr>
 <dd>
 <p>Credit information for the font. This can include any type of credit the
 vendor desires: designer, hinter, and so on. This element is optional. If
-present, it must be a child of the <tt>metadata</tt> element
-and it must contain at least one <tt>credit</tt> element. This
+present, <!-- conform? -->it must be a child of the <tt>metadata</tt> element
+and <!-- conform? -->it must contain at least one <tt>credit</tt> element. This
 element has no attributes.</p>
 
 <p>Subelements:</p>
 <dl>
 <dt><tt>credit</tt> element</dt>
 <dd>
-<p>A single credit record. If present, it must be a child of the
+<p>A single credit record. <!-- conform? -->If present, it must be a child of the
 <tt>credits</tt> element. This is an empty element.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>name</td><td>The name of the entity being credited. This attribute is required.</td></tr>
+<tr><td>name</td><td>The name of the entity being credited. <span class="conform ff" id="conform-creditnamerequired">This attribute is required</span>.</td></tr>
 <tr><td>url</td><td>The url for the entity being credited. This attribute is
 optional.</td></tr>
 <tr><td>role</td><td>The role of the entity being credited. This attribute is
@@ -776,14 +779,14 @@ optional.</td></tr>
 <dt><tt>description</tt> element</dt>
 <dd>
 <p>An arbitrary text description of the font's design, its history, etc. This
-element is optional. If present, it must be a child of the <tt>metadata</tt> element.
+element is optional. <!-- conform? -->If present, it must be a child of the <tt>metadata</tt> element.
 This element may be localized.</p>
 </dd>
 
 <dt><tt>license</tt> element</dt>
 <dd>
 <p>Licensing information for the font.
-This element is optional. If present, it must be a
+This element is optional. <!-- conform? -->If present, it must be a
 child of the <tt>metadata</tt> element. This element may be
 localized.</p>
 <table>
@@ -798,27 +801,27 @@ optional.</td></tr>
 
 <dt><tt>copyright</tt> element</dt>
 <dd>
-<p>The copyright for the font. This element is optional. If present, it must be
+<p>The copyright for the font. This element is optional. <!-- conform? -->If present, it must be
 a child of the <tt>metadata</tt> element. This element may be
 localized. This element has no attributes.</p>
 </dd>
 
 <dt><tt>trademark</tt> element</dt>
 <dd>
-<p>The trademark for the font. This element is optional. If present, it must be
+<p>The trademark for the font. This element is optional. <!-- conform? -->If present, it must be
 a child of the <tt>metadata</tt> element. This element may be
 localized. This element has no attributes.</p>
 </dd>
 
 <dt><tt>licensee</tt> element</dt>
 <dd>
-<p>The licensee of the font. This element is optional. If present, it must be a
+<p>The licensee of the font. This element is optional. <!-- conform? -->If present, it must be a
 child of the <tt>metadata</tt> element. This is an empty
 element.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>name</td><td>The name of the licensee. This attribute is required.</td></tr>
+<tr><td>name</td><td>The name of the licensee. <span class="conform ff" id="conform-licensee-required">This attribute is required</span>.</td></tr>
 </table>
 </dd>
 
@@ -842,9 +845,9 @@ This attribute is optional.</td></tr>
 <dt><tt>name</tt> element</dt>
 <dd>
 <p>Zero or more <tt>name</tt> elements may be used to provide
-a human-friendly name for the collection of extended metadata items. A user agent
+a human-friendly name for the collection of extended metadata items. <span class="conform ua" id="conform-nameoptional">A user agent
 that displays metadata SHOULD choose the name with most the appropriate language from
-among those available for each named <tt>extension</tt> element.
+among those available for each named <tt>extension</tt> element</span>.
 This subelement is OPTIONAL; anonymous <tt>extension</tt> elements
 are also permissible.</p>
 <table>
@@ -856,7 +859,7 @@ This attribute is optional.</td></tr>
 </dd>
 <dt><tt>item</tt> element</dt>
 <dd>
-<p>At least one <tt>item</tt> element SHOULD be present in
+<p><!-- conform? -->At least one <tt>item</tt> element SHOULD be present in
 each <tt>extension</tt> container.</p>
 <table>
 <col class="name"/><col class="desc"/>
@@ -872,8 +875,9 @@ This attribute is optional.</td></tr>
 a human-friendly name for a specific extended metadata item. A user agent
 that displays metadata SHOULD choose the name with the most appropriate language from
 among those available for each <tt>item</tt> element.
-This subelement is REQUIRED; an <tt>item</tt> element with no
-<tt>name</tt> is invalid and SHOULD be ignored.</p>
+<span class="conform ff" id="conform-namerequired">This subelement is REQUIRED</span>; 
+<span class="conform ua" id="conform-noname-ignore">an <tt>item</tt> element with no
+<tt>name</tt> is invalid and SHOULD be ignored</span>.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
@@ -883,11 +887,12 @@ This attribute is optional.</td></tr>
 </dd>
 <dt><tt>value</tt> element</dt>
 <dd><p>One or more <tt>value</tt> elements are used to provide
-the value of a specific extended metadata item. A user agent
+the value of a specific extended metadata item. <span class="conform ua" id="conform-value-langselect">A user agent
 that displays metadata SHOULD choose the value with the most appropriate language from
-among those available for each <tt>item</tt> element.
-This subelement is REQUIRED; an <tt>item</tt> element with no
-<tt>value</tt> is invalid and SHOULD be ignored.</p>
+among those available for each <tt>item</tt> element</span>.
+<span class="conform ff" id="conform-valuerequired">This subelement is REQUIRED</span>; 
+<span class="conform ua" id="conform-novalue-ignore">an <tt>item</tt> element with no
+<tt>value</tt> is invalid and SHOULD be ignored</span>.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
@@ -909,9 +914,9 @@ of the content of the metadata block.</p>
 
 <h2 id="Private">7.&nbsp;Private Data Block</h2>
 
-<p>The WOFF file MAY include a block of arbitrary data, allowing font creators
-to include whatever information they wish. The content of this data MUST NOT
-affect font usage or load behavior of user agents.
+<p><span class="conform ff" id="conform-private">The WOFF file MAY include a block of arbitrary data</span>, allowing font creators
+to include whatever information they wish. <span class="conform ua" id="conform-private-noeffect">The content of this data MUST NOT
+affect font usage or load behavior of user agents</span>.
 User agents should make no assumptions
 about the content of a private block; it may (for example) contain ASCII or
 Unicode text, or some vendor-defined binary data, and it may be compressed or
@@ -920,13 +925,14 @@ not assume anything about the structure of this data. Only the font developer or
 vendor responsible for the private block is expected to understand its
 contents.</p>
 
-<p>The private data block, if present, MUST be the last block in the WOFF file,
-following all the font tables and any extended metadata block. The private data
+<p><span class="conform ff" id="conform-private-last">The private data block, if present, MUST be the last block in the WOFF file,
+following all the font tables and any extended metadata block</span>. 
+<span class="conform ff" id="conform-private-padalign">The private data
 block MUST begin on a 4-byte boundary in the WOFF file, with up to three null
-bytes inserted as padding if needed to ensure this.
-After the end of the private data block,
+bytes inserted as padding if needed to ensure this</span>.
+<span class="conform ff" id="conform-afterprivate">After the end of the private data block,
 the file MUST either be padded with null bytes to the next 4-byte boundary,
-or contain no additional padding after the end of the block.</p>
+or contain no additional padding after the end of the block</span>.</p>
 
 
 <h2 id="Conformance">8.&nbsp;Summary of Conformance Requirements</h2>
