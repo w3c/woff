@@ -7,8 +7,12 @@
       <title>WOFF File Format 1.0</title>
       <style type="text/css">
       .toadd {background: yellow; padding-left:3px; padding-right: 3px}
+      .conform {background: #DFD}
+      .ua:before {content: "UA: "; background: #9F9; padding:4px; border: thin solid green}
+      .ff:before {content: "FF: "; background: #F99; padding:4px; border: thin solid maroon}
+      .at:before {content:"AT:"; background: #99F; padding:4px; border: thin solid navy}
       </style>
-     <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
+
 
      <style type="text/css">
 div.note { margin: 0 2.5em; padding: 0.5em 1em; background: #ccc }
@@ -43,6 +47,7 @@ dl.xmlspec dd {
   background: #eee;
 }
      </style>
+          <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
 
    </head>
    <body>
@@ -216,24 +221,24 @@ the underlying font data is preserved.</p>
 
 <p>The primary purpose of the WOFF format is to package fonts linked to web pages
 by means of CSS <tt>@font-face</tt> rules.
-When using such fonts, user agents MUST implement a 'same-origin restriction'
+<span class="conform ua" id="conform-same-origin">When using such fonts, user agents MUST implement a 'same-origin restriction'
 on the downloading of WOFF files
-using the same-origin matching algorithm described in the HTML5 specification<a id="fn-4-ref" href="#fn-4"
+using the same-origin matching algorithm described in the HTML5 specification</span> <a id="fn-4-ref" href="#fn-4"
 title="footnote 4" class="fnref">[4]</a>.
-Note that the origin of the stylesheet containing <tt>@font-face</tt> declarations
+<span class="conform ua" id="conform-doc-origin">The origin of the stylesheet containing <tt>@font-face</tt> declarations
 is not used when deciding whether a WOFF file is same-origin or not,
-only the origin of containing document is used.
-User agents MUST also implement the ability to relax this restriction
-using Cross-Origin Resource Sharing<a id="fn-5-ref" href="#fn-5"
+only the origin of containing document is used</span>.
+<span class="conform ua" id="conform-cors">User agents MUST also implement the ability to relax this restriction
+using Cross-Origin Resource Sharing</span> <a id="fn-5-ref" href="#fn-5"
 title="footnote 5" class="fnref">[5]</a>.
 Thus, sites can explicitly allow cross-site downloading of WOFF files
 using the <tt>Access-Control-Allow-Origin</tt> HTTP header.</p>
 
-<p>User agents supporting the WOFF file format for downloadable fonts MUST respect
-the requirements of the CSS Fonts specification<a id="fn-6-ref" href="#fn-6"
+<p><span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for downloadable fonts MUST respect
+the requirements of the CSS Fonts specification</span> <a id="fn-6-ref" href="#fn-6"
 title="footnote 6" class="fnref">[6]</a>. In particular,
-such downloaded fonts are only available to the documents that reference them;
-they MUST NOT be made available to other applications or documents on the user's system.</p>
+<span class="conform ua" id="conform-css3font-available">such downloaded fonts are only available to the documents that reference them;
+they MUST NOT be made available to other applications or documents on the user's system</a>.</p>
 
 <div class="note">
 <p>The WOFF format is intended for use with <tt>@font-face</tt>
@@ -275,7 +280,7 @@ href="#fn-3" title="footnote 3" class="fnref">[3]</a> specifications.</p>
 
 <p>The main body of the file consists of the same collection of font data tables
 as the original, uncompressed sfnt-based font, stored in the same order, except
-that each table MAY be compressed, and the sfnt table directory is replaced by
+that <span class="conform ff" id="conform-maycompress">each table MAY be compressed</span>, and the sfnt table directory is replaced by
 the WOFF table directory.</p>
 
 <p>A complete WOFF file consists of several blocks: a 44-byte header,
@@ -285,15 +290,15 @@ metadata, and an optional block of private data.
 Except for padding with a maximum of three null bytes
 in places where 4-byte alignment of a table length
 or block offset is specified,
-there MUST NOT be any extraneous data between the data blocks
+<span class="conform ff" id="conform-noextraneous">there MUST NOT be any extraneous data between the data blocks
 or font data tables indicated by the WOFF header and table directory,
-or beyond the last such block or table.
-If such extraneous data is present a conforming user agent
-MUST reject the file as invalid.
-The file MUST also be rejected as invalid
+or beyond the last such block or table</span>.
+If such extraneous data is present <span class="conform ua" id="conform-extraneous-reject">a conforming user agent
+MUST reject the file as invalid</span>.
+The file <span class="conform ua" id="conform-overlap-reject">MUST also be rejected as invalid
 if the offsets and lengths of any data blocks or font tables
 indicate overlapping byte ranges of the file,
-or ranges that would extend beyond the end of the file.</p>
+or ranges that would extend beyond the end of the file</span>.</p>
 
 <table>
 <col class="name"/><col class="desc"/>
@@ -359,10 +364,10 @@ beginning of WOFF file.</td></tr>
 <tr><td>UInt32</td><td>privLength</td><td>Length of private data block.</td></tr>
 </table>
 
-<p>The <tt>signature</tt> field in the WOFF header
-MUST contain the "magic number" 0x774F4646.
-If the field does not contain this value,
-user agents MUST reject the file as invalid.</p>
+<p><span class="conform ff" id="conform-magicnumber">The <tt>signature</tt> field in the WOFF header
+MUST contain the "magic number" 0x774F4646</span>.
+<span class="conform ua" id="conform-nomagicnumber-reject">If the field does not contain this value,
+user agents MUST reject the file as invalid</span>.</p>
 
 <p>The <tt>flavor</tt> field corresponds to the "sfnt version"
 field found at the beginning of an sfnt file,
@@ -388,9 +393,10 @@ uncompressed font table sizes, each padded to a multiple of 4 bytes, plus
 the size of the sfnt header and table directory. Thus, this is the size of
 buffer needed to decode the complete WOFF-packaged font (but not metadata,
 which is not part of the original sfnt file) into a standard sfnt structure.
-Note that this value MUST be a multiple of 4, because all font tables
-including the last are to be padded to a 4-byte boundary. If this value
-is incorrect, a conforming user agent MUST reject the file as invalid.</p>
+<span class="conform ff" id="conform-totalsize-longword">This value MUST be a multiple of 4, because all font tables
+including the last are to be padded to a 4-byte boundary</span>. 
+<span class="conform ua" id="conform-totalsize-longword-reject">If this value
+is incorrect, a conforming user agent MUST reject the file as invalid</span>.</p>
 
 <div class="note">
 <p>The correct value for <tt>totalSfntSize</tt> may be computed
@@ -403,16 +409,16 @@ for each table:
 </pre>
 </div>
 
-<p>If either or both of the metadata or private blocks is not present,
-the relevant offset and length fields MUST be set to zero.
-If the metadata or private data offset and length fields indicate byte
+<p><span class="conform ff" id="conform-zerometaprivate">If either or both of the metadata or private blocks is not present,
+the relevant offset and length fields MUST be set to zero</span>.
+<span class="conform ua" id="conform-metaprivate-overlap-reject">If the metadata or private data offset and length fields indicate byte
 ranges that overlap other data blocks or tables,
 or extend beyond the end of the file,
-a conforming user agent MUST reject the file as invalid.</p>
+a conforming user agent MUST reject the file as invalid</span>.</p>
 
-<p>The header includes a <tt>reserved</tt> field; this MUST be
-set to zero. If this field is non-zero, a conforming user agent
-MUST reject the file as invalid.</p>
+<p><span class="conform ff" id="conform-reserved">The header includes a <tt>reserved</tt> field; this MUST be
+set to zero</span>. <span class="conform ua" id="conform-reserved-reject">If this field is non-zero, a conforming user agent
+MUST reject the file as invalid</span>.</p>
 
 
 <h2 id="TableDirectory">4.&nbsp;Table Directory</h2>
@@ -448,23 +454,23 @@ font.</p>
 
 <p>The sfnt-based format specifications require that font tables be aligned on
 4-byte boundaries. Font tables whose length is not a multiple of 4 are padded
-with null bytes up to the next 4-byte boundary. Font data tables in the WOFF
+with null bytes up to the next 4-byte boundary. <span class="conform ff" id="conform-tablesize-longword">Font data tables in the WOFF
 file have the same requirement: they MUST begin on 4-byte boundaries and be
-zero-padded to the next 4-byte boundary. The <tt>compLength</tt> and <tt>origLength</tt> fields
+zero-padded to the next 4-byte boundary</span>. The <tt>compLength</tt> and <tt>origLength</tt> fields
 in the table directory store the exact, unpadded length.</p>
 
 <p>If the <tt>offset</tt> and <tt>compLength</tt> values
 indicate a byte range that overlaps
 other data blocks or font tables, or if the byte range extends beyond
-the end of the file, a conforming user agent MUST reject the file as
-invalid.</p>
+the end of the file, <span class="conform ua" id="conform-overlap-reject">a conforming user agent MUST reject the file as
+invalid</span>.</p>
 
-<p>If the length of a compressed font table would be the same as or greater than
+<p><span class="conform at ff" id="conform-compressedlarger">If the length of a compressed font table would be the same as or greater than
 the length of the original font table, the font table MUST be stored
 uncompressed in the WOFF file and the <tt>compLength</tt> set
-equal to the <tt>origLength</tt>. Tools MAY also opt to leave
+equal to the <tt>origLength</tt></span>. <span class="conform at ff" id="conform-uncompressed">Tools MAY also opt to leave
 other tables uncompressed (e.g. all tables less than a certain size), in which
-case <tt>compLength</tt> will be equal to <tt>origLength</tt> for these tables as well.
+case <tt>compLength</tt> will be equal to <tt>origLength</tt> for these tables as well</a>.
 WOFF files containing
 table directory entries for which <tt>compLength</tt> is
 greater than <tt>origLength</tt> are considered invalid and
@@ -474,19 +480,20 @@ considered invalid and MUST NOT be loaded.</p>
 
 <p>The sfnt-based font specifications require that table directory entries
 are sorted in ascending order of <tt>tag</tt> value. To
-simplify processing, WOFF-producing tools MUST produce a table directory with
-entries in ascending <tt>tag</tt> value order. User agents MUST
+simplify processing, <span class="conform at ff" id="conform-ascending">WOFF-producing tools MUST produce a table directory with
+entries in ascending <tt>tag</tt> value order</span>. <span class="conform ua" id="conform-ascending-recreated">User agents MUST
 likewise assure that the sfnt table directory is recreated in ascending
 <tt>tag</tt> order when restoring the font data to its uncompressed
-state. The ordering of the font tables themselves is independent of the order of
+state</span>. The ordering of the font tables themselves is independent of the order of
 directory entries, as described below.</p>
 
 <p>sfnt-based fonts store a checksum for each table in the table directory, and
 an overall checksum for the entire font in the <tt>head</tt>
 table (see the TrueType, OpenType or Open Font Format specifications for the
-definition of each calculation). Tools producing WOFF files MUST validate these
-checksums, and reject the font if errors are found.</p>
+definition of each calculation). <span class="conform at" id="conform-checksumvalidate">Tools producing WOFF files MUST validate these
+checksums, and reject the font if errors are found</span>.</p>
 
+<!-- next para could be reworded to add a conformance clause -->
 <p>A WOFF file contains the same set of font tables as the original font
 from which it was created. This means that the overall font checksum of a
 font decompressed from a conformant WOFF file should always match the checksum
@@ -495,24 +502,25 @@ original file included unreferenced data between or after the actual tables;
 this would affect the overall checksum of the original font, but would be
 dropped during creation of the WOFF file.</p>
 
+<!-- next para could be reworded to add a conformance clause -->
 <p>Unless the original font has structural anomalies such as
 incorrect padding, overlapping font tables, or
 extraneous data between tables (which will be discarded by the WOFF
-generator), the result of creating a WOFF file and then decoding this to
+generator), <span class="conform ??" id="conform-identical">the result of creating a WOFF file and then decoding this to
 regenerate an sfnt font MUST result in a final font that is bitwise-identical to
-the original.
-In the event that the original sfnt has defects or anomalies
+the original</span>.
+<span class="conform at" id="conform-incorrect-reject">In the event that the original sfnt has defects or anomalies
 that make this impossible,
 the WOFF-generating tool SHOULD either reject the font
 or issue an appropriate warning
-that lossless round-trip conversion will not be possible.</p>
+that lossless round-trip conversion will not be possible</span>.</p>
 
 
 <h2 id="DataTables">5.&nbsp;Font Data Tables</h2>
 
 <p>The font data tables in the WOFF file are exactly the same as the tables in
-the original sfnt-based font file, except that each table MAY have been
-compressed by the <tt>compress2()</tt> function of zlib<a
+the original sfnt-based font file, except that <span class="conform ??" id="conform-maycompress">each table MAY have been
+compressed by the <tt>compress2()</tt> function of zlib</span><a
 id="fn-8-ref" href="#fn-8" title="footnote 8" class="fnref">[8]</a> (or an
 equivalent, compatible algorithm). User agents use a function equivalent to the
 <tt>uncompress</tt> function of zlib<a id="fn-9-ref"
@@ -521,23 +529,23 @@ The underlying format these functions use is described in the ZLIB
 specification<a id="fn-10-ref" href="#fn-10" title="footnote 10"
 class="fnref">[10]</a>.</p>
 
-<p>User agents or other programs that decode WOFF files MUST be able to handle
-tables that have been compressed. However, the use of compression for font data
+<p><span class="conform ua" id="conform-mustuncompress">User agents or other programs that decode WOFF files MUST be able to handle
+tables that have been compressed</span>. However, the use of compression for font data
 tables is OPTIONAL for tools generating WOFF files; storing some or all of the tables in
 uncompressed form is permissible.</p>
 
-<p>The font data tables MUST be stored immediately following the table
+<p><span class="conform ff" id="conform-afterdirectory">The font data tables MUST be stored immediately following the table
 directory, without gaps except for the padding that may be required (up to three
-null bytes at the end of each table) to ensure 4-byte alignment.</p>
+null bytes at the end of each table) to ensure 4-byte alignment</span>.</p>
 
-<p>Font tables in WOFF files MUST be stored in the same order as the original
-sfnt-based font;
+<p><span class="conform ff" id="conform-sameorder">Font tables in WOFF files MUST be stored in the same order as the original
+sfnt-based font</span>;
 this is necessary to enable the reconstruction of an sfnt that is
 not just functionally equivalent but actually bitwise-identical to the original.
 The table order is implied by <tt>offset</tt> values in the table directory; sorting table
 directory entries into ascending <tt>offset</tt> value order
 produces a list of entries in an order equivalent to that of the font tables.
-User agents MAY reorder tables when decoding the WOFF file to sfnt form,
+<span class="conform ua" id="conform-mayreorder">User agents MAY reorder tables when decoding the WOFF file to sfnt form</span>,
 but should be aware that this means the resulting sfnt will no longer be
 an exact copy of the original, and checksums or digital signature data
 may be invalidated as a result.
@@ -604,39 +612,41 @@ must also be correct prior to WOFF packaging.</dd>
 
 <h2 id="Metadata">6.&nbsp;Extended Metadata Block</h2>
 
-<p>The WOFF file MAY include a block of extended metadata, allowing the
+<p><span class="conform ff" id="conform-metadata-optional">The WOFF file MAY include a block of extended metadata</span>, allowing the
 inclusion of more extensive metadata than is present directly in the original
 sfnt-based font file. The metadata block consists of XML data compressed by
 zlib; the file header specifies both the size of the actual compressed and the
 original uncompressed size in order to facilitate memory allocation.</p>
 
-<p>The presence (or absence) and content of the metadata block
-MUST NOT affect font loading or rendering behavior of user agents;
+<p><span class="conform ua" id="conform-metadata-noeffect">The presence (or absence) and content of the metadata block
+MUST NOT affect font loading or rendering behavior of user agents</span>;
 it is intended to be purely informative.
-User agents MAY provide a means for users to view information about fonts
-(such as a "Font Information" panel). If such information is provided,
+<!-- not directly testable-->
+<span class="conform ua" id="conform-metadata-maydisplay">User agents MAY provide a means for users to view information about fonts
+(such as a "Font Information" panel)</span>. <span class="conform ua" id="conform-metadata-authoritative">If such information is provided,
 then they MUST treat the metadata block as the primary source,
 and MAY fall back to presenting information from the font's <tt>name</tt>
-table entries when relevant extended metadata elements are not present.</p>
+table entries when relevant extended metadata elements are not present</span>.</p>
 
-<p>If present, the metadata MUST be compressed; it is never stored in
+<p><span class="conform ff" id="conform-metadata-alwayscompress">If present, the metadata MUST be compressed</span>; it is never stored in
 uncompressed form.</p>
 
-<p>The metadata block MUST follow immediately after the last font table. As font
-tables MUST be padded with null bytes to a 4-byte boundary, the beginning of the
+<p><span class="conform ff" id="conform-metadata-afterfonttable">The metadata block MUST follow immediately after the last font table</span>. As font
+tables MUST <!-- is this a duplicate? -->be padded with null bytes to a 4-byte boundary, the beginning of the
 metadata block will always be 4-byte aligned.
-If the metadata block is followed by a private data block (see below),
-the end of the metadata block MUST be padded with null bytes to a 4-byte boundary.
-If the metadata block is not followed by a private data block,
+<span class="conform ff" id="conform-private-padmeta">If the metadata block is followed by a private data block (see below),
+the end of the metadata block MUST be padded with null bytes to a 4-byte boundary</span>.
+<span class="conform ff" id="conform-metadata-noprivatepad">If the metadata block is not followed by a private data block,
 it MUST either be padded with null bytes to the next 4-byte boundary,
-or contain no additional padding after the end of the block.</p>
+or contain no additional padding after the end of the block</span>.</p>
 
-<p>The extended metadata MUST be well-formed XML encoded in UTF-8 or UTF-16.
+<p><span class="conform ff" id="conform-metadata-wellformed">The extended metadata MUST be well-formed XML</span> <span class="conform ff" id="conform-metadata-encoding">encoded in UTF-8 or UTF-16</span>.
 The use of UTF-8 encoding is recommended.</p>
 
 <p>The schema for the extended metadata XML is described below.
-If the extended metadata does not match this schema,
-it is invalid and MUST be ignored, as if the block were not present.</p>
+<span class="conform ff" id="conform-metadata-schemavalid">If the extended metadata does not match this schema,
+it is invalid</span>.  <span class="conform ua" id="conform-invalid-mustignore">
+A conforming user agent MUST ignore invalid metadata, as if the block were not present</span>.</p>
 
 <p>This description is also available
 <a href="metadata/woffmeta.rng">as a RelaxNG schema</a>.
