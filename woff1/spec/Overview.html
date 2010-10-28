@@ -15,7 +15,7 @@
 
 
      <style type="text/css">
-div.note { margin: 0 2.5em; padding: 0.5em 1em; background: #ccc }
+div.note { margin: 1em 2.5em; padding: 0.5em 1em; background: #ccc }
 div.note p:first-child::before { content: "NOTE: "; font-weight: bold; color: #005A9C; }
 
 col.type { width: 5em; }
@@ -729,6 +729,16 @@ version of a particular font. The use of "reverse-DNS" prefixes to provide a
 "namespace" is recommended; this can be augmented by additional identification
 data of the vendor's own design.</p>
 </dd>
+
+<div class="note">
+<p>The <tt>id</tt> attribute of the <tt>uniqueid</tt> element,
+and of several further metadata elements defined below,
+is not required to conform to the rules for a standard XML element id;
+its form is at the discretion of the font creator or vendor.
+Nevertheless, the use of <tt>id</tt> attributes that are also
+valid XML element ids is suggested as this may facilitate the use
+of a variety of tools to query and otherwise process WOFF metadata.</p>
+</div>
 
 <dt><tt>vendor</tt> element</dt>
 <dd>
