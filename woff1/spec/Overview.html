@@ -230,16 +230,16 @@ using Cross-Origin Resource Sharing</span> [<cite><a id="fn-5-ref" href="#fn-5"
 Thus, sites can explicitly allow cross-site downloading of WOFF files
 using the <tt>Access-Control-Allow-Origin</tt> HTTP header.</p>
 
-<p><span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for downloadable fonts MUST respect
+<p><span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for linked fonts MUST respect
 the requirements of the CSS3 Fonts specification</span> ([<cite><a id="fn-6-ref" href="#fn-6"
 >CSS3-Fonts</a></cite>] <a href="http://www.w3.org/TR/css3-fonts/#the-font-face-rule">Section 4.1:
 The @font-face rule</a>). In particular,
-<span class="conform ua" id="conform-css3font-available">such downloaded fonts are only available to the documents that reference them;
+<span class="conform ua" id="conform-css3font-available">such linked fonts are only available to the documents that reference them;
 they MUST NOT be made available to other applications or documents on the user's system</span>.</p>
 
 <div class="note">
 <p>The WOFF format is intended for use with <tt>@font-face</tt>
-to provide downloadable fonts linked to specific Web documents.
+to provide fonts linked to specific Web documents.
 Therefore, WOFF files must not be treated as an installable font format
 in desktop operating systems or similar environments.
 The WOFF-packaged data will typically be decoded to its original sfnt format
