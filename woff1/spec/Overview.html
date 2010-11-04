@@ -206,7 +206,7 @@ version of a sfnt-based font with optional compression of the font data tables.
 The WOFF file format also allows font metadata and private-use data to be
 included separately from the font data. WOFF encoding tools convert an existing
 sfnt-based font into a WOFF formatted file, and user agents restore the original
-sfnt-based font data for use with a web page.</p>
+sfnt-based font data for use with a Web document.</p>
 
 <p>In general, the structure and contents of decoded font data exactly match
 those of the original font file. Tools producing WOFF files may provide other
@@ -215,7 +215,7 @@ additions but these are considered outside the scope of this format. Independent
 of these features, both tools and user agents are expected to assure that the validity of
 the underlying font data is preserved.</p>
 
-<p>The primary purpose of the WOFF format is to package fonts linked to web pages
+<p>The primary purpose of the WOFF format is to package fonts linked to Web documents
 by means of CSS <tt>@font-face</tt> rules.
 <span class="conform ua" id="conform-same-origin">When using such fonts, user agents MUST implement a 'same-origin restriction'
 on the downloading of WOFF files
@@ -239,7 +239,7 @@ they MUST NOT be made available to other applications or documents on the user's
 
 <div class="note">
 <p>The WOFF format is intended for use with <tt>@font-face</tt>
-to provide downloadable fonts linked to specific web pages.
+to provide downloadable fonts linked to specific Web documents.
 Therefore, WOFF files must not be treated as an installable font format
 in desktop operating systems or similar environments.
 The WOFF-packaged data will typically be decoded to its original sfnt format
@@ -1038,7 +1038,7 @@ clients such as web browsers are encouraged to provide a means
 (such as a "Font Information" dialog for the current page)
 for users to view the metadata included in WOFF files.
 Not every client will necessarily have an appropriate context for this,
-but any client that enables the user to find out about the resources used by a web page
+but any client that enables the user to find out about the resources used by a Web document
 should consider exposing information about the fonts used, and in the case of
 WOFF-packaged fonts, the metadata block is the primary source of this information.</p>
 </div>
