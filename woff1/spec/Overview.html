@@ -506,7 +506,7 @@ generator), or incorrect checksums.
 <span class="conform at" id="conform-identical">The result of creating a WOFF file and then decoding this to
 regenerate an sfnt font MUST result in a final font that is bitwise-identical to
 the well-formed input font.</span>.
-<span class="conform at" id="conform-incorrect-reject">In the event that the original sfnt has defects or anomalies
+<span class="conform at" id="conform-incorrect-reject">In the event that the input font has defects or anomalies
 that make this impossible,
 the WOFF-generating tool SHOULD either reject the font
 or issue an appropriate warning
@@ -519,26 +519,21 @@ that lossless round-trip conversion will not be possible</span>.</p>
 the input font, except that <span class="conform ??" id="conform-maycompress2">each table MAY have been
 compressed</span>. If compressed, <span class="conform ff" id="conform-mustzlib">it MUST have been compressed by the <tt>compress2()</tt> function of zlib</span> [<cite><a
 id="fn-8-ref" href="#fn-8">Compress2</a></cite>] (or an
-equivalent, compatible algorithm). User agents use a function equivalent to the
-<tt>uncompress</tt> function of zlib [<cite><a id="fn-9-ref"
-href="#fn-9">Uncompress</a></cite>] to decompress each table.
+equivalent, compatible algorithm). User agents use the
+<tt>uncompress()</tt> function of zlib [<cite><a id="fn-9-ref"
+href="#fn-9">Uncompress</a></cite>](or an
+equivalent, compatible algorithm)
+ to decompress each table.
 The underlying format these functions use is described in the ZLIB
 specification [<cite><a id="fn-10-ref" href="#fn-10"
->ZLib</a></cite>].</p>
-
-<p><span class="conform ua" id="conform-mustuncompress">User agents or other programs that decode WOFF files MUST be able to handle
-tables that have been compressed</span>. However, the use of compression for font data
-tables is OPTIONAL for tools generating WOFF files; storing some or all of the tables in
-uncompressed form is permissible.</p>
+>ZLib</a></cite>]. <span class="conform ua" id="conform-mustuncompress">User agents or other programs that decode WOFF files MUST be able to handle
+tables that have been compressed</span>. </p>
 
 <p><span class="conform ff" id="conform-afterdirectory">The font data tables MUST be stored immediately following the table
 directory, without gaps except for the padding that may be required (up to three
 null bytes at the end of each table) to ensure 4-byte alignment</span>.</p>
 
-<p><span class="conform ff" id="conform-sameorder">Font tables in WOFF files MUST be stored in the same order as the original
-sfnt font</span>;
-this is necessary to enable the reconstruction of an sfnt that is
-not just functionally equivalent but actually bitwise-identical to the original.
+<p><span class="conform ff" id="conform-sameorder">Font tables in WOFF files MUST be stored in the same order as the well-formed input font</span>.
 The table order is implied by <tt>offset</tt> values in the table directory; sorting table
 directory entries into ascending <tt>offset</tt> value order
 produces a list of entries in an order equivalent to that of the font tables.
