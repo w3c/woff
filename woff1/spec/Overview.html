@@ -516,8 +516,8 @@ that lossless round-trip conversion will not be possible</span>.</p>
 <h2 id="DataTables">5.&nbsp;Font Data Tables</h2>
 
 <p>The font data tables in the WOFF file are exactly the same as the tables in
-the original sfnt font file, except that <span class="conform ??" id="conform-maycompress2">each table MAY have been
-compressed by the <tt>compress2()</tt> function of zlib</span> [<cite><a
+the input font, except that <span class="conform ??" id="conform-maycompress2">each table MAY have been
+compressed</span>. If compressed, <span class="conform ff" id="conform-mustzlib">it MUST have been compressed by the <tt>compress2()</tt> function of zlib</span> [<cite><a
 id="fn-8-ref" href="#fn-8">Compress2</a></cite>] (or an
 equivalent, compatible algorithm). User agents use a function equivalent to the
 <tt>uncompress</tt> function of zlib [<cite><a id="fn-9-ref"
