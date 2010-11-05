@@ -100,9 +100,7 @@ dl.xmlspec dd {
 This format was designed to provide lightweight, easy-to-implement compression of font data,
 suitable for use with CSS <tt>@font-face</tt> rules.
 Any properly licensed TrueType/OpenType/Open Font Format file can be packaged in WOFF format for Web use.
-User agents decode the WOFF file to restore the original font data
-such that it will display identically to the original desktop font
-from which it was created.</p>
+User agents decode the WOFF file to restore the font data such that it will display identically to the input font.</p>
 
 <p>The WOFF format also allows additional metadata to be attached to the file;
 this can be used by font designers or vendors to include licensing or other information,
@@ -198,18 +196,18 @@ Despite this name, WOFF should be regarded as a container format
 or "wrapper" for font data in already-existing formats
 rather than an actual font format in its own right.</p>
 
-<p>The WOFF format is a container for the
-table-based sfnt structure used in TrueType [<cite><a id="fn-1-ref" href="#fn-1">TrueType</a></cite>], OpenType [<cite><a id="fn-2-ref" href="#fn-2">OpenType</a></cite>] and Open Font Format [<cite><a id="fn-3-ref"
-href="#fn-3">OFF</a></cite>] fonts, which are
-collectively referred to as <em>sfnt-based</em> fonts. A WOFF file is simply a repackaged
-version of a sfnt-based font with optional compression of the font data tables.
-The WOFF file format also allows font metadata and private-use data to be
-included separately from the font data. WOFF encoding tools convert an existing
-sfnt-based font into a WOFF formatted file, and user agents restore the original
-sfnt-based font data for use with a Web document.</p>
+<p>The WOFF format is a container for the table-based sfnt structure used in e.g. TrueType [<cite><a id="fn-1-ref" href="#fn-1">TrueType</a></cite>], OpenType [<cite><a id="fn-2-ref" href="#fn-2">OpenType</a></cite>] and Open Font Format [<cite><a id="fn-3-ref"
+href="#fn-3">OFF</a></cite>] fonts, hereafter referred to as sfnt fonts. 
 
-<p>In general, the structure and contents of decoded font data exactly match
-those of the original font file. Tools producing WOFF files may provide other
+A WOFF file is simply a repackaged
+version of a sfnt font with optional compression of the font data tables.
+The WOFF file format also allows font metadata and private-use data to be
+included separately from the font data. WOFF encoding tools convert an input
+sfnt font into a WOFF formatted file, and user agents restore the
+sfnt font data for use with a Web document.</p>
+
+<p>The structure and contents of decoded font data exactly match
+those of a well-formed input font file. Tools producing WOFF files may provide other
 font editing features such as glyph subsetting, validation or font feature
 additions but these are considered outside the scope of this format. Independent
 of these features, both tools and user agents are expected to assure that the validity of
@@ -242,7 +240,7 @@ they MUST NOT be made available to other applications or documents on the user's
 to provide fonts linked to specific Web documents.
 Therefore, WOFF files must not be treated as an installable font format
 in desktop operating systems or similar environments.
-The WOFF-packaged data will typically be decoded to its original sfnt format
+The WOFF-packaged data will typically be decoded to sfnt format
 for use by existing font-rendering APIs that expect OpenType font data,
 but such decoded font must not be exposed to other documents or applications.
 </p>
@@ -268,14 +266,14 @@ but are not part of the normative text.
 
 <h2 id="OverallStructure">2.&nbsp;Overall File Structure</h2>
 
-<p>The structure of WOFF files is similar to the structure of sfnt-based fonts:
+<p>The structure of WOFF files is similar to the structure of sfnt fonts:
 a table directory containing lengths and offsets to individual font data tables,
 followed by the data tables themselves. The sfnt structure is described fully in
 the TrueType [<cite><a href="#fn-1">TrueType</a></cite>], OpenType [<cite><a href="#fn-2">OpenType</a></cite>] and Open Font Format [<cite><a
 href="#fn-3">OFF</a></cite>] specifications.</p>
 
 <p>The main body of the file consists of the same collection of font data tables
-as the original, uncompressed sfnt-based font, stored in the same order, except
+as the input sfnt font, stored in the same order, except
 that <span class="conform ff" id="conform-maycompress">each table MAY be compressed</span>, and the sfnt table directory is replaced by
 the WOFF table directory.</p>
 
@@ -303,7 +301,7 @@ or ranges that would extend beyond the end of the file</span>.</p>
 with offsets to metadata and private data blocks.</td></tr>
 <tr><td>TableDirectory</td><td>Directory of font tables, indicating the original
 size, compressed size and location of each table within the WOFF file.</td></tr>
-<tr><td>FontTables</td><td>The font data tables from the original sfnt-based
+<tr><td>FontTables</td><td>The font data tables from the input sfnt
 font, compressed to reduce bandwidth requirements.</td></tr>
 <tr><td>ExtendedMetadata</td><td>An optional block of extended metadata,
 represented in XML format and compressed for storage in the WOFF file.</td></tr>
@@ -312,7 +310,7 @@ designer, foundry, or vendor to use.</td></tr>
 </table>
 
 <p>Data values stored in the WOFF Header and WOFF Table Directory sections are
-stored in big-endian format, just as values are within sfnt-based fonts. The
+stored in big-endian format, just as values are within sfnt fonts. The
 following basic data types are used in the description:</p>
 <table>
 <col class="type"/><col class="desc"/>
@@ -338,7 +336,7 @@ entries in the table directory that immediately follows the header:</p>
 <col class="type"/><col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="3">WOFFHeader</th></tr>
 <tr><td>UInt32</td><td>signature</td><td>0x774F4646 <tt>'wOFF'</tt></td></tr>
-<tr><td>UInt32</td><td>flavor</td><td>The "sfnt version" of the original file.</td></tr>
+<tr><td>UInt32</td><td>flavor</td><td>The "sfnt version" of the input font.</td></tr>
 <tr><td>UInt32</td><td>length</td><td>Total size of the WOFF file.</td></tr>
 <tr><td>UInt16</td><td>numTables</td><td>Number of entries in directory of font
 tables.</td></tr>
@@ -376,11 +374,11 @@ are widely supported at present, it is not an error in the WOFF file if the
 WOFF-packaged version of a different sfnt flavor. (The value 0x74727565 <tt>'true'</tt>
 has been used for some TrueType-flavored fonts on Mac
 OS, for example.) Whether client software will actually support other types of
-sfnt-based font data is outside the scope of the WOFF specification, which
+sfnt font data is outside the scope of the WOFF specification, which
 simply describes how the sfnt is repackaged for Web use.</p>
 
 <p>The WOFF <tt>majorVersion</tt> and <tt>minorVersion</tt> fields specify the version number for a given
-WOFF file, which can be based on the version number of the original font but is
+WOFF file, which can be based on the version number of the input font but is
 not required to be. These fields have no effect on font loading or usage
 behavior in user agents.</p>
 
@@ -388,7 +386,7 @@ behavior in user agents.</p>
 uncompressed font table sizes, each padded to a multiple of 4 bytes, plus
 the size of the sfnt header and table directory. Thus, this is the size of
 buffer needed to decode the complete WOFF-packaged font (but not metadata,
-which is not part of the original sfnt file) into a standard sfnt structure.
+which is not part of the input sfnt file) into a standard sfnt structure.
 <span class="conform ff" id="conform-totalsize-longword">This value MUST be a multiple of 4, because all font tables
 including the last are to be padded to a 4-byte boundary</span>. 
 <span class="conform ua" id="conform-totalsize-longword-reject">If this value
@@ -441,14 +439,14 @@ table.</td></tr>
 </table>
 
 <p>The format of <tt>tag</tt> values are defined by the
-specifications for sfnt-based fonts. The <tt>offset</tt> and
+specifications for sfnt fonts. The <tt>offset</tt> and
 <tt>compLength</tt> fields identify the location of the
 compressed font table. The <tt>origLength</tt> and <tt>origCheckSum</tt>
 fields are the length and checksum of the
-original, uncompressed font table from the table directory of the original
+input font table from the table directory of the input
 font.</p>
 
-<p>The sfnt-based format specifications require that font tables be aligned on
+<p>The sfnt format specifications require that font tables be aligned on
 4-byte boundaries. Font tables whose length is not a multiple of 4 are padded
 with null bytes up to the next 4-byte boundary. <span class="conform ff" id="conform-tablesize-longword">Font data tables in the WOFF
 file have the same requirement: they MUST begin on 4-byte boundaries and be
@@ -462,7 +460,7 @@ the end of the file, <span class="conform ua" id="conform-diroverlap-reject">a c
 invalid</span>.</p>
 
 <p><span class="conform at ff" id="conform-compressedlarger">If the length of a compressed font table would be the same as or greater than
-the length of the original font table, the font table MUST be stored
+the length of the input font table, the font table MUST be stored
 uncompressed in the WOFF file and the <tt>compLength</tt> set
 equal to the <tt>origLength</tt></span>. <span class="conform at ff" id="conform-uncompressed">Tools MAY also opt to leave
 other tables uncompressed (e.g. all tables less than a certain size), in which
@@ -474,7 +472,7 @@ MUST NOT be loaded by user agents. Files containing compressed font tables that
 decompress to a size larger than <tt>origLength</tt> are also
 considered invalid and MUST NOT be loaded.</p>
 
-<p>The sfnt-based font specifications require that table directory entries
+<p>The sfnt font specifications require that table directory entries
 are sorted in ascending order of <tt>tag</tt> value. To
 simplify processing, <span class="conform at ff" id="conform-ascending">WOFF-producing tools MUST produce a table directory with
 entries in ascending <tt>tag</tt> value order</span>. <span class="conform ua" id="conform-ascending-recreated">User agents MUST
@@ -483,28 +481,31 @@ likewise assure that the sfnt table directory is recreated in ascending
 state</span>. The ordering of the font tables themselves is independent of the order of
 directory entries, as described below.</p>
 
-<p>sfnt-based fonts store a checksum for each table in the table directory, and
+<p>sfnt fonts store a checksum for each table in the table directory, and
 an overall checksum for the entire font in the <tt>head</tt>
 table (see the TrueType, OpenType or Open Font Format specifications for the
 definition of each calculation). <span class="conform at" id="conform-checksumvalidate">Tools producing WOFF files MUST validate these
 checksums, and reject the font if errors are found</span>.</p>
 
 <!-- next para could be reworded to add a conformance clause -->
-<p>A WOFF file contains the same set of font tables as the original font
+<p>A WOFF file contains the same set of font tables as the input font
 from which it was created. This means that the overall font checksum of a
-font decompressed from a conformant WOFF file should always match the checksum
-in the original, valid sfnt-based font file, except in the case where the
-original file included unreferenced data between or after the actual tables;
-this would affect the overall checksum of the original font, but would be
+font decompressed from a conformant WOFF file will always match the checksum
+in the well-formed input font. In the case where the
+input font included unreferenced data between or after the actual tables,
+this would affect the overall checksum of the input font, but would be
 dropped during creation of the WOFF file.</p>
 
 <!-- next para could be reworded to add a conformance clause -->
-<p>Unless the original font has structural anomalies such as
-incorrect padding, overlapping font tables, or
+<p>A well-formed input font does not have structural anomalies such as
+incorrect padding, overlapping font tables, 
 extraneous data between tables (which will be discarded by the WOFF
-generator), <span class="conform ??" id="conform-identical">the result of creating a WOFF file and then decoding this to
+generator), or incorrect checksums. 
+
+<!-- need to add to test scheme-->
+<span class="conform at" id="conform-identical">The result of creating a WOFF file and then decoding this to
 regenerate an sfnt font MUST result in a final font that is bitwise-identical to
-the original</span>.
+the well-formed input font.</span>.
 <span class="conform at" id="conform-incorrect-reject">In the event that the original sfnt has defects or anomalies
 that make this impossible,
 the WOFF-generating tool SHOULD either reject the font
@@ -515,7 +516,7 @@ that lossless round-trip conversion will not be possible</span>.</p>
 <h2 id="DataTables">5.&nbsp;Font Data Tables</h2>
 
 <p>The font data tables in the WOFF file are exactly the same as the tables in
-the original sfnt-based font file, except that <span class="conform ??" id="conform-maycompress2">each table MAY have been
+the original sfnt font file, except that <span class="conform ??" id="conform-maycompress2">each table MAY have been
 compressed by the <tt>compress2()</tt> function of zlib</span> [<cite><a
 id="fn-8-ref" href="#fn-8">Compress2</a></cite>] (or an
 equivalent, compatible algorithm). User agents use a function equivalent to the
@@ -535,7 +536,7 @@ directory, without gaps except for the padding that may be required (up to three
 null bytes at the end of each table) to ensure 4-byte alignment</span>.</p>
 
 <p><span class="conform ff" id="conform-sameorder">Font tables in WOFF files MUST be stored in the same order as the original
-sfnt-based font</span>;
+sfnt font</span>;
 this is necessary to enable the reconstruction of an sfnt that is
 not just functionally equivalent but actually bitwise-identical to the original.
 The table order is implied by <tt>offset</tt> values in the table directory; sorting table
@@ -610,7 +611,7 @@ must also be correct prior to WOFF packaging.</dd>
 
 <p><span class="conform ff" id="conform-metadata-optional">The WOFF file MAY include a block of extended metadata</span>, allowing the
 inclusion of more extensive metadata than is present directly in the original
-sfnt-based font file. The metadata block consists of XML data compressed by
+sfnt font file. The metadata block consists of XML data compressed by
 zlib; the file header specifies both the size of the actual compressed and the
 original uncompressed size in order to facilitate memory allocation.</p>
 
