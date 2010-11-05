@@ -530,7 +530,7 @@ specification [<cite><a id="fn-10-ref" href="#fn-10"
 tables that have been compressed</span>. </p>
 
 <p><span class="conform ff" id="conform-afterdirectory">The font data tables MUST be stored immediately following the table
-directory, without gaps except for the padding that may be required (up to three
+directory, without gaps except for the padding that required (up to three
 null bytes at the end of each table) to ensure 4-byte alignment</span>.</p>
 
 <p><span class="conform ff" id="conform-sameorder">Font tables in WOFF files MUST be stored in the same order as the well-formed input font</span>.
@@ -539,9 +539,9 @@ directory entries into ascending <tt>offset</tt> value order
 produces a list of entries in an order equivalent to that of the font tables.
 <span class="conform ua" id="conform-mayreorder">User agents MAY reorder tables when decoding the WOFF file to sfnt form</span>,
 but should be aware that this means the resulting sfnt will no longer be
-an exact copy of the original, and checksums or digital signature data
+an exact copy of the input font, and checksums or digital signature data
 may be invalidated as a result.
-(Note that user agents need not necessarily reconstitute the original sfnt
+(Note that user agents need not necessarily reconstitute the input font
 as a whole; they may access individual tables directly as needed.)</p>
 
 <div class="note">
