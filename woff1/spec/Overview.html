@@ -500,7 +500,45 @@ dropped during creation of the WOFF file.</p>
 <p>A well-formed input font does not have structural anomalies such as
 incorrect padding, overlapping font tables, 
 extraneous data between tables (which will be discarded by the WOFF
-generator), or incorrect checksums. 
+generator), or incorrect checksums. </p>
+
+<p>To ensure that lossless round-trip conversion from sfnt to WOFF and back
+will be possible, a well-formed input font should conform
+to certain norms that are not
+strictly required by the OpenType/OFF specification, although they are common
+practice:</p>
+
+<dl>
+<dt>Font table padding</dt>
+<dd>The OpenType/OFF specification is not entirely clear about whether <em>all</em>
+tables in an sfnt font must be padded with 0-3 zero bytes to a multiple
+of 4 bytes in length, or whether this applies only <em>between</em> tables,
+and the final table of the file may be left unpadded.
+Most current tools and fonts seem to expect all tables to be padded to a 4-byte
+boundary, including the last.
+The WOFF specification assumes this behavior, and specifies that the
+<tt>totalSfntLength</tt> field in the WOFF header provides for such padding.
+To ensure that a given font can be packaged as a WOFF file and then decoded
+to its original format and give a byte-for-byte identical result,
+the input font should therefore be padded to a multiple of 4 bytes in length.</dd>
+
+<dt>No "hidden" data</dt>
+<dd>The OpenType/OFF specification does not explicitly prohibit the
+presence of "extra" data or padding in between the font tables;
+as the table directory includes the offset and length of each actual table,
+such data would simply be ignored. However, the WOFF format makes no
+provision to preserve such non-font-table data when packaging a font,
+and therefore it would not survive a round-trip format conversion.</dd>
+
+<dt>Ensure checksums are correct</dt>
+<dd>The WOFF specification says that table checksums must be validated
+(and corrected if necessary) by WOFF creators.
+In order for complete
+round-trip fidelity, therefore, the checksums in the original sfnt file
+must also be correct prior to WOFF packaging.</dd>
+</dl>
+
+<p>
 
 <!-- need to add to test scheme-->
 <span class="conform at" id="conform-identical">The result of creating a WOFF file and then decoding this to
@@ -556,7 +594,7 @@ reorders or otherwise modifies the collection of font tables,
 the font checksum in the <tt>head</tt> table will need to be recalculated
 as it will be affected by the changed offsets in
 the sfnt table directory.
-Any <tt>DSIG</tt> table in the original font will also be invalidated by such changes, and should therefore be removed from the modified font.
+Any <tt>DSIG</tt> table in the input font will also be invalidated by such changes, and should therefore be removed from the modified font.
 A new signature could be added to the modified font,
 as described by the OpenType and Open Font Format specifications
 (if appropriate signing credentials are available to the tool involved).
@@ -564,42 +602,6 @@ Any such pre- and/or post-processing
 represents a modification of the font data being packaged;
 while it might be done in conjunction with WOFF packaging for Web deployment,
 it falls outside the scope of the WOFF specification.</p>
-
-<p>To ensure that lossless round-trip conversion from sfnt to WOFF and back
-will be possible, it is recommended that the original sfnt file should conform
-to certain norms that are not
-strictly required by the OpenType/OFF specification, although they are common
-practice:</p>
-
-<dl>
-<dt>Font table padding</dt>
-<dd>The OpenType/OFF specification is not entirely clear about whether <em>all</em>
-tables in an sfnt font must be padded with 0-3 zero bytes to a multiple
-of 4 bytes in length, or whether this applies only <em>between</em> tables,
-and the final table of the file may be left unpadded.
-Most current tools and fonts seem to expect all tables to be padded to a 4-byte
-boundary, including the last.
-The WOFF specification assumes this behavior, and specifies that the
-<tt>totalSfntLength</tt> field in the WOFF header provides for such padding.
-To ensure that a given font can be packaged as a WOFF file and then decoded
-to its original format and give a byte-for-byte identical result,
-the input font should therefore be padded to a multiple of 4 bytes in length.</dd>
-
-<dt>No "hidden" data</dt>
-<dd>The OpenType/OFF specification does not explicitly prohibit the
-presence of "extra" data or padding in between the font tables;
-as the table directory includes the offset and length of each actual table,
-such data would simply be ignored. However, the WOFF format makes no
-provision to preserve such non-font-table data when packaging a font,
-and therefore it would not survive a round-trip format conversion.</dd>
-
-<dt>Ensure checksums are correct</dt>
-<dd>The WOFF specification says that table checksums must be validated
-(and corrected if necessary) by WOFF creators.
-In order for complete
-round-trip fidelity, therefore, the checksums in the original sfnt file
-must also be correct prior to WOFF packaging.</dd>
-</dl>
 </div>
 
 <h2 id="Metadata">6.&nbsp;Extended Metadata Block</h2>
