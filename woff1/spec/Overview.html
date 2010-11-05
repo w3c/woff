@@ -1204,7 +1204,15 @@ binary.
 </dd><dt>
 Security considerations:</dt><dd>
 <p>
-@@ compression, header has maximum size
+Fonts are interpreted data structures that represent collections of glyph outlines, metrics and layout information for various languages and writing systems. Currently, there are many standardized font data tables that allow unspecified number of entries, and where existing, predefined data fields allow storage of binary data with variable length. There is a significant risk that the flexibility of a font data structures may be exploited to hide a malicious binary content disguised as a font data component.</p>
+
+<p>WOFF is based on the table-based SFNT (scalable font) format which is highly extensible and offers and opportunity to introduce additional data structures when needed. However, this same extensibility may present specific security concerns – the flexibility and ease of defining new data structures makes it easy for any arbitrary data be added and hidden inside a font file.</p>
+
+<p>WOFF fonts may contain 'hints' for the alignment of graphical elements of the glyphs with the target display pixel grid, and depending on the font technology utilized in the creation of a font these hints may represent active code interpreted and executed by the font rasterizer. Even though they operate within the confines of the glyph outline conversion system and have no access outside the font rendering machinery, hint instructions can be, however, quite complex, and a maliciously designed complex font could cause undue resource consumption (e.g. memory or CPU cycles) on a machine interpreting it. Indeed, fonts are sufficiently complex that most if not all interpreters cannot be completely protected from malicious fonts without undue performance penalties.</p>
+
+<p>Wide-spread use of fonts as necessary component of visual content presentation warrants that a careful attention should be given to security considerations whenever a font is either embedded into an electronic document or transmitted alongside media content as a linked resource.</p>
+
+<p>WOFF uses gzip compression. The WOFF header contains the uncompressed length of each compressed table. Applications may therefore constrain the size of memory buffer allocated for decompression and may stop writing it a maliciously crafted WOFF file in fact contains more data than is indicated.
 </p>
 </dd>
 <dt>Interoperability considerations:</dt>
