@@ -581,7 +581,7 @@ produces a list of entries in an order equivalent to that of the font tables.
 </p>
 
 <div class="note">
-<p>Note that user agents need not necessarily reconstitute the original sfnt as a whole, and may reorder tables when decoding the WOFF file to sfnt form; they may access individual tables directly as needed. Under these circumstances the resulting sfnt will no longer be an exact copy of the original, and checksums or digital signature data may be invalidated as a result.</p>
+<p>User agents need not necessarily reconstitute the input font as a whole, and may reorder tables when decoding the WOFF file to sfnt form; they may access individual tables directly as needed. Under these circumstances the resulting sfnt will no longer be an exact copy of the input font, and checksums or digital signature data may be invalidated as a result.</p>
 <p>In some cases, sites deploying WOFF files as Web fonts may wish to subset the character
 repertoire, optimize table ordering for efficient text layout or rasterization,
 or remove (or add) optional font tables depending on the particular features needed for a site.
@@ -605,9 +605,7 @@ it falls outside the scope of the WOFF specification.</p>
 
 <h2 id="Metadata">6.&nbsp;Extended Metadata Block</h2>
 
-<p><span class="conform ff" id="conform-metadata-optional">The WOFF file MAY include a block of extended metadata</span>, allowing the
-inclusion of more extensive metadata than is present directly in the original
-sfnt font file. The metadata block consists of XML data compressed by
+<p><span class="conform ff" id="conform-metadata-optional">The WOFF file MAY include a block of extended metadata</span>. This may be more extensive and more easily accesible than metadata present in sfnt tables. The metadata block consists of XML data compressed by
 zlib; the file header specifies both the size of the actual compressed and the
 original uncompressed size in order to facilitate memory allocation.</p>
 
@@ -975,10 +973,10 @@ Within each entry:</p>
 <dt>compLength</dt>
 <dd>MUST be less than or equal to origLength</dd>
 <dt>origChecksum</dt>
-<dd>MUST be correct for the original table data, in accordance with the OpenType specification.
+<dd>MUST be correct for the input table data, in accordance with the OpenType specification.
 However, user agents are not required to validate these checskums;
 they are merely reinserted into the sfnt table directory
-when reconstructing the original font data.</dd>
+when reconstructing the input font data.</dd>
 <dt>offset</dt>
 <dd>MUST be a multiple of 4</dd>
 </dl>
