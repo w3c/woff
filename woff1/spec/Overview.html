@@ -530,12 +530,15 @@ such data would simply be ignored. However, the WOFF format makes no
 provision to preserve such non-font-table data when packaging a font,
 and therefore it would not survive a round-trip format conversion.</dd>
 
-<dt>Ensure checksums are correct</dt>
+<dt>Checksums are correct</dt>
 <dd>The WOFF specification says that table checksums must be validated
 (and corrected if necessary) by WOFF creators.
 In order for complete
-round-trip fidelity, therefore, the checksums in the original sfnt file
+round-trip fidelity, therefore, the checksums in the input sfnt file
 must also be correct prior to WOFF packaging.</dd>
+
+<dt>No overlapping tables</dt>
+<dd>The offset and length values in the input sfnt table directory must not indicate overlapping byte ranges of the input font.</dd>
 </dl>
 
 <p>
@@ -544,7 +547,7 @@ must also be correct prior to WOFF packaging.</dd>
 <span class="conform at" id="conform-identical">The result of creating a WOFF file and then decoding this to
 regenerate an sfnt font MUST result in a final font that is bitwise-identical to
 the well-formed input font.</span>.
-<span class="conform at" id="conform-incorrect-reject">In the event that the input font has defects or anomalies
+<span class="conform at" id="conform-incorrect-reject">If the input font has defects or anomalies
 that make this impossible,
 the WOFF-generating tool SHOULD either reject the font
 or issue an appropriate warning
@@ -575,14 +578,10 @@ null bytes at the end of each table) to ensure 4-byte alignment</span>.</p>
 The table order is implied by <tt>offset</tt> values in the table directory; sorting table
 directory entries into ascending <tt>offset</tt> value order
 produces a list of entries in an order equivalent to that of the font tables.
-<span class="conform ua" id="conform-mayreorder">User agents MAY reorder tables when decoding the WOFF file to sfnt form</span>,
-but should be aware that this means the resulting sfnt will no longer be
-an exact copy of the input font, and checksums or digital signature data
-may be invalidated as a result.
-(Note that user agents need not necessarily reconstitute the input font
-as a whole; they may access individual tables directly as needed.)</p>
+</p>
 
 <div class="note">
+<p>Note that user agents need not necessarily reconstitute the original sfnt as a whole, and may reorder tables when decoding the WOFF file to sfnt form; they may access individual tables directly as needed. Under these circumstances the resulting sfnt will no longer be an exact copy of the original, and checksums or digital signature data may be invalidated as a result.</p>
 <p>In some cases, sites deploying WOFF files as Web fonts may wish to subset the character
 repertoire, optimize table ordering for efficient text layout or rasterization,
 or remove (or add) optional font tables depending on the particular features needed for a site.
