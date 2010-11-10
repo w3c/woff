@@ -7,10 +7,7 @@
       <title>WOFF File Format 1.0</title>
       <style type="text/css">
       .toadd {background: yellow; padding-left:3px; padding-right: 3px}
-      .conform {background: #DFD}
-      .ua:before {content: "UA: "; background: #9F9; padding:4px; border: thin solid green}
-      .ff:before {content: "FF: "; background: #F99; padding:4px; border: thin solid maroon}
-      .at:before {content:"AT:"; background: #99F; padding:4px; border: thin solid navy}
+      .conform:hover {background: #DFD}
       </style>
 
 
@@ -45,6 +42,7 @@ dl.xmlspec dd {
   background: #eee;
 }
      </style>
+       <link rel="alternate-stylesheet" type="text/css" title="Conformance" href="conform.css"/>
           <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
 
    </head>
@@ -58,7 +56,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editor's Draft 27 October 2010
+<h2 id="W3C-doctype">W3C Editor's Draft 10 November 2010
 </h2>
 
 <dl>
@@ -181,8 +179,8 @@ information in accordance with <a href="http://www.w3.org/Consortium/Patent-Poli
 <br/><a href="#Conformance">8.&nbsp;Summary of Conformance Requirements</a>
 </p>
 <p><a href="#appendix-a">Appendix A: Extended Metadata Examples</a>
-</p>
-<p><a href="#References">References</a></p>
+<br/><a href="#appendix-b">Appendix B: Media Type Registration</a>
+<br/><a href="#References">References</a></p>
 
 </div>
 
@@ -465,12 +463,12 @@ uncompressed in the WOFF file and the <tt>compLength</tt> set
 equal to the <tt>origLength</tt></span>. <span class="conform at ff" id="conform-uncompressed">Tools MAY also opt to leave
 other tables uncompressed (e.g. all tables less than a certain size), in which
 case <tt>compLength</tt> will be equal to <tt>origLength</tt> for these tables as well</span>.
-WOFF files containing
+<span class="conform ua">WOFF files containing
 table directory entries for which <tt>compLength</tt> is
 greater than <tt>origLength</tt> are considered invalid and
-MUST NOT be loaded by user agents. Files containing compressed font tables that
+MUST NOT be loaded by user agents</span>. <span class="conform ua">Files containing compressed font tables that
 decompress to a size larger than <tt>origLength</tt> are also
-considered invalid and MUST NOT be loaded.</p>
+considered invalid and MUST NOT be loaded</span>.</p>
 
 <p>The sfnt font specifications require that table directory entries
 are sorted in ascending order of <tt>tag</tt> value. To
@@ -715,7 +713,6 @@ ensure this, but it is intended to allow vendors to reliably identify the exact
 version of a particular font. The use of "reverse-DNS" prefixes to provide a
 "namespace" is recommended; this can be augmented by additional identification
 data of the vendor's own design.</p>
-</dd>
 
 <div class="note">
 <p>The <tt>id</tt> attribute of the <tt>uniqueid</tt> element,
@@ -723,7 +720,7 @@ and of several further metadata elements defined below,
 is not required to conform to the rules for the XML type ID;
 its form is at the discretion of the font creator or vendor.
 </p>
-</div>
+</div></dd>
 
 <dt><tt>vendor</tt> element</dt>
 <dd>
@@ -1158,7 +1155,7 @@ software. If you have any questions, please contact Ascender Corp.&lt;/text&gt;
 </pre>
 </div>
 
-<h2 id="mediatype">Media Type registration</h2>
+<h2 id="appendix-b">Appendix B: Media Type registration</h2>
 
 <p>
 This appendix registers a new MIME media type, in conformance with <a href="http://www.ietf.org/rfc/rfc4288.txt">BCP 13</a> and <a href="http://www.w3.org/2002/06/registering-mediatype.html">W3CRegMedia</a>.
@@ -1167,7 +1164,7 @@ This appendix registers a new MIME media type, in conformance with <a href="http
 <dl><dt>
 Type name:</dt><dd>
 <p>
-(Under consideration, guidance requested)
+application
 </p>
 
 </dd><dt>
@@ -1200,7 +1197,7 @@ Security considerations:</dt><dd>
 <p>
 Fonts are interpreted data structures that represent collections of glyph outlines, metrics and layout information for various languages and writing systems. Currently, there are many standardized font data tables that allow unspecified number of entries, and where existing, predefined data fields allow storage of binary data with variable length. There is a significant risk that the flexibility of a font data structures may be exploited to hide a malicious binary content disguised as a font data component.</p>
 
-<p>WOFF is based on the table-based SFNT (scalable font) format which is highly extensible and offers and opportunity to introduce additional data structures when needed. However, this same extensibility may present specific security concerns – the flexibility and ease of defining new data structures makes it easy for any arbitrary data be added and hidden inside a font file.</p>
+<p>WOFF is based on the table-based SFNT (scalable font) format which is highly extensible and offers an opportunity to introduce additional data structures when needed. However, this same extensibility may present specific security concerns – the flexibility and ease of defining new data structures makes it easy for any arbitrary data be added and hidden inside a font file.</p>
 
 <p>WOFF fonts may contain 'hints' for the alignment of graphical elements of the glyphs with the target display pixel grid, and depending on the font technology utilized in the creation of a font these hints may represent active code interpreted and executed by the font rasterizer. Even though they operate within the confines of the glyph outline conversion system and have no access outside the font rendering machinery, hint instructions can be, however, quite complex, and a maliciously designed complex font could cause undue resource consumption (e.g. memory or CPU cycles) on a machine interpreting it. Indeed, fonts are sufficiently complex that most if not all interpreters cannot be completely protected from malicious fonts without undue performance penalties.</p>
 
@@ -1220,7 +1217,7 @@ the <a href="/TR/woff">WOFF specification</a> at W3C.</p></dd>
 <dd><p>WOFF is used by Web browsers, often in conjunction with HTML and CSS.  </p></dd>
 
 <dt>
-Additional information:</dt><dd><dl><dt>Magic number(s):</dt><dd>The signature field in the WOFF header MUST contain the "magic number" 0x774F4646</dd><dt>File extension(s):</dt><dd>woff</dd><dt>Macintosh file type code(s):</dt><dd>??</dd><dt>Macintosh Universal Type Identifier code:  </dt><dd><tt>org.w3c.woff</tt> </dd><dt>Fragment Identifiers</dt><dd>none.</dd></dl>
+Additional information:</dt><dd><dl><dt>Magic number(s):</dt><dd>The signature field in the WOFF header MUST contain the "magic number" 0x774F4646</dd><dt>File extension(s):</dt><dd>woff</dd><dt>Macintosh file type code(s):</dt><dd>(no code specified)</dd><dt>Macintosh Universal Type Identifier code:  </dt><dd><tt>org.w3c.woff</tt> </dd><dt>Fragment Identifiers</dt><dd>none.</dd></dl>
 
 </dd><dt>
 Person &amp; email address to contact for further information:</dt><dd>
