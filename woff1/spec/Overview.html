@@ -677,18 +677,18 @@ In each of these localizable elements,
 <dl class="xmlspec">
 <dt><tt>metadata</tt> element</dt>
 <dd>
-<p>The main element. <span class="conform ff" id="conform-metadataelement-required">This element is required</span>.</p>
+<p>The main element. <span class="conform ff" id="conform-metadataelement-required">This element is REQUIRED</span>.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>version</td><td>A version number indicating the format version of the
 <span class="code>">metadata</span> element. This is currently <tt>1.0</tt>.
-<span class="conform ff" id="conform-metadataversion-required">This attribute is required</span>.</td></tr>
+<span class="conform ff" id="conform-metadataversion-required">This attribute is REQUIRED</span>.</td></tr>
 </table>
 </dd>
 </dl>
 
-<p>All first-level subelements of the metadata are optional, and may occur in
+<p>All first-level subelements of the metadata are OPTIONAL, and may occur in
 any order as children of the top-level <tt>metadata</tt>
 element.</p>
 
@@ -703,12 +703,12 @@ for the user to view WOFF file metadata SHOULD include such
 <dt><tt>uniqueid</tt> element</dt>
 <dd>
 <p>A unique identifier string for the font. This element is recommended, but not
-required for the metadata to be valid. <!-- conform? -->This element must be a child of the
+required for the metadata to be valid. <!-- conform? -->This element MUST be a child of the
 <tt>metadata</tt> element. This is an empty element.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>id</td><td>The identification string. <span class="conform ff" id="conform-metadata-id-required">This attribute is required</span>.</td></tr>
+<tr><td>id</td><td>The identification string. <span class="conform ff" id="conform-metadata-id-required">This attribute is REQUIRED</span>.</td></tr>
 </table>
 <p>The string defined in the <tt>uniqueid</tt> element is not
 guaranteed to be truly unique, as there is no central registry or authority to
@@ -728,39 +728,39 @@ its form is at the discretion of the font creator or vendor.
 <dt><tt>vendor</tt> element</dt>
 <dd>
 <p>Information about the font vendor. This element is recommended, but not
-required for the metadata to be valid. <!-- conform? -->This element must be a child of the
+required for the metadata to be valid. <!-- conform? -->This element MUST be a child of the
 <tt>metadata</tt> element. This is an empty element.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>name</td><td>The name of the font vendor. <span class="conform ff" id="conform-metadata-vendor-required">This attribute is required</span>.</td></tr>
+<tr><td>name</td><td>The name of the font vendor. <span class="conform ff" id="conform-metadata-vendor-required">This attribute is REQUIRED</span>.</td></tr>
 <tr><td>url</td><td>The url for the font vendor. This attribute is
-optional.</td></tr>
+OPTIONAL.</td></tr>
 </table>
 </dd>
 
 <dt><tt>credits</tt> element</dt>
 <dd>
 <p>Credit information for the font. This can include any type of credit the
-vendor desires: designer, hinter, and so on. This element is optional. If
-present, <!-- conform? -->it must be a child of the <tt>metadata</tt> element
-and <!-- conform? -->it must contain at least one <tt>credit</tt> element. This
+vendor desires: designer, hinter, and so on. This element is OPTIONAL. If
+present, <!-- conform? -->it MUST be a child of the <tt>metadata</tt> element
+and <!-- conform? -->it MUST contain at least one <tt>credit</tt> element. This
 element has no attributes.</p>
 
 <p>Subelements:</p>
 <dl>
 <dt><tt>credit</tt> element</dt>
 <dd>
-<p>A single credit record. <!-- conform? -->If present, it must be a child of the
+<p>A single credit record. <!-- conform? -->If present, it MUST be a child of the
 <tt>credits</tt> element. This is an empty element.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>name</td><td>The name of the entity being credited. <span class="conform ff" id="conform-creditnamerequired">This attribute is required</span>.</td></tr>
+<tr><td>name</td><td>The name of the entity being credited. <span class="conform ff" id="conform-creditnamerequired">This attribute is REQUIRED</span>.</td></tr>
 <tr><td>url</td><td>The url for the entity being credited. This attribute is
-optional.</td></tr>
+OPTIONAL.</td></tr>
 <tr><td>role</td><td>The role of the entity being credited. This attribute is
-optional.</td></tr>
+OPTIONAL.</td></tr>
 </table>
 </dd>
 </dl>
@@ -770,12 +770,12 @@ optional.</td></tr>
 <dt><tt>description</tt> element</dt>
 <dd>
 <p>An arbitrary text description of the font's design, its history, etc. This
-element is optional. <!-- conform? -->If present, it must be a child of the <tt>metadata</tt> element.
+element is OPTIONAL. <!-- conform? -->If present, it MUST be a child of the <tt>metadata</tt> element.
 This element may be localized.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>url</td><td>The url for more information about the font design, history, etc. This attribute is optional.
+<tr><td>url</td><td>The url for more information about the font design, history, etc. This attribute is OPTIONAL.
 </td></tr>
 </table>
 </dd>
@@ -783,42 +783,42 @@ This element may be localized.</p>
 <dt><tt>license</tt> element</dt>
 <dd>
 <p>Licensing information for the font.
-This element is optional. <!-- conform? -->If present, it must be a
+This element is OPTIONAL. <!-- conform? -->If present, it MUST be a
 child of the <tt>metadata</tt> element. This element may be
 localized.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>url</td><td>The url for the license, more information about the license,
-etc. This attribute is optional.</td></tr>
+etc. This attribute is OPTIONAL.</td></tr>
 <tr><td>id</td><td>An identifying string for the license. This attribute is
-optional.</td></tr>
+OPTIONAL.</td></tr>
 </table>
 </dd>
 
 <dt><tt>copyright</tt> element</dt>
 <dd>
-<p>The copyright for the font. This element is optional. <!-- conform? -->If present, it must be
+<p>The copyright for the font. This element is OPTIONAL. <!-- conform? -->If present, it MUST be
 a child of the <tt>metadata</tt> element. This element may be
 localized. This element has no attributes.</p>
 </dd>
 
 <dt><tt>trademark</tt> element</dt>
 <dd>
-<p>The trademark for the font. This element is optional. <!-- conform? -->If present, it must be
+<p>The trademark for the font. This element is OPTIONAL. <!-- conform? -->If present, it MUST be
 a child of the <tt>metadata</tt> element. This element may be
 localized. This element has no attributes.</p>
 </dd>
 
 <dt><tt>licensee</tt> element</dt>
 <dd>
-<p>The licensee of the font. This element is optional. <!-- conform? -->If present, it must be a
+<p>The licensee of the font. This element is OPTIONAL. <!-- conform? -->If present, it MUST be a
 child of the <tt>metadata</tt> element. This is an empty
 element.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>name</td><td>The name of the licensee. <span class="conform ff" id="conform-licensee-required">This attribute is required</span>.</td></tr>
+<tr><td>name</td><td>The name of the licensee. <span class="conform ff" id="conform-licensee-required">This attribute is REQUIRED</span>.</td></tr>
 </table>
 </dd>
 
@@ -834,7 +834,7 @@ and one or more <tt>item</tt> elements.</p>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>id</td><td>An arbitrary identifier defined by the vendor.
-This attribute is optional.</td></tr>
+This attribute is OPTIONAL.</td></tr>
 </table>
 
 <p>Subelements:</p>
@@ -851,7 +851,7 @@ are also permissible.</p>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>lang</td><td>A language tag as defined in the IANA Subtag Registry.
-This attribute is optional.</td></tr>
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 <dt><tt>item</tt> element</dt>
@@ -862,7 +862,7 @@ each <tt>extension</tt> container</span>.</p>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>id</td><td>An arbitrary identifier defined by the vendor.
-This attribute is optional.</td></tr>
+This attribute is OPTIONAL.</td></tr>
 </table>
 <p>Subelements:</p>
 <dl>
@@ -879,7 +879,7 @@ among those available for each <tt>item</tt> element.
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>lang</td><td>A language tag as defined in the IANA Subtag Registry.
-This attribute is optional.</td></tr>
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 <dt><tt>value</tt> element</dt>
@@ -894,7 +894,7 @@ among those available for each <tt>item</tt> element</span>.
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>lang</td><td>A language tag as defined in the IANA Subtag Registry.
-This attribute is optional.</td></tr>
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 </dl>
