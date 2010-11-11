@@ -570,7 +570,7 @@ specification [<cite><a id="fn-10-ref" href="#fn-10"
 tables that have been compressed</span>. </p>
 
 <p><span class="conform ff" id="conform-afterdirectory">The font data tables MUST be stored immediately following the table
-directory, without gaps except for the padding that required (up to three
+directory, without gaps except for any padding that is required (up to three
 null bytes at the end of each table) to ensure 4-byte alignment</span>.</p>
 
 <p><span class="conform ff" id="conform-sameorder">Font tables in WOFF files MUST be stored in the same order as the well-formed input font</span>.
@@ -621,14 +621,12 @@ table entries when relevant extended metadata elements are not present</span>.</
 <p><span class="conform ff" id="conform-metadata-alwayscompress">If present, the metadata MUST be compressed</span>; it is never stored in
 uncompressed form.</p>
 
-<p><span class="conform ff" id="conform-metadata-afterfonttable">The metadata block MUST follow immediately after the last font table</span>. As font
-tables MUST <!-- is this a duplicate? -->be padded with null bytes to a 4-byte boundary, the beginning of the
-metadata block will always be 4-byte aligned.
-<span class="conform ff" id="conform-private-padmeta">If the metadata block is followed by a private data block (see below),
-the end of the metadata block MUST be padded with null bytes to a 4-byte boundary</span>.
-<span class="conform ff" id="conform-metadata-noprivatepad">If the metadata block is not followed by a private data block,
-it MUST either be padded with null bytes to the next 4-byte boundary,
-or contain no additional padding after the end of the block</span>.</p>
+<p><span class="conform ff" id="conform-metadata-afterfonttable">The metadata block MUST follow immediately after the last font table</span>. As all font
+data tables are padded with up to three null bytes
+if needed to reach a 4-byte boundary,
+the beginning of the metadata block will always be 4-byte aligned.
+<span class="conform ff" id="conform-metadata-noprivatepad">If the metadata block is the last block in the WOFF file,
+there SHOULD be no additional padding after the end of the block</span>.</p>
 
 <p><span class="conform ff" id="conform-metadata-wellformed">The extended metadata MUST be well-formed XML</span> <span class="conform ff" id="conform-metadata-encoding">encoded in UTF-8 or UTF-16</span>.
 The use of UTF-8 encoding is recommended.</p>
@@ -931,10 +929,9 @@ contents.</p>
 following all the font tables and any extended metadata block</span>. 
 <span class="conform ff" id="conform-private-padalign">The private data
 block MUST begin on a 4-byte boundary in the WOFF file, with up to three null
-bytes inserted as padding if needed to ensure this</span>.
-<span class="conform ff" id="conform-afterprivate">After the end of the private data block,
-the file MUST either be padded with null bytes to the next 4-byte boundary,
-or contain no additional padding after the end of the block</span>.</p>
+bytes inserted as padding after any preceding metadata block
+if needed to ensure this</span>.
+After the end of the private data block, there SHOULD be no additional padding.</p>
 
 
 <h2 id="Conformance">8.&nbsp;Summary of Conformance Requirements</h2>
