@@ -634,8 +634,12 @@ The use of UTF-8 encoding is recommended.</p>
 
 <p>The schema for the extended metadata XML is described below.
 <span class="conform ff" id="conform-metadata-schemavalid">If the extended metadata does not match this schema,
-it is invalid</span>.  <span class="conform ua" id="conform-invalid-mustignore">
-A conforming user agent MUST ignore invalid metadata, as if the block were not present</span>.</p>
+it is invalid</span>.
+Thus, valid metadata is well formed, conforms to the schema below,
+and is stored in compressed form in the WOFF file.
+<span class="conform ua" id="conform-invalid-mustignore">
+A conforming user agent MUST ignore an invalid metadata block,
+as if the block were not present</span>.</p>
 
 <p>This description is also available
 <a href="metadata/woffmeta.rng">as a RelaxNG schema</a>.
