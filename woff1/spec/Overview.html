@@ -192,8 +192,8 @@ Despite this name, WOFF should be regarded as a container format
 or "wrapper" for font data in already-existing formats
 rather than an actual font format in its own right.</p>
 
-<p>The WOFF format is a container for the table-based sfnt structure used in e.g. TrueType [<cite><a id="fn-1-ref" href="#fn-1">TrueType</a></cite>], OpenType [<cite><a id="fn-2-ref" href="#fn-2">OpenType</a></cite>] and Open Font Format [<cite><a id="fn-3-ref"
-href="#fn-3">OFF</a></cite>] fonts, hereafter referred to as sfnt fonts. 
+<p>The WOFF format is a container for the table-based sfnt structure used in e.g. TrueType [<cite><a  href="#ref-TT">TrueType</a></cite>], OpenType [<cite><a  href="#ref-OT">OpenType</a></cite>] and Open Font Format [<cite><a
+href="#ref-OFF">OFF</a></cite>] fonts, hereafter referred to as sfnt fonts. 
 
 A WOFF file is simply a repackaged
 version of a sfnt font with optional compression of the font data tables.
@@ -213,19 +213,19 @@ the underlying font data is preserved.</p>
 by means of CSS <tt>@font-face</tt> rules.
 <span class="conform ua" id="conform-same-origin">When using such fonts, user agents MUST implement a 'same-origin restriction'
 on the downloading of WOFF files
-using the same-origin matching algorithm described in the HTML5 specification</span> ([<cite><a id="fn-4-ref" href="#fn-4">HTML5</a> <a href="http://www.w3.org/TR/html5/origin-0.html#origin-0">Section 5.3:
+using the same-origin matching algorithm described in the HTML5 specification</span> ([<cite><a  href="#ref-HTML5">HTML5</a> <a href="http://www.w3.org/TR/html5/origin-0.html#origin-0">Section 5.3:
 Origin</a></cite>]).
 <span class="conform ua" id="conform-doc-origin">The origin of the stylesheet containing <tt>@font-face</tt> declarations
 is not used when deciding whether a WOFF file is same-origin or not,
 only the origin of containing document is used</span>.
 <span class="conform ua" id="conform-cors">User agents MUST also implement the ability to relax this restriction
-using Cross-Origin Resource Sharing</span> [<cite><a id="fn-5-ref" href="#fn-5"
+using Cross-Origin Resource Sharing</span> [<cite><a  href="#ref-CORS"
 >CORS</a></cite>].
 Thus, sites can explicitly allow cross-site downloading of WOFF files
 using the <tt>Access-Control-Allow-Origin</tt> HTTP header.</p>
 
 <p><span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for linked fonts MUST respect
-the requirements of the CSS3 Fonts specification</span> ([<cite><a id="fn-6-ref" href="#fn-6"
+the requirements of the CSS3 Fonts specification</span> ([<cite><a  href="#ref-CSS3-Fonts"
 >CSS3-Fonts</a></cite>] <a href="http://www.w3.org/TR/css3-fonts/#the-font-face-rule">Section 4.1:
 The @font-face rule</a>). In particular,
 <span class="conform ua" id="conform-css3font-available">such linked fonts are only available to the documents that reference them;
@@ -246,7 +246,7 @@ but such decoded font must not be exposed to other documents or applications.
 
 <p>The all-uppercase key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in RFC 2119 [<cite><a id="fn-7-ref" href="#fn-7"
+interpreted as described in RFC 2119 [<cite><a  href="#ref-RFC-2119"
 >RFC-2119</a></cite>].
 If these words occur in lower- or mixed case, they should be interpreted
 in accordance with their normal English meaning.
@@ -265,8 +265,8 @@ but are not part of the normative text.
 <p>The structure of WOFF files is similar to the structure of sfnt fonts:
 a table directory containing lengths and offsets to individual font data tables,
 followed by the data tables themselves. The sfnt structure is described fully in
-the TrueType [<cite><a href="#fn-1">TrueType</a></cite>], OpenType [<cite><a href="#fn-2">OpenType</a></cite>] and Open Font Format [<cite><a
-href="#fn-3">OFF</a></cite>] specifications.</p>
+the TrueType [<cite><a href="#ref-TT">TrueType</a></cite>], OpenType [<cite><a href="#ref-OT">OpenType</a></cite>] and Open Font Format [<cite><a
+href="#ref-OFF">OFF</a></cite>] specifications.</p>
 
 <p>The main body of the file consists of the same collection of font data tables
 as the input sfnt font, stored in the same order, except
@@ -555,14 +555,14 @@ that lossless round-trip conversion will not be possible</span>.</p>
 <p>The font data tables in the WOFF file are exactly the same as the tables in
 the input font, except that <span class="conform ??" id="conform-maycompress2">each table MAY have been
 compressed</span>. If compressed, <span class="conform ff" id="conform-mustzlib">it MUST have been compressed by the <tt>compress2()</tt> function of zlib</span> [<cite><a
-id="fn-8-ref" href="#fn-8">Compress2</a></cite>] (or an
+href="#ref-Compress2">Compress2</a></cite>] (or an
 equivalent, compatible algorithm). User agents use the
-<tt>uncompress()</tt> function of zlib [<cite><a id="fn-9-ref"
-href="#fn-9">Uncompress</a></cite>](or an
+<tt>uncompress()</tt> function of zlib [<cite><a 
+href="#ref-Uncompress">Uncompress</a></cite>](or an
 equivalent, compatible algorithm)
  to decompress each table.
 The underlying format these functions use is described in the ZLIB
-specification [<cite><a id="fn-10-ref" href="#fn-10"
+specification [<cite><a href="#ref-ZLIB"
 >ZLib</a></cite>]. <span class="conform ua" id="conform-mustuncompress">User agents or other programs that decode WOFF files MUST be able to handle
 tables that have been compressed</span>. </p>
 
@@ -646,10 +646,10 @@ and the text of the specification, the text takes precedence.</p>
 subelements; this is to support localization. <span class="conform ff" id="conform-textlang">The <tt>text</tt>
 elements MAY be given a <tt>lang</tt> attribute</span>. The possible
 values for the <tt>lang</tt> attribute can be found in the IANA
-Subtag Registry [<cite><a id="fn-11-ref" href="#fn-11"
+Subtag Registry [<cite><a  href="#ref-Subtag"
 >Subtag</a></cite>]. A user agent displaying metadata is expected to choose a
 preferred language/locale to display from among those available, following RFC 4647 [<cite><a
-id="fn-12-ref" href="#fn-12">RFC-4647</a></cite>].
+href="#ref-RFC-4647">RFC-4647</a></cite>].
 <span class="conform ua" id="conform-langselect">The user agent SHOULD choose which of the available <tt>text</tt>
 elements to display as follows</span>:</p>
 <ol>
@@ -1294,34 +1294,34 @@ for elements, clarified their required parents.</li>
 <h3 id="normative">Normative References</h3>
 
 <dl>
-<dt>[CORS]</dt>
+<dt id="ref-CORS">[CORS]</dt>
 <dd><cite><a
 href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a>, A. van Kesteren, Editor. World Wide Web Consortium, 27 July 2010. The <a
 href="http://www.w3.org/TR/cors/">latest version of CORS</a> is available at http://www.w3.org/TR/cors/. (Work in Progress)</cite></dd>
 
-<dt>[CSS3-Fonts]</dt>
+<dt id="ref-CSS3-Fonts">[CSS3-Fonts]</dt>
 <dd><cite><a
 href="http://www.w3.org/TR/css3-fonts/">CSS Fonts Module Level 3</a>. J. Daggett, Editor. World Wide Web Consortium, 18 June 2009. The <a href="http://www.w3.org/TR/css3-fonts/">latest version of CSS3 Fonts</a> is available at http://www.w3.org/TR/css3-fonts/. (Work in Progress).
 </cite></dd>
 
-<dt>[HTML5]</dt>
+<dt id="ref-HTML5">[HTML5]</dt>
 <dd><cite><a
 href="http://www.w3.org/TR/2010/WD-html5-20101019/">HTML5</a>. I Hickson, Editor. World Wide Web Consortium, 
 19 October 2010. The <a href="http://www.w3.org/TR/html5/">latest edition of HTML5</a>
 is available at http://www.w3.org/TR/html5/. (Work in Progress).
 </cite></dd>
 
-<dt>[OFF]</dt>
+<dt id="ref-OFF">[OFF]</dt>
 <dd><cite><a
 href="http://standards.iso.org/ittf/PubliclyAvailableStandards/
 c052136_ISO_IEC_14496-22_2009(E).zip">Open Font Format specification</a> (ISO/IEC
 14496-22:2009).</cite></dd>
 
-<dt>[RFC-2119]</dt>
+<dt id="ref-RFC-2119">[RFC-2119]</dt>
 <dd><cite><a href="http://tools.ietf.org/html/rfc2119">RFC 2119:</a> Key words for
 use in RFCs to Indicate Requirement Levels. S. Bradner, Editor. Internet Engineering Task Force, March 1997. </cite></dd>
 
-<dt>[ZLIB]</dt>
+<dt id="ref-ZLIB">[ZLIB]</dt>
 <dd><cite><a href="http://tools.ietf.org/html/rfc1950">RFC 1950</a> ZLIB
 Compressed Data Format Specification. P. Deutsch, J-L. Gailly, Editors. Internet Engineeering Task Force, May 1996.</cite></dd>
 </dl>
@@ -1329,30 +1329,30 @@ Compressed Data Format Specification. P. Deutsch, J-L. Gailly, Editors. Internet
 <h3 id="informative">Informative References</h3>
 
 <dl>
-<dt>[Compress2]</dt>
+<dt id="ref-Compress2">[Compress2]</dt>
 <dd><cite><a
 href="http://refspecs.freestandards.org/LSB_3.0.0/LSB-Core-generic/LSB-Core-generic/zlib-compress2-1.html">zlib compress2() function</a></cite></dd>
 
-<dt>[OpenType]</dt>
+<dt id="ref-OT">[OpenType]</dt>
 <dd><cite><a href="http://www.microsoft.com/typography/otspec/">Microsoft OpenType
 specification</a>, version 1.6. Microsoft, 2009. OpenType is a registered trademark of Microsoft
 Corporation.</cite></dd>
 
-<dt>[RFC-4647]</dt>
+<dt id="ref-RFC-4647">[RFC-4647]</dt>
 <dd><cite><a href="http://tools.ietf.org/html/rfc4647">RFC 4647</a> Matching of
 Language Tags. A. Phillips, M. Davis, Editors. Internet Engineering Task Force, 
 September 2006</cite></dd>
 
-<dt>[Subtag]</dt>
+<dt id="ref-Subtag">[Subtag]</dt>
 <dd><cite><a href="http://www.iana.org/assignments/language-subtag-registry">IANA
 Language Subtag Registry</a></cite></dd>
 
-<dt>[TrueType]</dt>
+<dt id="ref-TT">[TrueType]</dt>
 <dd><cite><a href="http://developer.apple.com/fonts/TTRefMan/">Apple
 TrueType Reference manual</a>. Apple, 2002. TrueType is a registered trademark of Apple
 Computer, Inc.</cite></dd>
 
-<dt>[Uncompress]</dt>
+<dt id="ref-Uncompress">[Uncompress]</dt>
 <dd><cite><a
 href="http://refspecs.freestandards.org/LSB_3.0.0/LSB-Core-generic/LSB-Core-generic/zlib-uncompress-1.html">zlib uncompress() function</a></cite></dd>
 
