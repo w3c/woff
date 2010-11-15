@@ -89,7 +89,7 @@ dl.xmlspec dd {
   <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
   <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
 
-<hr />
+<hr/>
 
 
 <div id="Abstract">
@@ -177,6 +177,7 @@ information in accordance with <a href="http://www.w3.org/Consortium/Patent-Poli
 </p>
 <p><a href="#appendix-a">Appendix A: Extended Metadata Examples</a>
 <br/><a href="#appendix-b">Appendix B: Media Type Registration</a>
+<br/><a href="#changes">Appendix C: Changes</a>
 <br/><a href="#References">References</a></p>
 
 </div>
@@ -1254,6 +1255,37 @@ The W3C has change control over this specification.
 
 </dd>
 </dl>
+
+<h2 id="changes">Appendix C: Changes</h2>
+
+<p>The following changes have been made, relative to the 
+<a href="http://www.w3.org/TR/2010/WD-WOFF-20100727">27 July 2010 First Public Working Draft</a>. No new features have been added; the changes are clarifications and corrections to existing features.</p>
+
+<ul>
+<li>Clarified that WOFF is a font <em>packaging</em> or wrapper format, not a new font format as such.</li>
+<li>Clarified padding and byte-alignment requirements throughout</li>
+<li>Preferred the term 'input font' rather than 'original file' to describe
+the font which is converted to WOFF</li>
+<li>Clarified that any subsetting, checksum-correction, or DSIG invalidating changes <em>prior</em> to WOFF conversion are out of scope for the WOFF specification.</li>
+<li>Clarified meaning of totalSfntSize.</li>
+<li>Defined what is meant by a well formed input font.</li>
+<li>Clarified meaning of 'invalid metadata' - must be well-formed, compressed, and conform to the schema.</li>
+<li>Clarified which elements and attributes in the XML are required;
+for elements, clarified their required parents.</li>
+<li>Clarified that the id attribute is not of type ID in the XML sense</li>
+<li>Added link to a RelaxNG grammar, which tries to express the same constraints as the prose in a machine-readable manner. The prose is normative in case of any difference.</li>
+<li>Added reminder to check for overflow when decompressing.</li>
+<li>Added a Media Type registration template as required by <a href="http://www.w3.org/2002/06/registering-mediatype.html">W3C Media Type registration</a> policies.</li>
+<li>Separated normative and informative references.</li>
+<li>Switched to upper-case for RFC-2119 keywords.</li>
+<li>Added id and class attributes to all testable assertions.</li>
+<li>Added some non-normative explanatory notes.</li>
+<li>Minor clarifications to wording throughout.</li>
+<li>Some re-ordering of text to group related assertions or to improve readability; in particular, the bast practices were previously an appendix and are now integrated into the main body of the specification.</li>
+<li>Added this Changes appendix.</li>
+</ul>
+
+<p>A <a href="http://dev.w3.org/cvsweb/webfonts/WOFF/spec/Overview.html.diff?r1=1.13&r2=1.58&f=h">color-coded diff</a> between the editors draft used to prepare the First Public Working Draft, and the editors draft used to prepare this Last Call Working Draft</a> is available.</p>
 
 <hr/>
 
