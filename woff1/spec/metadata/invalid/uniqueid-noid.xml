@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <!-- invalid, uniqueid must have @id -->
+    <uniqueid />
+</metadata>
+
