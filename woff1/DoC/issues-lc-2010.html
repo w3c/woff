@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+    <head>
+        <title>WOFF Disposition of Comments </title>
+        <style type="text/css">
+            a {text-decoration: none}
+            a:hover {text-decoration: underline; background: #FE9 }
+            div.issue {padding-left: 1em}
+            div:target {border: 2px solid maroon}
+            div.toc table td {padding: 0.5em}
+            td.accept { background: #6F6;}
+            td.reject { background: #D66;}
+            td.noreply { background: #999;}
+            td.nochange {background: #CCF;}
+        </style>
+        <link rel="stylesheet" type="text/css" media="screen"
+            href="http://www.w3.org/StyleSheets/TR/base.css"/>
+    </head>
+
+    <body>
+        <div class="head">
+            <a href="http://www.w3.org/">
+                <img src="http://www.w3.org/Icons/WWW/w3c_home" alt="W3C"/>
+            </a>
+            <h1>WOFF Disposition of Comments </h1>
+            <h2>2010-12-01</h2>
+
+            <hr/>
+
+            <h2>Abstract</h2>
+            <p>This document outlines the way in which the WebFonts Working Group addressed the
+                comments submitted during the Last Call period of WOFF 1.0.</p>
+            <h2>Status of this document</h2>
+            <p>During the Last Call period of the 16 November 2010 Working Draft of <a
+                    href="http://www.w3.org/TR/2010/WD-WOFF-20101116/">WOFF 1.0</a>, a number of
+                comments were received. This document summarizes those comments and describes the
+                ways in which the comments were addressed by the WebFonts Working Group. Editorial
+                changes have been made in the <a href="http://dev.w3.org/webfonts/WOFF/spec/"
+                    >editors draft</a>.</p>
+            <p>This document is a work in progress and does not necessarily reflect WebFonts WG
+                consensus at this time.</p>
+
+        </div>
+
+        <div class="toc">
+            <h2 id="toc">Table of Contents</h2>
+            <table>
+                <tr>
+                    <th>Issue</th>
+                    <th>WG Action</th>
+                    <th>Commenter Response</th>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-1">1. No problems</a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-2">2. Mention benefits</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-3">3. Put WOFF elements in a namespace</a>
+                    </td>
+                    <td class=""></td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-4">4. Allow multiple &lt;text> elements as child of
+                            &lt;description></a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-5">5. Support pronunciation and sorting metadata with
+                            structured text</a>
+                    </td>
+                    <td class=""></td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-6">6. Extensibility by other namespaces</a>
+                    </td>
+                    <td class=""></td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-7">7. xsd:NCName is too constraining for lang attributes</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-8">8. Add @url and @id to &lt;text> elements inside
+                            &lt;license></a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="main">
+            <h2>Comments and resolutions</h2>
+
+
+            <div id="issue-1" class="issue">
+                <h3>Issue 1</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>WOFF does not pose any accessibility risks. No changes requested.</dd>
+                    <dt> Raised by</dt>
+                    <dd>Michael Cooper, WAI Protocols and Formats WG</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0077.html"
+                            >18 Nov 2010 08:40:14 -0500</a> | <a
+                            href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0078.html"
+                            >18 Nov 2010 16:03:56 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Thanks. No change.</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd>No changes requested or made.</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-2" class="issue">
+                <h3>Issue 2</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Mention accessibility benefits in supporting materials.</dd>
+                    <dt> Raised by</dt>
+                    <dd>Michael Cooper, WAI Protocols and Formats WG</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0077.html"
+                            >18 Nov 2010 08:40:14 -0500</a> | <a
+                            href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0078.html"
+                            >18 Nov 2010 16:03:56 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Supporting materials do mention benefits, will be further improved.</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd>No changes to specification requested.</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-3" class="issue">
+                <h3>Issue 3</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Put WOFF elements in a namespace</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >19 Nov 2010 09:44:33 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >24 Nov 2010 15:43:57 -0500 </a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >24 Nov 2010 22:21:50 +0100</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0087.html"
+                            >24 Nov 2010 13:24:06 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0088.html"
+                            >24 Nov 2010 22:28:21 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd/>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd/>
+
+                </dl>
+            </div>
+
+            <div id="issue-4" class="issue">
+                <h3>Issue 4</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Allow multiple &lt;text> elements as child of &lt;description></dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >19 Nov 2010 09:44:33 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >24 Nov 2010 15:43:57 -0500 </a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >24 Nov 2010 22:21:50 +0100</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0087.html"
+                            >24 Nov 2010 13:24:06 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0088.html"
+                            >24 Nov 2010 22:28:21 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Spec prose already allows this; change RNG to match</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd>Need to edit RNG</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-5" class="issue">
+                <h3>Issue 5</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Support pronunciation and sorting metadata with structured text</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >19 Nov 2010 09:44:33 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >24 Nov 2010 15:43:57 -0500 </a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >24 Nov 2010 22:21:50 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd/>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd/>
+
+                </dl>
+            </div>
+
+            <div id="issue-6" class="issue">
+                <h3>Issue 6</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Extensibility by other namespaces</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >19 Nov 2010 09:44:33 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >24 Nov 2010 15:43:57 -0500 </a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >24 Nov 2010 22:21:50 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd/>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd/>
+
+                </dl>
+            </div>
+
+            <div id="issue-7" class="issue">
+                <h3>Issue 7</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>xsd:NCName is too constraining for lang attributes</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >19 Nov 2010 09:44:33 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >24 Nov 2010 15:43:57 -0500 </a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >24 Nov 2010 22:21:50 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Agree, fix RNG</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd>Need to edit RNG</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-8" class="issue">
+                <h3>Issue 8</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Add @url and @id to &lt;text> elements inside &lt;license> </dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >19 Nov 2010 09:44:33 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >24 Nov 2010 15:43:57 -0500 </a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >24 Nov 2010 22:21:50 +0100</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0087.html"
+                            >24 Nov 2010 13:24:06 -0800</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0088.html"
+                            >24 Nov 2010 22:28:21 +0100</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Agree</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd>Need to edit RNG</dd>
+
+                </dl>
+            </div>
+
+            <!--
+
+<div id="issue-n" class="issue">
+<h3>Issue n</a></h3>
+<dl>
+<dt>Summary</dt>
+<dd> </dd>
+<dt> Raised by</dt>
+<dd> </dd>
+
+<dt>Links</dt>
+<dd>N/A</dd>
+<dt>Proposed Resolution</dt>
+<dd> </dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd></dd>
+
+</dl>
+</div>
+
+-->
+
+            <hr/>
+            <address>Chris Lilley <br/>
+        $Id$</address>
+        </div>
+    </body>
+</html>
