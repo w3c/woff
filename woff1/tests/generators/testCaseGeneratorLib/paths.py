@@ -24,7 +24,7 @@ mainDirectory = dirname(__file__)
 mainDirectory = dirname(mainDirectory, 2)
 
 # directory for SFNT data, test case templates,
-resourcesDirectory = os.path.join(mainDirectory, "generator", "resources")
+resourcesDirectory = os.path.join(mainDirectory, "generators", "resources")
 # paths to specific resources
 sfntCFFSourcePath = os.path.join(resourcesDirectory, "SFNT-CFF.otf")
 sfntTTFSourcePath = os.path.join(resourcesDirectory, "SFNT-TTF.ttf")
