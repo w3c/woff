@@ -3,14 +3,13 @@ Test case HTML generator.
 """
 
 import os
-import codecs
 
 # ------------------
 # SFNT Display Tests
 # ------------------
 
-testPassCharacter = unichr(int("E000", 16))
-testFailCharacter = unichr(int("E001", 16))
+testPassCharacter = "P"
+testFailCharacter = "F"
 refPassCharacter = testPassCharacter
 
 testCSS = """
@@ -98,14 +97,14 @@ def _generateSFNTDisplayTestHTML(
     s = "\t\t<p>Test passes if the word PASS appears below.</p>"
     html.append(s)
     ## test case
-    s = u"\t\t<div class=\"test\">%s</div>" % bodyCharacter
+    s = "\t\t<div class=\"test\">%s</div>" % bodyCharacter
     html.append(s)
     ## close
     html.append("\t</body>")
     # close
     html.append("</html>")
     # finalize
-    html = u"\n".join(html)
+    html = "\n".join(html)
     return html
 
 def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None):
@@ -121,7 +120,7 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
     )
     # write the file
     path = os.path.join(directory, fileName) + ".xht"
-    f = codecs.open(path, "wb", encoding="utf8")
+    f = open(path, "wb")
     f.write(html)
     f.close()
 
@@ -136,6 +135,6 @@ def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title
     )
     # write the file
     path = os.path.join(directory, fileName) + "-ref.xht"
-    f = codecs.open(path, "wb", encoding="utf8")
+    f = open(path, "wb")
     f.write(html)
     f.close()

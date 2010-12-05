@@ -91,6 +91,7 @@ specificationURL = "http://dev.w3.org/webfonts/WOFF/spec/"
 registeredIdentifiers = set()
 
 def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, data=None):
+    print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicte identifier! %s" % identifier
     registeredIdentifiers.add(identifier)
 

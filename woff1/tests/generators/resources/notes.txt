@@ -9,13 +9,13 @@ The fonts are given in both .ttx and SFNT format. The .ttx files are the source 
 The fonts have the following glyph/unicode to visual representation mapping:
 
 SFNT-CFF.otf and SFNT-TTF.ttf
-	uniE000 PASS
-	uniE001 FAIL
+	P PASS
+	F FAIL
 
 SFNT-CFF-Fallback.otf and SFNT-TTF-Fallback.ttf
-	uniE000 FAIL
-	uniE001 PASS
+	P FAIL
+	F PASS
 
 SFNT-CFF-Reference.otf and SFNT-TTF-Reference.ttf
-	uniE000 PASS
-	uniE001 FAIL
+	P PASS
+	F FAIL

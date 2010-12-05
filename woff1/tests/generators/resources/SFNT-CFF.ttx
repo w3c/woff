@@ -5,8 +5,8 @@
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
     <GlyphID id="0" name=".notdef"/>
     <GlyphID id="1" name="space"/>
-    <GlyphID id="2" name="uniE000"/>
-    <GlyphID id="3" name="uniE001"/>
+    <GlyphID id="2" name="F"/>
+    <GlyphID id="3" name="P"/>
   </GlyphOrder>
 
   <head>
@@ -60,7 +60,7 @@
     <xAvgCharWidth value="1525"/>
     <usWeightClass value="400"/>
     <usWidthClass value="5"/>
-    <fsType value="00000000 00000100"/>
+    <fsType value="00000000 00000000"/>
     <ySubscriptXSize value="650"/>
     <ySubscriptYSize value="600"/>
     <ySubscriptXOffset value="0"/>
@@ -91,7 +91,7 @@
     <achVendID value="None"/>
     <fsSelection value="00000001 11000000"/>
     <fsFirstCharIndex value="32"/>
-    <fsLastCharIndex value="57345"/>
+    <fsLastCharIndex value="80"/>
     <sTypoAscender value="750"/>
     <sTypoDescender value="-250"/>
     <sTypoLineGap value="0"/>
@@ -155,8 +155,8 @@
     <tableVersion version="0"/>
     <cmap_format_4 platformID="0" platEncID="3" language="0">
       <map code="0x20" name="space"/><!-- SPACE -->
-      <map code="0xe000" name="uniE000"/><!-- Private Use -->
-      <map code="0xe001" name="uniE001"/><!-- Private Use -->
+      <map code="0x46" name="F"/><!-- LATIN CAPITAL LETTER F -->
+      <map code="0x50" name="P"/><!-- LATIN CAPITAL LETTER P -->
     </cmap_format_4>
     <cmap_format_6 platformID="1" platEncID="0" language="0">
       <map code="0x9" name="space"/>
@@ -183,11 +183,59 @@
       <map code="0x1e" name=".notdef"/>
       <map code="0x1f" name=".notdef"/>
       <map code="0x20" name="space"/>
+      <map code="0x21" name=".notdef"/>
+      <map code="0x22" name=".notdef"/>
+      <map code="0x23" name=".notdef"/>
+      <map code="0x24" name=".notdef"/>
+      <map code="0x25" name=".notdef"/>
+      <map code="0x26" name=".notdef"/>
+      <map code="0x27" name=".notdef"/>
+      <map code="0x28" name=".notdef"/>
+      <map code="0x29" name=".notdef"/>
+      <map code="0x2a" name=".notdef"/>
+      <map code="0x2b" name=".notdef"/>
+      <map code="0x2c" name=".notdef"/>
+      <map code="0x2d" name=".notdef"/>
+      <map code="0x2e" name=".notdef"/>
+      <map code="0x2f" name=".notdef"/>
+      <map code="0x30" name=".notdef"/>
+      <map code="0x31" name=".notdef"/>
+      <map code="0x32" name=".notdef"/>
+      <map code="0x33" name=".notdef"/>
+      <map code="0x34" name=".notdef"/>
+      <map code="0x35" name=".notdef"/>
+      <map code="0x36" name=".notdef"/>
+      <map code="0x37" name=".notdef"/>
+      <map code="0x38" name=".notdef"/>
+      <map code="0x39" name=".notdef"/>
+      <map code="0x3a" name=".notdef"/>
+      <map code="0x3b" name=".notdef"/>
+      <map code="0x3c" name=".notdef"/>
+      <map code="0x3d" name=".notdef"/>
+      <map code="0x3e" name=".notdef"/>
+      <map code="0x3f" name=".notdef"/>
+      <map code="0x40" name=".notdef"/>
+      <map code="0x41" name=".notdef"/>
+      <map code="0x42" name=".notdef"/>
+      <map code="0x43" name=".notdef"/>
+      <map code="0x44" name=".notdef"/>
+      <map code="0x45" name=".notdef"/>
+      <map code="0x46" name="F"/>
+      <map code="0x47" name=".notdef"/>
+      <map code="0x48" name=".notdef"/>
+      <map code="0x49" name=".notdef"/>
+      <map code="0x4a" name=".notdef"/>
+      <map code="0x4b" name=".notdef"/>
+      <map code="0x4c" name=".notdef"/>
+      <map code="0x4d" name=".notdef"/>
+      <map code="0x4e" name=".notdef"/>
+      <map code="0x4f" name=".notdef"/>
+      <map code="0x50" name="P"/>
     </cmap_format_6>
     <cmap_format_4 platformID="3" platEncID="1" language="0">
       <map code="0x20" name="space"/><!-- SPACE -->
-      <map code="0xe000" name="uniE000"/><!-- Private Use -->
-      <map code="0xe001" name="uniE001"/><!-- Private Use -->
+      <map code="0x46" name="F"/><!-- LATIN CAPITAL LETTER F -->
+      <map code="0x50" name="P"/><!-- LATIN CAPITAL LETTER P -->
     </cmap_format_4>
   </cmap>
 
@@ -236,10 +284,27 @@
         <CharString name=".notdef">
           endchar
         </CharString>
-        <CharString name="space">
+        <CharString name="F">
+          -102 787 hmoveto
+          31 119 rlineto
+          203 hlineto
+          32 -119 rlineto
+          246 hlineto
+          -213 700 rlineto
+          -296 hlineto
+          -213 -700 rlineto
+          -477 hmoveto
+          237 244 245 162 -245 130 287 164 -524 hlineto
+          1586 -700 rmoveto
+          518 180 -281 520 -237 hlineto
+          -332 -700 rmoveto
+          237 700 -237 hlineto
+          -434 -196 rmoveto
+          60 -228 rlineto
+          -120 hlineto
           endchar
         </CharString>
-        <CharString name="uniE000">
+        <CharString name="P">
           -107 394 306 rmoveto
           153 86 82 115 115 -86 82 -153 hvcurveto
           -294 -15 91 -670 -91 -15 297 15 -101 291 hlineto
@@ -285,24 +350,7 @@
           15 226 hlineto
           endchar
         </CharString>
-        <CharString name="uniE001">
-          -102 787 hmoveto
-          31 119 rlineto
-          203 hlineto
-          32 -119 rlineto
-          246 hlineto
-          -213 700 rlineto
-          -296 hlineto
-          -213 -700 rlineto
-          -477 hmoveto
-          237 244 245 162 -245 130 287 164 -524 hlineto
-          1586 -700 rmoveto
-          518 180 -281 520 -237 hlineto
-          -332 -700 rmoveto
-          237 700 -237 hlineto
-          -434 -196 rmoveto
-          60 -228 rlineto
-          -120 hlineto
+        <CharString name="space">
           endchar
         </CharString>
       </CharStrings>
@@ -316,9 +364,9 @@
 
   <hmtx>
     <mtx name=".notdef" width="750" lsb="0"/>
+    <mtx name="F" width="2304" lsb="100"/>
+    <mtx name="P" width="2299" lsb="100"/>
     <mtx name="space" width="750" lsb="0"/>
-    <mtx name="uniE000" width="2299" lsb="100"/>
-    <mtx name="uniE001" width="2304" lsb="100"/>
   </hmtx>
 
 </ttFont>
