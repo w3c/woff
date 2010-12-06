@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (38 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (39 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -141,6 +141,12 @@
 					<td><a href="directory-4-byte-002-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Font Table Data Padded With Non-Null<ul class="assert"><li>Table data is padded with \01 instead of \00.</li></ul></td>
+				</tr>
+				<tr id="directory-4-byte-003" class="primary font">
+					<td><strong><a href="directory-4-byte-003.xht">directory-4-byte-003</a></strong></td>
+					<td><a href="directory-4-byte-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Final Font Table Data Not Padded<ul class="assert"><li>The final table in the table data block is not padded to a 4-byte boundary.</li></ul></td>
 				</tr>
 				<tr id="directory-overlaps-001" class="primary font">
 					<td><strong><a href="directory-overlaps-001.xht">directory-overlaps-001</a></strong></td>

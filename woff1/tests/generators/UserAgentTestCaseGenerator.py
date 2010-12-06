@@ -37,7 +37,7 @@ from fontTools.ttLib.sfnt import sfntDirectoryEntrySize
 from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData,\
     woffHeaderSize, woffDirectoryEntrySize, woffDirectoryEntryFormat
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData,\
-    sfntCFFTableData
+    sfntCFFTableData, testCFFDataWOFFDirectory
 from testCaseGeneratorLib.utilities import calcPaddingLength, padData, calcTableChecksum, stripMetadata
 from testCaseGeneratorLib.html import generateSFNTDisplayTestHTML, generateSFNTDisplayRefHTML, generateSFNTDisplayIndexHTML
 from testCaseGeneratorLib.paths import resourcesDirectory, userAgentDirectory, userAgentTestDirectory, userAgentTestResourcesDirectory, userAgentFontsToInstallDirectory
@@ -938,6 +938,42 @@ writeFileStructureTest(
     shouldDisplaySFNT=False,
     specLink="#conform-tablesize-longword",
     data=makeTableData4Byte2()
+)
+
+# final table is not padded
+
+def makeTableData4Byte3():
+    # table data
+    tableData = deepcopy(sfntCFFTableData)
+    tag = "zzzz"
+    data = "\0" * 2
+    paddingLength = calcPaddingLength(len(data))
+    tableData[tag] = (data, data)
+    # directory
+    directory = deepcopy(testCFFDataWOFFDirectory)
+    entry = dict(
+        tag=tag,
+        origChecksum=0,
+        origLength=0,
+        compLength=0,
+        offset=0
+    )
+    directory.append(entry)
+    # update the structures
+    header, directory, tableData = defaultTestData(directory=directory, tableData=tableData)
+    header["length"] -= paddingLength
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    data = data[:-paddingLength]
+    return data
+
+writeFileStructureTest(
+    identifier="directory-4-byte-003",
+    title="Final Font Table Data Not Padded",
+    assertion="The final table in the table data block is not padded to a 4-byte boundary.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=False,
+    specLink="#conform-tablesize-longword",
+    data=makeTableData4Byte3()
 )
 
 # -----------------------------------------
