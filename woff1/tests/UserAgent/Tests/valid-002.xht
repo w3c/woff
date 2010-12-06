@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+		<title>WOFF Test: Valid WOFF 2</title>
+		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
+		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/" />
+		<meta name="flags" content="font" />
+		<meta name="assert" content="Valid CFF flavored WOFF with metadata" />
+		<style type="text/css"><![CDATA[
+			@font-face {
+				font-family: "WOFF Test";
+				src: url("resources/valid-002.woff") format("woff");
+			}
+			body {
+				font-family;
+				font-size: 25px;
+			}
+			.test {
+				font-family: "WOFF Test", "WOFF Test CFF Fallback";
+				font-size: 200px;
+				margin-top: 50px;
+			}
+		]]></style>
+	</head>
+	<body>
+		<p>Test passes if the word PASS appears below.</p>
+		<div class="test">P</div>
+	</body>
+</html>

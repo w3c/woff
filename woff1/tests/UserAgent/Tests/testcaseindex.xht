@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>WOFF: User Agent Test Suite</title>
+		<style type="text/css">
+			@import "http://www.w3.org/StyleSheets/TR/base.css";
+			/* XXX THIS SHOULD NOT IMPORT FROM A COMPLETELY DIFFERENT PROJECT! */
+			/* XXX THIS IS A TEMPORARY CONVENIENCE! */
+			@import "http://test.csswg.org/suites/css2.1/20101027/indices.css";
+		</style>
+	</head>
+	<body>
+		<h1>WOFF: User Agent Test Suite (38 tests)</h1>
+		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
+			<col id="test-column"></col>
+			<col id="flags-column"></col>
+			<col id="info-column"></col>
+			<thead>
+				<tr>
+					<th>Test</th>
+					<th><abbr title="Rendering References">Refs</abbr></th>
+					<th>Flags</th>
+					<th>Info</th>
+				</tr>
+			</thead>
+			<tbody id="ValidWOFFs">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#ValidWOFFs">+</a>
+					Valid WOFFs
+				</th></tr>
+				<tr id="valid-001" class="primary font">
+					<td><strong><a href="valid-001.xht">valid-001</a></strong></td>
+					<td><a href="valid-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 1<ul class="assert"><li>Valid CFF flavored WOFF with no metadata and no private data</li></ul></td>
+				</tr>
+				<tr id="valid-002" class="primary font">
+					<td><strong><a href="valid-002.xht">valid-002</a></strong></td>
+					<td><a href="valid-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 2<ul class="assert"><li>Valid CFF flavored WOFF with metadata</li></ul></td>
+				</tr>
+				<tr id="valid-003" class="primary font">
+					<td><strong><a href="valid-003.xht">valid-003</a></strong></td>
+					<td><a href="valid-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 3<ul class="assert"><li>Valid CFF flavored WOFF with private data</li></ul></td>
+				</tr>
+				<tr id="valid-004" class="primary font">
+					<td><strong><a href="valid-004.xht">valid-004</a></strong></td>
+					<td><a href="valid-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 4<ul class="assert"><li>Valid CFF flavored WOFF with metadata and private data</li></ul></td>
+				</tr>
+				<tr id="valid-005" class="primary font">
+					<td><strong><a href="valid-005.xht">valid-005</a></strong></td>
+					<td><a href="valid-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 5<ul class="assert"><li>Valid TTF flavored WOFF with no metadata and no private data</li></ul></td>
+				</tr>
+				<tr id="valid-006" class="primary font">
+					<td><strong><a href="valid-006.xht">valid-006</a></strong></td>
+					<td><a href="valid-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 6<ul class="assert"><li>Valid TTF flavored WOFF with metadata</li></ul></td>
+				</tr>
+				<tr id="valid-007" class="primary font">
+					<td><strong><a href="valid-007.xht">valid-007</a></strong></td>
+					<td><a href="valid-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 7<ul class="assert"><li>Valid TTF flavored WOFF with private data</li></ul></td>
+				</tr>
+				<tr id="valid-008" class="primary font">
+					<td><strong><a href="valid-008.xht">valid-008</a></strong></td>
+					<td><a href="valid-008-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid WOFF 8<ul class="assert"><li>Valid TTF flavored WOFF with metadata and private data</li></ul></td>
+				</tr>
+			</tbody>
+			<tbody id="WOFFHeaderTests">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#WOFFHeaderTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#WOFFHeader">WOFF Header Tests</a>
+				</th></tr>
+				<tr id="header-signature-001" class="primary font">
+					<td><strong><a href="header-signature-001.xht">header-signature-001</a></strong></td>
+					<td><a href="header-signature-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Signature Invalid Value<ul class="assert"><li>The signature field contains XXXX instead of wOFF.</li></ul></td>
+				</tr>
+				<tr id="header-length-001" class="primary font">
+					<td><strong><a href="header-length-001.xht">header-length-001</a></strong></td>
+					<td><a href="header-length-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Length Too Short<ul class="assert"><li>The length field contains a value that is four bytes shorter than the actual data.</li></ul></td>
+				</tr>
+				<tr id="header-length-002" class="primary font">
+					<td><strong><a href="header-length-002.xht">header-length-002</a></strong></td>
+					<td><a href="header-length-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Length Too Long<ul class="assert"><li>The length field contains a value that is four bytes longer than the actual data.</li></ul></td>
+				</tr>
+				<tr id="header-totalSfntSize-001" class="primary font">
+					<td><strong><a href="header-totalSfntSize-001.xht">header-totalSfntSize-001</a></strong></td>
+					<td><a href="header-totalSfntSize-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Total SFNT Size Not a Multiple of 4<ul class="assert"><li>The totalSfntSize field contains a value that is missing padding bytes between two tables.</li></ul></td>
+				</tr>
+				<tr id="header-totalSfntSize-002" class="primary font">
+					<td><strong><a href="header-totalSfntSize-002.xht">header-totalSfntSize-002</a></strong></td>
+					<td><a href="header-totalSfntSize-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Total SFNT Size Too Long<ul class="assert"><li>The totalSfntSize field contains a value that is is four bytes too long.</li></ul></td>
+				</tr>
+				<tr id="header-totalSfntSize-003" class="primary font">
+					<td><strong><a href="header-totalSfntSize-003.xht">header-totalSfntSize-003</a></strong></td>
+					<td><a href="header-totalSfntSize-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Total SFNT Size Too Short<ul class="assert"><li>The totalSfntSize field contains a value that is is four bytes too short.</li></ul></td>
+				</tr>
+				<tr id="header-reserved-001" class="primary font">
+					<td><strong><a href="header-reserved-001.xht">header-reserved-001</a></strong></td>
+					<td><a href="header-reserved-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Reserved Invalid Value<ul class="assert"><li>The reserved field contains 1.</li></ul></td>
+				</tr>
+			</tbody>
+			<tbody id="WOFFTableDirectoryTests">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#WOFFTableDirectoryTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#TableDirectory">WOFF Table Directory Tests</a>
+				</th></tr>
+				<tr id="directory-4-byte-001" class="primary font">
+					<td><strong><a href="directory-4-byte-001.xht">directory-4-byte-001</a></strong></td>
+					<td><a href="directory-4-byte-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Not On 4-Byte Boundary<ul class="assert"><li>Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.</li></ul></td>
+				</tr>
+				<tr id="directory-4-byte-002" class="primary font">
+					<td><strong><a href="directory-4-byte-002.xht">directory-4-byte-002</a></strong></td>
+					<td><a href="directory-4-byte-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Padded With Non-Null<ul class="assert"><li>Table data is padded with \01 instead of \00.</li></ul></td>
+				</tr>
+				<tr id="directory-overlaps-001" class="primary font">
+					<td><strong><a href="directory-overlaps-001.xht">directory-overlaps-001</a></strong></td>
+					<td><a href="directory-overlaps-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Offset Past End of File<ul class="assert"><li>The offset to the data block for the final table data is four bytes beyond the end of the file.</li></ul></td>
+				</tr>
+				<tr id="directory-overlaps-002" class="primary font">
+					<td><strong><a href="directory-overlaps-002.xht">directory-overlaps-002</a></strong></td>
+					<td><a href="directory-overlaps-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Offset+Length Past End of File<ul class="assert"><li>The defined length for the final table causes the data block to be four bytes beyond the end of the file.</li></ul></td>
+				</tr>
+				<tr id="directory-compLength-001" class="primary font">
+					<td><strong><a href="directory-compLength-001.xht">directory-compLength-001</a></strong></td>
+					<td><a href="directory-compLength-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Compressed Length Greater Than Original Length<ul class="assert"><li>At least one table's compLength is larger than the origLength.</li></ul></td>
+				</tr>
+				<tr id="directory-ascending-001" class="primary font">
+					<td><strong><a href="directory-ascending-001.xht">directory-ascending-001</a></strong></td>
+					<td><a href="directory-ascending-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Directory Not In Ascending Order<ul class="assert"><li>The tables in the directory are in descending order.</li></ul></td>
+				</tr>
+				<tr id="directory-zlib-001" class="primary font">
+					<td><strong><a href="directory-zlib-001.xht">directory-zlib-001</a></strong></td>
+					<td><a href="directory-zlib-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Invalid Compressed Data<ul class="assert"><li>One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.</li></ul></td>
+				</tr>
+			</tbody>
+			<tbody id="WOFFHeaderTests">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#WOFFHeaderTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#OverallStructure">WOFF Header Tests</a>
+				</th></tr>
+				<tr id="blocks-extraneous-data-001" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-001.xht">blocks-extraneous-data-001</a></strong></td>
+					<td><a href="blocks-extraneous-data-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data Between Directory and Table Data<ul class="assert"><li>There are four null bytes between the table directory and the table data.</li></ul></td>
+				</tr>
+				<tr id="blocks-extraneous-data-002" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-002.xht">blocks-extraneous-data-002</a></strong></td>
+					<td><a href="blocks-extraneous-data-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data Between Tables<ul class="assert"><li>There are four null bytes between each of the table data blocks.</li></ul></td>
+				</tr>
+				<tr id="blocks-extraneous-data-003" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-003.xht">blocks-extraneous-data-003</a></strong></td>
+					<td><a href="blocks-extraneous-data-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data After Table Data<ul class="assert"><li>There are four null bytes after the table data block and there is no metadata or private data.</li></ul></td>
+				</tr>
+				<tr id="blocks-extraneous-data-004" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-004.xht">blocks-extraneous-data-004</a></strong></td>
+					<td><a href="blocks-extraneous-data-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data Between Table Data and Metadata<ul class="assert"><li>There are four null bytes between the table data and the metadata.</li></ul></td>
+				</tr>
+				<tr id="blocks-extraneous-data-005" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-005.xht">blocks-extraneous-data-005</a></strong></td>
+					<td><a href="blocks-extraneous-data-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data Between Table Data and Private Data<ul class="assert"><li>There are four null bytes between the table data and the private data.</li></ul></td>
+				</tr>
+				<tr id="blocks-extraneous-data-006" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-006.xht">blocks-extraneous-data-006</a></strong></td>
+					<td><a href="blocks-extraneous-data-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data Between Metdata and Private Data<ul class="assert"><li>There are four null bytes between the metadata and the private data.</li></ul></td>
+				</tr>
+				<tr id="blocks-extraneous-data-007" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-007.xht">blocks-extraneous-data-007</a></strong></td>
+					<td><a href="blocks-extraneous-data-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data After Metadata<ul class="assert"><li>There are four null bytes after the metadata and there is no private data.</li></ul></td>
+				</tr>
+				<tr id="blocks-extraneous-data-008" class="primary font">
+					<td><strong><a href="blocks-extraneous-data-008.xht">blocks-extraneous-data-008</a></strong></td>
+					<td><a href="blocks-extraneous-data-008-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Extraneous Data After Private Data<ul class="assert"><li>There are four null bytes after the private data.</li></ul></td>
+				</tr>
+				<tr id="blocks-overlap-001" class="primary font">
+					<td><strong><a href="blocks-overlap-001.xht">blocks-overlap-001</a></strong></td>
+					<td><a href="blocks-overlap-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Table Data Blocks Overlap<ul class="assert"><li>The second table's offset is four bytes before the end of the first table's data.</li></ul></td>
+				</tr>
+				<tr id="blocks-overlap-002" class="primary font">
+					<td><strong><a href="blocks-overlap-002.xht">blocks-overlap-002</a></strong></td>
+					<td><a href="blocks-overlap-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Metadata Overlaps Table Data<ul class="assert"><li>The metadata offset is four bytes before the end of the table data.</li></ul></td>
+				</tr>
+				<tr id="blocks-overlap-003" class="primary font">
+					<td><strong><a href="blocks-overlap-003.xht">blocks-overlap-003</a></strong></td>
+					<td><a href="blocks-overlap-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Private Data Overlaps Table Data<ul class="assert"><li>The private data offset is four bytes before the end of the table data.</li></ul></td>
+				</tr>
+				<tr id="blocks-overlap-004" class="primary font">
+					<td><strong><a href="blocks-overlap-004.xht">blocks-overlap-004</a></strong></td>
+					<td><a href="blocks-overlap-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Private Data Overlaps Metadata<ul class="assert"><li>The private data offset is four bytes before the end of the metadata.</li></ul></td>
+				</tr>
+				<tr id="blocks-metadata-absent-001" class="primary font">
+					<td><strong><a href="blocks-metadata-absent-001.xht">blocks-metadata-absent-001</a></strong></td>
+					<td><a href="blocks-metadata-absent-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Metadata Length Not Set to Zero<ul class="assert"><li>The metadata length is set to one but the offset is zero. This test case also fails for other reasons: the offset/length creates an overlap with the header block, the metadata won't decompress.</li></ul></td>
+				</tr>
+				<tr id="blocks-metadata-absent-002" class="primary font">
+					<td><strong><a href="blocks-metadata-absent-002.xht">blocks-metadata-absent-002</a></strong></td>
+					<td><a href="blocks-metadata-absent-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Metadata Offset Not Set to Zero<ul class="assert"><li>The metadata length is set to zero but the offset is set to the end of the file.</li></ul></td>
+				</tr>
+				<tr id="blocks-private-absent-001" class="primary font">
+					<td><strong><a href="blocks-private-absent-001.xht">blocks-private-absent-001</a></strong></td>
+					<td><a href="blocks-private-absent-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Private Data Length Not Set to Zero<ul class="assert"><li>The private data length is set to one but the offset is zero. This test case also fails for another reason: the offset/length creates an overlap with the header block.</li></ul></td>
+				</tr>
+				<tr id="blocks-private-absent-002" class="primary font">
+					<td><strong><a href="blocks-private-absent-002.xht">blocks-private-absent-002</a></strong></td>
+					<td><a href="blocks-private-absent-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Private Data Offset Not Set to Zero<ul class="assert"><li>The private data length is set to zero but the offset is set to the end of the file.</li></ul></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

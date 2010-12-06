@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+		<title>WOFF Test: Header Length Too Short</title>
+		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
+		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/" />
+		<meta name="flags" content="font" />
+		<meta name="assert" content="The length field contains a value that is four bytes shorter than the actual data." />
+		<style type="text/css"><![CDATA[
+			body {
+				font-family;
+				font-size: 25px;
+			}
+			.test {
+				font-family: "WOFF Test CFF Reference";
+				font-size: 200px;
+				margin-top: 50px;
+			}
+		]]></style>
+	</head>
+	<body>
+		<p>Test passes if the word PASS appears below.</p>
+		<div class="test">P</div>
+	</body>
+</html>
