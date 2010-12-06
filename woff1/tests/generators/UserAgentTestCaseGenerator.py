@@ -29,6 +29,7 @@ following the CSS Test Format (http://wiki.csswg.org/test/css2.1/format).
 
 import os
 import shutil
+import glob
 import zlib
 from copy import deepcopy
 import sstruct
@@ -38,8 +39,15 @@ from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTes
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData,\
     sfntCFFTableData
 from testCaseGeneratorLib.utilities import calcPaddingLength, padData, calcTableChecksum, stripMetadata
-from testCaseGeneratorLib.html import generateSFNTDisplayTestHTML, generateSFNTDisplayRefHTML
+from testCaseGeneratorLib.html import generateSFNTDisplayTestHTML, generateSFNTDisplayRefHTML, generateSFNTDisplayIndexHTML
 from testCaseGeneratorLib.paths import resourcesDirectory, userAgentDirectory, userAgentTestDirectory, userAgentTestResourcesDirectory, userAgentFontsToInstallDirectory
+
+# ------------------------
+# Specification URL
+# This is used frequently.
+# ------------------------
+
+specificationURL = "http://dev.w3.org/webfonts/WOFF/spec/"
 
 # ------------------
 # Directory Creation
@@ -84,10 +92,30 @@ if os.path.exists(destPath):
 shutil.copy(os.path.join(resourcesDirectory, "SFNT-TTF-Fallback.ttf"), os.path.join(destPath))
 
 # ---------------
+# Test Case Index
+# ---------------
+
+# As the tests are generated a log will be kept.
+# This log will be translated into an index after
+# all of the tests have been written.
+
+groupDefinitions = [
+    # identifier, title, spec section
+    ("valid", "Valid WOFFs", None),
+    ("header", "WOFF Header Tests", specificationURL+"#WOFFHeader"),
+    ("directory", "WOFF Table Directory Tests", specificationURL+"#TableDirectory"),
+    ("blocks", "WOFF Header Tests", specificationURL+"#OverallStructure"),
+]
+
+testRegistry = {}
+for group in groupDefinitions:
+    tag = group[0]
+    testRegistry[tag] = []
+
+# ---------------
 # File Generators
 # ---------------
 
-specificationURL = "http://dev.w3.org/webfonts/WOFF/spec/"
 registeredIdentifiers = set()
 
 def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, data=None):
@@ -98,6 +126,7 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
     if specLink is None:
         specLink = ""
     specLink = specificationURL + specLink
+    flags = list(flags)
     flags += ["font"] # fonts must be installed for all of these tests
 
     # generate the WOFF
@@ -120,6 +149,18 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
     )
     generateSFNTDisplayTestHTML(**kwargs)
     generateSFNTDisplayRefHTML(**kwargs)
+
+    # register the test
+    tag = identifier.split("-")[0]
+    testRegistry[tag].append(
+        dict(
+            identifier=identifier,
+            flags=flags,
+            title=title,
+            assertion=assertion
+        )
+    )
+
 
 #def registerMetadataDisplayTest(title=None, assertion=None, shouldDisplayMetadata=None, specLink=None, data=None):
 #    assert title is not None
@@ -1519,3 +1560,17 @@ writeFileStructureTest(
 #    specLink="#conform-novalue-ignore",
 #    data=makeMetadataExtensionTest4()
 #)
+
+# ------------------
+# Generate the Index
+# ------------------
+
+print "Compiling index..."
+
+testGroups = []
+
+for tag, title, url in groupDefinitions:
+    group = dict(title=title, url=url, testCases=testRegistry[tag])
+    testGroups.append(group)
+
+generateSFNTDisplayIndexHTML(directory=userAgentTestDirectory, testCases=testGroups)

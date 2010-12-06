@@ -138,3 +138,92 @@ def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title
     f = open(path, "wb")
     f.write(html)
     f.close()
+
+def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
+    print "...need to properly link to CSS!"
+    testCount = sum([len(group["testCases"]) for group in testCases])
+    html = [
+        "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">",
+        "<html xmlns=\"http://www.w3.org/1999/xhtml\">",
+        "\t<head>",
+        "\t\t<title>WOFF: User Agent Test Suite</title>",
+        "\t\t<style type=\"text/css\">",
+        "\t\t\t@import \"http://www.w3.org/StyleSheets/TR/base.css\";",
+        "\t\t\t/* XXX THIS SHOULD NOT IMPORT FROM A COMPLETELY DIFFERENT PROJECT! */",
+        "\t\t\t/* XXX THIS IS A TEMPORARY CONVENIENCE! */",
+        "\t\t\t@import \"http://test.csswg.org/suites/css2.1/20101027/indices.css\";",
+        "\t\t</style>",
+        "\t</head>",
+        "\t<body>",
+        "\t\t<h1>WOFF: User Agent Test Suite (%d tests)</h1>" % testCount,
+        "\t\t<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href=\"../FontsToInstall\">here</a>.</p>"
+        "\t\t<table width=\"100%\">",
+        "\t\t\t<col id=\"test-column\"></col>",
+        "\t\t\t<col id=\"flags-column\"></col>",
+        "\t\t\t<col id=\"info-column\"></col>",
+        "\t\t\t<thead>",
+        "\t\t\t\t<tr>",
+        "\t\t\t\t\t<th>Test</th>",
+        "\t\t\t\t\t<th><abbr title=\"Rendering References\">Refs</abbr></th>",
+        "\t\t\t\t\t<th>Flags</th>",
+        "\t\t\t\t\t<th>Info</th>",
+        "\t\t\t\t</tr>",
+        "\t\t\t</thead>",
+    ]
+    # add the test groups
+    for group in testCases:
+        title = group["title"]
+        url = group["url"]
+        id = title.replace(" ", "")
+        # start a new body section
+        html.append("\t\t\t<tbody id=\"%s\">" % id)
+        # write the group header
+        html.append("\t\t\t\t<tr><th colspan=\"4\" scope=\"rowgroup\">")
+        html.append("\t\t\t\t\t<a href=\"#%s\">+</a>" % id)
+        if url is None:
+            html.append("\t\t\t\t\t%s" % title)
+        else:
+            html.append("\t\t\t\t\t<a href=\"%s\">%s</a>" % (url, title))
+        html.append("\t\t\t\t</th></tr>")
+        # write the individual test cases
+        for test in group["testCases"]:
+            identifier = test["identifier"]
+            flags = test["flags"]
+            title = test["title"]
+            assertion = test["assertion"]
+            # start the row
+            html.append("\t\t\t\t<tr id=\"%s\" class=\"primary %s\">" % (identifier, " ".join(flags)))
+            # identifier
+            html.append("\t\t\t\t\t<td><strong><a href=\"%s.xht\">%s</a></strong></td>" % (identifier, identifier))
+            # reference rendering
+            html.append("\t\t\t\t\t<td><a href=\"%s-ref.xht\">=</a></td>" % identifier)
+            # flags
+            if not flags:
+                html.append("\t\t\t\t\t<td></td>")
+            else:
+                line = ["\t\t\t\t\t<td>"]
+                for flag in flags:
+                    if flag == "font":
+                        line.append("<abbr class=\"font\" title=\"Requires Special Font\">Font</abbr>")
+                    else:
+                        raise NotImplementedError("Unknown flag: %s" % flag)
+                    line.append("</td>")
+                html.append("".join(line))
+            # assertion
+            html.append("\t\t\t\t\t<td>%s<ul class=\"assert\"><li>%s</li></ul></td>" % (title, assertion))
+            # end the row
+            html.append("\t\t\t\t</tr>")
+        html.append("\t\t\t</tbody>")
+    # close the table
+    html.append("\t\t</table>",)
+    # close body
+    html.append("\t</body>")
+    # close html
+    html.append("</html>")
+    # finalize
+    html = "\n".join(html)
+    # write
+    path = os.path.join(directory, "testcaseindex.xht")
+    f = open(path, "wb")
+    f.write(html)
+    f.close()
