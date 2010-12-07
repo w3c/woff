@@ -1199,7 +1199,7 @@ def makeTableZlibCompressionTest1():
     return data
 
 writeFileStructureTest(
-    identifier="directory-zlib-001",
+    identifier="tabledata-zlib-001",
     title="Font Table Data Invalid Compressed Data",
     assertion="One compressed table has had its compressed data replaced with \\01 making it incompatible with zlib.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],

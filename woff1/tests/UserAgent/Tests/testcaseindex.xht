@@ -274,12 +274,6 @@
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Font Table Directory Not In Ascending Order<ul class="assert"><li>The tables in the directory are in descending order.</li></ul></td>
 				</tr>
-				<tr id="directory-zlib-001" class="primary font">
-					<td><strong><a href="directory-zlib-001.xht">directory-zlib-001</a></strong></td>
-					<td><a href="directory-zlib-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Invalid Compressed Data<ul class="assert"><li>One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.</li></ul></td>
-				</tr>
 			</tbody>
 			<tbody id="WOFFTableDataTests">
 				<tr><th colspan="4" scope="rowgroup">
@@ -309,6 +303,12 @@
 					<td><a href="tabledata-compression-004-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Font Table Data Is Compressed At Different Levels<ul class="assert"><li>The font data tables are compressed using at least two different levels.</li></ul></td>
+				</tr>
+				<tr id="tabledata-zlib-001" class="primary font">
+					<td><strong><a href="tabledata-zlib-001.xht">tabledata-zlib-001</a></strong></td>
+					<td><a href="tabledata-zlib-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Invalid Compressed Data<ul class="assert"><li>One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>
