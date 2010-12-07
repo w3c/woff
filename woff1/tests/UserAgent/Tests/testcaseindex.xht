@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (48 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (50 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -340,6 +340,30 @@
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Font Table Data Invalid Compressed Data<ul class="assert"><li>One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.</li></ul></td>
 				</tr>
+			</tbody>
+			<tbody id="WOFFMetadataTests">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#WOFFMetadataTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">WOFF Metadata Tests</a>
+				</th></tr>
+				<tr id="metadata-noeffect-001" class="primary font">
+					<td><strong><a href="metadata-noeffect-001.xht">metadata-noeffect-001</a></strong></td>
+					<td><a href="metadata-noeffect-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No Metadata Present<ul class="assert"><li>The file has no metadata.</li></ul></td>
+				</tr>
+				<tr id="metadata-noeffect-002" class="primary font">
+					<td><strong><a href="metadata-noeffect-002.xht">metadata-noeffect-002</a></strong></td>
+					<td><a href="metadata-noeffect-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Metadata Present<ul class="assert"><li>The file has metadata.</li></ul></td>
+				</tr>
+			</tbody>
+			<tbody id="WOFFPrivateDataTests">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#WOFFPrivateDataTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#Private">WOFF Private Data Tests</a>
+				</th></tr>
 			</tbody>
 		</table>
 	</body>

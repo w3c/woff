@@ -106,6 +106,8 @@ groupDefinitions = [
     ("blocks", "WOFF Data Block Tests", specificationURL+"#OverallStructure"),
     ("directory", "WOFF Table Directory Tests", specificationURL+"#TableDirectory"),
     ("tabledata", "WOFF Table Data Tests", specificationURL+"#DataTables"),
+    ("metadata", "WOFF Metadata Tests", specificationURL+"#Metadata"),
+    ("privatedata", "WOFF Private Data Tests", specificationURL+"#Private"),
 ]
 
 testRegistry = {}
@@ -1371,6 +1373,44 @@ writeFileStructureTest(
     shouldDisplaySFNT=False,
     specLink="#conform-mustzlib",
     data=makeTableZlibCompressionTest1()
+)
+
+# -----------------------------------
+# File Structure: Metadata: No Effect
+# -----------------------------------
+
+# have no metadata
+
+def makeMetadataNoEffect1():
+    header, directory, tableData = defaultTestData()
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="metadata-noeffect-001",
+    title="No Metadata Present",
+    assertion="The file has no metadata.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-metadata-noeffect",
+    data=makeMetadataNoEffect1()
+)
+
+def makeMetadataNoEffect2():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    return data
+
+# have metadata
+
+writeFileStructureTest(
+    identifier="metadata-noeffect-002",
+    title="Metadata Present",
+    assertion="The file has metadata.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-metadata-noeffect",
+    data=makeMetadataNoEffect2()
 )
 
 ## --------------------------------------
