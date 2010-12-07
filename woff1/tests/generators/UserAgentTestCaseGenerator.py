@@ -1017,6 +1017,115 @@ writeFileStructureTest(
     data=makeTableDataByteRange2()
 )
 
+# overlaps metadata
+
+def makeTableDataByteRange3():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    # grab the last table entry
+    entry = directory[-1]
+    entryLength = entry["compLength"] + calcPaddingLength(entry["compLength"])
+    compData = tableData[entry["tag"]][1]
+    # make the bogus offset
+    entry["offset"] = header["metaOffset"] + 4
+    # remove the length for the table from the total length
+    header["length"] -= entryLength
+    # pack the header and directory
+    data = packTestHeader(header) + packTestDirectory(directory)
+    # pad and combine all tables
+    tableData = packTestTableData(directory, tableData)
+    # slice the final table off of the table data
+    tableData = tableData[:-entryLength]
+    # pack the metadata
+    metadata = packTestMetadata(metadata)
+    assert len(metadata) > len(compData)
+    # write the table data over the top of the metadata
+    metadata = metadata[:4] + compData + metadata[4 + len(compData):]
+    # combine everything
+    data += tableData + metadata
+    return data
+
+writeFileStructureTest(
+    identifier="directory-overlaps-003",
+    title="Font Table Data Overlaps Metadata",
+    assertion="The final table starts four bytes after the start of the metadata. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length) will not match the stored length in the header.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=False,
+    specLink="#conform-diroverlap-reject",
+    data=makeTableDataByteRange3()
+)
+
+# overlaps private data
+
+def makeTableDataByteRange4():
+    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
+    # grab the last table entry
+    entry = directory[-1]
+    entryLength = entry["compLength"] + calcPaddingLength(entry["compLength"])
+    compData = tableData[entry["tag"]][1]
+    # make the bogus offset
+    entry["offset"] = header["privOffset"] + 4
+    # remove the length for the table from the total length
+    header["length"] -= entryLength
+    # pack the header and directory
+    data = packTestHeader(header) + packTestDirectory(directory)
+    # pad and combine all tables
+    tableData = packTestTableData(directory, tableData)
+    # slice the final table off of the table data
+    tableData = tableData[:-entryLength]
+    # pack the private data
+    privateData = packTestPrivateData(privateData)
+    assert len(privateData) > len(compData)
+    # write the table data over the top of the private data
+    privateData = privateData[:4] + compData + privateData[4 + len(compData):]
+    # combine everything
+    data += tableData + privateData
+    return data
+
+writeFileStructureTest(
+    identifier="directory-overlaps-004",
+    title="Font Table Data Overlaps Private Data",
+    assertion="The final table starts four bytes after the start of the private data. This will fail for another reason: the calculated length (header length + directory length + entry lengths + private data length) will not match the stored length in the header.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=False,
+    specLink="#conform-diroverlap-reject",
+    data=makeTableDataByteRange4()
+)
+
+# two tables overlap
+
+def makeTableDataByteRange5():
+    header, directory, tableData = defaultTestData()
+    # grab the last table entry
+    entry = directory[-1]
+    entryLength = entry["compLength"] + calcPaddingLength(entry["compLength"])
+    compData = tableData[entry["tag"]][1]
+    # grab the second to last entry
+    prevEntry = directory[-2]
+    assert prevEntry["compLength"] > 4
+    # make the bogus offset
+    entry["offset"] -= 4
+    # adjust the total length
+    header["length"] = entry["offset"] + entryLength
+    # pack the header, directory and table data
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    # slice off everything after the new offset
+    data = data[:entry["offset"]]
+    # add the table to the data
+    data += compData + ("\0" * calcPaddingLength(len(compData)))
+    # sanity check
+    assert header["length"] == len(data)
+    return data
+
+writeFileStructureTest(
+    identifier="directory-overlaps-005",
+    title="Two Table Data Blocks Overlap",
+    assertion="The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=False,
+    specLink="#conform-diroverlap-reject",
+    data=makeTableDataByteRange5()
+)
+
 # -------------------------------------------
 # File Structure: Table Directory: compLength
 # -------------------------------------------

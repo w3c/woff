@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (45 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (48 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -261,6 +261,24 @@
 					<td><a href="directory-overlaps-002-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Font Table Data Offset+Length Past End of File<ul class="assert"><li>The defined length for the final table causes the data block to be four bytes beyond the end of the file.</li></ul></td>
+				</tr>
+				<tr id="directory-overlaps-003" class="primary font">
+					<td><strong><a href="directory-overlaps-003.xht">directory-overlaps-003</a></strong></td>
+					<td><a href="directory-overlaps-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Overlaps Metadata<ul class="assert"><li>The final table starts four bytes after the start of the metadata. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length) will not match the stored length in the header.</li></ul></td>
+				</tr>
+				<tr id="directory-overlaps-004" class="primary font">
+					<td><strong><a href="directory-overlaps-004.xht">directory-overlaps-004</a></strong></td>
+					<td><a href="directory-overlaps-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Overlaps Private Data<ul class="assert"><li>The final table starts four bytes after the start of the private data. This will fail for another reason: the calculated length (header length + directory length + entry lengths + private data length) will not match the stored length in the header.</li></ul></td>
+				</tr>
+				<tr id="directory-overlaps-005" class="primary font">
+					<td><strong><a href="directory-overlaps-005.xht">directory-overlaps-005</a></strong></td>
+					<td><a href="directory-overlaps-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Two Table Data Blocks Overlap<ul class="assert"><li>The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header.</li></ul></td>
 				</tr>
 				<tr id="directory-compLength-001" class="primary font">
 					<td><strong><a href="directory-compLength-001.xht">directory-compLength-001</a></strong></td>
