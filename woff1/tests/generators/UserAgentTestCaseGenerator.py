@@ -1413,6 +1413,32 @@ writeFileStructureTest(
     data=makeMetadataNoEffect2()
 )
 
+# ------------------------------------
+# File Structure: Private Data: 4-Byte
+# ------------------------------------
+
+# private data not on 4-byte boundary
+
+def makePrivateData4Byte1():
+    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
+    paddingLength = calcPaddingLength(header["metaLength"])
+    assert paddingLength > 0
+    header["length"] -= paddingLength
+    header["privOffset"] -= paddingLength
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    data += packTestPrivateData(privateData)
+    return data
+
+writeFileStructureTest(
+    identifier="privatedata-4-byte-001",
+    title="Private Data Does Not Begin of 4-Byte Boundary",
+    assertion="The private data does not begin on a four byte boundary because the metadata is not padded.  This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-private-padalign",
+    data=makePrivateData4Byte1()
+)
+
 # ---------------------------------------
 # File Structure: Private Data: No Effect
 # ---------------------------------------
@@ -1436,7 +1462,7 @@ writeFileStructureTest(
 
 # have private data
 
-def akePrivateDataNoEffect2():
+def makePrivateDataNoEffect2():
     header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData)
     return data
@@ -1448,7 +1474,7 @@ writeFileStructureTest(
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
     specLink="#conform-private-noeffect",
-    data=akePrivateDataNoEffect2()
+    data=makePrivateDataNoEffect2()
 )
 
 ## --------------------------------------
