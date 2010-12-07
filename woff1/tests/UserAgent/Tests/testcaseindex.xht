@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (50 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (52 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -364,6 +364,18 @@
 					<a href="#WOFFPrivateDataTests">+</a>
 					<a href="http://dev.w3.org/webfonts/WOFF/spec/#Private">WOFF Private Data Tests</a>
 				</th></tr>
+				<tr id="privatedata-noeffect-001" class="primary font">
+					<td><strong><a href="privatedata-noeffect-001.xht">privatedata-noeffect-001</a></strong></td>
+					<td><a href="privatedata-noeffect-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No Private Data Present<ul class="assert"><li>The file has no private data.</li></ul></td>
+				</tr>
+				<tr id="privatedata-noeffect-002" class="primary font">
+					<td><strong><a href="privatedata-noeffect-002.xht">privatedata-noeffect-002</a></strong></td>
+					<td><a href="privatedata-noeffect-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Private Data Present<ul class="assert"><li>The file has private data.</li></ul></td>
+				</tr>
 			</tbody>
 		</table>
 	</body>

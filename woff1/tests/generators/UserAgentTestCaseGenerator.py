@@ -1396,12 +1396,12 @@ writeFileStructureTest(
     data=makeMetadataNoEffect1()
 )
 
+# have metadata
+
 def makeMetadataNoEffect2():
     header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
     return data
-
-# have metadata
 
 writeFileStructureTest(
     identifier="metadata-noeffect-002",
@@ -1411,6 +1411,44 @@ writeFileStructureTest(
     shouldDisplaySFNT=True,
     specLink="#conform-metadata-noeffect",
     data=makeMetadataNoEffect2()
+)
+
+# -----------------------------------
+# File Structure: Metadata: No Effect
+# -----------------------------------
+
+# have no private data
+
+def makePrivateDataNoEffect1():
+    header, directory, tableData = defaultTestData()
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="privatedata-noeffect-001",
+    title="No Private Data Present",
+    assertion="The file has no private data.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-private-noeffect",
+    data=makePrivateDataNoEffect1()
+)
+
+# have private data
+
+def akePrivateDataNoEffect2():
+    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData)
+    return data
+
+writeFileStructureTest(
+    identifier="privatedata-noeffect-002",
+    title="Private Data Present",
+    assertion="The file has private data.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-private-noeffect",
+    data=akePrivateDataNoEffect2()
 )
 
 ## --------------------------------------
