@@ -1048,6 +1048,62 @@ writeFileStructureTest(
     data=makeTableDataCompressionLength1()
 )
 
+# -------------------------------------------
+# File Structure: Table Directory: origLength
+# -------------------------------------------
+
+# one table has an origLength that is less than the decompressed length
+
+def makeTableDataOriginalLength1():
+    header, directory, tableData = defaultTestData()
+    shift = 4
+    haveBogusEntry = False
+    for entry in directory:
+        if entry["compLength"] < entry["origLength"]:
+            if entry["origLength"] - shift <= entry["compLength"]:
+                continue
+            entry["origLength"] -= shift
+            haveBogusEntry = True
+            break
+    assert haveBogusEntry
+    header["totalSfntSize"] -= shift
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="directory-origLength-001",
+    title="Original Length Less Than Decompressed Length",
+    assertion="One table has table that when decompressed has a length that is four bytes longer than the value listed in origLength.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=False,
+    data=makeTableDataOriginalLength1()
+)
+
+# one table has an origLength that is greater than the decompressed length
+
+def makeTableDataOriginalLength2():
+    header, directory, tableData = defaultTestData()
+    shift = 4
+    haveBogusEntry = False
+    for entry in directory:
+        if entry["compLength"] < entry["origLength"]:
+            entry["origLength"] += 4
+            haveBogusEntry = True
+            break
+    assert haveBogusEntry
+    header["totalSfntSize"] += 4
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="directory-origLength-002",
+    title="Original Length Greater Than Decompressed Length",
+    assertion="One table has table that when decompressed has a length that is four bytes shorter than the value listed in origLength.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=False,
+    data=makeTableDataOriginalLength2()
+)
+
 # ------------------------------------------------
 # File Structure: Table Directory: Ascending Order
 # ------------------------------------------------

@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (43 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (45 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -267,6 +267,18 @@
 					<td><a href="directory-compLength-001-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Font Table Data Compressed Length Greater Than Original Length<ul class="assert"><li>At least one table's compLength is larger than the origLength.</li></ul></td>
+				</tr>
+				<tr id="directory-origLength-001" class="primary font">
+					<td><strong><a href="directory-origLength-001.xht">directory-origLength-001</a></strong></td>
+					<td><a href="directory-origLength-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Original Length Less Than Decompressed Length<ul class="assert"><li>One table has table that when decompressed has a length that is four bytes longer than the value listed in origLength.</li></ul></td>
+				</tr>
+				<tr id="directory-origLength-002" class="primary font">
+					<td><strong><a href="directory-origLength-002.xht">directory-origLength-002</a></strong></td>
+					<td><a href="directory-origLength-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Original Length Greater Than Decompressed Length<ul class="assert"><li>One table has table that when decompressed has a length that is four bytes shorter than the value listed in origLength.</li></ul></td>
 				</tr>
 				<tr id="directory-ascending-001" class="primary font">
 					<td><strong><a href="directory-ascending-001.xht">directory-ascending-001</a></strong></td>
