@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (39 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (43 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -125,64 +125,10 @@
 					<td>Header Reserved Invalid Value<ul class="assert"><li>The reserved field contains 1.</li></ul></td>
 				</tr>
 			</tbody>
-			<tbody id="WOFFTableDirectoryTests">
+			<tbody id="WOFFDataBlockTests">
 				<tr><th colspan="4" scope="rowgroup">
-					<a href="#WOFFTableDirectoryTests">+</a>
-					<a href="http://dev.w3.org/webfonts/WOFF/spec/#TableDirectory">WOFF Table Directory Tests</a>
-				</th></tr>
-				<tr id="directory-4-byte-001" class="primary font">
-					<td><strong><a href="directory-4-byte-001.xht">directory-4-byte-001</a></strong></td>
-					<td><a href="directory-4-byte-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Not On 4-Byte Boundary<ul class="assert"><li>Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.</li></ul></td>
-				</tr>
-				<tr id="directory-4-byte-002" class="primary font">
-					<td><strong><a href="directory-4-byte-002.xht">directory-4-byte-002</a></strong></td>
-					<td><a href="directory-4-byte-002-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Padded With Non-Null<ul class="assert"><li>Table data is padded with \01 instead of \00.</li></ul></td>
-				</tr>
-				<tr id="directory-4-byte-003" class="primary font">
-					<td><strong><a href="directory-4-byte-003.xht">directory-4-byte-003</a></strong></td>
-					<td><a href="directory-4-byte-003-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Final Font Table Data Not Padded<ul class="assert"><li>The final table in the table data block is not padded to a 4-byte boundary.</li></ul></td>
-				</tr>
-				<tr id="directory-overlaps-001" class="primary font">
-					<td><strong><a href="directory-overlaps-001.xht">directory-overlaps-001</a></strong></td>
-					<td><a href="directory-overlaps-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Offset Past End of File<ul class="assert"><li>The offset to the data block for the final table data is four bytes beyond the end of the file.</li></ul></td>
-				</tr>
-				<tr id="directory-overlaps-002" class="primary font">
-					<td><strong><a href="directory-overlaps-002.xht">directory-overlaps-002</a></strong></td>
-					<td><a href="directory-overlaps-002-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Offset+Length Past End of File<ul class="assert"><li>The defined length for the final table causes the data block to be four bytes beyond the end of the file.</li></ul></td>
-				</tr>
-				<tr id="directory-compLength-001" class="primary font">
-					<td><strong><a href="directory-compLength-001.xht">directory-compLength-001</a></strong></td>
-					<td><a href="directory-compLength-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Compressed Length Greater Than Original Length<ul class="assert"><li>At least one table's compLength is larger than the origLength.</li></ul></td>
-				</tr>
-				<tr id="directory-ascending-001" class="primary font">
-					<td><strong><a href="directory-ascending-001.xht">directory-ascending-001</a></strong></td>
-					<td><a href="directory-ascending-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Directory Not In Ascending Order<ul class="assert"><li>The tables in the directory are in descending order.</li></ul></td>
-				</tr>
-				<tr id="directory-zlib-001" class="primary font">
-					<td><strong><a href="directory-zlib-001.xht">directory-zlib-001</a></strong></td>
-					<td><a href="directory-zlib-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Invalid Compressed Data<ul class="assert"><li>One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.</li></ul></td>
-				</tr>
-			</tbody>
-			<tbody id="WOFFHeaderTests">
-				<tr><th colspan="4" scope="rowgroup">
-					<a href="#WOFFHeaderTests">+</a>
-					<a href="http://dev.w3.org/webfonts/WOFF/spec/#OverallStructure">WOFF Header Tests</a>
+					<a href="#WOFFDataBlockTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#OverallStructure">WOFF Data Block Tests</a>
 				</th></tr>
 				<tr id="blocks-extraneous-data-001" class="primary font">
 					<td><strong><a href="blocks-extraneous-data-001.xht">blocks-extraneous-data-001</a></strong></td>
@@ -279,6 +225,90 @@
 					<td><a href="blocks-private-absent-002-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Private Data Offset Not Set to Zero<ul class="assert"><li>The private data length is set to zero but the offset is set to the end of the file.</li></ul></td>
+				</tr>
+			</tbody>
+			<tbody id="WOFFTableDirectoryTests">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#WOFFTableDirectoryTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#TableDirectory">WOFF Table Directory Tests</a>
+				</th></tr>
+				<tr id="directory-4-byte-001" class="primary font">
+					<td><strong><a href="directory-4-byte-001.xht">directory-4-byte-001</a></strong></td>
+					<td><a href="directory-4-byte-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Not On 4-Byte Boundary<ul class="assert"><li>Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.</li></ul></td>
+				</tr>
+				<tr id="directory-4-byte-002" class="primary font">
+					<td><strong><a href="directory-4-byte-002.xht">directory-4-byte-002</a></strong></td>
+					<td><a href="directory-4-byte-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Padded With Non-Null<ul class="assert"><li>Table data is padded with \01 instead of \00.</li></ul></td>
+				</tr>
+				<tr id="directory-4-byte-003" class="primary font">
+					<td><strong><a href="directory-4-byte-003.xht">directory-4-byte-003</a></strong></td>
+					<td><a href="directory-4-byte-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Final Font Table Data Not Padded<ul class="assert"><li>The final table in the table data block is not padded to a 4-byte boundary.</li></ul></td>
+				</tr>
+				<tr id="directory-overlaps-001" class="primary font">
+					<td><strong><a href="directory-overlaps-001.xht">directory-overlaps-001</a></strong></td>
+					<td><a href="directory-overlaps-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Offset Past End of File<ul class="assert"><li>The offset to the data block for the final table data is four bytes beyond the end of the file.</li></ul></td>
+				</tr>
+				<tr id="directory-overlaps-002" class="primary font">
+					<td><strong><a href="directory-overlaps-002.xht">directory-overlaps-002</a></strong></td>
+					<td><a href="directory-overlaps-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Offset+Length Past End of File<ul class="assert"><li>The defined length for the final table causes the data block to be four bytes beyond the end of the file.</li></ul></td>
+				</tr>
+				<tr id="directory-compLength-001" class="primary font">
+					<td><strong><a href="directory-compLength-001.xht">directory-compLength-001</a></strong></td>
+					<td><a href="directory-compLength-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Compressed Length Greater Than Original Length<ul class="assert"><li>At least one table's compLength is larger than the origLength.</li></ul></td>
+				</tr>
+				<tr id="directory-ascending-001" class="primary font">
+					<td><strong><a href="directory-ascending-001.xht">directory-ascending-001</a></strong></td>
+					<td><a href="directory-ascending-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Directory Not In Ascending Order<ul class="assert"><li>The tables in the directory are in descending order.</li></ul></td>
+				</tr>
+				<tr id="directory-zlib-001" class="primary font">
+					<td><strong><a href="directory-zlib-001.xht">directory-zlib-001</a></strong></td>
+					<td><a href="directory-zlib-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Invalid Compressed Data<ul class="assert"><li>One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.</li></ul></td>
+				</tr>
+			</tbody>
+			<tbody id="WOFFTableDataTests">
+				<tr><th colspan="4" scope="rowgroup">
+					<a href="#WOFFTableDataTests">+</a>
+					<a href="http://dev.w3.org/webfonts/WOFF/spec/#DataTables">WOFF Table Data Tests</a>
+				</th></tr>
+				<tr id="tabledata-compression-001" class="primary font">
+					<td><strong><a href="tabledata-compression-001.xht">tabledata-compression-001</a></strong></td>
+					<td><a href="tabledata-compression-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Not Compressed<ul class="assert"><li>None of the tables are stored in compressed form.</li></ul></td>
+				</tr>
+				<tr id="tabledata-compression-002" class="primary font">
+					<td><strong><a href="tabledata-compression-002.xht">tabledata-compression-002</a></strong></td>
+					<td><a href="tabledata-compression-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Is Compressed When Possible<ul class="assert"><li>All of the tables that will be smaller when compressed are stored in their compressed state.</li></ul></td>
+				</tr>
+				<tr id="tabledata-compression-003" class="primary font">
+					<td><strong><a href="tabledata-compression-003.xht">tabledata-compression-003</a></strong></td>
+					<td><a href="tabledata-compression-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Not All Font Table Data Is Compressed When Possible<ul class="assert"><li>Only one of the tables that would be smaller when compressed is stored in the compressed state.</li></ul></td>
+				</tr>
+				<tr id="tabledata-compression-004" class="primary font">
+					<td><strong><a href="tabledata-compression-004.xht">tabledata-compression-004</a></strong></td>
+					<td><a href="tabledata-compression-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Font Table Data Is Compressed At Different Levels<ul class="assert"><li>The font data tables are compressed using at least two different levels.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>

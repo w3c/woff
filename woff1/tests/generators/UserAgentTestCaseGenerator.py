@@ -103,8 +103,9 @@ groupDefinitions = [
     # identifier, title, spec section
     ("valid", "Valid WOFFs", None),
     ("header", "WOFF Header Tests", specificationURL+"#WOFFHeader"),
+    ("blocks", "WOFF Data Block Tests", specificationURL+"#OverallStructure"),
     ("directory", "WOFF Table Directory Tests", specificationURL+"#TableDirectory"),
-    ("blocks", "WOFF Header Tests", specificationURL+"#OverallStructure"),
+    ("tabledata", "WOFF Table Data Tests", specificationURL+"#DataTables"),
 ]
 
 testRegistry = {}
@@ -1069,6 +1070,112 @@ writeFileStructureTest(
     shouldDisplaySFNT=False,
     specLink="#conform-ascending",
     data=makeTableDirectoryAscending1()
+)
+
+# ---------------------------------------
+# File Structure: Table Data: Compression
+# ---------------------------------------
+
+# no tables compressed
+
+def makeTableCompressionTest1():
+    tableData = deepcopy(sfntCFFTableData)
+    for tag, (origData, compData) in tableData.items():
+        tableData[tag] = (origData, origData)
+    header, directory, tableData = defaultTestData(tableData=tableData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="tabledata-compression-001",
+    title="Font Table Data Not Compressed",
+    assertion="None of the tables are stored in compressed form.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-mustuncompress",
+    data=makeTableCompressionTest1()
+)
+
+# all possible tables are compressed
+
+def makeTableCompressionTest2():
+    header, directory, tableData = defaultTestData()
+    for tag, (origData, compData) in tableData.items():
+        # this is a double check. the default data stores everything
+        # possible in compressed form.
+        assert len(compData) <= len(origData)
+        if len(compData) == len(origData):
+            compTest = zlib.compress(origData)
+            assert len(compTest) > len(origData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="tabledata-compression-002",
+    title="Font Table Data Is Compressed When Possible",
+    assertion="All of the tables that will be smaller when compressed are stored in their compressed state.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-mustuncompress",
+    data=makeTableCompressionTest2()
+)
+
+# not all possible tables are compressed
+
+def makeTableCompressionTest3():
+    tableData = deepcopy(sfntCFFTableData)
+    haveStoredCompressed = True
+    for tag, (origData, compData) in tableData.items():
+        if haveStoredCompressed and len(compData) < len(origData):
+            compData = origData
+        elif len(compData) < len(origData):
+            haveStoredCompressed = True
+        tableData[tag] = (origData, compData)
+    assert haveStoredCompressed
+    header, directory, tableData = defaultTestData(tableData=tableData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="tabledata-compression-003",
+    title="Not All Font Table Data Is Compressed When Possible",
+    assertion="Only one of the tables that would be smaller when compressed is stored in the compressed state.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-mustuncompress",
+    data=makeTableCompressionTest3()
+)
+
+# varying compression levels
+
+def makeTableCompressionTest4():
+    tableData = deepcopy(sfntCFFTableData)
+    compressionLevels = set()
+    for index, (tag, (origData, compData)) in enumerate(tableData.items()):
+        compData = origData
+        r = range(1, 10)
+        if index % 2:
+            r = reversed(r)
+        for level in r:
+            c = zlib.compress(origData, level)
+            if len(c) < len(origData):
+                compData = c
+                compressionLevels.add(level)
+                break
+        tableData[tag] = (origData, compData)
+    assert len(compressionLevels) > 1
+    header, directory, tableData = defaultTestData(tableData=tableData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="tabledata-compression-004",
+    title="Font Table Data Is Compressed At Different Levels",
+    assertion="The font data tables are compressed using at least two different levels.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    specLink="#conform-mustuncompress",
+    data=makeTableCompressionTest4()
 )
 
 # ----------------------------------------------
