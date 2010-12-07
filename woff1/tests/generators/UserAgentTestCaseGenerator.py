@@ -1413,9 +1413,9 @@ writeFileStructureTest(
     data=makeMetadataNoEffect2()
 )
 
-# -----------------------------------
-# File Structure: Metadata: No Effect
-# -----------------------------------
+# ---------------------------------------
+# File Structure: Private Data: No Effect
+# ---------------------------------------
 
 # have no private data
 
