@@ -1945,33 +1945,137 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
+# -----------------------------------------
+# Metadata Display: Schema Validity: credit
+# -----------------------------------------
 
-## -----------------------------------------
-## Metadata Display: Schema Validity: credit
-## -----------------------------------------
-#
-#def makeMetadataCreditTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <credits>
-#            <credit />
-#        </credits>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Credit 1",
-#    assertion="Credit element does not contain name attribute.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataCreditTest1()
-#)
-#
+# valid - single credit element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-001",
+    title="Valid credits Element With Single credit Element",
+    assertion="The credits element matches the schema and it contains one credit child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid - multiple credit elements
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+        <credit name="Credit 2" role="Role 2" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-002",
+    title="Valid credits Element With Two credit Elements",
+    assertion="The credits element matches the schema and it contains two credit child elements.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# missing credit element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-003",
+    title="No credit Element in credits Element",
+    assertion="The credits element does not contain a credit child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits unknownattribute="Text">
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-004",
+    title="Unknown Attribute in credits Element",
+    assertion="The credits element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+        <unknown attribute="Text" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-005",
+    title="Unknown Child Element in credits Element",
+    assertion="The credits element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        Text
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-006",
+    title="Content in credits Element",
+    assertion="The credits element contains an content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
 ## ------------------------------------------
 ## Metadata Display: Schema Validity: license
 ## ------------------------------------------

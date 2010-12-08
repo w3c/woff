@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (68 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (74 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -477,6 +477,42 @@
 					<td><a href="metadatadisplay-schema-vendor-008-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Content in vendor Element<ul class="assert"><li>The vendor element contains content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credits-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credits-001.xht">metadatadisplay-schema-credits-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-credits-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid credits Element With Single credit Element<ul class="assert"><li>The credits element matches the schema and it contains one credit child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credits-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credits-002.xht">metadatadisplay-schema-credits-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-credits-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid credits Element With Two credit Elements<ul class="assert"><li>The credits element matches the schema and it contains two credit child elements.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credits-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credits-003.xht">metadatadisplay-schema-credits-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-credits-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No credit Element in credits Element<ul class="assert"><li>The credits element does not contain a credit child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credits-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credits-004.xht">metadatadisplay-schema-credits-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-credits-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in credits Element<ul class="assert"><li>The credits element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credits-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credits-005.xht">metadatadisplay-schema-credits-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-credits-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in credits Element<ul class="assert"><li>The credits element contains an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credits-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credits-006.xht">metadatadisplay-schema-credits-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-credits-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in credits Element<ul class="assert"><li>The credits element contains an content.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>
