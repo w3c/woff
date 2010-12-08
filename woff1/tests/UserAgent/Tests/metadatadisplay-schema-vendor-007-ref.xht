@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: No uniqueid Element</title>
+		<title>WOFF Test: Child Element in vendor Element</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The uniqueid element doesn't exist." />
+		<meta name="assert" content="The vendor element contains a child element." />
 		<style type="text/css"><![CDATA[
 			body {
 				font-family;
@@ -26,12 +26,6 @@
 		<p><a href="../FontsToInstall">Test fonts</a> must be installed for this test.</p>
 		<p>Test passes if the word PASS appears below.</p>
 		<div class="test">P</div>
-		<p>The Extended Metadata Block is valid and may be displayed to the user upon request.</p>
-		<p>The XML contained in the Extended Metadata Block is below.</p>
-		<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;metadata version="1.0"&gt;
-&lt;/metadata&gt;
-		</pre>
+		<p>The Extended Metadata Block is not valid and must not be displayed.</p>
 	</body>
 </html>

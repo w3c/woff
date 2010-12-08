@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: No uniqueid Element</title>
+		<title>WOFF Test: Valid vendor Element</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The uniqueid element doesn't exist." />
+		<meta name="assert" content="The vendor element matches the schema." />
 		<style type="text/css"><![CDATA[
 			body {
 				font-family;
@@ -31,6 +31,7 @@
 		<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;metadata version="1.0"&gt;
+	&lt;vendor name="Test Vendor" url="http://w3c.org/Fonts" /&gt;
 &lt;/metadata&gt;
 		</pre>
 	</body>

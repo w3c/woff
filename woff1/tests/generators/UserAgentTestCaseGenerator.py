@@ -1650,6 +1650,25 @@ writeFileStructureTest(
 # Metadata Display: Schema Validity: uniqueid
 # -------------------------------------------
 
+# duplicate
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-uniqueid-001",
+    title="Valid uniqueid Element",
+    assertion="The uniqueid element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
 # does not exist
 
 m = """
@@ -1659,7 +1678,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-uniqueid-001",
+    identifier="metadatadisplay-schema-uniqueid-002",
     title="No uniqueid Element",
     assertion="The uniqueid element doesn't exist.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -1679,7 +1698,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-uniqueid-002",
+    identifier="metadatadisplay-schema-uniqueid-003",
     title="More Than One uniqueid Element",
     assertion="The uniqueid element occurs twice.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -1698,7 +1717,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-uniqueid-003",
+    identifier="metadatadisplay-schema-uniqueid-004",
     title="No id Attribute in uniqueid Element",
     assertion="The uniqueid element does not contain the required id attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -1717,7 +1736,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-uniqueid-004",
+    identifier="metadatadisplay-schema-uniqueid-005",
     title="Unknown Attribute in uniqueid Element",
     assertion="The uniqueid element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -1738,7 +1757,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-uniqueid-005",
+    identifier="metadatadisplay-schema-uniqueid-006",
     title="Child Element in uniqueid Element",
     assertion="The uniqueid element contains a child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -1759,7 +1778,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-uniqueid-006",
+    identifier="metadatadisplay-schema-uniqueid-007",
     title="Content in uniqueid Element",
     assertion="The uniqueid element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -1768,30 +1787,165 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
-## -----------------------------------------
-## Metadata Display: Schema Validity: vendor
-## -----------------------------------------
-#
-#def makeMetadataVendorTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <vendor />
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Vendor 1",
-#    assertion="Vendor element does not contain name attribute.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataVendorTest1()
-#)
-#
+# -----------------------------------------
+# Metadata Display: Schema Validity: vendor
+# -----------------------------------------
+
+# valid
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-001",
+    title="Valid vendor Element",
+    assertion="The vendor element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-002",
+    title="Valid vendor Element Without url Attribute",
+    assertion="The vendor element does not contain a url attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# does not exist
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-003",
+    title="No vendor Element",
+    assertion="The vendor element doesn't exist.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# duplicate
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-004",
+    title="More Than One vendor Element",
+    assertion="The vendor element occurs twice.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# missing name attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor url="http://w3c.org/Fonts" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-005",
+    title="No name Attribute in vendor Element",
+    assertion="The vendor element does not contain the required name attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-metadata-vendor-required",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" unknownattribute="Text" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-006",
+    title="Unknown Attribute in vendor Element",
+    assertion="The vendor element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
+        <unknown attribute="Text" />
+    </vendor>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-007",
+    title="Child Element in vendor Element",
+    assertion="The vendor element contains a child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
+        Text
+    </vendor>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-008",
+    title="Content in vendor Element",
+    assertion="The vendor element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+
 ## -----------------------------------------
 ## Metadata Display: Schema Validity: credit
 ## -----------------------------------------
