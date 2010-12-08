@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (53 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (59 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -388,6 +388,42 @@
 					<a href="#WOFFMetadataDisplayTests">+</a>
 					<a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">WOFF Metadata Display Tests</a>
 				</th></tr>
+				<tr id="metadatadisplay-schema-uniqueid-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-uniqueid-001.xht">metadatadisplay-schema-uniqueid-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-uniqueid-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No uniqueid Element<ul class="assert"><li>The uniqueid element doesn't exist.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-uniqueid-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-uniqueid-002.xht">metadatadisplay-schema-uniqueid-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-uniqueid-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>More Than One uniqueid Element<ul class="assert"><li>The uniqueid element occurs twice.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-uniqueid-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-uniqueid-003.xht">metadatadisplay-schema-uniqueid-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-uniqueid-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No id Attribute in uniqueid Element<ul class="assert"><li>The uniqueid element does not contain the required id attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-uniqueid-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-uniqueid-004.xht">metadatadisplay-schema-uniqueid-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-uniqueid-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in uniqueid Element<ul class="assert"><li>The uniqueid element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-uniqueid-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-uniqueid-005.xht">metadatadisplay-schema-uniqueid-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-uniqueid-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Child Element in uniqueid Element<ul class="assert"><li>The uniqueid element contains a child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-uniqueid-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-uniqueid-006.xht">metadatadisplay-schema-uniqueid-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-uniqueid-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in uniqueid Element<ul class="assert"><li>The uniqueid element contains content.</li></ul></td>
+				</tr>
 			</tbody>
 		</table>
 	</body>

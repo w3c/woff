@@ -3,6 +3,7 @@ Test case HTML generator.
 """
 
 import os
+import cgi
 
 # ------------------
 # SFNT Display Tests
@@ -21,6 +22,9 @@ body {
 	font-family;
 	font-size: 25px;
 }
+pre {
+	font-size: 12px;
+}
 .test {
 	font-family: "WOFF Test", "WOFF Test %s Fallback";
 	font-size: 200px;
@@ -33,6 +37,9 @@ body {
 	font-family;
 	font-size: 25px;
 }
+pre {
+	font-size: 12px;
+}
 .test {
 	font-family: "WOFF Test %s Reference";
 	font-size: 200px;
@@ -44,7 +51,9 @@ def _generateSFNTDisplayTestHTML(
     css, bodyCharacter,
     fileName=None, flavor=None,
     title=None, specLink=None, assertion=None,
-    credits=[], flags=[]
+    credits=[], flags=[],
+    metadataIsValid=None,
+    metadataToDisplay=None,
     ):
     assert flavor is not None
     assert title is not None
@@ -100,6 +109,19 @@ def _generateSFNTDisplayTestHTML(
     ## test case
     s = "\t\t<div class=\"test\">%s</div>" % bodyCharacter
     html.append(s)
+    ## show metadata statement
+    if metadataIsValid is not None:
+        if metadataIsValid:
+            s = "\t\t<p>The Extended Metadata Block is valid and may be displayed to the user upon request.</p>"
+        else:
+            s = "\t\t<p>The Extended Metadata Block is not valid and must not be displayed.</p>"
+        html.append(s)
+    if metadataToDisplay:
+        s = "\t\t<p>The XML contained in the Extended Metadata Block is below.</p>"
+        html.append(s)
+        html.append("\t\t<pre>")
+        html.append(cgi.escape(metadataToDisplay))
+        html.append("\t\t</pre>")
     ## close
     html.append("\t</body>")
     # close
@@ -108,7 +130,7 @@ def _generateSFNTDisplayTestHTML(
     html = "\n".join(html)
     return html
 
-def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None):
+def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None):
     bodyCharacter = testFailCharacter
     if shouldDisplay:
         bodyCharacter = testPassCharacter
@@ -117,7 +139,9 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
         css, bodyCharacter,
         fileName=fileName, flavor=flavor,
         title=title, specLink=specLink, assertion=assertion,
-        credits=credits, flags=flags
+        credits=credits, flags=flags,
+        metadataIsValid=metadataIsValid,
+        metadataToDisplay=metadataToDisplay
     )
     # write the file
     path = os.path.join(directory, fileName) + ".xht"
@@ -125,14 +149,16 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
     f.write(html)
     f.close()
 
-def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None):
+def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None):
     bodyCharacter = refPassCharacter
     css = refCSS % flavor
     html = _generateSFNTDisplayTestHTML(
         css, bodyCharacter,
         fileName=fileName, flavor=flavor,
         title=title, specLink=specLink, assertion=assertion,
-        credits=credits, flags=flags
+        credits=credits, flags=flags,
+        metadataIsValid=metadataIsValid,
+        metadataToDisplay=metadataToDisplay
     )
     # write the file
     path = os.path.join(directory, fileName) + "-ref.xht"

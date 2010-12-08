@@ -122,7 +122,7 @@ for group in groupDefinitions:
 
 registeredIdentifiers = set()
 
-def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, data=None):
+def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, metadataIsValid=None, data=None, metadataToDisplay=None):
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     registeredIdentifiers.add(identifier)
@@ -149,7 +149,9 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
         assertion=assertion,
         credits=credits,
         flags=flags,
-        shouldDisplay=shouldDisplaySFNT
+        shouldDisplay=shouldDisplaySFNT,
+        metadataIsValid=metadataIsValid,
+        metadataToDisplay=metadataToDisplay
     )
     generateSFNTDisplayTestHTML(**kwargs)
     generateSFNTDisplayRefHTML(**kwargs)
@@ -163,6 +165,38 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
             title=title,
             assertion=assertion
         )
+    )
+
+def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, credits=[], specLink=None, metadataIsValid=None, metadata=None):
+    """
+    This is a convenience functon that eliminates the need to make a complete
+    WOFF when only the metadata is being tested.
+    """
+    assert metadata is not None
+    assert metadataIsValid is not None
+    metadata = metadata.strip()
+    # convert to tabs
+    metadata = metadata.replace("    ", "\t")
+    # store
+    originalMetadata = metadata
+    # pack
+    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    # pass to the more verbose function
+    kwargs = dict(
+        title=title,
+        assertion=assertion,
+        credits=credits,
+        specLink=specLink,
+        shouldDisplaySFNT=True,
+        metadataIsValid=metadataIsValid,
+        data=data
+    )
+    if metadataIsValid:
+        kwargs["metadataToDisplay"] = originalMetadata
+    writeFileStructureTest(
+        identifier,
+        **kwargs
     )
 
 # -----------
@@ -196,7 +230,9 @@ writeFileStructureTest(
     assertion="Valid CFF flavored WOFF with metadata",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    data=makeValidWOFF2()
+    metadataIsValid=True,
+    data=makeValidWOFF2(),
+    metadataToDisplay=testDataWOFFMetadata
 )
 
 def makeValidWOFF3():
@@ -224,7 +260,9 @@ writeFileStructureTest(
     assertion="Valid CFF flavored WOFF with metadata and private data",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    data=makeValidWOFF4()
+    metadataIsValid=True,
+    data=makeValidWOFF4(),
+    metadataToDisplay=testDataWOFFMetadata
 )
 
 # TTF
@@ -256,7 +294,9 @@ writeFileStructureTest(
     assertion="Valid TTF flavored WOFF with metadata",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    data=makeValidWOFF6()
+    metadataIsValid=True,
+    data=makeValidWOFF6(),
+    metadataToDisplay=testDataWOFFMetadata
 )
 
 def makeValidWOFF7():
@@ -286,7 +326,9 @@ writeFileStructureTest(
     assertion="Valid TTF flavored WOFF with metadata and private data",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    data=makeValidWOFF8()
+    metadataIsValid=True,
+    data=makeValidWOFF8(),
+    metadataToDisplay=testDataWOFFMetadata
 )
 
 ## ---------------------------------
@@ -1603,32 +1645,128 @@ writeFileStructureTest(
 #    specLink="#conform-metadata-schemavalid",
 #    data=makeMetadataVersionTest2()
 #)
-#
-## -------------------------------------------
-## Metadata Display: Schema Validity: uniqueid
-## -------------------------------------------
-#
-## missing
-#
-#def makeMetadataUniqueIDTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <uniqueid />
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Unique ID 1",
-#    assertion="Unique ID element does not contain ID attribute.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataUniqueIDTest1()
-#)
+
+# -------------------------------------------
+# Metadata Display: Schema Validity: uniqueid
+# -------------------------------------------
+
+# does not exist
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-uniqueid-001",
+    title="No uniqueid Element",
+    assertion="The uniqueid element doesn't exist.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# duplicate
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-uniqueid-002",
+    title="More Than One uniqueid Element",
+    assertion="The uniqueid element occurs twice.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# missing id attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-uniqueid-003",
+    title="No id Attribute in uniqueid Element",
+    assertion="The uniqueid element does not contain the required id attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-metadata-id-required",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" unknownattribute="Text" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-uniqueid-004",
+    title="Unknown Attribute in uniqueid Element",
+    assertion="The uniqueid element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest">
+        <unknown attribute="Text" />
+    </uniqueid>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-uniqueid-005",
+    title="Child Element in uniqueid Element",
+    assertion="The uniqueid element contains a child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest">
+        Text
+    </uniqueid>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-uniqueid-006",
+    title="Content in uniqueid Element",
+    assertion="The uniqueid element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
 
 ## -----------------------------------------
 ## Metadata Display: Schema Validity: vendor
