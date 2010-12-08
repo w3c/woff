@@ -20,7 +20,7 @@ testCSS = """
 }
 body {
 	font-family;
-	font-size: 25px;
+	font-size: 20px;
 }
 pre {
 	font-size: 12px;
@@ -35,7 +35,7 @@ pre {
 refCSS = """
 body {
 	font-family;
-	font-size: 25px;
+	font-size: 20px;
 }
 pre {
 	font-size: 12px;
@@ -101,7 +101,7 @@ def _generateSFNTDisplayTestHTML(
     # body
     html.append("\t<body>")
     ## install fonts note
-    s = "\t\t<p><a href=\"../FontsToInstall\">Test fonts</a> must be installed for this test.</p>"
+    s = "\t\t<p><a href=\"../FontsToInstall\">Test fonts</a> must be installed for this test. The WOFF being tested will be loaded over the network so please wait until the download is complete before determing the success of this test.</p>"
     html.append(s)
     ## note
     s = "\t\t<p>Test passes if the word PASS appears below.</p>"
