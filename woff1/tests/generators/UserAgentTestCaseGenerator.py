@@ -1908,7 +1908,7 @@ writeMetadataSchemaValidityTest(
 m = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts">
         <unknown attribute="Text" />
     </vendor>
 </metadata>
@@ -1929,7 +1929,7 @@ writeMetadataSchemaValidityTest(
 m = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts">
         Text
     </vendor>
 </metadata>
