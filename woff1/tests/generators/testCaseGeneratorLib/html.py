@@ -92,7 +92,8 @@ def _generateSFNTDisplayTestHTML(
     # body
     html.append("\t<body>")
     ## install fonts note
-    s = "\t\t<p><a href=\"LINK_TO_TEST_FONTS\">Test fonts</a> must be installed for this test.</p>"
+    s = "\t\t<p><a href=\"../FontsToInstall\">Test fonts</a> must be installed for this test.</p>"
+    html.append(s)
     ## note
     s = "\t\t<p>Test passes if the word PASS appears below.</p>"
     html.append(s)

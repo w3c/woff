@@ -108,6 +108,7 @@ groupDefinitions = [
     ("tabledata", "WOFF Table Data Tests", specificationURL+"#DataTables"),
     ("metadata", "WOFF Metadata Tests", specificationURL+"#Metadata"),
     ("privatedata", "WOFF Private Data Tests", specificationURL+"#Private"),
+    ("metadatadisplay", "WOFF Metadata Display Tests", specificationURL+"#Metadata")
 ]
 
 testRegistry = {}
@@ -123,7 +124,7 @@ registeredIdentifiers = set()
 
 def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, data=None):
     print "Compiling %s..." % identifier
-    assert identifier not in registeredIdentifiers, "Duplicte identifier! %s" % identifier
+    assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     registeredIdentifiers.add(identifier)
 
     if specLink is None:
@@ -163,13 +164,6 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
             assertion=assertion
         )
     )
-
-
-#def registerMetadataDisplayTest(title=None, assertion=None, shouldDisplayMetadata=None, specLink=None, data=None):
-#    assert title is not None
-#    assert assertion is not None
-#    assert shouldDisplayMetadata is not None
-#    assert data is not None
 
 # -----------
 # Valid Files
@@ -1635,7 +1629,7 @@ writeFileStructureTest(
 #    specLink="#conform-metadata-schemavalid",
 #    data=makeMetadataUniqueIDTest1()
 #)
-#
+
 ## -----------------------------------------
 ## Metadata Display: Schema Validity: vendor
 ## -----------------------------------------
