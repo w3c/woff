@@ -43,7 +43,7 @@ testDataWOFFMetadata = """
 		<credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
 		<credit name="Credit 2" role="Role 2" url="http://w3c.org/Fonts" />
 	</credits>
-	<description>
+	<description url="http://w3c.org/Fonts">
 		<text>
 			Description without language.
 		</text>

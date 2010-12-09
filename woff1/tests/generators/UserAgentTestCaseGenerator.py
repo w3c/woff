@@ -2254,6 +2254,320 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
+# ----------------------------------------------
+# Metadata Display: Schema Validity: description
+# ----------------------------------------------
+
+# valid with url
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Description without language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-001",
+    title="Valid description Element",
+    assertion="The description element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid without url
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Description without language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-002",
+    title="Valid description Element Without url Attribute",
+    assertion="The description element does not contain a url attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid one text element no language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Description without language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-003",
+    title="Valid description Element With One No Language Tagged text Element",
+    assertion="The description element matches the schema. It contains one text element that does not have a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid one text element with language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text lang="en">
+            Description with "en" language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-004",
+    title="Valid description Element With One Language Tagged text Element",
+    assertion="The description element matches the schema. It contains one text element that has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements no language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Description without language.
+        </text>
+        <text lang="en">
+            Description with "en" language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-005",
+    title="Valid description Element With Mixed text Element Language Tags 1",
+    assertion="The description element matches the schema. One text element does not have a language tag. One text element has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text lang="en">
+            Description with "en" language.
+        </text>
+        <text lang="fr">
+            Description with "fr" language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-006",
+    title="Valid description Element With Mixed text Element Language Tags 2",
+    assertion="The description element matches the schema. Two text elements have a language tags.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# more than one description
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Description without language.
+        </text>
+    </description>
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Description without language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-007",
+    title="More Than One description Element",
+    assertion="The description element occurs more than once.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# no text element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-008",
+    title="No text Element in description Element",
+    assertion="The description element does not contain a text child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts" unknownattribute="Text">
+        <text>
+            Description without language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-009",
+    title="Unknown Attribute in description Element",
+    assertion="The description element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Description without language.
+        </text>
+        <unknown attribute="Text" />
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-010",
+    title="Unknown Child Element in description Element",
+    assertion="The description element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        Text
+        <text>
+            Description without language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-011",
+    title="Content in description Element",
+    assertion="The description element contains an content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text unknownattribute="Text">
+            Description without language.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-012",
+    title="Unknown Attribute in description Element text Element",
+    assertion="The description element contains a text element with an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Description without language.
+            <unknown attribute="Text" />
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-013",
+    title="Unknown Child Element in description Element text Element",
+    assertion="The description element contains a text element with an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
 # ------------------
 # Generate the Index
 # ------------------
