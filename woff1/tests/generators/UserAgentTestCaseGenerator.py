@@ -1992,6 +1992,30 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
+# more than one credits
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+    <credits>
+        <credit name="Credit 2" role="Role 2" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-003",
+    title="More Than One credits Element",
+    assertion="The credits element occurs more than once.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
 # missing credit element
 
 m = """
@@ -2002,7 +2026,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-003",
+    identifier="metadatadisplay-schema-credits-004",
     title="No credit Element in credits Element",
     assertion="The credits element does not contain a credit child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -2023,7 +2047,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-004",
+    identifier="metadatadisplay-schema-credits-005",
     title="Unknown Attribute in credits Element",
     assertion="The credits element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -2045,7 +2069,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-005",
+    identifier="metadatadisplay-schema-credits-006",
     title="Unknown Child Element in credits Element",
     assertion="The credits element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -2067,7 +2091,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-006",
+    identifier="metadatadisplay-schema-credits-007",
     title="Content in credits Element",
     assertion="The credits element contains an content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
