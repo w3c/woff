@@ -2,12 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Content in description Element</title>
+		<title>WOFF Test: Unknown Attribute in copyright Element text Element</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The description element contains content." />
+		<meta name="assert" content="The copyright element contains a text element with an unknown attribute." />
 		<style type="text/css"><![CDATA[
+			@font-face {
+				font-family: "WOFF Test";
+				src: url("resources/metadatadisplay-schema-copyright-010.woff") format("woff");
+			}
 			body {
 				font-family;
 				font-size: 20px;
@@ -16,7 +20,7 @@
 				font-size: 12px;
 			}
 			.test {
-				font-family: "WOFF Test CFF Reference";
+				font-family: "WOFF Test", "WOFF Test CFF Fallback";
 				font-size: 200px;
 				margin-top: 50px;
 			}

@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (95 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (106 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -626,7 +626,7 @@
 					<td><strong><a href="metadatadisplay-schema-description-011.xht">metadatadisplay-schema-description-011</a></strong></td>
 					<td><a href="metadatadisplay-schema-description-011-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Content in description Element<ul class="assert"><li>The description element contains an content.</li></ul></td>
+					<td>Content in description Element<ul class="assert"><li>The description element contains content.</li></ul></td>
 				</tr>
 				<tr id="metadatadisplay-schema-description-012" class="primary font">
 					<td><strong><a href="metadatadisplay-schema-description-012.xht">metadatadisplay-schema-description-012</a></strong></td>
@@ -639,6 +639,72 @@
 					<td><a href="metadatadisplay-schema-description-013-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Unknown Child Element in description Element text Element<ul class="assert"><li>The description element contains a text element with an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-001.xht">metadatadisplay-schema-copyright-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid copyright Element With One No Language Tagged text Element<ul class="assert"><li>The copyright element matches the schema. It contains one text element that does not have a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-002.xht">metadatadisplay-schema-copyright-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid copyright Element With One Language Tagged text Element<ul class="assert"><li>The copyright element matches the schema. It contains one text element that has a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-003.xht">metadatadisplay-schema-copyright-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid copyright Element With Mixed text Element Language Tags 1<ul class="assert"><li>The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-004.xht">metadatadisplay-schema-copyright-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid copyright Element With Mixed text Element Language Tags 2<ul class="assert"><li>The copyright element matches the schema. Two text elements have a language tags.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-005.xht">metadatadisplay-schema-copyright-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>More Than One copyright Element<ul class="assert"><li>The copyright element occurs more than once.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-006.xht">metadatadisplay-schema-copyright-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No text Element in copyright Element<ul class="assert"><li>The copyright element does not contain a text child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-007" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-007.xht">metadatadisplay-schema-copyright-007</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in copyright Element<ul class="assert"><li>The copyright element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-008" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-008.xht">metadatadisplay-schema-copyright-008</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-008-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in copyright Element<ul class="assert"><li>The copyright element contains an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-009" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-009.xht">metadatadisplay-schema-copyright-009</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-009-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in copyright Element<ul class="assert"><li>The copyright element contains content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-010" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-010.xht">metadatadisplay-schema-copyright-010</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-010-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in copyright Element text Element<ul class="assert"><li>The copyright element contains a text element with an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-copyright-011" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-copyright-011.xht">metadatadisplay-schema-copyright-011</a></strong></td>
+					<td><a href="metadatadisplay-schema-copyright-011-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in copyright Element text Element<ul class="assert"><li>The copyright element contains a text element with an unknown child element.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>

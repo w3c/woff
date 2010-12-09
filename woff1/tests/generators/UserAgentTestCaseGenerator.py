@@ -2514,7 +2514,7 @@ m = """
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-011",
     title="Content in description Element",
-    assertion="The description element contains an content.",
+    assertion="The description element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#Metadata",
     metadataIsValid=False,
@@ -2562,6 +2562,273 @@ writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-013",
     title="Unknown Child Element in description Element text Element",
     assertion="The description element contains a text element with an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# --------------------------------------------
+# Metadata Display: Schema Validity: copyright
+# --------------------------------------------
+
+# valid one text element no language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text>
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-001",
+    title="Valid copyright Element With One No Language Tagged text Element",
+    assertion="The copyright element matches the schema. It contains one text element that does not have a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid one text element with language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text lang="en">
+            Copyright with "en" language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-002",
+    title="Valid copyright Element With One Language Tagged text Element",
+    assertion="The copyright element matches the schema. It contains one text element that has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements no language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text>
+            Copyright without language.
+        </text>
+        <text lang="en">
+            Copyright with "en" language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-003",
+    title="Valid copyright Element With Mixed text Element Language Tags 1",
+    assertion="The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text lang="en">
+            Copyright with "en" language.
+        </text>
+        <text lang="fr">
+            Copyright with "fr" language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-004",
+    title="Valid copyright Element With Mixed text Element Language Tags 2",
+    assertion="The copyright element matches the schema. Two text elements have a language tags.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# more than one copyright
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text>
+            Copyright without language.
+        </text>
+    </copyright>
+    <copyright>
+        <text>
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-005",
+    title="More Than One copyright Element",
+    assertion="The copyright element occurs more than once.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# no text element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-006",
+    title="No text Element in copyright Element",
+    assertion="The copyright element does not contain a text child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright unknownattribute="Text">
+        <text>
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-007",
+    title="Unknown Attribute in copyright Element",
+    assertion="The copyright element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text>
+            Copyright without language.
+        </text>
+    </copyright>
+    <unknown attribute="Text" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-008",
+    title="Unknown Child Element in copyright Element",
+    assertion="The copyright element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        Text
+        <text>
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-009",
+    title="Content in copyright Element",
+    assertion="The copyright element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text unknownattribute="Text">
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-010",
+    title="Unknown Attribute in copyright Element text Element",
+    assertion="The copyright element contains a text element with an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text>
+            Copyright without language.
+            <unknown attribute="Text" />
+        </text>
+    </copyright>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-011",
+    title="Unknown Child Element in copyright Element text Element",
+    assertion="The copyright element contains a text element with an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#Metadata",
     metadataIsValid=False,
