@@ -2435,8 +2435,7 @@ writeMetadataSchemaValidityTest(
 m = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-    </description>
+    <description url="http://w3c.org/Fonts" />
 </metadata>
 """
 
@@ -2562,6 +2561,342 @@ writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-013",
     title="Unknown Child Element in description Element text Element",
     assertion="The description element contains a text element with an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# ------------------------------------------
+# Metadata Display: Schema Validity: license
+# ------------------------------------------
+
+# valid with url and license
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text>
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-001",
+    title="Valid license Element",
+    assertion="The license element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid no url
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license id="License ID">
+        <text>
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-002",
+    title="Valid license Element",
+    assertion="The license element does not have a url attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid no id
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts">
+        <text>
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-003",
+    title="Valid license Element",
+    assertion="The license element does not have an id attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid one text element no language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text>
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-004",
+    title="Valid license Element With One No Language Tagged text Element",
+    assertion="The license element matches the schema. It contains one text element that does not have a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid one text element with language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text lang="en">
+            License with "en" language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-005",
+    title="Valid license Element With One Language Tagged text Element",
+    assertion="The license element matches the schema. It contains one text element that has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements no language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text>
+            License without language.
+        </text>
+        <text lang="en">
+            License with "en" language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-006",
+    title="Valid license Element With Mixed text Element Language Tags 1",
+    assertion="The license element matches the schema. One text element does not have a language tag. One text element has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text lang="en">
+            License with "en" language.
+        </text>
+        <text lang="fr">
+            License with "fr" language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-007",
+    title="Valid license Element With Mixed text Element Language Tags 2",
+    assertion="The license element matches the schema. Two text elements have a language tags.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# more than one license
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text>
+            License without language.
+        </text>
+    </license>
+    <license url="http://w3c.org/Fonts">
+        <text>
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-008",
+    title="More Than One license Element",
+    assertion="The license element occurs more than once.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# no text element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-009",
+    title="No text Element in license Element",
+    assertion="The license element does not contain a text child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID" unknownattribute="Text">
+        <text>
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-010",
+    title="Unknown Attribute in license Element",
+    assertion="The license element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text>
+            License without language.
+        </text>
+        <unknown attribute="Text" />
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-011",
+    title="Unknown Child Element in license Element",
+    assertion="The license element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        Text
+        <text>
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-012",
+    title="Content in license Element",
+    assertion="The license element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text unknownattribute="Text">
+            License without language.
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-013",
+    title="Unknown Attribute in license Element text Element",
+    assertion="The license element contains a text element with an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text>
+            License without language.
+            <unknown attribute="Text" />
+        </text>
+    </license>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-014",
+    title="Unknown Child Element in license Element text Element",
+    assertion="The license element contains a text element with an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#Metadata",
     metadataIsValid=False,
@@ -3096,6 +3431,129 @@ writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-011",
     title="Unknown Child Element in trademark Element text Element",
     assertion="The trademark element contains a text element with an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# -------------------------------------------
+# Metadata Display: Schema Validity: uniqueid
+# -------------------------------------------
+
+# valid
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-001",
+    title="Valid licensee Element",
+    assertion="The uniqueid element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# duplicate
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name" />
+    <licensee name="Licensee Name" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-002",
+    title="More Than One licensee Element",
+    assertion="The uniqueid element occurs more than once.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# missing name
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-003",
+    title="No name Attribute in licensee Element",
+    assertion="The uniqueid element does not contain the required name attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name" unknownattribute="Text" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-004",
+    title="Unknown Attribute in licensee Element",
+    assertion="The uniqueid element occures more than once.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name">
+        <unknown attribute="Text" />
+    </licensee>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-005",
+    title="Child Element in licensee Element",
+    assertion="The uniqueid element contains a child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name">
+        Text
+    </licensee>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-006",
+    title="Content in licensee Element",
+    assertion="The uniqueid element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#Metadata",
     metadataIsValid=False,

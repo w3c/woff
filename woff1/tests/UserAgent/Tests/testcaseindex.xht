@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (117 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (137 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -640,6 +640,90 @@
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Unknown Child Element in description Element text Element<ul class="assert"><li>The description element contains a text element with an unknown child element.</li></ul></td>
 				</tr>
+				<tr id="metadatadisplay-schema-license-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-001.xht">metadatadisplay-schema-license-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid license Element<ul class="assert"><li>The license element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-002.xht">metadatadisplay-schema-license-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid license Element<ul class="assert"><li>The license element does not have a url attribute but it still matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-003.xht">metadatadisplay-schema-license-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid license Element<ul class="assert"><li>The license element does not have an id attribute but it still matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-004.xht">metadatadisplay-schema-license-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid license Element With One No Language Tagged text Element<ul class="assert"><li>The license element matches the schema. It contains one text element that does not have a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-005.xht">metadatadisplay-schema-license-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid license Element With One Language Tagged text Element<ul class="assert"><li>The license element matches the schema. It contains one text element that has a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-006.xht">metadatadisplay-schema-license-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid license Element With Mixed text Element Language Tags 1<ul class="assert"><li>The license element matches the schema. One text element does not have a language tag. One text element has a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-007" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-007.xht">metadatadisplay-schema-license-007</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid license Element With Mixed text Element Language Tags 2<ul class="assert"><li>The license element matches the schema. Two text elements have a language tags.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-008" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-008.xht">metadatadisplay-schema-license-008</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-008-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>More Than One license Element<ul class="assert"><li>The license element occurs more than once.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-009" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-009.xht">metadatadisplay-schema-license-009</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-009-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No text Element in license Element<ul class="assert"><li>The license element does not contain a text child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-010" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-010.xht">metadatadisplay-schema-license-010</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-010-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in license Element<ul class="assert"><li>The license element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-011" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-011.xht">metadatadisplay-schema-license-011</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-011-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in license Element<ul class="assert"><li>The license element contains an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-012" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-012.xht">metadatadisplay-schema-license-012</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-012-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in license Element<ul class="assert"><li>The license element contains content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-013" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-013.xht">metadatadisplay-schema-license-013</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-013-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in license Element text Element<ul class="assert"><li>The license element contains a text element with an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-license-014" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-license-014.xht">metadatadisplay-schema-license-014</a></strong></td>
+					<td><a href="metadatadisplay-schema-license-014-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in license Element text Element<ul class="assert"><li>The license element contains a text element with an unknown child element.</li></ul></td>
+				</tr>
 				<tr id="metadatadisplay-schema-copyright-001" class="primary font">
 					<td><strong><a href="metadatadisplay-schema-copyright-001.xht">metadatadisplay-schema-copyright-001</a></strong></td>
 					<td><a href="metadatadisplay-schema-copyright-001-ref.xht">=</a></td>
@@ -771,6 +855,42 @@
 					<td><a href="metadatadisplay-schema-trademark-011-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Unknown Child Element in trademark Element text Element<ul class="assert"><li>The trademark element contains a text element with an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-licensee-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-licensee-001.xht">metadatadisplay-schema-licensee-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-licensee-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid licensee Element<ul class="assert"><li>The uniqueid element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-licensee-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-licensee-002.xht">metadatadisplay-schema-licensee-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-licensee-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>More Than One licensee Element<ul class="assert"><li>The uniqueid element occurs more than once.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-licensee-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-licensee-003.xht">metadatadisplay-schema-licensee-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-licensee-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No name Attribute in licensee Element<ul class="assert"><li>The uniqueid element does not contain the required name attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-licensee-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-licensee-004.xht">metadatadisplay-schema-licensee-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-licensee-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in licensee Element<ul class="assert"><li>The uniqueid element occures more than once.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-licensee-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-licensee-005.xht">metadatadisplay-schema-licensee-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-licensee-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Child Element in licensee Element<ul class="assert"><li>The uniqueid element contains a child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-licensee-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-licensee-006.xht">metadatadisplay-schema-licensee-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-licensee-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in licensee Element<ul class="assert"><li>The uniqueid element contains content.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>
