@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (74 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (81 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -513,6 +513,48 @@
 					<td><a href="metadatadisplay-schema-credits-006-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Content in credits Element<ul class="assert"><li>The credits element contains an content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credit-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credit-001.xht">metadatadisplay-schema-credit-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-credit-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid credit Element<ul class="assert"><li>The credit element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credit-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credit-002.xht">metadatadisplay-schema-credit-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-credit-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid credit Element Without url Attribute<ul class="assert"><li>The credit element does not contain a url attribute but it still matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credit-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credit-003.xht">metadatadisplay-schema-credit-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-credit-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid credit Element Without role Attribute<ul class="assert"><li>The credit element does not contain a role attribute but it still matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credit-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credit-004.xht">metadatadisplay-schema-credit-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-credit-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No name attribute in credit Element<ul class="assert"><li>The credit element does not contain a name attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credit-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credit-005.xht">metadatadisplay-schema-credit-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-credit-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown attribute in credit Element<ul class="assert"><li>The credit element contains and unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credit-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credit-006.xht">metadatadisplay-schema-credit-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-credit-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Child Element in credit Element<ul class="assert"><li>The credit element contains a child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-credit-007" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-credit-007.xht">metadatadisplay-schema-credit-007</a></strong></td>
+					<td><a href="metadatadisplay-schema-credit-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in credit Element<ul class="assert"><li>The credit element contains content.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>

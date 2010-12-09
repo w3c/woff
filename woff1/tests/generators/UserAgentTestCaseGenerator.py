@@ -2076,292 +2076,159 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
-## ------------------------------------------
-## Metadata Display: Schema Validity: license
-## ------------------------------------------
-#
-## no text sub element in license
-#
-#def makeMetadataMissingTextSubelementTest2():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <license>
-#        </license>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Missing Text Subelement 2",
-#    assertion="No text subelement in license element.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataMissingTextSubelementTest2()
-#)
-#
-## ----------------------------------------------
-## Metadata Display: Schema Validity: assertion
-## ----------------------------------------------
-#
-## no text sub element in assertion
-#
-#def makeMetadataMissingTextSubelementTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <assertion>
-#        </assertion>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Missing Text Subelement 1",
-#    assertion="No text subelement in assertion element.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataMissingTextSubelementTest1()
-#)
-#
-## --------------------------------------------
-## Metadata Display: Schema Validity: copyright
-## --------------------------------------------
-#
-## no lang defined
-#
-#def makeMetadataTextLanguageTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <copyright>
-#            <text>
-#                Some text.
-#            </text>
-#        </copyright>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Text Language 1",
-#    assertion="Text subelement in copyright element does not have language definition.",
-#    shouldDisplayMetadata=True,
-#    data=makeMetadataTextLanguageTest1()
-#)
-#
-## lang defined
-#
-#def makeMetadataTextLanguageTest2():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <copyright>
-#            <text lang="en">
-#                Some text.
-#            </text>
-#        </copyright>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Text Language 2",
-#    assertion="Text subelement in copyright element does have language definition.",
-#    shouldDisplayMetadata=True,
-#    data=makeMetadataTextLanguageTest2()
-#)
-#
-## no text sub element in copyright
-#
-#def makeMetadataMissingTextSubelementTest3():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <copyright>
-#        </copyright>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Missing Text Subelement 3",
-#    assertion="No text subelement in copyright element.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataMissingTextSubelementTest3()
-#)
-#
-## --------------------------------------------
-## Metadata Display: Schema Validity: trademark
-## --------------------------------------------
-#
-## no text sub element in trademark
-#
-#def makeMetadataMissingTextSubelementTest4():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <trademark>
-#        </trademark>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Missing Text Subelement 4",
-#    assertion="No text subelement in trademark element.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataMissingTextSubelementTest4()
-#)
-#
-## -------------------------------------------
-## Metadata Display: Schema Validity: licensee
-## -------------------------------------------
-#
-#def makeMetadataCreditTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <licensee />
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Credit 1",
-#    assertion="Licensee element does not contain name attribute.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataCreditTest1()
-#)
-#
-## --------------------------------------------
-## Metadata Display: Schema Validity: extension
-## --------------------------------------------
-#
-#def makeMetadataExtensionTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <extension>
-#            <item>
-#                <name>Name</name>
-#                <value>Value</value>
-#            </item>
-#        </extension>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Extension 1",
-#    assertion="Extension element does not contain a name subelement.",
-#    shouldDisplayMetadata=True,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataExtensionTest1()
-#)
-#
-## no item
-#
-#def makeMetadataExtensionTest2():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <extension>
-#            <name>Name</name>
-#        </extension>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Extension 2",
-#    assertion="Extension element does not contain an item subelement.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataExtensionTest2()
-#)
-#
-## no name in item
-#
-#def makeMetadataExtensionTest3():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <extension>
-#            <item>
-#                <value>Value</value>
-#            </item>
-#        </extension>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Extension 3",
-#    assertion="Item subelement in extension element does not contain name subelement.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-noname-ignore",
-#    data=makeMetadataExtensionTest3()
-#)
-#
-## no value in item
-#
-#def makeMetadataExtensionTest4():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="1.0">
-#        <extension>
-#            <item>
-#                <name>Name</name>
-#            </item>
-#        </extension>
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Extension 4",
-#    assertion="Item subelement in extension element does not contain value subelement.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-novalue-ignore",
-#    data=makeMetadataExtensionTest4()
-#)
+# -----------------------------------------
+# Metadata Display: Schema Validity: credit
+# -----------------------------------------
+
+# valid
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-001",
+    title="Valid credit Element",
+    assertion="The credit element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid no url
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-002",
+    title="Valid credit Element Without url Attribute",
+    assertion="The credit element does not contain a url attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid no role
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-003",
+    title="Valid credit Element Without role Attribute",
+    assertion="The credit element does not contain a role attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# no name
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-004",
+    title="No name attribute in credit Element",
+    assertion="The credit element does not contain a name attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" unknownattribute="Test" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-005",
+    title="Unknown attribute in credit Element",
+    assertion="The credit element contains and unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts">
+            <unknown attribute="Text" />
+        </credit>
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-006",
+    title="Child Element in credit Element",
+    assertion="The credit element contains a child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        Text
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-007",
+    title="Content in credit Element",
+    assertion="The credit element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
 
 # ------------------
 # Generate the Index
