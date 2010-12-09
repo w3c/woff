@@ -2835,6 +2835,273 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
+# --------------------------------------------
+# Metadata Display: Schema Validity: trademark
+# --------------------------------------------
+
+# valid one text element no language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text>
+            Trademark without language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-001",
+    title="Valid trademark Element With One No Language Tagged text Element",
+    assertion="The trademark element matches the schema. It contains one text element that does not have a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid one text element with language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text lang="en">
+            Trademark with "en" language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-002",
+    title="Valid trademark Element With One Language Tagged text Element",
+    assertion="The trademark element matches the schema. It contains one text element that has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements no language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text>
+            Trademark without language.
+        </text>
+        <text lang="en">
+            Trademark with "en" language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-003",
+    title="Valid trademark Element With Mixed text Element Language Tags 1",
+    assertion="The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two text elements language and language
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text lang="en">
+            Trademark with "en" language.
+        </text>
+        <text lang="fr">
+            Trademark with "fr" language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-004",
+    title="Valid trademark Element With Mixed text Element Language Tags 2",
+    assertion="The trademark element matches the schema. Two text elements have a language tags.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# more than one trademark
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text>
+            Trademark without language.
+        </text>
+    </trademark>
+    <trademark>
+        <text>
+            Trademark without language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-005",
+    title="More Than One trademark Element",
+    assertion="The trademark element occurs more than once.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# no text element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-006",
+    title="No text Element in trademark Element",
+    assertion="The trademark element does not contain a text child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark unknownattribute="Text">
+        <text>
+            Trademark without language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-007",
+    title="Unknown Attribute in trademark Element",
+    assertion="The trademark element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text>
+            Trademark without language.
+        </text>
+    </trademark>
+    <unknown attribute="Text" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-008",
+    title="Unknown Child Element in trademark Element",
+    assertion="The trademark element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        Text
+        <text>
+            Trademark without language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-009",
+    title="Content in trademark Element",
+    assertion="The trademark element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text unknownattribute="Text">
+            Trademark without language.
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-010",
+    title="Unknown Attribute in trademark Element text Element",
+    assertion="The trademark element contains a text element with an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# text element child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text>
+            Trademark without language.
+            <unknown attribute="Text" />
+        </text>
+    </trademark>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-011",
+    title="Unknown Child Element in trademark Element text Element",
+    assertion="The trademark element contains a text element with an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
 # ------------------
 # Generate the Index
 # ------------------

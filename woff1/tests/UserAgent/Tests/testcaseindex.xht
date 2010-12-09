@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (106 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (117 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -705,6 +705,72 @@
 					<td><a href="metadatadisplay-schema-copyright-011-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Unknown Child Element in copyright Element text Element<ul class="assert"><li>The copyright element contains a text element with an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-001.xht">metadatadisplay-schema-trademark-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid trademark Element With One No Language Tagged text Element<ul class="assert"><li>The trademark element matches the schema. It contains one text element that does not have a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-002.xht">metadatadisplay-schema-trademark-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid trademark Element With One Language Tagged text Element<ul class="assert"><li>The trademark element matches the schema. It contains one text element that has a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-003.xht">metadatadisplay-schema-trademark-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid trademark Element With Mixed text Element Language Tags 1<ul class="assert"><li>The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-004.xht">metadatadisplay-schema-trademark-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid trademark Element With Mixed text Element Language Tags 2<ul class="assert"><li>The trademark element matches the schema. Two text elements have a language tags.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-005.xht">metadatadisplay-schema-trademark-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>More Than One trademark Element<ul class="assert"><li>The trademark element occurs more than once.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-006.xht">metadatadisplay-schema-trademark-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No text Element in trademark Element<ul class="assert"><li>The trademark element does not contain a text child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-007" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-007.xht">metadatadisplay-schema-trademark-007</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in trademark Element<ul class="assert"><li>The trademark element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-008" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-008.xht">metadatadisplay-schema-trademark-008</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-008-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in trademark Element<ul class="assert"><li>The trademark element contains an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-009" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-009.xht">metadatadisplay-schema-trademark-009</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-009-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in trademark Element<ul class="assert"><li>The trademark element contains content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-010" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-010.xht">metadatadisplay-schema-trademark-010</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-010-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in trademark Element text Element<ul class="assert"><li>The trademark element contains a text element with an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-trademark-011" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-trademark-011.xht">metadatadisplay-schema-trademark-011</a></strong></td>
+					<td><a href="metadatadisplay-schema-trademark-011-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in trademark Element text Element<ul class="assert"><li>The trademark element contains a text element with an unknown child element.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>
