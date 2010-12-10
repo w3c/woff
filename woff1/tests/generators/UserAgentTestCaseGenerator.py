@@ -873,7 +873,7 @@ writeFileStructureTest(
 
 # final table is not padded
 
-def makeTableData4Byte3():
+def makeTableData4Byte2():
     # table data
     tableData = deepcopy(sfntCFFTableData)
     tag = "zzzz"
@@ -898,13 +898,13 @@ def makeTableData4Byte3():
     return data
 
 writeFileStructureTest(
-    identifier="directory-4-byte-003",
+    identifier="directory-4-byte-002",
     title="Final Font Table Data Not Padded",
     assertion="The final table in the table data block is not padded to a 4-byte boundary.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
     specLink="#conform-tablesize-longword",
-    data=makeTableData4Byte3()
+    data=makeTableData4Byte2()
 )
 
 # -----------------------------------------
