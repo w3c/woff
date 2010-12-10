@@ -871,31 +871,6 @@ writeFileStructureTest(
     data=makeTableData4Byte1()
 )
 
-# table is padded with something other than null bytes
-
-def makeTableData4Byte2():
-    header, directory, tableData = defaultTestData()
-    paddedAtLeastOne = False
-    for tag, (origData, compData) in tableData.items():
-        paddingLength = calcPaddingLength(len(compData))
-        if paddingLength:
-            paddedAtLeastOne = True
-        compData += "\x01" * paddingLength
-        tableData[tag] = (origData, compData)
-    assert paddedAtLeastOne
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
-writeFileStructureTest(
-    identifier="directory-4-byte-002",
-    title="Font Table Data Padded With Non-Null",
-    assertion="Table data is padded with \\01 instead of \\00.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    shouldDisplaySFNT=False,
-    specLink="#conform-tablesize-longword",
-    data=makeTableData4Byte2()
-)
-
 # final table is not padded
 
 def makeTableData4Byte3():

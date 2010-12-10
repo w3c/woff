@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (162 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (161 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -213,12 +213,6 @@
 					<td><a href="directory-4-byte-001-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Font Table Data Not On 4-Byte Boundary<ul class="assert"><li>Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.</li></ul></td>
-				</tr>
-				<tr id="directory-4-byte-002" class="primary font">
-					<td><strong><a href="directory-4-byte-002.xht">directory-4-byte-002</a></strong></td>
-					<td><a href="directory-4-byte-002-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Data Padded With Non-Null<ul class="assert"><li>Table data is padded with \01 instead of \00.</li></ul></td>
 				</tr>
 				<tr id="directory-4-byte-003" class="primary font">
 					<td><strong><a href="directory-4-byte-003.xht">directory-4-byte-003</a></strong></td>
