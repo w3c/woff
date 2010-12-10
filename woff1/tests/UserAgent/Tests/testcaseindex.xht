@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (168 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (162 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -202,30 +202,6 @@
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Private Data Overlaps Metadata<ul class="assert"><li>The private data offset is four bytes before the end of the metadata.</li></ul></td>
 				</tr>
-				<tr id="blocks-metadata-absent-001" class="primary font">
-					<td><strong><a href="blocks-metadata-absent-001.xht">blocks-metadata-absent-001</a></strong></td>
-					<td><a href="blocks-metadata-absent-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Metadata Length Not Set to Zero<ul class="assert"><li>The metadata length is set to one but the offset is zero. This test case also fails for other reasons: the offset/length creates an overlap with the header block, the metadata won't decompress.</li></ul></td>
-				</tr>
-				<tr id="blocks-metadata-absent-002" class="primary font">
-					<td><strong><a href="blocks-metadata-absent-002.xht">blocks-metadata-absent-002</a></strong></td>
-					<td><a href="blocks-metadata-absent-002-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Metadata Offset Not Set to Zero<ul class="assert"><li>The metadata length is set to zero but the offset is set to the end of the file.</li></ul></td>
-				</tr>
-				<tr id="blocks-private-absent-001" class="primary font">
-					<td><strong><a href="blocks-private-absent-001.xht">blocks-private-absent-001</a></strong></td>
-					<td><a href="blocks-private-absent-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Private Data Length Not Set to Zero<ul class="assert"><li>The private data length is set to one but the offset is zero. This test case also fails for another reason: the offset/length creates an overlap with the header block.</li></ul></td>
-				</tr>
-				<tr id="blocks-private-absent-002" class="primary font">
-					<td><strong><a href="blocks-private-absent-002.xht">blocks-private-absent-002</a></strong></td>
-					<td><a href="blocks-private-absent-002-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Private Data Offset Not Set to Zero<ul class="assert"><li>The private data length is set to zero but the offset is set to the end of the file.</li></ul></td>
-				</tr>
 			</tbody>
 			<tbody id="WOFFTableDirectoryTests">
 				<tr><th colspan="4" scope="rowgroup">
@@ -298,12 +274,6 @@
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Original Length Greater Than Decompressed Length<ul class="assert"><li>One table has table that when decompressed has a length that is four bytes shorter than the value listed in origLength.</li></ul></td>
 				</tr>
-				<tr id="directory-ascending-001" class="primary font">
-					<td><strong><a href="directory-ascending-001.xht">directory-ascending-001</a></strong></td>
-					<td><a href="directory-ascending-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Font Table Directory Not In Ascending Order<ul class="assert"><li>The tables in the directory are in descending order.</li></ul></td>
-				</tr>
 			</tbody>
 			<tbody id="WOFFTableDataTests">
 				<tr><th colspan="4" scope="rowgroup">
@@ -364,12 +334,6 @@
 					<a href="#WOFFPrivateDataTests">+</a>
 					<a href="http://dev.w3.org/webfonts/WOFF/spec/#Private">WOFF Private Data Tests</a>
 				</th></tr>
-				<tr id="privatedata-4-byte-001" class="primary font">
-					<td><strong><a href="privatedata-4-byte-001.xht">privatedata-4-byte-001</a></strong></td>
-					<td><a href="privatedata-4-byte-001-ref.xht">=</a></td>
-					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
-					<td>Private Data Does Not Begin of 4-Byte Boundary<ul class="assert"><li>The private data does not begin on a four byte boundary because the metadata is not padded.  This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.</li></ul></td>
-				</tr>
 				<tr id="privatedata-noeffect-001" class="primary font">
 					<td><strong><a href="privatedata-noeffect-001.xht">privatedata-noeffect-001</a></strong></td>
 					<td><a href="privatedata-noeffect-001-ref.xht">=</a></td>

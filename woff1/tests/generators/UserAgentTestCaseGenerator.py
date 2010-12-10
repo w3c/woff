@@ -816,90 +816,6 @@ writeFileStructureTest(
     data=makeOverlappingData4()
 )
 
-# -------------------------------------------------
-# File Structure: Data Blocks: Metadata Not Present
-# -------------------------------------------------
-
-# metadata length is not 0 but the offset = 0
-
-def makeMetadataZeroData1():
-    header, directory, tableData = defaultTestData()
-    header["metaOffset"] = 0
-    header["metaLength"] = 1
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
-writeFileStructureTest(
-    identifier="blocks-metadata-absent-001",
-    title="Metadata Length Not Set to Zero",
-    assertion="The metadata length is set to one but the offset is zero. This test case also fails for other reasons: the offset/length creates an overlap with the header block, the metadata won't decompress.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    shouldDisplaySFNT=False,
-    specLink="#conform-zerometaprivate",
-    data=makeMetadataZeroData1()
-)
-
-# metadata length = zero but the offset > zero
-
-def makeMetadataZeroData2():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    header["metaLength"] = 0
-    header["metaOffset"] = header["length"]
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-    return data
-
-writeFileStructureTest(
-    identifier="blocks-metadata-absent-002",
-    title="Metadata Offset Not Set to Zero",
-    assertion="The metadata length is set to zero but the offset is set to the end of the file.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    shouldDisplaySFNT=False,
-    specLink="#conform-zerometaprivate",
-    data=makeMetadataZeroData2()
-)
-
-# -----------------------------------------------------
-# File Structure: Data Blocks: Private Data Not Present
-# -----------------------------------------------------
-
-# private data length > 0 but the offset = 0
-
-def makePrivateDataZeroData1():
-    header, directory, tableData = defaultTestData()
-    header["privOffset"] = 0
-    header["privLength"] = 1
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
-writeFileStructureTest(
-    identifier="blocks-private-absent-001",
-    title="Private Data Length Not Set to Zero",
-    assertion="The private data length is set to one but the offset is zero. This test case also fails for another reason: the offset/length creates an overlap with the header block.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    shouldDisplaySFNT=False,
-    specLink="#conform-zerometaprivate",
-    data=makePrivateDataZeroData1()
-)
-
-# private data length = 0 but the offset > 0
-
-def makePrivateDataZeroData2():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
-    header["privLength"] = 0
-    header["privOffset"] = header["length"]
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData)
-    return data
-
-writeFileStructureTest(
-    identifier="blocks-private-absent-002",
-    title="Private Data Offset Not Set to Zero",
-    assertion="The private data length is set to zero but the offset is set to the end of the file.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    shouldDisplaySFNT=False,
-    specLink="#conform-zerometaprivate",
-    data=makePrivateDataZeroData2()
-)
-
 # ------------------------------------------------
 # File Structure: Table Directory: 4-Byte Boundary
 # ------------------------------------------------
@@ -1250,30 +1166,6 @@ writeFileStructureTest(
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
     data=makeTableDataOriginalLength2()
-)
-
-# ------------------------------------------------
-# File Structure: Table Directory: Ascending Order
-# ------------------------------------------------
-
-def makeTableDirectoryAscending1():
-    header, directory, tableData = defaultTestData()
-    directory = [(entry["tag"], entry) for entry in directory]
-    directoryData = ""
-    for tag, table in reversed(sorted(directory)):
-        directoryData += sstruct.pack(woffDirectoryEntryFormat, table)
-    directory = [i[1] for i in directory]
-    data = packTestHeader(header) + directoryData + packTestTableData(directory, tableData)
-    return data
-
-writeFileStructureTest(
-    identifier="directory-ascending-001",
-    title="Font Table Directory Not In Ascending Order",
-    assertion="The tables in the directory are in descending order.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    shouldDisplaySFNT=False,
-    specLink="#conform-ascending",
-    data=makeTableDirectoryAscending1()
 )
 
 # ---------------------------------------
@@ -4370,6 +4262,8 @@ generateSFNTDisplayIndexHTML(directory=userAgentTestDirectory, testCases=testGro
 # Check for Unknown Files
 # -----------------------
 
+skip = "testcaseindex".split(" ")
+
 xhtPattern = os.path.join(userAgentTestDirectory, "*.xht")
 woffPattern = os.path.join(userAgentTestResourcesDirectory, "*.woff")
 
@@ -4380,5 +4274,5 @@ for path in filesOnDisk:
     identifier = os.path.basename(path)
     identifier = identifier.split(".")[0]
     identifier = identifier.replace("-ref", "")
-    if identifier not in registeredIdentifiers:
+    if identifier not in registeredIdentifiers and identifier not in skip:
         print "Unknown file:", path
