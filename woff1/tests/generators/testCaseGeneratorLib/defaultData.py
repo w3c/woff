@@ -89,45 +89,45 @@ testDataWOFFMetadata = """
 	</trademark>
 	<licensee name="Licensee Name" />
 	<extension id="Extension 1">
-		<name>Name Without Language</name>
-		<name lang="en">Name With "en" Language</name>
-		<name lang="fr">Name With "fr" Language</name>
+		<name>Extension 1 - Name Without Language</name>
+		<name lang="en">Extension 1 - Name With "en" Language</name>
+		<name lang="fr">Extension 1 - Name With "fr" Language</name>
 		<item id="Extension 1 - Item 1 ID">
-			<name>Name Without Language</name>
-			<name lang="en">Name With "en" Language</name>
-			<name lang="fr">Name With "fr" Language</name>
-			<value>Value Without Language</value>
-			<value lang="en">Value With "en" Language</value>
-			<value lang="fr">Value With "fr" Language</value>
+			<name>Extension 1 - Item 1 - Name Without Language</name>
+			<name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+			<name lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
+			<value>Extension 1 - Item 1 - Value Without Language</value>
+			<value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+			<value lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
 		</item>
 		<item id="Extension 1 - Item 2 ID">
-			<name>Name Without Language</name>
-			<name lang="en">Name With "en" Language</name>
-			<name lang="fr">Name With "fr" Language</name>
-			<value>Value Without Language</value>
-			<value lang="en">Value With "en" Language</value>
-			<value lang="fr">Value With "fr" Language</value>
+			<name>Extension 1 - Item 2 - Name Without Language</name>
+			<name lang="en">Extension 1 - Item 2 - Name With "en" Language</name>
+			<name lang="fr">Extension 1 - Item 2 - Name With "fr" Language</name>
+			<value>Extension 1 - Item 2 - Value Without Language</value>
+			<value lang="en">Extension 1 - Item 2 - Value With "en" Language</value>
+			<value lang="fr">Extension 1 - Item 2 - Value With "fr" Language</value>
 		</item>
 	</extension>
 	<extension id="Extension 2">
-		<name>Name Without Language</name>
-		<name lang="en">Name With "en" Language</name>
-		<name lang="fr">Name With "fr" Language</name>
+		<name>Extension 2 - Name Without Language</name>
+		<name lang="en">Extension 2 - Name With "en" Language</name>
+		<name lang="fr">Extension 2 - Name With "fr" Language</name>
 		<item id="Extension 2 - Item 1 ID">
-			<name>Name Without Language</name>
-			<name lang="en">Name With "en" Language</name>
-			<name lang="fr">Name With "fr" Language</name>
-			<value>Value Without Language</value>
-			<value lang="en">Value With "en" Language</value>
-			<value lang="fr">Value With "fr" Language</value>
+			<name>Extension 2 - Item 1 - Name Without Language</name>
+			<name lang="en">Extension 2 - Item 1 - Name With "en" Language</name>
+			<name lang="fr">Extension 2 - Item 1 - Name With "fr" Language</name>
+			<value>Extension 2 - Item 1 - Value Without Language</value>
+			<value lang="en">Extension 2 - Item 1 - Value With "en" Language</value>
+			<value lang="fr">Extension 2 - Item 1 - Value With "fr" Language</value>
 		</item>
 		<item id="Extension 2 - Item 2 ID">
-			<name>Name Without Language</name>
-			<name lang="en">Name With "en" Language</name>
-			<name lang="fr">Name With "fr" Language</name>
-			<value>Value Without Language</value>
-			<value lang="en">Value With "en" Language</value>
-			<value lang="fr">Value With "fr" Language</value>
+			<name>Extension 2 - Item 2 - Name Without Language</name>
+			<name lang="en">Extension 2 - Item 2 - Name With "en" Language</name>
+			<name lang="fr">Extension 2 - Item 2 - Name With "fr" Language</name>
+			<value>Extension 2 - Item 2 - Value Without Language</value>
+			<value lang="en">Extension 2 - Item 2 - Value With "en" Language</value>
+			<value lang="fr">Extension 2 - Item 2 - Value With "fr" Language</value>
 		</item>
 	</extension>
 </metadata>

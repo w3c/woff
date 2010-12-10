@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (137 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (168 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -891,6 +891,192 @@
 					<td><a href="metadatadisplay-schema-licensee-006-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Content in licensee Element<ul class="assert"><li>The uniqueid element contains content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-001.xht">metadatadisplay-schema-extension-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid extension Element<ul class="assert"><li>The extension element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-002.xht">metadatadisplay-schema-extension-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Two Valid extension Elements<ul class="assert"><li>Two extension elements match the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-003.xht">metadatadisplay-schema-extension-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid extension Element Without id Attribute<ul class="assert"><li>The extension element does not have an id attribute but it still matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-004.xht">metadatadisplay-schema-extension-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid extension Element Without name Element<ul class="assert"><li>The extension element does not have a name child element but it still matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-005.xht">metadatadisplay-schema-extension-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid extension Element With Two name Elements 1<ul class="assert"><li>The extension element contains one name element without a lang attribute and another with a lang attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-006" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-006.xht">metadatadisplay-schema-extension-006</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid extension Element With Two name Elements 2<ul class="assert"><li>The extension element contains two name elements with lang attributes.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-007" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-007.xht">metadatadisplay-schema-extension-007</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid extension Element With Two item Elements<ul class="assert"><li>The extension element contains two item child elements.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-008" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-008.xht">metadatadisplay-schema-extension-008</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-008-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No item Element in extension Element<ul class="assert"><li>The extension element does not contain an item child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-009" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-009.xht">metadatadisplay-schema-extension-009</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-009-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in extension Element<ul class="assert"><li>The extension element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-010" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-010.xht">metadatadisplay-schema-extension-010</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-010-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in extension Element<ul class="assert"><li>The extension element contains an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-011" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-011.xht">metadatadisplay-schema-extension-011</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-011-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in extension Element<ul class="assert"><li>The extension element contains content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-012" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-012.xht">metadatadisplay-schema-extension-012</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-012-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid item Element in extension Element<ul class="assert"><li>The item element in the extension element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-013" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-013.xht">metadatadisplay-schema-extension-013</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-013-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid item Element With Multiple Languages in extension Element<ul class="assert"><li>The item element in the extension element contains a variety of languages.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-014" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-014.xht">metadatadisplay-schema-extension-014</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-014-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid item Element Without id Attribute in extension Element<ul class="assert"><li>The item element in the extension element does not contain an id attribute but it still matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-015" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-015.xht">metadatadisplay-schema-extension-015</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-015-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid item Element With Two name Elements in extension Element 1<ul class="assert"><li>The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-016" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-016.xht">metadatadisplay-schema-extension-016</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-016-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid item Element With Two name Elements in extension Element 2<ul class="assert"><li>The item element in the extension element contains two name child elements with lang attributes.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-017" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-017.xht">metadatadisplay-schema-extension-017</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-017-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid item Element With Two value Elements in extension Element 1<ul class="assert"><li>The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-018" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-018.xht">metadatadisplay-schema-extension-018</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-018-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid item Element With Two value Elements in extension Element 2<ul class="assert"><li>The item element in the extension element contains two value child elements with lang attributes.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-019" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-019.xht">metadatadisplay-schema-extension-019</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-019-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No name Element in item Element in extension Element<ul class="assert"><li>The item element in the extension element does not contain a name child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-020" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-020.xht">metadatadisplay-schema-extension-020</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-020-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No value Element in item Element in extension Element<ul class="assert"><li>The item element in the extension element does not contain a value child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-021" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-021.xht">metadatadisplay-schema-extension-021</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-021-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attribute in item Element in extension Element<ul class="assert"><li>The item element in the extension element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-022" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-022.xht">metadatadisplay-schema-extension-022</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-022-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element in item Element in extension Element<ul class="assert"><li>The item element in the extension element contains an unknown child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-023" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-023.xht">metadatadisplay-schema-extension-023</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-023-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Content in item Element in extension Element<ul class="assert"><li>The item element in the extension element contains content.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-024" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-024.xht">metadatadisplay-schema-extension-024</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-024-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid name Element in item Element in extension Element<ul class="assert"><li>The name element in the item element in the extension element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-025" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-025.xht">metadatadisplay-schema-extension-025</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-025-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid name Element With lang Attribute in item Element in extension Element<ul class="assert"><li>The name element in the item element in the extension element contains a lang attribute and it matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-026" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-026.xht">metadatadisplay-schema-extension-026</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-026-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unkown Attribute in name Element in item Element in extension Element<ul class="assert"><li>The name element in the item element in the extension element contains an unkown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-027" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-027.xht">metadatadisplay-schema-extension-027</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-027-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Child Element in name Element in item Element in extension Element<ul class="assert"><li>The name element in the item element in the extension element contains a child element.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-028" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-028.xht">metadatadisplay-schema-extension-028</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-028-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid value Element in item Element in extension Element<ul class="assert"><li>The value element in the item element in the extension element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-029" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-029.xht">metadatadisplay-schema-extension-029</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-029-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid value Element With lang Attribute in item Element in extension Element<ul class="assert"><li>The value element in the item element in the extension element contains a lang attribute and it matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-030" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-030.xht">metadatadisplay-schema-extension-030</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-030-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unkown Attribute in value Element in item Element in extension Element<ul class="assert"><li>The value element in the item element in the extension element contains an unkown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-extension-031" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-extension-031.xht">metadatadisplay-schema-extension-031</a></strong></td>
+					<td><a href="metadatadisplay-schema-extension-031-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Child Element in value Element in item Element in extension Element<ul class="assert"><li>The value element in the item element in the extension element contains a child element.</li></ul></td>
 				</tr>
 			</tbody>
 		</table>

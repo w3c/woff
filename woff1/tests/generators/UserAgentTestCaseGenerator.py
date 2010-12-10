@@ -3560,6 +3560,823 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
+# --------------------------------------------
+# Metadata Display: Schema Validity: extension
+# --------------------------------------------
+
+# valid
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-001",
+    title="Valid extension Element",
+    assertion="The extension element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two extensions
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+    <extension id="Extension 2">
+        <name>Extension 2 - Name Without Language</name>
+        <item id="Extension 2 - Item 1 ID">
+            <name>Extension 2 - Item 1 - Name Without Language</name>
+            <value>Extension 2 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-002",
+    title="Two Valid extension Elements",
+    assertion="Two extension elements match the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid no id
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension>
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-003",
+    title="Valid extension Element Without id Attribute",
+    assertion="The extension element does not have an id attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid no name
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-004",
+    title="Valid extension Element Without name Element",
+    assertion="The extension element does not have a name child element but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid one untagged name one tagged name
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <name lang="en">Extension 1 - Name With "en" Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-005",
+    title="Valid extension Element With Two name Elements 1",
+    assertion="The extension element contains one name element without a lang attribute and another with a lang attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid two tagged names
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name lang="en">Extension 1 - Name With "en" Language</name>
+        <name lang="fr">Extension 1 - Name With "fr" Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-006",
+    title="Valid extension Element With Two name Elements 2",
+    assertion="The extension element contains two name elements with lang attributes.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid more than one item
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+        <item id="Extension 1 - Item 2 ID">
+            <name>Extension 1 - Item 2 - Name Without Language</name>
+            <value>Extension 1 - Item 2 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-007",
+    title="Valid extension Element With Two item Elements",
+    assertion="The extension element contains two item child elements.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# no item
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-008",
+    title="No item Element in extension Element",
+    assertion="The extension element does not contain an item child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1" unknownattribute="Text">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-009",
+    title="Unknown Attribute in extension Element",
+    assertion="The extension element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+    <unknown attribute="Text" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-010",
+    title="Unknown Child Element in extension Element",
+    assertion="The extension element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        Text
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-011",
+    title="Content in extension Element",
+    assertion="The extension element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# ---------------------------------------------------
+# Metadata Display: Schema Validity: extension - item
+# ---------------------------------------------------
+
+# valid
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-012",
+    title="Valid item Element in extension Element",
+    assertion="The item element in the extension element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid multiple languages
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <name lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+            <value lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-013",
+    title="Valid item Element With Multiple Languages in extension Element",
+    assertion="The item element in the extension element contains a variety of languages.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid no id
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item>
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-014",
+    title="Valid item Element Without id Attribute in extension Element",
+    assertion="The item element in the extension element does not contain an id attribute but it still matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid name no tag and tagged
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-015",
+    title="Valid item Element With Two name Elements in extension Element 1",
+    assertion="The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid name two tagged
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <name lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-016",
+    title="Valid item Element With Two name Elements in extension Element 2",
+    assertion="The item element in the extension element contains two name child elements with lang attributes.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid value no tag and tagged
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-017",
+    title="Valid item Element With Two value Elements in extension Element 1",
+    assertion="The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid value two tagged
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+            <value lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-018",
+    title="Valid item Element With Two value Elements in extension Element 2",
+    assertion="The item element in the extension element contains two value child elements with lang attributes.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# no name
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-019",
+    title="No name Element in item Element in extension Element",
+    assertion="The item element in the extension element does not contain a name child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# no value
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-020",
+    title="No value Element in item Element in extension Element",
+    assertion="The item element in the extension element does not contain a value child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID" unknownattribute="Text">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-021",
+    title="Unknown Attribute in item Element in extension Element",
+    assertion="The item element in the extension element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+            <unknown attribute="Text" />
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-022",
+    title="Unknown Child Element in item Element in extension Element",
+    assertion="The item element in the extension element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# content
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            Text
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-023",
+    title="Content in item Element in extension Element",
+    assertion="The item element in the extension element contains content.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# ----------------------------------------------------------
+# Metadata Display: Schema Validity: extension - item - name
+# ----------------------------------------------------------
+
+# valid no lang
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-024",
+    title="Valid name Element in item Element in extension Element",
+    assertion="The name element in the item element in the extension element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid lang
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-025",
+    title="Valid name Element With lang Attribute in item Element in extension Element",
+    assertion="The name element in the item element in the extension element contains a lang attribute and it matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name unknownattribute="Text">Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-026",
+    title="Unkown Attribute in name Element in item Element in extension Element",
+    assertion="The name element in the item element in the extension element contains an unkown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+
+# child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>
+                Extension 1 - Item 1 - Name Without Language
+                <unknown attribute="Text" />
+            </name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-027",
+    title="Child Element in name Element in item Element in extension Element",
+    assertion="The name element in the item element in the extension element contains a child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# -----------------------------------------------------------
+# Metadata Display: Schema Validity: extension - item - value
+# -----------------------------------------------------------
+
+# valid no lang
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-028",
+    title="Valid value Element in item Element in extension Element",
+    assertion="The value element in the item element in the extension element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid lang
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-029",
+    title="Valid value Element With lang Attribute in item Element in extension Element",
+    assertion="The value element in the item element in the extension element contains a lang attribute and it matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value unknownattribute="Text">Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-030",
+    title="Unkown Attribute in value Element in item Element in extension Element",
+    assertion="The value element in the item element in the extension element contains an unkown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# child element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>
+                Extension 1 - Item 1 - Value Without Language
+                <unknown attribute="Text" />
+            </value>
+        </item>
+    </extension>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-extension-031",
+    title="Child Element in value Element in item Element in extension Element",
+    assertion="The value element in the item element in the extension element contains a child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
 # ------------------
 # Generate the Index
 # ------------------
