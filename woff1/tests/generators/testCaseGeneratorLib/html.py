@@ -54,6 +54,8 @@ def _generateSFNTDisplayTestHTML(
     credits=[], flags=[],
     metadataIsValid=None,
     metadataToDisplay=None,
+    extraSFNTNotes=[],
+    extraMetadataNotes=[]
     ):
     assert flavor is not None
     assert title is not None
@@ -106,6 +108,9 @@ def _generateSFNTDisplayTestHTML(
     ## note
     s = "\t\t<p>Test passes if the word PASS appears below.</p>"
     html.append(s)
+    for note in extraSFNTNotes:
+        s = "\t\t<p>%s</p>" % note
+        html.append(s)
     ## test case
     s = "\t\t<div class=\"test\">%s</div>" % bodyCharacter
     html.append(s)
@@ -115,6 +120,9 @@ def _generateSFNTDisplayTestHTML(
             s = "\t\t<p>The Extended Metadata Block is valid and may be displayed to the user upon request.</p>"
         else:
             s = "\t\t<p>The Extended Metadata Block is not valid and must not be displayed.</p>"
+        html.append(s)
+    for note in extraMetadataNotes:
+        s = "\t\t<p>%s</p>" % note
         html.append(s)
     if metadataToDisplay:
         s = "\t\t<p>The XML contained in the Extended Metadata Block is below.</p>"
@@ -130,7 +138,7 @@ def _generateSFNTDisplayTestHTML(
     html = "\n".join(html)
     return html
 
-def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None):
+def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
     bodyCharacter = testFailCharacter
     if shouldDisplay:
         bodyCharacter = testPassCharacter
@@ -141,7 +149,9 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
         title=title, specLink=specLink, assertion=assertion,
         credits=credits, flags=flags,
         metadataIsValid=metadataIsValid,
-        metadataToDisplay=metadataToDisplay
+        metadataToDisplay=metadataToDisplay,
+        extraSFNTNotes=extraSFNTNotes,
+        extraMetadataNotes=extraMetadataNotes
     )
     # write the file
     path = os.path.join(directory, fileName) + ".xht"
@@ -149,7 +159,7 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
     f.write(html)
     f.close()
 
-def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None):
+def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
     bodyCharacter = refPassCharacter
     css = refCSS % flavor
     html = _generateSFNTDisplayTestHTML(
@@ -158,7 +168,9 @@ def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title
         title=title, specLink=specLink, assertion=assertion,
         credits=credits, flags=flags,
         metadataIsValid=metadataIsValid,
-        metadataToDisplay=metadataToDisplay
+        metadataToDisplay=metadataToDisplay,
+        extraSFNTNotes=extraSFNTNotes,
+        extraMetadataNotes=extraMetadataNotes
     )
     # write the file
     path = os.path.join(directory, fileName) + "-ref.xht"

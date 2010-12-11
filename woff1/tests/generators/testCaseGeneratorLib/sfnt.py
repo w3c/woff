@@ -5,8 +5,8 @@ SFNT data extractor.
 import zlib
 from fontTools.ttLib import TTFont
 
-def getSFNTData(path):
-    font = TTFont(path)
+def getSFNTData(pathOrFile):
+    font = TTFont(pathOrFile)
     # checksums
     tableChecksums = {}
     for tag, entry in font.reader.tables.items():

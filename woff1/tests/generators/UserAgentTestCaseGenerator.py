@@ -123,7 +123,7 @@ for group in groupDefinitions:
 
 registeredIdentifiers = set()
 
-def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, metadataIsValid=None, data=None, metadataToDisplay=None):
+def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, metadataIsValid=None, data=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     registeredIdentifiers.add(identifier)
@@ -152,7 +152,9 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
         flags=flags,
         shouldDisplay=shouldDisplaySFNT,
         metadataIsValid=metadataIsValid,
-        metadataToDisplay=metadataToDisplay
+        metadataToDisplay=metadataToDisplay,
+        extraSFNTNotes=extraSFNTNotes,
+        extraMetadataNotes=extraMetadataNotes
     )
     generateSFNTDisplayTestHTML(**kwargs)
     generateSFNTDisplayRefHTML(**kwargs)
@@ -1379,6 +1381,110 @@ writeFileStructureTest(
     shouldDisplaySFNT=True,
     specLink="#conform-private-noeffect",
     data=makePrivateDataNoEffect2()
+)
+
+# -------------------------------
+# Metadata Display: Authoritative
+# -------------------------------
+
+metadataAuthoritativeXML = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="PASS" />
+    <description>
+        <text>
+            PASS
+        </text>
+    </description>
+    <copyright>
+        <text>
+            PASS
+        </text>
+    </copyright>
+    <trademark>
+        <text>
+            PASS
+        </text>
+    </trademark>
+    <vendor name="PASS" url="PASS" />
+    <credits>
+        <credit name="PASS" url="PASS" />
+    </credits>
+    <license url="PASS">
+        <text>
+            PASS
+        </text>
+    </license>
+</metadata>
+""".strip().replace("    ", "\t")
+
+def makeMetadataAuthoritativeTest1():
+    from cStringIO import StringIO
+    from fontTools.ttLib import TTFont
+    from fontTools.ttLib.tables._n_a_m_e import NameRecord
+    from testCaseGeneratorLib.paths import sfntCFFSourcePath
+    from testCaseGeneratorLib.sfnt import getSFNTData
+    from testCaseGeneratorLib.defaultData import sfntCFFTableOrder
+    setToFAIL = [
+        0,  # copyright
+        3,  # unique id
+        7,  # trademark
+        8,  # manufacturer
+        9,  # designer
+        10, # description
+        11, # vendor url
+        12, # designer url
+        13, # license
+        14  # license url
+    ]
+    # open the SFNT
+    font = TTFont(sfntCFFSourcePath)
+    # overwrite parts of the name table that overlap the metadata
+    nameTable = font["name"]
+    newNames = []
+    for record in nameTable.names:
+        if record.nameID in setToFAIL:
+            continue
+        newNames.append(record)
+    string = "FAIL".encode("utf8")
+    for nameID in setToFAIL:
+        for platformID, platEncID, langID in [(1, 0, 0), (3, 1, 1033)]:
+            record = NameRecord()
+            record.nameID = nameID
+            record.platformID = platformID
+            record.platEncID = platEncID
+            record.langID = langID
+            if record.platformID == 0 or (record.platformID == 3 and record.platEncID in (0, 1)):
+                record.string = string.encode("utf_16_be")
+            else:
+                record.string = string.encode("latin1")
+            newNames.append(record)
+    newNames.sort()
+    nameTable.names = newNames
+    # save the SFNT
+    f = StringIO()
+    font.save(f, reorderTables=False)
+    f.seek(0)
+    # load the table data
+    tableData, tableOrder, tableChecksums = getSFNTData(f)
+    # make sure that the table order is the same as the original
+    assert tableOrder == sfntCFFTableOrder
+    # compile the WOFF
+    header, directory, tableData, metadata = defaultTestData(tableData=tableData, metadata=metadataAuthoritativeXML)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    return data
+
+writeFileStructureTest(
+    identifier="metadatadisplay-authoritative-001",
+    title="Metadata Out of Sync With name Table",
+    assertion="The name table and metadata fields are out of sync. The name table contains FAIL and the metadata contains PASS for unique id, vendor name, vendor url, credit name, credit url, description, license, license url, copyright and trademark.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    metadataIsValid=True,
+    metadataToDisplay=metadataAuthoritativeXML,
+    specLink="#conform-metadata-authoritative",
+    data=makeMetadataAuthoritativeTest1(),
+    extraMetadataNotes=["The Extended Metadata Block test fails if the word FAIL appears in the metadata display."]
 )
 
 ## --------------------------------------

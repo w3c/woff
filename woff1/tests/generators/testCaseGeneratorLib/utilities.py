@@ -46,4 +46,6 @@ def stripMetadata(metadata):
     Strip leading and trailing whitespace from each line in the metadata.
     This is needed because of the indenting in the test case generation functions.
     """
+    metadata = metadata.strip()
+    metadata = metadata.replace("    ", "\t")
     return "\n".join([line.strip() for line in metadata.splitlines()])
