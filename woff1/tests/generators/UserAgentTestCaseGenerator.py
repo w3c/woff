@@ -537,6 +537,50 @@ writeFileStructureTest(
     data=makeHeaderInvalidReserved1()
 )
 
+# ---------------------------------------
+# File Structure: Invalid: metaOrigLength
+# ---------------------------------------
+
+## <
+#
+#def makeMetadataCompressionTest1():
+#    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+#    metaLength = header["metaLength"]
+#    metaOrigLength += 1
+#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+#    return data
+#
+#writeFileStructureTest(
+#    identifier="header-metaOrigLength-001",
+#    title="Decompressed Metadata Length Less Than metaOrigLength",
+#    assertion="The metadata decompressed to a length that is 1 byte smaller than the length defined in metaOrigLength",
+#    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+#    shouldDisplaySFNT=False,
+#    metadataIsValid=False,
+#    specLink="#conform-diroverlap-reject",
+#    data=makeTableDataByteRange5()
+#)
+#
+## >
+#
+#def makeMetadataCompressionTest1():
+#    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+#    metaLength = header["metaLength"]
+#    metaOrigLength -= 1
+#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+#    return data
+#
+#writeFileStructureTest(
+#    identifier="header-metaOrigLength-002",
+#    title="Decompressed Metadata Length Greater Than metaOrigLength",
+#    assertion="The metadata decompressed to a length that is 1 byte greater than the length defined in metaOrigLength",
+#    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+#    shouldDisplaySFNT=False,
+#    metadataIsValid=False,
+#    specLink="#conform-diroverlap-reject",
+#    data=makeTableDataByteRange5()
+#)
+
 # --------------------------------------------
 # File Structure: Data Blocks: Extraneous Data
 # --------------------------------------------
@@ -1344,30 +1388,6 @@ writeFileStructureTest(
     data=makePrivateDataNoEffect2()
 )
 
-## --------------------------------------
-## Metadata Display: Invalid: Compression
-## --------------------------------------
-#
-#def makeMetadataCompressionTest1():
-#    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-#    metaLength = header["metaLength"]
-#    metaOrigLength = header["metaOrigLength"]
-#    assert metaOrigLength > metaLength
-#    header["metaLength"] = metaOrigLength
-#    header["length"] += metaOrigLength - metaLength
-#    origMetadata, compMetadata = metadata
-#    metadata = (origMetadata, origMetadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Compression 1",
-#    assertion="Metadata is not compressed.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-invalid-mustignore",
-#    data=makeMetadataCompressionTest1()
-#)
-#
 ## --------------------------------------
 ## Metadata Display: Invalid: Well-Formed
 ## --------------------------------------
