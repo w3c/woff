@@ -1129,15 +1129,11 @@ writeFileStructureTest(
 def makeTableDataOriginalLength1():
     header, directory, tableData = defaultTestData()
     shift = 4
-    haveBogusEntry = False
-    for entry in directory:
-        if entry["compLength"] < entry["origLength"]:
-            if entry["origLength"] - shift <= entry["compLength"]:
-                continue
-            entry["origLength"] -= shift
-            haveBogusEntry = True
-            break
-    assert haveBogusEntry
+    cff = tableData["CFF "]
+    cffEntry = [entry for entry in directory if entry["tag"] == "CFF "][0]
+    assert cffEntry["compLength"] < cffEntry["origLength"]
+    assert cffEntry["origLength"] - shift > entry["compLength"]
+    cffEntry["origLength"] -= shift
     header["totalSfntSize"] -= shift
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
     return data
@@ -1145,7 +1141,7 @@ def makeTableDataOriginalLength1():
 writeFileStructureTest(
     identifier="directory-origLength-001",
     title="Original Length Less Than Decompressed Length",
-    assertion="One table has table that when decompressed has a length that is four bytes longer than the value listed in origLength.",
+    assertion="The CFF table when decompressed has a length that is four bytes longer than the value listed in origLength.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
     data=makeTableDataOriginalLength1()
@@ -1156,21 +1152,18 @@ writeFileStructureTest(
 def makeTableDataOriginalLength2():
     header, directory, tableData = defaultTestData()
     shift = 4
-    haveBogusEntry = False
-    for entry in directory:
-        if entry["compLength"] < entry["origLength"]:
-            entry["origLength"] += 4
-            haveBogusEntry = True
-            break
-    assert haveBogusEntry
-    header["totalSfntSize"] += 4
+    cff = tableData["CFF "]
+    cffEntry = [entry for entry in directory if entry["tag"] == "CFF "][0]
+    assert cffEntry["compLength"] < cffEntry["origLength"]
+    cffEntry["origLength"] += shift
+    header["totalSfntSize"] += shift
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
     return data
 
 writeFileStructureTest(
     identifier="directory-origLength-002",
     title="Original Length Greater Than Decompressed Length",
-    assertion="One table has table that when decompressed has a length that is four bytes shorter than the value listed in origLength.",
+    assertion="The CFF table when decompressed has a length that is four bytes shorter than the value listed in origLength.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
     data=makeTableDataOriginalLength2()
