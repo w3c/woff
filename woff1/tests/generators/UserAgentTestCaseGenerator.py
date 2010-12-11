@@ -442,31 +442,20 @@ writeFileStructureTest(
 # File Structure: Header: numTables
 # ---------------------------------
 
-#def makeHeaderInvalidNumTables1():
-#    header, directory, tableData = defaultTestData()
-#    header["numTables"] = 0
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-#    return data
-#
-#writeFileStructureTest(
-#    title="Header Number of Tables 1",
-#    assertion="Header contains 0 for the number of tables.",
-#    shouldDisplaySFNT=False,
-#    data=makeHeaderInvalidNumTables1()
-#)
-#
-#def makeHeaderInvalidNumTables2():
-#    header, directory, tableData = defaultTestData()
-#    header["numTables"] += 1
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-#    return data
-#
-#writeFileStructureTest(
-#    title="Header Number of Tables 2",
-#    assertion="Header contains one more table defined in the number of tables than is packed.",
-#    shouldDisplaySFNT=False,
-#    data=makeHeaderInvalidNumTables2()
-#)
+def makeHeaderInvalidNumTables1():
+    header, directory, tableData = defaultTestData()
+    header["numTables"] = 0
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeFileStructureTest(
+    identifier="header-numTables-001",
+    title="Header Number of Tables Set to Zero",
+    assertion="The header contains 0 in the numTables field. A table directory and table data are present.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=False,
+    data=makeHeaderInvalidNumTables1()
+)
 
 # -------------------------------------
 # File Structure: Header: totalSfntSize

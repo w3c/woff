@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (161 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (162 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -99,6 +99,12 @@
 					<td><a href="header-length-002-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Header Length Too Long<ul class="assert"><li>The length field contains a value that is four bytes longer than the actual data.</li></ul></td>
+				</tr>
+				<tr id="header-numTables-001" class="primary font">
+					<td><strong><a href="header-numTables-001.xht">header-numTables-001</a></strong></td>
+					<td><a href="header-numTables-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Header Number of Tables Set to Zero<ul class="assert"><li>The header contains 0 in the numTables field. A table directory and table data are present.</li></ul></td>
 				</tr>
 				<tr id="header-totalSfntSize-001" class="primary font">
 					<td><strong><a href="header-totalSfntSize-001.xht">header-totalSfntSize-001</a></strong></td>
