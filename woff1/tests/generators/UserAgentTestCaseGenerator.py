@@ -1709,82 +1709,110 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
-## -------------------------------------------
-## Metadata Display: Schema Validity: metadata
-## -------------------------------------------
-#
-#def makeMetadataElementTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <notmetadata>
-#    </notmetadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Element Missing 1",
-#    assertion="No metadata element.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataElementTest1()
-#)
-#
-## ------------------------------------------
-## Metadata Display: Schema Validity: version
-## ------------------------------------------
-#
-## missing
-#
-#def makeMetadataVersionTest1():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata>
-#        <uniqueid id="org.w3.webfonts.wofftest" />
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Version Attribute Missing 1",
-#    assertion="Metadata element does not contain version attribute.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataVersionTest1()
-#)
-#
-## not 1.0
-#
-#def makeMetadataVersionTest2():
-#    metadata = """
-#    <?xml version="1.0" encoding="UTF-8"?>
-#    <metadata version="10.0">
-#        <uniqueid id="org.w3.webfonts.wofftest" />
-#    </metadata>
-#    """.strip()
-#    metadata = stripMetadata(metadata)
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Version Attribute Missing 2",
-#    assertion="Metadata element contains version attribute with a value other than 1.0. *** Is this a requirement?",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-metadata-schemavalid",
-#    data=makeMetadataVersionTest2()
-#)
+# -------------------------------------------
+# Metadata Display: Schema Validity: metadata
+# -------------------------------------------
+
+# valid
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-metadata-001",
+    title="Valid metadata Element",
+    assertion="The metadata element matches the schema.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# missing version
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-metadata-002",
+    title="No version Attribute in metadata Element",
+    assertion="The metadata element does not contain the required version attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# invalid version
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="ABC">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-metadata-003",
+    title="Invalid version Attribute Value in metadata Element",
+    assertion="The metadata element version attribute is set to 'ABC'.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown attribute
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0" unknownattribute="Text">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-metadata-004",
+    title="Unknown Attrbute in metadata Element",
+    assertion="The metadata element contains an unknown attribute.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <unknown attribute="Text" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-metadata-005",
+    title="Unknown Child Element metadata Element",
+    assertion="The metadata element contains an unknown child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#Metadata",
+    metadataIsValid=False,
+    metadata=m
+)
 
 # -------------------------------------------
 # Metadata Display: Schema Validity: uniqueid
 # -------------------------------------------
 
-# duplicate
+# valid
 
 m = """
 <?xml version="1.0" encoding="UTF-8"?>

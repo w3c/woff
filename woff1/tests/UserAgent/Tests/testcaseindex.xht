@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (174 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (179 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -423,6 +423,36 @@
 					<td><a href="metadatadisplay-encoding-003-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Invalid Encoding<ul class="assert"><li>The xml encoding is set to ISO-8859-1.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-metadata-001" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-metadata-001.xht">metadatadisplay-schema-metadata-001</a></strong></td>
+					<td><a href="metadatadisplay-schema-metadata-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Valid metadata Element<ul class="assert"><li>The metadata element matches the schema.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-metadata-002" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-metadata-002.xht">metadatadisplay-schema-metadata-002</a></strong></td>
+					<td><a href="metadatadisplay-schema-metadata-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>No version Attribute in metadata Element<ul class="assert"><li>The metadata element does not contain the required version attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-metadata-003" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-metadata-003.xht">metadatadisplay-schema-metadata-003</a></strong></td>
+					<td><a href="metadatadisplay-schema-metadata-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Invalid version Attribute Value in metadata Element<ul class="assert"><li>The metadata element version attribute is set to 'ABC'.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-metadata-004" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-metadata-004.xht">metadatadisplay-schema-metadata-004</a></strong></td>
+					<td><a href="metadatadisplay-schema-metadata-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Attrbute in metadata Element<ul class="assert"><li>The metadata element contains an unknown attribute.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-schema-metadata-005" class="primary font">
+					<td><strong><a href="metadatadisplay-schema-metadata-005.xht">metadatadisplay-schema-metadata-005</a></strong></td>
+					<td><a href="metadatadisplay-schema-metadata-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Child Element metadata Element<ul class="assert"><li>The metadata element contains an unknown child element.</li></ul></td>
 				</tr>
 				<tr id="metadatadisplay-schema-uniqueid-001" class="primary font">
 					<td><strong><a href="metadatadisplay-schema-uniqueid-001.xht">metadatadisplay-schema-uniqueid-001</a></strong></td>
