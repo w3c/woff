@@ -1624,24 +1624,67 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
-## -----------------------------------
-## Metadata Display: Invalid: Encoding
-## -----------------------------------
-#
-#def makeMetadataEncodingTest1():
-#    metadata = testDataWOFFMetadata.replace("encoding=\"UTF-8\"", "encoding=\"ISO-8859-1\"")
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Encoding 1",
-#    assertion="Metadata is not encoded with UTF-8 or UTF-16.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-invalid-mustignore",
-#    data=makeMetadataEncodingTest1()
-#)
-#
+# --------------------------
+# Metadata Display: Encoding
+# --------------------------
+
+# UTF-8
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-encoding-001",
+    title="UTF-8 Encoding",
+    assertion="The xml encoding is set to UTF-8.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# UTF-16
+
+m = """
+<?xml version="1.0" encoding="UTF-16"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+""".strip().replace("    ", "\t").encode("utf-16")
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-encoding-002",
+    title="UTF-16 Encoding",
+    assertion="The xml encoding is set to UTF-16.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=True,
+    metadata=m
+)
+
+# Invalid
+
+m = """
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-encoding-003",
+    title="Invalid Encoding",
+    assertion="The xml encoding is set to ISO-8859-1.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
 ## -------------------------------------------
 ## Metadata Display: Schema Validity: metadata
 ## -------------------------------------------
