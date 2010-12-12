@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (163 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (170 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -357,6 +357,48 @@
 					<td><a href="metadatadisplay-authoritative-001-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Metadata Out of Sync With name Table<ul class="assert"><li>The name table and metadata fields are out of sync. The name table contains FAIL and the metadata contains PASS for unique id, vendor name, vendor url, credit name, credit url, description, license, license url, copyright and trademark.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-well-formed-001" class="primary font">
+					<td><strong><a href="metadatadisplay-well-formed-001.xht">metadatadisplay-well-formed-001</a></strong></td>
+					<td><a href="metadatadisplay-well-formed-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unescaped &lt; in Content<ul class="assert"><li>The text element in the description element contains an unescaped &lt;.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-well-formed-002" class="primary font">
+					<td><strong><a href="metadatadisplay-well-formed-002.xht">metadatadisplay-well-formed-002</a></strong></td>
+					<td><a href="metadatadisplay-well-formed-002-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unescaped &amp; in Content<ul class="assert"><li>The text element in the description element contains an unescaped &amp;.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-well-formed-003" class="primary font">
+					<td><strong><a href="metadatadisplay-well-formed-003.xht">metadatadisplay-well-formed-003</a></strong></td>
+					<td><a href="metadatadisplay-well-formed-003-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Mismatched Element Tags<ul class="assert"><li>One element begins with &lt;description&gt; but ends with &lt;/mismatch&gt;.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-well-formed-004" class="primary font">
+					<td><strong><a href="metadatadisplay-well-formed-004.xht">metadatadisplay-well-formed-004</a></strong></td>
+					<td><a href="metadatadisplay-well-formed-004-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unclosed Element Tag<ul class="assert"><li>The text element element in the description element is not closed.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-well-formed-005" class="primary font">
+					<td><strong><a href="metadatadisplay-well-formed-005.xht">metadatadisplay-well-formed-005</a></strong></td>
+					<td><a href="metadatadisplay-well-formed-005-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Case Mismatch in Element Tags<ul class="assert"><li>The &lt;description&gt; element is closed with &lt;DESCRIPTION&gt;.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-well-formed-006" class="primary font">
+					<td><strong><a href="metadatadisplay-well-formed-006.xht">metadatadisplay-well-formed-006</a></strong></td>
+					<td><a href="metadatadisplay-well-formed-006-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>More Than One Root Element<ul class="assert"><li>The metadata root element occurs twice.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-well-formed-007" class="primary font">
+					<td><strong><a href="metadatadisplay-well-formed-007.xht">metadatadisplay-well-formed-007</a></strong></td>
+					<td><a href="metadatadisplay-well-formed-007-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Unknown Encoding<ul class="assert"><li>The xml encoding is set to 'VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING'.</li></ul></td>
 				</tr>
 				<tr id="metadatadisplay-schema-uniqueid-001" class="primary font">
 					<td><strong><a href="metadatadisplay-schema-uniqueid-001.xht">metadatadisplay-schema-uniqueid-001</a></strong></td>

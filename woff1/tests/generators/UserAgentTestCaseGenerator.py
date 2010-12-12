@@ -372,40 +372,6 @@ writeFileStructureTest(
     data=makeHeaderInvalidSignature1()
 )
 
-## ------------------------------
-## File Structure: Header: flavor
-## ------------------------------
-#
-#def makeHeaderInvalidFlavor2():
-#    header, directory, tableData = defaultTestData(flavor="cff")
-#    header["flavor"] = "\000\001\000\000"
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-#    return data
-#
-#writeFileStructureTest(
-#    identifier="header-flavor-002",
-#    title="Header Flavor 2",
-#    assertion="Header flavor is 0x00010000 but the SFNT data contains a CFF table.",
-#    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-#    shouldDisplaySFNT=False,
-#    data=makeHeaderInvalidFlavor2()
-#)
-#
-#def makeHeaderInvalidFlavor3():
-#    header, directory, tableData = defaultTestData(flavor="ttf")
-#    header["flavor"] = "OTTO"
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-#    return data
-#
-#writeFileStructureTest(
-#    identifier="header-flavor-003",
-#    title="Header Flavor 3",
-#    assertion="Header flavor is OTTO but the SFNT data does not a CFF table.",
-#    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-#    shouldDisplaySFNT=False,
-#    data=makeHeaderInvalidFlavor3()
-#)
-
 # ------------------------------
 # File Structure: Header: length
 # ------------------------------
@@ -1487,26 +1453,177 @@ writeFileStructureTest(
     extraMetadataNotes=["The Extended Metadata Block test fails if the word FAIL appears in the metadata display."]
 )
 
-## --------------------------------------
-## Metadata Display: Invalid: Well-Formed
-## --------------------------------------
-#
-#def makeMetadataWellFormedTest1():
-#    # strip off the closing >
-#    metadata = testDataWOFFMetadata[:-1]
-#    assert metadata[-1] != ">"
-#    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#registerMetadataDisplayTest(
-#    title="Metadata Well-Formed 1",
-#    assertion="Metadata is not well-formed.",
-#    shouldDisplayMetadata=False,
-#    specLink="#conform-invalid-mustignore",
-#    data=makeMetadataWellFormedTest1()
-#)
-#
+# --------------------------------------
+# Metadata Display: Invalid: Well-Formed
+# --------------------------------------
+
+# <
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text < text.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-well-formed-001",
+    title="Unescaped < in Content",
+    assertion="The text element in the description element contains an unescaped <.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# &
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text & text.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-well-formed-002",
+    title="Unescaped & in Content",
+    assertion="The text element in the description element contains an unescaped &.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# mismatched elements
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text.
+        </text>
+    </mismatch>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-well-formed-003",
+    title="Mismatched Element Tags",
+    assertion="One element begins with <description> but ends with </mismatch>.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unclosed element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text.
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-well-formed-004",
+    title="Unclosed Element Tag",
+    assertion="The text element element in the description element is not closed.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# case mismatch
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text.
+        </text>
+    </DESCRIPTION>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-well-formed-005",
+    title="Case Mismatch in Element Tags",
+    assertion="The <description> element is closed with <DESCRIPTION>.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# more than one root
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text.
+        </text>
+    </description>
+</metadata>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-well-formed-006",
+    title="More Than One Root Element",
+    assertion="The metadata root element occurs twice.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
+# unknown encoding
+
+m = """
+<?xml version="1.0" encoding="VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING"?>
+<metadata version="1.0">
+    <description>
+        <text>
+            Text.
+        </text>
+    </description>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-well-formed-007",
+    title="Unknown Encoding",
+    assertion="The xml encoding is set to 'VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING'.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+    metadata=m
+)
+
 ## -----------------------------------
 ## Metadata Display: Invalid: Encoding
 ## -----------------------------------

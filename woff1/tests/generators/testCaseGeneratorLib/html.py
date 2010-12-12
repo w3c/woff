@@ -71,7 +71,7 @@ def _generateSFNTDisplayTestHTML(
     s = "\t\t<meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"/>"
     html.append(s)
     ## title
-    s = "\t\t<title>WOFF Test: %s</title>" % title
+    s = "\t\t<title>WOFF Test: %s</title>" % cgi.escape(title)
     html.append(s)
     ## author
     for credit in credits:
@@ -91,7 +91,7 @@ def _generateSFNTDisplayTestHTML(
         s = "\t\t<meta name=\"flags\" content=\"%s\" />" % " ".join(flags)
         html.append(s)
     ## assertion
-    s = "\t\t<meta name=\"assert\" content=\"%s\" />" % assertion
+    s = "\t\t<meta name=\"assert\" content=\"%s\" />" % cgi.escape(assertion)
     html.append(s)
     ## css
     html.append("\t\t<style type=\"text/css\"><![CDATA[")
@@ -109,7 +109,7 @@ def _generateSFNTDisplayTestHTML(
     s = "\t\t<p>Test passes if the word PASS appears below.</p>"
     html.append(s)
     for note in extraSFNTNotes:
-        s = "\t\t<p>%s</p>" % note
+        s = "\t\t<p>%s</p>" % cgi.escape(note)
         html.append(s)
     ## test case
     s = "\t\t<div class=\"test\">%s</div>" % bodyCharacter
@@ -122,7 +122,7 @@ def _generateSFNTDisplayTestHTML(
             s = "\t\t<p>The Extended Metadata Block is not valid and must not be displayed.</p>"
         html.append(s)
     for note in extraMetadataNotes:
-        s = "\t\t<p>%s</p>" % note
+        s = "\t\t<p>%s</p>" % cgi.escape(note)
         html.append(s)
     if metadataToDisplay:
         s = "\t\t<p>The XML contained in the Extended Metadata Block is below.</p>"
@@ -220,9 +220,9 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
         html.append("\t\t\t\t<tr><th colspan=\"4\" scope=\"rowgroup\">")
         html.append("\t\t\t\t\t<a href=\"#%s\">+</a>" % id)
         if url is None:
-            html.append("\t\t\t\t\t%s" % title)
+            html.append("\t\t\t\t\t%s" % cgi.escape(title))
         else:
-            html.append("\t\t\t\t\t<a href=\"%s\">%s</a>" % (url, title))
+            html.append("\t\t\t\t\t<a href=\"%s\">%s</a>" % (url, cgi.escape(title)))
         html.append("\t\t\t\t</th></tr>")
         # write the individual test cases
         for test in group["testCases"]:
@@ -249,7 +249,7 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
                     line.append("</td>")
                 html.append("".join(line))
             # assertion
-            html.append("\t\t\t\t\t<td>%s<ul class=\"assert\"><li>%s</li></ul></td>" % (title, assertion))
+            html.append("\t\t\t\t\t<td>%s<ul class=\"assert\"><li>%s</li></ul></td>" % (cgi.escape(title), cgi.escape(assertion)))
             # end the row
             html.append("\t\t\t\t</tr>")
         html.append("\t\t\t</tbody>")
