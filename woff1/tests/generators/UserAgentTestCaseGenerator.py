@@ -1453,9 +1453,33 @@ writeFileStructureTest(
     extraMetadataNotes=["The Extended Metadata Block test fails if the word FAIL appears in the metadata display."]
 )
 
-# --------------------------------------
-# Metadata Display: Invalid: Well-Formed
-# --------------------------------------
+# -----------------------------
+# Metadata Display: Compression
+# -----------------------------
+
+def makeMetadataCompression1():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    metadata = metadata[0], metadata[0]
+    diff = header["metaOrigLength"] - header["metaLength"]
+    header["length"] += diff
+    header["metaLength"] = header["metaOrigLength"]
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    return data
+
+writeFileStructureTest(
+    identifier="metadatadisplay-compression-001",
+    title="Metadata Invalid Compression",
+    assertion="The metadata is stored in an uncompressed state and therefore does not have the proper compression format.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    metadataIsValid=False,
+    specLink="#conform-invalid-mustignore",
+    data=makeMetadataCompression1(),
+)
+
+# -----------------------------
+# Metadata Display: Well-Formed
+# -----------------------------
 
 # <
 

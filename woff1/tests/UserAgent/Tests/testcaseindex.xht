@@ -10,7 +10,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (173 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (174 tests)</h1>
 		<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>		<table width="100%">
 			<col id="test-column"></col>
 			<col id="flags-column"></col>
@@ -357,6 +357,12 @@
 					<td><a href="metadatadisplay-authoritative-001-ref.xht">=</a></td>
 					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
 					<td>Metadata Out of Sync With name Table<ul class="assert"><li>The name table and metadata fields are out of sync. The name table contains FAIL and the metadata contains PASS for unique id, vendor name, vendor url, credit name, credit url, description, license, license url, copyright and trademark.</li></ul></td>
+				</tr>
+				<tr id="metadatadisplay-compression-001" class="primary font">
+					<td><strong><a href="metadatadisplay-compression-001.xht">metadatadisplay-compression-001</a></strong></td>
+					<td><a href="metadatadisplay-compression-001-ref.xht">=</a></td>
+					<td><abbr class="font" title="Requires Special Font">Font</abbr></td>
+					<td>Metadata Invalid Compression<ul class="assert"><li>The metadata is stored in an uncompressed state and therefore does not have the proper compression format.</li></ul></td>
 				</tr>
 				<tr id="metadatadisplay-well-formed-001" class="primary font">
 					<td><strong><a href="metadatadisplay-well-formed-001.xht">metadatadisplay-well-formed-001</a></strong></td>
