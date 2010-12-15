@@ -50,7 +50,7 @@ pre {
 def _generateSFNTDisplayTestHTML(
     css, bodyCharacter,
     fileName=None, flavor=None,
-    title=None, specLink=None, assertion=None,
+    title=None, specLinks=[], assertion=None,
     credits=[], flags=[],
     metadataIsValid=None,
     metadataToDisplay=None,
@@ -59,7 +59,7 @@ def _generateSFNTDisplayTestHTML(
     ):
     assert flavor is not None
     assert title is not None
-    assert specLink is not None
+    assert specLinks
     assert assertion is not None
     html = [
         "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">",
@@ -84,8 +84,9 @@ def _generateSFNTDisplayTestHTML(
             s += " <!-- %s -->" % date
         html.append(s)
     ## link
-    s = "\t\t<link rel=\"help\" href=\"%s\" />" % specLink
-    html.append(s)
+    for link in specLinks:
+        s = "\t\t<link rel=\"help\" href=\"%s\" />" % link
+        html.append(s)
     ## flags
     if flags:
         s = "\t\t<meta name=\"flags\" content=\"%s\" />" % " ".join(flags)
@@ -138,15 +139,18 @@ def _generateSFNTDisplayTestHTML(
     html = "\n".join(html)
     return html
 
-def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
+def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
     bodyCharacter = testFailCharacter
     if shouldDisplay:
         bodyCharacter = testPassCharacter
     css = testCSS % (fileName, flavor)
+    specLinks = [i for i in (sfntDisplaySpecLink, metadataDisplaySpecLink) if i is not None]
     html = _generateSFNTDisplayTestHTML(
         css, bodyCharacter,
         fileName=fileName, flavor=flavor,
-        title=title, specLink=specLink, assertion=assertion,
+        title=title,
+        specLinks=specLinks,
+        assertion=assertion,
         credits=credits, flags=flags,
         metadataIsValid=metadataIsValid,
         metadataToDisplay=metadataToDisplay,
@@ -159,13 +163,16 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
     f.write(html)
     f.close()
 
-def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, specLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
+def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
     bodyCharacter = refPassCharacter
     css = refCSS % flavor
+    specLinks = [i for i in (sfntDisplaySpecLink, metadataDisplaySpecLink) if i is not None]
     html = _generateSFNTDisplayTestHTML(
         css, bodyCharacter,
         fileName=fileName, flavor=flavor,
-        title=title, specLink=specLink, assertion=assertion,
+        title=title,
+        specLinks=specLinks,
+        assertion=assertion,
         credits=credits, flags=flags,
         metadataIsValid=metadataIsValid,
         metadataToDisplay=metadataToDisplay,
@@ -179,7 +186,6 @@ def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title
     f.close()
 
 def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
-    print "...need to properly link to CSS!"
     testCount = sum([len(group["testCases"]) for group in testCases])
     html = [
         "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">",
@@ -187,74 +193,88 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
         "\t<head>",
         "\t\t<title>WOFF: User Agent Test Suite</title>",
         "\t\t<style type=\"text/css\">",
-        "\t\t\t@import \"http://www.w3.org/StyleSheets/TR/base.css\";",
-        "\t\t\t/* XXX THIS SHOULD NOT IMPORT FROM A COMPLETELY DIFFERENT PROJECT! */",
-        "\t\t\t/* XXX THIS IS A TEMPORARY CONVENIENCE! */",
-        "\t\t\t@import \"http://test.csswg.org/suites/css2.1/20101027/indices.css\";",
+        "\t\t\t@import \"resources/sfntindex.css\";",
         "\t\t</style>",
         "\t</head>",
         "\t<body>",
         "\t\t<h1>WOFF: User Agent Test Suite (%d tests)</h1>" % testCount,
-        "\t\t<p>All of these tests require special fonts to be installed. The fonts can be obtained <a href=\"../FontsToInstall\">here</a>.</p>"
-        "\t\t<table width=\"100%\">",
-        "\t\t\t<col id=\"test-column\"></col>",
-        "\t\t\t<col id=\"flags-column\"></col>",
-        "\t\t\t<col id=\"info-column\"></col>",
-        "\t\t\t<thead>",
-        "\t\t\t\t<tr>",
-        "\t\t\t\t\t<th>Test</th>",
-        "\t\t\t\t\t<th><abbr title=\"Rendering References\">Refs</abbr></th>",
-        "\t\t\t\t\t<th>Flags</th>",
-        "\t\t\t\t\t<th>Info</th>",
-        "\t\t\t\t</tr>",
-        "\t\t\t</thead>",
+        "\t\t<p class=\"installFontsNote\">All of these tests require special fonts to be installed. The fonts can be obtained <a href=\"../FontsToInstall\">here</a>.</p>"
     ]
     # add the test groups
     for group in testCases:
         title = group["title"]
-        url = group["url"]
-        id = title.replace(" ", "")
-        # start a new body section
-        html.append("\t\t\t<tbody id=\"%s\">" % id)
+        title = cgi.escape(title)
         # write the group header
-        html.append("\t\t\t\t<tr><th colspan=\"4\" scope=\"rowgroup\">")
-        html.append("\t\t\t\t\t<a href=\"#%s\">+</a>" % id)
-        if url is None:
-            html.append("\t\t\t\t\t%s" % cgi.escape(title))
-        else:
-            html.append("\t\t\t\t\t<a href=\"%s\">%s</a>" % (url, cgi.escape(title)))
-        html.append("\t\t\t\t</th></tr>")
+        html.append("")
+        html.append("\t\t<h2 class=\"testCategory\">%s</h2>" % title)
         # write the individual test cases
         for test in group["testCases"]:
             identifier = test["identifier"]
-            flags = test["flags"]
             title = test["title"]
+            title = cgi.escape(title)
             assertion = test["assertion"]
-            # start the row
-            html.append("\t\t\t\t<tr id=\"%s\" class=\"primary %s\">" % (identifier, " ".join(flags)))
-            # identifier
-            html.append("\t\t\t\t\t<td><strong><a href=\"%s.xht\">%s</a></strong></td>" % (identifier, identifier))
-            # reference rendering
-            html.append("\t\t\t\t\t<td><a href=\"%s-ref.xht\">=</a></td>" % identifier)
-            # flags
-            if not flags:
-                html.append("\t\t\t\t\t<td></td>")
+            assertion = cgi.escape(assertion)
+            sfntExpectation = test["sfntExpectation"]
+            if sfntExpectation:
+                sfntExpectation = "Display"
             else:
-                line = ["\t\t\t\t\t<td>"]
-                for flag in flags:
-                    if flag == "font":
-                        line.append("<abbr class=\"font\" title=\"Requires Special Font\">Font</abbr>")
-                    else:
-                        raise NotImplementedError("Unknown flag: %s" % flag)
-                    line.append("</td>")
-                html.append("".join(line))
+                sfntExpectation = "Reject"
+            sfntURL = test["sfntURL"]
+            metadataExpectation = test["metadataExpectation"]
+            if metadataExpectation is None:
+                metadataExpectation = "None"
+            elif metadataExpectation:
+                metadataExpectation = "Display"
+            else:
+                metadataExpectation = "Reject"
+            metadataURL = test["metadataURL"]
+            # start the test case div
+            html.append("\t\t<div class=\"testCase\" id=\"%s\">" % identifier)
+            # start the overview div
+            html.append("\t\t\t<div class=\"testCaseOverview\">")
+            # title
+            html.append("\t\t\t\t<h3><a href=\"#%s\">%s</a>: %s</h3>" % (identifier, identifier, title))
             # assertion
-            html.append("\t\t\t\t\t<td>%s<ul class=\"assert\"><li>%s</li></ul></td>" % (cgi.escape(title), cgi.escape(assertion)))
-            # end the row
-            html.append("\t\t\t\t</tr>")
-        html.append("\t\t\t</tbody>")
-    # close the table
-    html.append("\t\t</table>",)
+            html.append("\t\t\t\t<p>%s</p>" % assertion)
+            # close the overview div
+            html.append("\t\t\t</div>")
+            # start the details div
+            html.append("\t\t\t<div class=\"testCaseDetails\">")
+            # start the pages div
+            html.append("\t\t\t\t<div class=\"testCasePages\">")
+            # test page
+            html.append("\t\t\t\t\t<p><a href=\"%s.xht\">Test</a></p>" % identifier)
+            # reference page
+            html.append("\t\t\t\t\t<p><a href=\"%s-ref.xht\">Reference Rendering</a></p>" % identifier)
+            # close the pages div
+            html.append("\t\t\t\t</div>")
+            # start the expectations div
+            html.append("\t\t\t\t<div class=\"testCaseExpectations\">")
+            # sfnt expectation
+            string = "SFNT Expectation: %s" % sfntExpectation
+            if sfntURL:
+                if "#" in sfntURL:
+                    s = "(%s)" % sfntURL.split("#")[-1]
+                else:
+                    s = "(documentation)"
+                string += " <a href=\"%s\">%s</a>" % (sfntURL, s)
+            html.append("\t\t\t\t\t<p>%s</p>" % string)
+            # metadata expectation
+            string = "Metadata Expectation: %s" % metadataExpectation
+            if metadataURL:
+                if "#" in metadataURL:
+                    s = "(%s)" % metadataURL.split("#")[-1]
+                else:
+                    s = "(documentation)"
+                string += " <a href=\"%s\">%s</a>" % (metadataURL, s)
+            html.append("\t\t\t\t\t<p>%s</p>" % string)
+            # close the expectations div
+            html.append("\t\t\t\t</div>")
+            # close the details div
+            html.append("\t\t\t</div>")
+            # close the test case div
+            html.append("\t\t</div>")
+            
     # close body
     html.append("\t</body>")
     # close html

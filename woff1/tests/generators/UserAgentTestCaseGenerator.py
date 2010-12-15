@@ -92,6 +92,18 @@ if os.path.exists(destPath):
     os.remove(destPath)
 shutil.copy(os.path.join(resourcesDirectory, "SFNT-TTF-Fallback.ttf"), os.path.join(destPath))
 
+# -------------------
+# Move HTML Resources
+# -------------------
+
+# index css
+destPath = os.path.join(userAgentTestResourcesDirectory, "sfntindex.css")
+print destPath
+if os.path.exists(destPath):
+    os.remove(destPath)
+shutil.copy(os.path.join(resourcesDirectory, "sfntindex.css"), os.path.join(destPath))
+
+
 # ---------------
 # Test Case Index
 # ---------------
@@ -123,14 +135,21 @@ for group in groupDefinitions:
 
 registeredIdentifiers = set()
 
-def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None, specLink=None, credits=[], flags=[], shouldDisplaySFNT=None, metadataIsValid=None, data=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
+def writeFileStructureTest(identifier, flavor="CFF",
+        title=None, assertion=None,
+        sfntDisplaySpecLink=None, metadataDisplaySpecLink=None,
+        credits=[], flags=[],
+        shouldDisplaySFNT=None, metadataIsValid=None,
+        data=None, metadataToDisplay=None,
+        extraSFNTNotes=[], extraMetadataNotes=[]
+        ):
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     registeredIdentifiers.add(identifier)
 
-    if specLink is None:
-        specLink = ""
-    specLink = specificationURL + specLink
+    if sfntDisplaySpecLink is None:
+        sfntDisplaySpecLink = ""
+    sfntDisplaySpecLink = specificationURL + sfntDisplaySpecLink
     flags = list(flags)
     flags += ["font"] # fonts must be installed for all of these tests
 
@@ -146,7 +165,8 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
         directory=userAgentTestDirectory,
         flavor=flavor,
         title=title,
-        specLink=specLink,
+        sfntDisplaySpecLink=sfntDisplaySpecLink,
+        metadataDisplaySpecLink=metadataDisplaySpecLink,
         assertion=assertion,
         credits=credits,
         flags=flags,
@@ -166,11 +186,15 @@ def writeFileStructureTest(identifier, flavor="CFF", title=None, assertion=None,
             identifier=identifier,
             flags=flags,
             title=title,
-            assertion=assertion
+            assertion=assertion,
+            sfntExpectation=shouldDisplaySFNT,
+            sfntURL=sfntDisplaySpecLink,
+            metadataURL=metadataDisplaySpecLink,
+            metadataExpectation=metadataIsValid,
         )
     )
 
-def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, credits=[], specLink=None, metadataIsValid=None, metadata=None):
+def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, credits=[], sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, metadataIsValid=None, metadata=None):
     """
     This is a convenience functon that eliminates the need to make a complete
     WOFF when only the metadata is being tested.
@@ -186,11 +210,19 @@ def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, cred
     header, directory, tableData, metadata = defaultTestData(metadata=metadata)
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
     # pass to the more verbose function
+    if metadataDisplaySpecLink is None:
+        if not metadataIsValid:
+            metadataDisplaySpecLink = "#conform-invalid-mustignore"
+        else:
+            metadataDisplaySpecLink = "#Metadata"
+    if sfntDisplaySpecLink is None:
+        sfntDisplaySpecLink = "#conform-metadata-noeffect"
     kwargs = dict(
         title=title,
         assertion=assertion,
         credits=credits,
-        specLink=specLink,
+        sfntDisplaySpecLink=sfntDisplaySpecLink,
+        metadataDisplaySpecLink=metadataDisplaySpecLink,
         shouldDisplaySFNT=True,
         metadataIsValid=metadataIsValid,
         data=data
@@ -235,7 +267,8 @@ writeFileStructureTest(
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF2(),
-    metadataToDisplay=testDataWOFFMetadata
+    metadataToDisplay=testDataWOFFMetadata,
+    metadataDisplaySpecLink="#conform-metadata-maydisplay"
 )
 
 def makeValidWOFF3():
@@ -265,7 +298,8 @@ writeFileStructureTest(
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF4(),
-    metadataToDisplay=testDataWOFFMetadata
+    metadataToDisplay=testDataWOFFMetadata,
+    metadataDisplaySpecLink="#conform-metadata-maydisplay"
 )
 
 # TTF
@@ -299,7 +333,8 @@ writeFileStructureTest(
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF6(),
-    metadataToDisplay=testDataWOFFMetadata
+    metadataToDisplay=testDataWOFFMetadata,
+    metadataDisplaySpecLink="#conform-metadata-maydisplay"
 )
 
 def makeValidWOFF7():
@@ -331,26 +366,9 @@ writeFileStructureTest(
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF8(),
-    metadataToDisplay=testDataWOFFMetadata
+    metadataToDisplay=testDataWOFFMetadata,
+    metadataDisplaySpecLink="#conform-metadata-maydisplay"
 )
-
-## ---------------------------------
-## File Structure: Header: Structure
-## ---------------------------------
-#
-#def makeHeaderInvalidStructure1():
-#    header, directory, tableData = defaultTestData()
-#    data = "\0" * len(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-#    return data
-#
-#writeFileStructureTest(
-#    identifier="header-structure-001",
-#    title="Header Structure 1",
-#    assertion="Header does not have the correct structure.",
-#    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-#    shouldDisplaySFNT=False,
-#    data=makeHeaderInvalidStructure1()
-#)
 
 # ---------------------------------
 # File Structure: Header: signature
@@ -368,7 +386,7 @@ writeFileStructureTest(
     assertion="The signature field contains XXXX instead of wOFF.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-nonmagicnumber-reject",
+    sfntDisplaySpecLink="#conform-nonmagicnumber-reject",
     data=makeHeaderInvalidSignature1()
 )
 
@@ -388,6 +406,7 @@ writeFileStructureTest(
     assertion="The length field contains a value that is four bytes shorter than the actual data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
+    sfntDisplaySpecLink="#WOFFHeader",
     data=makeHeaderInvalidLength1()
 )
 
@@ -403,6 +422,7 @@ writeFileStructureTest(
     assertion="The length field contains a value that is four bytes longer than the actual data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
+    sfntDisplaySpecLink="#WOFFHeader",
     data=makeHeaderInvalidLength2()
 )
 
@@ -422,6 +442,7 @@ writeFileStructureTest(
     assertion="The header contains 0 in the numTables field. A table directory and table data are present.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
+    sfntDisplaySpecLink="#WOFFHeader",
     data=makeHeaderInvalidNumTables1()
 )
 
@@ -449,7 +470,7 @@ writeFileStructureTest(
     assertion="The totalSfntSize field contains a value that is missing padding bytes between two tables.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-totalsize-longword-reject",
+    sfntDisplaySpecLink="#conform-totalsize-longword-reject",
     data=makeHeaderInvalidTotalSfntSize1()
 )
 
@@ -465,7 +486,7 @@ writeFileStructureTest(
     assertion="The totalSfntSize field contains a value that is is four bytes too long.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-totalsize-longword-reject",
+    sfntDisplaySpecLink="#conform-totalsize-longword-reject",
     data=makeHeaderInvalidTotalSfntSize2()
 )
 
@@ -481,7 +502,7 @@ writeFileStructureTest(
     assertion="The totalSfntSize field contains a value that is is four bytes too short.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-totalsize-longword-reject",
+    sfntDisplaySpecLink="#conform-totalsize-longword-reject",
     data=makeHeaderInvalidTotalSfntSize3()
 )
 
@@ -501,7 +522,7 @@ writeFileStructureTest(
     assertion="The reserved field contains 1.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-reserved-reject",
+    sfntDisplaySpecLink="#conform-reserved-reject",
     data=makeHeaderInvalidReserved1()
 )
 
@@ -525,7 +546,7 @@ writeFileStructureTest(
 #    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
 #    shouldDisplaySFNT=False,
 #    metadataIsValid=False,
-#    specLink="#conform-diroverlap-reject",
+#    sfntDisplaySpecLink="#conform-diroverlap-reject",
 #    data=makeTableDataByteRange5()
 #)
 #
@@ -545,7 +566,7 @@ writeFileStructureTest(
 #    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
 #    shouldDisplaySFNT=False,
 #    metadataIsValid=False,
-#    specLink="#conform-diroverlap-reject",
+#    sfntDisplaySpecLink="#conform-diroverlap-reject",
 #    data=makeTableDataByteRange5()
 #)
 
@@ -571,7 +592,7 @@ writeFileStructureTest(
     assertion="There are four null bytes between the table directory and the table data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData1()
 )
 
@@ -597,7 +618,7 @@ writeFileStructureTest(
     assertion="There are four null bytes between each of the table data blocks.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData2()
 )
 
@@ -617,7 +638,7 @@ writeFileStructureTest(
     assertion="There are four null bytes after the table data block and there is no metadata or private data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData3()
 )
 
@@ -638,7 +659,7 @@ writeFileStructureTest(
     assertion="There are four null bytes between the table data and the metadata.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData4()
 )
 
@@ -659,7 +680,7 @@ writeFileStructureTest(
     assertion="There are four null bytes between the table data and the private data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData5()
 )
 
@@ -680,7 +701,7 @@ writeFileStructureTest(
     assertion="There are four null bytes between the metadata and the private data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData6()
 )
 
@@ -700,7 +721,7 @@ writeFileStructureTest(
     assertion="There are four null bytes after the metadata and there is no private data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData7()
 )
 
@@ -720,7 +741,7 @@ writeFileStructureTest(
     assertion="There are four null bytes after the private data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-extraneous-reject",
+    sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData8()
 )
 
@@ -753,7 +774,7 @@ writeFileStructureTest(
     assertion="The second table's offset is four bytes before the end of the first table's data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-overlap-reject",
+    sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData1()
 )
 
@@ -773,7 +794,7 @@ writeFileStructureTest(
     assertion="The metadata offset is four bytes before the end of the table data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-overlap-reject",
+    sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData2()
 )
 
@@ -793,7 +814,7 @@ writeFileStructureTest(
     assertion="The private data offset is four bytes before the end of the table data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-overlap-reject",
+    sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData3()
 )
 
@@ -813,7 +834,7 @@ writeFileStructureTest(
     assertion="The private data offset is four bytes before the end of the metadata.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-overlap-reject",
+    sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData4()
 )
 
@@ -868,7 +889,7 @@ writeFileStructureTest(
     assertion="Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-tablesize-longword",
+    sfntDisplaySpecLink="#conform-tablesize-longword",
     data=makeTableData4Byte1()
 )
 
@@ -904,7 +925,7 @@ writeFileStructureTest(
     assertion="The final table in the table data block is not padded to a 4-byte boundary.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-tablesize-longword",
+    sfntDisplaySpecLink="#conform-tablesize-longword",
     data=makeTableData4Byte2()
 )
 
@@ -926,7 +947,7 @@ writeFileStructureTest(
     assertion="The offset to the data block for the final table data is four bytes beyond the end of the file.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-diroverlap-reject",
+    sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange1()
 )
 
@@ -944,7 +965,7 @@ writeFileStructureTest(
     assertion="The defined length for the final table causes the data block to be four bytes beyond the end of the file.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-diroverlap-reject",
+    sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange2()
 )
 
@@ -981,7 +1002,7 @@ writeFileStructureTest(
     assertion="The final table starts four bytes after the start of the metadata. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length) will not match the stored length in the header.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-diroverlap-reject",
+    sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange3()
 )
 
@@ -1018,7 +1039,7 @@ writeFileStructureTest(
     assertion="The final table starts four bytes after the start of the private data. This will fail for another reason: the calculated length (header length + directory length + entry lengths + private data length) will not match the stored length in the header.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-diroverlap-reject",
+    sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange4()
 )
 
@@ -1053,7 +1074,7 @@ writeFileStructureTest(
     assertion="The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-diroverlap-reject",
+    sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange5()
 )
 
@@ -1084,7 +1105,7 @@ writeFileStructureTest(
     assertion="At least one table's compLength is larger than the origLength.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-compressedlarger",
+    sfntDisplaySpecLink="#conform-compressedlarger",
     data=makeTableDataCompressionLength1()
 )
 
@@ -1112,6 +1133,7 @@ writeFileStructureTest(
     assertion="The CFF table when decompressed has a length that is four bytes longer than the value listed in origLength.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
+    sfntDisplaySpecLink="#NeedTestableAssertionLink",
     data=makeTableDataOriginalLength1()
 )
 
@@ -1134,6 +1156,7 @@ writeFileStructureTest(
     assertion="The CFF table when decompressed has a length that is four bytes shorter than the value listed in origLength.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
+    sfntDisplaySpecLink="#NeedTestableAssertionLink",
     data=makeTableDataOriginalLength2()
 )
 
@@ -1157,7 +1180,7 @@ writeFileStructureTest(
     assertion="None of the tables are stored in compressed form.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-mustuncompress",
+    sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest1()
 )
 
@@ -1181,7 +1204,7 @@ writeFileStructureTest(
     assertion="All of the tables that will be smaller when compressed are stored in their compressed state.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-mustuncompress",
+    sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest2()
 )
 
@@ -1207,7 +1230,7 @@ writeFileStructureTest(
     assertion="Only one of the tables that would be smaller when compressed is stored in the compressed state.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-mustuncompress",
+    sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest3()
 )
 
@@ -1239,7 +1262,7 @@ writeFileStructureTest(
     assertion="The font data tables are compressed using at least two different levels.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-mustuncompress",
+    sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest4()
 )
 
@@ -1269,7 +1292,7 @@ writeFileStructureTest(
     assertion="One compressed table has had its compressed data replaced with \\01 making it incompatible with zlib.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    specLink="#conform-mustzlib",
+    sfntDisplaySpecLink="#conform-mustzlib",
     data=makeTableZlibCompressionTest1()
 )
 
@@ -1290,7 +1313,7 @@ writeFileStructureTest(
     assertion="The file has no metadata.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-metadata-noeffect",
+    sfntDisplaySpecLink="#conform-metadata-noeffect",
     data=makeMetadataNoEffect1()
 )
 
@@ -1307,7 +1330,9 @@ writeFileStructureTest(
     assertion="The file has metadata.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-metadata-noeffect",
+    sfntDisplaySpecLink="#conform-metadata-noeffect",
+    metadataIsValid=True,
+    metadataDisplaySpecLink="#conform-metadata-maydisplay",
     data=makeMetadataNoEffect2()
 )
 
@@ -1328,7 +1353,7 @@ writeFileStructureTest(
     assertion="The file has no private data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-private-noeffect",
+    sfntDisplaySpecLink="#conform-private-noeffect",
     data=makePrivateDataNoEffect1()
 )
 
@@ -1345,7 +1370,7 @@ writeFileStructureTest(
     assertion="The file has private data.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
-    specLink="#conform-private-noeffect",
+    sfntDisplaySpecLink="#conform-private-noeffect",
     data=makePrivateDataNoEffect2()
 )
 
@@ -1448,7 +1473,7 @@ writeFileStructureTest(
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     metadataToDisplay=metadataAuthoritativeXML,
-    specLink="#conform-metadata-authoritative",
+    metadataDisplaySpecLink="#conform-metadata-authoritative",
     data=makeMetadataAuthoritativeTest1(),
     extraMetadataNotes=["The Extended Metadata Block test fails if the word FAIL appears in the metadata display."]
 )
@@ -1473,7 +1498,7 @@ writeFileStructureTest(
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
     metadataIsValid=False,
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     data=makeMetadataCompression1(),
 )
 
@@ -1499,7 +1524,7 @@ writeMetadataSchemaValidityTest(
     title="Unescaped < in Content",
     assertion="The text element in the description element contains an unescaped <.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1522,7 +1547,7 @@ writeMetadataSchemaValidityTest(
     title="Unescaped & in Content",
     assertion="The text element in the description element contains an unescaped &.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1545,7 +1570,7 @@ writeMetadataSchemaValidityTest(
     title="Mismatched Element Tags",
     assertion="One element begins with <description> but ends with </mismatch>.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1567,7 +1592,7 @@ writeMetadataSchemaValidityTest(
     title="Unclosed Element Tag",
     assertion="The text element element in the description element is not closed.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1590,7 +1615,7 @@ writeMetadataSchemaValidityTest(
     title="Case Mismatch in Element Tags",
     assertion="The <description> element is closed with <DESCRIPTION>.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1620,7 +1645,7 @@ writeMetadataSchemaValidityTest(
     title="More Than One Root Element",
     assertion="The metadata root element occurs twice.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1643,7 +1668,7 @@ writeMetadataSchemaValidityTest(
     title="Unknown Encoding",
     assertion="The xml encoding is set to 'VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING'.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1666,7 +1691,6 @@ writeMetadataSchemaValidityTest(
     title="UTF-8 Encoding",
     assertion="The xml encoding is set to UTF-8.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
     metadataIsValid=True,
     metadata=m
 )
@@ -1685,7 +1709,6 @@ writeMetadataSchemaValidityTest(
     title="UTF-16 Encoding",
     assertion="The xml encoding is set to UTF-16.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
     metadataIsValid=True,
     metadata=m
 )
@@ -1704,7 +1727,7 @@ writeMetadataSchemaValidityTest(
     title="Invalid Encoding",
     assertion="The xml encoding is set to ISO-8859-1.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
     metadata=m
 )
@@ -1727,7 +1750,6 @@ writeMetadataSchemaValidityTest(
     title="Valid metadata Element",
     assertion="The metadata element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -1746,7 +1768,6 @@ writeMetadataSchemaValidityTest(
     title="No version Attribute in metadata Element",
     assertion="The metadata element does not contain the required version attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1765,7 +1786,6 @@ writeMetadataSchemaValidityTest(
     title="Invalid version Attribute Value in metadata Element",
     assertion="The metadata element version attribute is set to 'ABC'.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1784,7 +1804,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attrbute in metadata Element",
     assertion="The metadata element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1803,7 +1822,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element metadata Element",
     assertion="The metadata element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1826,7 +1844,6 @@ writeMetadataSchemaValidityTest(
     title="Valid uniqueid Element",
     assertion="The uniqueid element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -1844,7 +1861,6 @@ writeMetadataSchemaValidityTest(
     title="No uniqueid Element",
     assertion="The uniqueid element doesn't exist.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -1864,7 +1880,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One uniqueid Element",
     assertion="The uniqueid element occurs twice.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1883,7 +1898,7 @@ writeMetadataSchemaValidityTest(
     title="No id Attribute in uniqueid Element",
     assertion="The uniqueid element does not contain the required id attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-metadata-id-required",
+    metadataDisplaySpecLink="#conform-metadata-id-required",
     metadataIsValid=False,
     metadata=m
 )
@@ -1902,7 +1917,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in uniqueid Element",
     assertion="The uniqueid element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1923,7 +1937,6 @@ writeMetadataSchemaValidityTest(
     title="Child Element in uniqueid Element",
     assertion="The uniqueid element contains a child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1944,7 +1957,6 @@ writeMetadataSchemaValidityTest(
     title="Content in uniqueid Element",
     assertion="The uniqueid element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -1967,7 +1979,6 @@ writeMetadataSchemaValidityTest(
     title="Valid vendor Element",
     assertion="The vendor element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -1984,7 +1995,6 @@ writeMetadataSchemaValidityTest(
     title="Valid vendor Element Without url Attribute",
     assertion="The vendor element does not contain a url attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2002,7 +2012,6 @@ writeMetadataSchemaValidityTest(
     title="No vendor Element",
     assertion="The vendor element doesn't exist.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2022,7 +2031,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One vendor Element",
     assertion="The vendor element occurs twice.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2041,7 +2049,7 @@ writeMetadataSchemaValidityTest(
     title="No name Attribute in vendor Element",
     assertion="The vendor element does not contain the required name attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#conform-metadata-vendor-required",
+    metadataDisplaySpecLink="#conform-metadata-vendor-required",
     metadataIsValid=False,
     metadata=m
 )
@@ -2060,7 +2068,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in vendor Element",
     assertion="The vendor element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2081,7 +2088,6 @@ writeMetadataSchemaValidityTest(
     title="Child Element in vendor Element",
     assertion="The vendor element contains a child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2102,7 +2108,6 @@ writeMetadataSchemaValidityTest(
     title="Content in vendor Element",
     assertion="The vendor element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2127,7 +2132,6 @@ writeMetadataSchemaValidityTest(
     title="Valid credits Element With Single credit Element",
     assertion="The credits element matches the schema and it contains one credit child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2149,7 +2153,6 @@ writeMetadataSchemaValidityTest(
     title="Valid credits Element With Two credit Elements",
     assertion="The credits element matches the schema and it contains two credit child elements.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2173,7 +2176,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One credits Element",
     assertion="The credits element occurs more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2192,7 +2194,6 @@ writeMetadataSchemaValidityTest(
     title="No credit Element in credits Element",
     assertion="The credits element does not contain a credit child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2213,7 +2214,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in credits Element",
     assertion="The credits element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2235,7 +2235,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in credits Element",
     assertion="The credits element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2257,7 +2256,6 @@ writeMetadataSchemaValidityTest(
     title="Content in credits Element",
     assertion="The credits element contains an content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2282,7 +2280,6 @@ writeMetadataSchemaValidityTest(
     title="Valid credit Element",
     assertion="The credit element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2303,7 +2300,6 @@ writeMetadataSchemaValidityTest(
     title="Valid credit Element Without url Attribute",
     assertion="The credit element does not contain a url attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2324,7 +2320,6 @@ writeMetadataSchemaValidityTest(
     title="Valid credit Element Without role Attribute",
     assertion="The credit element does not contain a role attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2345,7 +2340,6 @@ writeMetadataSchemaValidityTest(
     title="No name attribute in credit Element",
     assertion="The credit element does not contain a name attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2366,7 +2360,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown attribute in credit Element",
     assertion="The credit element contains and unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2389,7 +2382,6 @@ writeMetadataSchemaValidityTest(
     title="Child Element in credit Element",
     assertion="The credit element contains a child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2411,7 +2403,6 @@ writeMetadataSchemaValidityTest(
     title="Content in credit Element",
     assertion="The credit element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2438,7 +2429,6 @@ writeMetadataSchemaValidityTest(
     title="Valid description Element",
     assertion="The description element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2461,7 +2451,6 @@ writeMetadataSchemaValidityTest(
     title="Valid description Element Without url Attribute",
     assertion="The description element does not contain a url attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2484,7 +2473,6 @@ writeMetadataSchemaValidityTest(
     title="Valid description Element With One No Language Tagged text Element",
     assertion="The description element matches the schema. It contains one text element that does not have a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2507,7 +2495,6 @@ writeMetadataSchemaValidityTest(
     title="Valid description Element With One Language Tagged text Element",
     assertion="The description element matches the schema. It contains one text element that has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2533,7 +2520,6 @@ writeMetadataSchemaValidityTest(
     title="Valid description Element With Mixed text Element Language Tags 1",
     assertion="The description element matches the schema. One text element does not have a language tag. One text element has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2559,7 +2545,6 @@ writeMetadataSchemaValidityTest(
     title="Valid description Element With Mixed text Element Language Tags 2",
     assertion="The description element matches the schema. Two text elements have a language tags.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2587,7 +2572,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One description Element",
     assertion="The description element occurs more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2606,7 +2590,6 @@ writeMetadataSchemaValidityTest(
     title="No text Element in description Element",
     assertion="The description element does not contain a text child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2629,7 +2612,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in description Element",
     assertion="The description element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2653,7 +2635,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in description Element",
     assertion="The description element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2677,7 +2658,6 @@ writeMetadataSchemaValidityTest(
     title="Content in description Element",
     assertion="The description element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2700,7 +2680,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in description Element text Element",
     assertion="The description element contains a text element with an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2724,7 +2703,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in description Element text Element",
     assertion="The description element contains a text element with an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2751,7 +2729,6 @@ writeMetadataSchemaValidityTest(
     title="Valid license Element",
     assertion="The license element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2774,7 +2751,6 @@ writeMetadataSchemaValidityTest(
     title="Valid license Element",
     assertion="The license element does not have a url attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2797,7 +2773,6 @@ writeMetadataSchemaValidityTest(
     title="Valid license Element",
     assertion="The license element does not have an id attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2820,7 +2795,6 @@ writeMetadataSchemaValidityTest(
     title="Valid license Element With One No Language Tagged text Element",
     assertion="The license element matches the schema. It contains one text element that does not have a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2843,7 +2817,6 @@ writeMetadataSchemaValidityTest(
     title="Valid license Element With One Language Tagged text Element",
     assertion="The license element matches the schema. It contains one text element that has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2869,7 +2842,6 @@ writeMetadataSchemaValidityTest(
     title="Valid license Element With Mixed text Element Language Tags 1",
     assertion="The license element matches the schema. One text element does not have a language tag. One text element has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2895,7 +2867,6 @@ writeMetadataSchemaValidityTest(
     title="Valid license Element With Mixed text Element Language Tags 2",
     assertion="The license element matches the schema. Two text elements have a language tags.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -2923,7 +2894,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One license Element",
     assertion="The license element occurs more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2942,7 +2912,6 @@ writeMetadataSchemaValidityTest(
     title="No text Element in license Element",
     assertion="The license element does not contain a text child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2965,7 +2934,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in license Element",
     assertion="The license element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -2989,7 +2957,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in license Element",
     assertion="The license element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3013,7 +2980,6 @@ writeMetadataSchemaValidityTest(
     title="Content in license Element",
     assertion="The license element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3036,7 +3002,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in license Element text Element",
     assertion="The license element contains a text element with an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3060,7 +3025,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in license Element text Element",
     assertion="The license element contains a text element with an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3087,7 +3051,6 @@ writeMetadataSchemaValidityTest(
     title="Valid copyright Element With One No Language Tagged text Element",
     assertion="The copyright element matches the schema. It contains one text element that does not have a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3110,7 +3073,6 @@ writeMetadataSchemaValidityTest(
     title="Valid copyright Element With One Language Tagged text Element",
     assertion="The copyright element matches the schema. It contains one text element that has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3136,7 +3098,6 @@ writeMetadataSchemaValidityTest(
     title="Valid copyright Element With Mixed text Element Language Tags 1",
     assertion="The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3162,7 +3123,6 @@ writeMetadataSchemaValidityTest(
     title="Valid copyright Element With Mixed text Element Language Tags 2",
     assertion="The copyright element matches the schema. Two text elements have a language tags.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3190,7 +3150,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One copyright Element",
     assertion="The copyright element occurs more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3209,7 +3168,6 @@ writeMetadataSchemaValidityTest(
     title="No text Element in copyright Element",
     assertion="The copyright element does not contain a text child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3232,7 +3190,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in copyright Element",
     assertion="The copyright element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3256,7 +3213,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in copyright Element",
     assertion="The copyright element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3280,7 +3236,6 @@ writeMetadataSchemaValidityTest(
     title="Content in copyright Element",
     assertion="The copyright element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3303,7 +3258,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in copyright Element text Element",
     assertion="The copyright element contains a text element with an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3327,7 +3281,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in copyright Element text Element",
     assertion="The copyright element contains a text element with an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3354,7 +3307,6 @@ writeMetadataSchemaValidityTest(
     title="Valid trademark Element With One No Language Tagged text Element",
     assertion="The trademark element matches the schema. It contains one text element that does not have a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3377,7 +3329,6 @@ writeMetadataSchemaValidityTest(
     title="Valid trademark Element With One Language Tagged text Element",
     assertion="The trademark element matches the schema. It contains one text element that has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3403,7 +3354,6 @@ writeMetadataSchemaValidityTest(
     title="Valid trademark Element With Mixed text Element Language Tags 1",
     assertion="The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3429,7 +3379,6 @@ writeMetadataSchemaValidityTest(
     title="Valid trademark Element With Mixed text Element Language Tags 2",
     assertion="The trademark element matches the schema. Two text elements have a language tags.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3457,7 +3406,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One trademark Element",
     assertion="The trademark element occurs more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3476,7 +3424,6 @@ writeMetadataSchemaValidityTest(
     title="No text Element in trademark Element",
     assertion="The trademark element does not contain a text child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3499,7 +3446,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in trademark Element",
     assertion="The trademark element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3523,7 +3469,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in trademark Element",
     assertion="The trademark element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3547,7 +3492,6 @@ writeMetadataSchemaValidityTest(
     title="Content in trademark Element",
     assertion="The trademark element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3570,7 +3514,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in trademark Element text Element",
     assertion="The trademark element contains a text element with an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3594,7 +3537,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in trademark Element text Element",
     assertion="The trademark element contains a text element with an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3617,7 +3559,6 @@ writeMetadataSchemaValidityTest(
     title="Valid licensee Element",
     assertion="The uniqueid element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3637,7 +3578,6 @@ writeMetadataSchemaValidityTest(
     title="More Than One licensee Element",
     assertion="The uniqueid element occurs more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3656,7 +3596,6 @@ writeMetadataSchemaValidityTest(
     title="No name Attribute in licensee Element",
     assertion="The uniqueid element does not contain the required name attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3675,7 +3614,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in licensee Element",
     assertion="The uniqueid element occures more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3696,7 +3634,6 @@ writeMetadataSchemaValidityTest(
     title="Child Element in licensee Element",
     assertion="The uniqueid element contains a child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3717,7 +3654,6 @@ writeMetadataSchemaValidityTest(
     title="Content in licensee Element",
     assertion="The uniqueid element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3746,7 +3682,6 @@ writeMetadataSchemaValidityTest(
     title="Valid extension Element",
     assertion="The extension element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3778,7 +3713,6 @@ writeMetadataSchemaValidityTest(
     title="Two Valid extension Elements",
     assertion="Two extension elements match the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3803,7 +3737,6 @@ writeMetadataSchemaValidityTest(
     title="Valid extension Element Without id Attribute",
     assertion="The extension element does not have an id attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3827,7 +3760,6 @@ writeMetadataSchemaValidityTest(
     title="Valid extension Element Without name Element",
     assertion="The extension element does not have a name child element but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3853,7 +3785,6 @@ writeMetadataSchemaValidityTest(
     title="Valid extension Element With Two name Elements 1",
     assertion="The extension element contains one name element without a lang attribute and another with a lang attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3879,7 +3810,6 @@ writeMetadataSchemaValidityTest(
     title="Valid extension Element With Two name Elements 2",
     assertion="The extension element contains two name elements with lang attributes.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3908,7 +3838,6 @@ writeMetadataSchemaValidityTest(
     title="Valid extension Element With Two item Elements",
     assertion="The extension element contains two item child elements.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -3929,7 +3858,6 @@ writeMetadataSchemaValidityTest(
     title="No item Element in extension Element",
     assertion="The extension element does not contain an item child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3954,7 +3882,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in extension Element",
     assertion="The extension element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -3980,7 +3907,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in extension Element",
     assertion="The extension element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4007,7 +3933,6 @@ writeMetadataSchemaValidityTest(
     title="Content in extension Element",
     assertion="The extension element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4036,7 +3961,6 @@ writeMetadataSchemaValidityTest(
     title="Valid item Element in extension Element",
     assertion="The item element in the extension element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4065,7 +3989,6 @@ writeMetadataSchemaValidityTest(
     title="Valid item Element With Multiple Languages in extension Element",
     assertion="The item element in the extension element contains a variety of languages.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4090,7 +4013,6 @@ writeMetadataSchemaValidityTest(
     title="Valid item Element Without id Attribute in extension Element",
     assertion="The item element in the extension element does not contain an id attribute but it still matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4116,7 +4038,6 @@ writeMetadataSchemaValidityTest(
     title="Valid item Element With Two name Elements in extension Element 1",
     assertion="The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4142,7 +4063,6 @@ writeMetadataSchemaValidityTest(
     title="Valid item Element With Two name Elements in extension Element 2",
     assertion="The item element in the extension element contains two name child elements with lang attributes.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4168,7 +4088,6 @@ writeMetadataSchemaValidityTest(
     title="Valid item Element With Two value Elements in extension Element 1",
     assertion="The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4194,7 +4113,6 @@ writeMetadataSchemaValidityTest(
     title="Valid item Element With Two value Elements in extension Element 2",
     assertion="The item element in the extension element contains two value child elements with lang attributes.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4218,7 +4136,6 @@ writeMetadataSchemaValidityTest(
     title="No name Element in item Element in extension Element",
     assertion="The item element in the extension element does not contain a name child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4242,7 +4159,6 @@ writeMetadataSchemaValidityTest(
     title="No value Element in item Element in extension Element",
     assertion="The item element in the extension element does not contain a value child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4267,7 +4183,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Attribute in item Element in extension Element",
     assertion="The item element in the extension element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4293,7 +4208,6 @@ writeMetadataSchemaValidityTest(
     title="Unknown Child Element in item Element in extension Element",
     assertion="The item element in the extension element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4319,7 +4233,6 @@ writeMetadataSchemaValidityTest(
     title="Content in item Element in extension Element",
     assertion="The item element in the extension element contains content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4348,7 +4261,6 @@ writeMetadataSchemaValidityTest(
     title="Valid name Element in item Element in extension Element",
     assertion="The name element in the item element in the extension element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4373,7 +4285,6 @@ writeMetadataSchemaValidityTest(
     title="Valid name Element With lang Attribute in item Element in extension Element",
     assertion="The name element in the item element in the extension element contains a lang attribute and it matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4398,7 +4309,6 @@ writeMetadataSchemaValidityTest(
     title="Unkown Attribute in name Element in item Element in extension Element",
     assertion="The name element in the item element in the extension element contains an unkown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4427,7 +4337,6 @@ writeMetadataSchemaValidityTest(
     title="Child Element in name Element in item Element in extension Element",
     assertion="The name element in the item element in the extension element contains a child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4456,7 +4365,6 @@ writeMetadataSchemaValidityTest(
     title="Valid value Element in item Element in extension Element",
     assertion="The value element in the item element in the extension element matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4481,7 +4389,6 @@ writeMetadataSchemaValidityTest(
     title="Valid value Element With lang Attribute in item Element in extension Element",
     assertion="The value element in the item element in the extension element contains a lang attribute and it matches the schema.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=True,
     metadata=m
 )
@@ -4506,7 +4413,6 @@ writeMetadataSchemaValidityTest(
     title="Unkown Attribute in value Element in item Element in extension Element",
     assertion="The value element in the item element in the extension element contains an unkown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
@@ -4534,7 +4440,6 @@ writeMetadataSchemaValidityTest(
     title="Child Element in value Element in item Element in extension Element",
     assertion="The value element in the item element in the extension element contains a child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    specLink="#Metadata",
     metadataIsValid=False,
     metadata=m
 )
