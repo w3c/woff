@@ -91,6 +91,10 @@ h2.testCategory {
 	width: 50%;
 }
 
+.testCasePages a {
+	color: red;
+}
+
 /* test case expectations */
 
 .testCaseExpectations {
@@ -98,17 +102,3 @@ h2.testCategory {
 	width: 50%;
 }
 
-p.testCaseExpectationDisplay {
-	background-color: #BFFEA1;
-	padding-left: 10px;
-}
-
-p.testCaseExpectationReject {
-	background-color: #FFC0C1;
-	padding-left: 10px;
-}
-
-p.testCaseExpectationNotApplicable {
-	background-color: #E5E5E5;
-	padding-left: 10px;
-}
