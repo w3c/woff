@@ -564,7 +564,10 @@ equivalent, compatible algorithm)
 The underlying format these functions use is described in the ZLIB
 specification [<cite><a href="#ref-ZLIB"
 >ZLib</a></cite>]. <span class="conform ua" id="conform-mustuncompress">User agents or other programs that decode WOFF files MUST be able to handle
-tables that have been compressed</span>. </p>
+tables that have been compressed</span>.
+<span class="conform ua" id="conform-decompressfailure">If the
+decompression function fails for any table, the WOFF file is invalid
+and MUST NOT be loaded</span>.</p>
 
 <p><span class="conform ff" id="conform-afterdirectory">The font data tables MUST be stored immediately following the table
 directory, without gaps except for any padding that is required (up to three
