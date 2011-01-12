@@ -461,11 +461,11 @@ uncompressed in the WOFF file and the <tt>compLength</tt> set
 equal to the <tt>origLength</tt></span>. <span class="conform at ff" id="conform-uncompressed">Tools MAY also opt to leave
 other tables uncompressed (e.g. all tables less than a certain size), in which
 case <tt>compLength</tt> will be equal to <tt>origLength</tt> for these tables as well</span>.
-<span class="conform ua">WOFF files containing
+<span class="conform ua" id="conform-compLength">WOFF files containing
 table directory entries for which <tt>compLength</tt> is
 greater than <tt>origLength</tt> are considered invalid and
-MUST NOT be loaded by user agents</span>. <span class="conform ua">Files containing compressed font tables that
-decompress to a size larger than <tt>origLength</tt> are also
+MUST NOT be loaded by user agents</span>. <span class="conform ua" id="conform-origLength">Files containing compressed font tables that
+decompress to a size other than <tt>origLength</tt> are also
 considered invalid and MUST NOT be loaded</span>.</p>
 
 <p>The sfnt font specifications require that table directory entries
