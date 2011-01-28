@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (180 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (182 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -806,6 +806,38 @@
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/">(documentation)</a></p>
 					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-metaOrigLength-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-metaOrigLength-001">metadatadisplay-metaOrigLength-001</a>: Decompressed Metadata Length Less Than metaOrigLength</h3>
+				<p>The metadata decompressed to a length that is 1 byte smaller than the length defined in metaOrigLength</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-metaOrigLength-001.xht">Test</a></p>
+					<p><a href="metadatadisplay-metaOrigLength-001-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metaOrigLength">(conform-metaOrigLength)</a></p>
+					<p>Metadata Expectation: Reject</p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-metaOrigLength-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-metaOrigLength-002">metadatadisplay-metaOrigLength-002</a>: Decompressed Metadata Length Greater Than metaOrigLength</h3>
+				<p>The metadata decompressed to a length that is 1 byte greater than the length defined in metaOrigLength</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-metaOrigLength-002.xht">Test</a></p>
+					<p><a href="metadatadisplay-metaOrigLength-002-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metaOrigLength">(conform-metaOrigLength)</a></p>
+					<p>Metadata Expectation: Reject</p>
 				</div>
 			</div>
 		</div>
