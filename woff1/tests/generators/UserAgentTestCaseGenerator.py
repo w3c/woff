@@ -526,50 +526,6 @@ writeFileStructureTest(
     data=makeHeaderInvalidReserved1()
 )
 
-# ---------------------------------------
-# File Structure: Invalid: metaOrigLength
-# ---------------------------------------
-
-## <
-#
-#def makeMetadataCompressionTest1():
-#    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-#    metaLength = header["metaLength"]
-#    metaOrigLength += 1
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#writeFileStructureTest(
-#    identifier="header-metaOrigLength-001",
-#    title="Decompressed Metadata Length Less Than metaOrigLength",
-#    assertion="The metadata decompressed to a length that is 1 byte smaller than the length defined in metaOrigLength",
-#    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-#    shouldDisplaySFNT=False,
-#    metadataIsValid=False,
-#    sfntDisplaySpecLink="#conform-diroverlap-reject",
-#    data=makeTableDataByteRange5()
-#)
-#
-## >
-#
-#def makeMetadataCompressionTest1():
-#    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-#    metaLength = header["metaLength"]
-#    metaOrigLength -= 1
-#    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-#    return data
-#
-#writeFileStructureTest(
-#    identifier="header-metaOrigLength-002",
-#    title="Decompressed Metadata Length Greater Than metaOrigLength",
-#    assertion="The metadata decompressed to a length that is 1 byte greater than the length defined in metaOrigLength",
-#    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-#    shouldDisplaySFNT=False,
-#    metadataIsValid=False,
-#    sfntDisplaySpecLink="#conform-diroverlap-reject",
-#    data=makeTableDataByteRange5()
-#)
-
 # --------------------------------------------
 # File Structure: Data Blocks: Extraneous Data
 # --------------------------------------------
@@ -1502,6 +1458,51 @@ writeFileStructureTest(
     data=makeMetadataCompression1(),
 )
 
+# --------------------------------
+# Metadata Display: metaOrigLength
+# --------------------------------
+
+# <
+
+def makeMetaOrigLengthTest1():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    metaOrigLength = header["metaOrigLength"]
+    metaOrigLength += 1
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    return data
+
+writeFileStructureTest(
+    identifier="metadatadisplay-metaOrigLength-001",
+    title="Decompressed Metadata Length Less Than metaOrigLength",
+    assertion="The metadata decompressed to a length that is 1 byte smaller than the length defined in metaOrigLength",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    metadataIsValid=False,
+    sfntDisplaySpecLink="#conform-metaOrigLength",
+    data=makeMetaOrigLengthTest1()
+)
+
+# >
+
+def makeMetaOrigLengthTest2():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    metaOrigLength = header["metaOrigLength"]
+    metaOrigLength -= 1
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    return data
+
+writeFileStructureTest(
+    identifier="metadatadisplay-metaOrigLength-002",
+    title="Decompressed Metadata Length Greater Than metaOrigLength",
+    assertion="The metadata decompressed to a length that is 1 byte greater than the length defined in metaOrigLength",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    shouldDisplaySFNT=True,
+    metadataIsValid=False,
+    sfntDisplaySpecLink="#conform-metaOrigLength",
+    data=makeMetaOrigLengthTest2()
+)
+
+
 # -----------------------------
 # Metadata Display: Well-Formed
 # -----------------------------
@@ -2112,11 +2113,11 @@ writeMetadataSchemaValidityTest(
     metadata=m
 )
 
-# -----------------------------------------
-# Metadata Display: Schema Validity: credit
-# -----------------------------------------
+# ------------------------------------------
+# Metadata Display: Schema Validity: credits
+# ------------------------------------------
 
-# valid - single credit element
+# valid - no lang, single credit element
 
 m = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2129,8 +2130,28 @@ m = """
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-001",
-    title="Valid credits Element With Single credit Element",
-    assertion="The credits element matches the schema and it contains one credit child element.",
+    title="Valid credits Element With No Language Attribute And A Single credit Element",
+    assertion="The credits element does not contain a language attribute but it still matches the schema and it contains one credit child element.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    metadataIsValid=True,
+    metadata=m
+)
+
+# valid - lang, single credit element
+
+m = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits lang="en">
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-002",
+    title="Valid credits Element With A Language Attribute And A Single credit Element",
+    assertion="The credits element contains contains a language attribute and it matches the schema and it contains one credit child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     metadataIsValid=True,
     metadata=m
@@ -2149,7 +2170,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-002",
+    identifier="metadatadisplay-schema-credits-003",
     title="Valid credits Element With Two credit Elements",
     assertion="The credits element matches the schema and it contains two credit child elements.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -2165,18 +2186,18 @@ m = """
     <credits>
         <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
     </credits>
-    <credits>
-        <credit name="Credit 2" role="Role 2" url="http://w3c.org/Fonts" />
+    <credits lang="fr">
+        <credit name="Credit 1 fr" role="Role 1 fr" url="http://w3c.org/Fonts" />
     </credits>
 </metadata>
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-003",
+    identifier="metadatadisplay-schema-credits-004",
     title="More Than One credits Element",
     assertion="The credits element occurs more than once.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=m
 )
 
@@ -2190,7 +2211,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-004",
+    identifier="metadatadisplay-schema-credits-005",
     title="No credit Element in credits Element",
     assertion="The credits element does not contain a credit child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -2210,7 +2231,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-005",
+    identifier="metadatadisplay-schema-credits-006",
     title="Unknown Attribute in credits Element",
     assertion="The credits element contains an unknown attribute.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -2231,7 +2252,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-006",
+    identifier="metadatadisplay-schema-credits-007",
     title="Unknown Child Element in credits Element",
     assertion="The credits element contains an unknown child element.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
@@ -2252,7 +2273,7 @@ m = """
 """
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-007",
+    identifier="metadatadisplay-schema-credits-008",
     title="Content in credits Element",
     assertion="The credits element contains an content.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
