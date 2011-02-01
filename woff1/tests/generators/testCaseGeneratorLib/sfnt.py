@@ -18,7 +18,7 @@ def getSFNTData(pathOrFile):
             continue
         origData = font.getTableData(tag)
         compData = zlib.compress(origData)
-        if len(compData) >= len(origData):
+        if len(compData) >= len(origData) or tag == "head":
             compData = origData
         tableData[tag] = (origData, compData)
     # order

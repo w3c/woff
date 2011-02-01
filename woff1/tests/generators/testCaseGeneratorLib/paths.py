@@ -36,10 +36,8 @@ userAgentTestResourcesDirectory = os.path.join(userAgentTestDirectory, "resource
 userAgentFontsToInstallDirectory = os.path.join(userAgentDirectory, "FontsToInstall")
 
 formatDirectory = os.path.join(mainDirectory, "Format")
-formatTestDirectory = os.path.join(formatDirectory, "Tests")
 
 authoringToolDirectory = os.path.join(mainDirectory, "AuthoringTool")
-authoringToolormatTestDirectory = os.path.join(authoringToolDirectory, "Tests")
 
 
 if __name__ == "__main__":

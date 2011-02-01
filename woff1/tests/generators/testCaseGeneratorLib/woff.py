@@ -3,7 +3,7 @@ WOFF data packers.
 """
 
 import sstruct
-from utilities import padData
+from utilities import padData, calcHeadCheckSumAdjustment
 
 # ------------------
 # struct Description
@@ -51,7 +51,8 @@ def packTestDirectory(directory):
         data += sstruct.pack(woffDirectoryEntryFormat, table)
     return data
 
-def packTestTableData(directory, tableData):
+def packTestTableData(directory, tableData, calcCheckSum=True):
+    calcHeadCheckSumAdjustment(directory, tableData)
     orderedData = []
     for entry in directory:
         tag = entry["tag"]

@@ -1147,6 +1147,8 @@ def makeTableCompressionTest2():
     for tag, (origData, compData) in tableData.items():
         # this is a double check. the default data stores everything
         # possible in compressed form.
+        if tag == "head":
+            continue
         assert len(compData) <= len(origData)
         if len(compData) == len(origData):
             compTest = zlib.compress(origData)
@@ -1157,7 +1159,7 @@ def makeTableCompressionTest2():
 writeFileStructureTest(
     identifier="tabledata-compression-002",
     title="Font Table Data Is Compressed When Possible",
-    assertion="All of the tables that will be smaller when compressed are stored in their compressed state.",
+    assertion="All of the tables (excpet head) that will be smaller when compressed are stored in their compressed state.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=True,
     sfntDisplaySpecLink="#conform-mustuncompress",
