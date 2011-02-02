@@ -1089,7 +1089,7 @@ writeFileStructureTest(
     assertion="The CFF table when decompressed has a length that is four bytes longer than the value listed in origLength.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    sfntDisplaySpecLink="#NeedTestableAssertionLink",
+    sfntDisplaySpecLink="#conform-origLength",
     data=makeTableDataOriginalLength1()
 )
 
@@ -1112,7 +1112,7 @@ writeFileStructureTest(
     assertion="The CFF table when decompressed has a length that is four bytes shorter than the value listed in origLength.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     shouldDisplaySFNT=False,
-    sfntDisplaySpecLink="#NeedTestableAssertionLink",
+    sfntDisplaySpecLink="#conform-origLength",
     data=makeTableDataOriginalLength2()
 )
 
