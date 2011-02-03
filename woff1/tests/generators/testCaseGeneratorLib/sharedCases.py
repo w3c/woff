@@ -8,6 +8,24 @@ from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetada
     sfntCFFTableData, testCFFDataWOFFDirectory
 from testCaseGeneratorLib.utilities import calcPaddingLength, padData, calcTableChecksum, stripMetadata
 
+
+def makeMetadataTest(metadata):
+    """
+    This is a convenience functon that eliminates the need to make a complete
+    WOFF when only the metadata is being tested.
+    """
+    metadata = metadata.strip()
+    # convert to tabs
+    metadata = metadata.replace("    ", "\t")
+    # store
+    originalMetadata = metadata
+    # pack
+    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    # done
+    return data, originalMetadata
+
+
 # -----------
 # Valid Files
 # -----------

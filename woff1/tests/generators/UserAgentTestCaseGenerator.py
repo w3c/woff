@@ -194,14 +194,8 @@ def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, cred
     """
     assert metadata is not None
     assert metadataIsValid is not None
-    metadata = metadata.strip()
-    # convert to tabs
-    metadata = metadata.replace("    ", "\t")
-    # store
-    originalMetadata = metadata
-    # pack
-    header, directory, tableData, metadata = defaultTestData(metadata=metadata)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    # compile the WOFF
+    data, metadata = makeMetadataTest(metadata)
     # pass to the more verbose function
     if metadataDisplaySpecLink is None:
         if not metadataIsValid:
@@ -221,7 +215,7 @@ def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, cred
         data=data
     )
     if metadataIsValid:
-        kwargs["metadataToDisplay"] = originalMetadata
+        kwargs["metadataToDisplay"] = metadata
     writeFileStructureTest(
         identifier,
         **kwargs
@@ -578,7 +572,6 @@ writeFileStructureTest(
 # ------------------------------------------------
 # File Structure: Table Directory: 4-Byte Boundary
 # ------------------------------------------------
-
 
 writeFileStructureTest(
     identifier="directory-4-byte-001",
