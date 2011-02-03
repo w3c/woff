@@ -213,6 +213,47 @@ writeTest(
     data=makeHeaderInvalidSignature1()
 )
 
+
+# ------------------------------
+# File Structure: Header: flavor
+# ------------------------------
+
+# TTF flavor but CFF data
+
+def makeHeaderInvalidFlavor1():
+    header, directory, tableData = defaultTestData()
+    header["flavor"] = "\000\001\000\000"
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="header-flavor-001",
+    title="Header Flavor Incorrectly Set to 0x00010000",
+    description="The header flavor is set to 0x00010000 but the table data contains CFF data, not TTF data.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#WOFFHeader",
+    data=makeHeaderInvalidFlavor1()
+)
+
+# CFF flavor but TTF data
+
+def makeHeaderInvalidFlavor2():
+    header, directory, tableData = defaultTestData(flavor="ttf")
+    header["flavor"] = "OTTO"
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="header-flavor-002",
+    title="Header Flavor Incorrectly Set to OTTO",
+    description="The header flavor is set to OTTO but the table data contains TTF data, not CFF data.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#WOFFHeader",
+    data=makeHeaderInvalidFlavor2()
+)
+
 # ------------------------------
 # File Structure: Header: length
 # ------------------------------
