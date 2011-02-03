@@ -42,6 +42,7 @@ from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetada
 from testCaseGeneratorLib.utilities import calcPaddingLength, padData, calcTableChecksum, stripMetadata
 from testCaseGeneratorLib.html import generateSFNTDisplayTestHTML, generateSFNTDisplayRefHTML, generateSFNTDisplayIndexHTML
 from testCaseGeneratorLib.paths import resourcesDirectory, userAgentDirectory, userAgentTestDirectory, userAgentTestResourcesDirectory, userAgentFontsToInstallDirectory
+from testCaseGeneratorLib.sharedCases import *
 
 # ------------------------
 # Specification URL
@@ -240,30 +241,20 @@ def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, cred
 
 # CFF
 
-def makeValidWOFF1():
-    header, directory, tableData = defaultTestData()
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="valid-001",
-    title="Valid WOFF 1",
-    assertion="Valid CFF flavored WOFF with no metadata and no private data",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF1Title,
+    assertion=makeValidWOFF1Description,
+    credits=makeValidWOFF1Credits,
     shouldDisplaySFNT=True,
     data=makeValidWOFF1()
 )
 
-def makeValidWOFF2():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-    return data
-
 writeFileStructureTest(
     identifier="valid-002",
-    title="Valid WOFF 2",
-    assertion="Valid CFF flavored WOFF with metadata",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF2Title,
+    assertion=makeValidWOFF2Description,
+    credits=makeValidWOFF2Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF2(),
@@ -271,30 +262,20 @@ writeFileStructureTest(
     metadataDisplaySpecLink="#conform-metadata-maydisplay"
 )
 
-def makeValidWOFF3():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="valid-003",
-    title="Valid WOFF 3",
-    assertion="Valid CFF flavored WOFF with private data",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF3Title,
+    assertion=makeValidWOFF3Description,
+    credits=makeValidWOFF3Credits,
     shouldDisplaySFNT=True,
     data=makeValidWOFF3()
 )
 
-def makeValidWOFF4():
-    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata, havePrivateData=True) + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="valid-004",
-    title="Valid WOFF 4",
-    assertion="Valid CFF flavored WOFF with metadata and private data",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF4Title,
+    assertion=makeValidWOFF4Description,
+    credits=makeValidWOFF4Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF4(),
@@ -304,32 +285,22 @@ writeFileStructureTest(
 
 # TTF
 
-def makeValidWOFF5():
-    header, directory, tableData = defaultTestData(flavor="ttf")
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="valid-005",
     flavor="TTF",
-    title="Valid WOFF 5",
-    assertion="Valid TTF flavored WOFF with no metadata and no private data",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF5Title,
+    assertion=makeValidWOFF5Description,
+    credits=makeValidWOFF5Credits,
     shouldDisplaySFNT=True,
     data=makeValidWOFF5()
 )
 
-def makeValidWOFF6():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata, flavor="ttf")
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-    return data
-
 writeFileStructureTest(
     identifier="valid-006",
     flavor="TTF",
-    title="Valid WOFF 6",
-    assertion="Valid TTF flavored WOFF with metadata",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF6Title,
+    assertion=makeValidWOFF6Description,
+    credits=makeValidWOFF6Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF6(),
@@ -337,32 +308,22 @@ writeFileStructureTest(
     metadataDisplaySpecLink="#conform-metadata-maydisplay"
 )
 
-def makeValidWOFF7():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData, flavor="ttf")
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="valid-007",
     flavor="TTF",
-    title="Valid WOFF 7",
-    assertion="Valid TTF flavored WOFF with private data",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF7Title,
+    assertion=makeValidWOFF7Description,
+    credits=makeValidWOFF7Credits,
     shouldDisplaySFNT=True,
     data=makeValidWOFF7()
 )
 
-def makeValidWOFF8():
-    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData, flavor="ttf")
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata, havePrivateData=True) + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="valid-008",
     flavor="TTF",
-    title="Valid WOFF 8",
-    assertion="Valid TTF flavored WOFF with metadata and private data",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeValidWOFF8Title,
+    assertion=makeValidWOFF8Description,
+    credits=makeValidWOFF8Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
     data=makeValidWOFF8(),
@@ -374,17 +335,11 @@ writeFileStructureTest(
 # File Structure: Header: signature
 # ---------------------------------
 
-def makeHeaderInvalidSignature1():
-    header, directory, tableData = defaultTestData()
-    header["signature"] = "XXXX"
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-signature-001",
-    title="Header Signature Invalid Value",
-    assertion="The signature field contains XXXX instead of wOFF.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidSignature1Title,
+    assertion=makeHeaderInvalidSignature1Description,
+    credits=makeHeaderInvalidSignature1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-nonmagicnumber-reject",
     data=makeHeaderInvalidSignature1()
@@ -394,33 +349,21 @@ writeFileStructureTest(
 # File Structure: Header: length
 # ------------------------------
 
-def makeHeaderInvalidLength1():
-    header, directory, tableData = defaultTestData()
-    header["length"] -= 4
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-length-001",
-    title="Header Length Too Short",
-    assertion="The length field contains a value that is four bytes shorter than the actual data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidLength1Title,
+    assertion=makeHeaderInvalidLength1Description,
+    credits=makeHeaderInvalidLength1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#WOFFHeader",
     data=makeHeaderInvalidLength1()
 )
 
-def makeHeaderInvalidLength2():
-    header, directory, tableData = defaultTestData()
-    header["length"] += 4
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-length-002",
-    title="Header Length Too Long",
-    assertion="The length field contains a value that is four bytes longer than the actual data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidLength2Title,
+    assertion=makeHeaderInvalidLength2Description,
+    credits=makeHeaderInvalidLength2Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#WOFFHeader",
     data=makeHeaderInvalidLength2()
@@ -430,17 +373,11 @@ writeFileStructureTest(
 # File Structure: Header: numTables
 # ---------------------------------
 
-def makeHeaderInvalidNumTables1():
-    header, directory, tableData = defaultTestData()
-    header["numTables"] = 0
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-numTables-001",
-    title="Header Number of Tables Set to Zero",
-    assertion="The header contains 0 in the numTables field. A table directory and table data are present.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidNumTables1Title,
+    assertion=makeHeaderInvalidNumTables1Description,
+    credits=makeHeaderInvalidNumTables1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#WOFFHeader",
     data=makeHeaderInvalidNumTables1()
@@ -450,57 +387,31 @@ writeFileStructureTest(
 # File Structure: Header: totalSfntSize
 # -------------------------------------
 
-def makeHeaderInvalidTotalSfntSize1():
-    header, directory, tableData = defaultTestData()
-    # find a padding value that can be subtracted from the totalSfntSize.
-    decreaseBy = None
-    for entry in directory:
-        paddingSize = calcPaddingLength(entry["origLength"])
-        if paddingSize:
-            decreaseBy = paddingSize
-            break
-    assert decreaseBy is not None
-    header["totalSfntSize"] -= decreaseBy
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-totalSfntSize-001",
-    title="Header Total SFNT Size Not a Multiple of 4",
-    assertion="The totalSfntSize field contains a value that is missing padding bytes between two tables.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidTotalSfntSize1Title,
+    assertion=makeHeaderInvalidTotalSfntSize1Description,
+    credits=makeHeaderInvalidTotalSfntSize1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-totalsize-longword-reject",
     data=makeHeaderInvalidTotalSfntSize1()
 )
 
-def makeHeaderInvalidTotalSfntSize2():
-    header, directory, tableData = defaultTestData()
-    header["totalSfntSize"] += 4
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-totalSfntSize-002",
-    title="Header Total SFNT Size Too Long",
-    assertion="The totalSfntSize field contains a value that is is four bytes too long.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidTotalSfntSize2Title,
+    assertion=makeHeaderInvalidTotalSfntSize2Description,
+    credits=makeHeaderInvalidTotalSfntSize2Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-totalsize-longword-reject",
     data=makeHeaderInvalidTotalSfntSize2()
 )
 
-def makeHeaderInvalidTotalSfntSize3():
-    header, directory, tableData = defaultTestData()
-    header["totalSfntSize"] -= 4
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-totalSfntSize-003",
-    title="Header Total SFNT Size Too Short",
-    assertion="The totalSfntSize field contains a value that is is four bytes too short.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidTotalSfntSize3Title,
+    assertion=makeHeaderInvalidTotalSfntSize3Description,
+    credits=makeHeaderInvalidTotalSfntSize3Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-totalsize-longword-reject",
     data=makeHeaderInvalidTotalSfntSize3()
@@ -510,17 +421,11 @@ writeFileStructureTest(
 # File Structure: Header: reserved
 # --------------------------------
 
-def makeHeaderInvalidReserved1():
-    header, directory, tableData = defaultTestData()
-    header["reserved"] = 1
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="header-reserved-001",
-    title="Header Reserved Invalid Value",
-    assertion="The reserved field contains 1.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeHeaderInvalidReserved1Title,
+    assertion=makeHeaderInvalidReserved1Description,
+    credits=makeHeaderInvalidReserved1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-reserved-reject",
     data=makeHeaderInvalidReserved1()
@@ -532,21 +437,11 @@ writeFileStructureTest(
 
 # between table directory and table data
 
-def makeExtraneousData1():
-    header, directory, tableData = defaultTestData()
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    for entry in directory:
-        entry["offset"] += bogusByteLength
-    header["length"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + bogusBytes + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-001",
-    title="Extraneous Data Between Directory and Table Data",
-    assertion="There are four null bytes between the table directory and the table data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData1Title,
+    assertion=makeExtraneousData1Description,
+    credits=makeExtraneousData1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData1()
@@ -554,25 +449,11 @@ writeFileStructureTest(
 
 # between tables
 
-def makeExtraneousData2():
-    header, directory, tableData = defaultTestData()
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    inserted = False
-    # do not apply to the last table
-    for entry in directory[:-1]:
-        tag = entry["tag"]
-        origData, compData = tableData[tag]
-        compData += bogusBytes
-        header["length"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-002",
-    title="Extraneous Data Between Tables",
-    assertion="There are four null bytes between each of the table data blocks.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData2Title,
+    assertion=makeExtraneousData2Description,
+    credits=makeExtraneousData2Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData2()
@@ -580,19 +461,11 @@ writeFileStructureTest(
 
 # after table data with no metadata or private data
 
-def makeExtraneousData3():
-    header, directory, tableData = defaultTestData()
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    header["length"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + bogusBytes
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-003",
-    title="Extraneous Data After Table Data",
-    assertion="There are four null bytes after the table data block and there is no metadata or private data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData3Title,
+    assertion=makeExtraneousData3Description,
+    credits=makeExtraneousData3Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData3()
@@ -600,20 +473,11 @@ writeFileStructureTest(
 
 # between tabledata and metadata
 
-def makeExtraneousData4():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    header["length"] += bogusByteLength
-    header["metaOffset"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + bogusBytes + packTestMetadata(metadata)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-004",
-    title="Extraneous Data Between Table Data and Metadata",
-    assertion="There are four null bytes between the table data and the metadata.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData4Title,
+    assertion=makeExtraneousData4Description,
+    credits=makeExtraneousData4Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData4()
@@ -621,20 +485,11 @@ writeFileStructureTest(
 
 # between tabledata and private data
 
-def makeExtraneousData5():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    header["length"] += bogusByteLength
-    header["privOffset"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + bogusBytes + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-005",
-    title="Extraneous Data Between Table Data and Private Data",
-    assertion="There are four null bytes between the table data and the private data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData5Title,
+    assertion=makeExtraneousData5Description,
+    credits=makeExtraneousData5Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData5()
@@ -642,20 +497,11 @@ writeFileStructureTest(
 
 # between metadata and private data
 
-def makeExtraneousData6():
-    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    header["length"] += bogusByteLength
-    header["privOffset"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata, havePrivateData=True) + bogusBytes + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-006",
-    title="Extraneous Data Between Metdata and Private Data",
-    assertion="There are four null bytes between the metadata and the private data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData6Title,
+    assertion=makeExtraneousData6Description,
+    credits=makeExtraneousData6Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData6()
@@ -663,19 +509,11 @@ writeFileStructureTest(
 
 # after metadata with no private data
 
-def makeExtraneousData7():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    header["length"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata) + bogusBytes
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-007",
-    title="Extraneous Data After Metadata",
-    assertion="There are four null bytes after the metadata and there is no private data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData7Title,
+    assertion=makeExtraneousData7Description,
+    credits=makeExtraneousData7Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData7()
@@ -683,19 +521,11 @@ writeFileStructureTest(
 
 # after private data
 
-def makeExtraneousData8():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    header["length"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData) + bogusBytes
-    return data
-
 writeFileStructureTest(
     identifier="blocks-extraneous-data-008",
-    title="Extraneous Data After Private Data",
-    assertion="There are four null bytes after the private data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeExtraneousData8Title,
+    assertion=makeExtraneousData8Description,
+    credits=makeExtraneousData8Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData8()
@@ -707,28 +537,11 @@ writeFileStructureTest(
 
 # two tables overlap
 
-def makeOverlappingData1():
-    header, directory, tableData = defaultTestData()
-    overlapLength = 4
-    # slice some data off the first table's compressed data
-    entry = directory[0]
-    tag = entry["tag"]
-    assert entry["compLength"] > overlapLength
-    origData, compData = tableData[tag]
-    tableData[tag] = (origData, compData[:-overlapLength])
-    # shift the offsets for all the other tables
-    for entry in directory[1:]:
-        entry["offset"] -= overlapLength
-    # adjust the header
-    header["length"] -= overlapLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-overlap-001",
-    title="Table Data Blocks Overlap",
-    assertion="The second table's offset is four bytes before the end of the first table's data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeOverlappingData1Title,
+    assertion=makeOverlappingData1Description,
+    credits=makeOverlappingData1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData1()
@@ -736,19 +549,11 @@ writeFileStructureTest(
 
 # metadata overlaps the table data
 
-def makeOverlappingData2():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    overlapLength = 4
-    header["metaOffset"] -= overlapLength
-    header["length"] -= overlapLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)[:-overlapLength] + packTestMetadata(metadata)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-overlap-002",
-    title="Metadata Overlaps Table Data",
-    assertion="The metadata offset is four bytes before the end of the table data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeOverlappingData2Title,
+    assertion=makeOverlappingData2Description,
+    credits=makeOverlappingData2Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData2()
@@ -756,19 +561,11 @@ writeFileStructureTest(
 
 # private data overlaps the table data
 
-def makeOverlappingData3():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
-    overlapLength = 4
-    header["privOffset"] -= overlapLength
-    header["length"] -= overlapLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)[:-overlapLength] + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-overlap-003",
-    title="Private Data Overlaps Table Data",
-    assertion="The private data offset is four bytes before the end of the table data.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeOverlappingData3Title,
+    assertion=makeOverlappingData3Description,
+    credits=makeOverlappingData3Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData3()
@@ -776,19 +573,11 @@ writeFileStructureTest(
 
 # private data overlaps the metadata
 
-def makeOverlappingData4():
-    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
-    overlapLength = 4
-    header["privOffset"] -= overlapLength
-    header["length"] -= overlapLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata, havePrivateData=True)[:-overlapLength] + packTestPrivateData(privateData)
-    return data
-
 writeFileStructureTest(
     identifier="blocks-overlap-004",
-    title="Private Data Overlaps Metadata",
-    assertion="The private data offset is four bytes before the end of the metadata.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeOverlappingData4Title,
+    assertion=makeOverlappingData4Description,
+    credits=makeOverlappingData4Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-overlap-reject",
     data=makeOverlappingData4()
@@ -798,52 +587,12 @@ writeFileStructureTest(
 # File Structure: Table Directory: 4-Byte Boundary
 # ------------------------------------------------
 
-# one table is not padded and, therefore, the next table does not begin on four byte boundary
-# this test will trigger other failures. there doesn't seem to be a way around that.
-
-def makeTableData4Byte1():
-    header, directory, tableData = defaultTestData()
-    data1 = "\x01" * 3
-    data2 = "\x01" * 5
-    # update the header
-    header["length"] += 8 + (woffDirectoryEntrySize * 2)
-    header["numTables"] += 2
-    header["totalSfntSize"] += 8 + (sfntDirectoryEntrySize * 2)
-    # update the directory
-    offset = woffHeaderSize + (woffDirectoryEntrySize * header["numTables"])
-    directoryAdditions = []
-    for tag, data in [("AAAA", data1), ("AAAB", data2)]:
-        entry = dict(
-            tag=tag,
-            offset=offset,
-            compLength=len(data),
-            origLength=len(data),
-            origChecksum=calcTableChecksum(tag, data)
-        )
-        tableData[tag] = (data, data)
-        directoryAdditions.append(entry)
-        offset += len(data)
-    shift = 8 + (woffDirectoryEntrySize * 2)
-    for entry in directory:
-        entry["offset"] += shift
-    directory = directoryAdditions + directory
-    # pack the table data
-    packedTableData = []
-    for entry in directory:
-        tag = entry["tag"]
-        origData, compData = tableData[tag]
-        if tag not in ("AAAA", "AAAB"):
-            compData = padData(compData)
-        packedTableData.append(compData)
-    packedTableData = "".join(packedTableData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packedTableData
-    return data
 
 writeFileStructureTest(
     identifier="directory-4-byte-001",
-    title="Font Table Data Not On 4-Byte Boundary",
-    assertion="Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableData4Byte1Title,
+    assertion=makeTableData4Byte1Description,
+    credits=makeTableData4Byte1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-tablesize-longword",
     data=makeTableData4Byte1()
@@ -851,35 +600,11 @@ writeFileStructureTest(
 
 # final table is not padded
 
-def makeTableData4Byte2():
-    # table data
-    tableData = deepcopy(sfntCFFTableData)
-    tag = "zzzz"
-    data = "\0" * 2
-    paddingLength = calcPaddingLength(len(data))
-    tableData[tag] = (data, data)
-    # directory
-    directory = deepcopy(testCFFDataWOFFDirectory)
-    entry = dict(
-        tag=tag,
-        origChecksum=0,
-        origLength=0,
-        compLength=0,
-        offset=0
-    )
-    directory.append(entry)
-    # update the structures
-    header, directory, tableData = defaultTestData(directory=directory, tableData=tableData)
-    header["length"] -= paddingLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    data = data[:-paddingLength]
-    return data
-
 writeFileStructureTest(
     identifier="directory-4-byte-002",
-    title="Final Font Table Data Not Padded",
-    assertion="The final table in the table data block is not padded to a 4-byte boundary.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableData4Byte2Title,
+    assertion=makeTableData4Byte2Description,
+    credits=makeTableData4Byte2Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-tablesize-longword",
     data=makeTableData4Byte2()
@@ -891,17 +616,11 @@ writeFileStructureTest(
 
 # offset after end of file
 
-def makeTableDataByteRange1():
-    header, directory, tableData = defaultTestData()
-    directory[-1]["offset"] = header["length"] + 4
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="directory-overlaps-001",
-    title="Font Table Data Offset Past End of File",
-    assertion="The offset to the data block for the final table data is four bytes beyond the end of the file.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataByteRange1Title,
+    assertion=makeTableDataByteRange1Description,
+    credits=makeTableDataByteRange1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange1()
@@ -909,17 +628,11 @@ writeFileStructureTest(
 
 # offset + length goes past the end of the file
 
-def makeTableDataByteRange2():
-    header, directory, tableData = defaultTestData()
-    directory[-1]["compLength"] += 4
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="directory-overlaps-002",
-    title="Font Table Data Offset+Length Past End of File",
-    assertion="The defined length for the final table causes the data block to be four bytes beyond the end of the file.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataByteRange2Title,
+    assertion=makeTableDataByteRange2Description,
+    credits=makeTableDataByteRange2Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange2()
@@ -927,36 +640,11 @@ writeFileStructureTest(
 
 # overlaps metadata
 
-def makeTableDataByteRange3():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    # grab the last table entry
-    entry = directory[-1]
-    entryLength = entry["compLength"] + calcPaddingLength(entry["compLength"])
-    compData = tableData[entry["tag"]][1]
-    # make the bogus offset
-    entry["offset"] = header["metaOffset"] + 4
-    # remove the length for the table from the total length
-    header["length"] -= entryLength
-    # pack the header and directory
-    data = packTestHeader(header) + packTestDirectory(directory)
-    # pad and combine all tables
-    tableData = packTestTableData(directory, tableData)
-    # slice the final table off of the table data
-    tableData = tableData[:-entryLength]
-    # pack the metadata
-    metadata = packTestMetadata(metadata)
-    assert len(metadata) > len(compData)
-    # write the table data over the top of the metadata
-    metadata = metadata[:4] + compData + metadata[4 + len(compData):]
-    # combine everything
-    data += tableData + metadata
-    return data
-
 writeFileStructureTest(
     identifier="directory-overlaps-003",
-    title="Font Table Data Overlaps Metadata",
-    assertion="The final table starts four bytes after the start of the metadata. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length) will not match the stored length in the header.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataByteRange3Title,
+    assertion=makeTableDataByteRange3Description,
+    credits=makeTableDataByteRange3Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange3()
@@ -964,36 +652,11 @@ writeFileStructureTest(
 
 # overlaps private data
 
-def makeTableDataByteRange4():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
-    # grab the last table entry
-    entry = directory[-1]
-    entryLength = entry["compLength"] + calcPaddingLength(entry["compLength"])
-    compData = tableData[entry["tag"]][1]
-    # make the bogus offset
-    entry["offset"] = header["privOffset"] + 4
-    # remove the length for the table from the total length
-    header["length"] -= entryLength
-    # pack the header and directory
-    data = packTestHeader(header) + packTestDirectory(directory)
-    # pad and combine all tables
-    tableData = packTestTableData(directory, tableData)
-    # slice the final table off of the table data
-    tableData = tableData[:-entryLength]
-    # pack the private data
-    privateData = packTestPrivateData(privateData)
-    assert len(privateData) > len(compData)
-    # write the table data over the top of the private data
-    privateData = privateData[:4] + compData + privateData[4 + len(compData):]
-    # combine everything
-    data += tableData + privateData
-    return data
-
 writeFileStructureTest(
     identifier="directory-overlaps-004",
-    title="Font Table Data Overlaps Private Data",
-    assertion="The final table starts four bytes after the start of the private data. This will fail for another reason: the calculated length (header length + directory length + entry lengths + private data length) will not match the stored length in the header.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataByteRange4Title,
+    assertion=makeTableDataByteRange4Description,
+    credits=makeTableDataByteRange4Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange4()
@@ -1001,34 +664,11 @@ writeFileStructureTest(
 
 # two tables overlap
 
-def makeTableDataByteRange5():
-    header, directory, tableData = defaultTestData()
-    # grab the last table entry
-    entry = directory[-1]
-    entryLength = entry["compLength"] + calcPaddingLength(entry["compLength"])
-    compData = tableData[entry["tag"]][1]
-    # grab the second to last entry
-    prevEntry = directory[-2]
-    assert prevEntry["compLength"] > 4
-    # make the bogus offset
-    entry["offset"] -= 4
-    # adjust the total length
-    header["length"] = entry["offset"] + entryLength
-    # pack the header, directory and table data
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    # slice off everything after the new offset
-    data = data[:entry["offset"]]
-    # add the table to the data
-    data += compData + ("\0" * calcPaddingLength(len(compData)))
-    # sanity check
-    assert header["length"] == len(data)
-    return data
-
 writeFileStructureTest(
     identifier="directory-overlaps-005",
-    title="Two Table Data Blocks Overlap",
-    assertion="The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataByteRange5Title,
+    assertion=makeTableDataByteRange5Description,
+    credits=makeTableDataByteRange5Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange5()
@@ -1040,26 +680,11 @@ writeFileStructureTest(
 
 # some tables have a compressed length that is longer than the original length
 
-def makeTableDataCompressionLength1():
-    tableData = deepcopy(sfntCFFTableData)
-    haveCompLargerThanOrig = False
-    for tag, (origData, compData) in tableData.items():
-        if len(compData) < len(origData):
-            continue
-        compData = zlib.compress(origData)
-        if len(compData) > len(origData):
-            haveCompLargerThanOrig = True
-            tableData[tag] = (origData, compData)
-    assert haveCompLargerThanOrig
-    header, directory, tableData = defaultTestData(tableData=tableData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="directory-compLength-001",
-    title="Font Table Data Compressed Length Greater Than Original Length",
-    assertion="At least one table's compLength is larger than the origLength.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataCompressionLength1Title,
+    assertion=makeTableDataCompressionLength1Description,
+    credits=makeTableDataCompressionLength1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-compressedlarger",
     data=makeTableDataCompressionLength1()
@@ -1071,23 +696,11 @@ writeFileStructureTest(
 
 # one table has an origLength that is less than the decompressed length
 
-def makeTableDataOriginalLength1():
-    header, directory, tableData = defaultTestData()
-    shift = 4
-    cff = tableData["CFF "]
-    cffEntry = [entry for entry in directory if entry["tag"] == "CFF "][0]
-    assert cffEntry["compLength"] < cffEntry["origLength"]
-    assert cffEntry["origLength"] - shift > entry["compLength"]
-    cffEntry["origLength"] -= shift
-    header["totalSfntSize"] -= shift
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="directory-origLength-001",
-    title="Original Length Less Than Decompressed Length",
-    assertion="The CFF table when decompressed has a length that is four bytes longer than the value listed in origLength.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataOriginalLength1Title,
+    assertion=makeTableDataOriginalLength1Description,
+    credits=makeTableDataOriginalLength1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-origLength",
     data=makeTableDataOriginalLength1()
@@ -1095,22 +708,11 @@ writeFileStructureTest(
 
 # one table has an origLength that is greater than the decompressed length
 
-def makeTableDataOriginalLength2():
-    header, directory, tableData = defaultTestData()
-    shift = 4
-    cff = tableData["CFF "]
-    cffEntry = [entry for entry in directory if entry["tag"] == "CFF "][0]
-    assert cffEntry["compLength"] < cffEntry["origLength"]
-    cffEntry["origLength"] += shift
-    header["totalSfntSize"] += shift
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="directory-origLength-002",
-    title="Original Length Greater Than Decompressed Length",
-    assertion="The CFF table when decompressed has a length that is four bytes shorter than the value listed in origLength.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableDataOriginalLength2Title,
+    assertion=makeTableDataOriginalLength2Description,
+    credits=makeTableDataOriginalLength2Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-origLength",
     data=makeTableDataOriginalLength2()
@@ -1122,19 +724,11 @@ writeFileStructureTest(
 
 # no tables compressed
 
-def makeTableCompressionTest1():
-    tableData = deepcopy(sfntCFFTableData)
-    for tag, (origData, compData) in tableData.items():
-        tableData[tag] = (origData, origData)
-    header, directory, tableData = defaultTestData(tableData=tableData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="tabledata-compression-001",
-    title="Font Table Data Not Compressed",
-    assertion="None of the tables are stored in compressed form.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableCompressionTest1Title,
+    assertion=makeTableCompressionTest1Description,
+    credits=makeTableCompressionTest1Credits,
     shouldDisplaySFNT=True,
     sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest1()
@@ -1142,25 +736,11 @@ writeFileStructureTest(
 
 # all possible tables are compressed
 
-def makeTableCompressionTest2():
-    header, directory, tableData = defaultTestData()
-    for tag, (origData, compData) in tableData.items():
-        # this is a double check. the default data stores everything
-        # possible in compressed form.
-        if tag == "head":
-            continue
-        assert len(compData) <= len(origData)
-        if len(compData) == len(origData):
-            compTest = zlib.compress(origData)
-            assert len(compTest) > len(origData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="tabledata-compression-002",
-    title="Font Table Data Is Compressed When Possible",
-    assertion="All of the tables (excpet head) that will be smaller when compressed are stored in their compressed state.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableCompressionTest2Title,
+    assertion=makeTableCompressionTest2Description,
+    credits=makeTableCompressionTest2Credits,
     shouldDisplaySFNT=True,
     sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest2()
@@ -1168,25 +748,11 @@ writeFileStructureTest(
 
 # not all possible tables are compressed
 
-def makeTableCompressionTest3():
-    tableData = deepcopy(sfntCFFTableData)
-    haveStoredCompressed = True
-    for tag, (origData, compData) in tableData.items():
-        if haveStoredCompressed and len(compData) < len(origData):
-            compData = origData
-        elif len(compData) < len(origData):
-            haveStoredCompressed = True
-        tableData[tag] = (origData, compData)
-    assert haveStoredCompressed
-    header, directory, tableData = defaultTestData(tableData=tableData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="tabledata-compression-003",
-    title="Not All Font Table Data Is Compressed When Possible",
-    assertion="Only one of the tables that would be smaller when compressed is stored in the compressed state.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableCompressionTest3Title,
+    assertion=makeTableCompressionTest3Description,
+    credits=makeTableCompressionTest3Credits,
     shouldDisplaySFNT=True,
     sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest3()
@@ -1194,31 +760,11 @@ writeFileStructureTest(
 
 # varying compression levels
 
-def makeTableCompressionTest4():
-    tableData = deepcopy(sfntCFFTableData)
-    compressionLevels = set()
-    for index, (tag, (origData, compData)) in enumerate(tableData.items()):
-        compData = origData
-        r = range(1, 10)
-        if index % 2:
-            r = reversed(r)
-        for level in r:
-            c = zlib.compress(origData, level)
-            if len(c) < len(origData):
-                compData = c
-                compressionLevels.add(level)
-                break
-        tableData[tag] = (origData, compData)
-    assert len(compressionLevels) > 1
-    header, directory, tableData = defaultTestData(tableData=tableData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="tabledata-compression-004",
-    title="Font Table Data Is Compressed At Different Levels",
-    assertion="The font data tables are compressed using at least two different levels.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableCompressionTest4Title,
+    assertion=makeTableCompressionTest4Description,
+    credits=makeTableCompressionTest4Credits,
     shouldDisplaySFNT=True,
     sfntDisplaySpecLink="#conform-mustuncompress",
     data=makeTableCompressionTest4()
@@ -1230,25 +776,11 @@ writeFileStructureTest(
 
 # compression incompatible with zlib
 
-def makeTableZlibCompressionTest1():
-    header, directory, tableData = defaultTestData()
-    madeBogusTableData = False
-    for tag, (origData, compData) in tableData.items():
-        if len(origData) == len(compData):
-            continue
-        compData = "\x01" * len(compData)
-        tableData[tag] = (origData, compData)
-        madeBogusTableData = True
-        break
-    assert madeBogusTableData
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
 writeFileStructureTest(
     identifier="tabledata-zlib-001",
-    title="Font Table Data Invalid Compressed Data",
-    assertion="One compressed table has had its compressed data replaced with \\01 making it incompatible with zlib.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeTableZlibCompressionTest1Title,
+    assertion=makeTableZlibCompressionTest1Description,
+    credits=makeTableZlibCompressionTest1Credits,
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-mustzlib",
     data=makeTableZlibCompressionTest1()
@@ -1440,20 +972,11 @@ writeFileStructureTest(
 # Metadata Display: Compression
 # -----------------------------
 
-def makeMetadataCompression1():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    metadata = metadata[0], metadata[0]
-    diff = header["metaOrigLength"] - header["metaLength"]
-    header["length"] += diff
-    header["metaLength"] = header["metaOrigLength"]
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-    return data
-
 writeFileStructureTest(
     identifier="metadatadisplay-compression-001",
-    title="Metadata Invalid Compression",
-    assertion="The metadata is stored in an uncompressed state and therefore does not have the proper compression format.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeMetadataCompression1Title,
+    assertion=makeMetadataCompression1Description,
+    credits=makeMetadataCompression1Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=False,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
@@ -1466,18 +989,11 @@ writeFileStructureTest(
 
 # <
 
-def makeMetaOrigLengthTest1():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    metaOrigLength = header["metaOrigLength"]
-    metaOrigLength += 1
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-    return data
-
 writeFileStructureTest(
     identifier="metadatadisplay-metaOrigLength-001",
-    title="Decompressed Metadata Length Less Than metaOrigLength",
-    assertion="The metadata decompressed to a length that is 1 byte smaller than the length defined in metaOrigLength",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeMetaOrigLengthTest1Title,
+    assertion=makeMetaOrigLengthTest1Description,
+    credits=makeMetaOrigLengthTest1Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=False,
     sfntDisplaySpecLink="#conform-metaOrigLength",
@@ -1486,24 +1002,16 @@ writeFileStructureTest(
 
 # >
 
-def makeMetaOrigLengthTest2():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    metaOrigLength = header["metaOrigLength"]
-    metaOrigLength -= 1
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
-    return data
-
 writeFileStructureTest(
     identifier="metadatadisplay-metaOrigLength-002",
-    title="Decompressed Metadata Length Greater Than metaOrigLength",
-    assertion="The metadata decompressed to a length that is 1 byte greater than the length defined in metaOrigLength",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=makeMetaOrigLengthTest2Title,
+    assertion=makeMetaOrigLengthTest2Description,
+    credits=makeMetaOrigLengthTest2Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=False,
     sfntDisplaySpecLink="#conform-metaOrigLength",
     data=makeMetaOrigLengthTest2()
 )
-
 
 # -----------------------------
 # Metadata Display: Well-Formed
@@ -1511,169 +1019,86 @@ writeFileStructureTest(
 
 # <
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text < text.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-001",
-    title="Unescaped < in Content",
-    assertion="The text element in the description element contains an unescaped <.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataWellFormed1Title,
+    assertion=metadataWellFormed1Description,
+    credits=metadataWellFormed1Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataWellFormed1Metadata,
 )
 
 # &
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text & text.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-002",
-    title="Unescaped & in Content",
-    assertion="The text element in the description element contains an unescaped &.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataWellFormed2Title,
+    assertion=metadataWellFormed2Description,
+    credits=metadataWellFormed2Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataWellFormed2Metadata,
 )
 
 # mismatched elements
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text.
-        </text>
-    </mismatch>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-003",
-    title="Mismatched Element Tags",
-    assertion="One element begins with <description> but ends with </mismatch>.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataWellFormed3Title,
+    assertion=metadataWellFormed3Description,
+    credits=metadataWellFormed3Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataWellFormed3Metadata,
 )
 
 # unclosed element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text.
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-004",
-    title="Unclosed Element Tag",
-    assertion="The text element element in the description element is not closed.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataWellFormed4Title,
+    assertion=metadataWellFormed4Description,
+    credits=metadataWellFormed4Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataWellFormed4Metadata,
 )
 
 # case mismatch
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text.
-        </text>
-    </DESCRIPTION>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-005",
-    title="Case Mismatch in Element Tags",
-    assertion="The <description> element is closed with <DESCRIPTION>.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataWellFormed5Title,
+    assertion=metadataWellFormed5Description,
+    credits=metadataWellFormed5Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataWellFormed5Metadata,
 )
 
 # more than one root
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text.
-        </text>
-    </description>
-</metadata>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-006",
-    title="More Than One Root Element",
-    assertion="The metadata root element occurs twice.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataWellFormed6Title,
+    assertion=metadataWellFormed6Description,
+    credits=metadataWellFormed6Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataWellFormed6Metadata,
 )
 
 # unknown encoding
 
-m = """
-<?xml version="1.0" encoding="VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Text.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-007",
-    title="Unknown Encoding",
-    assertion="The xml encoding is set to 'VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING'.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataWellFormed7Title,
+    assertion=metadataWellFormed7Description,
+    credits=metadataWellFormed7Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataWellFormed7Metadata,
 )
 
 # --------------------------
@@ -1682,57 +1107,36 @@ writeMetadataSchemaValidityTest(
 
 # UTF-8
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-001",
-    title="UTF-8 Encoding",
-    assertion="The xml encoding is set to UTF-8.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataEncoding1Title,
+    assertion=metadataEncoding1Description,
+    credits=metadataEncoding1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataEncoding1Metadata,
 )
 
 # UTF-16
 
-m = """
-<?xml version="1.0" encoding="UTF-16"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-""".strip().replace("    ", "\t").encode("utf-16")
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-002",
-    title="UTF-16 Encoding",
-    assertion="The xml encoding is set to UTF-16.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataEncoding2Title,
+    assertion=metadataEncoding2Description,
+    credits=metadataEncoding2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataEncoding2Metadata,
 )
 
 # Invalid
 
-m = """
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-003",
-    title="Invalid Encoding",
-    assertion="The xml encoding is set to ISO-8859-1.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataEncoding3Title,
+    assertion=metadataEncoding3Description,
+    credits=metadataEncoding3Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataEncoding3Metadata,
 )
 
 # -------------------------------------------
@@ -1741,92 +1145,57 @@ writeMetadataSchemaValidityTest(
 
 # valid
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-001",
-    title="Valid metadata Element",
-    assertion="The metadata element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaMetadata1Title,
+    assertion=metadataSchemaMetadata1Description,
+    credits=metadataSchemaMetadata1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaMetadata1Metadata,
 )
 
 # missing version
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata>
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-002",
-    title="No version Attribute in metadata Element",
-    assertion="The metadata element does not contain the required version attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaMetadata2Title,
+    assertion=metadataSchemaMetadata2Description,
+    credits=metadataSchemaMetadata2Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaMetadata2Metadata,
 )
 
 # invalid version
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="ABC">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-003",
-    title="Invalid version Attribute Value in metadata Element",
-    assertion="The metadata element version attribute is set to 'ABC'.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaMetadata3Title,
+    assertion=metadataSchemaMetadata3Description,
+    credits=metadataSchemaMetadata3Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaMetadata3Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0" unknownattribute="Text">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-004",
-    title="Unknown Attrbute in metadata Element",
-    assertion="The metadata element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaMetadata4Title,
+    assertion=metadataSchemaMetadata4Description,
+    credits=metadataSchemaMetadata4Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaMetadata4Metadata,
 )
 
 # unknown element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <unknown attribute="Text" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-005",
-    title="Unknown Child Element metadata Element",
-    assertion="The metadata element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaMetadata5Title,
+    assertion=metadataSchemaMetadata5Description,
+    credits=metadataSchemaMetadata5Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaMetadata5Metadata,
 )
 
 # -------------------------------------------
@@ -1835,133 +1204,80 @@ writeMetadataSchemaValidityTest(
 
 # valid
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-001",
-    title="Valid uniqueid Element",
-    assertion="The uniqueid element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaUniqueid1Title,
+    assertion=metadataSchemaUniqueid1Description,
+    credits=metadataSchemaUniqueid1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaUniqueid1Metadata,
 )
 
 # does not exist
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-002",
-    title="No uniqueid Element",
-    assertion="The uniqueid element doesn't exist.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaUniqueid2Title,
+    assertion=metadataSchemaUniqueid2Description,
+    credits=metadataSchemaUniqueid2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaUniqueid2Metadata,
 )
 
 # duplicate
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest" />
-    <uniqueid id="org.w3.webfonts.wofftest" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-003",
-    title="More Than One uniqueid Element",
-    assertion="The uniqueid element occurs twice.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaUniqueid3Title,
+    assertion=metadataSchemaUniqueid3Description,
+    credits=metadataSchemaUniqueid3Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaUniqueid3Metadata,
 )
 
 # missing id attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-004",
-    title="No id Attribute in uniqueid Element",
-    assertion="The uniqueid element does not contain the required id attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaUniqueid4Title,
+    assertion=metadataSchemaUniqueid4Description,
+    credits=metadataSchemaUniqueid4Credits,
     metadataDisplaySpecLink="#conform-metadata-id-required",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaUniqueid4Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest" unknownattribute="Text" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-005",
-    title="Unknown Attribute in uniqueid Element",
-    assertion="The uniqueid element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaUniqueid5Title,
+    assertion=metadataSchemaUniqueid5Description,
+    credits=metadataSchemaUniqueid5Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaUniqueid5Metadata,
 )
 
 # unknown child
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest">
-        <unknown attribute="Text" />
-    </uniqueid>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-006",
-    title="Child Element in uniqueid Element",
-    assertion="The uniqueid element contains a child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaUniqueid6Title,
+    assertion=metadataSchemaUniqueid6Description,
+    credits=metadataSchemaUniqueid6Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaUniqueid6Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <uniqueid id="org.w3.webfonts.wofftest">
-        Text
-    </uniqueid>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-007",
-    title="Content in uniqueid Element",
-    assertion="The uniqueid element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaUniqueid7Title,
+    assertion=metadataSchemaUniqueid7Description,
+    credits=metadataSchemaUniqueid7Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaUniqueid7Metadata,
 )
 
 # -----------------------------------------
@@ -1970,149 +1286,89 @@ writeMetadataSchemaValidityTest(
 
 # valid
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-001",
-    title="Valid vendor Element",
-    assertion="The vendor element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor1Title,
+    assertion=metadataSchemaVendor1Description,
+    credits=metadataSchemaVendor1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaVendor1Metadata,
 )
-
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <vendor name="Test Vendor" />
-</metadata>
-"""
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-002",
-    title="Valid vendor Element Without url Attribute",
-    assertion="The vendor element does not contain a url attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor2Title,
+    assertion=metadataSchemaVendor2Description,
+    credits=metadataSchemaVendor2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaVendor2Metadata,
 )
 
 # does not exist
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-003",
-    title="No vendor Element",
-    assertion="The vendor element doesn't exist.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor3Title,
+    assertion=metadataSchemaVendor3Description,
+    credits=metadataSchemaVendor3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaVendor3Metadata,
 )
 
 # duplicate
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-004",
-    title="More Than One vendor Element",
-    assertion="The vendor element occurs twice.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor4Title,
+    assertion=metadataSchemaVendor4Description,
+    credits=metadataSchemaVendor4Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaVendor4Metadata,
 )
 
 # missing name attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <vendor url="http://w3c.org/Fonts" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-005",
-    title="No name Attribute in vendor Element",
-    assertion="The vendor element does not contain the required name attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor5Title,
+    assertion=metadataSchemaVendor5Description,
+    credits=metadataSchemaVendor5Credits,
     metadataDisplaySpecLink="#conform-metadata-vendor-required",
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaVendor5Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts" unknownattribute="Text" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-006",
-    title="Unknown Attribute in vendor Element",
-    assertion="The vendor element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor6Title,
+    assertion=metadataSchemaVendor6Description,
+    credits=metadataSchemaVendor6Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaVendor6Metadata,
 )
 
 # unknown child
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts">
-        <unknown attribute="Text" />
-    </vendor>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-007",
-    title="Child Element in vendor Element",
-    assertion="The vendor element contains a child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor7Title,
+    assertion=metadataSchemaVendor7Description,
+    credits=metadataSchemaVendor7Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaVendor7Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <vendor name="Test Vendor" url="http://w3c.org/Fonts">
-        Text
-    </vendor>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-008",
-    title="Content in vendor Element",
-    assertion="The vendor element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaVendor8Title,
+    assertion=metadataSchemaVendor8Description,
+    credits=metadataSchemaVendor8Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaVendor8Metadata,
 )
 
 # ------------------------------------------
@@ -2121,166 +1377,90 @@ writeMetadataSchemaValidityTest(
 
 # valid - no lang, single credit element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-001",
-    title="Valid credits Element With No Language Attribute And A Single credit Element",
-    assertion="The credits element does not contain a language attribute but it still matches the schema and it contains one credit child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits1Title,
+    assertion=metadataSchemaCredits1Description,
+    credits=metadataSchemaCredits1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCredits1Metadata,
 )
 
 # valid - lang, single credit element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits lang="en">
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-002",
-    title="Valid credits Element With A Language Attribute And A Single credit Element",
-    assertion="The credits element contains contains a language attribute and it matches the schema and it contains one credit child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits2Title,
+    assertion=metadataSchemaCredits2Description,
+    credits=metadataSchemaCredits2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCredits2Metadata,
 )
 
 # valid - multiple credit elements
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-        <credit name="Credit 2" role="Role 2" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-003",
-    title="Valid credits Element With Two credit Elements",
-    assertion="The credits element matches the schema and it contains two credit child elements.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits3Title,
+    assertion=metadataSchemaCredits3Description,
+    credits=metadataSchemaCredits3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCredits3Metadata,
 )
 
 # more than one credits
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-    <credits lang="fr">
-        <credit name="Credit 1 fr" role="Role 1 fr" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-004",
-    title="More Than One credits Element",
-    assertion="The credits element occurs more than once.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits4Title,
+    assertion=metadataSchemaCredits4Description,
+    credits=metadataSchemaCredits4Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCredits4Metadata,
 )
 
 # missing credit element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-005",
-    title="No credit Element in credits Element",
-    assertion="The credits element does not contain a credit child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits5Title,
+    assertion=metadataSchemaCredits5Description,
+    credits=metadataSchemaCredits5Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredits5Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits unknownattribute="Text">
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-006",
-    title="Unknown Attribute in credits Element",
-    assertion="The credits element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits6Title,
+    assertion=metadataSchemaCredits6Description,
+    credits=metadataSchemaCredits6Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredits6Metadata,
 )
 
 # unknown element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-        <unknown attribute="Text" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-007",
-    title="Unknown Child Element in credits Element",
-    assertion="The credits element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits7Title,
+    assertion=metadataSchemaCredits7Description,
+    credits=metadataSchemaCredits7Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredits7Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        Text
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-008",
-    title="Content in credits Element",
-    assertion="The credits element contains an content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredits8Title,
+    assertion=metadataSchemaCredits8Description,
+    credits=metadataSchemaCredits8Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredits8Metadata,
 )
 
 # -----------------------------------------
@@ -2289,145 +1469,79 @@ writeMetadataSchemaValidityTest(
 
 # valid
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-001",
-    title="Valid credit Element",
-    assertion="The credit element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredit1Title,
+    assertion=metadataSchemaCredit1Description,
+    credits=metadataSchemaCredit1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCredit1Metadata,
 )
 
 # valid no url
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-002",
-    title="Valid credit Element Without url Attribute",
-    assertion="The credit element does not contain a url attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredit2Title,
+    assertion=metadataSchemaCredit2Description,
+    credits=metadataSchemaCredit2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCredit2Metadata,
 )
 
 # valid no role
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-003",
-    title="Valid credit Element Without role Attribute",
-    assertion="The credit element does not contain a role attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredit3Title,
+    assertion=metadataSchemaCredit3Description,
+    credits=metadataSchemaCredit3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCredit3Metadata,
 )
 
 # no name
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-004",
-    title="No name attribute in credit Element",
-    assertion="The credit element does not contain a name attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredit4Title,
+    assertion=metadataSchemaCredit4Description,
+    credits=metadataSchemaCredit4Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredit4Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" unknownattribute="Test" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-005",
-    title="Unknown attribute in credit Element",
-    assertion="The credit element contains and unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredit5Title,
+    assertion=metadataSchemaCredit5Description,
+    credits=metadataSchemaCredit5Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredit5Metadata,
 )
 
 # child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts">
-            <unknown attribute="Text" />
-        </credit>
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-006",
-    title="Child Element in credit Element",
-    assertion="The credit element contains a child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredit6Title,
+    assertion=metadataSchemaCredit6Description,
+    credits=metadataSchemaCredit6Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredit6Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        Text
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-007",
-    title="Content in credit Element",
-    assertion="The credit element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCredit7Title,
+    assertion=metadataSchemaCredit7Description,
+    credits=metadataSchemaCredit7Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCredit7Metadata,
 )
 
 # ----------------------------------------------
@@ -2436,298 +1550,145 @@ writeMetadataSchemaValidityTest(
 
 # valid with url
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text>
-            Description without language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-001",
-    title="Valid description Element",
-    assertion="The description element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription1Title,
+    assertion=metadataSchemaDescription1Description,
+    credits=metadataSchemaDescription1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaDescription1Metadata,
 )
 
 # valid without url
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description>
-        <text>
-            Description without language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-002",
-    title="Valid description Element Without url Attribute",
-    assertion="The description element does not contain a url attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription2Title,
+    assertion=metadataSchemaDescription2Description,
+    credits=metadataSchemaDescription2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaDescription2Metadata,
 )
 
 # valid one text element no language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text>
-            Description without language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-003",
-    title="Valid description Element With One No Language Tagged text Element",
-    assertion="The description element matches the schema. It contains one text element that does not have a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription3Title,
+    assertion=metadataSchemaDescription3Description,
+    credits=metadataSchemaDescription3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaDescription3Metadata,
 )
 
 # valid one text element with language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text lang="en">
-            Description with "en" language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-004",
-    title="Valid description Element With One Language Tagged text Element",
-    assertion="The description element matches the schema. It contains one text element that has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription4Title,
+    assertion=metadataSchemaDescription4Description,
+    credits=metadataSchemaDescription4Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaDescription4Metadata,
 )
 
 # valid two text elements no language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text>
-            Description without language.
-        </text>
-        <text lang="en">
-            Description with "en" language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-005",
-    title="Valid description Element With Mixed text Element Language Tags 1",
-    assertion="The description element matches the schema. One text element does not have a language tag. One text element has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription5Title,
+    assertion=metadataSchemaDescription5Description,
+    credits=metadataSchemaDescription5Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaDescription5Metadata,
 )
 
 # valid two text elements language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text lang="en">
-            Description with "en" language.
-        </text>
-        <text lang="fr">
-            Description with "fr" language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-006",
-    title="Valid description Element With Mixed text Element Language Tags 2",
-    assertion="The description element matches the schema. Two text elements have a language tags.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription6Title,
+    assertion=metadataSchemaDescription6Description,
+    credits=metadataSchemaDescription6Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaDescription6Metadata,
 )
 
 # more than one description
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text>
-            Description without language.
-        </text>
-    </description>
-    <description url="http://w3c.org/Fonts">
-        <text>
-            Description without language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-007",
-    title="More Than One description Element",
-    assertion="The description element occurs more than once.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription7Title,
+    assertion=metadataSchemaDescription7Description,
+    credits=metadataSchemaDescription7Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaDescription7Metadata,
 )
 
 # no text element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-008",
-    title="No text Element in description Element",
-    assertion="The description element does not contain a text child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription8Title,
+    assertion=metadataSchemaDescription8Description,
+    credits=metadataSchemaDescription8Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaDescription8Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts" unknownattribute="Text">
-        <text>
-            Description without language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-009",
-    title="Unknown Attribute in description Element",
-    assertion="The description element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription9Title,
+    assertion=metadataSchemaDescription9Description,
+    credits=metadataSchemaDescription9Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaDescription9Metadata,
 )
 
 # unknown child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text>
-            Description without language.
-        </text>
-        <unknown attribute="Text" />
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-010",
-    title="Unknown Child Element in description Element",
-    assertion="The description element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription10Title,
+    assertion=metadataSchemaDescription10Description,
+    credits=metadataSchemaDescription10Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaDescription10Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        Text
-        <text>
-            Description without language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-011",
-    title="Content in description Element",
-    assertion="The description element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription11Title,
+    assertion=metadataSchemaDescription11Description,
+    credits=metadataSchemaDescription11Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaDescription11Metadata,
 )
 
 # text element unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text unknownattribute="Text">
-            Description without language.
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-012",
-    title="Unknown Attribute in description Element text Element",
-    assertion="The description element contains a text element with an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription12Title,
+    assertion=metadataSchemaDescription12Description,
+    credits=metadataSchemaDescription12Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaDescription12Metadata,
 )
 
 # text element child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <description url="http://w3c.org/Fonts">
-        <text>
-            Description without language.
-            <unknown attribute="Text" />
-        </text>
-    </description>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-013",
-    title="Unknown Child Element in description Element text Element",
-    assertion="The description element contains a text element with an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaDescription13Title,
+    assertion=metadataSchemaDescription13Description,
+    credits=metadataSchemaDescription13Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaDescription13Metadata,
 )
 
 # ------------------------------------------
@@ -2736,320 +1697,156 @@ writeMetadataSchemaValidityTest(
 
 # valid with url and license
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text>
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-001",
-    title="Valid license Element",
-    assertion="The license element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense1Title,
+    assertion=metadataSchemaLicense1Description,
+    credits=metadataSchemaLicense1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicense1Metadata,
 )
 
 # valid no url
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license id="License ID">
-        <text>
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-002",
-    title="Valid license Element",
-    assertion="The license element does not have a url attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense2Title,
+    assertion=metadataSchemaLicense2Description,
+    credits=metadataSchemaLicense2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicense2Metadata,
 )
 
 # valid no id
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts">
-        <text>
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-003",
-    title="Valid license Element",
-    assertion="The license element does not have an id attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense3Title,
+    assertion=metadataSchemaLicense3Description,
+    credits=metadataSchemaLicense3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicense3Metadata,
 )
 
 # valid one text element no language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text>
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-004",
-    title="Valid license Element With One No Language Tagged text Element",
-    assertion="The license element matches the schema. It contains one text element that does not have a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense4Title,
+    assertion=metadataSchemaLicense4Description,
+    credits=metadataSchemaLicense4Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicense4Metadata,
 )
 
 # valid one text element with language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text lang="en">
-            License with "en" language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-005",
-    title="Valid license Element With One Language Tagged text Element",
-    assertion="The license element matches the schema. It contains one text element that has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense5Title,
+    assertion=metadataSchemaLicense5Description,
+    credits=metadataSchemaLicense5Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicense5Metadata,
 )
 
 # valid two text elements no language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text>
-            License without language.
-        </text>
-        <text lang="en">
-            License with "en" language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-006",
-    title="Valid license Element With Mixed text Element Language Tags 1",
-    assertion="The license element matches the schema. One text element does not have a language tag. One text element has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense6Title,
+    assertion=metadataSchemaLicense6Description,
+    credits=metadataSchemaLicense6Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicense6Metadata,
 )
 
 # valid two text elements language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text lang="en">
-            License with "en" language.
-        </text>
-        <text lang="fr">
-            License with "fr" language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-007",
-    title="Valid license Element With Mixed text Element Language Tags 2",
-    assertion="The license element matches the schema. Two text elements have a language tags.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense7Title,
+    assertion=metadataSchemaLicense7Description,
+    credits=metadataSchemaLicense7Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicense7Metadata,
 )
 
 # more than one license
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text>
-            License without language.
-        </text>
-    </license>
-    <license url="http://w3c.org/Fonts">
-        <text>
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-008",
-    title="More Than One license Element",
-    assertion="The license element occurs more than once.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense8Title,
+    assertion=metadataSchemaLicense8Description,
+    credits=metadataSchemaLicense8Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicense8Metadata,
 )
 
 # no text element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-009",
-    title="No text Element in license Element",
-    assertion="The license element does not contain a text child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense9Title,
+    assertion=metadataSchemaLicense9Description,
+    credits=metadataSchemaLicense9Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicense9Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID" unknownattribute="Text">
-        <text>
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-010",
-    title="Unknown Attribute in license Element",
-    assertion="The license element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense10Title,
+    assertion=metadataSchemaLicense10Description,
+    credits=metadataSchemaLicense10Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicense10Metadata,
 )
 
 # unknown child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text>
-            License without language.
-        </text>
-        <unknown attribute="Text" />
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-011",
-    title="Unknown Child Element in license Element",
-    assertion="The license element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense11Title,
+    assertion=metadataSchemaLicense11Description,
+    credits=metadataSchemaLicense11Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicense11Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        Text
-        <text>
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-012",
-    title="Content in license Element",
-    assertion="The license element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense12Title,
+    assertion=metadataSchemaLicense12Description,
+    credits=metadataSchemaLicense12Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicense12Metadata,
 )
 
 # text element unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text unknownattribute="Text">
-            License without language.
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-013",
-    title="Unknown Attribute in license Element text Element",
-    assertion="The license element contains a text element with an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense13Title,
+    assertion=metadataSchemaLicense13Description,
+    credits=metadataSchemaLicense13Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicense13Metadata,
 )
 
 # text element child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts" id="License ID">
-        <text>
-            License without language.
-            <unknown attribute="Text" />
-        </text>
-    </license>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-014",
-    title="Unknown Child Element in license Element text Element",
-    assertion="The license element contains a text element with an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicense14Title,
+    assertion=metadataSchemaLicense14Description,
+    credits=metadataSchemaLicense14Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicense14Metadata,
 )
 
 # --------------------------------------------
@@ -3058,254 +1855,123 @@ writeMetadataSchemaValidityTest(
 
 # valid one text element no language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text>
-            Copyright without language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-001",
-    title="Valid copyright Element With One No Language Tagged text Element",
-    assertion="The copyright element matches the schema. It contains one text element that does not have a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright1Title,
+    assertion=metadataSchemaCopyright1Description,
+    credits=metadataSchemaCopyright1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCopyright1Metadata,
 )
 
 # valid one text element with language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text lang="en">
-            Copyright with "en" language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-002",
-    title="Valid copyright Element With One Language Tagged text Element",
-    assertion="The copyright element matches the schema. It contains one text element that has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright2Title,
+    assertion=metadataSchemaCopyright2Description,
+    credits=metadataSchemaCopyright2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCopyright2Metadata,
 )
 
 # valid two text elements no language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text>
-            Copyright without language.
-        </text>
-        <text lang="en">
-            Copyright with "en" language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-003",
-    title="Valid copyright Element With Mixed text Element Language Tags 1",
-    assertion="The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright3Title,
+    assertion=metadataSchemaCopyright3Description,
+    credits=metadataSchemaCopyright3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCopyright3Metadata,
 )
 
 # valid two text elements language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text lang="en">
-            Copyright with "en" language.
-        </text>
-        <text lang="fr">
-            Copyright with "fr" language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-004",
-    title="Valid copyright Element With Mixed text Element Language Tags 2",
-    assertion="The copyright element matches the schema. Two text elements have a language tags.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright4Title,
+    assertion=metadataSchemaCopyright4Description,
+    credits=metadataSchemaCopyright4Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaCopyright4Metadata,
 )
 
 # more than one copyright
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text>
-            Copyright without language.
-        </text>
-    </copyright>
-    <copyright>
-        <text>
-            Copyright without language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-005",
-    title="More Than One copyright Element",
-    assertion="The copyright element occurs more than once.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright5Title,
+    assertion=metadataSchemaCopyright5Description,
+    credits=metadataSchemaCopyright5Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCopyright5Metadata,
 )
 
 # no text element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-006",
-    title="No text Element in copyright Element",
-    assertion="The copyright element does not contain a text child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright6Title,
+    assertion=metadataSchemaCopyright6Description,
+    credits=metadataSchemaCopyright6Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCopyright6Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright unknownattribute="Text">
-        <text>
-            Copyright without language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-007",
-    title="Unknown Attribute in copyright Element",
-    assertion="The copyright element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright7Title,
+    assertion=metadataSchemaCopyright7Description,
+    credits=metadataSchemaCopyright7Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCopyright7Metadata,
 )
 
 # unknown child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text>
-            Copyright without language.
-        </text>
-    </copyright>
-    <unknown attribute="Text" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-008",
-    title="Unknown Child Element in copyright Element",
-    assertion="The copyright element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright8Title,
+    assertion=metadataSchemaCopyright8Description,
+    credits=metadataSchemaCopyright8Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCopyright8Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        Text
-        <text>
-            Copyright without language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-009",
-    title="Content in copyright Element",
-    assertion="The copyright element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright9Title,
+    assertion=metadataSchemaCopyright9Description,
+    credits=metadataSchemaCopyright9Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCopyright9Metadata,
 )
 
 # text element unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text unknownattribute="Text">
-            Copyright without language.
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-010",
-    title="Unknown Attribute in copyright Element text Element",
-    assertion="The copyright element contains a text element with an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright10Title,
+    assertion=metadataSchemaCopyright10Description,
+    credits=metadataSchemaCopyright10Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCopyright10Metadata,
 )
 
 # text element child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright>
-        <text>
-            Copyright without language.
-            <unknown attribute="Text" />
-        </text>
-    </copyright>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-011",
-    title="Unknown Child Element in copyright Element text Element",
-    assertion="The copyright element contains a text element with an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaCopyright11Title,
+    assertion=metadataSchemaCopyright11Description,
+    credits=metadataSchemaCopyright11Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaCopyright11Metadata,
 )
 
 # --------------------------------------------
@@ -3314,254 +1980,123 @@ writeMetadataSchemaValidityTest(
 
 # valid one text element no language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text>
-            Trademark without language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-001",
-    title="Valid trademark Element With One No Language Tagged text Element",
-    assertion="The trademark element matches the schema. It contains one text element that does not have a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark1Title,
+    assertion=metadataSchemaTrademark1Description,
+    credits=metadataSchemaTrademark1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaTrademark1Metadata,
 )
 
 # valid one text element with language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text lang="en">
-            Trademark with "en" language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-002",
-    title="Valid trademark Element With One Language Tagged text Element",
-    assertion="The trademark element matches the schema. It contains one text element that has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark2Title,
+    assertion=metadataSchemaTrademark2Description,
+    credits=metadataSchemaTrademark2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaTrademark2Metadata,
 )
 
 # valid two text elements no language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text>
-            Trademark without language.
-        </text>
-        <text lang="en">
-            Trademark with "en" language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-003",
-    title="Valid trademark Element With Mixed text Element Language Tags 1",
-    assertion="The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark3Title,
+    assertion=metadataSchemaTrademark3Description,
+    credits=metadataSchemaTrademark3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaTrademark3Metadata,
 )
 
 # valid two text elements language and language
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text lang="en">
-            Trademark with "en" language.
-        </text>
-        <text lang="fr">
-            Trademark with "fr" language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-004",
-    title="Valid trademark Element With Mixed text Element Language Tags 2",
-    assertion="The trademark element matches the schema. Two text elements have a language tags.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark4Title,
+    assertion=metadataSchemaTrademark4Description,
+    credits=metadataSchemaTrademark4Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaTrademark4Metadata,
 )
 
 # more than one trademark
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text>
-            Trademark without language.
-        </text>
-    </trademark>
-    <trademark>
-        <text>
-            Trademark without language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-005",
-    title="More Than One trademark Element",
-    assertion="The trademark element occurs more than once.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark5Title,
+    assertion=metadataSchemaTrademark5Description,
+    credits=metadataSchemaTrademark5Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaTrademark5Metadata,
 )
 
 # no text element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-006",
-    title="No text Element in trademark Element",
-    assertion="The trademark element does not contain a text child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark6Title,
+    assertion=metadataSchemaTrademark6Description,
+    credits=metadataSchemaTrademark6Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaTrademark6Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark unknownattribute="Text">
-        <text>
-            Trademark without language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-007",
-    title="Unknown Attribute in trademark Element",
-    assertion="The trademark element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark7Title,
+    assertion=metadataSchemaTrademark7Description,
+    credits=metadataSchemaTrademark7Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaTrademark7Metadata,
 )
 
 # unknown child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text>
-            Trademark without language.
-        </text>
-    </trademark>
-    <unknown attribute="Text" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-008",
-    title="Unknown Child Element in trademark Element",
-    assertion="The trademark element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark8Title,
+    assertion=metadataSchemaTrademark8Description,
+    credits=metadataSchemaTrademark8Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaTrademark8Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        Text
-        <text>
-            Trademark without language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-009",
-    title="Content in trademark Element",
-    assertion="The trademark element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark9Title,
+    assertion=metadataSchemaTrademark9Description,
+    credits=metadataSchemaTrademark9Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaTrademark9Metadata,
 )
 
 # text element unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text unknownattribute="Text">
-            Trademark without language.
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-010",
-    title="Unknown Attribute in trademark Element text Element",
-    assertion="The trademark element contains a text element with an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark10Title,
+    assertion=metadataSchemaTrademark10Description,
+    credits=metadataSchemaTrademark10Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaTrademark10Metadata,
 )
 
 # text element child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark>
-        <text>
-            Trademark without language.
-            <unknown attribute="Text" />
-        </text>
-    </trademark>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-011",
-    title="Unknown Child Element in trademark Element text Element",
-    assertion="The trademark element contains a text element with an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaTrademark11Title,
+    assertion=metadataSchemaTrademark11Description,
+    credits=metadataSchemaTrademark11Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaTrademark11Metadata,
 )
 
 # -------------------------------------------
@@ -3570,115 +2105,68 @@ writeMetadataSchemaValidityTest(
 
 # valid
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <licensee name="Licensee Name" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-001",
-    title="Valid licensee Element",
-    assertion="The uniqueid element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicensee1Title,
+    assertion=metadataSchemaLicensee1Description,
+    credits=metadataSchemaLicensee1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaLicensee1Metadata,
 )
 
 # duplicate
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <licensee name="Licensee Name" />
-    <licensee name="Licensee Name" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-002",
-    title="More Than One licensee Element",
-    assertion="The uniqueid element occurs more than once.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicensee2Title,
+    assertion=metadataSchemaLicensee2Description,
+    credits=metadataSchemaLicensee2Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicensee2Metadata,
 )
 
 # missing name
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <licensee />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-003",
-    title="No name Attribute in licensee Element",
-    assertion="The uniqueid element does not contain the required name attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicensee3Title,
+    assertion=metadataSchemaLicensee3Description,
+    credits=metadataSchemaLicensee3Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicensee3Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <licensee name="Licensee Name" unknownattribute="Text" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-004",
-    title="Unknown Attribute in licensee Element",
-    assertion="The uniqueid element occures more than once.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicensee4Title,
+    assertion=metadataSchemaLicensee4Description,
+    credits=metadataSchemaLicensee4Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicensee4Metadata,
 )
 
 # child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <licensee name="Licensee Name">
-        <unknown attribute="Text" />
-    </licensee>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-005",
-    title="Child Element in licensee Element",
-    assertion="The uniqueid element contains a child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicensee5Title,
+    assertion=metadataSchemaLicensee5Description,
+    credits=metadataSchemaLicensee5Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicensee5Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <licensee name="Licensee Name">
-        Text
-    </licensee>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-006",
-    title="Content in licensee Element",
-    assertion="The uniqueid element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaLicensee6Title,
+    assertion=metadataSchemaLicensee6Description,
+    credits=metadataSchemaLicensee6Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaLicensee6Metadata,
 )
 
 # --------------------------------------------
@@ -3687,277 +2175,123 @@ writeMetadataSchemaValidityTest(
 
 # valid
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-001",
-    title="Valid extension Element",
-    assertion="The extension element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension1Title,
+    assertion=metadataSchemaExtension1Description,
+    credits=metadataSchemaExtension1Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension1Metadata,
 )
 
 # valid two extensions
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-    <extension id="Extension 2">
-        <name>Extension 2 - Name Without Language</name>
-        <item id="Extension 2 - Item 1 ID">
-            <name>Extension 2 - Item 1 - Name Without Language</name>
-            <value>Extension 2 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-002",
-    title="Two Valid extension Elements",
-    assertion="Two extension elements match the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension2Title,
+    assertion=metadataSchemaExtension2Description,
+    credits=metadataSchemaExtension2Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension2Metadata,
 )
 
 # valid no id
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension>
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-003",
-    title="Valid extension Element Without id Attribute",
-    assertion="The extension element does not have an id attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension3Title,
+    assertion=metadataSchemaExtension3Description,
+    credits=metadataSchemaExtension3Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension3Metadata,
 )
 
 # valid no name
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-004",
-    title="Valid extension Element Without name Element",
-    assertion="The extension element does not have a name child element but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension4Title,
+    assertion=metadataSchemaExtension4Description,
+    credits=metadataSchemaExtension4Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension4Metadata,
 )
 
 # valid one untagged name one tagged name
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <name lang="en">Extension 1 - Name With "en" Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-005",
-    title="Valid extension Element With Two name Elements 1",
-    assertion="The extension element contains one name element without a lang attribute and another with a lang attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension5Title,
+    assertion=metadataSchemaExtension5Description,
+    credits=metadataSchemaExtension5Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension5Metadata,
 )
 
 # valid two tagged names
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name lang="en">Extension 1 - Name With "en" Language</name>
-        <name lang="fr">Extension 1 - Name With "fr" Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-006",
-    title="Valid extension Element With Two name Elements 2",
-    assertion="The extension element contains two name elements with lang attributes.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension6Title,
+    assertion=metadataSchemaExtension6Description,
+    credits=metadataSchemaExtension6Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension6Metadata,
 )
 
 # valid more than one item
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-        <item id="Extension 1 - Item 2 ID">
-            <name>Extension 1 - Item 2 - Name Without Language</name>
-            <value>Extension 1 - Item 2 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-007",
-    title="Valid extension Element With Two item Elements",
-    assertion="The extension element contains two item child elements.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension7Title,
+    assertion=metadataSchemaExtension7Description,
+    credits=metadataSchemaExtension7Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension7Metadata,
 )
 
 # no item
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-008",
-    title="No item Element in extension Element",
-    assertion="The extension element does not contain an item child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension8Title,
+    assertion=metadataSchemaExtension8Description,
+    credits=metadataSchemaExtension8Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension8Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1" unknownattribute="Text">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-009",
-    title="Unknown Attribute in extension Element",
-    assertion="The extension element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension9Title,
+    assertion=metadataSchemaExtension9Description,
+    credits=metadataSchemaExtension9Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension9Metadata,
 )
 
 # unknown child
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-    <unknown attribute="Text" />
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-010",
-    title="Unknown Child Element in extension Element",
-    assertion="The extension element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension10Title,
+    assertion=metadataSchemaExtension10Description,
+    credits=metadataSchemaExtension10Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension10Metadata,
 )
-
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        Text
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-011",
-    title="Content in extension Element",
-    assertion="The extension element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension11Title,
+    assertion=metadataSchemaExtension11Description,
+    credits=metadataSchemaExtension11Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension11Metadata,
 )
 
 # ---------------------------------------------------
@@ -3966,298 +2300,134 @@ writeMetadataSchemaValidityTest(
 
 # valid
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-012",
-    title="Valid item Element in extension Element",
-    assertion="The item element in the extension element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension12Title,
+    assertion=metadataSchemaExtension12Description,
+    credits=metadataSchemaExtension12Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension12Metadata,
 )
 
 # valid multiple languages
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
-            <name lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
-            <value lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-013",
-    title="Valid item Element With Multiple Languages in extension Element",
-    assertion="The item element in the extension element contains a variety of languages.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension13Title,
+    assertion=metadataSchemaExtension13Description,
+    credits=metadataSchemaExtension13Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension13Metadata,
 )
 
 # valid no id
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item>
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-014",
-    title="Valid item Element Without id Attribute in extension Element",
-    assertion="The item element in the extension element does not contain an id attribute but it still matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension14Title,
+    assertion=metadataSchemaExtension14Description,
+    credits=metadataSchemaExtension14Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension14Metadata,
 )
 
 # valid name no tag and tagged
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-015",
-    title="Valid item Element With Two name Elements in extension Element 1",
-    assertion="The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension15Title,
+    assertion=metadataSchemaExtension15Description,
+    credits=metadataSchemaExtension15Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension15Metadata,
 )
 
 # valid name two tagged
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
-            <name lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-016",
-    title="Valid item Element With Two name Elements in extension Element 2",
-    assertion="The item element in the extension element contains two name child elements with lang attributes.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension16Title,
+    assertion=metadataSchemaExtension16Description,
+    credits=metadataSchemaExtension16Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension16Metadata,
 )
 
 # valid value no tag and tagged
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-017",
-    title="Valid item Element With Two value Elements in extension Element 1",
-    assertion="The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension17Title,
+    assertion=metadataSchemaExtension17Description,
+    credits=metadataSchemaExtension17Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension17Metadata,
 )
 
 # valid value two tagged
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
-            <value lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-018",
-    title="Valid item Element With Two value Elements in extension Element 2",
-    assertion="The item element in the extension element contains two value child elements with lang attributes.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension18Title,
+    assertion=metadataSchemaExtension18Description,
+    credits=metadataSchemaExtension18Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension18Metadata,
 )
 
 # no name
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-019",
-    title="No name Element in item Element in extension Element",
-    assertion="The item element in the extension element does not contain a name child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension19Title,
+    assertion=metadataSchemaExtension19Description,
+    credits=metadataSchemaExtension19Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension19Metadata,
 )
 
 # no value
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-020",
-    title="No value Element in item Element in extension Element",
-    assertion="The item element in the extension element does not contain a value child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension20Title,
+    assertion=metadataSchemaExtension20Description,
+    credits=metadataSchemaExtension20Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension20Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID" unknownattribute="Text">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-021",
-    title="Unknown Attribute in item Element in extension Element",
-    assertion="The item element in the extension element contains an unknown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension21Title,
+    assertion=metadataSchemaExtension21Description,
+    credits=metadataSchemaExtension21Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension21Metadata,
 )
 
 # unknown child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-            <unknown attribute="Text" />
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-022",
-    title="Unknown Child Element in item Element in extension Element",
-    assertion="The item element in the extension element contains an unknown child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension22Title,
+    assertion=metadataSchemaExtension22Description,
+    credits=metadataSchemaExtension22Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension22Metadata,
 )
 
 # content
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            Text
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-023",
-    title="Content in item Element in extension Element",
-    assertion="The item element in the extension element contains content.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension23Title,
+    assertion=metadataSchemaExtension23Description,
+    credits=metadataSchemaExtension23Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension23Metadata,
 )
 
 # ----------------------------------------------------------
@@ -4266,102 +2436,46 @@ writeMetadataSchemaValidityTest(
 
 # valid no lang
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-024",
-    title="Valid name Element in item Element in extension Element",
-    assertion="The name element in the item element in the extension element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension24Title,
+    assertion=metadataSchemaExtension24Description,
+    credits=metadataSchemaExtension24Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension24Metadata,
 )
 
 # valid lang
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-025",
-    title="Valid name Element With lang Attribute in item Element in extension Element",
-    assertion="The name element in the item element in the extension element contains a lang attribute and it matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension25Title,
+    assertion=metadataSchemaExtension25Description,
+    credits=metadataSchemaExtension25Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension25Metadata,
 )
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name unknownattribute="Text">Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-026",
-    title="Unkown Attribute in name Element in item Element in extension Element",
-    assertion="The name element in the item element in the extension element contains an unkown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension26Title,
+    assertion=metadataSchemaExtension26Description,
+    credits=metadataSchemaExtension26Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension26Metadata,
 )
-
 
 # child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>
-                Extension 1 - Item 1 - Name Without Language
-                <unknown attribute="Text" />
-            </name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-027",
-    title="Child Element in name Element in item Element in extension Element",
-    assertion="The name element in the item element in the extension element contains a child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension27Title,
+    assertion=metadataSchemaExtension27Description,
+    credits=metadataSchemaExtension27Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension27Metadata,
 )
 
 # -----------------------------------------------------------
@@ -4370,101 +2484,47 @@ writeMetadataSchemaValidityTest(
 
 # valid no lang
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-028",
-    title="Valid value Element in item Element in extension Element",
-    assertion="The value element in the item element in the extension element matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension28Title,
+    assertion=metadataSchemaExtension28Description,
+    credits=metadataSchemaExtension28Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension28Metadata,
 )
 
 # valid lang
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-029",
-    title="Valid value Element With lang Attribute in item Element in extension Element",
-    assertion="The value element in the item element in the extension element contains a lang attribute and it matches the schema.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension29Title,
+    assertion=metadataSchemaExtension29Description,
+    credits=metadataSchemaExtension29Credits,
     metadataIsValid=True,
-    metadata=m
+    metadata=metadataSchemaExtension29Metadata,
 )
+
 
 # unknown attribute
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value unknownattribute="Text">Extension 1 - Item 1 - Value Without Language</value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-030",
-    title="Unkown Attribute in value Element in item Element in extension Element",
-    assertion="The value element in the item element in the extension element contains an unkown attribute.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension30Title,
+    assertion=metadataSchemaExtension30Description,
+    credits=metadataSchemaExtension30Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension30Metadata,
 )
 
 # child element
 
-m = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <extension id="Extension 1">
-        <name>Extension 1 - Name Without Language</name>
-        <item id="Extension 1 - Item 1 ID">
-            <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value>
-                Extension 1 - Item 1 - Value Without Language
-                <unknown attribute="Text" />
-            </value>
-        </item>
-    </extension>
-</metadata>
-"""
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-031",
-    title="Child Element in value Element in item Element in extension Element",
-    assertion="The value element in the item element in the extension element contains a child element.",
-    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    title=metadataSchemaExtension31Title,
+    assertion=metadataSchemaExtension31Description,
+    credits=metadataSchemaExtension31Credits,
     metadataIsValid=False,
-    metadata=m
+    metadata=metadataSchemaExtension31Metadata,
 )
 
 # ------------------
