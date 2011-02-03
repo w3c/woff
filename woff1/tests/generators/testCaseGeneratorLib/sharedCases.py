@@ -1,7 +1,6 @@
 import os
 import zlib
 from copy import deepcopy
-import sstruct
 from fontTools.ttLib.sfnt import sfntDirectoryEntrySize
 from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData,\
     woffHeaderSize, woffDirectoryEntrySize, woffDirectoryEntryFormat

@@ -30,16 +30,8 @@ following the CSS Test Format (http://wiki.csswg.org/test/css2.1/format).
 import os
 import shutil
 import glob
-import zlib
-import glob
-from copy import deepcopy
-import sstruct
-from fontTools.ttLib.sfnt import sfntDirectoryEntrySize
-from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData,\
-    woffHeaderSize, woffDirectoryEntrySize, woffDirectoryEntryFormat
-from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData,\
-    sfntCFFTableData, testCFFDataWOFFDirectory
-from testCaseGeneratorLib.utilities import calcPaddingLength, padData, calcTableChecksum, stripMetadata
+from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData
+from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData
 from testCaseGeneratorLib.html import generateSFNTDisplayTestHTML, generateSFNTDisplayRefHTML, generateSFNTDisplayIndexHTML
 from testCaseGeneratorLib.paths import resourcesDirectory, userAgentDirectory, userAgentTestDirectory, userAgentTestResourcesDirectory, userAgentFontsToInstallDirectory
 from testCaseGeneratorLib.sharedCases import *
