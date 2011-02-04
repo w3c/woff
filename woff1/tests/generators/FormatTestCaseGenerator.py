@@ -213,7 +213,6 @@ writeTest(
     data=makeHeaderInvalidSignature1()
 )
 
-
 # ------------------------------
 # File Structure: Header: flavor
 # ------------------------------
@@ -490,6 +489,90 @@ writeTest(
     valid=False,
     specLink="#conform-overlap-reject",
     data=makeOverlappingData4()
+)
+
+# -------------------------------------------------
+# File Structure: Data Blocks: Metadata Not Present
+# -------------------------------------------------
+	 
+# metadata length is not 0 but the offset = 0
+
+def makeMetadataZeroData1():
+    header, directory, tableData = defaultTestData()
+    header["metaOffset"] = 0
+    header["metaLength"] = 1
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="blocks-metadata-absent-001",
+    title="Metadata Length Not Set to Zero",
+    description="The metadata length is set to one but the offset is zero. This test case also fails for other reasons: the offset/length creates an overlap with the header block, the metadata won't decompress.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-zerometaprivate",
+    data=makeMetadataZeroData1()
+)
+
+# metadata length = zero but the offset > zero
+
+def makeMetadataZeroData2():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    header["metaLength"] = 0
+    header["metaOffset"] = header["length"]
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    return data
+
+writeTest(
+    identifier="blocks-metadata-absent-002",
+    title="Metadata Offset Not Set to Zero",
+    description="The metadata length is set to zero but the offset is set to the end of the file.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-zerometaprivate",
+    data=makeMetadataZeroData2()
+)
+
+# -----------------------------------------------------
+# File Structure: Data Blocks: Private Data Not Present
+# -----------------------------------------------------
+
+# private data length > 0 but the offset = 0
+
+def makePrivateDataZeroData1():
+    header, directory, tableData = defaultTestData()
+    header["privOffset"] = 0
+    header["privLength"] = 1
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="blocks-private-absent-001",
+    title="Private Data Length Not Set to Zero",
+    description="The private data length is set to one but the offset is zero. This test case also fails for another reason: the offset/length creates an overlap with the header block.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-zerometaprivate",
+    data=makePrivateDataZeroData1()
+)
+
+# private data length = 0 but the offset > 0
+
+def makePrivateDataZeroData2():
+    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
+    header["privLength"] = 0
+    header["privOffset"] = header["length"]
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData)
+    return data
+
+writeTest(
+    identifier="blocks-private-absent-002",
+    title="Private Data Offset Not Set to Zero",
+    description="The private data length is set to zero but the offset is set to the end of the file.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-zerometaprivate",
+    data=makePrivateDataZeroData2()
 )
 
 # ------------------------------------------------
