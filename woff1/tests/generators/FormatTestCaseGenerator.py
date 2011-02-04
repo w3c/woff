@@ -601,6 +601,31 @@ writeTest(
     data=makeTableData4Byte2()
 )
 
+# table is padded with something other than null bytes
+	 
+def makeTableData4Byte3():
+    header, directory, tableData = defaultTestData()
+    paddedAtLeastOne = False
+    for tag, (origData, compData) in tableData.items():
+        paddingLength = calcPaddingLength(len(compData))
+        if paddingLength:
+            paddedAtLeastOne = True
+        compData += "\x01" * paddingLength
+        tableData[tag] = (origData, compData)
+    assert paddedAtLeastOne
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="directory-4-byte-003",
+    title="Font Table Data Padded With Non-Null",
+    description="Table data is padded with \\01 instead of \\00.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-tablesize-longword",
+    data=makeTableData4Byte3()
+)
+
 # -----------------------------------------
 # File Structure: Table Directory: Overlaps
 # -----------------------------------------
