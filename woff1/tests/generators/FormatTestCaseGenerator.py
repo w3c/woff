@@ -576,6 +576,33 @@ writeTest(
     data=makePrivateDataZeroData2()
 )
 
+# ---------------------------------------------
+# File Structure: Data Blocks: Metadata Padding
+# ---------------------------------------------
+
+# padding after metadata but no private data
+
+def makeMetadataPadding():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    metadata = packTestMetadata(metadata)
+    paddingLength = calcPaddingLength(len(metadata))
+    assert paddingLength
+    header["length"] += paddingLength
+    print paddingLength
+    metadata += "\0" * paddingLength
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + metadata
+    return data
+
+writeTest(
+    identifier="blocks-metadata-padding-001",
+    title="Metadata Has Unnecessary Padding",
+    description="The metadata block is padded to a four-byte boundary but there is no private data.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-metadata-noprivatepad",
+    data=makeMetadataPadding()
+)
+
 # ------------------------------------------------
 # File Structure: Table Directory: 4-Byte Boundary
 # ------------------------------------------------
@@ -2359,7 +2386,6 @@ writeMetadataTest(
     valid=True,
     metadata=metadataSchemaExtension29Metadata,
 )
-
 
 # unknown attribute
 
