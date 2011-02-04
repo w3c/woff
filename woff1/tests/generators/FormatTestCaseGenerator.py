@@ -2383,6 +2383,32 @@ writeMetadataTest(
     metadata=metadataSchemaExtension31Metadata,
 )
 
+# ------------------------------------
+# File Structure: Private Data: 4-Byte
+# ------------------------------------
+
+# private data not on 4-byte boundary
+
+def makePrivateData4Byte1():
+    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
+    paddingLength = calcPaddingLength(header["metaLength"])
+    assert paddingLength > 0
+    header["length"] -= paddingLength
+    header["privOffset"] -= paddingLength
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    data += packTestPrivateData(privateData)
+    return data
+
+writeTest(
+    identifier="privatedata-4-byte-001",
+    title="Private Data Does Not Begin of 4-Byte Boundary",
+    description="The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=True,
+    specLink="#conform-private-padalign",
+    data=makePrivateData4Byte1()
+)
+
 # -----------------------
 # Finish Index Generation
 # -----------------------
