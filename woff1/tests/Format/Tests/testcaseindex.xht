@@ -1,0 +1,1754 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>WOFF: Format Test Suite</title>
+		<style type="text/css">
+			@import "resources/index.css";
+		</style>
+	</head>
+	<body>
+		<h1>WOFF: Format Test Suite (192 tests)</h1>
+
+		<h2 class="testCategory">Valid WOFFs</h2>
+		<div class="testCase" id="valid-001">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-001">valid-001</a>: Valid WOFF 1</h3>
+				<p>Valid CFF flavored WOFF with no metadata and no private data</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="valid-002">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-002">valid-002</a>: Valid WOFF 2</h3>
+				<p>Valid CFF flavored WOFF with metadata</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="valid-003">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-003">valid-003</a>: Valid WOFF 3</h3>
+				<p>Valid CFF flavored WOFF with private data</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="valid-004">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-004">valid-004</a>: Valid WOFF 4</h3>
+				<p>Valid CFF flavored WOFF with metadata and private data</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="valid-005">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-005">valid-005</a>: Valid WOFF 5</h3>
+				<p>Valid TTF flavored WOFF with no metadata and no private data</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-005-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="valid-006">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-006">valid-006</a>: Valid WOFF 6</h3>
+				<p>Valid TTF flavored WOFF with metadata</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-006-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="valid-007">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-007">valid-007</a>: Valid WOFF 7</h3>
+				<p>Valid TTF flavored WOFF with private data</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-007-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="valid-008">
+			<div class="testCaseOverview">
+				<h3><a href="#valid-008">valid-008</a>: Valid WOFF 8</h3>
+				<p>Valid TTF flavored WOFF with metadata and private data</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="valid-008-validity">Yes</span></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">WOFF Header Tests</h2>
+		<div class="testCase" id="header-signature-001">
+			<div class="testCaseOverview">
+				<h3><a href="#header-signature-001">header-signature-001</a>: Header Signature Invalid Value</h3>
+				<p>The signature field contains XXXX instead of wOFF.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-signature-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-flavor-001">
+			<div class="testCaseOverview">
+				<h3><a href="#header-flavor-001">header-flavor-001</a>: Header Flavor Incorrectly Set to 0x00010000</h3>
+				<p>The header flavor is set to 0x00010000 but the table data contains CFF data, not TTF data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-flavor-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-flavor-002">
+			<div class="testCaseOverview">
+				<h3><a href="#header-flavor-002">header-flavor-002</a>: Header Flavor Incorrectly Set to OTTO</h3>
+				<p>The header flavor is set to OTTO but the table data contains TTF data, not CFF data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-flavor-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-length-001">
+			<div class="testCaseOverview">
+				<h3><a href="#header-length-001">header-length-001</a>: Header Length Too Short</h3>
+				<p>The length field contains a value that is four bytes shorter than the actual data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-length-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-length-002">
+			<div class="testCaseOverview">
+				<h3><a href="#header-length-002">header-length-002</a>: Header Length Too Long</h3>
+				<p>The length field contains a value that is four bytes longer than the actual data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-length-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-numTables-001">
+			<div class="testCaseOverview">
+				<h3><a href="#header-numTables-001">header-numTables-001</a>: Header Number of Tables Set to Zero</h3>
+				<p>The header contains 0 in the numTables field. A table directory and table data are present.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-numTables-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-totalSfntSize-001">
+			<div class="testCaseOverview">
+				<h3><a href="#header-totalSfntSize-001">header-totalSfntSize-001</a>: Header Total SFNT Size Not a Multiple of 4</h3>
+				<p>The totalSfntSize field contains a value that is missing padding bytes between two tables.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-totalSfntSize-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-totalSfntSize-002">
+			<div class="testCaseOverview">
+				<h3><a href="#header-totalSfntSize-002">header-totalSfntSize-002</a>: Header Total SFNT Size Too Long</h3>
+				<p>The totalSfntSize field contains a value that is is four bytes too long.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-totalSfntSize-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-totalSfntSize-003">
+			<div class="testCaseOverview">
+				<h3><a href="#header-totalSfntSize-003">header-totalSfntSize-003</a>: Header Total SFNT Size Too Short</h3>
+				<p>The totalSfntSize field contains a value that is is four bytes too short.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-totalSfntSize-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="header-reserved-001">
+			<div class="testCaseOverview">
+				<h3><a href="#header-reserved-001">header-reserved-001</a>: Header Reserved Invalid Value</h3>
+				<p>The reserved field contains 1.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="header-reserved-001-validity">No</span></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">WOFF Data Block Tests</h2>
+		<div class="testCase" id="blocks-extraneous-data-001">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-001">blocks-extraneous-data-001</a>: Extraneous Data Between Directory and Table Data</h3>
+				<p>There are four null bytes between the table directory and the table data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-extraneous-data-002">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-002">blocks-extraneous-data-002</a>: Extraneous Data Between Tables</h3>
+				<p>There are four null bytes between each of the table data blocks.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-extraneous-data-003">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-003">blocks-extraneous-data-003</a>: Extraneous Data After Table Data</h3>
+				<p>There are four null bytes after the table data block and there is no metadata or private data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-extraneous-data-004">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-004">blocks-extraneous-data-004</a>: Extraneous Data Between Table Data and Metadata</h3>
+				<p>There are four null bytes between the table data and the metadata.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-extraneous-data-005">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-005">blocks-extraneous-data-005</a>: Extraneous Data Between Table Data and Private Data</h3>
+				<p>There are four null bytes between the table data and the private data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-extraneous-data-006">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-006">blocks-extraneous-data-006</a>: Extraneous Data Between Metdata and Private Data</h3>
+				<p>There are four null bytes between the metadata and the private data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-extraneous-data-007">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-007">blocks-extraneous-data-007</a>: Extraneous Data After Metadata</h3>
+				<p>There are four null bytes after the metadata and there is no private data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-extraneous-data-008">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-extraneous-data-008">blocks-extraneous-data-008</a>: Extraneous Data After Private Data</h3>
+				<p>There are four null bytes after the private data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-extraneous-data-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-overlap-001">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-overlap-001">blocks-overlap-001</a>: Table Data Blocks Overlap</h3>
+				<p>The second table's offset is four bytes before the end of the first table's data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-overlap-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-overlap-002">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-overlap-002">blocks-overlap-002</a>: Metadata Overlaps Table Data</h3>
+				<p>The metadata offset is four bytes before the end of the table data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-overlap-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-overlap-003">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-overlap-003">blocks-overlap-003</a>: Private Data Overlaps Table Data</h3>
+				<p>The private data offset is four bytes before the end of the table data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-overlap-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-overlap-004">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-overlap-004">blocks-overlap-004</a>: Private Data Overlaps Metadata</h3>
+				<p>The private data offset is four bytes before the end of the metadata.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-overlap-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-metadata-absent-001">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-metadata-absent-001">blocks-metadata-absent-001</a>: Metadata Length Not Set to Zero</h3>
+				<p>The metadata length is set to one but the offset is zero. This test case also fails for other reasons: the offset/length creates an overlap with the header block, the metadata won't decompress.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-metadata-absent-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-metadata-absent-002">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-metadata-absent-002">blocks-metadata-absent-002</a>: Metadata Offset Not Set to Zero</h3>
+				<p>The metadata length is set to zero but the offset is set to the end of the file.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-metadata-absent-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-private-absent-001">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-private-absent-001">blocks-private-absent-001</a>: Private Data Length Not Set to Zero</h3>
+				<p>The private data length is set to one but the offset is zero. This test case also fails for another reason: the offset/length creates an overlap with the header block.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-private-absent-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-private-absent-002">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-private-absent-002">blocks-private-absent-002</a>: Private Data Offset Not Set to Zero</h3>
+				<p>The private data length is set to zero but the offset is set to the end of the file.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-private-absent-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-metadata-padding-001">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-metadata-padding-001">blocks-metadata-padding-001</a>: Metadata Has Unnecessary Padding</h3>
+				<p>The metadata block is padded to a four-byte boundary but there is no private data.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-metadata-padding-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-ordering-001">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-ordering-001">blocks-ordering-001</a>: Table Data After Metadata</h3>
+				<p>The table data block is stored after the metadata block.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-ordering-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-ordering-002">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-ordering-002">blocks-ordering-002</a>: Table Data After Private Data</h3>
+				<p>The table data block is stored after the private data block.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-ordering-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-ordering-003">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-ordering-003">blocks-ordering-003</a>: Metadata After Private Data</h3>
+				<p>The metadata block is stored after the private data block.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-ordering-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="blocks-ordering-004">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-ordering-004">blocks-ordering-004</a>: Private Data Before Metadata</h3>
+				<p>The private data block is stored before the metadata block.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-ordering-004-validity">No</span></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">WOFF Table Directory Tests</h2>
+		<div class="testCase" id="directory-4-byte-001">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-4-byte-001">directory-4-byte-001</a>: Font Table Data Not On 4-Byte Boundary</h3>
+				<p>Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-4-byte-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-4-byte-002">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-4-byte-002">directory-4-byte-002</a>: Final Font Table Data Not Padded</h3>
+				<p>The final table in the table data block is not padded to a 4-byte boundary.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-4-byte-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-4-byte-003">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-4-byte-003">directory-4-byte-003</a>: Font Table Data Padded With Non-Null</h3>
+				<p>Table data is padded with \01 instead of \00.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-4-byte-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-overlaps-001">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-overlaps-001">directory-overlaps-001</a>: Font Table Data Offset Past End of File</h3>
+				<p>The offset to the data block for the final table data is four bytes beyond the end of the file.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-overlaps-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-overlaps-002">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-overlaps-002">directory-overlaps-002</a>: Font Table Data Offset+Length Past End of File</h3>
+				<p>The defined length for the final table causes the data block to be four bytes beyond the end of the file.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-overlaps-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-overlaps-003">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-overlaps-003">directory-overlaps-003</a>: Font Table Data Overlaps Metadata</h3>
+				<p>The final table starts four bytes after the start of the metadata. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length) will not match the stored length in the header.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-overlaps-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-overlaps-004">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-overlaps-004">directory-overlaps-004</a>: Font Table Data Overlaps Private Data</h3>
+				<p>The final table starts four bytes after the start of the private data. This will fail for another reason: the calculated length (header length + directory length + entry lengths + private data length) will not match the stored length in the header.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-overlaps-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-overlaps-005">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-overlaps-005">directory-overlaps-005</a>: Two Table Data Blocks Overlap</h3>
+				<p>The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-overlaps-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-compLength-001">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-compLength-001">directory-compLength-001</a>: Font Table Data Compressed Length Greater Than Original Length</h3>
+				<p>At least one table's compLength is larger than the origLength.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-compLength-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-origLength-001">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-origLength-001">directory-origLength-001</a>: Original Length Less Than Decompressed Length</h3>
+				<p>The CFF table when decompressed has a length that is four bytes longer than the value listed in origLength.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-origLength-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-origLength-002">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-origLength-002">directory-origLength-002</a>: Original Length Greater Than Decompressed Length</h3>
+				<p>The CFF table when decompressed has a length that is four bytes shorter than the value listed in origLength.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-origLength-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-origCheckSum-001">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-origCheckSum-001">directory-origCheckSum-001</a>: Font Table Directory Contains Invalid Original CheckSum</h3>
+				<p>The checksum for the CFF table is set to 0.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-origCheckSum-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-ascending-001">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-ascending-001">directory-ascending-001</a>: Font Table Directory Not In Ascending Order</h3>
+				<p>The tables in the directory are in descending order.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-ascending-001-validity">No</span></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">WOFF Table Data Tests</h2>
+		<div class="testCase" id="tabledata-compression-001">
+			<div class="testCaseOverview">
+				<h3><a href="#tabledata-compression-001">tabledata-compression-001</a>: Font Table Data Not Compressed</h3>
+				<p>None of the tables are stored in compressed form.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="tabledata-compression-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="tabledata-compression-002">
+			<div class="testCaseOverview">
+				<h3><a href="#tabledata-compression-002">tabledata-compression-002</a>: Font Table Data Is Compressed When Possible</h3>
+				<p>All of the tables (excpet head) that will be smaller when compressed are stored in their compressed state.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="tabledata-compression-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="tabledata-compression-003">
+			<div class="testCaseOverview">
+				<h3><a href="#tabledata-compression-003">tabledata-compression-003</a>: Not All Font Table Data Is Compressed When Possible</h3>
+				<p>Only one of the tables that would be smaller when compressed is stored in the compressed state.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="tabledata-compression-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="tabledata-compression-004">
+			<div class="testCaseOverview">
+				<h3><a href="#tabledata-compression-004">tabledata-compression-004</a>: Font Table Data Is Compressed At Different Levels</h3>
+				<p>The font data tables are compressed using at least two different levels.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="tabledata-compression-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="tabledata-zlib-001">
+			<div class="testCaseOverview">
+				<h3><a href="#tabledata-zlib-001">tabledata-zlib-001</a>: Font Table Data Invalid Compressed Data</h3>
+				<p>One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="tabledata-zlib-001-validity">No</span></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">WOFF Metadata Tests</h2>
+		<div class="testCase" id="metadata-compression-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-compression-001">metadata-compression-001</a>: Metadata Invalid Compression</h3>
+				<p>The metadata is stored in an uncompressed state and therefore does not have the proper compression format.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-compression-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-metaOrigLength-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-metaOrigLength-001">metadata-metaOrigLength-001</a>: Decompressed Metadata Length Less Than metaOrigLength</h3>
+				<p>The metadata decompressed to a length that is 1 byte smaller than the length defined in metaOrigLength</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-metaOrigLength-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-metaOrigLength-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-metaOrigLength-002">metadata-metaOrigLength-002</a>: Decompressed Metadata Length Greater Than metaOrigLength</h3>
+				<p>The metadata decompressed to a length that is 1 byte greater than the length defined in metaOrigLength</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-metaOrigLength-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-well-formed-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-well-formed-001">metadata-well-formed-001</a>: Unescaped &lt; in Content</h3>
+				<p>The text element in the description element contains an unescaped &lt;.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-well-formed-001-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-well-formed-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-well-formed-002">metadata-well-formed-002</a>: Unescaped &amp; in Content</h3>
+				<p>The text element in the description element contains an unescaped &amp;.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-well-formed-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-well-formed-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-well-formed-003">metadata-well-formed-003</a>: Mismatched Element Tags</h3>
+				<p>One element begins with &lt;description&gt; but ends with &lt;/mismatch&gt;.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-well-formed-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-well-formed-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-well-formed-004">metadata-well-formed-004</a>: Unclosed Element Tag</h3>
+				<p>The text element element in the description element is not closed.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-well-formed-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-well-formed-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-well-formed-005">metadata-well-formed-005</a>: Case Mismatch in Element Tags</h3>
+				<p>The &lt;description&gt; element is closed with &lt;DESCRIPTION&gt;.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-well-formed-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-well-formed-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-well-formed-006">metadata-well-formed-006</a>: More Than One Root Element</h3>
+				<p>The metadata root element occurs twice.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-well-formed-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-well-formed-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-well-formed-007">metadata-well-formed-007</a>: Unknown Encoding</h3>
+				<p>The xml encoding is set to 'VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING'.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-well-formed-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-encoding-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-encoding-001">metadata-encoding-001</a>: UTF-8 Encoding</h3>
+				<p>The xml encoding is set to UTF-8.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-encoding-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-encoding-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-encoding-002">metadata-encoding-002</a>: UTF-16 Encoding</h3>
+				<p>The xml encoding is set to UTF-16.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-encoding-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-encoding-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-encoding-003">metadata-encoding-003</a>: Invalid Encoding</h3>
+				<p>The xml encoding is set to ISO-8859-1.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-encoding-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-metadata-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-metadata-001">metadata-schema-metadata-001</a>: Valid metadata Element</h3>
+				<p>The metadata element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-metadata-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-metadata-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-metadata-002">metadata-schema-metadata-002</a>: No version Attribute in metadata Element</h3>
+				<p>The metadata element does not contain the required version attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-metadata-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-metadata-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-metadata-003">metadata-schema-metadata-003</a>: Invalid version Attribute Value in metadata Element</h3>
+				<p>The metadata element version attribute is set to 'ABC'.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-metadata-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-metadata-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-metadata-004">metadata-schema-metadata-004</a>: Unknown Attrbute in metadata Element</h3>
+				<p>The metadata element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-metadata-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-metadata-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-metadata-005">metadata-schema-metadata-005</a>: Unknown Child Element metadata Element</h3>
+				<p>The metadata element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-metadata-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-uniqueid-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-uniqueid-001">metadata-schema-uniqueid-001</a>: Valid uniqueid Element</h3>
+				<p>The uniqueid element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-uniqueid-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-uniqueid-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-uniqueid-002">metadata-schema-uniqueid-002</a>: No uniqueid Element</h3>
+				<p>The uniqueid element doesn't exist.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-uniqueid-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-uniqueid-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-uniqueid-003">metadata-schema-uniqueid-003</a>: More Than One uniqueid Element</h3>
+				<p>The uniqueid element occurs twice.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-uniqueid-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-uniqueid-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-uniqueid-004">metadata-schema-uniqueid-004</a>: No id Attribute in uniqueid Element</h3>
+				<p>The uniqueid element does not contain the required id attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-uniqueid-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-uniqueid-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-uniqueid-005">metadata-schema-uniqueid-005</a>: Unknown Attribute in uniqueid Element</h3>
+				<p>The uniqueid element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-uniqueid-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-uniqueid-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-uniqueid-006">metadata-schema-uniqueid-006</a>: Child Element in uniqueid Element</h3>
+				<p>The uniqueid element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-uniqueid-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-uniqueid-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-uniqueid-007">metadata-schema-uniqueid-007</a>: Content in uniqueid Element</h3>
+				<p>The uniqueid element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-uniqueid-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-001">metadata-schema-vendor-001</a>: Valid vendor Element</h3>
+				<p>The vendor element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-002">metadata-schema-vendor-002</a>: Valid vendor Element Without url Attribute</h3>
+				<p>The vendor element does not contain a url attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-003">metadata-schema-vendor-003</a>: No vendor Element</h3>
+				<p>The vendor element doesn't exist.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-004">metadata-schema-vendor-004</a>: More Than One vendor Element</h3>
+				<p>The vendor element occurs twice.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-005">metadata-schema-vendor-005</a>: No name Attribute in vendor Element</h3>
+				<p>The vendor element does not contain the required name attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-006">metadata-schema-vendor-006</a>: Unknown Attribute in vendor Element</h3>
+				<p>The vendor element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-007">metadata-schema-vendor-007</a>: Child Element in vendor Element</h3>
+				<p>The vendor element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-008">metadata-schema-vendor-008</a>: Content in vendor Element</h3>
+				<p>The vendor element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-001">metadata-schema-credits-001</a>: Valid credits Element With No Language Attribute And A Single credit Element</h3>
+				<p>The credits element does not contain a language attribute but it still matches the schema and it contains one credit child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-002">metadata-schema-credits-002</a>: Valid credits Element With A Language Attribute And A Single credit Element</h3>
+				<p>The credits element contains contains a language attribute and it matches the schema and it contains one credit child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-003">metadata-schema-credits-003</a>: Valid credits Element With Two credit Elements</h3>
+				<p>The credits element matches the schema and it contains two credit child elements.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-004">metadata-schema-credits-004</a>: More Than One credits Element</h3>
+				<p>The credits element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-005">metadata-schema-credits-005</a>: No credit Element in credits Element</h3>
+				<p>The credits element does not contain a credit child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-006">metadata-schema-credits-006</a>: Unknown Attribute in credits Element</h3>
+				<p>The credits element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-007">metadata-schema-credits-007</a>: Unknown Child Element in credits Element</h3>
+				<p>The credits element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-008">metadata-schema-credits-008</a>: Content in credits Element</h3>
+				<p>The credits element contains an content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-001">metadata-schema-credit-001</a>: Valid credit Element</h3>
+				<p>The credit element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-002">metadata-schema-credit-002</a>: Valid credit Element Without url Attribute</h3>
+				<p>The credit element does not contain a url attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-003">metadata-schema-credit-003</a>: Valid credit Element Without role Attribute</h3>
+				<p>The credit element does not contain a role attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-004">metadata-schema-credit-004</a>: No name attribute in credit Element</h3>
+				<p>The credit element does not contain a name attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-005">metadata-schema-credit-005</a>: Unknown attribute in credit Element</h3>
+				<p>The credit element contains and unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-006">metadata-schema-credit-006</a>: Child Element in credit Element</h3>
+				<p>The credit element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-007">metadata-schema-credit-007</a>: Content in credit Element</h3>
+				<p>The credit element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-001">metadata-schema-description-001</a>: Valid description Element</h3>
+				<p>The description element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-002">metadata-schema-description-002</a>: Valid description Element Without url Attribute</h3>
+				<p>The description element does not contain a url attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-003">metadata-schema-description-003</a>: Valid description Element With One No Language Tagged text Element</h3>
+				<p>The description element matches the schema. It contains one text element that does not have a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-004">metadata-schema-description-004</a>: Valid description Element With One Language Tagged text Element</h3>
+				<p>The description element matches the schema. It contains one text element that has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-005">metadata-schema-description-005</a>: Valid description Element With Mixed text Element Language Tags 1</h3>
+				<p>The description element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-005-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-006">metadata-schema-description-006</a>: Valid description Element With Mixed text Element Language Tags 2</h3>
+				<p>The description element matches the schema. Two text elements have a language tags.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-006-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-007">metadata-schema-description-007</a>: More Than One description Element</h3>
+				<p>The description element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-008">metadata-schema-description-008</a>: No text Element in description Element</h3>
+				<p>The description element does not contain a text child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-009">metadata-schema-description-009</a>: Unknown Attribute in description Element</h3>
+				<p>The description element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-009-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-010">metadata-schema-description-010</a>: Unknown Child Element in description Element</h3>
+				<p>The description element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-010-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-011">metadata-schema-description-011</a>: Content in description Element</h3>
+				<p>The description element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-011-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-012">metadata-schema-description-012</a>: Unknown Attribute in description Element text Element</h3>
+				<p>The description element contains a text element with an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-012-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-013">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-013">metadata-schema-description-013</a>: Unknown Child Element in description Element text Element</h3>
+				<p>The description element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-013-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-001">metadata-schema-license-001</a>: Valid license Element</h3>
+				<p>The license element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-002">metadata-schema-license-002</a>: Valid license Element</h3>
+				<p>The license element does not have a url attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-003">metadata-schema-license-003</a>: Valid license Element</h3>
+				<p>The license element does not have an id attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-004">metadata-schema-license-004</a>: Valid license Element With One No Language Tagged text Element</h3>
+				<p>The license element matches the schema. It contains one text element that does not have a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-005">metadata-schema-license-005</a>: Valid license Element With One Language Tagged text Element</h3>
+				<p>The license element matches the schema. It contains one text element that has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-005-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-006">metadata-schema-license-006</a>: Valid license Element With Mixed text Element Language Tags 1</h3>
+				<p>The license element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-006-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-007">metadata-schema-license-007</a>: Valid license Element With Mixed text Element Language Tags 2</h3>
+				<p>The license element matches the schema. Two text elements have a language tags.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-007-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-008">metadata-schema-license-008</a>: More Than One license Element</h3>
+				<p>The license element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-009">metadata-schema-license-009</a>: No text Element in license Element</h3>
+				<p>The license element does not contain a text child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-009-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-010">metadata-schema-license-010</a>: Unknown Attribute in license Element</h3>
+				<p>The license element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-010-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-011">metadata-schema-license-011</a>: Unknown Child Element in license Element</h3>
+				<p>The license element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-011-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-012">metadata-schema-license-012</a>: Content in license Element</h3>
+				<p>The license element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-012-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-013">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-013">metadata-schema-license-013</a>: Unknown Attribute in license Element text Element</h3>
+				<p>The license element contains a text element with an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-013-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-014">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-014">metadata-schema-license-014</a>: Unknown Child Element in license Element text Element</h3>
+				<p>The license element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-014-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-001">metadata-schema-copyright-001</a>: Valid copyright Element With One No Language Tagged text Element</h3>
+				<p>The copyright element matches the schema. It contains one text element that does not have a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-002">metadata-schema-copyright-002</a>: Valid copyright Element With One Language Tagged text Element</h3>
+				<p>The copyright element matches the schema. It contains one text element that has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-003">metadata-schema-copyright-003</a>: Valid copyright Element With Mixed text Element Language Tags 1</h3>
+				<p>The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-004">metadata-schema-copyright-004</a>: Valid copyright Element With Mixed text Element Language Tags 2</h3>
+				<p>The copyright element matches the schema. Two text elements have a language tags.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-005">metadata-schema-copyright-005</a>: More Than One copyright Element</h3>
+				<p>The copyright element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-006">metadata-schema-copyright-006</a>: No text Element in copyright Element</h3>
+				<p>The copyright element does not contain a text child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-007">metadata-schema-copyright-007</a>: Unknown Attribute in copyright Element</h3>
+				<p>The copyright element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-008">metadata-schema-copyright-008</a>: Unknown Child Element in copyright Element</h3>
+				<p>The copyright element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-009">metadata-schema-copyright-009</a>: Content in copyright Element</h3>
+				<p>The copyright element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-009-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-010">metadata-schema-copyright-010</a>: Unknown Attribute in copyright Element text Element</h3>
+				<p>The copyright element contains a text element with an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-010-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-011">metadata-schema-copyright-011</a>: Unknown Child Element in copyright Element text Element</h3>
+				<p>The copyright element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-011-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-001">metadata-schema-trademark-001</a>: Valid trademark Element With One No Language Tagged text Element</h3>
+				<p>The trademark element matches the schema. It contains one text element that does not have a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-002">metadata-schema-trademark-002</a>: Valid trademark Element With One Language Tagged text Element</h3>
+				<p>The trademark element matches the schema. It contains one text element that has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-003">metadata-schema-trademark-003</a>: Valid trademark Element With Mixed text Element Language Tags 1</h3>
+				<p>The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-004">metadata-schema-trademark-004</a>: Valid trademark Element With Mixed text Element Language Tags 2</h3>
+				<p>The trademark element matches the schema. Two text elements have a language tags.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-005">metadata-schema-trademark-005</a>: More Than One trademark Element</h3>
+				<p>The trademark element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-006">metadata-schema-trademark-006</a>: No text Element in trademark Element</h3>
+				<p>The trademark element does not contain a text child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-007">metadata-schema-trademark-007</a>: Unknown Attribute in trademark Element</h3>
+				<p>The trademark element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-007-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-008">metadata-schema-trademark-008</a>: Unknown Child Element in trademark Element</h3>
+				<p>The trademark element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-009">metadata-schema-trademark-009</a>: Content in trademark Element</h3>
+				<p>The trademark element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-009-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-010">metadata-schema-trademark-010</a>: Unknown Attribute in trademark Element text Element</h3>
+				<p>The trademark element contains a text element with an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-010-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-011">metadata-schema-trademark-011</a>: Unknown Child Element in trademark Element text Element</h3>
+				<p>The trademark element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-011-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-001">metadata-schema-licensee-001</a>: Valid licensee Element</h3>
+				<p>The uniqueid element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-002">metadata-schema-licensee-002</a>: More Than One licensee Element</h3>
+				<p>The uniqueid element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-002-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-003">metadata-schema-licensee-003</a>: No name Attribute in licensee Element</h3>
+				<p>The uniqueid element does not contain the required name attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-003-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-004">metadata-schema-licensee-004</a>: Unknown Attribute in licensee Element</h3>
+				<p>The uniqueid element occures more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-004-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-005">metadata-schema-licensee-005</a>: Child Element in licensee Element</h3>
+				<p>The uniqueid element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-005-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-006">metadata-schema-licensee-006</a>: Content in licensee Element</h3>
+				<p>The uniqueid element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-006-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-001">metadata-schema-extension-001</a>: Valid extension Element</h3>
+				<p>The extension element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-001-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-002">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-002">metadata-schema-extension-002</a>: Two Valid extension Elements</h3>
+				<p>Two extension elements match the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-002-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-003">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-003">metadata-schema-extension-003</a>: Valid extension Element Without id Attribute</h3>
+				<p>The extension element does not have an id attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-003-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-004">metadata-schema-extension-004</a>: Valid extension Element Without name Element</h3>
+				<p>The extension element does not have a name child element but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-004-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-005">metadata-schema-extension-005</a>: Valid extension Element With Two name Elements 1</h3>
+				<p>The extension element contains one name element without a lang attribute and another with a lang attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-005-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-006">metadata-schema-extension-006</a>: Valid extension Element With Two name Elements 2</h3>
+				<p>The extension element contains two name elements with lang attributes.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-006-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-007">metadata-schema-extension-007</a>: Valid extension Element With Two item Elements</h3>
+				<p>The extension element contains two item child elements.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-007-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-008">metadata-schema-extension-008</a>: No item Element in extension Element</h3>
+				<p>The extension element does not contain an item child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-008-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-009">metadata-schema-extension-009</a>: Unknown Attribute in extension Element</h3>
+				<p>The extension element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-009-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-010">metadata-schema-extension-010</a>: Unknown Child Element in extension Element</h3>
+				<p>The extension element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-010-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-011">metadata-schema-extension-011</a>: Content in extension Element</h3>
+				<p>The extension element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-011-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-012">metadata-schema-extension-012</a>: Valid item Element in extension Element</h3>
+				<p>The item element in the extension element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-012-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-013">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-013">metadata-schema-extension-013</a>: Valid item Element With Multiple Languages in extension Element</h3>
+				<p>The item element in the extension element contains a variety of languages.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-013-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-014">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-014">metadata-schema-extension-014</a>: Valid item Element Without id Attribute in extension Element</h3>
+				<p>The item element in the extension element does not contain an id attribute but it still matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-014-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-015">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-015">metadata-schema-extension-015</a>: Valid item Element With Two name Elements in extension Element 1</h3>
+				<p>The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-015-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-016">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-016">metadata-schema-extension-016</a>: Valid item Element With Two name Elements in extension Element 2</h3>
+				<p>The item element in the extension element contains two name child elements with lang attributes.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-016-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-017">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-017">metadata-schema-extension-017</a>: Valid item Element With Two value Elements in extension Element 1</h3>
+				<p>The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-017-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-018">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-018">metadata-schema-extension-018</a>: Valid item Element With Two value Elements in extension Element 2</h3>
+				<p>The item element in the extension element contains two value child elements with lang attributes.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-018-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-019">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-019">metadata-schema-extension-019</a>: No name Element in item Element in extension Element</h3>
+				<p>The item element in the extension element does not contain a name child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-019-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-020">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-020">metadata-schema-extension-020</a>: No value Element in item Element in extension Element</h3>
+				<p>The item element in the extension element does not contain a value child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-020-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-021">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-021">metadata-schema-extension-021</a>: Unknown Attribute in item Element in extension Element</h3>
+				<p>The item element in the extension element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-021-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-022">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-022">metadata-schema-extension-022</a>: Unknown Child Element in item Element in extension Element</h3>
+				<p>The item element in the extension element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-022-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-023">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-023">metadata-schema-extension-023</a>: Content in item Element in extension Element</h3>
+				<p>The item element in the extension element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-023-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-024">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-024">metadata-schema-extension-024</a>: Valid name Element in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-024-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-025">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-025">metadata-schema-extension-025</a>: Valid name Element With lang Attribute in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element contains a lang attribute and it matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-025-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-026">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-026">metadata-schema-extension-026</a>: Unkown Attribute in name Element in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element contains an unkown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-026-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-027">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-027">metadata-schema-extension-027</a>: Child Element in name Element in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-027-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-028">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-028">metadata-schema-extension-028</a>: Valid value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-028-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-029">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-029">metadata-schema-extension-029</a>: Valid value Element With lang Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains a lang attribute and it matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-029-validity">Yes</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-030">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-030">metadata-schema-extension-030</a>: Unkown Attribute in value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains an unkown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-030-validity">No</span></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-031">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-031">metadata-schema-extension-031</a>: Child Element in value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-031-validity">No</span></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">WOFF Private Data Tests</h2>
+		<div class="testCase" id="privatedata-4-byte-001">
+			<div class="testCaseOverview">
+				<h3><a href="#privatedata-4-byte-001">privatedata-4-byte-001</a>: Private Data Does Not Begin of 4-Byte Boundary</h3>
+				<p>The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="privatedata-4-byte-001-validity">Yes</span></p>
+			</div>
+		</div>
+	</body>
+</html>
