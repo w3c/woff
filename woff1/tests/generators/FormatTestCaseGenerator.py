@@ -588,7 +588,6 @@ def makeMetadataPadding():
     paddingLength = calcPaddingLength(len(metadata))
     assert paddingLength
     header["length"] += paddingLength
-    print paddingLength
     metadata += "\0" * paddingLength
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + metadata
     return data
@@ -760,6 +759,35 @@ writeTest(
     valid=False,
     specLink="#conform-origLength",
     data=makeTableDataOriginalLength2()
+)
+
+# ---------------------------------------------
+# File Structure: Table Directory: origCheckSum
+# ---------------------------------------------
+
+# bad checksum
+
+def makeTableDirectoryCheckSum1():
+    header, directory, tableData = defaultTestData()
+    modifiedTable = False
+    for entry in directory:
+        if entry["tag"] != "CFF ":
+            continue
+        assert entry["origChecksum"] != 0
+        entry["origChecksum"] = 0
+        modifiedTable = True
+        break
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="directory-origCheckSum-001",
+    title="Font Table Directory Contains Invalid Original CheckSum",
+    description="The checksum for the CFF table is set to 0.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#TableDirectory",
+    data=makeTableDirectoryCheckSum1()
 )
 
 # ------------------------------------------------
