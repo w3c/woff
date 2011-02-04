@@ -2,6 +2,7 @@ import os
 import shutil
 import glob
 from xml.etree.ElementTree import ElementTree, Element, SubElement
+import sstruct
 from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData
 from testCaseGeneratorLib.paths import resourcesDirectory, formatDirectory
@@ -733,6 +734,31 @@ writeTest(
     specLink="#conform-origLength",
     data=makeTableDataOriginalLength2()
 )
+
+# ------------------------------------------------
+# File Structure: Table Directory: Ascending Order
+# ------------------------------------------------
+
+def makeTableDirectoryAscending1():
+    header, directory, tableData = defaultTestData()
+    directory = [(entry["tag"], entry) for entry in directory]
+    directoryData = ""
+    for tag, table in reversed(sorted(directory)):
+        directoryData += sstruct.pack(woffDirectoryEntryFormat, table)
+    directory = [i[1] for i in directory]
+    data = packTestHeader(header) + directoryData + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="directory-ascending-001",
+    title="Font Table Directory Not In Ascending Order",
+    description="The tables in the directory are in descending order.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-ascending",
+    data=makeTableDirectoryAscending1()
+)
+
 
 # ---------------------------------------
 # File Structure: Table Data: Compression
