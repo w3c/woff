@@ -602,6 +602,111 @@ writeTest(
     data=makeMetadataPadding()
 )
 
+# -------------------------------------
+# File Structure: Data Blocks: Ordering
+# -------------------------------------
+
+# font data after metadata
+
+def makeDataBlockOrdering1():
+    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    # move the metadata
+    metadataStart = header["metaOffset"] = directory[0]["offset"]
+    metadataLength = header["metaLength"]
+    # pad
+    metadata, compMetadata = metadata
+    compMetadata += "\0" * calcPaddingLength(len(compMetadata))
+    metadata = (metadata, compMetadata)
+    # offset tables
+    offset = metadataStart + metadataLength + calcPaddingLength(metadataLength)
+    for entry in directory:
+        entry["offset"] = offset
+        offset += entry["compLength"] + calcPaddingLength(entry["compLength"])
+    # pack
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    # done
+    return data
+
+writeTest(
+    identifier="blocks-ordering-001",
+    title="Table Data After Metadata",
+    description="The table data block is stored after the metadata block.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-afterdirectory",
+    data=makeDataBlockOrdering1()
+)
+
+# font data after private
+
+def makeDataBlockOrdering2():
+    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
+    # move the private data
+    privateStart = header["privOffset"] = directory[0]["offset"]
+    privateLength = header["privLength"]
+    # pad
+    assert calcPaddingLength(privateLength) == 0
+    # offset tables
+    offset = privateStart + privateLength
+    for entry in directory:
+        entry["offset"] = offset
+        offset += entry["compLength"] + calcPaddingLength(entry["compLength"])
+    # pack
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestPrivateData(privateData) + packTestTableData(directory, tableData)
+    # done
+    return data
+
+writeTest(
+    identifier="blocks-ordering-002",
+    title="Table Data After Private Data",
+    description="The table data block is stored after the private data block.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-afterdirectory",
+    data=makeDataBlockOrdering2()
+)
+
+# metadata after private
+
+def makeDataBlockOrdering3():
+    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
+    # move the metadata
+    header["privOffset"] = header["metaOffset"]
+    privateLength = header["privLength"]
+    header["metaOffset"] = header["privOffset"] + privateLength
+    # remove padding
+    assert calcPaddingLength(privateLength) == 0
+    metaPaddingLength = calcPaddingLength(header["metaLength"])
+    if metaPaddingLength:
+        header["length"] -= metaPaddingLength
+        metadata, compMetadata = metadata
+        compMetadata = compMetadata[:-metaPaddingLength]
+        metadata = (metadata, compMetadata)
+    # pack
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData) + packTestMetadata(metadata)
+    # done
+    return data
+
+writeTest(
+    identifier="blocks-ordering-003",
+    title="Metadata After Private Data",
+    description="The metadata block is stored after the private data block.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#metadata-afterfonttable",
+    data=makeDataBlockOrdering3()
+)
+
+writeTest(
+    identifier="blocks-ordering-004",
+    title="Private Data Before Metadata",
+    description="The private data block is stored before the metadata block.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#private-last",
+    data=makeDataBlockOrdering3()
+)
+
 # ------------------------------------------------
 # File Structure: Table Directory: 4-Byte Boundary
 # ------------------------------------------------
