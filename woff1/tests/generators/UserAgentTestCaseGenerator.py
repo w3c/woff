@@ -90,11 +90,10 @@ shutil.copy(os.path.join(resourcesDirectory, "SFNT-TTF-Fallback.ttf"), os.path.j
 # -------------------
 
 # index css
-destPath = os.path.join(userAgentTestResourcesDirectory, "sfntindex.css")
-print destPath
+destPath = os.path.join(userAgentTestResourcesDirectory, "index.css")
 if os.path.exists(destPath):
     os.remove(destPath)
-shutil.copy(os.path.join(resourcesDirectory, "sfntindex.css"), os.path.join(destPath))
+shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 
 
 # ---------------

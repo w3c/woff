@@ -1,11 +1,11 @@
 import os
 import shutil
 import glob
-from xml.etree.ElementTree import ElementTree, Element, SubElement
 import sstruct
 from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData
-from testCaseGeneratorLib.paths import resourcesDirectory, formatDirectory
+from testCaseGeneratorLib.paths import resourcesDirectory, formatDirectory, formatTestDirectory, formatResourcesDirectory
+from testCaseGeneratorLib.html import generateFormatIndexHTML
 from testCaseGeneratorLib.sharedCases import *
 
 # ------------------------
@@ -22,33 +22,44 @@ specificationURL = "http://dev.w3.org/webfonts/WOFF/spec/"
 
 if not os.path.exists(formatDirectory):
     os.mkdir(formatDirectory)
+if not os.path.exists(formatTestDirectory):
+    os.mkdir(formatTestDirectory)
+if not os.path.exists(formatResourcesDirectory):
+    os.mkdir(formatResourcesDirectory)
 
-# ----------------------
-# Start Index Generation
-# ----------------------
+# -------------------
+# Move HTML Resources
+# -------------------
 
-# start the main element
-indexRoot = Element("testcases")
+# index css
+destPath = os.path.join(formatResourcesDirectory, "index.css")
+if os.path.exists(destPath):
+    os.remove(destPath)
+shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 
-# This function was taken from: http://effbot.org/zone/element-lib.htm
-# License information found here: http://effbot.org/zone/copyright.htm
-# "Unless otherwise noted, source code can be be used freely.
-# Examples, test scripts and other short code fragments can be
-# considered as being in the public domain."
-def indent(elem, level=0):
-    i = "\n" + level * "  "
-    if len(elem):
-        if not elem.text or not elem.text.strip():
-            elem.text = i + "  "
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
-        for elem in elem:
-            indent(elem, level + 1)
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
-    else:
-        if level and (not elem.tail or not elem.tail.strip()):
-            elem.tail = i
+# ---------------
+# Test Case Index
+# ---------------
+
+# As the tests are generated a log will be kept.
+# This log will be translated into an index after
+# all of the tests have been written.
+
+groupDefinitions = [
+    # identifier, title, spec section
+    ("valid", "Valid WOFFs", None),
+    ("header", "WOFF Header Tests", specificationURL+"#WOFFHeader"),
+    ("blocks", "WOFF Data Block Tests", specificationURL+"#OverallStructure"),
+    ("directory", "WOFF Table Directory Tests", specificationURL+"#TableDirectory"),
+    ("tabledata", "WOFF Table Data Tests", specificationURL+"#DataTables"),
+    ("metadata", "WOFF Metadata Tests", specificationURL+"#Metadata"),
+    ("privatedata", "WOFF Private Data Tests", specificationURL+"#Private")
+]
+
+testRegistry = {}
+for group in groupDefinitions:
+    tag = group[0]
+    testRegistry[tag] = []
 
 # -----------------
 # Test Case Writing
@@ -56,44 +67,33 @@ def indent(elem, level=0):
 
 registeredIdentifiers = set()
 
-def writeTest(identifier, title, description, data, specLink=None, credits=[], valid=False, failPoint=None):
+def writeTest(identifier, title, description, data, specLink=None, credits=[], valid=False):
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     registeredIdentifiers.add(identifier)
 
-    # generate the WOFF
-    woffPath = os.path.join(formatDirectory, identifier) + ".woff"
-    f = open(woffPath, "wb")
-    f.write(data)
-    f.close()
-
-    # make the test case element
-    caseElement = SubElement(indexRoot, "testcase")
-    # title
-    titleElement = SubElement(caseElement, "title")
-    titleElement.text = title
-    # description
-    descriptionElement = SubElement(caseElement, "description")
-    descriptionElement.text = description
-    # link
     if specLink is None:
         specLink = specificationURL
     else:
         specLink = specificationURL + specLink
-    SubElement(caseElement, "specification", href=specLink)
-    # credits
-    for credit in credits:
-        SubElement(caseElement, "credit", **credit)
-    # validity
-    if valid:
-        valid = "true"
-    else:
-        valid = "false"
-    SubElement(caseElement, "valid", value=valid)
-    # failure point
-    if failPoint:
-        for location in failPoint.split(" "):
-            SubElement(caseElement, "failpoint", location=location)
+
+    # generate the WOFF
+    woffPath = os.path.join(formatTestDirectory, identifier) + ".woff"
+    f = open(woffPath, "wb")
+    f.write(data)
+    f.close()
+
+    # register the test
+    tag = identifier.split("-")[0]
+    testRegistry[tag].append(
+        dict(
+            identifier=identifier,
+            title=title,
+            description=description,
+            valid=valid,
+            specLink=specLink
+        )
+    )
 
 def writeMetadataTest(identifier, title=None, description=None, credits=[], specLink=None, valid=False, metadata=None):
     """
@@ -2568,24 +2568,25 @@ writeTest(
     data=makePrivateData4Byte1()
 )
 
-# -----------------------
-# Finish Index Generation
-# -----------------------
+# ------------------
+# Generate the Index
+# ------------------
 
-# make it pretty
-indent(indexRoot)
-# write it
-tree = ElementTree(indexRoot)
-path = os.path.join(formatDirectory, "testcases.xml")
-if os.path.exists(path):
-    os.remove(path)
-tree.write(path, encoding="utf8")
+print "Compiling index..."
+
+testGroups = []
+
+for tag, title, url in groupDefinitions:
+    group = dict(title=title, url=url, testCases=testRegistry[tag])
+    testGroups.append(group)
+
+generateFormatIndexHTML(directory=formatTestDirectory, testCases=testGroups)
 
 # -----------------------
 # Check for Unknown Files
 # -----------------------
 
-woffPattern = os.path.join(formatDirectory, "*.woff")
+woffPattern = os.path.join(formatTestDirectory, "*.woff")
 filesOnDisk = glob.glob(woffPattern)
 
 for path in filesOnDisk:

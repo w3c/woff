@@ -193,7 +193,7 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
         "\t<head>",
         "\t\t<title>WOFF: User Agent Test Suite</title>",
         "\t\t<style type=\"text/css\">",
-        "\t\t\t@import \"resources/sfntindex.css\";",
+        "\t\t\t@import \"resources/index.css\";",
         "\t\t</style>",
         "\t</head>",
         "\t<body>",
@@ -286,3 +286,70 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
     f = open(path, "wb")
     f.write(html)
     f.close()
+
+def generateFormatIndexHTML(directory=None, testCases=[]):
+    testCount = sum([len(group["testCases"]) for group in testCases])
+    html = [
+        "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">",
+        "<html xmlns=\"http://www.w3.org/1999/xhtml\">",
+        "\t<head>",
+        "\t\t<title>WOFF: Format Test Suite</title>",
+        "\t\t<style type=\"text/css\">",
+        "\t\t\t@import \"resources/index.css\";",
+        "\t\t</style>",
+        "\t</head>",
+        "\t<body>",
+        "\t\t<h1>WOFF: Format Test Suite (%d tests)</h1>" % testCount,
+    ]
+    # add the test groups
+    for group in testCases:
+        title = group["title"]
+        title = cgi.escape(title)
+        # write the group header
+        html.append("")
+        html.append("\t\t<h2 class=\"testCategory\">%s</h2>" % title)
+        # write the individual test cases
+        for test in group["testCases"]:
+            identifier = test["identifier"]
+            title = test["title"]
+            title = cgi.escape(title)
+            description = test["description"]
+            description = cgi.escape(description)
+            valid = test["valid"]
+            if valid:
+                valid = "Yes"
+            else:
+                valid = "No"
+            specLink = test["specLink"]
+            # start the test case div
+            html.append("\t\t<div class=\"testCase\" id=\"%s\">" % identifier)
+            # start the overview div
+            html.append("\t\t\t<div class=\"testCaseOverview\">")
+            # title
+            html.append("\t\t\t\t<h3><a href=\"#%s\">%s</a>: %s</h3>" % (identifier, identifier, title))
+            # assertion
+            html.append("\t\t\t\t<p>%s</p>" % description)
+            # close the overview div
+            html.append("\t\t\t</div>")
+            # start the details div
+            html.append("\t\t\t<div class=\"testCaseDetails\">")
+            # validity
+            string = "Valid: <span id=\"%s-validity\">%s</span>" % (identifier, valid)
+            html.append("\t\t\t\t\t<p>%s</p>" % string)
+            # close the details div
+            html.append("\t\t\t</div>")
+            # close the test case div
+            html.append("\t\t</div>")
+            
+    # close body
+    html.append("\t</body>")
+    # close html
+    html.append("</html>")
+    # finalize
+    html = "\n".join(html)
+    # write
+    path = os.path.join(directory, "testcaseindex.xht")
+    f = open(path, "wb")
+    f.write(html)
+    f.close()
+
