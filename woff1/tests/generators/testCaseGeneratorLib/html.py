@@ -336,6 +336,10 @@ def generateFormatIndexHTML(directory=None, testCases=[]):
             # validity
             string = "Valid: <span id=\"%s-validity\">%s</span>" % (identifier, valid)
             html.append("\t\t\t\t\t<p>%s</p>" % string)
+            # documentation
+            if specLink is not None:
+                string = "<p><a href=\"%s\">Documentation</a></p>" % specLink
+                html.append(string)
             # close the details div
             html.append("\t\t\t</div>")
             # close the test case div
