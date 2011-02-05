@@ -1,6 +1,7 @@
 import os
 import shutil
 import glob
+import struct
 import sstruct
 from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData
@@ -891,8 +892,32 @@ writeTest(
     description="The checksum for the CFF table is set to 0.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     valid=False,
-    specLink="#TableDirectory",
+    specLink="#conform-checksumvalidate",
     data=makeTableDirectoryCheckSum1()
+)
+
+# bad head checksum
+
+def makeTableDirectoryCheckSum2():
+    header, directory, tableData = defaultTestData()
+    origData, compData = tableData["head"]
+    assert origData == compData
+    origValue = origData[8:12]
+    newValue = struct.pack(">L", 0)
+    assert origValue != newValue
+    newData = origData[:8] + newValue + origData[12:]
+    tableData["head"] = (newData, newData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+writeTest(
+    identifier="directory-origCheckSum-002",
+    title="Font head Table CheckSum Incorrect Adjustment",
+    description="The head table checksum adjustment is set to 0.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-checksumvalidate",
+    data=makeTableDirectoryCheckSum2()
 )
 
 # ------------------------------------------------
