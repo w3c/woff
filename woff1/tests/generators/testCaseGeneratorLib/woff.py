@@ -52,7 +52,8 @@ def packTestDirectory(directory):
     return data
 
 def packTestTableData(directory, tableData, calcCheckSum=True):
-    calcHeadCheckSumAdjustment(directory, tableData)
+    if calcCheckSum:
+        calcHeadCheckSumAdjustment(directory, tableData)
     orderedData = []
     for entry in directory:
         tag = entry["tag"]
