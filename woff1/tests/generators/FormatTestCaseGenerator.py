@@ -2631,9 +2631,31 @@ writeTest(
     title="Private Data Does Not Begin of 4-Byte Boundary",
     description="The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
-    valid=True,
+    valid=False,
     specLink="#conform-private-padalign",
     data=makePrivateData4Byte1()
+)
+
+# metadata not padded with null bytes
+
+def makePrivateData4Byte2():
+    header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
+    paddingLength = calcPaddingLength(header["metaLength"])
+    assert paddingLength > 0
+    metadata, compMetadata = metadata
+    compMetadata = compMetadata[:-paddingLength] + ("\x01" * paddingLength)
+    metadata = (metadata, compMetadata)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata) + packTestPrivateData(privateData)
+    return data
+
+writeTest(
+    identifier="privatedata-4-byte-002",
+    title="Padding Between Metadata and Private Data is Non-Null",
+    description="Metadata is padded with \\01 instead of \\00.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    valid=False,
+    specLink="#conform-private-padalign",
+    data=makePrivateData4Byte2()
 )
 
 # ------------------

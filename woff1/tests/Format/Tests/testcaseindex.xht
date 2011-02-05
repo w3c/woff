@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (192 tests)</h1>
+		<h1>WOFF: Format Test Suite (193 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -1938,7 +1938,17 @@
 				<p>The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="privatedata-4-byte-001-validity">Yes</span></p>
+					<p>Valid: <span id="privatedata-4-byte-001-validity">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-private-padalign">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="privatedata-4-byte-002">
+			<div class="testCaseOverview">
+				<h3><a href="#privatedata-4-byte-002">privatedata-4-byte-002</a>: Padding Between Metadata and Private Data is Non-Null</h3>
+				<p>Metadata is padded with \01 instead of \00.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="privatedata-4-byte-002-validity">No</span></p>
 <p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-private-padalign">Documentation</a></p>
 			</div>
 		</div>
