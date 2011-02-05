@@ -326,7 +326,7 @@ writeFileStructureTest(
     assertion=makeHeaderInvalidSignature1Description,
     credits=makeHeaderInvalidSignature1Credits,
     shouldDisplaySFNT=False,
-    sfntDisplaySpecLink="#conform-nonmagicnumber-reject",
+    sfntDisplaySpecLink="#conform-nomagicnumber-reject",
     data=makeHeaderInvalidSignature1()
 )
 
@@ -766,7 +766,7 @@ writeFileStructureTest(
     assertion=makeTableZlibCompressionTest1Description,
     credits=makeTableZlibCompressionTest1Credits,
     shouldDisplaySFNT=False,
-    sfntDisplaySpecLink="#conform-mustzlib",
+    sfntDisplaySpecLink="#conform-decompressfailure",
     data=makeTableZlibCompressionTest1()
 )
 
@@ -963,7 +963,7 @@ writeFileStructureTest(
     credits=makeMetadataCompression1Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=False,
-    metadataDisplaySpecLink="#conform-invalid-mustignore",
+    metadataDisplaySpecLink="#conform-metadata-alwayscompress",
     data=makeMetadataCompression1(),
 )
 

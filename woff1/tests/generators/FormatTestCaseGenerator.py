@@ -210,7 +210,7 @@ writeTest(
     description=makeHeaderInvalidSignature1Description,
     credits=makeHeaderInvalidSignature1Credits,
     valid=False,
-    specLink="#conform-nonmagicnumber-reject",
+    specLink="#conform-magicnumber",
     data=makeHeaderInvalidSignature1()
 )
 
@@ -302,7 +302,7 @@ writeTest(
     description=makeHeaderInvalidTotalSfntSize1Description,
     credits=makeHeaderInvalidTotalSfntSize1Credits,
     valid=False,
-    specLink="#conform-totalsize-longword-reject",
+    specLink="#conform-totalsize-longword",
     data=makeHeaderInvalidTotalSfntSize1()
 )
 
@@ -312,7 +312,7 @@ writeTest(
     description=makeHeaderInvalidTotalSfntSize2Description,
     credits=makeHeaderInvalidTotalSfntSize2Credits,
     valid=False,
-    specLink="#conform-totalsize-longword-reject",
+    specLink="#conform-totalsize-longword",
     data=makeHeaderInvalidTotalSfntSize2()
 )
 
@@ -322,7 +322,7 @@ writeTest(
     description=makeHeaderInvalidTotalSfntSize3Description,
     credits=makeHeaderInvalidTotalSfntSize3Credits,
     valid=False,
-    specLink="#conform-totalsize-longword-reject",
+    specLink="#conform-totalsize-longword",
     data=makeHeaderInvalidTotalSfntSize3()
 )
 
@@ -336,7 +336,7 @@ writeTest(
     description=makeHeaderInvalidReserved1Description,
     credits=makeHeaderInvalidReserved1Credits,
     valid=False,
-    specLink="#conform-reserved-reject",
+    specLink="#conform-reserved",
     data=makeHeaderInvalidReserved1()
 )
 
@@ -352,7 +352,7 @@ writeTest(
     description=makeExtraneousData1Description,
     credits=makeExtraneousData1Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData1()
 )
 
@@ -364,7 +364,7 @@ writeTest(
     description=makeExtraneousData2Description,
     credits=makeExtraneousData2Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData2()
 )
 
@@ -376,7 +376,7 @@ writeTest(
     description=makeExtraneousData3Description,
     credits=makeExtraneousData3Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData3()
 )
 
@@ -388,7 +388,7 @@ writeTest(
     description=makeExtraneousData4Description,
     credits=makeExtraneousData4Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData4()
 )
 
@@ -400,7 +400,7 @@ writeTest(
     description=makeExtraneousData5Description,
     credits=makeExtraneousData5Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData5()
 )
 
@@ -412,7 +412,7 @@ writeTest(
     description=makeExtraneousData6Description,
     credits=makeExtraneousData6Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData6()
 )
 
@@ -424,7 +424,7 @@ writeTest(
     description=makeExtraneousData7Description,
     credits=makeExtraneousData7Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData7()
 )
 
@@ -436,7 +436,7 @@ writeTest(
     description=makeExtraneousData8Description,
     credits=makeExtraneousData8Credits,
     valid=False,
-    specLink="#conform-extraneous-reject",
+    specLink="#conform-noextraneous",
     data=makeExtraneousData8()
 )
 
@@ -999,6 +999,7 @@ writeTest(
     credits=makeMetadataCompression1Credits,
     valid=False,
     data=makeMetadataCompression1(),
+    specLink="#conform-metadata-alwayscompress"
 )
 
 # --------------------------------
@@ -1040,7 +1041,7 @@ writeMetadataTest(
     title=metadataWellFormed1Title,
     description=metadataWellFormed1Description,
     credits=metadataWellFormed1Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataWellFormed1Metadata,
 )
@@ -1052,7 +1053,7 @@ writeMetadataTest(
     title=metadataWellFormed2Title,
     description=metadataWellFormed2Description,
     credits=metadataWellFormed2Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataWellFormed2Metadata,
 )
@@ -1064,7 +1065,7 @@ writeMetadataTest(
     title=metadataWellFormed3Title,
     description=metadataWellFormed3Description,
     credits=metadataWellFormed3Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataWellFormed3Metadata,
 )
@@ -1076,7 +1077,7 @@ writeMetadataTest(
     title=metadataWellFormed4Title,
     description=metadataWellFormed4Description,
     credits=metadataWellFormed4Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataWellFormed4Metadata,
 )
@@ -1088,7 +1089,7 @@ writeMetadataTest(
     title=metadataWellFormed5Title,
     description=metadataWellFormed5Description,
     credits=metadataWellFormed5Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataWellFormed5Metadata,
 )
@@ -1100,7 +1101,7 @@ writeMetadataTest(
     title=metadataWellFormed6Title,
     description=metadataWellFormed6Description,
     credits=metadataWellFormed6Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataWellFormed6Metadata,
 )
@@ -1112,7 +1113,7 @@ writeMetadataTest(
     title=metadataWellFormed7Title,
     description=metadataWellFormed7Description,
     credits=metadataWellFormed7Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataWellFormed7Metadata,
 )
@@ -1150,7 +1151,7 @@ writeMetadataTest(
     title=metadataEncoding3Title,
     description=metadataEncoding3Description,
     credits=metadataEncoding3Credits,
-    specLink="#conform-invalid-mustignore",
+    specLink="#conform-metaOrigLength",
     valid=False,
     metadata=metadataEncoding3Metadata,
 )
@@ -1177,6 +1178,7 @@ writeMetadataTest(
     title=metadataSchemaMetadata2Title,
     description=metadataSchemaMetadata2Description,
     credits=metadataSchemaMetadata2Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaMetadata2Metadata,
 )
@@ -1188,6 +1190,7 @@ writeMetadataTest(
     title=metadataSchemaMetadata3Title,
     description=metadataSchemaMetadata3Description,
     credits=metadataSchemaMetadata3Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaMetadata3Metadata,
 )
@@ -1199,6 +1202,7 @@ writeMetadataTest(
     title=metadataSchemaMetadata4Title,
     description=metadataSchemaMetadata4Description,
     credits=metadataSchemaMetadata4Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaMetadata4Metadata,
 )
@@ -1210,6 +1214,7 @@ writeMetadataTest(
     title=metadataSchemaMetadata5Title,
     description=metadataSchemaMetadata5Description,
     credits=metadataSchemaMetadata5Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaMetadata5Metadata,
 )
@@ -1247,6 +1252,7 @@ writeMetadataTest(
     title=metadataSchemaUniqueid3Title,
     description=metadataSchemaUniqueid3Description,
     credits=metadataSchemaUniqueid3Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaUniqueid3Metadata,
 )
@@ -1270,6 +1276,7 @@ writeMetadataTest(
     title=metadataSchemaUniqueid5Title,
     description=metadataSchemaUniqueid5Description,
     credits=metadataSchemaUniqueid5Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaUniqueid5Metadata,
 )
@@ -1281,6 +1288,7 @@ writeMetadataTest(
     title=metadataSchemaUniqueid6Title,
     description=metadataSchemaUniqueid6Description,
     credits=metadataSchemaUniqueid6Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaUniqueid6Metadata,
 )
@@ -1292,6 +1300,7 @@ writeMetadataTest(
     title=metadataSchemaUniqueid7Title,
     description=metadataSchemaUniqueid7Description,
     credits=metadataSchemaUniqueid7Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaUniqueid7Metadata,
 )
@@ -1338,6 +1347,7 @@ writeMetadataTest(
     title=metadataSchemaVendor4Title,
     description=metadataSchemaVendor4Description,
     credits=metadataSchemaVendor4Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaVendor4Metadata,
 )
@@ -1361,6 +1371,7 @@ writeMetadataTest(
     title=metadataSchemaVendor6Title,
     description=metadataSchemaVendor6Description,
     credits=metadataSchemaVendor6Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaVendor6Metadata,
 )
@@ -1372,6 +1383,7 @@ writeMetadataTest(
     title=metadataSchemaVendor7Title,
     description=metadataSchemaVendor7Description,
     credits=metadataSchemaVendor7Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaVendor7Metadata,
 )
@@ -1383,6 +1395,7 @@ writeMetadataTest(
     title=metadataSchemaVendor8Title,
     description=metadataSchemaVendor8Description,
     credits=metadataSchemaVendor8Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaVendor8Metadata,
 )
@@ -1442,6 +1455,7 @@ writeMetadataTest(
     title=metadataSchemaCredits5Title,
     description=metadataSchemaCredits5Description,
     credits=metadataSchemaCredits5Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredits5Metadata,
 )
@@ -1453,6 +1467,7 @@ writeMetadataTest(
     title=metadataSchemaCredits6Title,
     description=metadataSchemaCredits6Description,
     credits=metadataSchemaCredits6Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredits6Metadata,
 )
@@ -1464,6 +1479,7 @@ writeMetadataTest(
     title=metadataSchemaCredits7Title,
     description=metadataSchemaCredits7Description,
     credits=metadataSchemaCredits7Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredits7Metadata,
 )
@@ -1475,6 +1491,7 @@ writeMetadataTest(
     title=metadataSchemaCredits8Title,
     description=metadataSchemaCredits8Description,
     credits=metadataSchemaCredits8Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredits8Metadata,
 )
@@ -1523,6 +1540,7 @@ writeMetadataTest(
     title=metadataSchemaCredit4Title,
     description=metadataSchemaCredit4Description,
     credits=metadataSchemaCredit4Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredit4Metadata,
 )
@@ -1534,6 +1552,7 @@ writeMetadataTest(
     title=metadataSchemaCredit5Title,
     description=metadataSchemaCredit5Description,
     credits=metadataSchemaCredit5Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredit5Metadata,
 )
@@ -1545,6 +1564,7 @@ writeMetadataTest(
     title=metadataSchemaCredit6Title,
     description=metadataSchemaCredit6Description,
     credits=metadataSchemaCredit6Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredit6Metadata,
 )
@@ -1556,6 +1576,7 @@ writeMetadataTest(
     title=metadataSchemaCredit7Title,
     description=metadataSchemaCredit7Description,
     credits=metadataSchemaCredit7Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredit7Metadata,
 )
@@ -1637,6 +1658,7 @@ writeMetadataTest(
     title=metadataSchemaDescription7Title,
     description=metadataSchemaDescription7Description,
     credits=metadataSchemaDescription7Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaDescription7Metadata,
 )
@@ -1648,6 +1670,7 @@ writeMetadataTest(
     title=metadataSchemaDescription8Title,
     description=metadataSchemaDescription8Description,
     credits=metadataSchemaDescription8Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaDescription8Metadata,
 )
@@ -1659,6 +1682,7 @@ writeMetadataTest(
     title=metadataSchemaDescription9Title,
     description=metadataSchemaDescription9Description,
     credits=metadataSchemaDescription9Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaDescription9Metadata,
 )
@@ -1670,6 +1694,7 @@ writeMetadataTest(
     title=metadataSchemaDescription10Title,
     description=metadataSchemaDescription10Description,
     credits=metadataSchemaDescription10Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaDescription10Metadata,
 )
@@ -1681,6 +1706,7 @@ writeMetadataTest(
     title=metadataSchemaDescription11Title,
     description=metadataSchemaDescription11Description,
     credits=metadataSchemaDescription11Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaDescription11Metadata,
 )
@@ -1692,6 +1718,7 @@ writeMetadataTest(
     title=metadataSchemaDescription12Title,
     description=metadataSchemaDescription12Description,
     credits=metadataSchemaDescription12Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaDescription12Metadata,
 )
@@ -1703,6 +1730,7 @@ writeMetadataTest(
     title=metadataSchemaDescription13Title,
     description=metadataSchemaDescription13Description,
     credits=metadataSchemaDescription13Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaDescription13Metadata,
 )
@@ -1795,6 +1823,7 @@ writeMetadataTest(
     title=metadataSchemaLicense8Title,
     description=metadataSchemaLicense8Description,
     credits=metadataSchemaLicense8Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicense8Metadata,
 )
@@ -1806,6 +1835,7 @@ writeMetadataTest(
     title=metadataSchemaLicense9Title,
     description=metadataSchemaLicense9Description,
     credits=metadataSchemaLicense9Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicense9Metadata,
 )
@@ -1817,6 +1847,7 @@ writeMetadataTest(
     title=metadataSchemaLicense10Title,
     description=metadataSchemaLicense10Description,
     credits=metadataSchemaLicense10Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicense10Metadata,
 )
@@ -1828,6 +1859,7 @@ writeMetadataTest(
     title=metadataSchemaLicense11Title,
     description=metadataSchemaLicense11Description,
     credits=metadataSchemaLicense11Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicense11Metadata,
 )
@@ -1839,6 +1871,7 @@ writeMetadataTest(
     title=metadataSchemaLicense12Title,
     description=metadataSchemaLicense12Description,
     credits=metadataSchemaLicense12Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicense12Metadata,
 )
@@ -1850,6 +1883,7 @@ writeMetadataTest(
     title=metadataSchemaLicense13Title,
     description=metadataSchemaLicense13Description,
     credits=metadataSchemaLicense13Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicense13Metadata,
 )
@@ -1861,6 +1895,7 @@ writeMetadataTest(
     title=metadataSchemaLicense14Title,
     description=metadataSchemaLicense14Description,
     credits=metadataSchemaLicense14Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicense14Metadata,
 )
@@ -1920,6 +1955,7 @@ writeMetadataTest(
     title=metadataSchemaCopyright5Title,
     description=metadataSchemaCopyright5Description,
     credits=metadataSchemaCopyright5Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCopyright5Metadata,
 )
@@ -1931,6 +1967,7 @@ writeMetadataTest(
     title=metadataSchemaCopyright6Title,
     description=metadataSchemaCopyright6Description,
     credits=metadataSchemaCopyright6Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCopyright6Metadata,
 )
@@ -1942,6 +1979,7 @@ writeMetadataTest(
     title=metadataSchemaCopyright7Title,
     description=metadataSchemaCopyright7Description,
     credits=metadataSchemaCopyright7Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCopyright7Metadata,
 )
@@ -1953,6 +1991,7 @@ writeMetadataTest(
     title=metadataSchemaCopyright8Title,
     description=metadataSchemaCopyright8Description,
     credits=metadataSchemaCopyright8Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCopyright8Metadata,
 )
@@ -1964,6 +2003,7 @@ writeMetadataTest(
     title=metadataSchemaCopyright9Title,
     description=metadataSchemaCopyright9Description,
     credits=metadataSchemaCopyright9Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCopyright9Metadata,
 )
@@ -1975,6 +2015,7 @@ writeMetadataTest(
     title=metadataSchemaCopyright10Title,
     description=metadataSchemaCopyright10Description,
     credits=metadataSchemaCopyright10Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCopyright10Metadata,
 )
@@ -1986,6 +2027,7 @@ writeMetadataTest(
     title=metadataSchemaCopyright11Title,
     description=metadataSchemaCopyright11Description,
     credits=metadataSchemaCopyright11Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCopyright11Metadata,
 )
@@ -2001,6 +2043,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark1Title,
     description=metadataSchemaTrademark1Description,
     credits=metadataSchemaTrademark1Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=True,
     metadata=metadataSchemaTrademark1Metadata,
 )
@@ -2045,6 +2088,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark5Title,
     description=metadataSchemaTrademark5Description,
     credits=metadataSchemaTrademark5Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaTrademark5Metadata,
 )
@@ -2056,6 +2100,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark6Title,
     description=metadataSchemaTrademark6Description,
     credits=metadataSchemaTrademark6Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaTrademark6Metadata,
 )
@@ -2067,6 +2112,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark7Title,
     description=metadataSchemaTrademark7Description,
     credits=metadataSchemaTrademark7Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaTrademark7Metadata,
 )
@@ -2078,6 +2124,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark8Title,
     description=metadataSchemaTrademark8Description,
     credits=metadataSchemaTrademark8Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaTrademark8Metadata,
 )
@@ -2089,6 +2136,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark9Title,
     description=metadataSchemaTrademark9Description,
     credits=metadataSchemaTrademark9Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaTrademark9Metadata,
 )
@@ -2100,6 +2148,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark10Title,
     description=metadataSchemaTrademark10Description,
     credits=metadataSchemaTrademark10Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaTrademark10Metadata,
 )
@@ -2111,6 +2160,7 @@ writeMetadataTest(
     title=metadataSchemaTrademark11Title,
     description=metadataSchemaTrademark11Description,
     credits=metadataSchemaTrademark11Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaTrademark11Metadata,
 )
@@ -2137,6 +2187,7 @@ writeMetadataTest(
     title=metadataSchemaLicensee2Title,
     description=metadataSchemaLicensee2Description,
     credits=metadataSchemaLicensee2Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicensee2Metadata,
 )
@@ -2148,6 +2199,7 @@ writeMetadataTest(
     title=metadataSchemaLicensee3Title,
     description=metadataSchemaLicensee3Description,
     credits=metadataSchemaLicensee3Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicensee3Metadata,
 )
@@ -2159,6 +2211,7 @@ writeMetadataTest(
     title=metadataSchemaLicensee4Title,
     description=metadataSchemaLicensee4Description,
     credits=metadataSchemaLicensee4Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicensee4Metadata,
 )
@@ -2170,6 +2223,7 @@ writeMetadataTest(
     title=metadataSchemaLicensee5Title,
     description=metadataSchemaLicensee5Description,
     credits=metadataSchemaLicensee5Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicensee5Metadata,
 )
@@ -2181,6 +2235,7 @@ writeMetadataTest(
     title=metadataSchemaLicensee6Title,
     description=metadataSchemaLicensee6Description,
     credits=metadataSchemaLicensee6Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicensee6Metadata,
 )
@@ -2273,6 +2328,7 @@ writeMetadataTest(
     title=metadataSchemaExtension8Title,
     description=metadataSchemaExtension8Description,
     credits=metadataSchemaExtension8Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension8Metadata,
 )
@@ -2284,6 +2340,7 @@ writeMetadataTest(
     title=metadataSchemaExtension9Title,
     description=metadataSchemaExtension9Description,
     credits=metadataSchemaExtension9Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension9Metadata,
 )
@@ -2295,6 +2352,7 @@ writeMetadataTest(
     title=metadataSchemaExtension10Title,
     description=metadataSchemaExtension10Description,
     credits=metadataSchemaExtension10Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension10Metadata,
 )
@@ -2306,6 +2364,7 @@ writeMetadataTest(
     title=metadataSchemaExtension11Title,
     description=metadataSchemaExtension11Description,
     credits=metadataSchemaExtension11Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension11Metadata,
 )
@@ -2398,6 +2457,7 @@ writeMetadataTest(
     title=metadataSchemaExtension19Title,
     description=metadataSchemaExtension19Description,
     credits=metadataSchemaExtension19Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension19Metadata,
 )
@@ -2409,6 +2469,7 @@ writeMetadataTest(
     title=metadataSchemaExtension20Title,
     description=metadataSchemaExtension20Description,
     credits=metadataSchemaExtension20Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension20Metadata,
 )
@@ -2420,6 +2481,7 @@ writeMetadataTest(
     title=metadataSchemaExtension21Title,
     description=metadataSchemaExtension21Description,
     credits=metadataSchemaExtension21Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension21Metadata,
 )
@@ -2431,6 +2493,7 @@ writeMetadataTest(
     title=metadataSchemaExtension22Title,
     description=metadataSchemaExtension22Description,
     credits=metadataSchemaExtension22Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension22Metadata,
 )
@@ -2442,6 +2505,7 @@ writeMetadataTest(
     title=metadataSchemaExtension23Title,
     description=metadataSchemaExtension23Description,
     credits=metadataSchemaExtension23Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension23Metadata,
 )
@@ -2479,6 +2543,7 @@ writeMetadataTest(
     title=metadataSchemaExtension26Title,
     description=metadataSchemaExtension26Description,
     credits=metadataSchemaExtension26Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension26Metadata,
 )
@@ -2490,6 +2555,7 @@ writeMetadataTest(
     title=metadataSchemaExtension27Title,
     description=metadataSchemaExtension27Description,
     credits=metadataSchemaExtension27Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension27Metadata,
 )
@@ -2527,6 +2593,7 @@ writeMetadataTest(
     title=metadataSchemaExtension30Title,
     description=metadataSchemaExtension30Description,
     credits=metadataSchemaExtension30Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension30Metadata,
 )
@@ -2538,6 +2605,7 @@ writeMetadataTest(
     title=metadataSchemaExtension31Title,
     description=metadataSchemaExtension31Description,
     credits=metadataSchemaExtension31Credits,
+    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaExtension31Metadata,
 )
