@@ -167,13 +167,14 @@ information in accordance with <a href="http://www.w3.org/Consortium/Patent-Poli
 <h2 id="toc">Table of Contents</h2>
 
 <p><a href="#Introduction">1.&nbsp;Introduction</a>
-<br/><a href="#OverallStructure">2.&nbsp;Overall File Structure</a>
-<br/><a href="#WOFFHeader">3.&nbsp;WOFF Header</a>
-<br/><a href="#TableDirectory">4.&nbsp;Table Directory</a>
-<br/><a href="#DataTables">5.&nbsp;Font Data Tables</a>
-<br/><a href="#Metadata">6.&nbsp;Extended Metadata Block</a>
-<br/><a href="#Private">7.&nbsp;Private Data Block</a>
-<br/><a href="#Conformance">8.&nbsp;Summary of Conformance Requirements</a>
+<br/><a href="#General">2.&nbsp;General Requirements</a>
+<br/><a href="#OverallStructure">3.&nbsp;Overall File Structure</a>
+<br/><a href="#WOFFHeader">4.&nbsp;WOFF Header</a>
+<br/><a href="#TableDirectory">5.&nbsp;Table Directory</a>
+<br/><a href="#DataTables">6.&nbsp;Font Data Tables</a>
+<br/><a href="#Metadata">7.&nbsp;Extended Metadata Block</a>
+<br/><a href="#Private">8.&nbsp;Private Data Block</a>
+<br/><a href="#Conformance">9.&nbsp;Summary of Conformance Requirements</a>
 </p>
 <p><a href="#appendix-a">Appendix A: Extended Metadata Examples</a>
 <br/><a href="#appendix-b">Appendix B: Media Type Registration</a>
@@ -209,6 +210,26 @@ additions but these are considered outside the scope of this format. Independent
 of these features, both tools and user agents are expected to assure that the validity of
 the underlying font data is preserved.</p>
 
+<h3 id="Notation">Notational Conventions</h3>
+
+<p>The all-uppercase key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in RFC 2119 [<cite><a  href="#ref-RFC-2119"
+>RFC-2119</a></cite>].
+If these words occur in lower- or mixed case, they should be interpreted
+in accordance with their normal English meaning.
+</p>
+
+<p>This document includes sections of text that are called out as "Notes"
+and set off from the main text of the specification.
+These notes are intended as informative explanations or clarifications,
+to serve as hints or guides to implementers and users,
+but are not part of the normative text.
+</p>
+
+
+<h2 id="General">2.&nbsp;General Requirements</h2>
+
 <p>The primary purpose of the WOFF format is to package fonts linked to Web documents
 by means of CSS <tt>@font-face</tt> rules.
 <span class="conform ua" id="conform-same-origin">When using such fonts, user agents MUST implement a 'same-origin restriction'
@@ -242,25 +263,8 @@ but such decoded font must not be exposed to other documents or applications.
 </p>
 </div>
 
-<h3 id="Notation">Notational Conventions</h3>
 
-<p>The all-uppercase key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in RFC 2119 [<cite><a  href="#ref-RFC-2119"
->RFC-2119</a></cite>].
-If these words occur in lower- or mixed case, they should be interpreted
-in accordance with their normal English meaning.
-</p>
-
-<p>This document includes sections of text that are called out as "Notes"
-and set off from the main text of the specification.
-These notes are intended as informative explanations or clarifications,
-to serve as hints or guides to implementers and users,
-but are not part of the normative text.
-</p>
-
-
-<h2 id="OverallStructure">2.&nbsp;Overall File Structure</h2>
+<h2 id="OverallStructure">3.&nbsp;Overall File Structure</h2>
 
 <p>The structure of WOFF files is similar to the structure of sfnt fonts:
 a table directory containing lengths and offsets to individual font data tables,
@@ -321,7 +325,7 @@ format</td></tr>
 otherwise noted.</p>
 
 
-<h2 id="WOFFHeader">3.&nbsp;WOFF Header</h2>
+<h2 id="WOFFHeader">4.&nbsp;WOFF Header</h2>
 
 <p>The header includes an identifying signature and indicates the specific kind
 of font data included in the file (TrueType or CFF outline data); it also has a
@@ -411,7 +415,7 @@ set to zero</span>. <span class="conform ua" id="conform-reserved-reject">If thi
 MUST reject the file as invalid</span>.</p>
 
 
-<h2 id="TableDirectory">4.&nbsp;Table Directory</h2>
+<h2 id="TableDirectory">5.&nbsp;Table Directory</h2>
 
 <p>The table directory is an array of WOFF table directory entries, as defined
 below. The directory follows immediately after the WOFF file header; therefore,
@@ -550,7 +554,7 @@ or issue an appropriate warning
 that lossless round-trip conversion will not be possible</span>.</p>
 
 
-<h2 id="DataTables">5.&nbsp;Font Data Tables</h2>
+<h2 id="DataTables">6.&nbsp;Font Data Tables</h2>
 
 <p>The font data tables in the WOFF file are exactly the same as the tables in
 the input font, except that <span class="conform ??" id="conform-maycompress2">each table MAY have been
@@ -602,7 +606,7 @@ while it might be done in conjunction with WOFF packaging for Web deployment,
 it falls outside the scope of the WOFF specification.</p>
 </div>
 
-<h2 id="Metadata">6.&nbsp;Extended Metadata Block</h2>
+<h2 id="Metadata">7.&nbsp;Extended Metadata Block</h2>
 
 <p><span class="conform ff" id="conform-metadata-optional">The WOFF file MAY include a block of extended metadata</span>. This may be more extensive and more easily accesible than metadata present in sfnt tables. The metadata block consists of XML data compressed by
 zlib; the file header specifies both the size of the actual compressed and the
@@ -919,7 +923,7 @@ This attribute is OPTIONAL.</td></tr>
 of the content of the metadata block.</p>
 
 
-<h2 id="Private">7.&nbsp;Private Data Block</h2>
+<h2 id="Private">8.&nbsp;Private Data Block</h2>
 
 <p><span class="conform ff" id="conform-private">The WOFF file MAY include a block of arbitrary data</span>, allowing font creators
 to include whatever information they wish. <span class="conform ua" id="conform-private-noeffect">The content of this data MUST NOT
@@ -941,7 +945,7 @@ if needed to ensure this</span>.
 <span class="conform ff" id="conform-private-end">The end of the private data block MUST correspond to the end of the WOFF file</span>.</p>
 
 
-<h2 id="Conformance">8.&nbsp;Summary of Conformance Requirements</h2>
+<h2 id="Conformance">9.&nbsp;Summary of Conformance Requirements</h2>
 
 <p>This section summarizes key conformance requirements for WOFF files,
 derived from the more detailed specifications above.
@@ -1050,7 +1054,7 @@ WOFF-packaged fonts, the metadata block is the primary source of this informatio
 <p>This appendix is purely informative, not a normative part of the WOFF specification.</p>
 
 <p>This "dummy" metadata block illustrates the use of the metadata elements
-described in section 6, including the use of multiple <tt>text</tt>
+described in section 7, including the use of multiple <tt>text</tt>
 child elements to provide localized versions of certain elements.</p>
 
 <div class="metadata">
