@@ -672,8 +672,10 @@ simply by choosing which language to put first in each group of
 <tt>text</tt> elements.)</li>
 </ol>
 <p>Such localizable elements are
-indicated by the statement "This element may be localized" in the description
-below; the internal structure of <tt>text</tt> elements with
+indicated by the statement
+"This element may be localized using <tt>text</tt> child elements"
+in the description below;
+the internal structure of <tt>text</tt> elements with
 <tt>lang</tt> attributes is not repeated for each element
 type.
 In each of these localizable elements,
@@ -777,7 +779,7 @@ OPTIONAL.</td></tr>
 <dd>
 <p>An arbitrary text description of the font's design, its history, etc. This
 element is OPTIONAL. <!-- conform? -->If present, it MUST be a child of the <tt>metadata</tt> element.
-This element may be localized.</p>
+This element may be localized using <tt>text</tt> child elements.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
@@ -790,8 +792,8 @@ This element may be localized.</p>
 <dd>
 <p>Licensing information for the font.
 This element is OPTIONAL. <!-- conform? -->If present, it MUST be a
-child of the <tt>metadata</tt> element. This element may be
-localized.</p>
+child of the <tt>metadata</tt> element.
+This element may be localized using <tt>text</tt> child elements.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
@@ -805,15 +807,17 @@ OPTIONAL.</td></tr>
 <dt><tt>copyright</tt> element</dt>
 <dd>
 <p>The copyright for the font. This element is OPTIONAL. <!-- conform? -->If present, it MUST be
-a child of the <tt>metadata</tt> element. This element may be
-localized. This element has no attributes.</p>
+a child of the <tt>metadata</tt> element.
+This element may be localized using <tt>text</tt> child elements.
+This element has no attributes.</p>
 </dd>
 
 <dt><tt>trademark</tt> element</dt>
 <dd>
 <p>The trademark for the font. This element is OPTIONAL. <!-- conform? -->If present, it MUST be
-a child of the <tt>metadata</tt> element. This element may be
-localized. This element has no attributes.</p>
+a child of the <tt>metadata</tt> element.
+This element may be localized using <tt>text</tt> child elements.
+This element has no attributes.</p>
 </dd>
 
 <dt><tt>licensee</tt> element</dt>
@@ -1047,7 +1051,7 @@ WOFF-packaged fonts, the metadata block is the primary source of this informatio
 
 <p>This "dummy" metadata block illustrates the use of the metadata elements
 described in section 6, including the use of multiple <tt>text</tt>
-elements to provide localized versions of certain elements.</p>
+child elements to provide localized versions of certain elements.</p>
 
 <div class="metadata">
 <pre>
