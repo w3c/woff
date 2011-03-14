@@ -60,7 +60,7 @@ def calcHeadCheckSumAdjustment(directory, tableData, flavor=None):
         if entry["tag"] != "head":
             continue
         origLength = entry["origLength"]
-        compLength = entry["origLength"]
+        compLength = entry["compLength"]
         assert origLength == compLength
         break
     # if the flavor is None, guess.

@@ -736,6 +736,8 @@ def makeTableCompressionTest4():
     tableData = deepcopy(sfntCFFTableData)
     compressionLevels = set()
     for index, (tag, (origData, compData)) in enumerate(tableData.items()):
+        if tag == "head":
+            continue
         compData = origData
         r = range(1, 10)
         if index % 2:
