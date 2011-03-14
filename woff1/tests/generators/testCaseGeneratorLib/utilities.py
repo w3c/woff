@@ -53,7 +53,7 @@ def calcTableChecksum(tag, data):
 def calcHeadCheckSumAdjustment(directory, tableData, flavor=None):
     """
     Set the checkSumAdjustment in the head table data.
-    Grumble.
+    This works with the WOFF table data structure used throughout the suites.
     """
     # first make sure that the head table is not compressed
     for entry in directory:
@@ -63,6 +63,28 @@ def calcHeadCheckSumAdjustment(directory, tableData, flavor=None):
         compLength = entry["compLength"]
         assert origLength == compLength
         break
+    # repack the data for the SFNT calculator
+    sfntDirectory = []
+    for entry in directory:
+        d = dict(
+            tag=entry["tag"],
+            offset=entry["offset"], # this should only be used for calculating the table order
+            length=entry["origLength"],
+            checksum=entry["origChecksum"]
+        )
+        sfntDirectory.append(d)
+    sfntTableData = {}
+    for tag, (origData, compData) in tableData.items():
+        sfntTableData[tag] = origData
+    calcHeadCheckSumAdjustmentSFNT(sfntDirectory, sfntTableData, flavor=flavor)
+    newHeadTableData = sfntTableData["head"]
+    tableData["head"] = (newHeadTableData, newHeadTableData)
+
+def calcHeadCheckSumAdjustmentSFNT(directory, tableData, flavor=None):
+    """
+    Set the checkSumAdjustment in the head table data.
+    Grumble.
+    """
     # if the flavor is None, guess.
     if flavor is None:
         flavor = "\000\001\000\000"
@@ -87,10 +109,10 @@ def calcHeadCheckSumAdjustment(directory, tableData, flavor=None):
     for o, entry in sorted(directory):
         sfntEntry = SFNTDirectoryEntry()
         sfntEntry.tag = entry["tag"]
-        sfntEntry.checkSum = entry["origChecksum"]
-        sfntEntry.offset = offset
-        sfntEntry.length = entry["origLength"]
-        offset += entry["origLength"] + calcPaddingLength(entry["origLength"])
+        sfntEntry.checkSum = entry["checksum"]
+        sfntEntry.offset = offset # don't trust the entry offset as it could be realtive to a WOFF header+directory, not SFNT
+        sfntEntry.length = entry["length"]
+        offset += entry["length"] + calcPaddingLength(entry["length"])
         sfntDirectoryEntries[entry["tag"]] = sfntEntry
     for tag, entry in sorted(sfntDirectoryEntries.items()):
         sfntData += entry.toString()
@@ -105,11 +127,11 @@ def calcHeadCheckSumAdjustment(directory, tableData, flavor=None):
     checkSumAdjustment = numpy.subtract.reduce([0xB1B0AFBA, checksum], dtype=numpy.uint32)
     checkSumAdjustment = long(checkSumAdjustment)
     # set the value in the head table
-    headTableData = tableData["head"][0]
+    headTableData = tableData["head"]
     newHeadTableData = headTableData[:8]
     newHeadTableData += struct.pack(">L", checkSumAdjustment)
     newHeadTableData += headTableData[12:]
-    tableData["head"] = (newHeadTableData, newHeadTableData)
+    tableData["head"] = newHeadTableData
 
 # --------
 # Metadata
