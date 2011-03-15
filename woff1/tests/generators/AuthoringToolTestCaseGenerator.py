@@ -3,10 +3,12 @@ import shutil
 import glob
 import struct
 import sstruct
+from fontTools.ttLib.sfnt import sfntDirectoryEntrySize
 from testCaseGeneratorLib.defaultData import defaultSFNTTestData
 from testCaseGeneratorLib.sfnt import packSFNT
 from testCaseGeneratorLib.paths import resourcesDirectory, authoringToolDirectory, authoringToolTestDirectory, authoringToolResourcesDirectory
-from testCaseGeneratorLib.html import generateFormatIndexHTML
+from testCaseGeneratorLib.html import generateAuthoringToolIndexHTML
+from testCaseGeneratorLib.utilities import padData, calcPaddingLength, calcTableChecksum
 
 # ------------------------
 # Specification URL
@@ -143,35 +145,186 @@ writeTest(
 )
 
 # padding that does not result in a four byte boundary
-# padding that exceeds three bytes
-# padding that is not null
+
+def makeInvalidPadding1():
+    header, directory, tableData = defaultSFNTTestData()
+    # grab the head table, calculate the padding length
+    # and shift the following tables
+    headEntry = [entry for entry in directory if entry["tag"] == "head"][0]
+    shift = calcPaddingLength(headEntry["length"])
+    assert shift
+    entries = [(entry["offset"], entry) for entry in directory]
+    assert sorted(entries)[0][1]["tag"] == "head"
+    for o, entry in sorted(entries)[1:]:
+        if entry["tag"] == "head":
+            continue
+        entry["offset"] -= shift
+    # pad the tables
+    for tag, data in tableData.items():
+        if tag == "head":
+            continue
+        tableData[tag] = padData(data)
+    # compile
+    data = packSFNT(header, directory, tableData, applyPadding=False)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-padding-001",
+    title="Table Data Missing Padding",
+    description="There is no padding between two tables. The head check sum adjustment is also incorrect as a result.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidPadding1()
+)
+
 # final table is not padded
-# data between properly padded tables
+
+def makeInvalidPadding2():
+    header, directory, tableData = defaultSFNTTestData()
+    # pad the tables and update their offsets
+    entries = [(entry["offset"], entry) for entry in directory]
+    for o, entry in sorted(entries):
+        tag = entry["tag"]
+        data = tableData[tag]
+        tableData[tag] = padData(data)
+        entry["offset"] += sfntDirectoryEntrySize
+    # make a bogus table and insert it
+    header["numTables"] += 1
+    data = "\01" * 15
+    tableData["zzzz"] = data
+    offset = entry["offset"] + entry["length"] + calcPaddingLength(entry["length"])
+    directory.append(
+        dict(
+            tag="zzzz",
+            offset=offset,
+            length=15,
+            checksum=calcTableChecksum("zzzz", data)
+        )
+    )
+    # compile
+    data = packSFNT(header, directory, tableData, applyPadding=False)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-padding-002",
+    title="Final Table in Table Data Is Not Padded",
+    description="There is no padding after the final table.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidPadding2()
+)
+
+# padding that exceeds three bytes
+
+def makeInvalidPadding3():
+    header, directory, tableData = defaultSFNTTestData()
+    # shift the offsets for every table after head
+    entries = [(entry["offset"], entry) for entry in directory]
+    assert sorted(entries)[0][1]["tag"] == "head"
+    for o, entry in sorted(entries)[1:]:
+        if entry["tag"] == "head":
+            continue
+        entry["offset"] += 4
+    # pad the tables
+    for tag, data in tableData.items():
+        if tag == "head":
+            tableData[tag] = padData(data) + ("\0" * 4)
+        else:
+            tableData[tag] = padData(data)
+    # compile
+    data = packSFNT(header, directory, tableData, applyPadding=False)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-padding-003",
+    title="Unnecessary Padding Between Tables",
+    description="There are four extra bytes after the head table. The head check sum adjustment is also incorrect as a result.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidPadding3()
+)
+
+# unnecessary padding after final table
+
+def makeInvalidPadding4():
+    header, directory, tableData = defaultSFNTTestData()
+    entries = [(entry["offset"], entry) for entry in directory]
+    # pad the tables
+    for o, entry in sorted(entries):
+        tag = entry["tag"]
+        data = tableData[tag]
+        tableData[tag] = padData(data)
+    # add four bogus bytes to the last table
+    entry = sorted(entries)[-1][1]
+    tag = entry["tag"]
+    tableData[tag] += "\0" * 4
+    # compile
+    data = packSFNT(header, directory, tableData, applyPadding=False)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-padding-004",
+    title="Unnecessary Padding After Final Table",
+    description="There are four extra bytes after the final table. The head check sum adjustment is also incorrect as a result.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidPadding4()
+)
+
+# padding that is not null
+
+def makeInvalidPadding5():
+    header, directory, tableData = defaultSFNTTestData()
+    # pad the tables
+    for tag, data in tableData.items():
+        if tag == "head":
+            assert calcPaddingLength(len(data))
+            tableData[tag] = data + ("\x01" * calcPaddingLength(len(data)))
+        else:
+            tableData[tag] = padData(data)
+    # compile
+    data = packSFNT(header, directory, tableData, applyPadding=False)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-padding-005",
+    title="Invalid Padding Bytes in Table Data",
+    description="There is padding after the head table that is not null.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidPadding5()
+)
+
 # two table data blocks overlap
 
-## ------------------
-## Generate the Index
-## ------------------
-#
-#print "Compiling index..."
-#
-#testGroups = []
-#
-#for tag, title, url in groupDefinitions:
-#    group = dict(title=title, url=url, testCases=testRegistry[tag])
-#    testGroups.append(group)
-#
-#generateFormatIndexHTML(directory=authoringToolTestDirectory, testCases=testGroups)
-#
-## -----------------------
-## Check for Unknown Files
-## -----------------------
-#
-#woffPattern = os.path.join(authoringToolTestDirectory, "*.woff")
-#filesOnDisk = glob.glob(woffPattern)
-#
-#for path in filesOnDisk:
-#    identifier = os.path.basename(path)
-#    identifier = identifier.split(".")[0]
-#    if identifier not in registeredIdentifiers:
-#        print "Unknown file:", path
+# offset to table is before start of the data block
+
+# offset + length of table goes beyond the end of the file
+
+# ------------------
+# Generate the Index
+# ------------------
+
+print "Compiling index..."
+
+testGroups = []
+
+for tag, title, url in groupDefinitions:
+    group = dict(title=title, url=url, testCases=testRegistry[tag])
+    testGroups.append(group)
+
+generateAuthoringToolIndexHTML(directory=authoringToolTestDirectory, testCases=testGroups)
+
+# -----------------------
+# Check for Unknown Files
+# -----------------------
+
+otfPattern = os.path.join(authoringToolTestDirectory, "*.otf")
+ttfPattern = os.path.join(authoringToolTestDirectory, "*.ttf")
+filesOnDisk = glob.glob(otfPattern) + glob.glob(ttfPattern)
+
+for path in filesOnDisk:
+    identifier = os.path.basename(path)
+    identifier = identifier.split(".")[0]
+    if identifier not in registeredIdentifiers:
+        print "Unknown file:", path

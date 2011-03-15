@@ -344,7 +344,6 @@ def generateFormatIndexHTML(directory=None, testCases=[]):
             html.append("\t\t\t</div>")
             # close the test case div
             html.append("\t\t</div>")
-            
     # close body
     html.append("\t</body>")
     # close html
@@ -357,3 +356,71 @@ def generateFormatIndexHTML(directory=None, testCases=[]):
     f.write(html)
     f.close()
 
+def generateAuthoringToolIndexHTML(directory=None, testCases=[]):
+    testCount = sum([len(group["testCases"]) for group in testCases])
+    html = [
+        "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">",
+        "<html xmlns=\"http://www.w3.org/1999/xhtml\">",
+        "\t<head>",
+        "\t\t<title>WOFF: Authoring Tool Test Suite</title>",
+        "\t\t<style type=\"text/css\">",
+        "\t\t\t@import \"resources/index.css\";",
+        "\t\t</style>",
+        "\t</head>",
+        "\t<body>",
+        "\t\t<h1>WOFF: Authoring Tool Test Suite (%d tests)</h1>" % testCount,
+    ]
+    # add the test groups
+    for group in testCases:
+        title = group["title"]
+        title = cgi.escape(title)
+        # write the group header
+        html.append("")
+        html.append("\t\t<h2 class=\"testCategory\">%s</h2>" % title)
+        # write the individual test cases
+        for test in group["testCases"]:
+            identifier = test["identifier"]
+            title = test["title"]
+            title = cgi.escape(title)
+            description = test["description"]
+            description = cgi.escape(description)
+            shouldConvert = test["shouldConvert"]
+            if shouldConvert:
+                shouldConvert = "Yes"
+            else:
+                shouldConvert = "No"
+            specLink = test["specLink"]
+            # start the test case div
+            html.append("\t\t<div class=\"testCase\" id=\"%s\">" % identifier)
+            # start the overview div
+            html.append("\t\t\t<div class=\"testCaseOverview\">")
+            # title
+            html.append("\t\t\t\t<h3><a href=\"#%s\">%s</a>: %s</h3>" % (identifier, identifier, title))
+            # assertion
+            html.append("\t\t\t\t<p>%s</p>" % description)
+            # close the overview div
+            html.append("\t\t\t</div>")
+            # start the details div
+            html.append("\t\t\t<div class=\"testCaseDetails\">")
+            # validity
+            string = "Should Convert to WOFF: <span id=\"%s-shouldconvert\">%s</span>" % (identifier, shouldConvert)
+            html.append("\t\t\t\t\t<p>%s</p>" % string)
+            # documentation
+            if specLink is not None:
+                string = "<p><a href=\"%s\">Documentation</a></p>" % specLink
+                html.append(string)
+            # close the details div
+            html.append("\t\t\t</div>")
+            # close the test case div
+            html.append("\t\t</div>")
+    # close body
+    html.append("\t</body>")
+    # close html
+    html.append("</html>")
+    # finalize
+    html = "\n".join(html)
+    # write
+    path = os.path.join(directory, "testcaseindex.xht")
+    f = open(path, "wb")
+    f.write(html)
+    f.close()

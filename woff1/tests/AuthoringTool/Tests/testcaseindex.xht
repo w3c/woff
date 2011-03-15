@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>WOFF: Authoring Tool Test Suite</title>
+		<style type="text/css">
+			@import "resources/index.css";
+		</style>
+	</head>
+	<body>
+		<h1>WOFF: Authoring Tool Test Suite (7 tests)</h1>
+
+		<h2 class="testCategory">Valid SFNTs</h2>
+
+		<h2 class="testCategory">Invalid SFNTs</h2>
+		<div class="testCase" id="invalidsfnt-checksum-001">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-checksum-001">invalidsfnt-checksum-001</a>: Table Directory Contains Invalid CheckSum</h3>
+				<p>The checksum for the OS/2 table is set to 0.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-checksum-001-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-checksum-002">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-checksum-002">invalidsfnt-checksum-002</a>: Font head Table Incorrect CheckSum Adjustment</h3>
+				<p>The head table checksum adjustment is set to 0.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-checksum-002-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-padding-001">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-padding-001">invalidsfnt-padding-001</a>: Table Data Missing Padding</h3>
+				<p>There is no padding between two tables. The head check sum adjustment is also incorrect as a result.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-001-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-padding-002">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-padding-002">invalidsfnt-padding-002</a>: Final Table in Table Data Is Not Padded</h3>
+				<p>There is no padding after the final table.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-002-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-padding-003">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-padding-003">invalidsfnt-padding-003</a>: Unnecessary Padding Between Tables</h3>
+				<p>There are four extra bytes after the head table. The head check sum adjustment is also incorrect as a result.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-003-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-padding-004">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-padding-004">invalidsfnt-padding-004</a>: Unnecessary Padding After Final Table</h3>
+				<p>There are four extra bytes after the final table. The head check sum adjustment is also incorrect as a result.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-004-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-padding-005">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-padding-005">invalidsfnt-padding-005</a>: Invalid Padding Bytes in Table Data</h3>
+				<p>There is padding after the head table that is not null.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-005-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+	</body>
+</html>

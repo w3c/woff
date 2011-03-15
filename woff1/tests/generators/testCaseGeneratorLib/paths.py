@@ -41,7 +41,7 @@ formatResourcesDirectory = os.path.join(formatTestDirectory, "resources")
 
 authoringToolDirectory = os.path.join(mainDirectory, "AuthoringTool")
 authoringToolTestDirectory = os.path.join(authoringToolDirectory, "Tests")
-authoringToolResourcesDirectory = os.path.join(authoringToolDirectory, "resources")
+authoringToolResourcesDirectory = os.path.join(authoringToolTestDirectory, "resources")
 
 if __name__ == "__main__":
     import doctest

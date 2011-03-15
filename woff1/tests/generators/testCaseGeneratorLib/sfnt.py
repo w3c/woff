@@ -39,7 +39,7 @@ def getSFNTData(pathOrFile):
 # Packing
 # -------
 
-def packSFNT(header, directory, tableData, flavor="cff", calcCheckSum=True):
+def packSFNT(header, directory, tableData, flavor="cff", calcCheckSum=True, applyPadding=True):
     # update the checkSum
     if calcCheckSum:
         calcHeadCheckSumAdjustmentSFNT(directory, tableData, flavor=flavor)
@@ -65,7 +65,8 @@ def packSFNT(header, directory, tableData, flavor="cff", calcCheckSum=True):
     # compile the data
     for o, entry in sorted(directory):
         data = tableData[entry["tag"]]
-        data = padData(data)
+        if applyPadding:
+            data = padData(data)
         sfntData += data
     # done
     return sfntData
