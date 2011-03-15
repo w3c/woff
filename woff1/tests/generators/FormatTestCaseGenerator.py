@@ -907,12 +907,12 @@ def makeTableDirectoryCheckSum2():
     assert origValue != newValue
     newData = origData[:8] + newValue + origData[12:]
     tableData["head"] = (newData, newData)
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData, calcCheckSum=False)
     return data
 
 writeTest(
     identifier="directory-origCheckSum-002",
-    title="Font head Table CheckSum Incorrect Adjustment",
+    title="Font head Table Incorrect CheckSum Adjustment",
     description="The head table checksum adjustment is set to 0.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     valid=False,
