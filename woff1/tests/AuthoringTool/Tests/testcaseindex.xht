@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Authoring Tool Test Suite (7 tests)</h1>
+		<h1>WOFF: Authoring Tool Test Suite (11 tests)</h1>
 
 		<h2 class="testCategory">Valid SFNTs</h2>
 
@@ -79,6 +79,46 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-005-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-blocks-001">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-blocks-001">invalidsfnt-blocks-001</a>: Table Data Blocks Overlap</h3>
+				<p>Two table blocks overlap. This will cause checksums to be incorrect.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-blocks-001-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-blocks-002">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-blocks-002">invalidsfnt-blocks-002</a>: Table Data Block Begins Before End Of Directory</h3>
+				<p>The first table has an offset that is before the end of the table directory.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-blocks-002-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-blocks-003">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-blocks-003">invalidsfnt-blocks-003</a>: Table Data Block Offset + Length Extends Past End of File</h3>
+				<p>The final table has an offset + length that is four bytes past the end of the file.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-blocks-003-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="invalidsfnt-directory-order-001">
+			<div class="testCaseOverview">
+				<h3><a href="#invalidsfnt-directory-order-001">invalidsfnt-directory-order-001</a>: Table Directory Not In Ascending Order</h3>
+				<p>The table directory is in descending order.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="invalidsfnt-directory-order-001-shouldconvert">No</span></p>
 <p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>

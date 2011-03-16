@@ -297,9 +297,88 @@ writeTest(
 
 # two table data blocks overlap
 
+def makeInvalidBlocks1():
+    header, directory, tableData = defaultSFNTTestData()
+    # slice four bytes off of the head table
+    tableData["head"] = tableData["head"][:-4]
+    # move the other tables up by four bytes
+    entries = [(entry["offset"], entry) for entry in directory]
+    assert sorted(entries)[0][1]["tag"] == "head"
+    for o, entry in sorted(entries[1:]):
+        entry["offset"] -= 4
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-blocks-001",
+    title="Table Data Blocks Overlap",
+    description="Two table blocks overlap. This will cause checksums to be incorrect.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidBlocks1()
+)
+
 # offset to table is before start of the data block
 
+def makeInvalidBlocks2():
+    header, directory, tableData = defaultSFNTTestData()
+    # shift each table up four bytes
+    for entry in directory:
+        entry["offset"] -= 4
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-blocks-002",
+    title="Table Data Block Begins Before End Of Directory",
+    description="The first table has an offset that is before the end of the table directory.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidBlocks2()
+)
+
 # offset + length of table goes beyond the end of the file
+
+def makeInvalidBlocks3():
+    header, directory, tableData = defaultSFNTTestData()
+    # extend the length of the final table by four bytes
+    entries = [(entry["offset"], entry) for entry in directory]
+    entry = sorted(entries)[-1][1]
+    entry["length"] += 4
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-blocks-003",
+    title="Table Data Block Offset + Length Extends Past End of File",
+    description="The final table has an offset + length that is four bytes past the end of the file.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidBlocks3()
+)
+
+# table directory not in ascending order
+
+def makeInvalidDirectoryOrder1():
+    header, directory, tableData = defaultSFNTTestData()
+    # reverse the entries
+    entries = [(entry["tag"], entry) for entry in directory]
+    directory = [entry for tag, entry in reversed(sorted(entries))]
+    # compile
+    data = packSFNT(header, directory, tableData, sortDirectory=False)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-directory-order-001",
+    title="Table Directory Not In Ascending Order",
+    description="The table directory is in descending order.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidDirectoryOrder1()
+)
 
 # ------------------
 # Generate the Index

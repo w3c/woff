@@ -39,7 +39,7 @@ def getSFNTData(pathOrFile):
 # Packing
 # -------
 
-def packSFNT(header, directory, tableData, flavor="cff", calcCheckSum=True, applyPadding=True):
+def packSFNT(header, directory, tableData, flavor="cff", calcCheckSum=True, applyPadding=True, sortDirectory=True):
     # update the checkSum
     if calcCheckSum:
         calcHeadCheckSumAdjustmentSFNT(directory, tableData, flavor=flavor)
@@ -51,20 +51,25 @@ def packSFNT(header, directory, tableData, flavor="cff", calcCheckSum=True, appl
     # version and num tables should already be set
     sfntData = sstruct.pack(sfntDirectoryFormat, header)
     # compile the directory
-    directory = [(entry["offset"], entry) for entry in directory]
     sfntDirectoryEntries = {}
-    for o, entry in sorted(directory):
+    entryOrder = []
+    for entry in directory:
         sfntEntry = SFNTDirectoryEntry()
         sfntEntry.tag = entry["tag"]
         sfntEntry.checkSum = entry["checksum"]
         sfntEntry.offset = entry["offset"]
         sfntEntry.length = entry["length"]
         sfntDirectoryEntries[entry["tag"]] = sfntEntry
-    for tag, entry in sorted(sfntDirectoryEntries.items()):
+        entryOrder.append(entry["tag"])
+    if sortDirectory:
+        entryOrder = sorted(entryOrder)
+    for tag in entryOrder:
+        entry = sfntDirectoryEntries[tag]
         sfntData += entry.toString()
     # compile the data
-    for o, entry in sorted(directory):
-        data = tableData[entry["tag"]]
+    directory = [(entry["offset"], entry["tag"]) for entry in directory]
+    for o, tag in sorted(directory):
+        data = tableData[tag]
         if applyPadding:
             data = padData(data)
         sfntData += data
