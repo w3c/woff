@@ -49,7 +49,7 @@ shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 
 groupDefinitions = [
     # identifier, title, spec section
-    ("valid", "Valid SFNTs", None),
+    ("validsfnt", "Valid SFNTs", None),
     ("invalidsfnt", "Invalid SFNTs", specificationURL+"#conform-incorrect-reject"),
 ]
 
@@ -64,7 +64,7 @@ for group in groupDefinitions:
 
 registeredIdentifiers = set()
 
-def writeTest(identifier, title, description, data, specLink=None, credits=[], shouldConvert=False):
+def writeTest(identifier, title, description, data, specLink=None, credits=[], shouldConvert=False, flavor="cff"):
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     registeredIdentifiers.add(identifier)
@@ -75,8 +75,12 @@ def writeTest(identifier, title, description, data, specLink=None, credits=[], s
         specLink = specificationURL + specLink
 
     # generate the SFNT
-    woffPath = os.path.join(authoringToolTestDirectory, identifier) + ".otf"
-    f = open(woffPath, "wb")
+    sfntPath = os.path.join(authoringToolTestDirectory, identifier)
+    if flavor == "cff":
+        sfntPath += ".otf"
+    else:
+        sfntPath += ".ttf"
+    f = open(sfntPath, "wb")
     f.write(data)
     f.close()
 
@@ -91,6 +95,45 @@ def writeTest(identifier, title, description, data, specLink=None, credits=[], s
             specLink=specLink
         )
     )
+
+# ---------------
+# Valid SFNT Data
+# ---------------
+
+# CFF
+
+def makeValidSFNT1():
+    header, directory, tableData = defaultSFNTTestData()
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="validsfnt-001",
+    title="Valid CFF SFNT",
+    description="The CFF flavored SFNT data is valid.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-checksumvalidate",
+    data=makeValidSFNT1()
+)
+
+# TTF
+
+def makeValidSFNT2():
+    header, directory, tableData = defaultSFNTTestData(flavor="ttf")
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="validsfnt-002",
+    title="Valid TTF SFNT",
+    description="The TTF flavored SFNT data is valid.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-checksumvalidate",
+    data=makeValidSFNT2(),
+    flavor="ttf"
+)
 
 # -----------------
 # Invalid SFNT Data
