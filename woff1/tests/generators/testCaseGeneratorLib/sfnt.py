@@ -39,12 +39,20 @@ def getSFNTData(pathOrFile):
 # Packing
 # -------
 
-def packSFNT(header, directory, tableData, flavor="cff", calcCheckSum=True, applyPadding=True, sortDirectory=True):
+def packSFNT(header, directory, tableData, flavor="cff",
+    calcCheckSum=True, applyPadding=True, sortDirectory=True,
+    searchRange=None, entrySelector=None, rangeShift=None):
     # update the checkSum
     if calcCheckSum:
         calcHeadCheckSumAdjustmentSFNT(directory, tableData, flavor=flavor)
     # update the header
-    searchRange, entrySelector, rangeShift = getSearchRange(len(directory))
+    cSearchRange, cEntrySelector, cRangeShift = getSearchRange(len(directory))
+    if searchRange is None:
+        searchRange = cSearchRange
+    if entrySelector is None:
+        entrySelector = cEntrySelector
+    if rangeShift is None:
+        rangeShift = cRangeShift
     header["searchRange"] = searchRange
     header["entrySelector"] = entrySelector
     header["rangeShift"] = rangeShift

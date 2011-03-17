@@ -423,6 +423,57 @@ writeTest(
     data=makeInvalidDirectoryOrder1()
 )
 
+# incorrect searchRange
+
+def makeInvalidSearchRange1():
+    header, directory, tableData = defaultSFNTTestData()
+    # compile
+    data = packSFNT(header, directory, tableData, searchRange=0)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-searchrange-001",
+    title="Invalid searchRange",
+    description="The searchRange is set to 0.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidSearchRange1()
+)
+
+# incorrect entrySelector
+
+def makeInvalidEntrySelector1():
+    header, directory, tableData = defaultSFNTTestData()
+    # compile
+    data = packSFNT(header, directory, tableData, entrySelector=0)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-entryselector-001",
+    title="Invalid entrySelector",
+    description="The entrySelector is set to 0.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidEntrySelector1()
+)
+
+# incorrect rangeShift
+
+def makeInvalidRangeShift1():
+    header, directory, tableData = defaultSFNTTestData()
+    # compile
+    data = packSFNT(header, directory, tableData, rangeShift=0)
+    return data
+
+writeTest(
+    identifier="invalidsfnt-rangeshift-001",
+    title="Invalid rangeShift",
+    description="The rangeShift is set to 0.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-incorrect-reject",
+    data=makeInvalidRangeShift1()
+)
+
 # ------------------
 # Generate the Index
 # ------------------
