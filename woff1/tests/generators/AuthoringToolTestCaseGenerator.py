@@ -511,6 +511,7 @@ writeTest(
     identifier="tabledata-compression-size-001",
     title="The \"TEST\" Table Must Not Be Compressed",
     description="The \"TEST\" table will be larger when compressed so it must not be compressed.",
+    shouldConvert=True,
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#conform-compressedlarger",
     data=makeMustNotCompress1()
