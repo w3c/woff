@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Authoring Tool Test Suite (16 tests)</h1>
+		<h1>WOFF: Authoring Tool Test Suite (17 tests)</h1>
 
 		<h2 class="testCategory">Valid SFNTs</h2>
 		<div class="testCase" id="validsfnt-001">
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 
-		<h2 class="testCategory">Invalid SFNTs</h2>
+		<h2 class="testCategory">Invalid SFNT Tests</h2>
 		<div class="testCase" id="invalidsfnt-checksum-001">
 			<div class="testCaseOverview">
 				<h3><a href="#invalidsfnt-checksum-001">invalidsfnt-checksum-001</a>: Table Directory Contains Invalid CheckSum</h3>
@@ -170,6 +170,18 @@
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-rangeshift-001-shouldconvert">No</span></p>
 <p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">SFNT Table Data Tests</h2>
+		<div class="testCase" id="tabledata-compression-size-001">
+			<div class="testCaseOverview">
+				<h3><a href="#tabledata-compression-size-001">tabledata-compression-size-001</a>: The "TEST" Table Must Not Be Compressed</h3>
+				<p>The "TEST" table will be larger when compressed so it must not be compressed.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="tabledata-compression-size-001-shouldconvert">No</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-compressedlarger">Documentation</a></p>
 			</div>
 		</div>
 	</body>

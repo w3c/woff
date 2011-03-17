@@ -50,7 +50,8 @@ shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 groupDefinitions = [
     # identifier, title, spec section
     ("validsfnt", "Valid SFNTs", None),
-    ("invalidsfnt", "Invalid SFNTs", specificationURL+"#conform-incorrect-reject"),
+    ("invalidsfnt", "Invalid SFNT Tests", specificationURL+"#conform-incorrect-reject"),
+    ("tabledata", "SFNT Table Data Tests", specificationURL+"#DataTables"),
 ]
 
 testRegistry = {}
@@ -472,6 +473,47 @@ writeTest(
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#conform-incorrect-reject",
     data=makeInvalidRangeShift1()
+)
+
+# -----------
+# Compression
+# -----------
+
+def makeMustNotCompress1():
+    header, directory, tableData = defaultSFNTTestData()
+    # adjust the header
+    header["numTables"] += 1
+    # store the data
+    data = "\0"
+    tableData["TEST"] = data
+    # offset the directory entries
+    for entry in directory:
+        entry["offset"] += sfntDirectoryEntrySize
+    # find the offset
+    entries = [(entry["offset"], entry) for entry in directory]
+    entry = sorted(entries)[-1][1]
+    offset = entry["offset"] + entry["length"]
+    offset += calcPaddingLength(offset)
+    # make the entry
+    directory.append(
+        dict(
+            tag="TEST",
+            offset=offset,
+            length=1,
+            checksum=calcTableChecksum("TEST", data)
+        )
+    )
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="tabledata-compression-size-001",
+    title="The \"TEST\" Table Must Not Be Compressed",
+    description="The \"TEST\" table will be larger when compressed so it must not be compressed.",
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-compressedlarger",
+    data=makeMustNotCompress1()
 )
 
 # ------------------
