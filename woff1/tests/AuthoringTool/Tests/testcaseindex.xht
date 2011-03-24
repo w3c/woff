@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Authoring Tool Test Suite (17 tests)</h1>
+		<h1>WOFF: Authoring Tool Test Suite (18 tests)</h1>
 
 		<h2 class="testCategory">Valid SFNTs</h2>
 		<div class="testCase" id="validsfnt-001">
@@ -182,6 +182,18 @@
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="tabledata-compression-size-001-shouldconvert">Yes</span></p>
 <p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-compressedlarger">Documentation</a></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">SFNT Table Directory Tests</h2>
+		<div class="testCase" id="tabledirectory-ascending-001">
+			<div class="testCaseOverview">
+				<h3><a href="#tabledirectory-ascending-001">tabledirectory-ascending-001</a>: The Table Directory Must Be In Ascending Order</h3>
+				<p>The SFNT contains 1AAA, 2AAA, A1AA, A2AA, AA1A, AA2A, AAA1, AAA2, AAAA, AAAB, AABA, ABAA, BAAA, 8ZZZ, 9ZZZ, Z8ZZ, Z9ZZ, ZZ8Z, ZZ9Z, ZZZ8, ZZZ9, YZZZ, ZYZZ, ZZYZ, ZZZY, ZZZZ, 1aaa, 2aaa, a1aa, a2aa, aa1a, aa2a, aaa1, aaa2, aaaa, aaab, aaba, abaa, baaa, 8zzz, 9zzz, z8zz, z9zz, zz8z, zz9z, zzz8, zzz9, yzzz, zyzz, zzyz, zzzy, zzzz tables in addition to the standard tables. The result of conversion to WOFF should be checked to ensure that the directory is in ascending order.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="tabledirectory-ascending-001-shouldconvert">Yes</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-ascending">Documentation</a></p>
 			</div>
 		</div>
 	</body>

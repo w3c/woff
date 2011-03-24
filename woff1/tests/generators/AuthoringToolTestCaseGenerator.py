@@ -52,6 +52,7 @@ groupDefinitions = [
     ("validsfnt", "Valid SFNTs", None),
     ("invalidsfnt", "Invalid SFNT Tests", specificationURL+"#conform-incorrect-reject"),
     ("tabledata", "SFNT Table Data Tests", specificationURL+"#DataTables"),
+    ("tabledirectory", "SFNT Table Directory Tests", specificationURL+"#DataTables"),
 ]
 
 testRegistry = {}
@@ -516,6 +517,102 @@ writeTest(
     specLink="#conform-compressedlarger",
     data=makeMustNotCompress1()
 )
+
+# ----------------------------
+# Directory In Ascending Order
+# ----------------------------
+
+dummyTables = """1AAA
+2AAA
+A1AA
+A2AA
+AA1A
+AA2A
+AAA1
+AAA2
+AAAA
+AAAB
+AABA
+ABAA
+BAAA
+8ZZZ
+9ZZZ
+Z8ZZ
+Z9ZZ
+ZZ8Z
+ZZ9Z
+ZZZ8
+ZZZ9
+YZZZ
+ZYZZ
+ZZYZ
+ZZZY
+ZZZZ
+1aaa
+2aaa
+a1aa
+a2aa
+aa1a
+aa2a
+aaa1
+aaa2
+aaaa
+aaab
+aaba
+abaa
+baaa
+8zzz
+9zzz
+z8zz
+z9zz
+zz8z
+zz9z
+zzz8
+zzz9
+yzzz
+zyzz
+zzyz
+zzzy
+zzzz""".splitlines()
+
+def makeTableDirectoryAscending1():
+    header, directory, tableData = defaultSFNTTestData()
+    # adjust the header
+    header["numTables"] += len(dummyTables)
+    # adjust the offsets
+    shift = len(dummyTables) * sfntDirectoryEntrySize
+    for entry in directory:
+        entry["offset"] += shift
+    # store the data
+    sorter = [(entry["offset"], entry["length"]) for entry in directory]
+    offset, length = max(sorter)
+    offset = offset + length
+    data = "\0" * 4
+    checksum = calcTableChecksum(None, data)
+    for tag in dummyTables:
+        tableData[tag] = data
+        entry = dict(
+            tag=tag,
+            offset=offset,
+            length=4,
+            checksum=checksum
+        )
+        directory.append(entry)
+        offset += 4
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="tabledirectory-ascending-001",
+    title="The Table Directory Must Be In Ascending Order",
+    description="The SFNT contains %s tables in addition to the standard tables. The result of conversion to WOFF should be checked to ensure that the directory is in ascending order." % ", ".join(dummyTables),
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-ascending",
+    data=makeTableDirectoryAscending1()
+)
+
 
 # ------------------
 # Generate the Index
