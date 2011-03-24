@@ -2,7 +2,6 @@
 Miscellaneous utilities.
 """
 
-import numpy
 import struct
 import sstruct
 from fontTools.ttLib.sfnt import calcChecksum, getSearchRange,\
@@ -48,7 +47,7 @@ def calcTableChecksum(tag, data):
         checksum = calcChecksum(data[:8] + '\0\0\0\0' + data[12:])
     else:
         checksum = calcChecksum(data)
-    return checksum
+    return checksum & 0xffffffff
 
 def calcHeadCheckSumAdjustment(directory, tableData, flavor=None):
     """
@@ -65,14 +64,16 @@ def calcHeadCheckSumAdjustment(directory, tableData, flavor=None):
         break
     # repack the data for the SFNT calculator
     sfntDirectory = []
+    offset = sfntDirectorySize + (sfntDirectoryEntrySize * len(directory))
     for entry in directory:
         d = dict(
             tag=entry["tag"],
-            offset=entry["offset"], # this should only be used for calculating the table order
+            offset=offset, # this should only be used for calculating the table order
             length=entry["origLength"],
             checksum=entry["origChecksum"]
         )
         sfntDirectory.append(d)
+        offset += entry["origLength"] + calcPaddingLength(entry["origLength"])
     sfntTableData = {}
     for tag, (origData, compData) in tableData.items():
         sfntTableData[tag] = origData
@@ -92,6 +93,7 @@ def calcHeadCheckSumAdjustmentSFNT(directory, tableData, flavor=None):
             if entry["tag"] == "CFF ":
                 flavor = "OTTO"
                 break
+    assert flavor in ("OTTO", "\000\001\000\000")
     # make the sfnt header
     searchRange, entrySelector, rangeShift = getSearchRange(len(directory))
     sfntHeaderData = dict(
@@ -103,29 +105,22 @@ def calcHeadCheckSumAdjustmentSFNT(directory, tableData, flavor=None):
     )
     sfntData = sstruct.pack(sfntDirectoryFormat, sfntHeaderData)
     # make a SFNT table directory
-    offset = sfntDirectorySize + (sfntDirectoryEntrySize * len(directory))
-    directory = [(entry["offset"], entry) for entry in directory]
-    sfntDirectoryEntries = {}
-    for o, entry in sorted(directory):
+    directory = [(entry["tag"], entry) for entry in directory]
+    for tag, entry in sorted(directory):
         sfntEntry = SFNTDirectoryEntry()
         sfntEntry.tag = entry["tag"]
         sfntEntry.checkSum = entry["checksum"]
-        sfntEntry.offset = offset # don't trust the entry offset as it could be realtive to a WOFF header+directory, not SFNT
+        sfntEntry.offset = entry["offset"]
         sfntEntry.length = entry["length"]
-        offset += entry["length"] + calcPaddingLength(entry["length"])
-        sfntDirectoryEntries[entry["tag"]] = sfntEntry
-    for tag, entry in sorted(sfntDirectoryEntries.items()):
-        sfntData += entry.toString()
+        sfntData += sfntEntry.toString()
     # calculate the checksum
     sfntDataChecksum = calcChecksum(sfntData)
     # gather all of the checksums
-    checksums = [entry.checkSum for tag, entry in sorted(sfntDirectoryEntries.items())]
+    checksums = [entry["checksum"] for o, entry in directory]
     checksums.append(sfntDataChecksum)
     # calculate the checksum
-    checksum = numpy.add.reduce(checksums, dtype=numpy.uint32)
-    # do the B1B0AFBA zaniness
-    checkSumAdjustment = numpy.subtract.reduce([0xB1B0AFBA, checksum], dtype=numpy.uint32)
-    checkSumAdjustment = long(checkSumAdjustment)
+    checkSumAdjustment = sum(checksums)
+    checkSumAdjustment = (0xB1B0AFBA - checkSumAdjustment) & 0xffffffff
     # set the value in the head table
     headTableData = tableData["head"]
     newHeadTableData = headTableData[:8]
