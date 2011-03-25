@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Authoring Tool Test Suite (18 tests)</h1>
+		<h1>WOFF: Authoring Tool Test Suite (24 tests)</h1>
 
 		<h2 class="testCategory">Valid SFNTs</h2>
 		<div class="testCase" id="validsfnt-001">
@@ -194,6 +194,68 @@
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="tabledirectory-ascending-001-shouldconvert">Yes</span></p>
 <p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-ascending">Documentation</a></p>
+			</div>
+		</div>
+
+		<h2 class="testCategory">SFNT Bitwise Identical Tests</h2>
+		<div class="testCase" id="bitwiseidentical-001">
+			<div class="testCaseOverview">
+				<h3><a href="#bitwiseidentical-001">bitwiseidentical-001</a>: SFNT With Common CFF Structure</h3>
+				<p>The SFNT has a common CFF structure. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="bitwiseidentical-001-shouldconvert">Yes</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="bitwiseidentical-002">
+			<div class="testCaseOverview">
+				<h3><a href="#bitwiseidentical-002">bitwiseidentical-002</a>: SFNT With Common TTF Structure</h3>
+				<p>The SFNT has a common TTF structure. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="bitwiseidentical-002-shouldconvert">Yes</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="bitwiseidentical-003">
+			<div class="testCaseOverview">
+				<h3><a href="#bitwiseidentical-003">bitwiseidentical-003</a>: SFNT With Uncommon Table</h3>
+				<p>The SFNT has a DSIG table. (Note: this is not a valid DSIG. It should not be used for testing anything other than the presence of the table after the conversion process.) The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="bitwiseidentical-003-shouldconvert">Yes</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="bitwiseidentical-004">
+			<div class="testCaseOverview">
+				<h3><a href="#bitwiseidentical-004">bitwiseidentical-004</a>: SFNT With Non-Standard Table</h3>
+				<p>The SFNT has a TEST table. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="bitwiseidentical-004-shouldconvert">Yes</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="bitwiseidentical-005">
+			<div class="testCaseOverview">
+				<h3><a href="#bitwiseidentical-005">bitwiseidentical-005</a>: SFNT Without Recommended CFF Table Order</h3>
+				<p>The SFNT has a table order that does not follow the recommended CFF table ordering as defined in the OpenType specification. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="bitwiseidentical-005-shouldconvert">Yes</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="bitwiseidentical-006">
+			<div class="testCaseOverview">
+				<h3><a href="#bitwiseidentical-006">bitwiseidentical-006</a>: SFNT Without Recommended TTF Table Order</h3>
+				<p>The SFNT has a table order that does not follow the recommended TTF table ordering as defined in the OpenType specification. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Should Convert to WOFF: <span id="bitwiseidentical-006-shouldconvert">Yes</span></p>
+<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
 			</div>
 		</div>
 	</body>

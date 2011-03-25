@@ -3,7 +3,7 @@ import shutil
 import glob
 import struct
 import sstruct
-from fontTools.ttLib.sfnt import sfntDirectoryEntrySize
+from fontTools.ttLib.sfnt import sfntDirectorySize, sfntDirectoryEntrySize
 from testCaseGeneratorLib.defaultData import defaultSFNTTestData
 from testCaseGeneratorLib.sfnt import packSFNT
 from testCaseGeneratorLib.paths import resourcesDirectory, authoringToolDirectory, authoringToolTestDirectory, authoringToolResourcesDirectory
@@ -53,6 +53,7 @@ groupDefinitions = [
     ("invalidsfnt", "Invalid SFNT Tests", specificationURL+"#conform-incorrect-reject"),
     ("tabledata", "SFNT Table Data Tests", specificationURL+"#DataTables"),
     ("tabledirectory", "SFNT Table Directory Tests", specificationURL+"#DataTables"),
+    ("bitwiseidentical", "SFNT Bitwise Identical Tests", specificationURL+"#conform-identical"),
 ]
 
 testRegistry = {}
@@ -613,6 +614,186 @@ writeTest(
     data=makeTableDirectoryAscending1()
 )
 
+
+# ---------------------------
+# Byte For Byte Compatibility
+# ---------------------------
+
+# valid CFF
+
+writeTest(
+    identifier="bitwiseidentical-001",
+    title="SFNT With Common CFF Structure",
+    description="The SFNT has a common CFF structure. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-identical",
+    data=makeValidSFNT1()
+)
+
+# valid TTF
+
+writeTest(
+    identifier="bitwiseidentical-002",
+    title="SFNT With Common TTF Structure",
+    description="The SFNT has a common TTF structure. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-identical",
+    data=makeValidSFNT2(),
+    flavor="ttf"
+)
+
+# add bogus DSIG
+
+def makeBitwiseIdenticalDSIG1():
+    header, directory, tableData = defaultSFNTTestData()
+    # adjust the header
+    header["numTables"] += 1
+    # store the data
+    data = "\0" * 4
+    tableData["DSIG"] = data
+    # offset the directory entries
+    for entry in directory:
+        entry["offset"] += sfntDirectoryEntrySize
+    # find the offset
+    entries = [(entry["offset"], entry) for entry in directory]
+    entry = max(entries)[1]
+    offset = entry["offset"] + entry["length"]
+    offset += calcPaddingLength(offset)
+    # make the entry
+    directory.append(
+        dict(
+            tag="DSIG",
+            offset=offset,
+            length=4,
+            checksum=calcTableChecksum("DSIG", data)
+        )
+    )
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="bitwiseidentical-003",
+    title="SFNT With Uncommon Table",
+    description="The SFNT has a DSIG table. (Note: this is not a valid DSIG. It should not be used for testing anything other than the presence of the table after the conversion process.) The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-identical",
+    data=makeBitwiseIdenticalDSIG1()
+)
+
+# add non-standard table
+
+def makeBitwiseIdenticalNonStandardTable1():
+    header, directory, tableData = defaultSFNTTestData()
+    # adjust the header
+    header["numTables"] += 1
+    # store the data
+    data = "\0" * 4
+    tableData["TEST"] = data
+    # offset the directory entries
+    for entry in directory:
+        entry["offset"] += sfntDirectoryEntrySize
+    # find the offset
+    entries = [(entry["offset"], entry) for entry in directory]
+    entry = max(entries)[1]
+    offset = entry["offset"] + entry["length"]
+    offset += calcPaddingLength(offset)
+    # make the entry
+    directory.append(
+        dict(
+            tag="TEST",
+            offset=offset,
+            length=4,
+            checksum=calcTableChecksum("TEST", data)
+        )
+    )
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="bitwiseidentical-004",
+    title="SFNT With Non-Standard Table",
+    description="The SFNT has a TEST table. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-identical",
+    data=makeBitwiseIdenticalNonStandardTable1()
+)
+
+# unusual order in CFF
+
+def makeBitwiseIdenticalNotRecommendedTableOrder1():
+    header, directory, tableData = defaultSFNTTestData(flavor="ttf")
+    # make the new order
+    newOrder = "CFF ,maxp,hhea,name,post,cmap,OS/2,head".split(",")
+    newOrder = [tag for tag in newOrder if tag in tableData]
+    for tag in sorted(tableData.keys()):
+        if tag not in newOrder:
+            newOrder.append(tag)
+    # reset the offsets
+    directoryDict = {}
+    for entry in directory:
+        directoryDict[entry["tag"]] = entry
+    assert set(newOrder) == set(directoryDict.keys())
+    offset = sfntDirectorySize + (sfntDirectoryEntrySize * len(directory))
+    for tag in newOrder:
+        entry = directoryDict[tag]
+        entry["offset"] = offset
+        offset += entry["length"] + calcPaddingLength(entry["length"])
+    directory = [entry for tag, entry in sorted(directoryDict.items())]
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="bitwiseidentical-005",
+    title="SFNT Without Recommended CFF Table Order",
+    description="The SFNT has a table order that does not follow the recommended CFF table ordering as defined in the OpenType specification. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-identical",
+    data=makeBitwiseIdenticalNotRecommendedTableOrder1()
+)
+
+# unusual order in TTF
+
+def makeBitwiseIdenticalNotRecommendedTableOrder2():
+    header, directory, tableData = defaultSFNTTestData()
+    # make the new order
+    newOrder = "fpgm,LTSH,glyf,cmap,hhea,hmtx,PCLT,post,DSIG,maxp,loca,gasp,VDMX,kern,name,hdmx,prep,OS/2,cvt ,head".split(",")
+    newOrder = [tag for tag in newOrder if tag in tableData]
+    for tag in sorted(tableData.keys()):
+        if tag not in newOrder:
+            newOrder.append(tag)
+    # reset the offsets
+    directoryDict = {}
+    for entry in directory:
+        directoryDict[entry["tag"]] = entry
+    assert set(newOrder) == set(directoryDict.keys())
+    offset = sfntDirectorySize + (sfntDirectoryEntrySize * len(directory))
+    for tag in newOrder:
+        entry = directoryDict[tag]
+        entry["offset"] = offset
+        offset += entry["length"] + calcPaddingLength(entry["length"])
+    directory = [entry for tag, entry in sorted(directoryDict.items())]
+    # compile
+    data = packSFNT(header, directory, tableData)
+    return data
+
+writeTest(
+    identifier="bitwiseidentical-006",
+    title="SFNT Without Recommended TTF Table Order",
+    description="The SFNT has a table order that does not follow the recommended TTF table ordering as defined in the OpenType specification. The process of converting to WOFF and back to SFNT should result in a file that is bitwise identical.",
+    shouldConvert=True,
+    credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
+    specLink="#conform-identical",
+    data=makeBitwiseIdenticalNotRecommendedTableOrder2(),
+    flavor="ttf"
+)
 
 # ------------------
 # Generate the Index
