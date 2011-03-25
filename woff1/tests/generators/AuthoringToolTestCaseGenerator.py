@@ -47,6 +47,17 @@ shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 # This log will be translated into an index after
 # all of the tests have been written.
 
+indexNote = """
+The tests in this suite represent SFNT data to be used for WOFF
+conversion without any alteration or correction. An authoring tool
+may allow the explicit or silent modification and/or correction of
+SFNT data. In such a case, the tests in this suite that are labeled
+as "should not convert" may be converted, so long as the problems
+in the files have been corrected. In that case, there is no longer
+any access to the "input font" as defined in the WOFF specification,
+so the bitwise identical tests should be skipped.
+""".strip()
+
 validNote = """
 These files are valid SFNTs that should be converted to WOFF.
 """.strip()
@@ -829,7 +840,7 @@ for tag, title, url, note in groupDefinitions:
     group = dict(title=title, url=url, testCases=testRegistry[tag], note=note)
     testGroups.append(group)
 
-generateAuthoringToolIndexHTML(directory=authoringToolTestDirectory, testCases=testGroups)
+generateAuthoringToolIndexHTML(directory=authoringToolTestDirectory, testCases=testGroups, note=indexNote)
 
 # -----------------------
 # Check for Unknown Files

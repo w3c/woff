@@ -356,7 +356,7 @@ def generateFormatIndexHTML(directory=None, testCases=[]):
     f.write(html)
     f.close()
 
-def generateAuthoringToolIndexHTML(directory=None, testCases=[]):
+def generateAuthoringToolIndexHTML(directory=None, testCases=[], note=None):
     testCount = sum([len(group["testCases"]) for group in testCases])
     html = [
         "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">",
@@ -370,6 +370,12 @@ def generateAuthoringToolIndexHTML(directory=None, testCases=[]):
         "\t<body>",
         "\t\t<h1>WOFF: Authoring Tool Test Suite (%d tests)</h1>" % testCount,
     ]
+    # add the note
+    if note:
+        html.append("\t\t<div class=\"mainNote\">")
+        for line in note.splitlines():
+            html.append("\t\t\t" + line)
+        html.append("\t\t</div>")
     # add the test groups
     for group in testCases:
         title = group["title"]
