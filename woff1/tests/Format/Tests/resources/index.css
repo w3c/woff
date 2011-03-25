@@ -52,6 +52,11 @@ h2.testCategory {
 
 }
 
+.testCategoryNote {
+	background-color: #e6e6e6;
+	padding: 5px 10px 5px 10px;
+}
+
 /* test case */
 
 .testCase {

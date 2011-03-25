@@ -47,13 +47,35 @@ shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 # This log will be translated into an index after
 # all of the tests have been written.
 
+validNote = """
+These files are valid SFNTs that should be converted to WOFF.
+""".strip()
+
+invalidSFNTNote = """
+These files are invalid SFNTs that should not be converted to WOFF.
+""".strip()
+
+tableDataNote = """
+These files are valid SFNTs that excercise conversion of the table data.
+""".strip()
+
+tableDirectoryNote = """
+These files are valid SFNTs that excercise conversion of the table directory.
+""".strip()
+
+bitwiseNote = """
+These files are provided as test cases for checking that the
+result of converting to WOFF and back to SFNT results in a file
+that is bitwise identical to the original SFNT.
+""".strip()
+
 groupDefinitions = [
-    # identifier, title, spec section
-    ("validsfnt", "Valid SFNTs", None),
-    ("invalidsfnt", "Invalid SFNT Tests", specificationURL+"#conform-incorrect-reject"),
-    ("tabledata", "SFNT Table Data Tests", specificationURL+"#DataTables"),
-    ("tabledirectory", "SFNT Table Directory Tests", specificationURL+"#DataTables"),
-    ("bitwiseidentical", "SFNT Bitwise Identical Tests", specificationURL+"#conform-identical"),
+    # identifier, title, spec section, category note
+    ("validsfnt", "Valid SFNTs", None, validNote),
+    ("invalidsfnt", "Invalid SFNT Tests", specificationURL+"#conform-incorrect-reject", invalidSFNTNote),
+    ("tabledata", "SFNT Table Data Tests", specificationURL+"#DataTables", tableDataNote),
+    ("tabledirectory", "SFNT Table Directory Tests", specificationURL+"#DataTables", tableDirectoryNote),
+    ("bitwiseidentical", "SFNT Bitwise Identical Tests", specificationURL+"#conform-identical", bitwiseNote),
 ]
 
 testRegistry = {}
@@ -803,8 +825,8 @@ print "Compiling index..."
 
 testGroups = []
 
-for tag, title, url in groupDefinitions:
-    group = dict(title=title, url=url, testCases=testRegistry[tag])
+for tag, title, url, note in groupDefinitions:
+    group = dict(title=title, url=url, testCases=testRegistry[tag], note=note)
     testGroups.append(group)
 
 generateAuthoringToolIndexHTML(directory=authoringToolTestDirectory, testCases=testGroups)

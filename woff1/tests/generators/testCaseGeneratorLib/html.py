@@ -338,7 +338,7 @@ def generateFormatIndexHTML(directory=None, testCases=[]):
             html.append("\t\t\t\t\t<p>%s</p>" % string)
             # documentation
             if specLink is not None:
-                string = "<p><a href=\"%s\">Documentation</a></p>" % specLink
+                string = "\t\t\t\t\t<p><a href=\"%s\">Documentation</a></p>" % specLink
                 html.append(string)
             # close the details div
             html.append("\t\t\t</div>")
@@ -377,6 +377,13 @@ def generateAuthoringToolIndexHTML(directory=None, testCases=[]):
         # write the group header
         html.append("")
         html.append("\t\t<h2 class=\"testCategory\">%s</h2>" % title)
+        # write the group note
+        note = group["note"]
+        if note:
+            html.append("\t\t<div class=\"testCategoryNote\">")
+            for line in note.splitlines():
+                html.append("\t\t\t" + line)
+            html.append("\t\t</div>")
         # write the individual test cases
         for test in group["testCases"]:
             identifier = test["identifier"]
@@ -407,7 +414,7 @@ def generateAuthoringToolIndexHTML(directory=None, testCases=[]):
             html.append("\t\t\t\t\t<p>%s</p>" % string)
             # documentation
             if specLink is not None:
-                string = "<p><a href=\"%s\">Documentation</a></p>" % specLink
+                string = "\t\t\t\t\t<p><a href=\"%s\">Documentation</a></p>" % specLink
                 html.append(string)
             # close the details div
             html.append("\t\t\t</div>")

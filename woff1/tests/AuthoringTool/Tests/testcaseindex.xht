@@ -10,6 +10,9 @@
 		<h1>WOFF: Authoring Tool Test Suite (24 tests)</h1>
 
 		<h2 class="testCategory">Valid SFNTs</h2>
+		<div class="testCategoryNote">
+			These files are valid SFNTs that should be converted to WOFF.
+		</div>
 		<div class="testCase" id="validsfnt-001">
 			<div class="testCaseOverview">
 				<h3><a href="#validsfnt-001">validsfnt-001</a>: Valid CFF SFNT</h3>
@@ -17,7 +20,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="validsfnt-001-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="validsfnt-002">
@@ -27,11 +30,14 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="validsfnt-002-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
 			</div>
 		</div>
 
 		<h2 class="testCategory">Invalid SFNT Tests</h2>
+		<div class="testCategoryNote">
+			These files are invalid SFNTs that should not be converted to WOFF.
+		</div>
 		<div class="testCase" id="invalidsfnt-checksum-001">
 			<div class="testCaseOverview">
 				<h3><a href="#invalidsfnt-checksum-001">invalidsfnt-checksum-001</a>: Table Directory Contains Invalid CheckSum</h3>
@@ -39,7 +45,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-checksum-001-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-checksum-002">
@@ -49,7 +55,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-checksum-002-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-checksumvalidate">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-padding-001">
@@ -59,7 +65,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-001-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-padding-002">
@@ -69,7 +75,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-002-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-padding-003">
@@ -79,7 +85,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-003-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-padding-004">
@@ -89,7 +95,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-004-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-padding-005">
@@ -99,7 +105,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-padding-005-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-blocks-001">
@@ -109,7 +115,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-blocks-001-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-blocks-002">
@@ -119,7 +125,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-blocks-002-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-blocks-003">
@@ -129,7 +135,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-blocks-003-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-directory-order-001">
@@ -139,7 +145,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-directory-order-001-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-searchrange-001">
@@ -149,7 +155,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-searchrange-001-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-entryselector-001">
@@ -159,7 +165,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-entryselector-001-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="invalidsfnt-rangeshift-001">
@@ -169,11 +175,14 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="invalidsfnt-rangeshift-001-shouldconvert">No</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-incorrect-reject">Documentation</a></p>
 			</div>
 		</div>
 
 		<h2 class="testCategory">SFNT Table Data Tests</h2>
+		<div class="testCategoryNote">
+			These files are valid SFNTs that excercise conversion of the table data.
+		</div>
 		<div class="testCase" id="tabledata-compression-size-001">
 			<div class="testCaseOverview">
 				<h3><a href="#tabledata-compression-size-001">tabledata-compression-size-001</a>: The "TEST" Table Must Not Be Compressed</h3>
@@ -181,11 +190,14 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="tabledata-compression-size-001-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-compressedlarger">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-compressedlarger">Documentation</a></p>
 			</div>
 		</div>
 
 		<h2 class="testCategory">SFNT Table Directory Tests</h2>
+		<div class="testCategoryNote">
+			These files are valid SFNTs that excercise conversion of the table directory.
+		</div>
 		<div class="testCase" id="tabledirectory-ascending-001">
 			<div class="testCaseOverview">
 				<h3><a href="#tabledirectory-ascending-001">tabledirectory-ascending-001</a>: The Table Directory Must Be In Ascending Order</h3>
@@ -193,11 +205,16 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="tabledirectory-ascending-001-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-ascending">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-ascending">Documentation</a></p>
 			</div>
 		</div>
 
 		<h2 class="testCategory">SFNT Bitwise Identical Tests</h2>
+		<div class="testCategoryNote">
+			These files are provided as test cases for checking that the
+			result of converting to WOFF and back to SFNT results in a file
+			that is bitwise identical to the original SFNT.
+		</div>
 		<div class="testCase" id="bitwiseidentical-001">
 			<div class="testCaseOverview">
 				<h3><a href="#bitwiseidentical-001">bitwiseidentical-001</a>: SFNT With Common CFF Structure</h3>
@@ -205,7 +222,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="bitwiseidentical-001-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="bitwiseidentical-002">
@@ -215,7 +232,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="bitwiseidentical-002-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="bitwiseidentical-003">
@@ -225,7 +242,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="bitwiseidentical-003-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="bitwiseidentical-004">
@@ -235,7 +252,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="bitwiseidentical-004-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="bitwiseidentical-005">
@@ -245,7 +262,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="bitwiseidentical-005-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="bitwiseidentical-006">
@@ -255,7 +272,7 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Should Convert to WOFF: <span id="bitwiseidentical-006-shouldconvert">Yes</span></p>
-<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-identical">Documentation</a></p>
 			</div>
 		</div>
 	</body>
