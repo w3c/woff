@@ -44,15 +44,19 @@
         </optional>
         <optional>
           <element name="license">
-            <attribute name="id">
+            <optional>
+              <attribute name="id">
               <data type="NCName"/>
-            </attribute>
-            <attribute name="url">
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="url">
               <data type="anyURI"/>
-            </attribute>
-            <oneOrMore>
+              </attribute>
+            </optional>
+            <zeroOrMore>
               <ref name="text"/>
-            </oneOrMore>
+            </zeroOrMore>
           </element>
         </optional>
         <optional>
@@ -76,9 +80,9 @@
         </optional>
         <optional>
           <element name="extension">
-            <attribute name="id">
+            <optional><attribute name="id">
               <data type="NCName"/>
-            </attribute>
+            </attribute></optional>
 
               <zeroOrMore><ref name="name"/></zeroOrMore>
             <oneOrMore>
