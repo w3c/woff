@@ -392,6 +392,15 @@ including the last are to be padded to a 4-byte boundary</span>.
 <span class="conform ua" id="conform-totalsize-longword-reject">If this value
 is incorrect, a conforming user agent MUST reject the file as invalid</span>.</p>
 
+<p>The sfnt header includes three fields (<tt>searchRange</tt>,
+<tt>entrySelector</tt> and <tt>rangeShift</tt>) that are designed to
+facilitate a binary search of the table directory.
+As the proper value for each of these fields can be computed directly
+from the number of font tables, they are not stored in the WOFF file.
+User agents that decode WOFF files back to an sfnt structure
+MUST therefore compute the correct values for these fields in the sfnt header,
+as described in the OpenType/OFF specification.</p>
+
 <div class="note">
 <p>The correct value for <tt>totalSfntSize</tt> may be computed
 as illustrated by the following pseudo-code:</p>
@@ -529,6 +538,14 @@ as the table directory includes the offset and length of each actual table,
 such data would simply be ignored. However, the WOFF format makes no
 provision to preserve such non-font-table data when packaging a font,
 and therefore it would not survive a round-trip format conversion.</dd>
+
+<dt>Header fields are correct</dt>
+<dd>The OpenType/OFF header fields (<tt>searchRange</tt>,
+<tt>entrySelector</tt>, <tt>rangeShift</tt>)
+that are designed to facilitate a binary search of the table directory
+must be correct in the input sfnt file,
+as the WOFF format does not directly preserve these fields
+but assumes a WOFF decoder will recompute them as needed.</dd>
 
 <dt>Checksums are correct</dt>
 <dd>The WOFF specification says that table checksums must be validated
