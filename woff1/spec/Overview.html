@@ -43,6 +43,11 @@ dl.xmlspec dd {
   background: #eee;
   padding: .25em 0;
 }
+
+.ednote {
+  background: #ffc;
+  padding: .25em;
+}
      </style>
        <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css"/>
           <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
@@ -163,6 +168,10 @@ individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy
 information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.
 </p>
 
+<p>This document identifies two features as being 
+<a href="http://www.w3.org/2005/10/Process-20051014/tr.html#cfi">at risk</a>: the 
+<a href="#atrisk-SOR">default Same Origin Restriction 
+(SOR)</a> and the <a href="#atrisk-CORS">mechanism used to relax the SOR, Cross Origin Resource Sharing (CORS)</a>.</p>
 
 <h2 id="toc">Table of Contents</h2>
 
@@ -234,16 +243,20 @@ but are not part of the normative text.
 by means of CSS <tt>@font-face</tt> rules.
 <span class="conform ua" id="conform-same-origin">When using such fonts, user agents MUST implement a 'same-origin restriction'
 on the downloading of WOFF files
-using the same-origin matching algorithm described in the HTML5 specification</span> ([<cite><a  href="#ref-HTML5">HTML5</a> <a href="http://www.w3.org/TR/html5/origin-0.html#origin-0">Section 5.3:
+using the same-origin matching algorithm described in the HTML5 specification</span> ([<cite><a href="#ref-HTML5">HTML5</a> <a href="http://www.w3.org/TR/html5/origin-0.html#origin-0">Section 5.3:
 Origin</a></cite>]).
 <span class="conform ua" id="conform-doc-origin">The origin of the stylesheet containing <tt>@font-face</tt> declarations
 is not used when deciding whether a WOFF file is same-origin or not,
-only the origin of containing document is used</span>.
-<span class="conform ua" id="conform-cors">User agents MUST also implement the ability to relax this restriction
-using Cross-Origin Resource Sharing</span> [<cite><a  href="#ref-CORS"
->CORS</a></cite>].
+only the origin of containing document is used</span>.</p>
+
+<p class="ednote">Feature at risk: The WebFonts WG believes that the default Same-Origin restriction would be better applied to all fonts referenced from <tt>@font-face</tt>, rather than one specific format. Therefore, if CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] adds a normative requirement for a Same-Origin restriction, the WebFonts WG will drop it from the WOFF specification and instead refer to CSS3 Fonts.</p>
+
+<p><span class="conform ua" id="conform-cors">User agents MUST also implement the ability to relax this restriction
+using Cross-Origin Resource Sharing</span> [<cite><a href="#ref-CORS">CORS</a></cite>].
 Thus, sites can explicitly allow cross-site downloading of WOFF files
 using the <tt>Access-Control-Allow-Origin</tt> HTTP header.</p>
+
+<p class="ednote">Feature at risk: The WebFonts WG suspects that the From-Origin header may be a better way to infer a default Same-Origin for fonts, and the same mechanism can also be used to relax the restriction to allow font sharing across domains. Therefore, once CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] mandates a mechanism, WebFonts WG will drop the requirement to use CORS from this specification.</p>
 
 <p><span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for linked fonts MUST respect
 the requirements of the CSS3 Fonts specification</span> ([<cite><a  href="#ref-CSS3-Fonts"
