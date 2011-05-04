@@ -249,14 +249,14 @@ Origin</a></cite>]).
 is not used when deciding whether a WOFF file is same-origin or not,
 only the origin of containing document is used</span>.</p>
 
-<p class="ednote">Feature at risk: The WebFonts WG believes that the default Same-Origin restriction would be better applied to all fonts referenced from <tt>@font-face</tt>, rather than one specific format. Therefore, if CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] adds a normative requirement for a Same-Origin restriction, the WebFonts WG will drop it from the WOFF specification and instead refer to CSS3 Fonts.</p>
+<p id="atrisk-SOR" class="ednote">Feature at risk: The WebFonts WG believes that the default Same-Origin restriction would be better applied to all fonts referenced from <tt>@font-face</tt>, rather than one specific format. Therefore, if CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] adds a normative requirement for a Same-Origin restriction, the WebFonts WG will drop it from the WOFF specification and instead refer to CSS3 Fonts.</p>
 
 <p><span class="conform ua" id="conform-cors">User agents MUST also implement the ability to relax this restriction
 using Cross-Origin Resource Sharing</span> [<cite><a href="#ref-CORS">CORS</a></cite>].
 Thus, sites can explicitly allow cross-site downloading of WOFF files
 using the <tt>Access-Control-Allow-Origin</tt> HTTP header.</p>
 
-<p class="ednote">Feature at risk: The WebFonts WG suspects that the From-Origin header may be a better way to infer a default Same-Origin for fonts, and the same mechanism can also be used to relax the restriction to allow font sharing across domains. Therefore, once CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] mandates a mechanism, WebFonts WG will drop the requirement to use CORS from this specification.</p>
+<p id="atrisk-CORS" class="ednote">Feature at risk: The WebFonts WG suspects that the From-Origin header may be a better way to infer a default Same-Origin for fonts, and the same mechanism can also be used to relax the restriction to allow font sharing across domains. Therefore, once CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] mandates a mechanism, WebFonts WG will drop the requirement to use CORS from this specification.</p>
 
 <p><span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for linked fonts MUST respect
 the requirements of the CSS3 Fonts specification</span> ([<cite><a  href="#ref-CSS3-Fonts"
