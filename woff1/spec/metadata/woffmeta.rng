@@ -16,6 +16,8 @@
           <element name="vendor">
             <optional>
               <attribute name="name"/>
+              <attribute name="dir"/>
+              <attribute name="class"/>
             </optional>
             <optional>
               <attribute name="url"/>
@@ -32,6 +34,8 @@
                   <attribute name="url">
                     <data type="anyURI"/>
                   </attribute>
+                 <attribute name="dir"/>
+                 <attribute name="class"/>
                 </optional>
               </element>
             </oneOrMore>
@@ -76,15 +80,21 @@
         <optional>
           <element name="licensee">
             <attribute name="name"/>
+            <attribute name="dir"/>
+            <attribute name="class"/>
           </element>
         </optional>
         <optional>
           <element name="extension">
-            <optional><attribute name="id">
+            <optional>
+              <attribute name="id">
               <data type="NCName"/>
-            </attribute></optional>
+              </attribute>
+            </optional>
 
-              <zeroOrMore><ref name="name"/></zeroOrMore>
+              <zeroOrMore>
+                <ref name="name"/>
+              </zeroOrMore>
             <oneOrMore>
               <element name="item">
                 <optional>
@@ -97,6 +107,8 @@
                   <element name="value">
                     <optional>
                       <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
+                      <attribute name="dir"/>
+                      <attribute name="class"/>
                     </optional>
                     <text/>
                   </element>
@@ -112,6 +124,8 @@
     <element name="text">
       <optional>
         <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
+        <attribute name="dir"/>
+        <attribute name="class"/>
       </optional>
       <text/>
     </element>
@@ -120,6 +134,8 @@
     <element name="name">
       <optional>
         <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
+        <attribute name="dir"/>
+        <attribute name="class"/>
       </optional>
       <text/>
     </element>
