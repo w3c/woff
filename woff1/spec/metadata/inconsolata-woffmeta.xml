@@ -7,15 +7,15 @@
           role="sponsor" url="http://tug.org/tc/devfund/"/>
    </credits>
    <description>
-       <text lang="en">A monospace font, designed for code listings and 
+       <text xml:lang="en">A monospace font, designed for code listings and 
        the like, in print.
        See http://levien.com/type/myfonts/inconsolata.html</text>
    </description>
     <license url="http://scripts.sil.org/OFL" id="org.sil.ofl.11">
-       <text lang="en">SIL Open Font License v. 1.1 </text>
+       <text xml:lang="en">SIL Open Font License v. 1.1 </text>
    </license>
    <copyright>
-       <text lang="en">Created by Raph Levien using his own tools 
+       <text xml:lang="en">Created by Raph Levien using his own tools 
        and FontForge. Copyright 2006 Raph Levien. Released under the 
        SIL Open Font License, http://scripts.sil.org/OFL.</text>
    </copyright>
