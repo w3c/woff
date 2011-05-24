@@ -96,9 +96,7 @@
                 <oneOrMore>
                   <element name="value">
                     <optional>
-                      <attribute name="lang">
-                        <data type="NCName"/>
-                      </attribute>
+                      <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
                     </optional>
                     <text/>
                   </element>
@@ -113,9 +111,7 @@
   <define name="text">
     <element name="text">
       <optional>
-        <attribute name="lang">
-          <data type="NCName"/>
-        </attribute>
+        <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
       </optional>
       <text/>
     </element>
@@ -123,9 +119,7 @@
   <define name="name">
     <element name="name">
       <optional>
-        <attribute name="lang">
-          <data type="NCName"/>
-        </attribute>
+        <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
       </optional>
       <text/>
     </element>

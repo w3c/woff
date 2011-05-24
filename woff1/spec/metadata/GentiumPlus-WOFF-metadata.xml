@@ -33,7 +33,7 @@ of the license along with this Font Software. If this is not the case, go to
         	role="OpenType code and build support" />
     </credits>
     <description>
-        <text lang="en">
+        <text xml:lang="en">
 			Gentium ("belonging to the nations" in Latin) is a Unicode typeface family 
 			designed to enable the many diverse ethnic groups around the world who use 
 			the Latin, Cyrillic and Greek scripts to produce readable, high-quality
@@ -99,7 +99,7 @@ of the license along with this Font Software. If this is not the case, go to
     </description>
     <license url="http://scripts.sil.org/ofl"
              id="org.sil.ofl.11">
-        <text lang="en">
+        <text xml:lang="en">
 			Copyright (c) 2003-2010 SIL International (http://www.sil.org/),
 			with Reserved Font Names "Gentium" and "SIL".
 
@@ -197,9 +197,9 @@ of the license along with this Font Software. If this is not the case, go to
 		</text>
     </license>
     <copyright>
-        <text lang="en">Copyright (c) 2003-2010 SIL International (http://www.sil.org/)</text>
+        <text xml:lang="en">Copyright (c) 2003-2010 SIL International (http://www.sil.org/)</text>
     </copyright>
     <trademark>
-        <text lang="en">Gentium is a trademark of SIL International</text>
+        <text xml:lang="en">Gentium is a trademark of SIL International</text>
     </trademark>
 </metadata>

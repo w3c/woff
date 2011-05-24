@@ -3,7 +3,7 @@
 <metadata version="1.0">
     <vendor name="Acme Corp" />
     <extension id="a7">
-        <name lang="en-GB">Cleaned</name>
+        <name xml:lang="en-GB">Cleaned</name>
         <item id="w3">
             <name>OpenType validator</name>
             <value>Supa-Cleaner 1.0</value>

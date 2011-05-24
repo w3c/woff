@@ -17,7 +17,7 @@
             role="Hinting" />
     </credits>
     <description>
-        <text lang="en">
+        <text xml:lang="en">
             A member of the Demo font family.
             This font is a humanist sans serif style designed
             for optimal legibility in low-resolution environments.
@@ -26,28 +26,28 @@
     </description>
     <license url="http://fontvendor.example.com/license"
         id="fontvendor-web-corporate-v2">
-        <text lang="en">A license goes here.</text>
-        <text lang="fr">Un permis va ici.</text>
+        <text xml:lang="en">A license goes here.</text>
+        <text xml:lang="fr">Un permis va ici.</text>
     </license>
     <copyright>
-        <text lang="en">Copyright ©2009 Font Vendor"</text>
-        <text lang="ko">저작권 ©2009 Font Vendor"</text>
+        <text xml:lang="en">Copyright ©2009 Font Vendor"</text>
+        <text xml:lang="ko">저작권 ©2009 Font Vendor"</text>
     </copyright>
     <trademark>
-        <text lang="en">Demo Font is a trademark of Font Vendor</text>
-        <text lang="fr">Demo Font est une marque déposée de Font Vendor</text>
-        <text lang="de">Demo Font ist ein eingetragenes Warenzeichen der Font Vendor</text>
-        <text lang="ja">Demo FontはFont Vendorの商標である</text>
+        <text xml:lang="en">Demo Font is a trademark of Font Vendor</text>
+        <text xml:lang="fr">Demo Font est une marque déposée de Font Vendor</text>
+        <text xml:lang="de">Demo Font ist ein eingetragenes Warenzeichen der Font Vendor</text>
+        <text xml:lang="ja">Demo FontはFont Vendorの商標である</text>
     </trademark>
     <licensee name="Wonderful Websites, Inc." />
     <extension id="org.example.fonts.metadata.v1">
-        <name lang="en">Additional font information</name>
-        <name lang="fr">L'information supplémentaire de fonte</name>
+        <name xml:lang="en">Additional font information</name>
+        <name xml:lang="fr">L'information supplémentaire de fonte</name>
         <item id="org.example.fonts.metadata.v1.why">
-            <name lang="en">Purpose</name>
-            <name lang="fr">But</name>
-            <value lang="en">This font exists merely as an example of WOFF packaging.</value>
-            <value lang="fr">Cette fonte existe simplement comme exemple de l'empaquetage de WOFF.</value>
+            <name xml:lang="en">Purpose</name>
+            <name xml:lang="fr">But</name>
+            <value xml:lang="en">This font exists merely as an example of WOFF packaging.</value>
+            <value xml:lang="fr">Cette fonte existe simplement comme exemple de l'empaquetage de WOFF.</value>
         </item>
     </extension>
 </metadata>

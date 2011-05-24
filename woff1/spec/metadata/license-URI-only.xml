@@ -3,7 +3,7 @@
 <metadata version="1.0">
     <vendor name="Example Foundry"/>
     <description>
-        <text lang="en">Example metadata file showing license URI but no license text</text>
+        <text xml:lang="en">Example metadata file showing license URI but no license text</text>
     </description>
     <license url="http://www.example.org/license"/>
 </metadata>
