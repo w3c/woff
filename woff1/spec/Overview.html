@@ -702,7 +702,7 @@ elements to display as follows</span>:</p>
 preferred language, as determined via
 an explicit preference or implied by the current locale, use this language.</li>
 <li>If the user agent has a concept of a list of "acceptable" languages or
-defaults, try each of these in turn and use the first one found.</li>
+defaults, try each of these in turn and use the first one for which a match found.</li>
 <li>If there is a <tt>text</tt> element with no <tt>xml:lang</tt>
 attribute, use this; in the event that more than one exists, use the first of them.</li>
 <li>If no match is found yet, use the first <tt>text</tt> element.
@@ -784,6 +784,10 @@ required for the metadata to be valid. <!-- conform? -->This element MUST be a c
 <tr><td>name</td><td>The name of the font vendor. <span class="conform ff" id="conform-metadata-vendor-required">This attribute is REQUIRED</span>.</td></tr>
 <tr><td>url</td><td>The url for the font vendor. This attribute is
 OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 
@@ -809,6 +813,10 @@ element has no attributes.</p>
 OPTIONAL.</td></tr>
 <tr><td>role</td><td>The role of the entity being credited. This attribute is
 OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 </dl>
@@ -869,9 +877,65 @@ element.</p>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>name</td><td>The name of the licensee. <span class="conform ff" id="conform-licensee-required">This attribute is REQUIRED</span>.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 
+</dl>
+
+<p>Where <tt>text</tt> elements are used to contain (localizable) content,
+further structure MAY also be provided
+using <tt>div</tt> and <tt>span</tt> child elements
+similar to those used in HTML:</p>
+
+<dl class="xmlspec">
+<dt><tt>div</tt> element</dt>
+<dd>
+<p>A block-level element used, for example, to contain a paragraph.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
+</table>
+</dd>
+
+<dt><tt>span</tt> element</dt>
+<dd>
+<p>An inline element used, for example, to indicate a run of text
+with a different text direction, or in a different language.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>The <tt>text</tt> elements used to hold
+(localizable) text for a number of the individual pieces of metadata
+have a mixed content model consisting of text content,
+<tt>div</tt> and <tt>span</tt> elements;
+<tt>div</tt> elements have a mixed content model of text content,
+<tt>div</tt> and <tt>span</tt> elements;
+and <tt>span</tt> elements have a mixed content model of text content
+and <tt>span</tt> elements.</p>
+
+<p>Although the metadata elements and structure defined above
+are expected to be sufficient for most needs,
+an extension mechanism is also provided so that font vendors
+can include arbitrary metadata items that do not fit
+the standard elements above:</p>
+
+<dl>
 <dt><tt>extension</tt> element</dt>
 <dd>
 <p>A container element for extended metadata provided by the vendor. Zero or more
@@ -902,6 +966,10 @@ are also permissible.</p>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>lang</td><td>A language tag as defined in BCP47.
 This attribute is OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 <dt><tt>item</tt> element</dt>
@@ -930,6 +998,10 @@ among those available for each <tt>item</tt> element.
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>lang</td><td>A language tag as defined in BCP47.
 This attribute is OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
 <dt><tt>value</tt> element</dt>
@@ -944,6 +1016,10 @@ among those available for each <tt>item</tt> element</span>.
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>lang</td><td>A language tag as defined in BCP47.
+This attribute is OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
 This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
