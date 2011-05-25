@@ -63,7 +63,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editors Draft 4 May 2011
+<h2 id="W3C-doctype">W3C Editors Draft 25 May 2011
 </h2>
 
 <dl>
@@ -684,27 +684,33 @@ and the text of the specification, the text takes precedence.</p>
 
 <p>Several elements store their data in <tt>text</tt>
 child elements; this is to support localization. <span class="conform ff" id="conform-textlang">The <tt>text</tt>
-elements MAY be given a <tt>lang</tt> attribute</span>. The possible
-values for the <tt>lang</tt> attribute can be found in the IANA
-Subtag Registry [<cite><a  href="#ref-Subtag"
->Subtag</a></cite>]. A user agent displaying metadata is expected to choose a
-preferred language/locale to display from among those available, following RFC 4647 [<cite><a
-href="#ref-RFC-4647">RFC-4647</a></cite>].
+elements MAY be given a <tt>lang</tt> attribute</span>
+in the XML namespace [<cite><a href="#ref-XML">XML</a></cite>].
+For backwards compatibility, <tt>lang</tt> attributes in the default namepsace
+are also accepted in older content, and SHOULD be treated the same
+as <tt>xml:lang</tt>.
+New content SHOULD instead use <tt>xml:lang</tt>.</p>
+
+<p>The syntax of values of the <tt>xml:lang</tt> attribute can be found in
+BCP47 [<cite><a href="#ref-BCP47">BCP47</a></cite>].
+A user agent displaying metadata is expected to choose a preferred language/locale to display from among those available, following BCP47.</p>
+
 <span class="conform ua" id="conform-langselect">The user agent SHOULD choose which of the available <tt>text</tt>
 elements to display as follows</span>:</p>
 <ol>
-<li>If a <tt>text</tt> element is available in the user's
+<li>If a <tt>text</tt> element is available that matches the user's
 preferred language, as determined via
 an explicit preference or implied by the current locale, use this language.</li>
 <li>If the user agent has a concept of a list of "acceptable" languages or
 defaults, try each of these in turn and use the first one found.</li>
-<li>If there is a <tt>text</tt> element with no <tt>lang</tt>
+<li>If there is a <tt>text</tt> element with no <tt>xml:lang</tt>
 attribute, use this; in the event that more than one exists, use the first of them.</li>
 <li>If no match is found yet, use the first <tt>text</tt> element.
 (Thus, the metadata creator can determine the "localization of last resort"
 simply by choosing which language to put first in each group of
 <tt>text</tt> elements.)</li>
 </ol>
+
 <p>Such localizable elements are
 indicated by the statement
 "This element may be localized using <tt>text</tt> child elements"
@@ -894,7 +900,7 @@ are also permissible.</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>lang</td><td>A language tag as defined in the IANA Subtag Registry.
+<tr><td>lang</td><td>A language tag as defined in BCP47.
 This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
@@ -922,7 +928,7 @@ among those available for each <tt>item</tt> element.
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>lang</td><td>A language tag as defined in the IANA Subtag Registry.
+<tr><td>lang</td><td>A language tag as defined in BCP47.
 This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
@@ -937,7 +943,7 @@ among those available for each <tt>item</tt> element</span>.
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>lang</td><td>A language tag as defined in the IANA Subtag Registry.
+<tr><td>lang</td><td>A language tag as defined in BCP47.
 This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
@@ -1373,6 +1379,11 @@ Compressed Data Format Specification. P. Deutsch, J-L. Gailly, Editors. Internet
 <h3 id="informative">Informative References</h3>
 
 <dl>
+
+<dt id="ref-BCP47">[BCP47]</dt>
+<dd><cite><a
+href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">BCP 47</a> Tags for Identifying Languages and Matching of Language Tags</cite></dd>
+
 <dt id="ref-Compress2">[Compress2]</dt>
 <dd><cite><a
 href="http://refspecs.freestandards.org/LSB_3.0.0/LSB-Core-generic/LSB-Core-generic/zlib-compress2-1.html">zlib compress2() function</a></cite></dd>
@@ -1382,15 +1393,6 @@ href="http://refspecs.freestandards.org/LSB_3.0.0/LSB-Core-generic/LSB-Core-gene
 specification</a>, version 1.6. Microsoft, 2009. OpenType is a registered trademark of Microsoft
 Corporation.</cite></dd>
 
-<dt id="ref-RFC-4647">[RFC-4647]</dt>
-<dd><cite><a href="http://tools.ietf.org/html/rfc4647">RFC 4647</a> Matching of
-Language Tags. A. Phillips, M. Davis, Editors. Internet Engineering Task Force, 
-September 2006</cite></dd>
-
-<dt id="ref-Subtag">[Subtag]</dt>
-<dd><cite><a href="http://www.iana.org/assignments/language-subtag-registry">IANA
-Language Subtag Registry</a></cite></dd>
-
 <dt id="ref-TT">[TrueType]</dt>
 <dd><cite><a href="http://developer.apple.com/fonts/TTRefMan/">Apple
 TrueType Reference manual</a>. Apple, 2002. TrueType is a registered trademark of Apple
@@ -1399,6 +1401,10 @@ Computer, Inc.</cite></dd>
 <dt id="ref-Uncompress">[Uncompress]</dt>
 <dd><cite><a
 href="http://refspecs.freestandards.org/LSB_3.0.0/LSB-Core-generic/LSB-Core-generic/zlib-uncompress-1.html">zlib uncompress() function</a></cite></dd>
+
+<dt id="ref-XML">[XML]</dt>
+<dd><cite><a
+href="http://www.w3.org/TR/xml/">Extensible Markup Language</a></cite></dd>
 
 </dl>
 
