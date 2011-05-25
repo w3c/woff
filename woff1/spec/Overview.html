@@ -927,7 +927,10 @@ have a mixed content model consisting of text content,
 <tt>div</tt> elements have a mixed content model of text content,
 <tt>div</tt> and <tt>span</tt> elements;
 and <tt>span</tt> elements have a mixed content model of text content
-and <tt>span</tt> elements.</p>
+and <tt>span</tt> elements.
+In other words, <tt>div</tt> can contain other <tt>div</tt> elements;
+<tt>span</tt> can contain other <tt>span</tt> elements;
+<tt>span</tt> does not require a containing <tt>div</tt>.</p>
 
 <p>Although the metadata elements and structure defined above
 are expected to be sufficient for most needs,
@@ -1280,6 +1283,77 @@ software. If you have any questions, please contact Ascender Corp.&lt;/text&gt;
 &lt;/license&gt;
 &lt;licensee name="FontsLive.com" /&gt;
 &lt;/metadata&gt;
+</pre>
+</div>
+
+<p>Here is an example of how the <tt>div</tt> element could be used,
+modified from a portion of the
+<a href="http://dev.w3.org/webfonts/WOFF/spec/metadata/GentiumPlus-WOFF-metadata.xml">XML file for Gentium Plus</a>
+which, when viewed as plain text, has paragraph formatting.</p>
+
+<p>The original metadata file contained:</p>
+<div class="metadata">
+<pre>
+&lt;description&gt;
+ &lt;text lang="en"&gt;
+	Gentium ("belonging to the nations" in Latin) is a Unicode typeface family 
+	designed to enable the many diverse ethnic groups around the world who use 
+	the Latin, Cyrillic and Greek scripts to produce readable, high-quality
+	publications. The design is intended to be highly readable, reasonably
+	compact, and visually attractive. Gentium has won a "Certificate of Excellence
+	in Typeface Design" in two major international typeface design competitions: 
+	bukva:raz! (2001), TDC2003 (2003).
+
+	The Gentium Plus font family is based on the original design. It currently 
+	comes with regular and italic face only, although additional weights are in
+	development.
+
+	The goal for this product is to provide a single Unicode-based font family
+	that contains a comprehensive inventory of glyphs needed for almost any
+	Roman- or Cyrillic-based writing system, whether used for phonetic or
+	orthographic needs, and provide a matching Greek face. In addition, there
+	is provision for other characters and symbols useful to linguists. This
+	font makes use of state-of-the-art font technologies to support complex
+	typographic issues, such as the need to position arbitrary combinations
+	of base glyphs and diacritics optimally.
+
+   (and so on)
+ &lt;/text&gt;
+&lt;/description&gt;
+</pre>
+</div>
+
+<p>Using the <tt>div</tt> element, this could become:
+
+<div class="metadata">
+<pre>
+&lt;description&gt;
+ &lt;text lang="en"&gt;
+   &lt;div&gt;Gentium ("belonging to the nations" in Latin) is a Unicode
+   typeface family designed to enable the many diverse ethnic groups
+   around the world who use the Latin, Cyrillic and Greek scripts to
+   produce readable, high-quality publications. The design is intended
+   to be highly readable, reasonably compact, and visually attractive.
+   Gentium has won a "Certificate of Excellence in Typeface
+   Design" in two major international typeface design
+   competitions: bukva:raz! (2001), TDC2003
+   (2003).&lt;/div&gt;
+   &lt;div&gt;The Gentium Plus font family is based on the original design.
+   It currently comes with regular and italic face only, although
+   additional weights are in development.&lt;/div&gt;
+   &lt;div&gt;The goal for this product is to provide a single Unicode-based
+   font family that contains a comprehensive inventory of glyphs
+   needed for almost any Roman- or Cyrillic-based writing system,
+   whether used for phonetic or orthographic needs, and provide a
+   matching Greek face. In addition, there is provision for other
+   characters and symbols useful to linguists. This font makes use of
+   state-of-the-art font technologies to support complex typographic
+   issues, such as the need to position arbitrary combinations of base
+   glyphs and diacritics optimally.&lt;/div&gt;
+
+   (and so on)
+ &lt;/text&gt;
+&lt;/description&gt;
 </pre>
 </div>
 
