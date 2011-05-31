@@ -14,8 +14,8 @@
         </optional>
         <optional>
           <element name="vendor">
+            <attribute name="name"/>
             <optional>
-              <attribute name="name"/>
               <attribute name="dir"/>
               <attribute name="class"/>
             </optional>
@@ -29,8 +29,8 @@
             <oneOrMore>
               <element name="credit">
                 <attribute name="name"/>
-                <attribute name="role"/>
                <optional>
+                  <attribute name="role"/>
                   <attribute name="url">
                     <data type="anyURI"/>
                   </attribute>
@@ -80,8 +80,10 @@
         <optional>
           <element name="licensee">
             <attribute name="name"/>
-            <attribute name="dir"/>
-            <attribute name="class"/>
+            <optional>
+              <attribute name="dir"/>
+             <attribute name="class"/>
+            </optional>
           </element>
         </optional>
         <optional>
