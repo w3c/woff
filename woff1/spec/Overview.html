@@ -694,7 +694,7 @@ New content SHOULD instead use <tt>xml:lang</tt>.</p>
 
 <p>The syntax of values of the <tt>xml:lang</tt> attribute can be found in
 BCP47 [<cite><a href="#ref-BCP47">BCP47</a></cite>].
-A user agent displaying metadata is expected to choose a preferred language/locale to display from among those available, following BCP47.</p>
+A user agent displaying metadata SHOULD choose a preferred language/locale to display from among those available, following BCP47.</p>
 
 <span class="conform ua" id="conform-langselect">The user agent SHOULD choose which of the available <tt>text</tt>
 elements to display as follows</span>:</p>
@@ -1495,6 +1495,10 @@ for elements, clarified their required parents.</li>
 <h3 id="normative">Normative References</h3>
 
 <dl>
+<dt id="ref-BCP47">[BCP47]</dt>
+<dd><cite><a
+href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">BCP 47</a> Tags for Identifying Languages and Matching of Language Tags</cite></dd>
+
 <dt id="ref-CORS">[CORS]</dt>
 <dd><cite><a
 href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a>, A. van Kesteren, Editor. World Wide Web Consortium, 27 July 2010. The <a
@@ -1530,10 +1534,6 @@ Compressed Data Format Specification. P. Deutsch, J-L. Gailly, Editors. Internet
 <h3 id="informative">Informative References</h3>
 
 <dl>
-
-<dt id="ref-BCP47">[BCP47]</dt>
-<dd><cite><a
-href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">BCP 47</a> Tags for Identifying Languages and Matching of Language Tags</cite></dd>
 
 <dt id="ref-Compress2">[Compress2]</dt>
 <dd><cite><a
