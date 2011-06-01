@@ -43,7 +43,9 @@
         </optional>
         <optional>
           <element name="description">
-            <ref name="text"/>
+            <oneOrMore>
+              <ref name="text"/>
+            </oneOrMore>
           </element>
         </optional>
         <optional>
