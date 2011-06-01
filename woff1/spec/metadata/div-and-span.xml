@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <vendor name="Example Foundry"/>
+    <description>
+        <text xml:lang="en-GB">Example metadata file showing
+        <div>One div element</div>
+            <div>Another div element containing <span>a span</span></div>
+        </text>
+        <text xml:lang="en-ZA">
+            <div>
+                <div>Nested div</div>
+            </div>
+        </text>
+        <text xml:lang="en-AU">
+            <span>Nested <span>span</span></span>
+        </text>
+    </description>
+</metadata>
+
