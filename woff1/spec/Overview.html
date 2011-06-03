@@ -685,8 +685,8 @@ and the text of the specification, the text takes precedence.</p>
 
 <p>Several elements store their data in <tt>text</tt>
 child elements; this is to support localization. <span class="conform ff" id="conform-textlang">The <tt>text</tt>
-elements MAY be given a <tt>lang</tt> attribute</span>
-in the XML namespace [<cite><a href="#ref-XML">XML</a></cite>].
+elements MAY be given a <tt>lang</tt> attribute
+in the XML namespace</span> [<cite><a href="#ref-XML">XML</a></cite>].
 For backwards compatibility, <tt>lang</tt> attributes in the default namepsace
 are also accepted in older content, and SHOULD be treated the same
 as <tt>xml:lang</tt>.
@@ -717,7 +717,7 @@ indicated by the statement
 "This element may be localized using <tt>text</tt> child elements"
 in the description below;
 the internal structure of <tt>text</tt> elements with
-<tt>lang</tt> attributes is not repeated for each element
+<tt>xml:lang</tt> attributes is not repeated for each element
 type.
 In each of these localizable elements,
 <span class="conform ff" id="conform-localizable-text-required">at least one
@@ -887,6 +887,108 @@ This attribute is OPTIONAL.</td></tr>
 
 </dl>
 
+<p>Although the metadata elements and structure defined above
+are expected to be sufficient for most needs,
+an extension mechanism is also provided so that font vendors
+can include arbitrary metadata items that do not fit
+the standard elements above:</p>
+
+<dl>
+<dt><tt>extension</tt> element</dt>
+<dd>
+<p>A container element for extended metadata provided by the vendor. Zero or more
+<tt>extension</tt> elements may be present as children of
+the top-level <tt>metadata</tt> element. Each such
+metadata extension has an optional <tt>name</tt>,
+which may be provided in multiple languages,
+and one or more <tt>item</tt> elements.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>id</td><td>An arbitrary identifier defined by the vendor.
+This attribute is OPTIONAL.</td></tr>
+</table>
+
+<p>Child elements:</p>
+<dl>
+<dt><tt>name</tt> element</dt>
+<dd>
+<p>Zero or more <tt>name</tt> elements may be used to provide
+a human-friendly name for the collection of extended metadata items. <span class="conform ua" id="conform-nameoptional">A user agent
+that displays metadata SHOULD choose the name with most the appropriate language from
+among those available for each named <tt>extension</tt> element</span>.
+This child element is OPTIONAL; anonymous <tt>extension</tt> elements
+are also permissible.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>xml:lang</td><td>A language tag as defined in BCP47.
+This attribute is OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
+</table>
+</dd>
+<dt><tt>item</tt> element</dt>
+<dd>
+<p><span class="conform ff" id="conform-extension-itemrequired">At least one <tt>item</tt> element MUST be present in
+each <tt>extension</tt> container</span>.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>id</td><td>An arbitrary identifier defined by the vendor.
+This attribute is OPTIONAL.</td></tr>
+</table>
+<p>Child elements:</p>
+<dl>
+<dt><tt>name</tt> element</dt>
+<dd>
+<p>One or more <tt>name</tt> elements are used to provide
+a human-friendly name for a specific extended metadata item. A user agent
+that displays metadata SHOULD choose the name with the most appropriate language from
+among those available for each <tt>item</tt> element.
+<span class="conform ff" id="conform-namerequired">This child element is REQUIRED</span>; 
+<span class="conform ua" id="conform-noname-ignore">an <tt>item</tt> element with no
+<tt>name</tt> is invalid and SHOULD be ignored</span>.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>xml:lang</td><td>A language tag as defined in BCP47.
+This attribute is OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
+</table>
+</dd>
+<dt><tt>value</tt> element</dt>
+<dd><p>One or more <tt>value</tt> elements are used to provide
+the value of a specific extended metadata item. <span class="conform ua" id="conform-value-langselect">A user agent
+that displays metadata SHOULD choose the value with the most appropriate language from
+among those available for each <tt>item</tt> element</span>.
+<span class="conform ff" id="conform-valuerequired">This child element is REQUIRED</span>; 
+<span class="conform ua" id="conform-novalue-ignore">an <tt>item</tt> element with no
+<tt>value</tt> is invalid and SHOULD be ignored</span>.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>xml:lang</td><td>A language tag as defined in BCP47.
+This attribute is OPTIONAL.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
+</table>
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+
+</dl>
+
 <p>Where <tt>text</tt> elements are used to contain (localizable) content,
 further structure MAY also be provided
 using <tt>div</tt> and <tt>span</tt> child elements
@@ -932,108 +1034,6 @@ and <tt>span</tt> elements.
 In other words, <tt>div</tt> can contain other <tt>div</tt> elements;
 <tt>span</tt> can contain other <tt>span</tt> elements;
 <tt>span</tt> does not require a containing <tt>div</tt>.</p>
-
-<p>Although the metadata elements and structure defined above
-are expected to be sufficient for most needs,
-an extension mechanism is also provided so that font vendors
-can include arbitrary metadata items that do not fit
-the standard elements above:</p>
-
-<dl>
-<dt><tt>extension</tt> element</dt>
-<dd>
-<p>A container element for extended metadata provided by the vendor. Zero or more
-<tt>extension</tt> elements may be present as children of
-the top-level <tt>metadata</tt> element. Each such
-metadata extension has an optional <tt>name</tt>,
-which may be provided in multiple languages,
-and one or more <tt>item</tt> elements.</p>
-<table>
-<col class="name"/><col class="desc"/>
-<tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>id</td><td>An arbitrary identifier defined by the vendor.
-This attribute is OPTIONAL.</td></tr>
-</table>
-
-<p>Child elements:</p>
-<dl>
-<dt><tt>name</tt> element</dt>
-<dd>
-<p>Zero or more <tt>name</tt> elements may be used to provide
-a human-friendly name for the collection of extended metadata items. <span class="conform ua" id="conform-nameoptional">A user agent
-that displays metadata SHOULD choose the name with most the appropriate language from
-among those available for each named <tt>extension</tt> element</span>.
-This child element is OPTIONAL; anonymous <tt>extension</tt> elements
-are also permissible.</p>
-<table>
-<col class="name"/><col class="desc"/>
-<tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>lang</td><td>A language tag as defined in BCP47.
-This attribute is OPTIONAL.</td></tr>
-<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
-This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
-<tr><td>class</td><td>An arbitrary set of space-separated tokens.
-This attribute is OPTIONAL.</td></tr>
-</table>
-</dd>
-<dt><tt>item</tt> element</dt>
-<dd>
-<p><span class="conform ff" id="conform-extension-itemrequired">At least one <tt>item</tt> element MUST be present in
-each <tt>extension</tt> container</span>.</p>
-<table>
-<col class="name"/><col class="desc"/>
-<tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>id</td><td>An arbitrary identifier defined by the vendor.
-This attribute is OPTIONAL.</td></tr>
-</table>
-<p>Child elements:</p>
-<dl>
-<dt><tt>name</tt> element</dt>
-<dd>
-<p>One or more <tt>name</tt> elements are used to provide
-a human-friendly name for a specific extended metadata item. A user agent
-that displays metadata SHOULD choose the name with the most appropriate language from
-among those available for each <tt>item</tt> element.
-<span class="conform ff" id="conform-namerequired">This child element is REQUIRED</span>; 
-<span class="conform ua" id="conform-noname-ignore">an <tt>item</tt> element with no
-<tt>name</tt> is invalid and SHOULD be ignored</span>.</p>
-<table>
-<col class="name"/><col class="desc"/>
-<tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>lang</td><td>A language tag as defined in BCP47.
-This attribute is OPTIONAL.</td></tr>
-<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
-This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
-<tr><td>class</td><td>An arbitrary set of space-separated tokens.
-This attribute is OPTIONAL.</td></tr>
-</table>
-</dd>
-<dt><tt>value</tt> element</dt>
-<dd><p>One or more <tt>value</tt> elements are used to provide
-the value of a specific extended metadata item. <span class="conform ua" id="conform-value-langselect">A user agent
-that displays metadata SHOULD choose the value with the most appropriate language from
-among those available for each <tt>item</tt> element</span>.
-<span class="conform ff" id="conform-valuerequired">This child element is REQUIRED</span>; 
-<span class="conform ua" id="conform-novalue-ignore">an <tt>item</tt> element with no
-<tt>value</tt> is invalid and SHOULD be ignored</span>.</p>
-<table>
-<col class="name"/><col class="desc"/>
-<tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>lang</td><td>A language tag as defined in BCP47.
-This attribute is OPTIONAL.</td></tr>
-<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
-This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
-<tr><td>class</td><td>An arbitrary set of space-separated tokens.
-This attribute is OPTIONAL.</td></tr>
-</table>
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-
-</dl>
 
 <p><a href="#appendix-a">Appendix A</a> includes several examples
 of the content of the metadata block.</p>
@@ -1193,7 +1193,7 @@ child elements to provide localized versions of certain elements.</p>
             role="Hinting" /&gt;
     &lt;/credits&gt;
     &lt;description&gt;
-        &lt;text lang="en"&gt;
+        &lt;text xml:lang="en"&gt;
             A member of the Demo font family.
             This font is a humanist sans serif style designed
             for optimal legibility in low-resolution environments.
@@ -1202,28 +1202,28 @@ child elements to provide localized versions of certain elements.</p>
     &lt;/description&gt;
     &lt;license url="http://fontvendor.example.com/license"
              id="fontvendor-Web-corporate-v2"&gt;
-        &lt;text lang="en"&gt;A license goes here.&lt;/text&gt;
-        &lt;text lang="fr"&gt;Un permis va ici.&lt;/text&gt;
+        &lt;text xml:lang="en"&gt;A license goes here.&lt;/text&gt;
+        &lt;text xml:lang="fr"&gt;Un permis va ici.&lt;/text&gt;
     &lt;/license&gt;
     &lt;copyright&gt;
-        &lt;text lang="en"&gt;Copyright ©2009 Font Vendor"&lt;/text&gt;
-        &lt;text lang="ko"&gt;저작권 ©2009 Font Vendor"&lt;/text&gt;
+        &lt;text xml:lang="en"&gt;Copyright ©2009 Font Vendor"&lt;/text&gt;
+        &lt;text xml:lang="ko"&gt;저작권 ©2009 Font Vendor"&lt;/text&gt;
     &lt;/copyright&gt;
     &lt;trademark&gt;
-        &lt;text lang="en"&gt;Demo Font is a trademark of Font Vendor&lt;/text&gt;
-        &lt;text lang="fr"&gt;Demo Font est une marque déposée de Font Vendor&lt;/text&gt;
-        &lt;text lang="de"&gt;Demo Font ist ein eingetragenes Warenzeichen der Font Vendor&lt;/text&gt;
-        &lt;text lang="ja"&gt;Demo FontはFont Vendorの商標である&lt;/text&gt;
+        &lt;text xml:lang="en"&gt;Demo Font is a trademark of Font Vendor&lt;/text&gt;
+        &lt;text xml:lang="fr"&gt;Demo Font est une marque déposée de Font Vendor&lt;/text&gt;
+        &lt;text xml:lang="de"&gt;Demo Font ist ein eingetragenes Warenzeichen der Font Vendor&lt;/text&gt;
+        &lt;text xml:lang="ja"&gt;Demo FontはFont Vendorの商標である&lt;/text&gt;
     &lt;/trademark&gt;
     &lt;licensee name="Wonderful Websites, Inc." /&gt;
     &lt;extension id="org.example.fonts.metadata.v1"&gt;
-        &lt;name lang="en"&gt;Additional font information&lt;/name&gt;
-        &lt;name lang="fr"&gt;L'information supplémentaire de fonte&lt;/name&gt;
+        &lt;name xml:lang="en"&gt;Additional font information&lt;/name&gt;
+        &lt;name xml:lang="fr"&gt;L'information supplémentaire de fonte&lt;/name&gt;
         &lt;item id="org.example.fonts.metadata.v1.why"&gt;
-            &lt;name lang="en"&gt;Purpose&lt;/name&gt;
-            &lt;name lang="fr"&gt;But&lt;/name&gt;
-            &lt;value lang="en"&gt;This font exists merely as an example of WOFF packaging.&lt;/value&gt;
-            &lt;value lang="fr"&gt;Cette fonte existe simplement comme exemple de l'empaquetage de WOFF.&lt;/value&gt;
+            &lt;name xml:lang="en"&gt;Purpose&lt;/name&gt;
+            &lt;name xml:lang="fr"&gt;But&lt;/name&gt;
+            &lt;value xml:lang="en"&gt;This font exists merely as an example of WOFF packaging.&lt;/value&gt;
+            &lt;value xml:lang="fr"&gt;Cette fonte existe simplement comme exemple de l'empaquetage de WOFF.&lt;/value&gt;
         &lt;/item&gt;
     &lt;/extension&gt;
 &lt;/metadata&gt;
@@ -1329,7 +1329,7 @@ which, when viewed as plain text, has paragraph formatting.</p>
 <div class="metadata">
 <pre>
 &lt;description&gt;
- &lt;text lang="en"&gt;
+ &lt;text xml:lang="en"&gt;
    &lt;div&gt;Gentium ("belonging to the nations" in Latin) is a Unicode
    typeface family designed to enable the many diverse ethnic groups
    around the world who use the Latin, Cyrillic and Greek scripts to
@@ -1337,8 +1337,7 @@ which, when viewed as plain text, has paragraph formatting.</p>
    to be highly readable, reasonably compact, and visually attractive.
    Gentium has won a "Certificate of Excellence in Typeface
    Design" in two major international typeface design
-   competitions: bukva:raz! (2001), TDC2003
-   (2003).&lt;/div&gt;
+   competitions: bukva:raz! (2001), TDC2003 (2003).&lt;/div&gt;
    &lt;div&gt;The Gentium Plus font family is based on the original design.
    It currently comes with regular and italic face only, although
    additional weights are in development.&lt;/div&gt;
