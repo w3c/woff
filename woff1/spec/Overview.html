@@ -738,7 +738,8 @@ the internal structure of <tt>text</tt> elements with
 type.
 In each of these localizable elements,
 <span class="conform ff" id="conform-localizable-text-required">at least one
-<tt>text</tt> child element MUST be present</span>.</p>
+<tt>text</tt> child element MUST be present</span>,
+except in the case of the <tt>license</tt> element (as described below).</p>
 
 <dl class="xmlspec">
 <dt><tt>metadata</tt> element</dt>
@@ -748,8 +749,18 @@ In each of these localizable elements,
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>version</td><td>A version number indicating the format version of the
-<span class="code>">metadata</span> element. This is currently <tt>1.0</tt>.
+<tt>metadata</tt> element. This is currently <tt>1.0</tt>.
 <span class="conform ff" id="conform-metadataversion-required">This attribute is REQUIRED</span>.</td></tr>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>uniqueid</td><td>Zero or one child elements</td></tr>
+<tr><td>vendor</td><td>Zero or one child elements</td></tr>
+<tr><td>credits</td><td>Zero or one child elements</td></tr>
+<tr><td>description</td><td>Zero or one child elements</td></tr>
+<tr><td>license</td><td>Zero or one child elements</td></tr>
+<tr><td>copyright</td><td>Zero or one child elements</td></tr>
+<tr><td>trademark</td><td>Zero or one child elements</td></tr>
+<tr><td>licensee</td><td>Zero or one child elements</td></tr>
+<tr><td>extension</td><td>Zero or more child elements</td></tr>
 </table>
 </dd>
 </dl>
@@ -816,9 +827,13 @@ vendor desires: designer, hinter, and so on. This element is OPTIONAL. If
 present, <!-- conform? -->it MUST be a child of the <tt>metadata</tt> element
 and <!-- conform? -->it MUST contain at least one <tt>credit</tt> element. This
 element has no attributes.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>credit</td><td>One or more child elements</td></tr>
+</table>
+</dd>
 
-<p>Child elements:</p>
-<dl>
 <dt><tt>credit</tt> element</dt>
 <dd>
 <p>A single credit record. <!-- conform? -->If present, it MUST be a child of the
@@ -837,9 +852,6 @@ This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
 This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
-</dl>
-
-</dd>
 
 <dt><tt>description</tt> element</dt>
 <dd>
@@ -851,6 +863,8 @@ This element may be localized using <tt>text</tt> child elements.</p>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>url</td><td>The url for more information about the font design, history, etc. This attribute is OPTIONAL.
 </td></tr>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>text</td><td>One or more child elements containing character data and optionally <tt>div</tt> and/or <tt>span</tt> children</td></tr>
 </table>
 </dd>
 
@@ -859,7 +873,10 @@ This element may be localized using <tt>text</tt> child elements.</p>
 <p>Licensing information for the font.
 This element is OPTIONAL. <!-- conform? -->If present, it MUST be a
 child of the <tt>metadata</tt> element.
-This element may be localized using <tt>text</tt> child elements.</p>
+This element may be localized using <tt>text</tt> child elements;
+however, it is permitted to be empty (for example, if the vendor
+prefers to just provide a license URL rather than including the actual
+text of the license.)</p>
 <table>
 <col class="name"/><col class="desc"/>
 <tr class="header"><th colspan="2">attributes</th></tr>
@@ -867,6 +884,8 @@ This element may be localized using <tt>text</tt> child elements.</p>
 etc. This attribute is OPTIONAL.</td></tr>
 <tr><td>id</td><td>An identifying string for the license. This attribute is
 OPTIONAL.</td></tr>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>text</td><td>Zero or more child elements containing character data and optionally <tt>div</tt> and/or <tt>span</tt> children</td></tr>
 </table>
 </dd>
 
@@ -876,6 +895,11 @@ OPTIONAL.</td></tr>
 a child of the <tt>metadata</tt> element.
 This element may be localized using <tt>text</tt> child elements.
 This element has no attributes.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>text</td><td>One or more child elements containing character data and optionally <tt>div</tt> and/or <tt>span</tt> children</td></tr>
+</table>
 </dd>
 
 <dt><tt>trademark</tt> element</dt>
@@ -884,6 +908,11 @@ This element has no attributes.</p>
 a child of the <tt>metadata</tt> element.
 This element may be localized using <tt>text</tt> child elements.
 This element has no attributes.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>text</td><td>One or more child elements containing character data and optionally <tt>div</tt> and/or <tt>span</tt> children</td></tr>
+</table>
 </dd>
 
 <dt><tt>licensee</tt> element</dt>
@@ -910,7 +939,7 @@ an extension mechanism is also provided so that font vendors
 can include arbitrary metadata items that do not fit
 the standard elements above:</p>
 
-<dl>
+<dl class="xmlspec">
 <dt><tt>extension</tt> element</dt>
 <dd>
 <p>A container element for extended metadata provided by the vendor. Zero or more
@@ -924,29 +953,12 @@ and one or more <tt>item</tt> elements.</p>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>id</td><td>An arbitrary identifier defined by the vendor.
 This attribute is OPTIONAL.</td></tr>
-</table>
-
-<p>Child elements:</p>
-<dl>
-<dt><tt>name</tt> element</dt>
-<dd>
-<p>Zero or more <tt>name</tt> elements may be used to provide
-a human-friendly name for the collection of extended metadata items. <span class="conform ua" id="conform-nameoptional">A user agent
-that displays metadata SHOULD choose the name with most the appropriate language from
-among those available for each named <tt>extension</tt> element</span>.
-This child element is OPTIONAL; anonymous <tt>extension</tt> elements
-are also permissible.</p>
-<table>
-<col class="name"/><col class="desc"/>
-<tr class="header"><th colspan="2">attributes</th></tr>
-<tr><td>xml:lang</td><td>A language tag as defined in BCP47.
-This attribute is OPTIONAL.</td></tr>
-<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
-This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
-<tr><td>class</td><td>An arbitrary set of space-separated tokens.
-This attribute is OPTIONAL.</td></tr>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>name</td><td>Zero or more child elements</td></tr>
+<tr><td>item</td><td>One or more child elements</td></tr>
 </table>
 </dd>
+
 <dt><tt>item</tt> element</dt>
 <dd>
 <p><span class="conform ff" id="conform-extension-itemrequired">At least one <tt>item</tt> element MUST be present in
@@ -956,16 +968,27 @@ each <tt>extension</tt> container</span>.</p>
 <tr class="header"><th colspan="2">attributes</th></tr>
 <tr><td>id</td><td>An arbitrary identifier defined by the vendor.
 This attribute is OPTIONAL.</td></tr>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>name</td><td>One or more child elements</td></tr>
+<tr><td>value</td><td>One or more child elements</td></tr>
 </table>
-<p>Child elements:</p>
-<dl>
+</dd>
+
 <dt><tt>name</tt> element</dt>
 <dd>
-<p>One or more <tt>name</tt> elements are used to provide
+<p>Zero or more <tt>name</tt> elements may be used to provide
+a human-friendly name for the collection of extended metadata items
+in an <tt>extension</tt> element.
+<span class="conform ua" id="conform-nameoptional">A user agent
+that displays metadata SHOULD choose the name with most the appropriate language
+from among those available for each named <tt>extension</tt> element.
+This child element is OPTIONAL in <tt>extension</tt> elements;
+anonymous extension elements are also permissible.</p>
+<p>One or more <tt>name</tt> elements are also used to provide
 a human-friendly name for a specific extended metadata item. A user agent
 that displays metadata SHOULD choose the name with the most appropriate language from
 among those available for each <tt>item</tt> element.
-<span class="conform ff" id="conform-namerequired">This child element is REQUIRED</span>; 
+<span class="conform ff" id="conform-namerequired">This child element is REQUIRED</span> in <tt>item</tt> elements;
 <span class="conform ua" id="conform-noname-ignore">an <tt>item</tt> element with no
 <tt>name</tt> is invalid and SHOULD be ignored</span>.</p>
 <table>
@@ -979,6 +1002,7 @@ This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
 This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
+
 <dt><tt>value</tt> element</dt>
 <dd><p>One or more <tt>value</tt> elements are used to provide
 the value of a specific extended metadata item. <span class="conform ua" id="conform-value-langselect">A user agent
@@ -998,12 +1022,6 @@ This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
 This attribute is OPTIONAL.</td></tr>
 </table>
 </dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-
 </dl>
 
 <p>Where <tt>text</tt> elements are used to contain (localizable) content,
@@ -1042,7 +1060,7 @@ This attribute is OPTIONAL.</td></tr>
 
 <p>The <tt>text</tt> elements used to hold
 (localizable) text for a number of the individual pieces of metadata
-have a mixed content model consisting of text content,
+thus have a mixed content model consisting of text content,
 <tt>div</tt> and <tt>span</tt> elements;
 <tt>div</tt> elements have a mixed content model of text content,
 <tt>div</tt> and <tt>span</tt> elements;
