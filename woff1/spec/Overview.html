@@ -183,7 +183,6 @@ information in accordance with <a href="http://www.w3.org/Consortium/Patent-Poli
 <br/><a href="#DataTables">6.&nbsp;Font Data Tables</a>
 <br/><a href="#Metadata">7.&nbsp;Extended Metadata Block</a>
 <br/><a href="#Private">8.&nbsp;Private Data Block</a>
-<br/><a href="#Conformance">9.&nbsp;Summary of Conformance Requirements</a>
 </p>
 <p><a href="#appendix-a">Appendix A: Extended Metadata Examples</a>
 <br/><a href="#appendix-b">Appendix B: Media Type Registration</a>
@@ -289,6 +288,15 @@ href="#ref-OFF">OFF</a></cite>] specifications.</p>
 as the input sfnt font, stored in the same order, except
 that <span class="conform ff" id="conform-maycompress">each table MAY be compressed</span>, and the sfnt table directory is replaced by
 the WOFF table directory.</p>
+
+<div class="note">
+<p>The WOFF specification does not guarantee that the actual font data
+packaged in a valid WOFF container is in fact correct and usable.
+It requires only that the WOFF packaging structure&#x2014;header, table directory,
+and compressed tables&#x2014;conforms to this specification.
+The contained data must be used with just as much caution as font data
+delivered in "raw" form or via any other packaging method.</p>
+</div>
 
 <p>A complete WOFF file consists of several blocks: a 44-byte header,
 immediately followed (in this order) by a variable-size table directory,
@@ -635,6 +643,15 @@ Any such pre- and/or post-processing
 represents a modification of the font data being packaged;
 while it might be done in conjunction with WOFF packaging for Web deployment,
 it falls outside the scope of the WOFF specification.</p>
+</div>
+
+<div class="note">
+<p>The OpenType/OFF specification does not explicitly prohibit the
+presence of "extra" data or padding in between the font tables in the sfnt format;
+as the table directory includes the offset and length of each actual table,
+such data would simply be ignored. However, the WOFF format makes no
+provision to preserve such "hidden" non-font-table data when packaging a font,
+and therefore it would not survive a round-trip format conversion.</p>
 </div>
 
 <h2 id="Metadata">7.&nbsp;Extended Metadata Block</h2>
@@ -1038,6 +1055,18 @@ In other words, <tt>div</tt> can contain other <tt>div</tt> elements;
 <p><a href="#appendix-a">Appendix A</a> includes several examples
 of the content of the metadata block.</p>
 
+<div class="note">
+<p>Although the metadata block is optional,
+and there is no requirement for user agents to process it
+in order to render the font,
+clients such as Web browsers are encouraged to provide a means
+(such as a "Font Information" dialog for the current page)
+for users to view the metadata included in WOFF files.
+Not every client will necessarily have an appropriate context for this,
+but any client that enables the user to find out about the resources used by a Web document
+should consider exposing information about the fonts used, and in the case of
+WOFF-packaged fonts, the metadata block is the primary source of this information.</p>
+</div>
 
 <h2 id="Private">8.&nbsp;Private Data Block</h2>
 
@@ -1060,108 +1089,6 @@ bytes inserted as padding after any preceding metadata block
 if needed to ensure this</span>.
 <span class="conform ff" id="conform-private-end">The end of the private data block MUST correspond to the end of the WOFF file</span>.</p>
 
-
-<h2 id="Conformance">9.&nbsp;Summary of Conformance Requirements</h2>
-
-<p>This section summarizes key conformance requirements for WOFF files,
-derived from the more detailed specifications above.
-Tools creating WOFF files MUST ensure that the results conform to these requirements,
-and unless otherwise specified here,
-user agents processing or using WOFF files MUST reject any non-conforming input files.</p>
-
-<div class="note">
-<p>The WOFF specification does not guarantee that the actual font data
-packaged in a valid WOFF container is in fact correct and usable.
-It requires only that the WOFF packaging structure&#x2014;header, table directory,
-and compressed tables&#x2014;conforms to this specification.
-The contained data must be used with just as much caution as font data
-delivered in "raw" form or via any other packaging method.</p>
-</div>
-
-<h3 id="conformance-woff-header">WOFF header</h3>
-
-<dl>
-<dt>signature</dt>
-<dd>MUST be the value 0x774F4646</dd>
-<dt>length</dt>
-<dd>MUST match the total length of the WOFF file</dd>
-<dt>reserved</dt>
-<dd>MUST be zero</dd>
-<dt>offset and length of metadata and private blocks</dt>
-<dd>MUST be zero, or point to valid ranges of the WOFF file</dd>
-<dt>totalSfntLength</dt>
-<dd>MUST match the total size required for the decoded sfnt data,
-including header, table directory, decompressed tables,
-and padding of all table lengths to 4-byte boundaries</dd>
-</dl>
-
-<h3 id="conformance-woff-directory">WOFF directory</h3>
-<p>The table directory entries MUST be in ascending order according to table tag.
-Within each entry:</p>
-<dl>
-<dt>compLength</dt>
-<dd>MUST be less than or equal to origLength</dd>
-<dt>origChecksum</dt>
-<dd>MUST be correct for the input table data, in accordance with the OpenType specification.
-However, user agents are not required to validate these checskums;
-they are merely reinserted into the sfnt table directory
-when reconstructing the input font data.</dd>
-<dt>offset</dt>
-<dd>MUST be a multiple of 4</dd>
-</dl>
-
-<h3 id="conformance-font-tables">Font tables</h3>
-<p>For each table where (in the WOFF table directory)
-<tt>compLength &lt; origLength</tt>,
-processing the data with zlib's <tt>uncompress()</tt>
-function MUST result in exactly <tt>origLength</tt> bytes of
-decompressed data.
-User agents MUST reject the WOFF file if the decompressed length of a table
-does not match that specified in the table directory.</p>
-<div class="note">
-<p>User agents decoding WOFF files should be careful to check all uncompress
-operations for overflow or underflow of the length of decompressed data compared
-to the specified <tt>origLength</tt>, and to reject the WOFF file in case
-of any mismatch.</p>
-</div>
-<p>For each table where <tt>compLength</tt> is not a multiple of 4,
-the WOFF file MUST be padded with up to 3 zero bytes so as to reach a 4-byte boundary.</p>
-<p>User agents MUST NOT load WOFF files that contain extraneous data
-between font tables.</p>
-
-<div class="note">
-<p>The OpenType/OFF specification does not explicitly prohibit the
-presence of "extra" data or padding in between the font tables in the sfnt format;
-as the table directory includes the offset and length of each actual table,
-such data would simply be ignored. However, the WOFF format makes no
-provision to preserve such "hidden" non-font-table data when packaging a font,
-and therefore it would not survive a round-trip format conversion.</p>
-</div>
-
-<h3 id="conformance-metadata">Metadata</h3>
-<p>Processing the metadata with zlib's  <tt>uncompress()</tt> function
-MUST result in <tt>metaOrigLength</tt> bytes of decompressed data.</p>
-
-<p>The decompressed data MUST be well-formed XML;
-however, if the metadata block is not well-formed,
-user agents MUST NOT reject the entire WOFF file.
-They MAY provide some form of warning or error indication to the user,
-but MUST proceed to render the contained font as if the metadata block were absent.
-This requirement is designed to maximize interoperability between clients
-that interpret the metadata block and those that do not support it at all.</p>
-
-<div class="note">
-<p>Although the metadata block is optional,
-and there is no requirement for user agents to process it
-in order to render the font,
-clients such as Web browsers are encouraged to provide a means
-(such as a "Font Information" dialog for the current page)
-for users to view the metadata included in WOFF files.
-Not every client will necessarily have an appropriate context for this,
-but any client that enables the user to find out about the resources used by a Web document
-should consider exposing information about the fonts used, and in the case of
-WOFF-packaged fonts, the metadata block is the primary source of this information.</p>
-</div>
 
 <hr/>
 
