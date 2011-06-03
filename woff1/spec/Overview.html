@@ -63,7 +63,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editors Draft 25 May 2011
+<h2 id="W3C-doctype">W3C Editors Draft 3 June 2011
 </h2>
 
 <dl>
@@ -1404,7 +1404,7 @@ The W3C has change control over this specification.
 <h2 id="changes">Appendix C: Changes</h2>
 
 <p>The following changes have been made, relative to the 
-<a href="http://www.w3.org/TR/2010/WD-WOFF-20100727">27 July 2010 First Public Working Draft</a>. No new features have been added; the changes are clarifications and corrections to existing features.</p>
+<a href="http://www.w3.org/TR/2010/WD-WOFF-20100727">27 July 2010 First Public Working Draft</a>. No new features have been added, except for optional enhancements to the metadata format; the remaining changes are clarifications and corrections to existing features.</p>
 
 <ul>
 <li>Clarified that WOFF is a font <em>packaging</em> or wrapper format, not a new font format as such.</li>
@@ -1428,6 +1428,13 @@ for elements, clarified their required parents.</li>
 <li>Minor clarifications to wording throughout.</li>
 <li>Some re-ordering of text to group related assertions or to improve readability; in particular, the best practices were previously an appendix and are now integrated into the main body of the specification.</li>
 <li>Added this Changes appendix.</li>
+<li>Language attributes now reference BCP47, and use <tt>xml:lang</tt>.</li>
+<li>Added optional <tt>div</tt> and <tt>span</tt> elements that can be used to provide structure within metadata text.</li>
+<li>Added <tt>dir</tt> and <tt>class</tt> attributes to metadata elements.</tt>
+<li>Removed summary of conformance requirements (duplicated material from the main body of the specification).</li>
+<li>Somewhat rearranged and clarified description of the metadata format.</li>
+<li>Noted that same-origin requirements are at risk, in the expectation that CSS3 Fonts will handle this instead.</tt>
+<li>Mention the need to compute the binary search fields when reconstructing an sfnt header.</li>
 </ul>
 
 <p>A <a href="http://dev.w3.org/cvsweb/webfonts/WOFF/spec/Overview.html.diff?r1=1.13&amp;r2=1.58&amp;f=h">color-coded diff</a> between the editors draft used to prepare the First Public Working Draft, and the editors draft used to prepare this Last Call Working Draft, is available.</p>
