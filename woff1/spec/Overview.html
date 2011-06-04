@@ -63,7 +63,7 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editors Draft 3 June 2011
+<h2 id="W3C-doctype">W3C Editors Draft 4 June 2011
 </h2>
 
 <dl>
@@ -680,8 +680,7 @@ the beginning of the metadata block will always be 4-byte aligned.
 <span class="conform ff" id="conform-metadata-noprivatepad">If the metadata block is the last block in the WOFF file,
 there SHOULD be no additional padding after the end of the block</span>.</p>
 
-<p><span class="conform ff" id="conform-metadata-wellformed">The extended metadata MUST be well-formed XML</span> <span class="conform ff" id="conform-metadata-encoding">encoded in UTF-8 or UTF-16</span>.
-The use of UTF-8 encoding is recommended.</p>
+<p><span class="conform ff" id="conform-metadata-wellformed">The extended metadata MUST be well-formed XML</span> <span class="conform ff" id="conform-metadata-encoding">encoded in UTF-8</span>.</p>
 
 <p>The schema for the extended metadata XML is described below.
 <span class="conform ff" id="conform-metadata-schemavalid">If the extended metadata does not match this schema,
@@ -1435,6 +1434,7 @@ for elements, clarified their required parents.</li>
 <li>Somewhat rearranged and clarified description of the metadata format.</li>
 <li>Noted that same-origin requirements are at risk, in the expectation that CSS3 Fonts will handle this instead.</tt>
 <li>Mention the need to compute the binary search fields when reconstructing an sfnt header.</li>
+<li>Require that metadata be encoded in UTF-8, rather than allowing either UTF-8 or UTF-16.</li>
 </ul>
 
 <p>A <a href="http://dev.w3.org/cvsweb/webfonts/WOFF/spec/Overview.html.diff?r1=1.13&amp;r2=1.58&amp;f=h">color-coded diff</a> between the editors draft used to prepare the First Public Working Draft, and the editors draft used to prepare this Last Call Working Draft, is available.</p>
