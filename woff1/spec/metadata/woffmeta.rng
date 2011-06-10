@@ -162,7 +162,11 @@
     <element name="name">
       <optional>
         <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
+      </optional>
+      <optional>
         <attribute name="dir"/>
+      </optional>
+      <optional>
         <attribute name="class"/>
       </optional>
       <text/>
@@ -172,7 +176,11 @@
     <element name="div">
       <optional>
         <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
+      </optional>
+      <optional>
         <attribute name="dir"/>
+      </optional>
+      <optional>
         <attribute name="class"/>
       </optional>
       <interleave>
@@ -192,7 +200,11 @@
     <element name="span">
       <optional>
         <attribute name="lang" ns="http://www.w3.org/XML/1998/namespace"/>
+      </optional>
+      <optional>
         <attribute name="dir"/>
+      </optional>
+      <optional>
         <attribute name="class"/>
       </optional>
       <interleave>
