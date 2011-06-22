@@ -624,11 +624,17 @@ produces a list of entries in an order equivalent to that of the font tables.
 
 <div class="note">
 <p>User agents need not necessarily reconstitute the input font as a whole, and may reorder tables when decoding the WOFF file to sfnt form; they may access individual tables directly as needed. Under these circumstances the resulting sfnt will no longer be an exact copy of the input font, and checksums or digital signature data may be invalidated as a result.</p>
+
 <p>In some cases, sites deploying WOFF files as Web fonts may wish to subset the character
 repertoire, optimize table ordering for efficient text layout or rasterization,
 or remove (or add) optional font tables depending on the particular features needed for a site.
 User agents might make similar modifications to the font during decoding,
 such as omitting tables that are not needed by their particular text display system.</p>
+
+<p>The automatic removal of OpenType features such as GPOS and GSUB information
+at any stage in the process of deploying a WOFF file is strongly discouraged.
+Many writing systems around the world rely on these features
+for very basic display of text in the script that they use.</p>
 
 <p>If either a WOFF-creation tool or a WOFF-consuming user agent
 reorders or otherwise modifies the collection of font tables,
