@@ -1026,7 +1026,30 @@ This attribute is OPTIONAL.</td></tr>
 <p>Where <tt>text</tt> elements are used to contain (localizable) content,
 further structure MAY also be provided
 using <tt>div</tt> and <tt>span</tt> child elements
-similar to those used in HTML:</p>
+similar to those used in HTML.</p>
+
+<dl class="xmlspec">
+<dt><tt>text</tt> element</dt>
+<dd>
+<p>An element used to contain a particular localization of a metadata element's contents. This element has a mixed content model;
+in addition to the child elements mentioned below, it may directly contain character data.</p>
+<table>
+<col class="name"/><col class="desc"/>
+<tr class="header"><th colspan="2">attributes</th></tr>
+<tr><td>xml:lang</td><td>A language tag (as specified in BCP47) indicating
+the language of this particular version of the metadata element's content.
+This attribute is OPTIONAL; however, for multiple <tt>text</tt> children
+of a metadata element to be usefully distinguished,
+they SHOULD all be tagged with appropriate different language codes.</td></tr>
+<tr><td>dir</td><td>The text direction, either <tt>ltr</tt> (for "left to right") or <tt>rtl</tt> (for "right to left").
+This attribute is OPTIONAL and, if omitted, defaults to <tt>ltr</tt>.</td></tr>
+<tr><td>class</td><td>An arbitrary set of space-separated tokens.
+This attribute is OPTIONAL.</td></tr>
+<tr class="header"><th colspan="2">children</th></tr>
+<tr><td>div</td><td>Contains a block of text, such as a paragraph or heading.</td></tr>
+<tr><td>span</td><td>Contains an inline run of text.</td></tr>
+</table>
+</dd>
 
 <dl class="xmlspec">
 <dt><tt>div</tt> element</dt>
