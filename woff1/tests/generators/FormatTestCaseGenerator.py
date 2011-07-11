@@ -2347,7 +2347,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension4Metadata,
 )
 
-# valid one untagged name one tagged name
+# valid tagged name using lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-005",
@@ -2358,7 +2358,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension5Metadata,
 )
 
-# valid two tagged names
+# valid one untagged name one tagged name
 
 writeMetadataTest(
     identifier="metadata-schema-extension-006",
@@ -2369,7 +2369,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension6Metadata,
 )
 
-# valid more than one item
+# valid two tagged names
 
 writeMetadataTest(
     identifier="metadata-schema-extension-007",
@@ -2380,19 +2380,18 @@ writeMetadataTest(
     metadata=metadataSchemaExtension7Metadata,
 )
 
-# no item
+# valid more than one item
 
 writeMetadataTest(
     identifier="metadata-schema-extension-008",
     title=metadataSchemaExtension8Title,
     description=metadataSchemaExtension8Description,
     credits=metadataSchemaExtension8Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaExtension8Metadata,
 )
 
-# unknown attribute
+# no item
 
 writeMetadataTest(
     identifier="metadata-schema-extension-009",
@@ -2404,7 +2403,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension9Metadata,
 )
 
-# unknown child
+# unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-010",
@@ -2416,7 +2415,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension10Metadata,
 )
 
-# content
+# unknown child
 
 writeMetadataTest(
     identifier="metadata-schema-extension-011",
@@ -2428,22 +2427,23 @@ writeMetadataTest(
     metadata=metadataSchemaExtension11Metadata,
 )
 
-# ---------------------------------------------------
-# Metadata Display: Schema Validity: extension - item
-# ---------------------------------------------------
-
-# valid
+# content
 
 writeMetadataTest(
     identifier="metadata-schema-extension-012",
     title=metadataSchemaExtension12Title,
     description=metadataSchemaExtension12Description,
     credits=metadataSchemaExtension12Credits,
-    valid=True,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
     metadata=metadataSchemaExtension12Metadata,
 )
 
-# valid multiple languages
+# ---------------------------------------------------
+# Metadata Display: Schema Validity: extension - item
+# ---------------------------------------------------
+
+# valid
 
 writeMetadataTest(
     identifier="metadata-schema-extension-013",
@@ -2454,7 +2454,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension13Metadata,
 )
 
-# valid no id
+# valid multiple languages
 
 writeMetadataTest(
     identifier="metadata-schema-extension-014",
@@ -2465,7 +2465,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension14Metadata,
 )
 
-# valid name no tag and tagged
+# valid no id
 
 writeMetadataTest(
     identifier="metadata-schema-extension-015",
@@ -2476,7 +2476,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension15Metadata,
 )
 
-# valid name two tagged
+# valid name no tag and tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-016",
@@ -2487,7 +2487,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension16Metadata,
 )
 
-# valid value no tag and tagged
+# valid name two tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-017",
@@ -2498,7 +2498,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension17Metadata,
 )
 
-# valid value two tagged
+# valid value no tag and tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-018",
@@ -2509,19 +2509,18 @@ writeMetadataTest(
     metadata=metadataSchemaExtension18Metadata,
 )
 
-# no name
+# valid value two tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-019",
     title=metadataSchemaExtension19Title,
     description=metadataSchemaExtension19Description,
     credits=metadataSchemaExtension19Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaExtension19Metadata,
 )
 
-# no value
+# no name
 
 writeMetadataTest(
     identifier="metadata-schema-extension-020",
@@ -2533,7 +2532,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension20Metadata,
 )
 
-# unknown attribute
+# no value
 
 writeMetadataTest(
     identifier="metadata-schema-extension-021",
@@ -2545,7 +2544,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension21Metadata,
 )
 
-# unknown child element
+# unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-022",
@@ -2557,7 +2556,7 @@ writeMetadataTest(
     metadata=metadataSchemaExtension22Metadata,
 )
 
-# content
+# unknown child element
 
 writeMetadataTest(
     identifier="metadata-schema-extension-023",
@@ -2569,22 +2568,23 @@ writeMetadataTest(
     metadata=metadataSchemaExtension23Metadata,
 )
 
-# ----------------------------------------------------------
-# Metadata Display: Schema Validity: extension - item - name
-# ----------------------------------------------------------
-
-# valid no lang
+# content
 
 writeMetadataTest(
     identifier="metadata-schema-extension-024",
     title=metadataSchemaExtension24Title,
     description=metadataSchemaExtension24Description,
     credits=metadataSchemaExtension24Credits,
-    valid=True,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
     metadata=metadataSchemaExtension24Metadata,
 )
 
-# valid lang
+# ----------------------------------------------------------
+# Metadata Display: Schema Validity: extension - item - name
+# ----------------------------------------------------------
+
+# valid no lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-025",
@@ -2595,28 +2595,50 @@ writeMetadataTest(
     metadata=metadataSchemaExtension25Metadata,
 )
 
-# unknown attribute
+# valid xml:lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-026",
     title=metadataSchemaExtension26Title,
     description=metadataSchemaExtension26Description,
     credits=metadataSchemaExtension26Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaExtension26Metadata,
 )
 
-# child element
+# valid lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-027",
     title=metadataSchemaExtension27Title,
     description=metadataSchemaExtension27Description,
     credits=metadataSchemaExtension27Credits,
+    valid=True,
+    metadata=metadataSchemaExtension27Metadata,
+)
+
+# unknown attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-028",
+    title=metadataSchemaExtension28Title,
+    description=metadataSchemaExtension28Description,
+    credits=metadataSchemaExtension28Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension27Metadata,
+    metadata=metadataSchemaExtension28Metadata,
+)
+
+# child element
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-029",
+    title=metadataSchemaExtension29Title,
+    description=metadataSchemaExtension29Description,
+    credits=metadataSchemaExtension29Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaExtension29Metadata,
 )
 
 # -----------------------------------------------------------
@@ -2626,47 +2648,58 @@ writeMetadataTest(
 # valid no lang
 
 writeMetadataTest(
-    identifier="metadata-schema-extension-028",
-    title=metadataSchemaExtension28Title,
-    description=metadataSchemaExtension28Description,
-    credits=metadataSchemaExtension28Credits,
-    valid=True,
-    metadata=metadataSchemaExtension28Metadata,
-)
-
-# valid lang
-
-writeMetadataTest(
-    identifier="metadata-schema-extension-029",
-    title=metadataSchemaExtension29Title,
-    description=metadataSchemaExtension29Description,
-    credits=metadataSchemaExtension29Credits,
-    valid=True,
-    metadata=metadataSchemaExtension29Metadata,
-)
-
-# unknown attribute
-
-writeMetadataTest(
     identifier="metadata-schema-extension-030",
     title=metadataSchemaExtension30Title,
     description=metadataSchemaExtension30Description,
     credits=metadataSchemaExtension30Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaExtension30Metadata,
 )
 
-# child element
+# valid xml:lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-031",
     title=metadataSchemaExtension31Title,
     description=metadataSchemaExtension31Description,
     credits=metadataSchemaExtension31Credits,
+    valid=True,
+    metadata=metadataSchemaExtension31Metadata,
+)
+
+# valid lang
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-032",
+    title=metadataSchemaExtension32Title,
+    description=metadataSchemaExtension32Description,
+    credits=metadataSchemaExtension32Credits,
+    valid=True,
+    metadata=metadataSchemaExtension32Metadata,
+)
+
+# unknown attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-033",
+    title=metadataSchemaExtension33Title,
+    description=metadataSchemaExtension33Description,
+    credits=metadataSchemaExtension33Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension31Metadata,
+    metadata=metadataSchemaExtension33Metadata,
+)
+
+# child element
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-034",
+    title=metadataSchemaExtension34Title,
+    description=metadataSchemaExtension34Description,
+    credits=metadataSchemaExtension34Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaExtension34Metadata,
 )
 
 # ------------------------------------

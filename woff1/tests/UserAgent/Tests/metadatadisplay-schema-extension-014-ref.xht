@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Valid item Element Without id Attribute in extension Element</title>
+		<title>WOFF Test: Valid item Element With Multiple Languages in extension Element</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect" />
 		<link rel="help" href="#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The item element in the extension element does not contain an id attribute but it still matches the schema." />
+		<meta name="assert" content="The item element in the extension element contains a variety of languages." />
 		<style type="text/css"><![CDATA[
 			body {
 				font-family;
@@ -34,9 +34,13 @@
 &lt;metadata version="1.0"&gt;
 	&lt;extension id="Extension 1"&gt;
 		&lt;name&gt;Extension 1 - Name Without Language&lt;/name&gt;
-		&lt;item&gt;
+		&lt;item id="Extension 1 - Item 1 ID"&gt;
 			&lt;name&gt;Extension 1 - Item 1 - Name Without Language&lt;/name&gt;
+			&lt;name xml:lang="en"&gt;Extension 1 - Item 1 - Name With "en" Language&lt;/name&gt;
+			&lt;name xml:lang="fr"&gt;Extension 1 - Item 1 - Name With "fr" Language&lt;/name&gt;
 			&lt;value&gt;Extension 1 - Item 1 - Value Without Language&lt;/value&gt;
+			&lt;value xml:lang="en"&gt;Extension 1 - Item 1 - Value With "en" Language&lt;/value&gt;
+			&lt;value xml:lang="fr"&gt;Extension 1 - Item 1 - Value With "fr" Language&lt;/value&gt;
 		&lt;/item&gt;
 	&lt;/extension&gt;
 &lt;/metadata&gt;

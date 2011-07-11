@@ -2527,9 +2527,27 @@ metadataSchemaExtension4Title = "Valid extension Element Without name Element"
 metadataSchemaExtension4Description = "The extension element does not have a name child element but it still matches the schema."
 metadataSchemaExtension4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid one untagged name one tagged name
+# valid name using lang
 
 metadataSchemaExtension5Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name lang="en">Extension 1 - Name With "en" Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+metadataSchemaExtension5Title = "Valid extension Element With lang Used In name Element"
+metadataSchemaExtension5Description = "The extension element contains one name element using the lang tag instead of xml:lang."
+metadataSchemaExtension5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# valid one untagged name one tagged name
+
+metadataSchemaExtension6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2542,13 +2560,13 @@ metadataSchemaExtension5Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension5Title = "Valid extension Element With Two name Elements 1"
-metadataSchemaExtension5Description = "The extension element contains one name element without a lang attribute and another with a lang attribute."
-metadataSchemaExtension5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension6Title = "Valid extension Element With Two name Elements 1"
+metadataSchemaExtension6Description = "The extension element contains one name element without a lang attribute and another with a lang attribute."
+metadataSchemaExtension6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid two tagged names
 
-metadataSchemaExtension6Metadata = """
+metadataSchemaExtension7Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2561,13 +2579,13 @@ metadataSchemaExtension6Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension6Title = "Valid extension Element With Two name Elements 2"
-metadataSchemaExtension6Description = "The extension element contains two name elements with lang attributes."
-metadataSchemaExtension6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension7Title = "Valid extension Element With Two name Elements 2"
+metadataSchemaExtension7Description = "The extension element contains two name elements with lang attributes."
+metadataSchemaExtension7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid more than one item
 
-metadataSchemaExtension7Metadata = """
+metadataSchemaExtension8Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2583,13 +2601,13 @@ metadataSchemaExtension7Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension7Title = "Valid extension Element With Two item Elements"
-metadataSchemaExtension7Description = "The extension element contains two item child elements."
-metadataSchemaExtension7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension8Title = "Valid extension Element With Two item Elements"
+metadataSchemaExtension8Description = "The extension element contains two item child elements."
+metadataSchemaExtension8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # no item
 
-metadataSchemaExtension8Metadata = """
+metadataSchemaExtension9Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2597,13 +2615,13 @@ metadataSchemaExtension8Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension8Title = "No item Element in extension Element"
-metadataSchemaExtension8Description = "The extension element does not contain an item child element."
-metadataSchemaExtension8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension9Title = "No item Element in extension Element"
+metadataSchemaExtension9Description = "The extension element does not contain an item child element."
+metadataSchemaExtension9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaExtension9Metadata = """
+metadataSchemaExtension10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1" unknownattribute="Text">
@@ -2615,13 +2633,13 @@ metadataSchemaExtension9Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension9Title = "Unknown Attribute in extension Element"
-metadataSchemaExtension9Description = "The extension element contains an unknown attribute."
-metadataSchemaExtension9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension10Title = "Unknown Attribute in extension Element"
+metadataSchemaExtension10Description = "The extension element contains an unknown attribute."
+metadataSchemaExtension10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown child
 
-metadataSchemaExtension10Metadata = """
+metadataSchemaExtension11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2634,14 +2652,14 @@ metadataSchemaExtension10Metadata = """
     <unknown attribute="Text" />
 </metadata>
 """
-metadataSchemaExtension10Title = "Unknown Child Element in extension Element"
-metadataSchemaExtension10Description = "The extension element contains an unknown child element."
-metadataSchemaExtension10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension11Title = "Unknown Child Element in extension Element"
+metadataSchemaExtension11Description = "The extension element contains an unknown child element."
+metadataSchemaExtension11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 
 # content
 
-metadataSchemaExtension11Metadata = """
+metadataSchemaExtension12Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2654,9 +2672,9 @@ metadataSchemaExtension11Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension11Title = "Content in extension Element"
-metadataSchemaExtension11Description = "The extension element contains content."
-metadataSchemaExtension11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension12Title = "Content in extension Element"
+metadataSchemaExtension12Description = "The extension element contains content."
+metadataSchemaExtension12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ---------------------------------------------------
 # Metadata Display: Schema Validity: extension - item
@@ -2664,7 +2682,7 @@ metadataSchemaExtension11Credits = [dict(title="Tal Leming", role="author", link
 
 # valid
 
-metadataSchemaExtension12Metadata = """
+metadataSchemaExtension13Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2676,13 +2694,13 @@ metadataSchemaExtension12Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension12Title = "Valid item Element in extension Element"
-metadataSchemaExtension12Description = "The item element in the extension element matches the schema."
-metadataSchemaExtension12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension13Title = "Valid item Element in extension Element"
+metadataSchemaExtension13Description = "The item element in the extension element matches the schema."
+metadataSchemaExtension13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid multiple languages
 
-metadataSchemaExtension13Metadata = """
+metadataSchemaExtension14Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2698,13 +2716,13 @@ metadataSchemaExtension13Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension13Title = "Valid item Element With Multiple Languages in extension Element"
-metadataSchemaExtension13Description = "The item element in the extension element contains a variety of languages."
-metadataSchemaExtension13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension14Title = "Valid item Element With Multiple Languages in extension Element"
+metadataSchemaExtension14Description = "The item element in the extension element contains a variety of languages."
+metadataSchemaExtension14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid no id
 
-metadataSchemaExtension14Metadata = """
+metadataSchemaExtension15Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2716,13 +2734,13 @@ metadataSchemaExtension14Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension14Title = "Valid item Element Without id Attribute in extension Element"
-metadataSchemaExtension14Description = "The item element in the extension element does not contain an id attribute but it still matches the schema."
-metadataSchemaExtension14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension15Title = "Valid item Element Without id Attribute in extension Element"
+metadataSchemaExtension15Description = "The item element in the extension element does not contain an id attribute but it still matches the schema."
+metadataSchemaExtension15Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid name no tag and tagged
 
-metadataSchemaExtension15Metadata = """
+metadataSchemaExtension16Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2735,13 +2753,13 @@ metadataSchemaExtension15Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension15Title = "Valid item Element With Two name Elements in extension Element 1"
-metadataSchemaExtension15Description = "The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute."
-metadataSchemaExtension15Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension16Title = "Valid item Element With Two name Elements in extension Element 1"
+metadataSchemaExtension16Description = "The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute."
+metadataSchemaExtension16Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid name two tagged
 
-metadataSchemaExtension16Metadata = """
+metadataSchemaExtension17Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2754,13 +2772,13 @@ metadataSchemaExtension16Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension16Title = "Valid item Element With Two name Elements in extension Element 2"
-metadataSchemaExtension16Description = "The item element in the extension element contains two name child elements with lang attributes."
-metadataSchemaExtension16Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension17Title = "Valid item Element With Two name Elements in extension Element 2"
+metadataSchemaExtension17Description = "The item element in the extension element contains two name child elements with lang attributes."
+metadataSchemaExtension17Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid value no tag and tagged
 
-metadataSchemaExtension17Metadata = """
+metadataSchemaExtension18Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2773,13 +2791,13 @@ metadataSchemaExtension17Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension17Title = "Valid item Element With Two value Elements in extension Element 1"
-metadataSchemaExtension17Description = "The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute."
-metadataSchemaExtension17Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension18Title = "Valid item Element With Two value Elements in extension Element 1"
+metadataSchemaExtension18Description = "The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute."
+metadataSchemaExtension18Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid value two tagged
 
-metadataSchemaExtension18Metadata = """
+metadataSchemaExtension19Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2792,13 +2810,13 @@ metadataSchemaExtension18Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension18Title = "Valid item Element With Two value Elements in extension Element 2"
-metadataSchemaExtension18Description = "The item element in the extension element contains two value child elements with lang attributes."
-metadataSchemaExtension18Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension19Title = "Valid item Element With Two value Elements in extension Element 2"
+metadataSchemaExtension19Description = "The item element in the extension element contains two value child elements with lang attributes."
+metadataSchemaExtension19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # no name
 
-metadataSchemaExtension19Metadata = """
+metadataSchemaExtension20Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2809,13 +2827,13 @@ metadataSchemaExtension19Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension19Title = "No name Element in item Element in extension Element"
-metadataSchemaExtension19Description = "The item element in the extension element does not contain a name child element."
-metadataSchemaExtension19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension20Title = "No name Element in item Element in extension Element"
+metadataSchemaExtension20Description = "The item element in the extension element does not contain a name child element."
+metadataSchemaExtension20Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # no value
 
-metadataSchemaExtension20Metadata = """
+metadataSchemaExtension21Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2826,13 +2844,13 @@ metadataSchemaExtension20Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension20Title = "No value Element in item Element in extension Element"
-metadataSchemaExtension20Description = "The item element in the extension element does not contain a value child element."
-metadataSchemaExtension20Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension21Title = "No value Element in item Element in extension Element"
+metadataSchemaExtension21Description = "The item element in the extension element does not contain a value child element."
+metadataSchemaExtension21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaExtension21Metadata = """
+metadataSchemaExtension22Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2844,13 +2862,13 @@ metadataSchemaExtension21Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension21Title = "Unknown Attribute in item Element in extension Element"
-metadataSchemaExtension21Description = "The item element in the extension element contains an unknown attribute."
-metadataSchemaExtension21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension22Title = "Unknown Attribute in item Element in extension Element"
+metadataSchemaExtension22Description = "The item element in the extension element contains an unknown attribute."
+metadataSchemaExtension22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown child element
 
-metadataSchemaExtension22Metadata = """
+metadataSchemaExtension23Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2863,13 +2881,13 @@ metadataSchemaExtension22Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension22Title = "Unknown Child Element in item Element in extension Element"
-metadataSchemaExtension22Description = "The item element in the extension element contains an unknown child element."
-metadataSchemaExtension22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension23Title = "Unknown Child Element in item Element in extension Element"
+metadataSchemaExtension23Description = "The item element in the extension element contains an unknown child element."
+metadataSchemaExtension23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaExtension23Metadata = """
+metadataSchemaExtension24Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2882,9 +2900,9 @@ metadataSchemaExtension23Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension23Title = "Content in item Element in extension Element"
-metadataSchemaExtension23Description = "The item element in the extension element contains content."
-metadataSchemaExtension23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension24Title = "Content in item Element in extension Element"
+metadataSchemaExtension24Description = "The item element in the extension element contains content."
+metadataSchemaExtension24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ----------------------------------------------------------
 # Metadata Display: Schema Validity: extension - item - name
@@ -2892,7 +2910,7 @@ metadataSchemaExtension23Credits = [dict(title="Tal Leming", role="author", link
 
 # valid no lang
 
-metadataSchemaExtension24Metadata = """
+metadataSchemaExtension25Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2904,13 +2922,13 @@ metadataSchemaExtension24Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension24Title = "Valid name Element in item Element in extension Element"
-metadataSchemaExtension24Description = "The name element in the item element in the extension element matches the schema."
-metadataSchemaExtension24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension25Title = "Valid name Element in item Element in extension Element"
+metadataSchemaExtension25Description = "The name element in the item element in the extension element matches the schema."
+metadataSchemaExtension25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid lang
+# valid xml:lang
 
-metadataSchemaExtension25Metadata = """
+metadataSchemaExtension26Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2922,13 +2940,31 @@ metadataSchemaExtension25Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension25Title = "Valid name Element With lang Attribute in item Element in extension Element"
-metadataSchemaExtension25Description = "The name element in the item element in the extension element contains a lang attribute and it matches the schema."
-metadataSchemaExtension25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension26Title = "Valid name Element With xml:lang Attribute in item Element in extension Element"
+metadataSchemaExtension26Description = "The name element in the item element in the extension element contains a xml:lang attribute and it matches the schema."
+metadataSchemaExtension26Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# valid lang
+
+metadataSchemaExtension27Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <value>Extension 1 - Item 1 - Value Without Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+metadataSchemaExtension27Title = "Valid name Element With lang Attribute in item Element in extension Element"
+metadataSchemaExtension27Description = "The name element in the item element in the extension element contains a lang attribute and it matches the schema."
+metadataSchemaExtension27Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaExtension26Metadata = """
+metadataSchemaExtension28Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2940,14 +2976,13 @@ metadataSchemaExtension26Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension26Title = "Unkown Attribute in name Element in item Element in extension Element"
-metadataSchemaExtension26Description = "The name element in the item element in the extension element contains an unkown attribute."
-metadataSchemaExtension26Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
+metadataSchemaExtension28Title = "Unkown Attribute in name Element in item Element in extension Element"
+metadataSchemaExtension28Description = "The name element in the item element in the extension element contains an unkown attribute."
+metadataSchemaExtension28Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
 
-metadataSchemaExtension27Metadata = """
+metadataSchemaExtension29Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2962,9 +2997,9 @@ metadataSchemaExtension27Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension27Title = "Child Element in name Element in item Element in extension Element"
-metadataSchemaExtension27Description = "The name element in the item element in the extension element contains a child element."
-metadataSchemaExtension27Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension29Title = "Child Element in name Element in item Element in extension Element"
+metadataSchemaExtension29Description = "The name element in the item element in the extension element contains a child element."
+metadataSchemaExtension29Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -----------------------------------------------------------
 # Metadata Display: Schema Validity: extension - item - value
@@ -2972,7 +3007,7 @@ metadataSchemaExtension27Credits = [dict(title="Tal Leming", role="author", link
 
 # valid no lang
 
-metadataSchemaExtension28Metadata = """
+metadataSchemaExtension30Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -2984,13 +3019,13 @@ metadataSchemaExtension28Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension28Title = "Valid value Element in item Element in extension Element"
-metadataSchemaExtension28Description = "The value element in the item element in the extension element matches the schema."
-metadataSchemaExtension28Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension30Title = "Valid value Element in item Element in extension Element"
+metadataSchemaExtension30Description = "The value element in the item element in the extension element matches the schema."
+metadataSchemaExtension30Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid lang
+# valid xml:lang
 
-metadataSchemaExtension29Metadata = """
+metadataSchemaExtension31Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -3002,13 +3037,31 @@ metadataSchemaExtension29Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension29Title = "Valid value Element With lang Attribute in item Element in extension Element"
-metadataSchemaExtension29Description = "The value element in the item element in the extension element contains a lang attribute and it matches the schema."
-metadataSchemaExtension29Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension31Title = "Valid value Element With xml:lang Attribute in item Element in extension Element"
+metadataSchemaExtension31Description = "The value element in the item element in the extension element contains a xml:lang attribute and it matches the schema."
+metadataSchemaExtension31Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# valid lang
+
+metadataSchemaExtension32Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <extension id="Extension 1">
+        <name>Extension 1 - Name Without Language</name>
+        <item id="Extension 1 - Item 1 ID">
+            <name>Extension 1 - Item 1 - Name Without Language</name>
+            <value xml:lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+        </item>
+    </extension>
+</metadata>
+"""
+metadataSchemaExtension32Title = "Valid value Element With lang Attribute in item Element in extension Element"
+metadataSchemaExtension32Description = "The value element in the item element in the extension element contains a lang attribute and it matches the schema."
+metadataSchemaExtension32Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaExtension30Metadata = """
+metadataSchemaExtension33Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -3020,13 +3073,13 @@ metadataSchemaExtension30Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension30Title = "Unkown Attribute in value Element in item Element in extension Element"
-metadataSchemaExtension30Description = "The value element in the item element in the extension element contains an unkown attribute."
-metadataSchemaExtension30Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension33Title = "Unkown Attribute in value Element in item Element in extension Element"
+metadataSchemaExtension33Description = "The value element in the item element in the extension element contains an unkown attribute."
+metadataSchemaExtension33Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
 
-metadataSchemaExtension31Metadata = """
+metadataSchemaExtension34Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
@@ -3041,6 +3094,6 @@ metadataSchemaExtension31Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension31Title = "Child Element in value Element in item Element in extension Element"
-metadataSchemaExtension31Description = "The value element in the item element in the extension element contains a child element."
-metadataSchemaExtension31Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaExtension34Title = "Child Element in value Element in item Element in extension Element"
+metadataSchemaExtension34Description = "The value element in the item element in the extension element contains a child element."
+metadataSchemaExtension34Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
