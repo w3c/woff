@@ -1565,7 +1565,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription4Metadata,
 )
 
-# valid two text elements no language and language
+# valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-005",
@@ -1576,7 +1576,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription5Metadata,
 )
 
-# valid two text elements language and language
+# valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-006",
@@ -1587,18 +1587,18 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription6Metadata,
 )
 
-# more than one description
+# valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-007",
     title=metadataSchemaDescription7Title,
     assertion=metadataSchemaDescription7Description,
     credits=metadataSchemaDescription7Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaDescription7Metadata,
 )
 
-# no text element
+# more than one description
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-008",
@@ -1609,7 +1609,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription8Metadata,
 )
 
-# unknown attribute
+# no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-009",
@@ -1620,7 +1620,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription9Metadata,
 )
 
-# unknown child element
+# unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-010",
@@ -1631,7 +1631,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription10Metadata,
 )
 
-# content
+# unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-011",
@@ -1642,7 +1642,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription11Metadata,
 )
 
-# text element unknown attribute
+# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-012",
@@ -1653,7 +1653,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription12Metadata,
 )
 
-# text element child element
+# text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-013",
@@ -1662,6 +1662,17 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaDescription13Credits,
     metadataIsValid=False,
     metadata=metadataSchemaDescription13Metadata,
+)
+
+# text element child element
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-014",
+    title=metadataSchemaDescription14Title,
+    assertion=metadataSchemaDescription14Description,
+    credits=metadataSchemaDescription14Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaDescription14Metadata,
 )
 
 # ------------------------------------------
@@ -1723,7 +1734,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense5Metadata,
 )
 
-# valid two text elements no language and language
+# valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-006",
@@ -1734,7 +1745,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense6Metadata,
 )
 
-# valid two text elements language and language
+# valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-007",
@@ -1745,18 +1756,18 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense7Metadata,
 )
 
-# more than one license
+# valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-008",
     title=metadataSchemaLicense8Title,
     assertion=metadataSchemaLicense8Description,
     credits=metadataSchemaLicense8Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaLicense8Metadata,
 )
 
-# no text element
+# more than one license
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-009",
@@ -1767,7 +1778,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense9Metadata,
 )
 
-# unknown attribute
+# no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-010",
@@ -1778,7 +1789,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense10Metadata,
 )
 
-# unknown child element
+# unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-011",
@@ -1789,7 +1800,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense11Metadata,
 )
 
-# content
+# unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-012",
@@ -1800,7 +1811,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense12Metadata,
 )
 
-# text element unknown attribute
+# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-013",
@@ -1811,7 +1822,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense13Metadata,
 )
 
-# text element child element
+# text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-014",
@@ -1820,6 +1831,17 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaLicense14Credits,
     metadataIsValid=False,
     metadata=metadataSchemaLicense14Metadata,
+)
+
+# text element child element
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-015",
+    title=metadataSchemaLicense15Title,
+    assertion=metadataSchemaLicense15Description,
+    credits=metadataSchemaLicense15Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaLicense15Metadata,
 )
 
 # --------------------------------------------
@@ -1848,7 +1870,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright2Metadata,
 )
 
-# valid two text elements no language and language
+# valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-003",
@@ -1859,7 +1881,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright3Metadata,
 )
 
-# valid two text elements language and language
+# valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-004",
@@ -1870,18 +1892,18 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright4Metadata,
 )
 
-# more than one copyright
+# valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-005",
     title=metadataSchemaCopyright5Title,
     assertion=metadataSchemaCopyright5Description,
     credits=metadataSchemaCopyright5Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaCopyright5Metadata,
 )
 
-# no text element
+# more than one copyright
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-006",
@@ -1892,7 +1914,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright6Metadata,
 )
 
-# unknown attribute
+# no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-007",
@@ -1903,7 +1925,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright7Metadata,
 )
 
-# unknown child element
+# unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-008",
@@ -1914,7 +1936,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright8Metadata,
 )
 
-# content
+# unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-009",
@@ -1925,7 +1947,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright9Metadata,
 )
 
-# text element unknown attribute
+# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-010",
@@ -1936,7 +1958,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright10Metadata,
 )
 
-# text element child element
+# text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-011",
@@ -1945,6 +1967,17 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaCopyright11Credits,
     metadataIsValid=False,
     metadata=metadataSchemaCopyright11Metadata,
+)
+
+# text element child element
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-012",
+    title=metadataSchemaCopyright12Title,
+    assertion=metadataSchemaCopyright12Description,
+    credits=metadataSchemaCopyright12Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaCopyright12Metadata,
 )
 
 # --------------------------------------------
@@ -1973,7 +2006,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark2Metadata,
 )
 
-# valid two text elements no language and language
+# valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-003",
@@ -1984,7 +2017,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark3Metadata,
 )
 
-# valid two text elements language and language
+# valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-004",
@@ -1995,18 +2028,18 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark4Metadata,
 )
 
-# more than one trademark
+# valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-005",
     title=metadataSchemaTrademark5Title,
     assertion=metadataSchemaTrademark5Description,
     credits=metadataSchemaTrademark5Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaTrademark5Metadata,
 )
 
-# no text element
+# more than one trademark
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-006",
@@ -2017,7 +2050,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark6Metadata,
 )
 
-# unknown attribute
+# no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-007",
@@ -2028,7 +2061,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark7Metadata,
 )
 
-# unknown child element
+# unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-008",
@@ -2039,7 +2072,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark8Metadata,
 )
 
-# content
+# unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-009",
@@ -2050,7 +2083,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark9Metadata,
 )
 
-# text element unknown attribute
+# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-010",
@@ -2061,7 +2094,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark10Metadata,
 )
 
-# text element child element
+# text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-011",
@@ -2070,6 +2103,17 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaTrademark11Credits,
     metadataIsValid=False,
     metadata=metadataSchemaTrademark11Metadata,
+)
+
+# text element child element
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-012",
+    title=metadataSchemaTrademark12Title,
+    assertion=metadataSchemaTrademark12Description,
+    credits=metadataSchemaTrademark12Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaTrademark12Metadata,
 )
 
 # -------------------------------------------

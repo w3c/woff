@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Valid trademark Element With Mixed text Element Language Tags 1</title>
+		<title>WOFF Test: Valid trademark Element With One Language Tagged (using lang) text Element</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect" />
 		<link rel="help" href="#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag." />
+		<meta name="assert" content="The trademark element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang." />
 		<style type="text/css"><![CDATA[
 			body {
 				font-family;
@@ -33,10 +33,7 @@
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;metadata version="1.0"&gt;
 	&lt;trademark&gt;
-		&lt;text&gt;
-			Trademark without language.
-		&lt;/text&gt;
-		&lt;text xml:lang="en"&gt;
+		&lt;text lang="en"&gt;
 			Trademark with "en" language.
 		&lt;/text&gt;
 	&lt;/trademark&gt;

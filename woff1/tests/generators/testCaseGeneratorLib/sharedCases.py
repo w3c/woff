@@ -1528,9 +1528,25 @@ metadataSchemaDescription4Title = "Valid description Element With One Language T
 metadataSchemaDescription4Description = "The description element matches the schema. It contains one text element that has a language tag."
 metadataSchemaDescription4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid two text elements no language and language
+# valid one text element with language using lang
 
 metadataSchemaDescription5Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text lang="en">
+            Description with "en" language.
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription5Title = "Valid description Element With One Language Tagged (using lang) text Element"
+metadataSchemaDescription5Description = "The description element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang."
+metadataSchemaDescription5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# valid two text elements no language and language
+
+metadataSchemaDescription6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
@@ -1543,13 +1559,13 @@ metadataSchemaDescription5Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription5Title = "Valid description Element With Mixed text Element Language Tags 1"
-metadataSchemaDescription5Description = "The description element matches the schema. One text element does not have a language tag. One text element has a language tag."
-metadataSchemaDescription5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription6Title = "Valid description Element With Mixed text Element Language Tags 1"
+metadataSchemaDescription6Description = "The description element matches the schema. One text element does not have a language tag. One text element has a language tag."
+metadataSchemaDescription6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid two text elements language and language
 
-metadataSchemaDescription6Metadata = """
+metadataSchemaDescription7Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
@@ -1562,13 +1578,13 @@ metadataSchemaDescription6Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription6Title = "Valid description Element With Mixed text Element Language Tags 2"
-metadataSchemaDescription6Description = "The description element matches the schema. Two text elements have a language tags."
-metadataSchemaDescription6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription7Title = "Valid description Element With Mixed text Element Language Tags 2"
+metadataSchemaDescription7Description = "The description element matches the schema. Two text elements have a language tags."
+metadataSchemaDescription7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # more than one description
 
-metadataSchemaDescription7Metadata = """
+metadataSchemaDescription8Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
@@ -1583,25 +1599,25 @@ metadataSchemaDescription7Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription7Title = "More Than One description Element"
-metadataSchemaDescription7Description = "The description element occurs more than once."
-metadataSchemaDescription7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription8Title = "More Than One description Element"
+metadataSchemaDescription8Description = "The description element occurs more than once."
+metadataSchemaDescription8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # no text element
 
-metadataSchemaDescription8Metadata = """
+metadataSchemaDescription9Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts" />
 </metadata>
 """
-metadataSchemaDescription8Title = "No text Element in description Element"
-metadataSchemaDescription8Description = "The description element does not contain a text child element."
-metadataSchemaDescription8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription9Title = "No text Element in description Element"
+metadataSchemaDescription9Description = "The description element does not contain a text child element."
+metadataSchemaDescription9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaDescription9Metadata = """
+metadataSchemaDescription10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts" unknownattribute="Text">
@@ -1611,13 +1627,13 @@ metadataSchemaDescription9Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription9Title = "Unknown Attribute in description Element"
-metadataSchemaDescription9Description = "The description element contains an unknown attribute."
-metadataSchemaDescription9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription10Title = "Unknown Attribute in description Element"
+metadataSchemaDescription10Description = "The description element contains an unknown attribute."
+metadataSchemaDescription10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown child element
 
-metadataSchemaDescription10Metadata = """
+metadataSchemaDescription11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
@@ -1628,13 +1644,13 @@ metadataSchemaDescription10Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription10Title = "Unknown Child Element in description Element"
-metadataSchemaDescription10Description = "The description element contains an unknown child element."
-metadataSchemaDescription10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription11Title = "Unknown Child Element in description Element"
+metadataSchemaDescription11Description = "The description element contains an unknown child element."
+metadataSchemaDescription11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaDescription11Metadata = """
+metadataSchemaDescription12Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
@@ -1645,13 +1661,13 @@ metadataSchemaDescription11Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription11Title = "Content in description Element"
-metadataSchemaDescription11Description = "The description element contains content."
-metadataSchemaDescription11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription12Title = "Content in description Element"
+metadataSchemaDescription12Description = "The description element contains content."
+metadataSchemaDescription12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element unknown attribute
 
-metadataSchemaDescription12Metadata = """
+metadataSchemaDescription13Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
@@ -1661,13 +1677,13 @@ metadataSchemaDescription12Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription12Title = "Unknown Attribute in description Element text Element"
-metadataSchemaDescription12Description = "The description element contains a text element with an unknown attribute."
-metadataSchemaDescription12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription13Title = "Unknown Attribute in description Element text Element"
+metadataSchemaDescription13Description = "The description element contains a text element with an unknown attribute."
+metadataSchemaDescription13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element child element
 
-metadataSchemaDescription13Metadata = """
+metadataSchemaDescription14Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
@@ -1678,9 +1694,9 @@ metadataSchemaDescription13Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription13Title = "Unknown Child Element in description Element text Element"
-metadataSchemaDescription13Description = "The description element contains a text element with an unknown child element."
-metadataSchemaDescription13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaDescription14Title = "Unknown Child Element in description Element text Element"
+metadataSchemaDescription14Description = "The description element contains a text element with an unknown child element."
+metadataSchemaDescription14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ------------------------------------------
 # Metadata Display: Schema Validity: license
@@ -1766,9 +1782,25 @@ metadataSchemaLicense5Title = "Valid license Element With One Language Tagged te
 metadataSchemaLicense5Description = "The license element matches the schema. It contains one text element that has a language tag."
 metadataSchemaLicense5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid two text elements no language and language
+# valid one text element with language
 
 metadataSchemaLicense6Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts" id="License ID">
+        <text lang="en">
+            License with "en" language.
+        </text>
+    </license>
+</metadata>
+"""
+metadataSchemaLicense6Title = "Valid license Element With One Language Tagged (using lang) text Element"
+metadataSchemaLicense6Description = "The license element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang."
+metadataSchemaLicense6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# valid two text elements no language and language
+
+metadataSchemaLicense7Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
@@ -1781,13 +1813,13 @@ metadataSchemaLicense6Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense6Title = "Valid license Element With Mixed text Element Language Tags 1"
-metadataSchemaLicense6Description = "The license element matches the schema. One text element does not have a language tag. One text element has a language tag."
-metadataSchemaLicense6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense7Title = "Valid license Element With Mixed text Element Language Tags 1"
+metadataSchemaLicense7Description = "The license element matches the schema. One text element does not have a language tag. One text element has a language tag."
+metadataSchemaLicense7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid two text elements language and language
 
-metadataSchemaLicense7Metadata = """
+metadataSchemaLicense8Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
@@ -1800,13 +1832,13 @@ metadataSchemaLicense7Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense7Title = "Valid license Element With Mixed text Element Language Tags 2"
-metadataSchemaLicense7Description = "The license element matches the schema. Two text elements have a language tags."
-metadataSchemaLicense7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense8Title = "Valid license Element With Mixed text Element Language Tags 2"
+metadataSchemaLicense8Description = "The license element matches the schema. Two text elements have a language tags."
+metadataSchemaLicense8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # more than one license
 
-metadataSchemaLicense8Metadata = """
+metadataSchemaLicense9Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
@@ -1821,25 +1853,25 @@ metadataSchemaLicense8Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense8Title = "More Than One license Element"
-metadataSchemaLicense8Description = "The license element occurs more than once."
-metadataSchemaLicense8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense9Title = "More Than One license Element"
+metadataSchemaLicense9Description = "The license element occurs more than once."
+metadataSchemaLicense9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # no text element
 
-metadataSchemaLicense9Metadata = """
+metadataSchemaLicense10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID" />
 </metadata>
 """
-metadataSchemaLicense9Title = "No text Element in license Element"
-metadataSchemaLicense9Description = "The license element does not contain a text child element."
-metadataSchemaLicense9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense10Title = "No text Element in license Element"
+metadataSchemaLicense10Description = "The license element does not contain a text child element."
+metadataSchemaLicense10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaLicense10Metadata = """
+metadataSchemaLicense11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID" unknownattribute="Text">
@@ -1849,13 +1881,13 @@ metadataSchemaLicense10Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense10Title = "Unknown Attribute in license Element"
-metadataSchemaLicense10Description = "The license element contains an unknown attribute."
-metadataSchemaLicense10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense11Title = "Unknown Attribute in license Element"
+metadataSchemaLicense11Description = "The license element contains an unknown attribute."
+metadataSchemaLicense11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown child element
 
-metadataSchemaLicense11Metadata = """
+metadataSchemaLicense12Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
@@ -1866,13 +1898,13 @@ metadataSchemaLicense11Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense11Title = "Unknown Child Element in license Element"
-metadataSchemaLicense11Description = "The license element contains an unknown child element."
-metadataSchemaLicense11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense12Title = "Unknown Child Element in license Element"
+metadataSchemaLicense12Description = "The license element contains an unknown child element."
+metadataSchemaLicense12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaLicense12Metadata = """
+metadataSchemaLicense13Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
@@ -1883,13 +1915,13 @@ metadataSchemaLicense12Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense12Title = "Content in license Element"
-metadataSchemaLicense12Description = "The license element contains content."
-metadataSchemaLicense12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense13Title = "Content in license Element"
+metadataSchemaLicense13Description = "The license element contains content."
+metadataSchemaLicense13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element unknown attribute
 
-metadataSchemaLicense13Metadata = """
+metadataSchemaLicense14Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
@@ -1899,13 +1931,13 @@ metadataSchemaLicense13Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense13Title = "Unknown Attribute in license Element text Element"
-metadataSchemaLicense13Description = "The license element contains a text element with an unknown attribute."
-metadataSchemaLicense13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense14Title = "Unknown Attribute in license Element text Element"
+metadataSchemaLicense14Description = "The license element contains a text element with an unknown attribute."
+metadataSchemaLicense14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element child element
 
-metadataSchemaLicense14Metadata = """
+metadataSchemaLicense15Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
@@ -1916,9 +1948,9 @@ metadataSchemaLicense14Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense14Title = "Unknown Child Element in license Element text Element"
-metadataSchemaLicense14Description = "The license element contains a text element with an unknown child element."
-metadataSchemaLicense14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense15Title = "Unknown Child Element in license Element text Element"
+metadataSchemaLicense15Description = "The license element contains a text element with an unknown child element."
+metadataSchemaLicense15Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # --------------------------------------------
 # Metadata Display: Schema Validity: copyright
@@ -1956,9 +1988,25 @@ metadataSchemaCopyright2Title = "Valid copyright Element With One Language Tagge
 metadataSchemaCopyright2Description = "The copyright element matches the schema. It contains one text element that has a language tag."
 metadataSchemaCopyright2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid two text elements no language and language
+# valid one text element with language using lang
 
 metadataSchemaCopyright3Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text lang="en">
+            Copyright with "en" language.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright3Title = "Valid copyright Element With One Language Tagged (using lang) text Element"
+metadataSchemaCopyright3Description = "The copyright element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang."
+metadataSchemaCopyright3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# valid two text elements no language and language
+
+metadataSchemaCopyright4Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -1971,13 +2019,13 @@ metadataSchemaCopyright3Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright3Title = "Valid copyright Element With Mixed text Element Language Tags 1"
-metadataSchemaCopyright3Description = "The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag."
-metadataSchemaCopyright3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright4Title = "Valid copyright Element With Mixed text Element Language Tags 1"
+metadataSchemaCopyright4Description = "The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag."
+metadataSchemaCopyright4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid two text elements language and language
 
-metadataSchemaCopyright4Metadata = """
+metadataSchemaCopyright5Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -1990,13 +2038,13 @@ metadataSchemaCopyright4Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright4Title = "Valid copyright Element With Mixed text Element Language Tags 2"
-metadataSchemaCopyright4Description = "The copyright element matches the schema. Two text elements have a language tags."
-metadataSchemaCopyright4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright5Title = "Valid copyright Element With Mixed text Element Language Tags 2"
+metadataSchemaCopyright5Description = "The copyright element matches the schema. Two text elements have a language tags."
+metadataSchemaCopyright5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # more than one copyright
 
-metadataSchemaCopyright5Metadata = """
+metadataSchemaCopyright6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -2011,25 +2059,25 @@ metadataSchemaCopyright5Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright5Title = "More Than One copyright Element"
-metadataSchemaCopyright5Description = "The copyright element occurs more than once."
-metadataSchemaCopyright5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright6Title = "More Than One copyright Element"
+metadataSchemaCopyright6Description = "The copyright element occurs more than once."
+metadataSchemaCopyright6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # no text element
 
-metadataSchemaCopyright6Metadata = """
+metadataSchemaCopyright7Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright />
 </metadata>
 """
-metadataSchemaCopyright6Title = "No text Element in copyright Element"
-metadataSchemaCopyright6Description = "The copyright element does not contain a text child element."
-metadataSchemaCopyright6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright7Title = "No text Element in copyright Element"
+metadataSchemaCopyright7Description = "The copyright element does not contain a text child element."
+metadataSchemaCopyright7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaCopyright7Metadata = """
+metadataSchemaCopyright8Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright unknownattribute="Text">
@@ -2039,13 +2087,13 @@ metadataSchemaCopyright7Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright7Title = "Unknown Attribute in copyright Element"
-metadataSchemaCopyright7Description = "The copyright element contains an unknown attribute."
-metadataSchemaCopyright7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright8Title = "Unknown Attribute in copyright Element"
+metadataSchemaCopyright8Description = "The copyright element contains an unknown attribute."
+metadataSchemaCopyright8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown child element
 
-metadataSchemaCopyright8Metadata = """
+metadataSchemaCopyright9Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -2056,13 +2104,13 @@ metadataSchemaCopyright8Metadata = """
     <unknown attribute="Text" />
 </metadata>
 """
-metadataSchemaCopyright8Title = "Unknown Child Element in copyright Element"
-metadataSchemaCopyright8Description = "The copyright element contains an unknown child element."
-metadataSchemaCopyright8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright9Title = "Unknown Child Element in copyright Element"
+metadataSchemaCopyright9Description = "The copyright element contains an unknown child element."
+metadataSchemaCopyright9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaCopyright9Metadata = """
+metadataSchemaCopyright10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -2073,13 +2121,13 @@ metadataSchemaCopyright9Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright9Title = "Content in copyright Element"
-metadataSchemaCopyright9Description = "The copyright element contains content."
-metadataSchemaCopyright9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright10Title = "Content in copyright Element"
+metadataSchemaCopyright10Description = "The copyright element contains content."
+metadataSchemaCopyright10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element unknown attribute
 
-metadataSchemaCopyright10Metadata = """
+metadataSchemaCopyright11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -2089,13 +2137,13 @@ metadataSchemaCopyright10Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright10Title = "Unknown Attribute in copyright Element text Element"
-metadataSchemaCopyright10Description = "The copyright element contains a text element with an unknown attribute."
-metadataSchemaCopyright10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright11Title = "Unknown Attribute in copyright Element text Element"
+metadataSchemaCopyright11Description = "The copyright element contains a text element with an unknown attribute."
+metadataSchemaCopyright11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element child element
 
-metadataSchemaCopyright11Metadata = """
+metadataSchemaCopyright12Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -2106,9 +2154,9 @@ metadataSchemaCopyright11Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright11Title = "Unknown Child Element in copyright Element text Element"
-metadataSchemaCopyright11Description = "The copyright element contains a text element with an unknown child element."
-metadataSchemaCopyright11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright12Title = "Unknown Child Element in copyright Element text Element"
+metadataSchemaCopyright12Description = "The copyright element contains a text element with an unknown child element."
+metadataSchemaCopyright12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # --------------------------------------------
 # Metadata Display: Schema Validity: trademark
@@ -2146,9 +2194,25 @@ metadataSchemaTrademark2Title = "Valid trademark Element With One Language Tagge
 metadataSchemaTrademark2Description = "The trademark element matches the schema. It contains one text element that has a language tag."
 metadataSchemaTrademark2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid two text elements no language and language
+# valid one text element with language using lang
 
 metadataSchemaTrademark3Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark>
+        <text lang="en">
+            Trademark with "en" language.
+        </text>
+    </trademark>
+</metadata>
+"""
+metadataSchemaTrademark3Title = "Valid trademark Element With One Language Tagged (using lang) text Element"
+metadataSchemaTrademark3Description = "The trademark element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang."
+metadataSchemaTrademark3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# valid two text elements no language and language
+
+metadataSchemaTrademark4Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
@@ -2161,13 +2225,13 @@ metadataSchemaTrademark3Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark3Title = "Valid trademark Element With Mixed text Element Language Tags 1"
-metadataSchemaTrademark3Description = "The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag."
-metadataSchemaTrademark3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark4Title = "Valid trademark Element With Mixed text Element Language Tags 1"
+metadataSchemaTrademark4Description = "The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag."
+metadataSchemaTrademark4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid two text elements language and language
 
-metadataSchemaTrademark4Metadata = """
+metadataSchemaTrademark5Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
@@ -2180,13 +2244,13 @@ metadataSchemaTrademark4Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark4Title = "Valid trademark Element With Mixed text Element Language Tags 2"
-metadataSchemaTrademark4Description = "The trademark element matches the schema. Two text elements have a language tags."
-metadataSchemaTrademark4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark5Title = "Valid trademark Element With Mixed text Element Language Tags 2"
+metadataSchemaTrademark5Description = "The trademark element matches the schema. Two text elements have a language tags."
+metadataSchemaTrademark5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # more than one trademark
 
-metadataSchemaTrademark5Metadata = """
+metadataSchemaTrademark6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
@@ -2201,25 +2265,25 @@ metadataSchemaTrademark5Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark5Title = "More Than One trademark Element"
-metadataSchemaTrademark5Description = "The trademark element occurs more than once."
-metadataSchemaTrademark5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark6Title = "More Than One trademark Element"
+metadataSchemaTrademark6Description = "The trademark element occurs more than once."
+metadataSchemaTrademark6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # no text element
 
-metadataSchemaTrademark6Metadata = """
+metadataSchemaTrademark7Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark />
 </metadata>
 """
-metadataSchemaTrademark6Title = "No text Element in trademark Element"
-metadataSchemaTrademark6Description = "The trademark element does not contain a text child element."
-metadataSchemaTrademark6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark7Title = "No text Element in trademark Element"
+metadataSchemaTrademark7Description = "The trademark element does not contain a text child element."
+metadataSchemaTrademark7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaTrademark7Metadata = """
+metadataSchemaTrademark8Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark unknownattribute="Text">
@@ -2229,13 +2293,13 @@ metadataSchemaTrademark7Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark7Title = "Unknown Attribute in trademark Element"
-metadataSchemaTrademark7Description = "The trademark element contains an unknown attribute."
-metadataSchemaTrademark7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark8Title = "Unknown Attribute in trademark Element"
+metadataSchemaTrademark8Description = "The trademark element contains an unknown attribute."
+metadataSchemaTrademark8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown child element
 
-metadataSchemaTrademark8Metadata = """
+metadataSchemaTrademark9Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
@@ -2246,13 +2310,13 @@ metadataSchemaTrademark8Metadata = """
     <unknown attribute="Text" />
 </metadata>
 """
-metadataSchemaTrademark8Title = "Unknown Child Element in trademark Element"
-metadataSchemaTrademark8Description = "The trademark element contains an unknown child element."
-metadataSchemaTrademark8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark9Title = "Unknown Child Element in trademark Element"
+metadataSchemaTrademark9Description = "The trademark element contains an unknown child element."
+metadataSchemaTrademark9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaTrademark9Metadata = """
+metadataSchemaTrademark10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
@@ -2263,13 +2327,13 @@ metadataSchemaTrademark9Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark9Title = "Content in trademark Element"
-metadataSchemaTrademark9Description = "The trademark element contains content."
-metadataSchemaTrademark9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark10Title = "Content in trademark Element"
+metadataSchemaTrademark10Description = "The trademark element contains content."
+metadataSchemaTrademark10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element unknown attribute
 
-metadataSchemaTrademark10Metadata = """
+metadataSchemaTrademark11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
@@ -2279,13 +2343,13 @@ metadataSchemaTrademark10Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark10Title = "Unknown Attribute in trademark Element text Element"
-metadataSchemaTrademark10Description = "The trademark element contains a text element with an unknown attribute."
-metadataSchemaTrademark10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark11Title = "Unknown Attribute in trademark Element text Element"
+metadataSchemaTrademark11Description = "The trademark element contains a text element with an unknown attribute."
+metadataSchemaTrademark11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element child element
 
-metadataSchemaTrademark11Metadata = """
+metadataSchemaTrademark12Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
@@ -2296,9 +2360,9 @@ metadataSchemaTrademark11Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark11Title = "Unknown Child Element in trademark Element text Element"
-metadataSchemaTrademark11Description = "The trademark element contains a text element with an unknown child element."
-metadataSchemaTrademark11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark12Title = "Unknown Child Element in trademark Element text Element"
+metadataSchemaTrademark12Description = "The trademark element contains a text element with an unknown child element."
+metadataSchemaTrademark12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -------------------------------------------
 # Metadata Display: Schema Validity: uniqueid

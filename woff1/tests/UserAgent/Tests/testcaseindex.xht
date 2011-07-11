@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (181 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (185 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -1611,8 +1611,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-005">metadatadisplay-schema-description-005</a>: Valid description Element With Mixed text Element Language Tags 1</h3>
-				<p>The description element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadatadisplay-schema-description-005">metadatadisplay-schema-description-005</a>: Valid description Element With One Language Tagged (using lang) text Element</h3>
+				<p>The description element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1627,8 +1627,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-006">metadatadisplay-schema-description-006</a>: Valid description Element With Mixed text Element Language Tags 2</h3>
-				<p>The description element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadatadisplay-schema-description-006">metadatadisplay-schema-description-006</a>: Valid description Element With Mixed text Element Language Tags 1</h3>
+				<p>The description element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1643,8 +1643,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-007">metadatadisplay-schema-description-007</a>: More Than One description Element</h3>
-				<p>The description element occurs more than once.</p>
+				<h3><a href="#metadatadisplay-schema-description-007">metadatadisplay-schema-description-007</a>: Valid description Element With Mixed text Element Language Tags 2</h3>
+				<p>The description element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1653,14 +1653,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-008">metadatadisplay-schema-description-008</a>: No text Element in description Element</h3>
-				<p>The description element does not contain a text child element.</p>
+				<h3><a href="#metadatadisplay-schema-description-008">metadatadisplay-schema-description-008</a>: More Than One description Element</h3>
+				<p>The description element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1675,8 +1675,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-009">metadatadisplay-schema-description-009</a>: Unknown Attribute in description Element</h3>
-				<p>The description element contains an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-description-009">metadatadisplay-schema-description-009</a>: No text Element in description Element</h3>
+				<p>The description element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1691,8 +1691,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-010">metadatadisplay-schema-description-010</a>: Unknown Child Element in description Element</h3>
-				<p>The description element contains an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-description-010">metadatadisplay-schema-description-010</a>: Unknown Attribute in description Element</h3>
+				<p>The description element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1707,8 +1707,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-011">metadatadisplay-schema-description-011</a>: Content in description Element</h3>
-				<p>The description element contains content.</p>
+				<h3><a href="#metadatadisplay-schema-description-011">metadatadisplay-schema-description-011</a>: Unknown Child Element in description Element</h3>
+				<p>The description element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1723,8 +1723,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-012">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-012">metadatadisplay-schema-description-012</a>: Unknown Attribute in description Element text Element</h3>
-				<p>The description element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-description-012">metadatadisplay-schema-description-012</a>: Content in description Element</h3>
+				<p>The description element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1739,13 +1739,29 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-description-013">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-description-013">metadatadisplay-schema-description-013</a>: Unknown Child Element in description Element text Element</h3>
-				<p>The description element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-description-013">metadatadisplay-schema-description-013</a>: Unknown Attribute in description Element text Element</h3>
+				<p>The description element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-description-013.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-description-013-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-014">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-014">metadatadisplay-schema-description-014</a>: Unknown Child Element in description Element text Element</h3>
+				<p>The description element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-014.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-014-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
@@ -1835,8 +1851,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-006">metadatadisplay-schema-license-006</a>: Valid license Element With Mixed text Element Language Tags 1</h3>
-				<p>The license element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadatadisplay-schema-license-006">metadatadisplay-schema-license-006</a>: Valid license Element With One Language Tagged (using lang) text Element</h3>
+				<p>The license element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1851,8 +1867,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-007">metadatadisplay-schema-license-007</a>: Valid license Element With Mixed text Element Language Tags 2</h3>
-				<p>The license element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadatadisplay-schema-license-007">metadatadisplay-schema-license-007</a>: Valid license Element With Mixed text Element Language Tags 1</h3>
+				<p>The license element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1867,8 +1883,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-008">metadatadisplay-schema-license-008</a>: More Than One license Element</h3>
-				<p>The license element occurs more than once.</p>
+				<h3><a href="#metadatadisplay-schema-license-008">metadatadisplay-schema-license-008</a>: Valid license Element With Mixed text Element Language Tags 2</h3>
+				<p>The license element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1877,14 +1893,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-009">metadatadisplay-schema-license-009</a>: No text Element in license Element</h3>
-				<p>The license element does not contain a text child element.</p>
+				<h3><a href="#metadatadisplay-schema-license-009">metadatadisplay-schema-license-009</a>: More Than One license Element</h3>
+				<p>The license element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1899,8 +1915,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-010">metadatadisplay-schema-license-010</a>: Unknown Attribute in license Element</h3>
-				<p>The license element contains an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-license-010">metadatadisplay-schema-license-010</a>: No text Element in license Element</h3>
+				<p>The license element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1915,8 +1931,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-011">metadatadisplay-schema-license-011</a>: Unknown Child Element in license Element</h3>
-				<p>The license element contains an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-license-011">metadatadisplay-schema-license-011</a>: Unknown Attribute in license Element</h3>
+				<p>The license element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1931,8 +1947,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-012">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-012">metadatadisplay-schema-license-012</a>: Content in license Element</h3>
-				<p>The license element contains content.</p>
+				<h3><a href="#metadatadisplay-schema-license-012">metadatadisplay-schema-license-012</a>: Unknown Child Element in license Element</h3>
+				<p>The license element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1947,8 +1963,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-013">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-013">metadatadisplay-schema-license-013</a>: Unknown Attribute in license Element text Element</h3>
-				<p>The license element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-license-013">metadatadisplay-schema-license-013</a>: Content in license Element</h3>
+				<p>The license element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1963,13 +1979,29 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-license-014">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-license-014">metadatadisplay-schema-license-014</a>: Unknown Child Element in license Element text Element</h3>
-				<p>The license element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-license-014">metadatadisplay-schema-license-014</a>: Unknown Attribute in license Element text Element</h3>
+				<p>The license element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-license-014.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-license-014-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-license-015">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-license-015">metadatadisplay-schema-license-015</a>: Unknown Child Element in license Element text Element</h3>
+				<p>The license element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-license-015.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-license-015-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
@@ -2011,8 +2043,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-003">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-003">metadatadisplay-schema-copyright-003</a>: Valid copyright Element With Mixed text Element Language Tags 1</h3>
-				<p>The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-003">metadatadisplay-schema-copyright-003</a>: Valid copyright Element With One Language Tagged (using lang) text Element</h3>
+				<p>The copyright element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2027,8 +2059,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-004">metadatadisplay-schema-copyright-004</a>: Valid copyright Element With Mixed text Element Language Tags 2</h3>
-				<p>The copyright element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-004">metadatadisplay-schema-copyright-004</a>: Valid copyright Element With Mixed text Element Language Tags 1</h3>
+				<p>The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2043,8 +2075,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-005">metadatadisplay-schema-copyright-005</a>: More Than One copyright Element</h3>
-				<p>The copyright element occurs more than once.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-005">metadatadisplay-schema-copyright-005</a>: Valid copyright Element With Mixed text Element Language Tags 2</h3>
+				<p>The copyright element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2053,14 +2085,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-006">metadatadisplay-schema-copyright-006</a>: No text Element in copyright Element</h3>
-				<p>The copyright element does not contain a text child element.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-006">metadatadisplay-schema-copyright-006</a>: More Than One copyright Element</h3>
+				<p>The copyright element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2075,8 +2107,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-007">metadatadisplay-schema-copyright-007</a>: Unknown Attribute in copyright Element</h3>
-				<p>The copyright element contains an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-007">metadatadisplay-schema-copyright-007</a>: No text Element in copyright Element</h3>
+				<p>The copyright element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2091,8 +2123,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-008">metadatadisplay-schema-copyright-008</a>: Unknown Child Element in copyright Element</h3>
-				<p>The copyright element contains an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-008">metadatadisplay-schema-copyright-008</a>: Unknown Attribute in copyright Element</h3>
+				<p>The copyright element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2107,8 +2139,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-009">metadatadisplay-schema-copyright-009</a>: Content in copyright Element</h3>
-				<p>The copyright element contains content.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-009">metadatadisplay-schema-copyright-009</a>: Unknown Child Element in copyright Element</h3>
+				<p>The copyright element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2123,8 +2155,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-010">metadatadisplay-schema-copyright-010</a>: Unknown Attribute in copyright Element text Element</h3>
-				<p>The copyright element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-010">metadatadisplay-schema-copyright-010</a>: Content in copyright Element</h3>
+				<p>The copyright element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2139,13 +2171,29 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-copyright-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-copyright-011">metadatadisplay-schema-copyright-011</a>: Unknown Child Element in copyright Element text Element</h3>
-				<p>The copyright element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-copyright-011">metadatadisplay-schema-copyright-011</a>: Unknown Attribute in copyright Element text Element</h3>
+				<p>The copyright element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-copyright-011.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-copyright-011-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-copyright-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-copyright-012">metadatadisplay-schema-copyright-012</a>: Unknown Child Element in copyright Element text Element</h3>
+				<p>The copyright element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-copyright-012.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-copyright-012-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
@@ -2187,8 +2235,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-003">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-003">metadatadisplay-schema-trademark-003</a>: Valid trademark Element With Mixed text Element Language Tags 1</h3>
-				<p>The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-003">metadatadisplay-schema-trademark-003</a>: Valid trademark Element With One Language Tagged (using lang) text Element</h3>
+				<p>The trademark element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2203,8 +2251,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-004">metadatadisplay-schema-trademark-004</a>: Valid trademark Element With Mixed text Element Language Tags 2</h3>
-				<p>The trademark element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-004">metadatadisplay-schema-trademark-004</a>: Valid trademark Element With Mixed text Element Language Tags 1</h3>
+				<p>The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2219,8 +2267,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-005">metadatadisplay-schema-trademark-005</a>: More Than One trademark Element</h3>
-				<p>The trademark element occurs more than once.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-005">metadatadisplay-schema-trademark-005</a>: Valid trademark Element With Mixed text Element Language Tags 2</h3>
+				<p>The trademark element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2229,14 +2277,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-006">metadatadisplay-schema-trademark-006</a>: No text Element in trademark Element</h3>
-				<p>The trademark element does not contain a text child element.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-006">metadatadisplay-schema-trademark-006</a>: More Than One trademark Element</h3>
+				<p>The trademark element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2251,8 +2299,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-007">metadatadisplay-schema-trademark-007</a>: Unknown Attribute in trademark Element</h3>
-				<p>The trademark element contains an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-007">metadatadisplay-schema-trademark-007</a>: No text Element in trademark Element</h3>
+				<p>The trademark element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2267,8 +2315,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-008">metadatadisplay-schema-trademark-008</a>: Unknown Child Element in trademark Element</h3>
-				<p>The trademark element contains an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-008">metadatadisplay-schema-trademark-008</a>: Unknown Attribute in trademark Element</h3>
+				<p>The trademark element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2283,8 +2331,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-009">metadatadisplay-schema-trademark-009</a>: Content in trademark Element</h3>
-				<p>The trademark element contains content.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-009">metadatadisplay-schema-trademark-009</a>: Unknown Child Element in trademark Element</h3>
+				<p>The trademark element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2299,8 +2347,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-010">metadatadisplay-schema-trademark-010</a>: Unknown Attribute in trademark Element text Element</h3>
-				<p>The trademark element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-010">metadatadisplay-schema-trademark-010</a>: Content in trademark Element</h3>
+				<p>The trademark element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -2315,13 +2363,29 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-trademark-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-trademark-011">metadatadisplay-schema-trademark-011</a>: Unknown Child Element in trademark Element text Element</h3>
-				<p>The trademark element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-trademark-011">metadatadisplay-schema-trademark-011</a>: Unknown Attribute in trademark Element text Element</h3>
+				<p>The trademark element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-trademark-011.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-trademark-011-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-trademark-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-trademark-012">metadatadisplay-schema-trademark-012</a>: Unknown Child Element in trademark Element text Element</h3>
+				<p>The trademark element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-trademark-012.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-trademark-012-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>

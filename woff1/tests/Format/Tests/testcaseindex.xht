@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (193 tests)</h1>
+		<h1>WOFF: Format Test Suite (197 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -1112,8 +1112,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-005">metadata-schema-description-005</a>: Valid description Element With Mixed text Element Language Tags 1</h3>
-				<p>The description element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadata-schema-description-005">metadata-schema-description-005</a>: Valid description Element With One Language Tagged (using lang) text Element</h3>
+				<p>The description element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-005-validity">Yes</span></p>
@@ -1122,8 +1122,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-006">metadata-schema-description-006</a>: Valid description Element With Mixed text Element Language Tags 2</h3>
-				<p>The description element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadata-schema-description-006">metadata-schema-description-006</a>: Valid description Element With Mixed text Element Language Tags 1</h3>
+				<p>The description element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-006-validity">Yes</span></p>
@@ -1132,18 +1132,18 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-007">metadata-schema-description-007</a>: More Than One description Element</h3>
-				<p>The description element occurs more than once.</p>
+				<h3><a href="#metadata-schema-description-007">metadata-schema-description-007</a>: Valid description Element With Mixed text Element Language Tags 2</h3>
+				<p>The description element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-description-007-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-description-007-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-description-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-008">metadata-schema-description-008</a>: No text Element in description Element</h3>
-				<p>The description element does not contain a text child element.</p>
+				<h3><a href="#metadata-schema-description-008">metadata-schema-description-008</a>: More Than One description Element</h3>
+				<p>The description element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-008-validity">No</span></p>
@@ -1152,8 +1152,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-009">metadata-schema-description-009</a>: Unknown Attribute in description Element</h3>
-				<p>The description element contains an unknown attribute.</p>
+				<h3><a href="#metadata-schema-description-009">metadata-schema-description-009</a>: No text Element in description Element</h3>
+				<p>The description element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-009-validity">No</span></p>
@@ -1162,8 +1162,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-010">metadata-schema-description-010</a>: Unknown Child Element in description Element</h3>
-				<p>The description element contains an unknown child element.</p>
+				<h3><a href="#metadata-schema-description-010">metadata-schema-description-010</a>: Unknown Attribute in description Element</h3>
+				<p>The description element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-010-validity">No</span></p>
@@ -1172,8 +1172,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-011">metadata-schema-description-011</a>: Content in description Element</h3>
-				<p>The description element contains content.</p>
+				<h3><a href="#metadata-schema-description-011">metadata-schema-description-011</a>: Unknown Child Element in description Element</h3>
+				<p>The description element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-011-validity">No</span></p>
@@ -1182,8 +1182,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-012">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-012">metadata-schema-description-012</a>: Unknown Attribute in description Element text Element</h3>
-				<p>The description element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadata-schema-description-012">metadata-schema-description-012</a>: Content in description Element</h3>
+				<p>The description element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-012-validity">No</span></p>
@@ -1192,11 +1192,21 @@
 		</div>
 		<div class="testCase" id="metadata-schema-description-013">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-description-013">metadata-schema-description-013</a>: Unknown Child Element in description Element text Element</h3>
-				<p>The description element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadata-schema-description-013">metadata-schema-description-013</a>: Unknown Attribute in description Element text Element</h3>
+				<p>The description element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-013-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-014">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-014">metadata-schema-description-014</a>: Unknown Child Element in description Element text Element</h3>
+				<p>The description element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-014-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
@@ -1252,8 +1262,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-006">metadata-schema-license-006</a>: Valid license Element With Mixed text Element Language Tags 1</h3>
-				<p>The license element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadata-schema-license-006">metadata-schema-license-006</a>: Valid license Element With One Language Tagged (using lang) text Element</h3>
+				<p>The license element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-006-validity">Yes</span></p>
@@ -1262,8 +1272,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-007">metadata-schema-license-007</a>: Valid license Element With Mixed text Element Language Tags 2</h3>
-				<p>The license element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadata-schema-license-007">metadata-schema-license-007</a>: Valid license Element With Mixed text Element Language Tags 1</h3>
+				<p>The license element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-007-validity">Yes</span></p>
@@ -1272,18 +1282,18 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-008">metadata-schema-license-008</a>: More Than One license Element</h3>
-				<p>The license element occurs more than once.</p>
+				<h3><a href="#metadata-schema-license-008">metadata-schema-license-008</a>: Valid license Element With Mixed text Element Language Tags 2</h3>
+				<p>The license element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-license-008-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-license-008-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-license-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-009">metadata-schema-license-009</a>: No text Element in license Element</h3>
-				<p>The license element does not contain a text child element.</p>
+				<h3><a href="#metadata-schema-license-009">metadata-schema-license-009</a>: More Than One license Element</h3>
+				<p>The license element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-009-validity">No</span></p>
@@ -1292,8 +1302,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-010">metadata-schema-license-010</a>: Unknown Attribute in license Element</h3>
-				<p>The license element contains an unknown attribute.</p>
+				<h3><a href="#metadata-schema-license-010">metadata-schema-license-010</a>: No text Element in license Element</h3>
+				<p>The license element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-010-validity">No</span></p>
@@ -1302,8 +1312,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-011">metadata-schema-license-011</a>: Unknown Child Element in license Element</h3>
-				<p>The license element contains an unknown child element.</p>
+				<h3><a href="#metadata-schema-license-011">metadata-schema-license-011</a>: Unknown Attribute in license Element</h3>
+				<p>The license element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-011-validity">No</span></p>
@@ -1312,8 +1322,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-012">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-012">metadata-schema-license-012</a>: Content in license Element</h3>
-				<p>The license element contains content.</p>
+				<h3><a href="#metadata-schema-license-012">metadata-schema-license-012</a>: Unknown Child Element in license Element</h3>
+				<p>The license element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-012-validity">No</span></p>
@@ -1322,8 +1332,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-013">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-013">metadata-schema-license-013</a>: Unknown Attribute in license Element text Element</h3>
-				<p>The license element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadata-schema-license-013">metadata-schema-license-013</a>: Content in license Element</h3>
+				<p>The license element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-013-validity">No</span></p>
@@ -1332,11 +1342,21 @@
 		</div>
 		<div class="testCase" id="metadata-schema-license-014">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-license-014">metadata-schema-license-014</a>: Unknown Child Element in license Element text Element</h3>
-				<p>The license element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadata-schema-license-014">metadata-schema-license-014</a>: Unknown Attribute in license Element text Element</h3>
+				<p>The license element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-license-014-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-license-015">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-license-015">metadata-schema-license-015</a>: Unknown Child Element in license Element text Element</h3>
+				<p>The license element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-license-015-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
@@ -1362,8 +1382,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-003">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-003">metadata-schema-copyright-003</a>: Valid copyright Element With Mixed text Element Language Tags 1</h3>
-				<p>The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadata-schema-copyright-003">metadata-schema-copyright-003</a>: Valid copyright Element With One Language Tagged (using lang) text Element</h3>
+				<p>The copyright element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-003-validity">Yes</span></p>
@@ -1372,8 +1392,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-004">metadata-schema-copyright-004</a>: Valid copyright Element With Mixed text Element Language Tags 2</h3>
-				<p>The copyright element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadata-schema-copyright-004">metadata-schema-copyright-004</a>: Valid copyright Element With Mixed text Element Language Tags 1</h3>
+				<p>The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-004-validity">Yes</span></p>
@@ -1382,18 +1402,18 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-005">metadata-schema-copyright-005</a>: More Than One copyright Element</h3>
-				<p>The copyright element occurs more than once.</p>
+				<h3><a href="#metadata-schema-copyright-005">metadata-schema-copyright-005</a>: Valid copyright Element With Mixed text Element Language Tags 2</h3>
+				<p>The copyright element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-copyright-005-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-copyright-005-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-006">metadata-schema-copyright-006</a>: No text Element in copyright Element</h3>
-				<p>The copyright element does not contain a text child element.</p>
+				<h3><a href="#metadata-schema-copyright-006">metadata-schema-copyright-006</a>: More Than One copyright Element</h3>
+				<p>The copyright element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-006-validity">No</span></p>
@@ -1402,8 +1422,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-007">metadata-schema-copyright-007</a>: Unknown Attribute in copyright Element</h3>
-				<p>The copyright element contains an unknown attribute.</p>
+				<h3><a href="#metadata-schema-copyright-007">metadata-schema-copyright-007</a>: No text Element in copyright Element</h3>
+				<p>The copyright element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-007-validity">No</span></p>
@@ -1412,8 +1432,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-008">metadata-schema-copyright-008</a>: Unknown Child Element in copyright Element</h3>
-				<p>The copyright element contains an unknown child element.</p>
+				<h3><a href="#metadata-schema-copyright-008">metadata-schema-copyright-008</a>: Unknown Attribute in copyright Element</h3>
+				<p>The copyright element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-008-validity">No</span></p>
@@ -1422,8 +1442,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-009">metadata-schema-copyright-009</a>: Content in copyright Element</h3>
-				<p>The copyright element contains content.</p>
+				<h3><a href="#metadata-schema-copyright-009">metadata-schema-copyright-009</a>: Unknown Child Element in copyright Element</h3>
+				<p>The copyright element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-009-validity">No</span></p>
@@ -1432,8 +1452,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-010">metadata-schema-copyright-010</a>: Unknown Attribute in copyright Element text Element</h3>
-				<p>The copyright element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadata-schema-copyright-010">metadata-schema-copyright-010</a>: Content in copyright Element</h3>
+				<p>The copyright element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-010-validity">No</span></p>
@@ -1442,11 +1462,21 @@
 		</div>
 		<div class="testCase" id="metadata-schema-copyright-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-copyright-011">metadata-schema-copyright-011</a>: Unknown Child Element in copyright Element text Element</h3>
-				<p>The copyright element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadata-schema-copyright-011">metadata-schema-copyright-011</a>: Unknown Attribute in copyright Element text Element</h3>
+				<p>The copyright element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-copyright-011-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-copyright-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-copyright-012">metadata-schema-copyright-012</a>: Unknown Child Element in copyright Element text Element</h3>
+				<p>The copyright element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-copyright-012-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
@@ -1472,8 +1502,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-003">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-003">metadata-schema-trademark-003</a>: Valid trademark Element With Mixed text Element Language Tags 1</h3>
-				<p>The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
+				<h3><a href="#metadata-schema-trademark-003">metadata-schema-trademark-003</a>: Valid trademark Element With One Language Tagged (using lang) text Element</h3>
+				<p>The trademark element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-003-validity">Yes</span></p>
@@ -1482,8 +1512,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-004">metadata-schema-trademark-004</a>: Valid trademark Element With Mixed text Element Language Tags 2</h3>
-				<p>The trademark element matches the schema. Two text elements have a language tags.</p>
+				<h3><a href="#metadata-schema-trademark-004">metadata-schema-trademark-004</a>: Valid trademark Element With Mixed text Element Language Tags 1</h3>
+				<p>The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-004-validity">Yes</span></p>
@@ -1492,18 +1522,18 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-005">metadata-schema-trademark-005</a>: More Than One trademark Element</h3>
-				<p>The trademark element occurs more than once.</p>
+				<h3><a href="#metadata-schema-trademark-005">metadata-schema-trademark-005</a>: Valid trademark Element With Mixed text Element Language Tags 2</h3>
+				<p>The trademark element matches the schema. Two text elements have a language tags.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-trademark-005-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-trademark-005-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-006">metadata-schema-trademark-006</a>: No text Element in trademark Element</h3>
-				<p>The trademark element does not contain a text child element.</p>
+				<h3><a href="#metadata-schema-trademark-006">metadata-schema-trademark-006</a>: More Than One trademark Element</h3>
+				<p>The trademark element occurs more than once.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-006-validity">No</span></p>
@@ -1512,8 +1542,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-007">metadata-schema-trademark-007</a>: Unknown Attribute in trademark Element</h3>
-				<p>The trademark element contains an unknown attribute.</p>
+				<h3><a href="#metadata-schema-trademark-007">metadata-schema-trademark-007</a>: No text Element in trademark Element</h3>
+				<p>The trademark element does not contain a text child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-007-validity">No</span></p>
@@ -1522,8 +1552,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-008">metadata-schema-trademark-008</a>: Unknown Child Element in trademark Element</h3>
-				<p>The trademark element contains an unknown child element.</p>
+				<h3><a href="#metadata-schema-trademark-008">metadata-schema-trademark-008</a>: Unknown Attribute in trademark Element</h3>
+				<p>The trademark element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-008-validity">No</span></p>
@@ -1532,8 +1562,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-009">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-009">metadata-schema-trademark-009</a>: Content in trademark Element</h3>
-				<p>The trademark element contains content.</p>
+				<h3><a href="#metadata-schema-trademark-009">metadata-schema-trademark-009</a>: Unknown Child Element in trademark Element</h3>
+				<p>The trademark element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-009-validity">No</span></p>
@@ -1542,8 +1572,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-010">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-010">metadata-schema-trademark-010</a>: Unknown Attribute in trademark Element text Element</h3>
-				<p>The trademark element contains a text element with an unknown attribute.</p>
+				<h3><a href="#metadata-schema-trademark-010">metadata-schema-trademark-010</a>: Content in trademark Element</h3>
+				<p>The trademark element contains content.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-010-validity">No</span></p>
@@ -1552,11 +1582,21 @@
 		</div>
 		<div class="testCase" id="metadata-schema-trademark-011">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-trademark-011">metadata-schema-trademark-011</a>: Unknown Child Element in trademark Element text Element</h3>
-				<p>The trademark element contains a text element with an unknown child element.</p>
+				<h3><a href="#metadata-schema-trademark-011">metadata-schema-trademark-011</a>: Unknown Attribute in trademark Element text Element</h3>
+				<p>The trademark element contains a text element with an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-011-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-012">metadata-schema-trademark-012</a>: Unknown Child Element in trademark Element text Element</h3>
+				<p>The trademark element contains a text element with an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-012-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>

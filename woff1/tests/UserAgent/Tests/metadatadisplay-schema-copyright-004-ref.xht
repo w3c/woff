@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Valid copyright Element With Mixed text Element Language Tags 2</title>
+		<title>WOFF Test: Valid copyright Element With Mixed text Element Language Tags 1</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect" />
 		<link rel="help" href="#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The copyright element matches the schema. Two text elements have a language tags." />
+		<meta name="assert" content="The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag." />
 		<style type="text/css"><![CDATA[
 			body {
 				font-family;
@@ -33,11 +33,11 @@
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;metadata version="1.0"&gt;
 	&lt;copyright&gt;
+		&lt;text&gt;
+			Copyright without language.
+		&lt;/text&gt;
 		&lt;text xml:lang="en"&gt;
 			Copyright with "en" language.
-		&lt;/text&gt;
-		&lt;text xml:lang="fr"&gt;
-			Copyright with "fr" language.
 		&lt;/text&gt;
 	&lt;/copyright&gt;
 &lt;/metadata&gt;
