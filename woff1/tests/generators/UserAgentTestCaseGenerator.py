@@ -1425,6 +1425,17 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCredits6Metadata,
 )
 
+# multiple credits
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credits-007",
+    title=metadataSchemaCredits7Title,
+    assertion=metadataSchemaCredits7Description,
+    credits=metadataSchemaCredits7Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaCredits7Metadata,
+)
+
 # -----------------------------------------
 # Metadata Display: Schema Validity: credit
 # -----------------------------------------

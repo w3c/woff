@@ -2,13 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Valid credits Element With No Language Attribute And A Single credit Element</title>
+		<title>WOFF Test: Multiple credits Elements</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect" />
-		<link rel="help" href="#Metadata" />
+		<link rel="help" href="#conform-invalid-mustignore" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The credits element matches the schema and it contains one credit child element." />
+		<meta name="assert" content="The credits element occurs more than once." />
 		<style type="text/css"><![CDATA[
+			@font-face {
+				font-family: "WOFF Test";
+				src: url("resources/metadatadisplay-schema-credits-007.woff") format("woff");
+			}
 			body {
 				font-family;
 				font-size: 20px;
@@ -17,7 +21,7 @@
 				font-size: 12px;
 			}
 			.test {
-				font-family: "WOFF Test CFF Reference";
+				font-family: "WOFF Test", "WOFF Test CFF Fallback";
 				font-size: 200px;
 				margin-top: 50px;
 			}
@@ -27,15 +31,6 @@
 		<p><a href="../FontsToInstall">Test fonts</a> must be installed for this test. The WOFF being tested will be loaded over the network so please wait until the download is complete before determing the success of this test.</p>
 		<p>Test passes if the word PASS appears below.</p>
 		<div class="test">P</div>
-		<p>The Extended Metadata Block is valid and may be displayed to the user upon request.</p>
-		<p>The XML contained in the Extended Metadata Block is below.</p>
-		<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;metadata version="1.0"&gt;
-	&lt;credits&gt;
-		&lt;credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" /&gt;
-	&lt;/credits&gt;
-&lt;/metadata&gt;
-		</pre>
+		<p>The Extended Metadata Block is not valid and must not be displayed.</p>
 	</body>
 </html>

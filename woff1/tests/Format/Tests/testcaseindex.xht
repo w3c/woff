@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (192 tests)</h1>
+		<h1>WOFF: Format Test Suite (193 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -933,7 +933,7 @@
 		<div class="testCase" id="metadata-schema-credits-001">
 			<div class="testCaseOverview">
 				<h3><a href="#metadata-schema-credits-001">metadata-schema-credits-001</a>: Valid credits Element With No Language Attribute And A Single credit Element</h3>
-				<p>The credits element does not contain a language attribute but it still matches the schema and it contains one credit child element.</p>
+				<p>The credits element matches the schema and it contains one credit child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-credits-001-validity">Yes</span></p>
@@ -987,6 +987,16 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-credits-006-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credits-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credits-007">metadata-schema-credits-007</a>: Multiple credits Elements</h3>
+				<p>The credits element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credits-007-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>

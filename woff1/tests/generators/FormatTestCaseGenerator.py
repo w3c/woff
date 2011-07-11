@@ -1499,6 +1499,18 @@ writeMetadataTest(
     metadata=metadataSchemaCredits6Metadata,
 )
 
+# multiple credits
+
+writeMetadataTest(
+    identifier="metadata-schema-credits-007",
+    title=metadataSchemaCredits7Title,
+    description=metadataSchemaCredits7Description,
+    credits=metadataSchemaCredits7Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaCredits7Metadata,
+)
+
 # -----------------------------------------
 # Metadata Display: Schema Validity: credit
 # -----------------------------------------

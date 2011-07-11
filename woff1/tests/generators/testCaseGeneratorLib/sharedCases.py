@@ -1264,7 +1264,7 @@ metadataSchemaCredits1Metadata = """
 </metadata>
 """
 metadataSchemaCredits1Title = "Valid credits Element With No Language Attribute And A Single credit Element"
-metadataSchemaCredits1Description = "The credits element does not contain a language attribute but it still matches the schema and it contains one credit child element."
+metadataSchemaCredits1Description = "The credits element matches the schema and it contains one credit child element."
 metadataSchemaCredits1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # valid - multiple credit elements
@@ -1337,6 +1337,23 @@ metadataSchemaCredits6Metadata = """
 metadataSchemaCredits6Title = "Content in credits Element"
 metadataSchemaCredits6Description = "The credits element contains an content."
 metadataSchemaCredits6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# more than one credits element
+
+metadataSchemaCredits7Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+    </credits>
+    <credits>
+        <credit name="Credit 2" role="Role 2" url="http://w3c.org/Fonts" />
+    </credits>
+</metadata>
+"""
+metadataSchemaCredits7Title = "Multiple credits Elements"
+metadataSchemaCredits7Description = "The credits element occurs more than once."
+metadataSchemaCredits7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -----------------------------------------
 # Metadata Display: Schema Validity: credit

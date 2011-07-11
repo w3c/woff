@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (180 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (181 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -1324,7 +1324,7 @@
 		<div class="testCase" id="metadatadisplay-schema-credits-001">
 			<div class="testCaseOverview">
 				<h3><a href="#metadatadisplay-schema-credits-001">metadatadisplay-schema-credits-001</a>: Valid credits Element With No Language Attribute And A Single credit Element</h3>
-				<p>The credits element does not contain a language attribute but it still matches the schema and it contains one credit child element.</p>
+				<p>The credits element matches the schema and it contains one credit child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1410,6 +1410,22 @@
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-credits-006.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-credits-006-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-credits-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-credits-007">metadatadisplay-schema-credits-007</a>: Multiple credits Elements</h3>
+				<p>The credits element occurs more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-credits-007.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-credits-007-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
