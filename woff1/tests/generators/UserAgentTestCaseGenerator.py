@@ -1359,7 +1359,7 @@ writeMetadataSchemaValidityTest(
 # Metadata Display: Schema Validity: credits
 # ------------------------------------------
 
-# valid - no lang, single credit element
+# valid - single credit element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-001",
@@ -1370,7 +1370,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCredits1Metadata,
 )
 
-# valid - lang, single credit element
+# valid - multiple credit elements
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-002",
@@ -1381,29 +1381,29 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCredits2Metadata,
 )
 
-# valid - multiple credit elements
+# missing credit element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-003",
     title=metadataSchemaCredits3Title,
     assertion=metadataSchemaCredits3Description,
     credits=metadataSchemaCredits3Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaCredits3Metadata,
 )
 
-# more than one credits
+# unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-004",
     title=metadataSchemaCredits4Title,
     assertion=metadataSchemaCredits4Description,
     credits=metadataSchemaCredits4Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaCredits4Metadata,
 )
 
-# missing credit element
+# unknown element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-005",
@@ -1414,7 +1414,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCredits5Metadata,
 )
 
-# unknown attribute
+# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-006",
@@ -1423,28 +1423,6 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaCredits6Credits,
     metadataIsValid=False,
     metadata=metadataSchemaCredits6Metadata,
-)
-
-# unknown element
-
-writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-007",
-    title=metadataSchemaCredits7Title,
-    assertion=metadataSchemaCredits7Description,
-    credits=metadataSchemaCredits7Credits,
-    metadataIsValid=False,
-    metadata=metadataSchemaCredits7Metadata,
-)
-
-# content
-
-writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-credits-008",
-    title=metadataSchemaCredits8Title,
-    assertion=metadataSchemaCredits8Description,
-    credits=metadataSchemaCredits8Credits,
-    metadataIsValid=False,
-    metadata=metadataSchemaCredits8Metadata,
 )
 
 # -----------------------------------------

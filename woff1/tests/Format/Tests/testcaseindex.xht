@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (194 tests)</h1>
+		<h1>WOFF: Format Test Suite (192 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -942,8 +942,8 @@
 		</div>
 		<div class="testCase" id="metadata-schema-credits-002">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credits-002">metadata-schema-credits-002</a>: Valid credits Element With A Language Attribute And A Single credit Element</h3>
-				<p>The credits element contains contains a language attribute and it matches the schema and it contains one credit child element.</p>
+				<h3><a href="#metadata-schema-credits-002">metadata-schema-credits-002</a>: Valid credits Element With Two credit Elements</h3>
+				<p>The credits element matches the schema and it contains two credit child elements.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-credits-002-validity">Yes</span></p>
@@ -952,28 +952,28 @@
 		</div>
 		<div class="testCase" id="metadata-schema-credits-003">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credits-003">metadata-schema-credits-003</a>: Valid credits Element With Two credit Elements</h3>
-				<p>The credits element matches the schema and it contains two credit child elements.</p>
+				<h3><a href="#metadata-schema-credits-003">metadata-schema-credits-003</a>: No credit Element in credits Element</h3>
+				<p>The credits element does not contain a credit child element.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-credits-003-validity">Yes</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-credits-003-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-credits-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credits-004">metadata-schema-credits-004</a>: More Than One credits Element</h3>
-				<p>The credits element occurs more than once.</p>
+				<h3><a href="#metadata-schema-credits-004">metadata-schema-credits-004</a>: Unknown Attribute in credits Element</h3>
+				<p>The credits element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-credits-004-validity">Yes</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-credits-004-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-credits-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credits-005">metadata-schema-credits-005</a>: No credit Element in credits Element</h3>
-				<p>The credits element does not contain a credit child element.</p>
+				<h3><a href="#metadata-schema-credits-005">metadata-schema-credits-005</a>: Unknown Child Element in credits Element</h3>
+				<p>The credits element contains an unknown child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-credits-005-validity">No</span></p>
@@ -982,31 +982,11 @@
 		</div>
 		<div class="testCase" id="metadata-schema-credits-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credits-006">metadata-schema-credits-006</a>: Unknown Attribute in credits Element</h3>
-				<p>The credits element contains an unknown attribute.</p>
-			</div>
-			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-credits-006-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
-			</div>
-		</div>
-		<div class="testCase" id="metadata-schema-credits-007">
-			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credits-007">metadata-schema-credits-007</a>: Unknown Child Element in credits Element</h3>
-				<p>The credits element contains an unknown child element.</p>
-			</div>
-			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-credits-007-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
-			</div>
-		</div>
-		<div class="testCase" id="metadata-schema-credits-008">
-			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credits-008">metadata-schema-credits-008</a>: Content in credits Element</h3>
+				<h3><a href="#metadata-schema-credits-006">metadata-schema-credits-006</a>: Content in credits Element</h3>
 				<p>The credits element contains an content.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-credits-008-validity">No</span></p>
+					<p>Valid: <span id="metadata-schema-credits-006-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>

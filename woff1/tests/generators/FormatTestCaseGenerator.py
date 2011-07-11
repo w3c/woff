@@ -1429,7 +1429,7 @@ writeMetadataTest(
 # Metadata Display: Schema Validity: credits
 # ------------------------------------------
 
-# valid - no lang, single credit element
+# valid - single credit element
 
 writeMetadataTest(
     identifier="metadata-schema-credits-001",
@@ -1440,7 +1440,7 @@ writeMetadataTest(
     metadata=metadataSchemaCredits1Metadata,
 )
 
-# valid - lang, single credit element
+# valid - multiple credit elements
 
 writeMetadataTest(
     identifier="metadata-schema-credits-002",
@@ -1451,29 +1451,31 @@ writeMetadataTest(
     metadata=metadataSchemaCredits2Metadata,
 )
 
-# valid - multiple credit elements
+# missing credit element
 
 writeMetadataTest(
     identifier="metadata-schema-credits-003",
     title=metadataSchemaCredits3Title,
     description=metadataSchemaCredits3Description,
     credits=metadataSchemaCredits3Credits,
-    valid=True,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
     metadata=metadataSchemaCredits3Metadata,
 )
 
-# more than one credits
+# unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-credits-004",
     title=metadataSchemaCredits4Title,
     description=metadataSchemaCredits4Description,
     credits=metadataSchemaCredits4Credits,
-    valid=True,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
     metadata=metadataSchemaCredits4Metadata,
 )
 
-# missing credit element
+# unknown element
 
 writeMetadataTest(
     identifier="metadata-schema-credits-005",
@@ -1485,7 +1487,7 @@ writeMetadataTest(
     metadata=metadataSchemaCredits5Metadata,
 )
 
-# unknown attribute
+# content
 
 writeMetadataTest(
     identifier="metadata-schema-credits-006",
@@ -1495,30 +1497,6 @@ writeMetadataTest(
     specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredits6Metadata,
-)
-
-# unknown element
-
-writeMetadataTest(
-    identifier="metadata-schema-credits-007",
-    title=metadataSchemaCredits7Title,
-    description=metadataSchemaCredits7Description,
-    credits=metadataSchemaCredits7Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
-    metadata=metadataSchemaCredits7Metadata,
-)
-
-# content
-
-writeMetadataTest(
-    identifier="metadata-schema-credits-008",
-    title=metadataSchemaCredits8Title,
-    description=metadataSchemaCredits8Description,
-    credits=metadataSchemaCredits8Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
-    metadata=metadataSchemaCredits8Metadata,
 )
 
 # -----------------------------------------

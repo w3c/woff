@@ -1253,7 +1253,7 @@ metadataSchemaVendor8Credits = [dict(title="Tal Leming", role="author", link="ht
 # Metadata Display: Schema Validity: credits
 # ------------------------------------------
 
-# valid - no lang, single credit element
+# valid - single credit element
 
 metadataSchemaCredits1Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1267,23 +1267,9 @@ metadataSchemaCredits1Title = "Valid credits Element With No Language Attribute 
 metadataSchemaCredits1Description = "The credits element does not contain a language attribute but it still matches the schema and it contains one credit child element."
 metadataSchemaCredits1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# valid - lang, single credit element
-
-metadataSchemaCredits2Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits lang="en">
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-metadataSchemaCredits2Title = "Valid credits Element With A Language Attribute And A Single credit Element"
-metadataSchemaCredits2Description = "The credits element contains contains a language attribute and it matches the schema and it contains one credit child element."
-metadataSchemaCredits2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
 # valid - multiple credit elements
 
-metadataSchemaCredits3Metadata = """
+metadataSchemaCredits2Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits>
@@ -1292,42 +1278,25 @@ metadataSchemaCredits3Metadata = """
     </credits>
 </metadata>
 """
-metadataSchemaCredits3Title = "Valid credits Element With Two credit Elements"
-metadataSchemaCredits3Description = "The credits element matches the schema and it contains two credit child elements."
-metadataSchemaCredits3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# more than one credits
-
-metadataSchemaCredits4Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <credits>
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
-    </credits>
-    <credits lang="fr">
-        <credit name="Credit 1 fr" role="Role 1 fr" url="http://w3c.org/Fonts" />
-    </credits>
-</metadata>
-"""
-metadataSchemaCredits4Title = "More Than One credits Element"
-metadataSchemaCredits4Description = "The credits element occurs more than once."
-metadataSchemaCredits4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredits2Title = "Valid credits Element With Two credit Elements"
+metadataSchemaCredits2Description = "The credits element matches the schema and it contains two credit child elements."
+metadataSchemaCredits2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # missing credit element
 
-metadataSchemaCredits5Metadata = """
+metadataSchemaCredits3Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits />
 </metadata>
 """
-metadataSchemaCredits5Title = "No credit Element in credits Element"
-metadataSchemaCredits5Description = "The credits element does not contain a credit child element."
-metadataSchemaCredits5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredits3Title = "No credit Element in credits Element"
+metadataSchemaCredits3Description = "The credits element does not contain a credit child element."
+metadataSchemaCredits3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaCredits6Metadata = """
+metadataSchemaCredits4Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits unknownattribute="Text">
@@ -1335,13 +1304,13 @@ metadataSchemaCredits6Metadata = """
     </credits>
 </metadata>
 """
-metadataSchemaCredits6Title = "Unknown Attribute in credits Element"
-metadataSchemaCredits6Description = "The credits element contains an unknown attribute."
-metadataSchemaCredits6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredits4Title = "Unknown Attribute in credits Element"
+metadataSchemaCredits4Description = "The credits element contains an unknown attribute."
+metadataSchemaCredits4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown element
 
-metadataSchemaCredits7Metadata = """
+metadataSchemaCredits5Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits>
@@ -1350,13 +1319,13 @@ metadataSchemaCredits7Metadata = """
     </credits>
 </metadata>
 """
-metadataSchemaCredits7Title = "Unknown Child Element in credits Element"
-metadataSchemaCredits7Description = "The credits element contains an unknown child element."
-metadataSchemaCredits7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredits5Title = "Unknown Child Element in credits Element"
+metadataSchemaCredits5Description = "The credits element contains an unknown child element."
+metadataSchemaCredits5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaCredits8Metadata = """
+metadataSchemaCredits6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits>
@@ -1365,9 +1334,9 @@ metadataSchemaCredits8Metadata = """
     </credits>
 </metadata>
 """
-metadataSchemaCredits8Title = "Content in credits Element"
-metadataSchemaCredits8Description = "The credits element contains an content."
-metadataSchemaCredits8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredits6Title = "Content in credits Element"
+metadataSchemaCredits6Description = "The credits element contains an content."
+metadataSchemaCredits6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -----------------------------------------
 # Metadata Display: Schema Validity: credit
