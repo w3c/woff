@@ -1518,7 +1518,7 @@ metadataSchemaDescription4Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
-        <text lang="en">
+        <text xml:lang="en">
             Description with "en" language.
         </text>
     </description>
@@ -1537,7 +1537,7 @@ metadataSchemaDescription5Metadata = """
         <text>
             Description without language.
         </text>
-        <text lang="en">
+        <text xml:lang="en">
             Description with "en" language.
         </text>
     </description>
@@ -1553,10 +1553,10 @@ metadataSchemaDescription6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
-        <text lang="en">
+        <text xml:lang="en">
             Description with "en" language.
         </text>
-        <text lang="fr">
+        <text xml:lang="fr">
             Description with "fr" language.
         </text>
     </description>
@@ -1756,7 +1756,7 @@ metadataSchemaLicense5Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
-        <text lang="en">
+        <text xml:lang="en">
             License with "en" language.
         </text>
     </license>
@@ -1775,7 +1775,7 @@ metadataSchemaLicense6Metadata = """
         <text>
             License without language.
         </text>
-        <text lang="en">
+        <text xml:lang="en">
             License with "en" language.
         </text>
     </license>
@@ -1791,10 +1791,10 @@ metadataSchemaLicense7Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts" id="License ID">
-        <text lang="en">
+        <text xml:lang="en">
             License with "en" language.
         </text>
-        <text lang="fr">
+        <text xml:lang="fr">
             License with "fr" language.
         </text>
     </license>
@@ -1946,7 +1946,7 @@ metadataSchemaCopyright2Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
-        <text lang="en">
+        <text xml:lang="en">
             Copyright with "en" language.
         </text>
     </copyright>
@@ -1965,7 +1965,7 @@ metadataSchemaCopyright3Metadata = """
         <text>
             Copyright without language.
         </text>
-        <text lang="en">
+        <text xml:lang="en">
             Copyright with "en" language.
         </text>
     </copyright>
@@ -1981,10 +1981,10 @@ metadataSchemaCopyright4Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
-        <text lang="en">
+        <text xml:lang="en">
             Copyright with "en" language.
         </text>
-        <text lang="fr">
+        <text xml:lang="fr">
             Copyright with "fr" language.
         </text>
     </copyright>
@@ -2136,7 +2136,7 @@ metadataSchemaTrademark2Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
-        <text lang="en">
+        <text xml:lang="en">
             Trademark with "en" language.
         </text>
     </trademark>
@@ -2155,7 +2155,7 @@ metadataSchemaTrademark3Metadata = """
         <text>
             Trademark without language.
         </text>
-        <text lang="en">
+        <text xml:lang="en">
             Trademark with "en" language.
         </text>
     </trademark>
@@ -2171,10 +2171,10 @@ metadataSchemaTrademark4Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark>
-        <text lang="en">
+        <text xml:lang="en">
             Trademark with "en" language.
         </text>
-        <text lang="fr">
+        <text xml:lang="fr">
             Trademark with "fr" language.
         </text>
     </trademark>
@@ -2470,7 +2470,7 @@ metadataSchemaExtension5Metadata = """
 <metadata version="1.0">
     <extension id="Extension 1">
         <name>Extension 1 - Name Without Language</name>
-        <name lang="en">Extension 1 - Name With "en" Language</name>
+        <name xml:lang="en">Extension 1 - Name With "en" Language</name>
         <item id="Extension 1 - Item 1 ID">
             <name>Extension 1 - Item 1 - Name Without Language</name>
             <value>Extension 1 - Item 1 - Value Without Language</value>
@@ -2488,8 +2488,8 @@ metadataSchemaExtension6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <extension id="Extension 1">
-        <name lang="en">Extension 1 - Name With "en" Language</name>
-        <name lang="fr">Extension 1 - Name With "fr" Language</name>
+        <name xml:lang="en">Extension 1 - Name With "en" Language</name>
+        <name xml:lang="fr">Extension 1 - Name With "fr" Language</name>
         <item id="Extension 1 - Item 1 ID">
             <name>Extension 1 - Item 1 - Name Without Language</name>
             <value>Extension 1 - Item 1 - Value Without Language</value>
@@ -2625,11 +2625,11 @@ metadataSchemaExtension13Metadata = """
         <name>Extension 1 - Name Without Language</name>
         <item id="Extension 1 - Item 1 ID">
             <name>Extension 1 - Item 1 - Name Without Language</name>
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
-            <name lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
+            <name xml:lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <name xml:lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
             <value>Extension 1 - Item 1 - Value Without Language</value>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
-            <value lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
+            <value xml:lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+            <value xml:lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
         </item>
     </extension>
 </metadata>
@@ -2665,7 +2665,7 @@ metadataSchemaExtension15Metadata = """
         <name>Extension 1 - Name Without Language</name>
         <item id="Extension 1 - Item 1 ID">
             <name>Extension 1 - Item 1 - Name Without Language</name>
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <name xml:lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
             <value>Extension 1 - Item 1 - Value Without Language</value>
         </item>
     </extension>
@@ -2683,8 +2683,8 @@ metadataSchemaExtension16Metadata = """
     <extension id="Extension 1">
         <name>Extension 1 - Name Without Language</name>
         <item id="Extension 1 - Item 1 ID">
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
-            <name lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
+            <name xml:lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <name xml:lang="fr">Extension 1 - Item 1 - Name With "fr" Language</name>
             <value>Extension 1 - Item 1 - Value Without Language</value>
         </item>
     </extension>
@@ -2704,7 +2704,7 @@ metadataSchemaExtension17Metadata = """
         <item id="Extension 1 - Item 1 ID">
             <name>Extension 1 - Item 1 - Name Without Language</name>
             <value>Extension 1 - Item 1 - Value Without Language</value>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+            <value xml:lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
         </item>
     </extension>
 </metadata>
@@ -2722,8 +2722,8 @@ metadataSchemaExtension18Metadata = """
         <name>Extension 1 - Name Without Language</name>
         <item id="Extension 1 - Item 1 ID">
             <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
-            <value lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
+            <value xml:lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+            <value xml:lang="fr">Extension 1 - Item 1 - Value With "fr" Language</value>
         </item>
     </extension>
 </metadata>
@@ -2852,7 +2852,7 @@ metadataSchemaExtension25Metadata = """
     <extension id="Extension 1">
         <name>Extension 1 - Name Without Language</name>
         <item id="Extension 1 - Item 1 ID">
-            <name lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
+            <name xml:lang="en">Extension 1 - Item 1 - Name With "en" Language</name>
             <value>Extension 1 - Item 1 - Value Without Language</value>
         </item>
     </extension>
@@ -2933,7 +2933,7 @@ metadataSchemaExtension29Metadata = """
         <name>Extension 1 - Name Without Language</name>
         <item id="Extension 1 - Item 1 ID">
             <name>Extension 1 - Item 1 - Name Without Language</name>
-            <value lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
+            <value xml:lang="en">Extension 1 - Item 1 - Value With "en" Language</value>
         </item>
     </extension>
 </metadata>
