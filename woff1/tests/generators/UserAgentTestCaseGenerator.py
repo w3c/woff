@@ -1524,29 +1524,25 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCredit4Metadata,
 )
 
-# unknown attribute
+# dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-005",
     title=metadataSchemaCredit5Title,
     assertion=metadataSchemaCredit5Description,
     credits=metadataSchemaCredit5Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaCredit5Metadata,
 )
-
-# child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-006",
     title=metadataSchemaCredit6Title,
     assertion=metadataSchemaCredit6Description,
     credits=metadataSchemaCredit6Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaCredit6Metadata,
 )
-
-# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-007",
@@ -1555,6 +1551,50 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaCredit7Credits,
     metadataIsValid=False,
     metadata=metadataSchemaCredit7Metadata,
+)
+
+# class attribute
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-008",
+    title=metadataSchemaCredit8Title,
+    assertion=metadataSchemaCredit8Description,
+    credits=metadataSchemaCredit8Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCredit8Metadata,
+)
+
+# unknown attribute
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-009",
+    title=metadataSchemaCredit9Title,
+    assertion=metadataSchemaCredit9Description,
+    credits=metadataSchemaCredit9Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaCredit9Metadata,
+)
+
+# child element
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-010",
+    title=metadataSchemaCredit10Title,
+    assertion=metadataSchemaCredit10Description,
+    credits=metadataSchemaCredit10Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaCredit10Metadata,
+)
+
+# content
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-credit-011",
+    title=metadataSchemaCredit11Title,
+    assertion=metadataSchemaCredit11Description,
+    credits=metadataSchemaCredit11Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaCredit11Metadata,
 )
 
 # ----------------------------------------------

@@ -1459,9 +1459,53 @@ metadataSchemaCredit4Title = "No name attribute in credit Element"
 metadataSchemaCredit4Description = "The credit element does not contain a name attribute."
 metadataSchemaCredit4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# unknown attribute
+# dir attribute
 
 metadataSchemaCredit5Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="ltr" />
+</metadata>
+"""
+metadataSchemaCredit5Title = "Valid dir Attribute in credit Element 1"
+metadataSchemaCredit5Description = "The credit element contains ltr as the value for the dir attribute."
+metadataSchemaCredit5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaCredit6Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="rtl" />
+</metadata>
+"""
+metadataSchemaCredit6Title = "Valid dir Attribute in credit Element 2"
+metadataSchemaCredit6Description = "The credit element contains rtl as the value for the dir attribute."
+metadataSchemaCredit6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaCredit7Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="ltr" />
+</metadata>
+"""
+metadataSchemaCredit7Title = "Invalid dir Attribute in credit Element 1"
+metadataSchemaCredit7Description = "The credit element contains INVALID as the value for the dir attribute."
+metadataSchemaCredit7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# class attribute
+
+metadataSchemaCredit8Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" class="class1 class2 class3" />
+</metadata>
+"""
+metadataSchemaCredit8Title = "Valid dir Attribute in credit Element 2"
+metadataSchemaCredit8Description = "The credit element contains \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaCredit8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# unknown attribute
+
+metadataSchemaCredit9Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits>
@@ -1469,13 +1513,13 @@ metadataSchemaCredit5Metadata = """
     </credits>
 </metadata>
 """
-metadataSchemaCredit5Title = "Unknown attribute in credit Element"
-metadataSchemaCredit5Description = "The credit element contains and unknown attribute."
-metadataSchemaCredit5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredit9Title = "Unknown attribute in credit Element"
+metadataSchemaCredit9Description = "The credit element contains and unknown attribute."
+metadataSchemaCredit9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
 
-metadataSchemaCredit6Metadata = """
+metadataSchemaCredit10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits>
@@ -1485,13 +1529,13 @@ metadataSchemaCredit6Metadata = """
     </credits>
 </metadata>
 """
-metadataSchemaCredit6Title = "Child Element in credit Element"
-metadataSchemaCredit6Description = "The credit element contains a child element."
-metadataSchemaCredit6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredit10Title = "Child Element in credit Element"
+metadataSchemaCredit10Description = "The credit element contains a child element."
+metadataSchemaCredit10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaCredit7Metadata = """
+metadataSchemaCredit11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits>
@@ -1500,9 +1544,9 @@ metadataSchemaCredit7Metadata = """
     </credits>
 </metadata>
 """
-metadataSchemaCredit7Title = "Content in credit Element"
-metadataSchemaCredit7Description = "The credit element contains content."
-metadataSchemaCredit7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCredit11Title = "Content in credit Element"
+metadataSchemaCredit11Description = "The credit element contains content."
+metadataSchemaCredit11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ----------------------------------------------
 # Metadata Display: Schema Validity: description

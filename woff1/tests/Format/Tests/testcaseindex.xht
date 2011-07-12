@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (204 tests)</h1>
+		<h1>WOFF: Format Test Suite (208 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -1082,31 +1082,71 @@
 		</div>
 		<div class="testCase" id="metadata-schema-credit-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credit-005">metadata-schema-credit-005</a>: Unknown attribute in credit Element</h3>
-				<p>The credit element contains and unknown attribute.</p>
+				<h3><a href="#metadata-schema-credit-005">metadata-schema-credit-005</a>: Valid dir Attribute in credit Element 1</h3>
+				<p>The credit element contains ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-credit-005-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-credit-005-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-credit-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credit-006">metadata-schema-credit-006</a>: Child Element in credit Element</h3>
-				<p>The credit element contains a child element.</p>
+				<h3><a href="#metadata-schema-credit-006">metadata-schema-credit-006</a>: Valid dir Attribute in credit Element 2</h3>
+				<p>The credit element contains rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-credit-006-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-credit-006-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-credit-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credit-007">metadata-schema-credit-007</a>: Content in credit Element</h3>
-				<p>The credit element contains content.</p>
+				<h3><a href="#metadata-schema-credit-007">metadata-schema-credit-007</a>: Invalid dir Attribute in credit Element 1</h3>
+				<p>The credit element contains INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-credit-007-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-008">metadata-schema-credit-008</a>: Valid dir Attribute in credit Element 2</h3>
+				<p>The credit element contains "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-008-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-009">metadata-schema-credit-009</a>: Unknown attribute in credit Element</h3>
+				<p>The credit element contains and unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-009-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-010">metadata-schema-credit-010</a>: Child Element in credit Element</h3>
+				<p>The credit element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-010-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-credit-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-credit-011">metadata-schema-credit-011</a>: Content in credit Element</h3>
+				<p>The credit element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-credit-011-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>

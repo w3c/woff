@@ -1600,40 +1600,80 @@ writeMetadataTest(
     metadata=metadataSchemaCredit4Metadata,
 )
 
-# unknown attribute
+# dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-credit-005",
     title=metadataSchemaCredit5Title,
     description=metadataSchemaCredit5Description,
     credits=metadataSchemaCredit5Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaCredit5Metadata,
 )
-
-# child element
 
 writeMetadataTest(
     identifier="metadata-schema-credit-006",
     title=metadataSchemaCredit6Title,
     description=metadataSchemaCredit6Description,
     credits=metadataSchemaCredit6Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaCredit6Metadata,
 )
-
-# content
 
 writeMetadataTest(
     identifier="metadata-schema-credit-007",
     title=metadataSchemaCredit7Title,
     description=metadataSchemaCredit7Description,
     credits=metadataSchemaCredit7Credits,
-    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaCredit7Metadata,
+)
+
+# class attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-credit-008",
+    title=metadataSchemaCredit8Title,
+    description=metadataSchemaCredit8Description,
+    credits=metadataSchemaCredit8Credits,
+    valid=True,
+    metadata=metadataSchemaCredit8Metadata,
+)
+
+# unknown attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-credit-009",
+    title=metadataSchemaCredit9Title,
+    description=metadataSchemaCredit9Description,
+    credits=metadataSchemaCredit9Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaCredit9Metadata,
+)
+
+# child element
+
+writeMetadataTest(
+    identifier="metadata-schema-credit-010",
+    title=metadataSchemaCredit10Title,
+    description=metadataSchemaCredit10Description,
+    credits=metadataSchemaCredit10Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaCredit10Metadata,
+)
+
+# content
+
+writeMetadataTest(
+    identifier="metadata-schema-credit-011",
+    title=metadataSchemaCredit11Title,
+    description=metadataSchemaCredit11Description,
+    credits=metadataSchemaCredit11Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaCredit11Metadata,
 )
 
 # ----------------------------------------------
