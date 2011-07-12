@@ -2574,6 +2574,130 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark12Metadata,
 )
 
+# one div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-013",
+    title=metadataSchemaTrademark13Title,
+    assertion=metadataSchemaTrademark13Description,
+    credits=metadataSchemaTrademark13Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark13Metadata,
+)
+
+# two div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-014",
+    title=metadataSchemaTrademark14Title,
+    assertion=metadataSchemaTrademark14Description,
+    credits=metadataSchemaTrademark14Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark14Metadata,
+)
+
+# div with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-015",
+    title=metadataSchemaTrademark15Title,
+    assertion=metadataSchemaTrademark15Description,
+    credits=metadataSchemaTrademark15Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark15Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-016",
+    title=metadataSchemaTrademark16Title,
+    assertion=metadataSchemaTrademark16Description,
+    credits=metadataSchemaTrademark16Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark16Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-017",
+    title=metadataSchemaTrademark17Title,
+    assertion=metadataSchemaTrademark17Description,
+    credits=metadataSchemaTrademark17Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaTrademark17Metadata,
+)
+
+# div with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-018",
+    title=metadataSchemaTrademark18Title,
+    assertion=metadataSchemaTrademark18Description,
+    credits=metadataSchemaTrademark18Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark18Metadata,
+)
+
+# one span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-019",
+    title=metadataSchemaTrademark19Title,
+    assertion=metadataSchemaTrademark19Description,
+    credits=metadataSchemaTrademark19Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark19Metadata,
+)
+
+# two span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-020",
+    title=metadataSchemaTrademark20Title,
+    assertion=metadataSchemaTrademark20Description,
+    credits=metadataSchemaTrademark20Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark20Metadata,
+)
+
+# span with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-021",
+    title=metadataSchemaTrademark21Title,
+    assertion=metadataSchemaTrademark21Description,
+    credits=metadataSchemaTrademark21Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark21Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-022",
+    title=metadataSchemaTrademark22Title,
+    assertion=metadataSchemaTrademark22Description,
+    credits=metadataSchemaTrademark22Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark22Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-023",
+    title=metadataSchemaTrademark23Title,
+    assertion=metadataSchemaTrademark23Description,
+    credits=metadataSchemaTrademark23Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaTrademark23Metadata,
+)
+
+# span with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-024",
+    title=metadataSchemaTrademark24Title,
+    assertion=metadataSchemaTrademark24Description,
+    credits=metadataSchemaTrademark24Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark24Metadata,
+)
+
 # -------------------------------------------
 # Metadata Display: Schema Validity: uniqueid
 # -------------------------------------------

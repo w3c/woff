@@ -2718,6 +2718,142 @@ writeMetadataTest(
     metadata=metadataSchemaTrademark12Metadata,
 )
 
+# one div
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-013",
+    title=metadataSchemaTrademark13Title,
+    description=metadataSchemaTrademark13Description,
+    credits=metadataSchemaTrademark13Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark13Metadata,
+)
+
+# two div
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-014",
+    title=metadataSchemaTrademark14Title,
+    description=metadataSchemaTrademark14Description,
+    credits=metadataSchemaTrademark14Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark14Metadata,
+)
+
+# div with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-015",
+    title=metadataSchemaTrademark15Title,
+    description=metadataSchemaTrademark15Description,
+    credits=metadataSchemaTrademark15Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark15Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-016",
+    title=metadataSchemaTrademark16Title,
+    description=metadataSchemaTrademark16Description,
+    credits=metadataSchemaTrademark16Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark16Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-017",
+    title=metadataSchemaTrademark17Title,
+    description=metadataSchemaTrademark17Description,
+    credits=metadataSchemaTrademark17Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaTrademark17Metadata,
+)
+
+# div with class
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-018",
+    title=metadataSchemaTrademark18Title,
+    description=metadataSchemaTrademark18Description,
+    credits=metadataSchemaTrademark18Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark18Metadata,
+)
+
+# one span
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-019",
+    title=metadataSchemaTrademark19Title,
+    description=metadataSchemaTrademark19Description,
+    credits=metadataSchemaTrademark19Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark19Metadata,
+)
+
+# two span
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-020",
+    title=metadataSchemaTrademark20Title,
+    description=metadataSchemaTrademark20Description,
+    credits=metadataSchemaTrademark20Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark20Metadata,
+)
+
+# span with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-021",
+    title=metadataSchemaTrademark21Title,
+    description=metadataSchemaTrademark21Description,
+    credits=metadataSchemaTrademark21Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark21Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-022",
+    title=metadataSchemaTrademark22Title,
+    description=metadataSchemaTrademark22Description,
+    credits=metadataSchemaTrademark22Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark22Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-023",
+    title=metadataSchemaTrademark23Title,
+    description=metadataSchemaTrademark23Description,
+    credits=metadataSchemaTrademark23Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaTrademark23Metadata,
+)
+
+# span with class
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-024",
+    title=metadataSchemaTrademark24Title,
+    description=metadataSchemaTrademark24Description,
+    credits=metadataSchemaTrademark24Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaTrademark24Metadata,
+)
+
 # -------------------------------------------
 # Metadata Display: Schema Validity: uniqueid
 # -------------------------------------------
