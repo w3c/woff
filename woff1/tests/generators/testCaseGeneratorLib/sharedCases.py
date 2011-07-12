@@ -1209,21 +1209,65 @@ metadataSchemaVendor5Title = "No name Attribute in vendor Element"
 metadataSchemaVendor5Description = "The vendor element does not contain the required name attribute."
 metadataSchemaVendor5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# unknown attribute
+# dir attribute
 
 metadataSchemaVendor6Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" dir="ltr" />
+</metadata>
+"""
+metadataSchemaVendor6Title = "Valid dir Attribute in vendor Element 1"
+metadataSchemaVendor6Description = "The vendor element contains ltr as the value for the dir attribute."
+metadataSchemaVendor6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaVendor7Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" dir="rtl" />
+</metadata>
+"""
+metadataSchemaVendor7Title = "Valid dir Attribute in vendor Element 2"
+metadataSchemaVendor7Description = "The vendor element contains rtl as the value for the dir attribute."
+metadataSchemaVendor7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaVendor8Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" dir="INVALID" />
+</metadata>
+"""
+metadataSchemaVendor8Title = "Invalid dir Attribute in vendor Element"
+metadataSchemaVendor8Description = "The vendor element contains INVALID as the value for the dir attribute."
+metadataSchemaVendor8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# class attribute
+
+metadataSchemaVendor9Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <vendor name="Test Vendor" url="http://w3c.org/Fonts" class="class1 class2 class3" />
+</metadata>
+"""
+metadataSchemaVendor9Title = "Valid class Attribute in vendor Element"
+metadataSchemaVendor9Description = "The vendor element contains rtl as the value for the dir attribute."
+metadataSchemaVendor9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# unknown attribute
+
+metadataSchemaVendor10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <vendor name="Test Vendor" url="http://w3c.org/Fonts" unknownattribute="Text" />
 </metadata>
 """
-metadataSchemaVendor6Title = "Unknown Attribute in vendor Element"
-metadataSchemaVendor6Description = "The vendor element contains an unknown attribute."
-metadataSchemaVendor6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaVendor10Title = "Unknown Attribute in vendor Element"
+metadataSchemaVendor10Description = "The vendor element contains an unknown attribute."
+metadataSchemaVendor10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown child
 
-metadataSchemaVendor7Metadata = """
+metadataSchemaVendor11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <vendor name="Test Vendor" url="http://w3c.org/Fonts">
@@ -1231,13 +1275,13 @@ metadataSchemaVendor7Metadata = """
     </vendor>
 </metadata>
 """
-metadataSchemaVendor7Title = "Child Element in vendor Element"
-metadataSchemaVendor7Description = "The vendor element contains a child element."
-metadataSchemaVendor7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaVendor11Title = "Child Element in vendor Element"
+metadataSchemaVendor11Description = "The vendor element contains a child element."
+metadataSchemaVendor11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaVendor8Metadata = """
+metadataSchemaVendor12Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <vendor name="Test Vendor" url="http://w3c.org/Fonts">
@@ -1245,9 +1289,9 @@ metadataSchemaVendor8Metadata = """
     </vendor>
 </metadata>
 """
-metadataSchemaVendor8Title = "Content in vendor Element"
-metadataSchemaVendor8Description = "The vendor element contains content."
-metadataSchemaVendor8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaVendor12Title = "Content in vendor Element"
+metadataSchemaVendor12Description = "The vendor element contains content."
+metadataSchemaVendor12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ------------------------------------------
 # Metadata Display: Schema Validity: credits

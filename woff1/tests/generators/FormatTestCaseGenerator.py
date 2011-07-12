@@ -1389,40 +1389,80 @@ writeMetadataTest(
     metadata=metadataSchemaVendor5Metadata,
 )
 
-# unknown attribute
+# dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-006",
     title=metadataSchemaVendor6Title,
     description=metadataSchemaVendor6Description,
     credits=metadataSchemaVendor6Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaVendor6Metadata,
 )
-
-# unknown child
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-007",
     title=metadataSchemaVendor7Title,
     description=metadataSchemaVendor7Description,
     credits=metadataSchemaVendor7Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaVendor7Metadata,
 )
-
-# content
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-008",
     title=metadataSchemaVendor8Title,
     description=metadataSchemaVendor8Description,
     credits=metadataSchemaVendor8Credits,
-    specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaVendor8Metadata,
+)
+
+# class attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-vendor-009",
+    title=metadataSchemaVendor9Title,
+    description=metadataSchemaVendor9Description,
+    credits=metadataSchemaVendor9Credits,
+    valid=True,
+    metadata=metadataSchemaVendor9Metadata,
+)
+
+# unknown attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-vendor-010",
+    title=metadataSchemaVendor10Title,
+    description=metadataSchemaVendor10Description,
+    credits=metadataSchemaVendor10Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaVendor10Metadata,
+)
+
+# unknown child
+
+writeMetadataTest(
+    identifier="metadata-schema-vendor-011",
+    title=metadataSchemaVendor11Title,
+    description=metadataSchemaVendor11Description,
+    credits=metadataSchemaVendor11Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaVendor11Metadata,
+)
+
+# content
+
+writeMetadataTest(
+    identifier="metadata-schema-vendor-012",
+    title=metadataSchemaVendor12Title,
+    description=metadataSchemaVendor12Description,
+    credits=metadataSchemaVendor12Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaVendor12Metadata,
 )
 
 # ------------------------------------------

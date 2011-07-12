@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (188 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (192 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -1275,8 +1275,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-vendor-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-vendor-006">metadatadisplay-schema-vendor-006</a>: Unknown Attribute in vendor Element</h3>
-				<p>The vendor element contains an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-vendor-006">metadatadisplay-schema-vendor-006</a>: Valid dir Attribute in vendor Element 1</h3>
+				<p>The vendor element contains ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1285,14 +1285,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-vendor-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-vendor-007">metadatadisplay-schema-vendor-007</a>: Child Element in vendor Element</h3>
-				<p>The vendor element contains a child element.</p>
+				<h3><a href="#metadatadisplay-schema-vendor-007">metadatadisplay-schema-vendor-007</a>: Valid dir Attribute in vendor Element 2</h3>
+				<p>The vendor element contains rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1301,19 +1301,83 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-vendor-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-vendor-008">metadatadisplay-schema-vendor-008</a>: Content in vendor Element</h3>
-				<p>The vendor element contains content.</p>
+				<h3><a href="#metadatadisplay-schema-vendor-008">metadatadisplay-schema-vendor-008</a>: Invalid dir Attribute in vendor Element</h3>
+				<p>The vendor element contains INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-vendor-008.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-vendor-008-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-vendor-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-vendor-009">metadatadisplay-schema-vendor-009</a>: Valid class Attribute in vendor Element</h3>
+				<p>The vendor element contains rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-vendor-009.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-vendor-009-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-vendor-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-vendor-010">metadatadisplay-schema-vendor-010</a>: Unknown Attribute in vendor Element</h3>
+				<p>The vendor element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-vendor-010.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-vendor-010-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-vendor-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-vendor-011">metadatadisplay-schema-vendor-011</a>: Child Element in vendor Element</h3>
+				<p>The vendor element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-vendor-011.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-vendor-011-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-vendor-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-vendor-012">metadatadisplay-schema-vendor-012</a>: Content in vendor Element</h3>
+				<p>The vendor element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-vendor-012.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-vendor-012-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>

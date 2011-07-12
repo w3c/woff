@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (200 tests)</h1>
+		<h1>WOFF: Format Test Suite (204 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -902,31 +902,71 @@
 		</div>
 		<div class="testCase" id="metadata-schema-vendor-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-vendor-006">metadata-schema-vendor-006</a>: Unknown Attribute in vendor Element</h3>
-				<p>The vendor element contains an unknown attribute.</p>
+				<h3><a href="#metadata-schema-vendor-006">metadata-schema-vendor-006</a>: Valid dir Attribute in vendor Element 1</h3>
+				<p>The vendor element contains ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-vendor-006-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-vendor-006-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-vendor-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-vendor-007">metadata-schema-vendor-007</a>: Child Element in vendor Element</h3>
-				<p>The vendor element contains a child element.</p>
+				<h3><a href="#metadata-schema-vendor-007">metadata-schema-vendor-007</a>: Valid dir Attribute in vendor Element 2</h3>
+				<p>The vendor element contains rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-vendor-007-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-vendor-007-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-vendor-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-vendor-008">metadata-schema-vendor-008</a>: Content in vendor Element</h3>
-				<p>The vendor element contains content.</p>
+				<h3><a href="#metadata-schema-vendor-008">metadata-schema-vendor-008</a>: Invalid dir Attribute in vendor Element</h3>
+				<p>The vendor element contains INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-vendor-008-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-009">metadata-schema-vendor-009</a>: Valid class Attribute in vendor Element</h3>
+				<p>The vendor element contains rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-009-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-010">metadata-schema-vendor-010</a>: Unknown Attribute in vendor Element</h3>
+				<p>The vendor element contains an unknown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-010-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-011">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-011">metadata-schema-vendor-011</a>: Child Element in vendor Element</h3>
+				<p>The vendor element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-011-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-vendor-012">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-vendor-012">metadata-schema-vendor-012</a>: Content in vendor Element</h3>
+				<p>The vendor element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-vendor-012-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>

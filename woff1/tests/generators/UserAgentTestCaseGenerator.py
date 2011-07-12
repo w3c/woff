@@ -1322,29 +1322,25 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaVendor5Metadata,
 )
 
-# unknown attribute
+# dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-006",
     title=metadataSchemaVendor6Title,
     assertion=metadataSchemaVendor6Description,
     credits=metadataSchemaVendor6Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaVendor6Metadata,
 )
-
-# unknown child
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-007",
     title=metadataSchemaVendor7Title,
     assertion=metadataSchemaVendor7Description,
     credits=metadataSchemaVendor7Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaVendor7Metadata,
 )
-
-# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-008",
@@ -1353,6 +1349,50 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaVendor8Credits,
     metadataIsValid=False,
     metadata=metadataSchemaVendor8Metadata,
+)
+
+# class attribute
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-009",
+    title=metadataSchemaVendor9Title,
+    assertion=metadataSchemaVendor9Description,
+    credits=metadataSchemaVendor9Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaVendor9Metadata,
+)
+
+# unknown attribute
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-010",
+    title=metadataSchemaVendor10Title,
+    assertion=metadataSchemaVendor10Description,
+    credits=metadataSchemaVendor10Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaVendor10Metadata,
+)
+
+# unknown child
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-011",
+    title=metadataSchemaVendor11Title,
+    assertion=metadataSchemaVendor11Description,
+    credits=metadataSchemaVendor11Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaVendor11Metadata,
+)
+
+# content
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-vendor-012",
+    title=metadataSchemaVendor12Title,
+    assertion=metadataSchemaVendor12Description,
+    credits=metadataSchemaVendor12Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaVendor12Metadata,
 )
 
 # ------------------------------------------
