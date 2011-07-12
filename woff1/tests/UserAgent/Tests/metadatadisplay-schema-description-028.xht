@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Valid description Element With dir Attribute in div Element in text Element 2</title>
+		<title>WOFF Test: Valid description Element With dir Attribute in span Element in text Element 2</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect" />
 		<link rel="help" href="#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The description element contains a text element that contains a div element with rtl as the value for the dir attribute." />
+		<meta name="assert" content="The description element contains a text element that contains a span element with rtl as the value for the dir attribute." />
 		<style type="text/css"><![CDATA[
 			@font-face {
 				font-family: "WOFF Test";
-				src: url("resources/metadatadisplay-schema-description-022.woff") format("woff");
+				src: url("resources/metadatadisplay-schema-description-028.woff") format("woff");
 			}
 			body {
 				font-family;
@@ -38,7 +38,7 @@
 &lt;metadata version="1.0"&gt;
 	&lt;description url="http://w3c.org/Fonts"&gt;
 		&lt;text&gt;
-			&lt;div dir="rtl"&gt;Paragraph 1&lt;/div&gt;
+			Text with &lt;span&gt;span&lt;/span&gt;.
 		&lt;/text&gt;
 	&lt;/description&gt;
 &lt;/metadata&gt;

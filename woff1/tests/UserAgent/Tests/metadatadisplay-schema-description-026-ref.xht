@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Valid description Element With class Attribute in span Element in text Element</title>
+		<title>WOFF Test: Valid description Element With Two span Elements in text Element</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect" />
 		<link rel="help" href="#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The description element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute." />
+		<meta name="assert" content="The description element contains a text element that contains two span elements." />
 		<style type="text/css"><![CDATA[
 			body {
 				font-family;
@@ -34,7 +34,8 @@
 &lt;metadata version="1.0"&gt;
 	&lt;description url="http://w3c.org/Fonts"&gt;
 		&lt;text&gt;
-			Text with &lt;span&gt;span&lt;/span&gt;.
+			&lt;div&gt;Paragraph 1&lt;/div&gt;
+			&lt;div&gt;Paragraph 2&lt;/div&gt;
 		&lt;/text&gt;
 	&lt;/description&gt;
 &lt;/metadata&gt;

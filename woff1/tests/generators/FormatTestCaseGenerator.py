@@ -1823,7 +1823,7 @@ writeMetadataTest(
     metadata=metadataSchemaDescription12Metadata,
 )
 
-# text element unknown attribute
+# dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-description-013",
@@ -1831,11 +1831,9 @@ writeMetadataTest(
     description=metadataSchemaDescription13Description,
     credits=metadataSchemaDescription13Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaDescription13Metadata,
 )
-
-# text element child element
 
 writeMetadataTest(
     identifier="metadata-schema-description-014",
@@ -1843,11 +1841,9 @@ writeMetadataTest(
     description=metadataSchemaDescription14Description,
     credits=metadataSchemaDescription14Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaDescription14Metadata,
 )
-
-# one div
 
 writeMetadataTest(
     identifier="metadata-schema-description-015",
@@ -1855,11 +1851,11 @@ writeMetadataTest(
     description=metadataSchemaDescription15Description,
     credits=metadataSchemaDescription15Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=True,
+    valid=False,
     metadata=metadataSchemaDescription15Metadata,
 )
 
-# two div
+# class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-description-016",
@@ -1871,7 +1867,7 @@ writeMetadataTest(
     metadata=metadataSchemaDescription16Metadata,
 )
 
-# div with dir
+# text element unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-description-017",
@@ -1879,9 +1875,11 @@ writeMetadataTest(
     description=metadataSchemaDescription17Description,
     credits=metadataSchemaDescription17Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=True,
+    valid=False,
     metadata=metadataSchemaDescription17Metadata,
 )
+
+# text element child element
 
 writeMetadataTest(
     identifier="metadata-schema-description-018",
@@ -1889,9 +1887,11 @@ writeMetadataTest(
     description=metadataSchemaDescription18Description,
     credits=metadataSchemaDescription18Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=True,
+    valid=False,
     metadata=metadataSchemaDescription18Metadata,
 )
+
+# one div
 
 writeMetadataTest(
     identifier="metadata-schema-description-019",
@@ -1899,11 +1899,11 @@ writeMetadataTest(
     description=metadataSchemaDescription19Description,
     credits=metadataSchemaDescription19Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaDescription19Metadata,
 )
 
-# div with class
+# two div
 
 writeMetadataTest(
     identifier="metadata-schema-description-020",
@@ -1915,7 +1915,7 @@ writeMetadataTest(
     metadata=metadataSchemaDescription20Metadata,
 )
 
-# one span
+# div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-description-021",
@@ -1927,8 +1927,6 @@ writeMetadataTest(
     metadata=metadataSchemaDescription21Metadata,
 )
 
-# two span
-
 writeMetadataTest(
     identifier="metadata-schema-description-022",
     title=metadataSchemaDescription22Title,
@@ -1939,17 +1937,17 @@ writeMetadataTest(
     metadata=metadataSchemaDescription22Metadata,
 )
 
-# span with dir
-
 writeMetadataTest(
     identifier="metadata-schema-description-023",
     title=metadataSchemaDescription23Title,
     description=metadataSchemaDescription23Description,
     credits=metadataSchemaDescription23Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=True,
+    valid=False,
     metadata=metadataSchemaDescription23Metadata,
 )
+
+# div with class
 
 writeMetadataTest(
     identifier="metadata-schema-description-024",
@@ -1961,17 +1959,19 @@ writeMetadataTest(
     metadata=metadataSchemaDescription24Metadata,
 )
 
+# one span
+
 writeMetadataTest(
     identifier="metadata-schema-description-025",
     title=metadataSchemaDescription25Title,
     description=metadataSchemaDescription25Description,
     credits=metadataSchemaDescription25Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaDescription25Metadata,
 )
 
-# span with class
+# two span
 
 writeMetadataTest(
     identifier="metadata-schema-description-026",
@@ -1981,6 +1981,50 @@ writeMetadataTest(
     specLink="#conform-metadata-schemavalid",
     valid=True,
     metadata=metadataSchemaDescription26Metadata,
+)
+
+# span with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-description-027",
+    title=metadataSchemaDescription27Title,
+    description=metadataSchemaDescription27Description,
+    credits=metadataSchemaDescription27Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription27Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-description-028",
+    title=metadataSchemaDescription28Title,
+    description=metadataSchemaDescription28Description,
+    credits=metadataSchemaDescription28Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription28Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-description-029",
+    title=metadataSchemaDescription29Title,
+    description=metadataSchemaDescription29Description,
+    credits=metadataSchemaDescription29Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaDescription29Metadata,
+)
+
+# span with class
+
+writeMetadataTest(
+    identifier="metadata-schema-description-030",
+    title=metadataSchemaDescription30Title,
+    description=metadataSchemaDescription30Description,
+    credits=metadataSchemaDescription30Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription30Metadata,
 )
 
 # ------------------------------------------
