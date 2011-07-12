@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (196 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (208 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -1595,7 +1595,7 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-credit-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-credit-007">metadatadisplay-schema-credit-007</a>: Invalid dir Attribute in credit Element 1</h3>
+				<h3><a href="#metadatadisplay-schema-credit-007">metadatadisplay-schema-credit-007</a>: Invalid dir Attribute in credit Element</h3>
 				<p>The credit element contains INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
@@ -1611,7 +1611,7 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-credit-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-credit-008">metadatadisplay-schema-credit-008</a>: Valid dir Attribute in credit Element 2</h3>
+				<h3><a href="#metadatadisplay-schema-credit-008">metadatadisplay-schema-credit-008</a>: Valid class Attribute in credit Element</h3>
 				<p>The credit element contains "class1 class2 class3" as the value for the class attribute.</p>
 			</div>
 			<div class="testCaseDetails">
@@ -1894,6 +1894,198 @@
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
 					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-015">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-015">metadatadisplay-schema-description-015</a>: Valid description Element With One div Element in text Element</h3>
+				<p>The description element contains a text element that contains a div element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-015.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-015-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-016">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-016">metadatadisplay-schema-description-016</a>: Valid description Element With Two div Elements in text Element</h3>
+				<p>The description element contains a text element that contains two div elements.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-016.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-016-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-017">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-017">metadatadisplay-schema-description-017</a>: Valid description Element With dir Attribute in div Element in text Element 1</h3>
+				<p>The description element contains a text element that contains a div element with ltr as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-017.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-017-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-018">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-018">metadatadisplay-schema-description-018</a>: Valid description Element With dir Attribute in div Element in text Element 2</h3>
+				<p>The description element contains a text element that contains a div element with rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-018.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-018-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-019">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-019">metadatadisplay-schema-description-019</a>: Invalid description Element With dir Attribute in div Element in text Element</h3>
+				<p>The description element contains a text element that contains a div element with INVALID as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-019.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-019-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-020">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-020">metadatadisplay-schema-description-020</a>: Valid description Element With class Attribute in div Element in text Element</h3>
+				<p>The description element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-020.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-020-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-021">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-021">metadatadisplay-schema-description-021</a>: Valid description Element With One span Element in text Element</h3>
+				<p>The description element contains a text element that contains a span element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-021.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-021-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-022">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-022">metadatadisplay-schema-description-022</a>: Valid description Element With Two span Elements in text Element</h3>
+				<p>The description element contains a text element that contains two span elements.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-022.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-022-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-023">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-023">metadatadisplay-schema-description-023</a>: Valid description Element With dir Attribute in span Element in text Element 1</h3>
+				<p>The description element contains a text element that contains a span element with ltr as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-023.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-023-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-024">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-024">metadatadisplay-schema-description-024</a>: Valid description Element With dir Attribute in div Element in text Element 2</h3>
+				<p>The description element contains a text element that contains a span element with rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-024.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-024-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-025">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-025">metadatadisplay-schema-description-025</a>: Invalid description Element With dir Attribute in div Element in text Element</h3>
+				<p>The description element contains a text element that contains a span element with INVALID as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-025.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-025-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-description-026">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-description-026">metadatadisplay-schema-description-026</a>: Valid description Element With class Attribute in span Element in text Element</h3>
+				<p>The description element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-description-026.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-description-026-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>

@@ -1755,6 +1755,130 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription14Metadata,
 )
 
+# one div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-015",
+    title=metadataSchemaDescription15Title,
+    assertion=metadataSchemaDescription15Description,
+    credits=metadataSchemaDescription15Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription15Metadata,
+)
+
+# two div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-016",
+    title=metadataSchemaDescription16Title,
+    assertion=metadataSchemaDescription16Description,
+    credits=metadataSchemaDescription16Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription16Metadata,
+)
+
+# div with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-017",
+    title=metadataSchemaDescription17Title,
+    assertion=metadataSchemaDescription17Description,
+    credits=metadataSchemaDescription17Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription17Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-018",
+    title=metadataSchemaDescription18Title,
+    assertion=metadataSchemaDescription18Description,
+    credits=metadataSchemaDescription18Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription18Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-019",
+    title=metadataSchemaDescription19Title,
+    assertion=metadataSchemaDescription19Description,
+    credits=metadataSchemaDescription19Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaDescription19Metadata,
+)
+
+# div with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-020",
+    title=metadataSchemaDescription20Title,
+    assertion=metadataSchemaDescription20Description,
+    credits=metadataSchemaDescription20Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription20Metadata,
+)
+
+# one span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-021",
+    title=metadataSchemaDescription21Title,
+    assertion=metadataSchemaDescription21Description,
+    credits=metadataSchemaDescription21Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription21Metadata,
+)
+
+# two span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-022",
+    title=metadataSchemaDescription22Title,
+    assertion=metadataSchemaDescription22Description,
+    credits=metadataSchemaDescription22Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription22Metadata,
+)
+
+# div with span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-023",
+    title=metadataSchemaDescription23Title,
+    assertion=metadataSchemaDescription23Description,
+    credits=metadataSchemaDescription23Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription23Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-024",
+    title=metadataSchemaDescription24Title,
+    assertion=metadataSchemaDescription24Description,
+    credits=metadataSchemaDescription24Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription24Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-025",
+    title=metadataSchemaDescription25Title,
+    assertion=metadataSchemaDescription25Description,
+    credits=metadataSchemaDescription25Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaDescription25Metadata,
+)
+
+# span with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-026",
+    title=metadataSchemaDescription26Title,
+    assertion=metadataSchemaDescription26Description,
+    credits=metadataSchemaDescription26Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription26Metadata,
+)
+
 # ------------------------------------------
 # Metadata Display: Schema Validity: license
 # ------------------------------------------

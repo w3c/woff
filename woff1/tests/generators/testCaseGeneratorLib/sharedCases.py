@@ -1487,7 +1487,7 @@ metadataSchemaCredit7Metadata = """
     <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="ltr" />
 </metadata>
 """
-metadataSchemaCredit7Title = "Invalid dir Attribute in credit Element 1"
+metadataSchemaCredit7Title = "Invalid dir Attribute in credit Element"
 metadataSchemaCredit7Description = "The credit element contains INVALID as the value for the dir attribute."
 metadataSchemaCredit7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
@@ -1499,7 +1499,7 @@ metadataSchemaCredit8Metadata = """
     <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" class="class1 class2 class3" />
 </metadata>
 """
-metadataSchemaCredit8Title = "Valid dir Attribute in credit Element 2"
+metadataSchemaCredit8Title = "Valid class Attribute in credit Element"
 metadataSchemaCredit8Description = "The credit element contains \"class1 class2 class3\" as the value for the class attribute."
 metadataSchemaCredit8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
@@ -1785,6 +1785,192 @@ metadataSchemaDescription14Metadata = """
 metadataSchemaDescription14Title = "Unknown Child Element in description Element text Element"
 metadataSchemaDescription14Description = "The description element contains a text element with an unknown child element."
 metadataSchemaDescription14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# one div
+
+metadataSchemaDescription15Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            <div>Paragraph 1</div>
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription15Title = "Valid description Element With One div Element in text Element"
+metadataSchemaDescription15Description = "The description element contains a text element that contains a div element."
+metadataSchemaDescription15Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# two div
+
+metadataSchemaDescription16Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            <div>Paragraph 1</div>
+            <div>Paragraph 2</div>
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription16Title = "Valid description Element With Two div Elements in text Element"
+metadataSchemaDescription16Description = "The description element contains a text element that contains two div elements."
+metadataSchemaDescription16Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# div with dir
+
+metadataSchemaDescription17Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            <div dir="ltr">Paragraph 1</div>
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription17Title = "Valid description Element With dir Attribute in div Element in text Element 1"
+metadataSchemaDescription17Description = "The description element contains a text element that contains a div element with ltr as the value for the dir attribute."
+metadataSchemaDescription17Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaDescription18Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            <div dir="rtl">Paragraph 1</div>
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription18Title = "Valid description Element With dir Attribute in div Element in text Element 2"
+metadataSchemaDescription18Description = "The description element contains a text element that contains a div element with rtl as the value for the dir attribute."
+metadataSchemaDescription18Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaDescription19Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            <div dir="INVALID">Paragraph 1</div>
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription19Title = "Invalid description Element With dir Attribute in div Element in text Element"
+metadataSchemaDescription19Description = "The description element contains a text element that contains a div element with INVALID as the value for the dir attribute."
+metadataSchemaDescription19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# div with class
+
+metadataSchemaDescription20Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            <div class="class1 class2 class3">Paragraph 1</div>
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription20Title = "Valid description Element With class Attribute in div Element in text Element"
+metadataSchemaDescription20Description = "The description element contains a text element that contains a div element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaDescription20Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# one span
+
+metadataSchemaDescription21Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription21Title = "Valid description Element With One span Element in text Element"
+metadataSchemaDescription21Description = "The description element contains a text element that contains a span element."
+metadataSchemaDescription21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# two span
+
+metadataSchemaDescription22Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            <div>Paragraph 1</div>
+            <div>Paragraph 2</div>
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription22Title = "Valid description Element With Two span Elements in text Element"
+metadataSchemaDescription22Description = "The description element contains a text element that contains two span elements."
+metadataSchemaDescription22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with dir
+
+metadataSchemaDescription23Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription23Title = "Valid description Element With dir Attribute in span Element in text Element 1"
+metadataSchemaDescription23Description = "The description element contains a text element that contains a span element with ltr as the value for the dir attribute."
+metadataSchemaDescription23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaDescription24Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription24Title = "Valid description Element With dir Attribute in div Element in text Element 2"
+metadataSchemaDescription24Description = "The description element contains a text element that contains a span element with rtl as the value for the dir attribute."
+metadataSchemaDescription24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaDescription25Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription25Title = "Invalid description Element With dir Attribute in div Element in text Element"
+metadataSchemaDescription25Description = "The description element contains a text element that contains a span element with INVALID as the value for the dir attribute."
+metadataSchemaDescription25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with class
+
+metadataSchemaDescription26Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <description url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </description>
+</metadata>
+"""
+metadataSchemaDescription26Title = "Valid description Element With class Attribute in span Element in text Element"
+metadataSchemaDescription26Description = "The description element contains a text element that contains a span element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaDescription26Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ------------------------------------------
 # Metadata Display: Schema Validity: license

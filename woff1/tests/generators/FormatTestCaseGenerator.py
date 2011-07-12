@@ -1841,6 +1841,142 @@ writeMetadataTest(
     metadata=metadataSchemaDescription14Metadata,
 )
 
+# one div
+
+writeMetadataTest(
+    identifier="metadata-schema-description-015",
+    title=metadataSchemaDescription15Title,
+    description=metadataSchemaDescription15Description,
+    credits=metadataSchemaDescription15Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription15Metadata,
+)
+
+# two div
+
+writeMetadataTest(
+    identifier="metadata-schema-description-016",
+    title=metadataSchemaDescription16Title,
+    description=metadataSchemaDescription16Description,
+    credits=metadataSchemaDescription16Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription16Metadata,
+)
+
+# div with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-description-017",
+    title=metadataSchemaDescription17Title,
+    description=metadataSchemaDescription17Description,
+    credits=metadataSchemaDescription17Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription17Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-description-018",
+    title=metadataSchemaDescription18Title,
+    description=metadataSchemaDescription18Description,
+    credits=metadataSchemaDescription18Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription18Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-description-019",
+    title=metadataSchemaDescription19Title,
+    description=metadataSchemaDescription19Description,
+    credits=metadataSchemaDescription19Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaDescription19Metadata,
+)
+
+# div with class
+
+writeMetadataTest(
+    identifier="metadata-schema-description-020",
+    title=metadataSchemaDescription20Title,
+    description=metadataSchemaDescription20Description,
+    credits=metadataSchemaDescription20Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription20Metadata,
+)
+
+# one span
+
+writeMetadataTest(
+    identifier="metadata-schema-description-021",
+    title=metadataSchemaDescription21Title,
+    description=metadataSchemaDescription21Description,
+    credits=metadataSchemaDescription21Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription21Metadata,
+)
+
+# two span
+
+writeMetadataTest(
+    identifier="metadata-schema-description-022",
+    title=metadataSchemaDescription22Title,
+    description=metadataSchemaDescription22Description,
+    credits=metadataSchemaDescription22Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription22Metadata,
+)
+
+# span with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-description-023",
+    title=metadataSchemaDescription23Title,
+    description=metadataSchemaDescription23Description,
+    credits=metadataSchemaDescription23Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription23Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-description-024",
+    title=metadataSchemaDescription24Title,
+    description=metadataSchemaDescription24Description,
+    credits=metadataSchemaDescription24Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription24Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-description-025",
+    title=metadataSchemaDescription25Title,
+    description=metadataSchemaDescription25Description,
+    credits=metadataSchemaDescription25Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaDescription25Metadata,
+)
+
+# span with class
+
+writeMetadataTest(
+    identifier="metadata-schema-description-026",
+    title=metadataSchemaDescription26Title,
+    description=metadataSchemaDescription26Description,
+    credits=metadataSchemaDescription26Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaDescription26Metadata,
+)
+
 # ------------------------------------------
 # Metadata Display: Schema Validity: license
 # ------------------------------------------

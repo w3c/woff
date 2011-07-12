@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (208 tests)</h1>
+		<h1>WOFF: Format Test Suite (220 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -1102,7 +1102,7 @@
 		</div>
 		<div class="testCase" id="metadata-schema-credit-007">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credit-007">metadata-schema-credit-007</a>: Invalid dir Attribute in credit Element 1</h3>
+				<h3><a href="#metadata-schema-credit-007">metadata-schema-credit-007</a>: Invalid dir Attribute in credit Element</h3>
 				<p>The credit element contains INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
@@ -1112,7 +1112,7 @@
 		</div>
 		<div class="testCase" id="metadata-schema-credit-008">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-credit-008">metadata-schema-credit-008</a>: Valid dir Attribute in credit Element 2</h3>
+				<h3><a href="#metadata-schema-credit-008">metadata-schema-credit-008</a>: Valid class Attribute in credit Element</h3>
 				<p>The credit element contains "class1 class2 class3" as the value for the class attribute.</p>
 			</div>
 			<div class="testCaseDetails">
@@ -1287,6 +1287,126 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-description-014-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-015">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-015">metadata-schema-description-015</a>: Valid description Element With One div Element in text Element</h3>
+				<p>The description element contains a text element that contains a div element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-015-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-016">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-016">metadata-schema-description-016</a>: Valid description Element With Two div Elements in text Element</h3>
+				<p>The description element contains a text element that contains two div elements.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-016-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-017">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-017">metadata-schema-description-017</a>: Valid description Element With dir Attribute in div Element in text Element 1</h3>
+				<p>The description element contains a text element that contains a div element with ltr as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-017-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-018">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-018">metadata-schema-description-018</a>: Valid description Element With dir Attribute in div Element in text Element 2</h3>
+				<p>The description element contains a text element that contains a div element with rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-018-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-019">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-019">metadata-schema-description-019</a>: Invalid description Element With dir Attribute in div Element in text Element</h3>
+				<p>The description element contains a text element that contains a div element with INVALID as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-019-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-020">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-020">metadata-schema-description-020</a>: Valid description Element With class Attribute in div Element in text Element</h3>
+				<p>The description element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-020-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-021">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-021">metadata-schema-description-021</a>: Valid description Element With One span Element in text Element</h3>
+				<p>The description element contains a text element that contains a span element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-021-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-022">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-022">metadata-schema-description-022</a>: Valid description Element With Two span Elements in text Element</h3>
+				<p>The description element contains a text element that contains two span elements.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-022-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-023">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-023">metadata-schema-description-023</a>: Valid description Element With dir Attribute in span Element in text Element 1</h3>
+				<p>The description element contains a text element that contains a span element with ltr as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-023-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-024">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-024">metadata-schema-description-024</a>: Valid description Element With dir Attribute in div Element in text Element 2</h3>
+				<p>The description element contains a text element that contains a span element with rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-024-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-025">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-025">metadata-schema-description-025</a>: Invalid description Element With dir Attribute in div Element in text Element</h3>
+				<p>The description element contains a text element that contains a span element with INVALID as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-025-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-description-026">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-description-026">metadata-schema-description-026</a>: Valid description Element With class Attribute in span Element in text Element</h3>
+				<p>The description element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-description-026-validity">Yes</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
