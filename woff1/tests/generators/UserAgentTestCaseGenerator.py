@@ -126,6 +126,8 @@ for group in groupDefinitions:
 # ---------------
 
 registeredIdentifiers = set()
+registeredTitles = set()
+registeredAssertions = set()
 
 def writeFileStructureTest(identifier, flavor="CFF",
         title=None, assertion=None,
@@ -137,7 +139,11 @@ def writeFileStructureTest(identifier, flavor="CFF",
         ):
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
+    assert title not in registeredTitles, "Duplicate title! %s" % title
+    assert assertion not in registeredAssertions, "Duplicate assertion! %s" % assertion
     registeredIdentifiers.add(identifier)
+    registeredTitles.add(title)
+    registeredAssertions.add(assertion)
 
     if sfntDisplaySpecLink is None:
         sfntDisplaySpecLink = ""

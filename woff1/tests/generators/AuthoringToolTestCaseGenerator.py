@@ -99,11 +99,17 @@ for group in groupDefinitions:
 # -----------------
 
 registeredIdentifiers = set()
+registeredTitles = set()
+registeredDescriptions = set()
 
 def writeTest(identifier, title, description, data, specLink=None, credits=[], shouldConvert=False, flavor="cff"):
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
+    assert title not in registeredTitles, "Duplicate title! %s" % title
+    assert description not in registeredDescriptions, "Duplicate description! %s" % description
     registeredIdentifiers.add(identifier)
+    registeredTitles.add(title)
+    registeredDescriptions.add(description)
 
     if specLink is None:
         specLink = specificationURL

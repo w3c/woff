@@ -2004,7 +2004,7 @@ metadataSchemaLicense2Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense2Title = "Valid license Element"
+metadataSchemaLicense2Title = "Valid license Element Without url Attribute"
 metadataSchemaLicense2Description = "The license element does not have a url attribute but it still matches the schema."
 metadataSchemaLicense2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
@@ -2020,7 +2020,7 @@ metadataSchemaLicense3Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense3Title = "Valid license Element"
+metadataSchemaLicense3Title = "Valid license Element Without id Attribute"
 metadataSchemaLicense3Description = "The license element does not have an id attribute but it still matches the schema."
 metadataSchemaLicense3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
@@ -3011,7 +3011,7 @@ metadataSchemaTrademark12Description = "The trademark element contains a text el
 metadataSchemaTrademark12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -------------------------------------------
-# Metadata Display: Schema Validity: uniqueid
+# Metadata Display: Schema Validity: licensee
 # -------------------------------------------
 
 # valid
@@ -3023,7 +3023,7 @@ metadataSchemaLicensee1Metadata = """
 </metadata>
 """
 metadataSchemaLicensee1Title = "Valid licensee Element"
-metadataSchemaLicensee1Description = "The uniqueid element matches the schema."
+metadataSchemaLicensee1Description = "The licensee element matches the schema."
 metadataSchemaLicensee1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # duplicate
@@ -3036,7 +3036,7 @@ metadataSchemaLicensee2Metadata = """
 </metadata>
 """
 metadataSchemaLicensee2Title = "More Than One licensee Element"
-metadataSchemaLicensee2Description = "The uniqueid element occurs more than once."
+metadataSchemaLicensee2Description = "The licensee element occurs more than once."
 metadataSchemaLicensee2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # missing name
@@ -3048,7 +3048,7 @@ metadataSchemaLicensee3Metadata = """
 </metadata>
 """
 metadataSchemaLicensee3Title = "No name Attribute in licensee Element"
-metadataSchemaLicensee3Description = "The uniqueid element does not contain the required name attribute."
+metadataSchemaLicensee3Description = "The licensee element does not contain the required name attribute."
 metadataSchemaLicensee3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
@@ -3060,7 +3060,7 @@ metadataSchemaLicensee4Metadata = """
 </metadata>
 """
 metadataSchemaLicensee4Title = "Unknown Attribute in licensee Element"
-metadataSchemaLicensee4Description = "The uniqueid element occures more than once."
+metadataSchemaLicensee4Description = "The licensee element occures more than once."
 metadataSchemaLicensee4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
@@ -3074,7 +3074,7 @@ metadataSchemaLicensee5Metadata = """
 </metadata>
 """
 metadataSchemaLicensee5Title = "Child Element in licensee Element"
-metadataSchemaLicensee5Description = "The uniqueid element contains a child element."
+metadataSchemaLicensee5Description = "The licensee element contains a child element."
 metadataSchemaLicensee5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
@@ -3088,7 +3088,7 @@ metadataSchemaLicensee6Metadata = """
 </metadata>
 """
 metadataSchemaLicensee6Title = "Content in licensee Element"
-metadataSchemaLicensee6Description = "The uniqueid element contains content."
+metadataSchemaLicensee6Description = "The licensee element contains content."
 metadataSchemaLicensee6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # --------------------------------------------
