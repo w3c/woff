@@ -2432,6 +2432,142 @@ writeMetadataTest(
     metadata=metadataSchemaCopyright12Metadata,
 )
 
+# one div
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-013",
+    title=metadataSchemaCopyright13Title,
+    description=metadataSchemaCopyright13Description,
+    credits=metadataSchemaCopyright13Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright13Metadata,
+)
+
+# two div
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-014",
+    title=metadataSchemaCopyright14Title,
+    description=metadataSchemaCopyright14Description,
+    credits=metadataSchemaCopyright14Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright14Metadata,
+)
+
+# div with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-015",
+    title=metadataSchemaCopyright15Title,
+    description=metadataSchemaCopyright15Description,
+    credits=metadataSchemaCopyright15Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright15Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-016",
+    title=metadataSchemaCopyright16Title,
+    description=metadataSchemaCopyright16Description,
+    credits=metadataSchemaCopyright16Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright16Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-017",
+    title=metadataSchemaCopyright17Title,
+    description=metadataSchemaCopyright17Description,
+    credits=metadataSchemaCopyright17Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaCopyright17Metadata,
+)
+
+# div with class
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-018",
+    title=metadataSchemaCopyright18Title,
+    description=metadataSchemaCopyright18Description,
+    credits=metadataSchemaCopyright18Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright18Metadata,
+)
+
+# one span
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-019",
+    title=metadataSchemaCopyright19Title,
+    description=metadataSchemaCopyright19Description,
+    credits=metadataSchemaCopyright19Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright19Metadata,
+)
+
+# two span
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-020",
+    title=metadataSchemaCopyright20Title,
+    description=metadataSchemaCopyright20Description,
+    credits=metadataSchemaCopyright20Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright20Metadata,
+)
+
+# span with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-021",
+    title=metadataSchemaCopyright21Title,
+    description=metadataSchemaCopyright21Description,
+    credits=metadataSchemaCopyright21Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright21Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-022",
+    title=metadataSchemaCopyright22Title,
+    description=metadataSchemaCopyright22Description,
+    credits=metadataSchemaCopyright22Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright22Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-023",
+    title=metadataSchemaCopyright23Title,
+    description=metadataSchemaCopyright23Description,
+    credits=metadataSchemaCopyright23Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaCopyright23Metadata,
+)
+
+# span with class
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-024",
+    title=metadataSchemaCopyright24Title,
+    description=metadataSchemaCopyright24Description,
+    credits=metadataSchemaCopyright24Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaCopyright24Metadata,
+)
+
 # --------------------------------------------
 # Metadata Display: Schema Validity: trademark
 # --------------------------------------------

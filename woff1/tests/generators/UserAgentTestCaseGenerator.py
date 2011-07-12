@@ -2308,6 +2308,130 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaCopyright12Metadata,
 )
 
+# one div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-013",
+    title=metadataSchemaCopyright13Title,
+    assertion=metadataSchemaCopyright13Description,
+    credits=metadataSchemaCopyright13Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright13Metadata,
+)
+
+# two div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-014",
+    title=metadataSchemaCopyright14Title,
+    assertion=metadataSchemaCopyright14Description,
+    credits=metadataSchemaCopyright14Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright14Metadata,
+)
+
+# div with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-015",
+    title=metadataSchemaCopyright15Title,
+    assertion=metadataSchemaCopyright15Description,
+    credits=metadataSchemaCopyright15Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright15Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-016",
+    title=metadataSchemaCopyright16Title,
+    assertion=metadataSchemaCopyright16Description,
+    credits=metadataSchemaCopyright16Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright16Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-017",
+    title=metadataSchemaCopyright17Title,
+    assertion=metadataSchemaCopyright17Description,
+    credits=metadataSchemaCopyright17Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaCopyright17Metadata,
+)
+
+# div with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-018",
+    title=metadataSchemaCopyright18Title,
+    assertion=metadataSchemaCopyright18Description,
+    credits=metadataSchemaCopyright18Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright18Metadata,
+)
+
+# one span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-019",
+    title=metadataSchemaCopyright19Title,
+    assertion=metadataSchemaCopyright19Description,
+    credits=metadataSchemaCopyright19Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright19Metadata,
+)
+
+# two span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-020",
+    title=metadataSchemaCopyright20Title,
+    assertion=metadataSchemaCopyright20Description,
+    credits=metadataSchemaCopyright20Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright20Metadata,
+)
+
+# span with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-021",
+    title=metadataSchemaCopyright21Title,
+    assertion=metadataSchemaCopyright21Description,
+    credits=metadataSchemaCopyright21Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright21Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-022",
+    title=metadataSchemaCopyright22Title,
+    assertion=metadataSchemaCopyright22Description,
+    credits=metadataSchemaCopyright22Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright22Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-023",
+    title=metadataSchemaCopyright23Title,
+    assertion=metadataSchemaCopyright23Description,
+    credits=metadataSchemaCopyright23Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaCopyright23Metadata,
+)
+
+# span with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-024",
+    title=metadataSchemaCopyright24Title,
+    assertion=metadataSchemaCopyright24Description,
+    credits=metadataSchemaCopyright24Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaCopyright24Metadata,
+)
+
 # --------------------------------------------
 # Metadata Display: Schema Validity: trademark
 # --------------------------------------------
