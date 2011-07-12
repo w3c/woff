@@ -1938,7 +1938,7 @@ metadataSchemaDescription24Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription24Title = "Valid description Element With dir Attribute in div Element in text Element 2"
+metadataSchemaDescription24Title = "Valid description Element With dir Attribute in span Element in text Element 2"
 metadataSchemaDescription24Description = "The description element contains a text element that contains a span element with rtl as the value for the dir attribute."
 metadataSchemaDescription24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
@@ -1952,7 +1952,7 @@ metadataSchemaDescription25Metadata = """
     </description>
 </metadata>
 """
-metadataSchemaDescription25Title = "Invalid description Element With dir Attribute in div Element in text Element"
+metadataSchemaDescription25Title = "Invalid description Element With dir Attribute in span Element in text Element"
 metadataSchemaDescription25Description = "The description element contains a text element that contains a span element with INVALID as the value for the dir attribute."
 metadataSchemaDescription25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
