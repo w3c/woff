@@ -2153,6 +2153,142 @@ writeMetadataTest(
     metadata=metadataSchemaLicense15Metadata,
 )
 
+# one div
+
+writeMetadataTest(
+    identifier="metadata-schema-license-016",
+    title=metadataSchemaLicense16Title,
+    description=metadataSchemaLicense16Description,
+    credits=metadataSchemaLicense16Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense16Metadata,
+)
+
+# two div
+
+writeMetadataTest(
+    identifier="metadata-schema-license-017",
+    title=metadataSchemaLicense17Title,
+    description=metadataSchemaLicense17Description,
+    credits=metadataSchemaLicense17Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense17Metadata,
+)
+
+# div with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-license-018",
+    title=metadataSchemaLicense18Title,
+    description=metadataSchemaLicense18Description,
+    credits=metadataSchemaLicense18Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense18Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-license-019",
+    title=metadataSchemaLicense19Title,
+    description=metadataSchemaLicense19Description,
+    credits=metadataSchemaLicense19Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense19Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-license-020",
+    title=metadataSchemaLicense20Title,
+    description=metadataSchemaLicense20Description,
+    credits=metadataSchemaLicense20Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaLicense20Metadata,
+)
+
+# div with class
+
+writeMetadataTest(
+    identifier="metadata-schema-license-021",
+    title=metadataSchemaLicense21Title,
+    description=metadataSchemaLicense21Description,
+    credits=metadataSchemaLicense21Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense21Metadata,
+)
+
+# one span
+
+writeMetadataTest(
+    identifier="metadata-schema-license-022",
+    title=metadataSchemaLicense22Title,
+    description=metadataSchemaLicense22Description,
+    credits=metadataSchemaLicense22Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense22Metadata,
+)
+
+# two span
+
+writeMetadataTest(
+    identifier="metadata-schema-license-023",
+    title=metadataSchemaLicense23Title,
+    description=metadataSchemaLicense23Description,
+    credits=metadataSchemaLicense23Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense23Metadata,
+)
+
+# span with dir
+
+writeMetadataTest(
+    identifier="metadata-schema-license-024",
+    title=metadataSchemaLicense24Title,
+    description=metadataSchemaLicense24Description,
+    credits=metadataSchemaLicense24Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense24Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-license-025",
+    title=metadataSchemaLicense25Title,
+    description=metadataSchemaLicense25Description,
+    credits=metadataSchemaLicense25Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense25Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-license-026",
+    title=metadataSchemaLicense26Title,
+    description=metadataSchemaLicense26Description,
+    credits=metadataSchemaLicense26Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaLicense26Metadata,
+)
+
+# span with class
+
+writeMetadataTest(
+    identifier="metadata-schema-license-027",
+    title=metadataSchemaLicense27Title,
+    description=metadataSchemaLicense27Description,
+    credits=metadataSchemaLicense27Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense27Metadata,
+)
+
 # --------------------------------------------
 # Metadata Display: Schema Validity: copyright
 # --------------------------------------------

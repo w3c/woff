@@ -1839,7 +1839,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription22Metadata,
 )
 
-# div with span
+# span with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-023",
@@ -2046,6 +2046,130 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaLicense15Credits,
     metadataIsValid=False,
     metadata=metadataSchemaLicense15Metadata,
+)
+
+# one div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-016",
+    title=metadataSchemaLicense16Title,
+    assertion=metadataSchemaLicense16Description,
+    credits=metadataSchemaLicense16Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense16Metadata,
+)
+
+# two div
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-017",
+    title=metadataSchemaLicense17Title,
+    assertion=metadataSchemaLicense17Description,
+    credits=metadataSchemaLicense17Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense17Metadata,
+)
+
+# div with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-018",
+    title=metadataSchemaLicense18Title,
+    assertion=metadataSchemaLicense18Description,
+    credits=metadataSchemaLicense18Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense18Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-019",
+    title=metadataSchemaLicense19Title,
+    assertion=metadataSchemaLicense19Description,
+    credits=metadataSchemaLicense19Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense19Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-020",
+    title=metadataSchemaLicense20Title,
+    assertion=metadataSchemaLicense20Description,
+    credits=metadataSchemaLicense20Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaLicense20Metadata,
+)
+
+# div with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-021",
+    title=metadataSchemaLicense21Title,
+    assertion=metadataSchemaLicense21Description,
+    credits=metadataSchemaLicense21Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense21Metadata,
+)
+
+# one span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-022",
+    title=metadataSchemaLicense22Title,
+    assertion=metadataSchemaLicense22Description,
+    credits=metadataSchemaLicense22Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense22Metadata,
+)
+
+# two span
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-023",
+    title=metadataSchemaLicense23Title,
+    assertion=metadataSchemaLicense23Description,
+    credits=metadataSchemaLicense23Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense23Metadata,
+)
+
+# span with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-024",
+    title=metadataSchemaLicense24Title,
+    assertion=metadataSchemaLicense24Description,
+    credits=metadataSchemaLicense24Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense24Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-025",
+    title=metadataSchemaLicense25Title,
+    assertion=metadataSchemaLicense25Description,
+    credits=metadataSchemaLicense25Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense25Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-026",
+    title=metadataSchemaLicense26Title,
+    assertion=metadataSchemaLicense26Description,
+    credits=metadataSchemaLicense26Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaLicense26Metadata,
+)
+
+# span with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-027",
+    title=metadataSchemaLicense27Title,
+    assertion=metadataSchemaLicense27Description,
+    credits=metadataSchemaLicense27Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense27Metadata,
 )
 
 # --------------------------------------------
