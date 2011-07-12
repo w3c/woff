@@ -1250,7 +1250,7 @@ metadataSchemaVendor9Metadata = """
 </metadata>
 """
 metadataSchemaVendor9Title = "Valid class Attribute in vendor Element"
-metadataSchemaVendor9Description = "The vendor element contains rtl as the value for the dir attribute."
+metadataSchemaVendor9Description = "The vendor element contains \"class1 class2 class3\" as the value for the class attribute."
 metadataSchemaVendor9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
