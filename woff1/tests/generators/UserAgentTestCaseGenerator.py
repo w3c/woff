@@ -2672,40 +2672,36 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark10Metadata,
 )
 
-# text element unknown attribute
+# text element dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-011",
     title=metadataSchemaTrademark11Title,
     assertion=metadataSchemaTrademark11Description,
     credits=metadataSchemaTrademark11Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaTrademark11Metadata,
 )
-
-# text element child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-012",
     title=metadataSchemaTrademark12Title,
     assertion=metadataSchemaTrademark12Description,
     credits=metadataSchemaTrademark12Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaTrademark12Metadata,
 )
-
-# one div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-013",
     title=metadataSchemaTrademark13Title,
     assertion=metadataSchemaTrademark13Description,
     credits=metadataSchemaTrademark13Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaTrademark13Metadata,
 )
 
-# two div
+# text element with class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-014",
@@ -2716,36 +2712,40 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark14Metadata,
 )
 
-# div with dir
+# text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-015",
     title=metadataSchemaTrademark15Title,
     assertion=metadataSchemaTrademark15Description,
     credits=metadataSchemaTrademark15Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaTrademark15Metadata,
 )
+
+# text element child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-016",
     title=metadataSchemaTrademark16Title,
     assertion=metadataSchemaTrademark16Description,
     credits=metadataSchemaTrademark16Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaTrademark16Metadata,
 )
+
+# one div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-017",
     title=metadataSchemaTrademark17Title,
     assertion=metadataSchemaTrademark17Description,
     credits=metadataSchemaTrademark17Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaTrademark17Metadata,
 )
 
-# div with class
+# two div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-018",
@@ -2756,7 +2756,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark18Metadata,
 )
 
-# one span
+# div with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-019",
@@ -2767,8 +2767,6 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark19Metadata,
 )
 
-# two span
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-020",
     title=metadataSchemaTrademark20Title,
@@ -2778,16 +2776,16 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark20Metadata,
 )
 
-# span with dir
-
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-021",
     title=metadataSchemaTrademark21Title,
     assertion=metadataSchemaTrademark21Description,
     credits=metadataSchemaTrademark21Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaTrademark21Metadata,
 )
+
+# div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-022",
@@ -2798,16 +2796,18 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaTrademark22Metadata,
 )
 
+# one span
+
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-023",
     title=metadataSchemaTrademark23Title,
     assertion=metadataSchemaTrademark23Description,
     credits=metadataSchemaTrademark23Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaTrademark23Metadata,
 )
 
-# span with class
+# two span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-024",
@@ -2816,6 +2816,46 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaTrademark24Credits,
     metadataIsValid=True,
     metadata=metadataSchemaTrademark24Metadata,
+)
+
+# span with dir
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-025",
+    title=metadataSchemaTrademark25Title,
+    assertion=metadataSchemaTrademark25Description,
+    credits=metadataSchemaTrademark25Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark25Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-026",
+    title=metadataSchemaTrademark26Title,
+    assertion=metadataSchemaTrademark26Description,
+    credits=metadataSchemaTrademark26Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark26Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-027",
+    title=metadataSchemaTrademark27Title,
+    assertion=metadataSchemaTrademark27Description,
+    credits=metadataSchemaTrademark27Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaTrademark27Metadata,
+)
+
+# span with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-trademark-028",
+    title=metadataSchemaTrademark28Title,
+    assertion=metadataSchemaTrademark28Description,
+    credits=metadataSchemaTrademark28Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaTrademark28Metadata,
 )
 
 # -------------------------------------------
