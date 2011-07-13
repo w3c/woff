@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-		<title>WOFF Test: Valid copyright Element With Two div Elements in text Element</title>
+		<title>WOFF Test: Valid copyright Element With class Attribute in text Element</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect" />
 		<link rel="help" href="#Metadata" />
 		<meta name="flags" content="font" />
-		<meta name="assert" content="The copyright element contains a text element that contains two div elements." />
+		<meta name="assert" content="The copyright element contains a text element with "class1 class2 class3" as the value for the class attribute." />
 		<style type="text/css"><![CDATA[
 			body {
 				font-family;
@@ -32,10 +32,9 @@
 		<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;metadata version="1.0"&gt;
-	&lt;copyright url="http://w3c.org/Fonts"&gt;
-		&lt;text&gt;
-			&lt;div&gt;Paragraph 1&lt;/div&gt;
-			&lt;div&gt;Paragraph 2&lt;/div&gt;
+	&lt;copyright&gt;
+		&lt;text class="class 1 class2 class3"&gt;
+			Copyright without language.
 		&lt;/text&gt;
 	&lt;/copyright&gt;
 &lt;/metadata&gt;

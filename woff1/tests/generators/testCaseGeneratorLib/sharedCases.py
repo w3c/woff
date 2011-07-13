@@ -2705,9 +2705,69 @@ metadataSchemaCopyright10Title = "Content in copyright Element"
 metadataSchemaCopyright10Description = "The copyright element contains content."
 metadataSchemaCopyright10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# text element unknown attribute
+# text element with dir attribute
 
 metadataSchemaCopyright11Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text dir="ltr">
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright11Title = "Valid copyright Element With dir Attribute in text Element 1"
+metadataSchemaCopyright11Description = "The copyright element contains a text element with ltr as the value for the dir attribute."
+metadataSchemaCopyright11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaCopyright12Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text dir="rtl">
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright12Title = "Valid copyright Element With dir Attribute in text Element 2"
+metadataSchemaCopyright12Description = "The copyright element contains a text element with rtl as the value for the dir attribute."
+metadataSchemaCopyright12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaCopyright13Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text dir="INVALID">
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright13Title = "Invalid copyright Element With dir Attribute in text Element"
+metadataSchemaCopyright13Description = "The copyright element contains a text element with INVALID as the value for the dir attribute."
+metadataSchemaCopyright13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# text element with class attribute
+
+metadataSchemaCopyright14Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright>
+        <text class="class 1 class2 class3">
+            Copyright without language.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright14Title = "Valid copyright Element With class Attribute in text Element"
+metadataSchemaCopyright14Description = "The copyright element contains a text element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaCopyright14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# text element unknown attribute
+
+metadataSchemaCopyright15Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -2717,13 +2777,13 @@ metadataSchemaCopyright11Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright11Title = "Unknown Attribute in copyright Element text Element"
-metadataSchemaCopyright11Description = "The copyright element contains a text element with an unknown attribute."
-metadataSchemaCopyright11Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright15Title = "Unknown Attribute in copyright Element text Element"
+metadataSchemaCopyright15Description = "The copyright element contains a text element with an unknown attribute."
+metadataSchemaCopyright15Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # text element child element
 
-metadataSchemaCopyright12Metadata = """
+metadataSchemaCopyright16Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright>
@@ -2734,13 +2794,13 @@ metadataSchemaCopyright12Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright12Title = "Unknown Child Element in copyright Element text Element"
-metadataSchemaCopyright12Description = "The copyright element contains a text element with an unknown child element."
-metadataSchemaCopyright12Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright16Title = "Unknown Child Element in copyright Element text Element"
+metadataSchemaCopyright16Description = "The copyright element contains a text element with an unknown child element."
+metadataSchemaCopyright16Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # one div
 
-metadataSchemaCopyright13Metadata = """
+metadataSchemaCopyright17Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
@@ -2750,13 +2810,13 @@ metadataSchemaCopyright13Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright13Title = "Valid copyright Element With One div Element in text Element"
-metadataSchemaCopyright13Description = "The copyright element contains a text element that contains a div element."
-metadataSchemaCopyright13Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright17Title = "Valid copyright Element With One div Element in text Element"
+metadataSchemaCopyright17Description = "The copyright element contains a text element that contains a div element."
+metadataSchemaCopyright17Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # two div
 
-metadataSchemaCopyright14Metadata = """
+metadataSchemaCopyright18Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
@@ -2767,13 +2827,13 @@ metadataSchemaCopyright14Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright14Title = "Valid copyright Element With Two div Elements in text Element"
-metadataSchemaCopyright14Description = "The copyright element contains a text element that contains two div elements."
-metadataSchemaCopyright14Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright18Title = "Valid copyright Element With Two div Elements in text Element"
+metadataSchemaCopyright18Description = "The copyright element contains a text element that contains two div elements."
+metadataSchemaCopyright18Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # div with dir
 
-metadataSchemaCopyright15Metadata = """
+metadataSchemaCopyright19Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
@@ -2783,11 +2843,11 @@ metadataSchemaCopyright15Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright15Title = "Valid copyright Element With dir Attribute in div Element in text Element 1"
-metadataSchemaCopyright15Description = "The copyright element contains a text element that contains a div element with ltr as the value for the dir attribute."
-metadataSchemaCopyright15Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright19Title = "Valid copyright Element With dir Attribute in div Element in text Element 1"
+metadataSchemaCopyright19Description = "The copyright element contains a text element that contains a div element with ltr as the value for the dir attribute."
+metadataSchemaCopyright19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-metadataSchemaCopyright16Metadata = """
+metadataSchemaCopyright20Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
@@ -2797,11 +2857,11 @@ metadataSchemaCopyright16Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright16Title = "Valid copyright Element With dir Attribute in div Element in text Element 2"
-metadataSchemaCopyright16Description = "The copyright element contains a text element that contains a div element with rtl as the value for the dir attribute."
-metadataSchemaCopyright16Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright20Title = "Valid copyright Element With dir Attribute in div Element in text Element 2"
+metadataSchemaCopyright20Description = "The copyright element contains a text element that contains a div element with rtl as the value for the dir attribute."
+metadataSchemaCopyright20Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-metadataSchemaCopyright17Metadata = """
+metadataSchemaCopyright21Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
@@ -2811,13 +2871,13 @@ metadataSchemaCopyright17Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright17Title = "Invalid copyright Element With dir Attribute in div Element in text Element"
-metadataSchemaCopyright17Description = "The copyright element contains a text element that contains a div element with INVALID as the value for the dir attribute."
-metadataSchemaCopyright17Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright21Title = "Invalid copyright Element With dir Attribute in div Element in text Element"
+metadataSchemaCopyright21Description = "The copyright element contains a text element that contains a div element with INVALID as the value for the dir attribute."
+metadataSchemaCopyright21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # div with class
 
-metadataSchemaCopyright18Metadata = """
+metadataSchemaCopyright22Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
@@ -2827,72 +2887,11 @@ metadataSchemaCopyright18Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright18Title = "Valid copyright Element With class Attribute in div Element in text Element"
-metadataSchemaCopyright18Description = "The copyright element contains a text element that contains a div element with \"class1 class2 class3\" as the value for the class attribute."
-metadataSchemaCopyright18Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright22Title = "Valid copyright Element With class Attribute in div Element in text Element"
+metadataSchemaCopyright22Description = "The copyright element contains a text element that contains a div element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaCopyright22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # one span
-
-metadataSchemaCopyright19Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
-        <text>
-            Text with <span>span</span>.
-        </text>
-    </copyright>
-</metadata>
-"""
-metadataSchemaCopyright19Title = "Valid copyright Element With One span Element in text Element"
-metadataSchemaCopyright19Description = "The copyright element contains a text element that contains a span element."
-metadataSchemaCopyright19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# two span
-
-metadataSchemaCopyright20Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
-        <text>
-            <div>Paragraph 1</div>
-            <div>Paragraph 2</div>
-        </text>
-    </copyright>
-</metadata>
-"""
-metadataSchemaCopyright20Title = "Valid copyright Element With Two span Elements in text Element"
-metadataSchemaCopyright20Description = "The copyright element contains a text element that contains two span elements."
-metadataSchemaCopyright20Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# span with dir
-
-metadataSchemaCopyright21Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
-        <text>
-            Text with <span>span</span>.
-        </text>
-    </copyright>
-</metadata>
-"""
-metadataSchemaCopyright21Title = "Valid copyright Element With dir Attribute in span Element in text Element 1"
-metadataSchemaCopyright21Description = "The copyright element contains a text element that contains a span element with ltr as the value for the dir attribute."
-metadataSchemaCopyright21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-metadataSchemaCopyright22Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
-        <text>
-            Text with <span>span</span>.
-        </text>
-    </copyright>
-</metadata>
-"""
-metadataSchemaCopyright22Title = "Valid copyright Element With dir Attribute in span Element in text Element 2"
-metadataSchemaCopyright22Description = "The copyright element contains a text element that contains a span element with rtl as the value for the dir attribute."
-metadataSchemaCopyright22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 metadataSchemaCopyright23Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2904,13 +2903,30 @@ metadataSchemaCopyright23Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright23Title = "Invalid copyright Element With dir Attribute in span Element in text Element"
-metadataSchemaCopyright23Description = "The copyright element contains a text element that contains a span element with INVALID as the value for the dir attribute."
+metadataSchemaCopyright23Title = "Valid copyright Element With One span Element in text Element"
+metadataSchemaCopyright23Description = "The copyright element contains a text element that contains a span element."
 metadataSchemaCopyright23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# span with class
+# two span
 
 metadataSchemaCopyright24Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright url="http://w3c.org/Fonts">
+        <text>
+            <div>Paragraph 1</div>
+            <div>Paragraph 2</div>
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright24Title = "Valid copyright Element With Two span Elements in text Element"
+metadataSchemaCopyright24Description = "The copyright element contains a text element that contains two span elements."
+metadataSchemaCopyright24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with dir
+
+metadataSchemaCopyright25Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
@@ -2920,9 +2936,53 @@ metadataSchemaCopyright24Metadata = """
     </copyright>
 </metadata>
 """
-metadataSchemaCopyright24Title = "Valid copyright Element With class Attribute in span Element in text Element"
-metadataSchemaCopyright24Description = "The copyright element contains a text element that contains a span element with \"class1 class2 class3\" as the value for the class attribute."
-metadataSchemaCopyright24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaCopyright25Title = "Valid copyright Element With dir Attribute in span Element in text Element 1"
+metadataSchemaCopyright25Description = "The copyright element contains a text element that contains a span element with ltr as the value for the dir attribute."
+metadataSchemaCopyright25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaCopyright26Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright26Title = "Valid copyright Element With dir Attribute in span Element in text Element 2"
+metadataSchemaCopyright26Description = "The copyright element contains a text element that contains a span element with rtl as the value for the dir attribute."
+metadataSchemaCopyright26Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaCopyright27Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright27Title = "Invalid copyright Element With dir Attribute in span Element in text Element"
+metadataSchemaCopyright27Description = "The copyright element contains a text element that contains a span element with INVALID as the value for the dir attribute."
+metadataSchemaCopyright27Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with class
+
+metadataSchemaCopyright28Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <copyright url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </copyright>
+</metadata>
+"""
+metadataSchemaCopyright28Title = "Valid copyright Element With class Attribute in span Element in text Element"
+metadataSchemaCopyright28Description = "The copyright element contains a text element that contains a span element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaCopyright28Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # --------------------------------------------
 # Metadata Display: Schema Validity: trademark
