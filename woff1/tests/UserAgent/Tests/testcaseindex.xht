@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (272 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (280 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -4267,8 +4267,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-extension-036">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-extension-036">metadatadisplay-schema-extension-036</a>: Unkown Attribute in name Element in item Element in extension Element</h3>
-				<p>The name element in the item element in the extension element contains an unkown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-extension-036">metadatadisplay-schema-extension-036</a>: Valid name Element With dir Attribute in item Element in extension Element 1</h3>
+				<p>The name element in the item element in the extension element has ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -4277,14 +4277,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-extension-037">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-extension-037">metadatadisplay-schema-extension-037</a>: Child Element in name Element in item Element in extension Element</h3>
-				<p>The name element in the item element in the extension element contains a child element.</p>
+				<h3><a href="#metadatadisplay-schema-extension-037">metadatadisplay-schema-extension-037</a>: Valid name Element With dir Attribute in item Element in extension Element 2</h3>
+				<p>The name element in the item element in the extension element has rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -4293,14 +4293,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-extension-038">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-extension-038">metadatadisplay-schema-extension-038</a>: Valid value Element in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element matches the schema.</p>
+				<h3><a href="#metadatadisplay-schema-extension-038">metadatadisplay-schema-extension-038</a>: Invalid name Element With dir Attribute in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element has INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -4309,14 +4309,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-extension-039">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-extension-039">metadatadisplay-schema-extension-039</a>: Valid value Element With xml:lang Attribute in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element contains a xml:lang attribute and it matches the schema.</p>
+				<h3><a href="#metadatadisplay-schema-extension-039">metadatadisplay-schema-extension-039</a>: Valid name Element With class Attribute in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element has "class1 class2 class3" as the value for the class attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -4331,8 +4331,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-extension-040">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-extension-040">metadatadisplay-schema-extension-040</a>: Valid value Element With lang Attribute in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element contains a lang attribute and it matches the schema.</p>
+				<h3><a href="#metadatadisplay-schema-extension-040">metadatadisplay-schema-extension-040</a>: Unkown Attribute in name Element in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element contains an unkown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -4341,14 +4341,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-extension-041">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-extension-041">metadatadisplay-schema-extension-041</a>: Unkown Attribute in value Element in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element contains an unkown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-extension-041">metadatadisplay-schema-extension-041</a>: Child Element in name Element in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element contains a child element.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -4363,13 +4363,141 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-extension-042">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-extension-042">metadatadisplay-schema-extension-042</a>: Child Element in value Element in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element contains a child element.</p>
+				<h3><a href="#metadatadisplay-schema-extension-042">metadatadisplay-schema-extension-042</a>: Valid value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element matches the schema.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-extension-042.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-extension-042-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-043">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-043">metadatadisplay-schema-extension-043</a>: Valid value Element With xml:lang Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains a xml:lang attribute and it matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-043.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-043-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-044">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-044">metadatadisplay-schema-extension-044</a>: Valid value Element With lang Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains a lang attribute and it matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-044.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-044-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-045">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-045">metadatadisplay-schema-extension-045</a>: Valid value Element With dir Attribute in item Element in extension Element 1</h3>
+				<p>The value element in the item element in the extension element has ltr as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-045.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-045-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-046">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-046">metadatadisplay-schema-extension-046</a>: Valid value Element With dir Attribute in item Element in extension Element 2</h3>
+				<p>The value element in the item element in the extension element has rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-046.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-046-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-047">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-047">metadatadisplay-schema-extension-047</a>: Invalid value Element With dir Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element has INVALID as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-047.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-047-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-048">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-048">metadatadisplay-schema-extension-048</a>: Valid value Element With class Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element has "class1 class2 class3" as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-048.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-048-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-049">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-049">metadatadisplay-schema-extension-049</a>: Unkown Attribute in value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains an unkown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-049.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-049-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-extension-050">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-extension-050">metadatadisplay-schema-extension-050</a>: Child Element in value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-extension-050.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-extension-050-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>

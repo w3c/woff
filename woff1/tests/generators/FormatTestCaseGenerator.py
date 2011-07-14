@@ -3557,46 +3557,36 @@ writeMetadataTest(
     metadata=metadataSchemaExtension35Metadata,
 )
 
-# unknown attribute
+# dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-036",
     title=metadataSchemaExtension36Title,
     description=metadataSchemaExtension36Description,
     credits=metadataSchemaExtension36Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaExtension36Metadata,
 )
-
-# child element
 
 writeMetadataTest(
     identifier="metadata-schema-extension-037",
     title=metadataSchemaExtension37Title,
     description=metadataSchemaExtension37Description,
     credits=metadataSchemaExtension37Credits,
-    specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaExtension37Metadata,
 )
-
-# -----------------------------------------------------------
-# Metadata Display: Schema Validity: extension - item - value
-# -----------------------------------------------------------
-
-# valid no lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-038",
     title=metadataSchemaExtension38Title,
     description=metadataSchemaExtension38Description,
     credits=metadataSchemaExtension38Credits,
-    valid=True,
+    valid=False,
     metadata=metadataSchemaExtension38Metadata,
 )
 
-# valid xml:lang
+# class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-039",
@@ -3607,18 +3597,19 @@ writeMetadataTest(
     metadata=metadataSchemaExtension39Metadata,
 )
 
-# valid lang
+# unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-040",
     title=metadataSchemaExtension40Title,
     description=metadataSchemaExtension40Description,
     credits=metadataSchemaExtension40Credits,
-    valid=True,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
     metadata=metadataSchemaExtension40Metadata,
 )
 
-# unknown attribute
+# child element
 
 writeMetadataTest(
     identifier="metadata-schema-extension-041",
@@ -3630,16 +3621,105 @@ writeMetadataTest(
     metadata=metadataSchemaExtension41Metadata,
 )
 
-# child element
+# -----------------------------------------------------------
+# Metadata Display: Schema Validity: extension - item - value
+# -----------------------------------------------------------
+
+# valid no lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-042",
     title=metadataSchemaExtension42Title,
     description=metadataSchemaExtension42Description,
     credits=metadataSchemaExtension42Credits,
+    valid=True,
+    metadata=metadataSchemaExtension42Metadata,
+)
+
+# valid xml:lang
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-043",
+    title=metadataSchemaExtension43Title,
+    description=metadataSchemaExtension43Description,
+    credits=metadataSchemaExtension43Credits,
+    valid=True,
+    metadata=metadataSchemaExtension43Metadata,
+)
+
+# valid lang
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-044",
+    title=metadataSchemaExtension44Title,
+    description=metadataSchemaExtension44Description,
+    credits=metadataSchemaExtension44Credits,
+    valid=True,
+    metadata=metadataSchemaExtension44Metadata,
+)
+
+# dir attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-045",
+    title=metadataSchemaExtension45Title,
+    description=metadataSchemaExtension45Description,
+    credits=metadataSchemaExtension45Credits,
+    valid=True,
+    metadata=metadataSchemaExtension45Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-046",
+    title=metadataSchemaExtension46Title,
+    description=metadataSchemaExtension46Description,
+    credits=metadataSchemaExtension46Credits,
+    valid=True,
+    metadata=metadataSchemaExtension46Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-047",
+    title=metadataSchemaExtension47Title,
+    description=metadataSchemaExtension47Description,
+    credits=metadataSchemaExtension47Credits,
+    valid=False,
+    metadata=metadataSchemaExtension47Metadata,
+)
+
+# class attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-048",
+    title=metadataSchemaExtension48Title,
+    description=metadataSchemaExtension48Description,
+    credits=metadataSchemaExtension48Credits,
+    valid=True,
+    metadata=metadataSchemaExtension48Metadata,
+)
+
+# unknown attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-049",
+    title=metadataSchemaExtension49Title,
+    description=metadataSchemaExtension49Description,
+    credits=metadataSchemaExtension49Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension42Metadata,
+    metadata=metadataSchemaExtension49Metadata,
+)
+
+# child element
+
+writeMetadataTest(
+    identifier="metadata-schema-extension-050",
+    title=metadataSchemaExtension50Title,
+    description=metadataSchemaExtension50Description,
+    credits=metadataSchemaExtension50Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaExtension50Metadata,
 )
 
 # ------------------------------------

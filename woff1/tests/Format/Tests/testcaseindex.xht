@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (284 tests)</h1>
+		<h1>WOFF: Format Test Suite (292 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -2772,38 +2772,38 @@
 		</div>
 		<div class="testCase" id="metadata-schema-extension-036">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-extension-036">metadata-schema-extension-036</a>: Unkown Attribute in name Element in item Element in extension Element</h3>
-				<p>The name element in the item element in the extension element contains an unkown attribute.</p>
+				<h3><a href="#metadata-schema-extension-036">metadata-schema-extension-036</a>: Valid name Element With dir Attribute in item Element in extension Element 1</h3>
+				<p>The name element in the item element in the extension element has ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-extension-036-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-extension-036-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-extension-037">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-extension-037">metadata-schema-extension-037</a>: Child Element in name Element in item Element in extension Element</h3>
-				<p>The name element in the item element in the extension element contains a child element.</p>
+				<h3><a href="#metadata-schema-extension-037">metadata-schema-extension-037</a>: Valid name Element With dir Attribute in item Element in extension Element 2</h3>
+				<p>The name element in the item element in the extension element has rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-extension-037-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-extension-037-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-extension-038">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-extension-038">metadata-schema-extension-038</a>: Valid value Element in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element matches the schema.</p>
+				<h3><a href="#metadata-schema-extension-038">metadata-schema-extension-038</a>: Invalid name Element With dir Attribute in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element has INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-extension-038-validity">Yes</span></p>
+					<p>Valid: <span id="metadata-schema-extension-038-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-extension-039">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-extension-039">metadata-schema-extension-039</a>: Valid value Element With xml:lang Attribute in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element contains a xml:lang attribute and it matches the schema.</p>
+				<h3><a href="#metadata-schema-extension-039">metadata-schema-extension-039</a>: Valid name Element With class Attribute in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element has "class1 class2 class3" as the value for the class attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-extension-039-validity">Yes</span></p>
@@ -2812,18 +2812,18 @@
 		</div>
 		<div class="testCase" id="metadata-schema-extension-040">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-extension-040">metadata-schema-extension-040</a>: Valid value Element With lang Attribute in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element contains a lang attribute and it matches the schema.</p>
+				<h3><a href="#metadata-schema-extension-040">metadata-schema-extension-040</a>: Unkown Attribute in name Element in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element contains an unkown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-extension-040-validity">Yes</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+					<p>Valid: <span id="metadata-schema-extension-040-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-extension-041">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-extension-041">metadata-schema-extension-041</a>: Unkown Attribute in value Element in item Element in extension Element</h3>
-				<p>The value element in the item element in the extension element contains an unkown attribute.</p>
+				<h3><a href="#metadata-schema-extension-041">metadata-schema-extension-041</a>: Child Element in name Element in item Element in extension Element</h3>
+				<p>The name element in the item element in the extension element contains a child element.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-extension-041-validity">No</span></p>
@@ -2832,11 +2832,91 @@
 		</div>
 		<div class="testCase" id="metadata-schema-extension-042">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-extension-042">metadata-schema-extension-042</a>: Child Element in value Element in item Element in extension Element</h3>
+				<h3><a href="#metadata-schema-extension-042">metadata-schema-extension-042</a>: Valid value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-042-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-043">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-043">metadata-schema-extension-043</a>: Valid value Element With xml:lang Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains a xml:lang attribute and it matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-043-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-044">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-044">metadata-schema-extension-044</a>: Valid value Element With lang Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains a lang attribute and it matches the schema.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-044-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-045">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-045">metadata-schema-extension-045</a>: Valid value Element With dir Attribute in item Element in extension Element 1</h3>
+				<p>The value element in the item element in the extension element has ltr as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-045-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-046">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-046">metadata-schema-extension-046</a>: Valid value Element With dir Attribute in item Element in extension Element 2</h3>
+				<p>The value element in the item element in the extension element has rtl as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-046-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-047">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-047">metadata-schema-extension-047</a>: Invalid value Element With dir Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element has INVALID as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-047-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-048">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-048">metadata-schema-extension-048</a>: Valid value Element With class Attribute in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element has "class1 class2 class3" as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-048-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-049">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-049">metadata-schema-extension-049</a>: Unkown Attribute in value Element in item Element in extension Element</h3>
+				<p>The value element in the item element in the extension element contains an unkown attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-extension-049-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-extension-050">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-extension-050">metadata-schema-extension-050</a>: Child Element in value Element in item Element in extension Element</h3>
 				<p>The value element in the item element in the extension element contains a child element.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-extension-042-validity">No</span></p>
+					<p>Valid: <span id="metadata-schema-extension-050-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
