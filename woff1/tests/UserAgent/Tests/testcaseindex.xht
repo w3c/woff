@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (260 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (264 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -3595,8 +3595,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-licensee-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-licensee-004">metadatadisplay-schema-licensee-004</a>: Unknown Attribute in licensee Element</h3>
-				<p>The licensee element occures more than once.</p>
+				<h3><a href="#metadatadisplay-schema-licensee-004">metadatadisplay-schema-licensee-004</a>: Valid licensee Element With dir Attribute 1</h3>
+				<p>The licensee element has ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -3605,14 +3605,14 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-licensee-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-licensee-005">metadatadisplay-schema-licensee-005</a>: Child Element in licensee Element</h3>
-				<p>The licensee element contains a child element.</p>
+				<h3><a href="#metadatadisplay-schema-licensee-005">metadatadisplay-schema-licensee-005</a>: Valid licensee Element With dir Attribute 2</h3>
+				<p>The licensee element has rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -3621,19 +3621,83 @@
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
-					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
 				</div>
 			</div>
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-licensee-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-licensee-006">metadatadisplay-schema-licensee-006</a>: Content in licensee Element</h3>
-				<p>The licensee element contains content.</p>
+				<h3><a href="#metadatadisplay-schema-licensee-006">metadatadisplay-schema-licensee-006</a>: Invalid licensee Element With dir Attribute</h3>
+				<p>The licensee element has INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-licensee-006.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-licensee-006-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-licensee-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-licensee-007">metadatadisplay-schema-licensee-007</a>: Valid licensee Element With class Attribute</h3>
+				<p>The licensee element has "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-licensee-007.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-licensee-007-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Display <a href="#Metadata">(Metadata)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-licensee-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-licensee-008">metadatadisplay-schema-licensee-008</a>: Unknown Attribute in licensee Element</h3>
+				<p>The licensee element occures more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-licensee-008.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-licensee-008-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-licensee-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-licensee-009">metadatadisplay-schema-licensee-009</a>: Child Element in licensee Element</h3>
+				<p>The licensee element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-licensee-009.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-licensee-009-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-licensee-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-licensee-010">metadatadisplay-schema-licensee-010</a>: Content in licensee Element</h3>
+				<p>The licensee element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-licensee-010.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-licensee-010-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>

@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (272 tests)</h1>
+		<h1>WOFF: Format Test Suite (276 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -2352,31 +2352,71 @@
 		</div>
 		<div class="testCase" id="metadata-schema-licensee-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-licensee-004">metadata-schema-licensee-004</a>: Unknown Attribute in licensee Element</h3>
-				<p>The licensee element occures more than once.</p>
+				<h3><a href="#metadata-schema-licensee-004">metadata-schema-licensee-004</a>: Valid licensee Element With dir Attribute 1</h3>
+				<p>The licensee element has ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-licensee-004-validity">No</span></p>
+					<p>Valid: <span id="metadata-schema-licensee-004-validity">Yes</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-licensee-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-licensee-005">metadata-schema-licensee-005</a>: Child Element in licensee Element</h3>
-				<p>The licensee element contains a child element.</p>
+				<h3><a href="#metadata-schema-licensee-005">metadata-schema-licensee-005</a>: Valid licensee Element With dir Attribute 2</h3>
+				<p>The licensee element has rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-licensee-005-validity">No</span></p>
+					<p>Valid: <span id="metadata-schema-licensee-005-validity">Yes</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-licensee-006">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-schema-licensee-006">metadata-schema-licensee-006</a>: Content in licensee Element</h3>
-				<p>The licensee element contains content.</p>
+				<h3><a href="#metadata-schema-licensee-006">metadata-schema-licensee-006</a>: Invalid licensee Element With dir Attribute</h3>
+				<p>The licensee element has INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-licensee-006-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-007">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-007">metadata-schema-licensee-007</a>: Valid licensee Element With class Attribute</h3>
+				<p>The licensee element has "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-007-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-008">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-008">metadata-schema-licensee-008</a>: Unknown Attribute in licensee Element</h3>
+				<p>The licensee element occures more than once.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-008-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-009">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-009">metadata-schema-licensee-009</a>: Child Element in licensee Element</h3>
+				<p>The licensee element contains a child element.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-009-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-licensee-010">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-licensee-010">metadata-schema-licensee-010</a>: Content in licensee Element</h3>
+				<p>The licensee element contains content.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-licensee-010-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>

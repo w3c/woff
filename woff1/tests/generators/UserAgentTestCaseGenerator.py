@@ -2895,29 +2895,25 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicensee3Metadata,
 )
 
-# unknown attribute
+# dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-004",
     title=metadataSchemaLicensee4Title,
     assertion=metadataSchemaLicensee4Description,
     credits=metadataSchemaLicensee4Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaLicensee4Metadata,
 )
-
-# child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-005",
     title=metadataSchemaLicensee5Title,
     assertion=metadataSchemaLicensee5Description,
     credits=metadataSchemaLicensee5Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaLicensee5Metadata,
 )
-
-# content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-006",
@@ -2926,6 +2922,50 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaLicensee6Credits,
     metadataIsValid=False,
     metadata=metadataSchemaLicensee6Metadata,
+)
+
+# class attribute
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-007",
+    title=metadataSchemaLicensee7Title,
+    assertion=metadataSchemaLicensee7Description,
+    credits=metadataSchemaLicensee7Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicensee7Metadata,
+)
+
+# unknown attribute
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-008",
+    title=metadataSchemaLicensee8Title,
+    assertion=metadataSchemaLicensee8Description,
+    credits=metadataSchemaLicensee8Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaLicensee8Metadata,
+)
+
+# child element
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-009",
+    title=metadataSchemaLicensee9Title,
+    assertion=metadataSchemaLicensee9Description,
+    credits=metadataSchemaLicensee9Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaLicensee9Metadata,
+)
+
+# content
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-licensee-010",
+    title=metadataSchemaLicensee10Title,
+    assertion=metadataSchemaLicensee10Description,
+    credits=metadataSchemaLicensee10Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaLicensee10Metadata,
 )
 
 # --------------------------------------------

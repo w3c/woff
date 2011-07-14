@@ -3069,7 +3069,7 @@ writeMetadataTest(
     metadata=metadataSchemaLicensee3Metadata,
 )
 
-# unknown attribute
+# dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-004",
@@ -3077,11 +3077,9 @@ writeMetadataTest(
     description=metadataSchemaLicensee4Description,
     credits=metadataSchemaLicensee4Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaLicensee4Metadata,
 )
-
-# child element
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-005",
@@ -3089,11 +3087,9 @@ writeMetadataTest(
     description=metadataSchemaLicensee5Description,
     credits=metadataSchemaLicensee5Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaLicensee5Metadata,
 )
-
-# content
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-006",
@@ -3103,6 +3099,54 @@ writeMetadataTest(
     specLink="#conform-metadata-schemavalid",
     valid=False,
     metadata=metadataSchemaLicensee6Metadata,
+)
+
+# class attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-licensee-007",
+    title=metadataSchemaLicensee7Title,
+    description=metadataSchemaLicensee7Description,
+    credits=metadataSchemaLicensee7Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicensee7Metadata,
+)
+
+# unknown attribute
+
+writeMetadataTest(
+    identifier="metadata-schema-licensee-008",
+    title=metadataSchemaLicensee8Title,
+    description=metadataSchemaLicensee8Description,
+    credits=metadataSchemaLicensee8Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaLicensee8Metadata,
+)
+
+# child element
+
+writeMetadataTest(
+    identifier="metadata-schema-licensee-009",
+    title=metadataSchemaLicensee9Title,
+    description=metadataSchemaLicensee9Description,
+    credits=metadataSchemaLicensee9Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaLicensee9Metadata,
+)
+
+# content
+
+writeMetadataTest(
+    identifier="metadata-schema-licensee-010",
+    title=metadataSchemaLicensee10Title,
+    description=metadataSchemaLicensee10Description,
+    credits=metadataSchemaLicensee10Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaLicensee10Metadata,
 )
 
 # --------------------------------------------

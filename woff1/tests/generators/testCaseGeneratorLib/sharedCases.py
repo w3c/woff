@@ -3477,21 +3477,65 @@ metadataSchemaLicensee3Title = "No name Attribute in licensee Element"
 metadataSchemaLicensee3Description = "The licensee element does not contain the required name attribute."
 metadataSchemaLicensee3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# unknown attribute
+# dir attribute
 
 metadataSchemaLicensee4Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name" dir="ltr" />
+</metadata>
+"""
+metadataSchemaLicensee4Title = "Valid licensee Element With dir Attribute 1"
+metadataSchemaLicensee4Description = "The licensee element has ltr as the value for the dir attribute."
+metadataSchemaLicensee4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaLicensee5Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name" dir="rtl" />
+</metadata>
+"""
+metadataSchemaLicensee5Title = "Valid licensee Element With dir Attribute 2"
+metadataSchemaLicensee5Description = "The licensee element has rtl as the value for the dir attribute."
+metadataSchemaLicensee5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaLicensee6Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name" dir="INVALID" />
+</metadata>
+"""
+metadataSchemaLicensee6Title = "Invalid licensee Element With dir Attribute"
+metadataSchemaLicensee6Description = "The licensee element has INVALID as the value for the dir attribute."
+metadataSchemaLicensee6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# class attribute
+
+metadataSchemaLicensee7Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <licensee name="Licensee Name" class="class1 class2 class3" />
+</metadata>
+"""
+metadataSchemaLicensee7Title = "Valid licensee Element With class Attribute"
+metadataSchemaLicensee7Description = "The licensee element has \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaLicensee7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# unknown attribute
+
+metadataSchemaLicensee8Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <licensee name="Licensee Name" unknownattribute="Text" />
 </metadata>
 """
-metadataSchemaLicensee4Title = "Unknown Attribute in licensee Element"
-metadataSchemaLicensee4Description = "The licensee element occures more than once."
-metadataSchemaLicensee4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicensee8Title = "Unknown Attribute in licensee Element"
+metadataSchemaLicensee8Description = "The licensee element occures more than once."
+metadataSchemaLicensee8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
 
-metadataSchemaLicensee5Metadata = """
+metadataSchemaLicensee9Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <licensee name="Licensee Name">
@@ -3499,13 +3543,13 @@ metadataSchemaLicensee5Metadata = """
     </licensee>
 </metadata>
 """
-metadataSchemaLicensee5Title = "Child Element in licensee Element"
-metadataSchemaLicensee5Description = "The licensee element contains a child element."
-metadataSchemaLicensee5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicensee9Title = "Child Element in licensee Element"
+metadataSchemaLicensee9Description = "The licensee element contains a child element."
+metadataSchemaLicensee9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # content
 
-metadataSchemaLicensee6Metadata = """
+metadataSchemaLicensee10Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <licensee name="Licensee Name">
@@ -3513,9 +3557,9 @@ metadataSchemaLicensee6Metadata = """
     </licensee>
 </metadata>
 """
-metadataSchemaLicensee6Title = "Content in licensee Element"
-metadataSchemaLicensee6Description = "The licensee element contains content."
-metadataSchemaLicensee6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicensee10Title = "Content in licensee Element"
+metadataSchemaLicensee10Description = "The licensee element contains content."
+metadataSchemaLicensee10Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # --------------------------------------------
 # Metadata Display: Schema Validity: extension
