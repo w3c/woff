@@ -1960,8 +1960,7 @@ metadataSchemaDescription26Metadata = """
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
         <text>
-            <div>Paragraph 1</div>
-            <div>Paragraph 2</div>
+             Text with <span>span 1</span> and <span>span 2</span>.
         </text>
     </description>
 </metadata>
@@ -2460,8 +2459,7 @@ metadataSchemaLicense27Metadata = """
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
         <text>
-            <div>Paragraph 1</div>
-            <div>Paragraph 2</div>
+             Text with <span>span 1</span> and <span>span 2</span>.
         </text>
     </license>
 </metadata>
@@ -2912,8 +2910,7 @@ metadataSchemaCopyright24Metadata = """
 <metadata version="1.0">
     <copyright url="http://w3c.org/Fonts">
         <text>
-            <div>Paragraph 1</div>
-            <div>Paragraph 2</div>
+             Text with <span>span 1</span> and <span>span 2</span>.
         </text>
     </copyright>
 </metadata>
@@ -3364,8 +3361,7 @@ metadataSchemaTrademark24Metadata = """
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
         <text>
-            <div>Paragraph 1</div>
-            <div>Paragraph 2</div>
+             Text with <span>span 1</span> and <span>span 2</span>.
         </text>
     </trademark>
 </metadata>
