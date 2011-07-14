@@ -1106,18 +1106,16 @@ writeMetadataSchemaValidityTest(
     metadata=metadataEncoding1Metadata,
 )
 
-# UTF-16
+# Invalid
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-002",
     title=metadataEncoding2Title,
     assertion=metadataEncoding2Description,
     credits=metadataEncoding2Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataEncoding2Metadata,
 )
-
-# Invalid
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-003",

@@ -967,7 +967,7 @@ metadataEncoding1Title = "UTF-8 Encoding"
 metadataEncoding1Description = "The xml encoding is set to UTF-8."
 metadataEncoding1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# UTF-16
+# Invalid
 
 metadataEncoding2Metadata = """
 <?xml version="1.0" encoding="UTF-16"?>
@@ -975,11 +975,9 @@ metadataEncoding2Metadata = """
     <uniqueid id="org.w3.webfonts.wofftest" />
 </metadata>
 """.strip().replace("    ", "\t").encode("utf-16")
-metadataEncoding2Title = "UTF-16 Encoding"
+metadataEncoding2Title = "Invalid Encoding 1"
 metadataEncoding2Description = "The xml encoding is set to UTF-16."
 metadataEncoding2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# Invalid
 
 metadataEncoding3Metadata = """
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -987,7 +985,7 @@ metadataEncoding3Metadata = """
     <uniqueid id="org.w3.webfonts.wofftest" />
 </metadata>
 """
-metadataEncoding3Title = "Invalid Encoding"
+metadataEncoding3Title = "Invalid Encoding 2"
 metadataEncoding3Description = "The xml encoding is set to ISO-8859-1."
 metadataEncoding3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 

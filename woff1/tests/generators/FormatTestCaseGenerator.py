@@ -1164,18 +1164,16 @@ writeMetadataTest(
     metadata=metadataEncoding1Metadata,
 )
 
-# UTF-16
+# Invalid
 
 writeMetadataTest(
     identifier="metadata-encoding-002",
     title=metadataEncoding2Title,
     description=metadataEncoding2Description,
     credits=metadataEncoding2Credits,
-    valid=True,
+    valid=False,
     metadata=metadataEncoding2Metadata,
 )
-
-# Invalid
 
 writeMetadataTest(
     identifier="metadata-encoding-003",
