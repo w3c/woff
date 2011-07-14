@@ -2035,7 +2035,7 @@ writeMetadataSchemaValidityTest(
     title=metadataSchemaLicense10Title,
     assertion=metadataSchemaLicense10Description,
     credits=metadataSchemaLicense10Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaLicense10Metadata,
 )
 

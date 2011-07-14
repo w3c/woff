@@ -2139,7 +2139,7 @@ writeMetadataTest(
     description=metadataSchemaLicense10Description,
     credits=metadataSchemaLicense10Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaLicense10Metadata,
 )
 
