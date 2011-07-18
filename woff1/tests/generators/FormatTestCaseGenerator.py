@@ -2116,13 +2116,15 @@ writeMetadataTest(
     valid=True,
 )
 
-# div with dir
+# nested div
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-019",
     specLink="#conform-metadata-schemavalid",
     valid=True,
 )
+
+# div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-020",
@@ -2133,18 +2135,16 @@ writeMetadataTest(
 writeMetadataTest(
     identifier="metadata-schema-copyright-021",
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
 )
-
-# div with class
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-022",
     specLink="#conform-metadata-schemavalid",
-    valid=True,
+    valid=False,
 )
 
-# one span
+# div with class
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-023",
@@ -2152,7 +2152,7 @@ writeMetadataTest(
     valid=True,
 )
 
-# two span
+# one span
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-024",
@@ -2160,7 +2160,7 @@ writeMetadataTest(
     valid=True,
 )
 
-# span with dir
+# two span
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-025",
@@ -2168,14 +2168,30 @@ writeMetadataTest(
     valid=True,
 )
 
+# nested span
+
 writeMetadataTest(
     identifier="metadata-schema-copyright-026",
     specLink="#conform-metadata-schemavalid",
     valid=True,
 )
 
+# span with dir
+
 writeMetadataTest(
     identifier="metadata-schema-copyright-027",
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-028",
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-copyright-029",
     specLink="#conform-metadata-schemavalid",
     valid=False,
 )
@@ -2183,7 +2199,7 @@ writeMetadataTest(
 # span with class
 
 writeMetadataTest(
-    identifier="metadata-schema-copyright-028",
+    identifier="metadata-schema-copyright-030",
     specLink="#conform-metadata-schemavalid",
     valid=True,
 )

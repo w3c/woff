@@ -1975,12 +1975,14 @@ writeMetadataSchemaValidityTest(
     metadataIsValid=True,
 )
 
-# div with dir
+# nested div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-019",
     metadataIsValid=True,
 )
+
+# div with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-020",
@@ -1989,51 +1991,63 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-021",
+    metadataIsValid=True,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-022",
     metadataIsValid=False,
 )
 
 # div with class
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-copyright-022",
+    identifier="metadatadisplay-schema-copyright-023",
     metadataIsValid=True,
 )
 
 # one span
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-copyright-023",
+    identifier="metadatadisplay-schema-copyright-024",
     metadataIsValid=True,
 )
 
 # two span
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-copyright-024",
-    metadataIsValid=True,
-)
-
-# span with dir
-
-writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-025",
     metadataIsValid=True,
 )
+
+# nested span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-026",
     metadataIsValid=True,
 )
 
+# span with dir
+
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-027",
+    metadataIsValid=True,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-028",
+    metadataIsValid=True,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-copyright-029",
     metadataIsValid=False,
 )
 
 # span with class
 
 writeMetadataSchemaValidityTest(
-    identifier="metadatadisplay-schema-copyright-028",
+    identifier="metadatadisplay-schema-copyright-030",
     metadataIsValid=True,
 )
 
