@@ -1821,7 +1821,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription20Metadata,
 )
 
-# div with dir
+# nested div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-021",
@@ -1831,6 +1831,8 @@ writeMetadataSchemaValidityTest(
     metadataIsValid=True,
     metadata=metadataSchemaDescription21Metadata,
 )
+
+# div with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-022",
@@ -1846,22 +1848,20 @@ writeMetadataSchemaValidityTest(
     title=metadataSchemaDescription23Title,
     assertion=metadataSchemaDescription23Description,
     credits=metadataSchemaDescription23Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaDescription23Metadata,
 )
-
-# div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-024",
     title=metadataSchemaDescription24Title,
     assertion=metadataSchemaDescription24Description,
     credits=metadataSchemaDescription24Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaDescription24Metadata,
 )
 
-# one span
+# div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-025",
@@ -1872,7 +1872,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription25Metadata,
 )
 
-# two span
+# one span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-026",
@@ -1883,7 +1883,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription26Metadata,
 )
 
-# span with dir
+# two span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-027",
@@ -1894,6 +1894,8 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription27Metadata,
 )
 
+# nested span
+
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-028",
     title=metadataSchemaDescription28Title,
@@ -1903,16 +1905,16 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaDescription28Metadata,
 )
 
+# span with dir
+
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-029",
     title=metadataSchemaDescription29Title,
     assertion=metadataSchemaDescription29Description,
     credits=metadataSchemaDescription29Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaDescription29Metadata,
 )
-
-# span with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-030",
@@ -1921,6 +1923,26 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaDescription30Credits,
     metadataIsValid=True,
     metadata=metadataSchemaDescription30Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-031",
+    title=metadataSchemaDescription31Title,
+    assertion=metadataSchemaDescription31Description,
+    credits=metadataSchemaDescription31Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaDescription31Metadata,
+)
+
+# span with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-description-032",
+    title=metadataSchemaDescription32Title,
+    assertion=metadataSchemaDescription32Description,
+    credits=metadataSchemaDescription32Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaDescription32Metadata,
 )
 
 # ------------------------------------------
