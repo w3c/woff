@@ -2176,7 +2176,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense21Metadata,
 )
 
-# div with dir
+# nested div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-022",
@@ -2186,6 +2186,9 @@ writeMetadataSchemaValidityTest(
     metadataIsValid=True,
     metadata=metadataSchemaLicense22Metadata,
 )
+
+
+# div with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-023",
@@ -2201,22 +2204,20 @@ writeMetadataSchemaValidityTest(
     title=metadataSchemaLicense24Title,
     assertion=metadataSchemaLicense24Description,
     credits=metadataSchemaLicense24Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaLicense24Metadata,
 )
-
-# div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-025",
     title=metadataSchemaLicense25Title,
     assertion=metadataSchemaLicense25Description,
     credits=metadataSchemaLicense25Credits,
-    metadataIsValid=True,
+    metadataIsValid=False,
     metadata=metadataSchemaLicense25Metadata,
 )
 
-# one span
+# div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-026",
@@ -2227,7 +2228,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense26Metadata,
 )
 
-# two span
+# one span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-027",
@@ -2238,7 +2239,7 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense27Metadata,
 )
 
-# span with dir
+# two span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-028",
@@ -2249,6 +2250,8 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense28Metadata,
 )
 
+# nested span
+
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-029",
     title=metadataSchemaLicense29Title,
@@ -2258,16 +2261,16 @@ writeMetadataSchemaValidityTest(
     metadata=metadataSchemaLicense29Metadata,
 )
 
+# span with dir
+
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-030",
     title=metadataSchemaLicense30Title,
     assertion=metadataSchemaLicense30Description,
     credits=metadataSchemaLicense30Credits,
-    metadataIsValid=False,
+    metadataIsValid=True,
     metadata=metadataSchemaLicense30Metadata,
 )
-
-# span with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-031",
@@ -2276,6 +2279,26 @@ writeMetadataSchemaValidityTest(
     credits=metadataSchemaLicense31Credits,
     metadataIsValid=True,
     metadata=metadataSchemaLicense31Metadata,
+)
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-032",
+    title=metadataSchemaLicense32Title,
+    assertion=metadataSchemaLicense32Description,
+    credits=metadataSchemaLicense32Credits,
+    metadataIsValid=False,
+    metadata=metadataSchemaLicense32Metadata,
+)
+
+# span with class
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-license-033",
+    title=metadataSchemaLicense33Title,
+    assertion=metadataSchemaLicense33Description,
+    credits=metadataSchemaLicense33Credits,
+    metadataIsValid=True,
+    metadata=metadataSchemaLicense33Metadata,
 )
 
 # --------------------------------------------

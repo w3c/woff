@@ -2293,7 +2293,7 @@ writeMetadataTest(
     metadata=metadataSchemaLicense21Metadata,
 )
 
-# div with dir
+# nested div
 
 writeMetadataTest(
     identifier="metadata-schema-license-022",
@@ -2304,6 +2304,8 @@ writeMetadataTest(
     valid=True,
     metadata=metadataSchemaLicense22Metadata,
 )
+
+# div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-license-023",
@@ -2321,11 +2323,9 @@ writeMetadataTest(
     description=metadataSchemaLicense24Description,
     credits=metadataSchemaLicense24Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaLicense24Metadata,
 )
-
-# div with class
 
 writeMetadataTest(
     identifier="metadata-schema-license-025",
@@ -2333,11 +2333,11 @@ writeMetadataTest(
     description=metadataSchemaLicense25Description,
     credits=metadataSchemaLicense25Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=True,
+    valid=False,
     metadata=metadataSchemaLicense25Metadata,
 )
 
-# one span
+# div with class
 
 writeMetadataTest(
     identifier="metadata-schema-license-026",
@@ -2349,7 +2349,7 @@ writeMetadataTest(
     metadata=metadataSchemaLicense26Metadata,
 )
 
-# two span
+# one span
 
 writeMetadataTest(
     identifier="metadata-schema-license-027",
@@ -2361,7 +2361,7 @@ writeMetadataTest(
     metadata=metadataSchemaLicense27Metadata,
 )
 
-# span with dir
+# two span
 
 writeMetadataTest(
     identifier="metadata-schema-license-028",
@@ -2373,6 +2373,8 @@ writeMetadataTest(
     metadata=metadataSchemaLicense28Metadata,
 )
 
+# nested span
+
 writeMetadataTest(
     identifier="metadata-schema-license-029",
     title=metadataSchemaLicense29Title,
@@ -2383,17 +2385,17 @@ writeMetadataTest(
     metadata=metadataSchemaLicense29Metadata,
 )
 
+# span with dir
+
 writeMetadataTest(
     identifier="metadata-schema-license-030",
     title=metadataSchemaLicense30Title,
     description=metadataSchemaLicense30Description,
     credits=metadataSchemaLicense30Credits,
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
     metadata=metadataSchemaLicense30Metadata,
 )
-
-# span with class
 
 writeMetadataTest(
     identifier="metadata-schema-license-031",
@@ -2403,6 +2405,28 @@ writeMetadataTest(
     specLink="#conform-metadata-schemavalid",
     valid=True,
     metadata=metadataSchemaLicense31Metadata,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-license-032",
+    title=metadataSchemaLicense32Title,
+    description=metadataSchemaLicense32Description,
+    credits=metadataSchemaLicense32Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+    metadata=metadataSchemaLicense32Metadata,
+)
+
+# span with class
+
+writeMetadataTest(
+    identifier="metadata-schema-license-033",
+    title=metadataSchemaLicense33Title,
+    description=metadataSchemaLicense33Description,
+    credits=metadataSchemaLicense33Credits,
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+    metadata=metadataSchemaLicense33Metadata,
 )
 
 # --------------------------------------------

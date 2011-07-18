@@ -2426,9 +2426,35 @@ metadataSchemaLicense21Title = "Valid license Element With Two div Elements in t
 metadataSchemaLicense21Description = "The license element contains a text element that contains two div elements."
 metadataSchemaLicense21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# div with dir
+# nested div
 
 metadataSchemaLicense22Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts">
+        <text>
+            <div>
+                div 1 start
+                <div>
+                    div 2 start
+                    <div>
+                        div 3
+                    </div>
+                    div 2 end
+                </div>
+                div 1 end
+            </div>
+        </text>
+    </license>
+</metadata>
+"""
+metadataSchemaLicense22Title = "Valid license Element With Nested div Elements in text Element"
+metadataSchemaLicense22Description = "The license element contains a text element that contains nested div elements."
+metadataSchemaLicense22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# div with dir
+
+metadataSchemaLicense23Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
@@ -2438,11 +2464,11 @@ metadataSchemaLicense22Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense22Title = "Valid license Element With dir Attribute in div Element in text Element 1"
-metadataSchemaLicense22Description = "The license element contains a text element that contains a div element with ltr as the value for the dir attribute."
-metadataSchemaLicense22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense23Title = "Valid license Element With dir Attribute in div Element in text Element 1"
+metadataSchemaLicense23Description = "The license element contains a text element that contains a div element with ltr as the value for the dir attribute."
+metadataSchemaLicense23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-metadataSchemaLicense23Metadata = """
+metadataSchemaLicense24Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
@@ -2452,11 +2478,11 @@ metadataSchemaLicense23Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense23Title = "Valid license Element With dir Attribute in div Element in text Element 2"
-metadataSchemaLicense23Description = "The license element contains a text element that contains a div element with rtl as the value for the dir attribute."
-metadataSchemaLicense23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense24Title = "Valid license Element With dir Attribute in div Element in text Element 2"
+metadataSchemaLicense24Description = "The license element contains a text element that contains a div element with rtl as the value for the dir attribute."
+metadataSchemaLicense24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-metadataSchemaLicense24Metadata = """
+metadataSchemaLicense25Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
@@ -2466,13 +2492,13 @@ metadataSchemaLicense24Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense24Title = "Invalid license Element With dir Attribute in div Element in text Element"
-metadataSchemaLicense24Description = "The license element contains a text element that contains a div element with INVALID as the value for the dir attribute."
-metadataSchemaLicense24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense25Title = "Invalid license Element With dir Attribute in div Element in text Element"
+metadataSchemaLicense25Description = "The license element contains a text element that contains a div element with INVALID as the value for the dir attribute."
+metadataSchemaLicense25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # div with class
 
-metadataSchemaLicense25Metadata = """
+metadataSchemaLicense26Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
@@ -2482,13 +2508,13 @@ metadataSchemaLicense25Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense25Title = "Valid license Element With class Attribute in div Element in text Element"
-metadataSchemaLicense25Description = "The license element contains a text element that contains a div element with \"class1 class2 class3\" as the value for the class attribute."
-metadataSchemaLicense25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense26Title = "Valid license Element With class Attribute in div Element in text Element"
+metadataSchemaLicense26Description = "The license element contains a text element that contains a div element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaLicense26Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # one span
 
-metadataSchemaLicense26Metadata = """
+metadataSchemaLicense27Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
@@ -2498,13 +2524,13 @@ metadataSchemaLicense26Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense26Title = "Valid license Element With One span Element in text Element"
-metadataSchemaLicense26Description = "The license element contains a text element that contains a span element."
-metadataSchemaLicense26Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaLicense27Title = "Valid license Element With One span Element in text Element"
+metadataSchemaLicense27Description = "The license element contains a text element that contains a span element."
+metadataSchemaLicense27Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # two span
 
-metadataSchemaLicense27Metadata = """
+metadataSchemaLicense28Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
@@ -2514,39 +2540,37 @@ metadataSchemaLicense27Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense27Title = "Valid license Element With Two span Elements in text Element"
-metadataSchemaLicense27Description = "The license element contains a text element that contains two span elements."
-metadataSchemaLicense27Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# span with dir
-
-metadataSchemaLicense28Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <license url="http://w3c.org/Fonts">
-        <text>
-            Text with <span>span</span>.
-        </text>
-    </license>
-</metadata>
-"""
-metadataSchemaLicense28Title = "Valid license Element With dir Attribute in span Element in text Element 1"
-metadataSchemaLicense28Description = "The license element contains a text element that contains a span element with ltr as the value for the dir attribute."
+metadataSchemaLicense28Title = "Valid license Element With Two span Elements in text Element"
+metadataSchemaLicense28Description = "The license element contains a text element that contains two span elements."
 metadataSchemaLicense28Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# nested span
 
 metadataSchemaLicense29Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+             <span>
+                 span 1 start
+                 <span>
+                     span 2 start
+                     <span>
+                         span 3
+                     </span>
+                     span 2 end
+                 </span>
+                 span 1 end
+             </span>
         </text>
     </license>
 </metadata>
 """
-metadataSchemaLicense29Title = "Valid license Element With dir Attribute in span Element in text Element 2"
-metadataSchemaLicense29Description = "The license element contains a text element that contains a span element with rtl as the value for the dir attribute."
+metadataSchemaLicense29Title = "Valid license Element With Nested span Elements in text Element"
+metadataSchemaLicense29Description = "The license element contains a text element that contains nested span elements."
 metadataSchemaLicense29Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with dir
 
 metadataSchemaLicense30Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2558,11 +2582,9 @@ metadataSchemaLicense30Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense30Title = "Invalid license Element With dir Attribute in span Element in text Element"
-metadataSchemaLicense30Description = "The license element contains a text element that contains a span element with INVALID as the value for the dir attribute."
+metadataSchemaLicense30Title = "Valid license Element With dir Attribute in span Element in text Element 1"
+metadataSchemaLicense30Description = "The license element contains a text element that contains a span element with ltr as the value for the dir attribute."
 metadataSchemaLicense30Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# span with class
 
 metadataSchemaLicense31Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2574,9 +2596,39 @@ metadataSchemaLicense31Metadata = """
     </license>
 </metadata>
 """
-metadataSchemaLicense31Title = "Valid license Element With class Attribute in span Element in text Element"
-metadataSchemaLicense31Description = "The license element contains a text element that contains a span element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaLicense31Title = "Valid license Element With dir Attribute in span Element in text Element 2"
+metadataSchemaLicense31Description = "The license element contains a text element that contains a span element with rtl as the value for the dir attribute."
 metadataSchemaLicense31Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaLicense32Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </license>
+</metadata>
+"""
+metadataSchemaLicense32Title = "Invalid license Element With dir Attribute in span Element in text Element"
+metadataSchemaLicense32Description = "The license element contains a text element that contains a span element with INVALID as the value for the dir attribute."
+metadataSchemaLicense32Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with class
+
+metadataSchemaLicense33Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <license url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </license>
+</metadata>
+"""
+metadataSchemaLicense33Title = "Valid license Element With class Attribute in span Element in text Element"
+metadataSchemaLicense33Description = "The license element contains a text element that contains a span element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaLicense33Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # --------------------------------------------
 # Metadata Display: Schema Validity: copyright
