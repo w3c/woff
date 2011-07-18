@@ -7,6 +7,7 @@ from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTes
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData
 from testCaseGeneratorLib.paths import resourcesDirectory, formatDirectory, formatTestDirectory, formatResourcesDirectory
 from testCaseGeneratorLib.html import generateFormatIndexHTML
+from testCaseGeneratorLib import sharedCases
 from testCaseGeneratorLib.sharedCases import *
 
 # ------------------------
@@ -107,6 +108,21 @@ def writeMetadataTest(identifier, title=None, description=None, credits=[], spec
     This is a convenience functon that eliminates the need to make a complete
     WOFF when only the metadata is being tested.
     """
+    # dynamically get some data from the shared cases as needed
+    if title is None:
+        assert description is None
+        assert metadata is None
+        parts = identifier.split("-")
+        assert parts[0] == "metadata"
+        number = int(parts[-1])
+        group = parts[1:-1]
+        group = [i.title() for i in group]
+        group = "".join(group)
+        importBase = "metadata" + group + str(number)
+        title = getattr(sharedCases, importBase + "Title")
+        description = getattr(sharedCases, importBase + "Description")
+        credits = getattr(sharedCases, importBase + "Credits")
+        metadata = getattr(sharedCases, importBase + "Metadata")
     assert metadata is not None
     assert valid is not None
     # compile the WOFF
@@ -1069,84 +1085,56 @@ writeTest(
 
 writeMetadataTest(
     identifier="metadata-well-formed-001",
-    title=metadataWellFormed1Title,
-    description=metadataWellFormed1Description,
-    credits=metadataWellFormed1Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataWellFormed1Metadata,
 )
 
 # &
 
 writeMetadataTest(
     identifier="metadata-well-formed-002",
-    title=metadataWellFormed2Title,
-    description=metadataWellFormed2Description,
-    credits=metadataWellFormed2Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataWellFormed2Metadata,
 )
 
 # mismatched elements
 
 writeMetadataTest(
     identifier="metadata-well-formed-003",
-    title=metadataWellFormed3Title,
-    description=metadataWellFormed3Description,
-    credits=metadataWellFormed3Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataWellFormed3Metadata,
 )
 
 # unclosed element
 
 writeMetadataTest(
     identifier="metadata-well-formed-004",
-    title=metadataWellFormed4Title,
-    description=metadataWellFormed4Description,
-    credits=metadataWellFormed4Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataWellFormed4Metadata,
 )
 
 # case mismatch
 
 writeMetadataTest(
     identifier="metadata-well-formed-005",
-    title=metadataWellFormed5Title,
-    description=metadataWellFormed5Description,
-    credits=metadataWellFormed5Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataWellFormed5Metadata,
 )
 
 # more than one root
 
 writeMetadataTest(
     identifier="metadata-well-formed-006",
-    title=metadataWellFormed6Title,
-    description=metadataWellFormed6Description,
-    credits=metadataWellFormed6Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataWellFormed6Metadata,
 )
 
 # unknown encoding
 
 writeMetadataTest(
     identifier="metadata-well-formed-007",
-    title=metadataWellFormed7Title,
-    description=metadataWellFormed7Description,
-    credits=metadataWellFormed7Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataWellFormed7Metadata,
 )
 
 # --------------------------
@@ -1157,32 +1145,20 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-encoding-001",
-    title=metadataEncoding1Title,
-    description=metadataEncoding1Description,
-    credits=metadataEncoding1Credits,
     valid=True,
-    metadata=metadataEncoding1Metadata,
 )
 
 # Invalid
 
 writeMetadataTest(
     identifier="metadata-encoding-002",
-    title=metadataEncoding2Title,
-    description=metadataEncoding2Description,
-    credits=metadataEncoding2Credits,
     valid=False,
-    metadata=metadataEncoding2Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-encoding-003",
-    title=metadataEncoding3Title,
-    description=metadataEncoding3Description,
-    credits=metadataEncoding3Credits,
     specLink="#conform-metaOrigLength",
     valid=False,
-    metadata=metadataEncoding3Metadata,
 )
 
 # -------------------------------------------
@@ -1193,59 +1169,39 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-001",
-    title=metadataSchemaMetadata1Title,
-    description=metadataSchemaMetadata1Description,
-    credits=metadataSchemaMetadata1Credits,
     valid=True,
-    metadata=metadataSchemaMetadata1Metadata,
 )
 
 # missing version
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-002",
-    title=metadataSchemaMetadata2Title,
-    description=metadataSchemaMetadata2Description,
-    credits=metadataSchemaMetadata2Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaMetadata2Metadata,
 )
 
 # invalid version
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-003",
-    title=metadataSchemaMetadata3Title,
-    description=metadataSchemaMetadata3Description,
-    credits=metadataSchemaMetadata3Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaMetadata3Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-004",
-    title=metadataSchemaMetadata4Title,
-    description=metadataSchemaMetadata4Description,
-    credits=metadataSchemaMetadata4Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaMetadata4Metadata,
 )
 
 # unknown element
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-005",
-    title=metadataSchemaMetadata5Title,
-    description=metadataSchemaMetadata5Description,
-    credits=metadataSchemaMetadata5Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaMetadata5Metadata,
 )
 
 # -------------------------------------------
@@ -1256,82 +1212,54 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-uniqueid-001",
-    title=metadataSchemaUniqueid1Title,
-    description=metadataSchemaUniqueid1Description,
-    credits=metadataSchemaUniqueid1Credits,
     valid=True,
-    metadata=metadataSchemaUniqueid1Metadata,
 )
 
 # does not exist
 
 writeMetadataTest(
     identifier="metadata-schema-uniqueid-002",
-    title=metadataSchemaUniqueid2Title,
-    description=metadataSchemaUniqueid2Description,
-    credits=metadataSchemaUniqueid2Credits,
     valid=True,
-    metadata=metadataSchemaUniqueid2Metadata,
 )
 
 # duplicate
 
 writeMetadataTest(
     identifier="metadata-schema-uniqueid-003",
-    title=metadataSchemaUniqueid3Title,
-    description=metadataSchemaUniqueid3Description,
-    credits=metadataSchemaUniqueid3Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaUniqueid3Metadata,
 )
 
 # missing id attribute
 
 writeMetadataTest(
     identifier="metadata-schema-uniqueid-004",
-    title=metadataSchemaUniqueid4Title,
-    description=metadataSchemaUniqueid4Description,
-    credits=metadataSchemaUniqueid4Credits,
     specLink="#conform-metadata-id-required",
     valid=False,
-    metadata=metadataSchemaUniqueid4Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-uniqueid-005",
-    title=metadataSchemaUniqueid5Title,
-    description=metadataSchemaUniqueid5Description,
-    credits=metadataSchemaUniqueid5Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaUniqueid5Metadata,
 )
 
 # unknown child
 
 writeMetadataTest(
     identifier="metadata-schema-uniqueid-006",
-    title=metadataSchemaUniqueid6Title,
-    description=metadataSchemaUniqueid6Description,
-    credits=metadataSchemaUniqueid6Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaUniqueid6Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-uniqueid-007",
-    title=metadataSchemaUniqueid7Title,
-    description=metadataSchemaUniqueid7Description,
-    credits=metadataSchemaUniqueid7Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaUniqueid7Metadata,
 )
 
 # -----------------------------------------
@@ -1342,131 +1270,83 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-001",
-    title=metadataSchemaVendor1Title,
-    description=metadataSchemaVendor1Description,
-    credits=metadataSchemaVendor1Credits,
     valid=True,
-    metadata=metadataSchemaVendor1Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-002",
-    title=metadataSchemaVendor2Title,
-    description=metadataSchemaVendor2Description,
-    credits=metadataSchemaVendor2Credits,
     valid=True,
-    metadata=metadataSchemaVendor2Metadata,
 )
 
 # does not exist
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-003",
-    title=metadataSchemaVendor3Title,
-    description=metadataSchemaVendor3Description,
-    credits=metadataSchemaVendor3Credits,
     valid=True,
-    metadata=metadataSchemaVendor3Metadata,
 )
 
 # duplicate
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-004",
-    title=metadataSchemaVendor4Title,
-    description=metadataSchemaVendor4Description,
-    credits=metadataSchemaVendor4Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaVendor4Metadata,
 )
 
 # missing name attribute
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-005",
-    title=metadataSchemaVendor5Title,
-    description=metadataSchemaVendor5Description,
-    credits=metadataSchemaVendor5Credits,
     specLink="#conform-metadata-vendor-required",
     valid=False,
-    metadata=metadataSchemaVendor5Metadata,
 )
 
 # dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-006",
-    title=metadataSchemaVendor6Title,
-    description=metadataSchemaVendor6Description,
-    credits=metadataSchemaVendor6Credits,
     valid=True,
-    metadata=metadataSchemaVendor6Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-007",
-    title=metadataSchemaVendor7Title,
-    description=metadataSchemaVendor7Description,
-    credits=metadataSchemaVendor7Credits,
     valid=True,
-    metadata=metadataSchemaVendor7Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-008",
-    title=metadataSchemaVendor8Title,
-    description=metadataSchemaVendor8Description,
-    credits=metadataSchemaVendor8Credits,
     valid=False,
-    metadata=metadataSchemaVendor8Metadata,
 )
 
 # class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-009",
-    title=metadataSchemaVendor9Title,
-    description=metadataSchemaVendor9Description,
-    credits=metadataSchemaVendor9Credits,
     valid=True,
-    metadata=metadataSchemaVendor9Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-010",
-    title=metadataSchemaVendor10Title,
-    description=metadataSchemaVendor10Description,
-    credits=metadataSchemaVendor10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaVendor10Metadata,
 )
 
 # unknown child
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-011",
-    title=metadataSchemaVendor11Title,
-    description=metadataSchemaVendor11Description,
-    credits=metadataSchemaVendor11Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaVendor11Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-vendor-012",
-    title=metadataSchemaVendor12Title,
-    description=metadataSchemaVendor12Description,
-    credits=metadataSchemaVendor12Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaVendor12Metadata,
 )
 
 # ------------------------------------------
@@ -1477,82 +1357,54 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-credits-001",
-    title=metadataSchemaCredits1Title,
-    description=metadataSchemaCredits1Description,
-    credits=metadataSchemaCredits1Credits,
     valid=True,
-    metadata=metadataSchemaCredits1Metadata,
 )
 
 # valid - multiple credit elements
 
 writeMetadataTest(
     identifier="metadata-schema-credits-002",
-    title=metadataSchemaCredits2Title,
-    description=metadataSchemaCredits2Description,
-    credits=metadataSchemaCredits2Credits,
     valid=True,
-    metadata=metadataSchemaCredits2Metadata,
 )
 
 # missing credit element
 
 writeMetadataTest(
     identifier="metadata-schema-credits-003",
-    title=metadataSchemaCredits3Title,
-    description=metadataSchemaCredits3Description,
-    credits=metadataSchemaCredits3Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredits3Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-credits-004",
-    title=metadataSchemaCredits4Title,
-    description=metadataSchemaCredits4Description,
-    credits=metadataSchemaCredits4Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredits4Metadata,
 )
 
 # unknown element
 
 writeMetadataTest(
     identifier="metadata-schema-credits-005",
-    title=metadataSchemaCredits5Title,
-    description=metadataSchemaCredits5Description,
-    credits=metadataSchemaCredits5Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredits5Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-credits-006",
-    title=metadataSchemaCredits6Title,
-    description=metadataSchemaCredits6Description,
-    credits=metadataSchemaCredits6Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredits6Metadata,
 )
 
 # multiple credits
 
 writeMetadataTest(
     identifier="metadata-schema-credits-007",
-    title=metadataSchemaCredits7Title,
-    description=metadataSchemaCredits7Description,
-    credits=metadataSchemaCredits7Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredits7Metadata,
 )
 
 # -----------------------------------------
@@ -1563,121 +1415,77 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-credit-001",
-    title=metadataSchemaCredit1Title,
-    description=metadataSchemaCredit1Description,
-    credits=metadataSchemaCredit1Credits,
     valid=True,
-    metadata=metadataSchemaCredit1Metadata,
 )
 
 # valid no url
 
 writeMetadataTest(
     identifier="metadata-schema-credit-002",
-    title=metadataSchemaCredit2Title,
-    description=metadataSchemaCredit2Description,
-    credits=metadataSchemaCredit2Credits,
     valid=True,
-    metadata=metadataSchemaCredit2Metadata,
 )
 
 # valid no role
 
 writeMetadataTest(
     identifier="metadata-schema-credit-003",
-    title=metadataSchemaCredit3Title,
-    description=metadataSchemaCredit3Description,
-    credits=metadataSchemaCredit3Credits,
     valid=True,
-    metadata=metadataSchemaCredit3Metadata,
 )
 
 # no name
 
 writeMetadataTest(
     identifier="metadata-schema-credit-004",
-    title=metadataSchemaCredit4Title,
-    description=metadataSchemaCredit4Description,
-    credits=metadataSchemaCredit4Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredit4Metadata,
 )
 
 # dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-credit-005",
-    title=metadataSchemaCredit5Title,
-    description=metadataSchemaCredit5Description,
-    credits=metadataSchemaCredit5Credits,
     valid=True,
-    metadata=metadataSchemaCredit5Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-credit-006",
-    title=metadataSchemaCredit6Title,
-    description=metadataSchemaCredit6Description,
-    credits=metadataSchemaCredit6Credits,
     valid=True,
-    metadata=metadataSchemaCredit6Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-credit-007",
-    title=metadataSchemaCredit7Title,
-    description=metadataSchemaCredit7Description,
-    credits=metadataSchemaCredit7Credits,
     valid=False,
-    metadata=metadataSchemaCredit7Metadata,
 )
 
 # class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-credit-008",
-    title=metadataSchemaCredit8Title,
-    description=metadataSchemaCredit8Description,
-    credits=metadataSchemaCredit8Credits,
     valid=True,
-    metadata=metadataSchemaCredit8Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-credit-009",
-    title=metadataSchemaCredit9Title,
-    description=metadataSchemaCredit9Description,
-    credits=metadataSchemaCredit9Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredit9Metadata,
 )
 
 # child element
 
 writeMetadataTest(
     identifier="metadata-schema-credit-010",
-    title=metadataSchemaCredit10Title,
-    description=metadataSchemaCredit10Description,
-    credits=metadataSchemaCredit10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredit10Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-credit-011",
-    title=metadataSchemaCredit11Title,
-    description=metadataSchemaCredit11Description,
-    credits=metadataSchemaCredit11Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCredit11Metadata,
 )
 
 # ----------------------------------------------
@@ -1688,365 +1496,237 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-description-001",
-    title=metadataSchemaDescription1Title,
-    description=metadataSchemaDescription1Description,
-    credits=metadataSchemaDescription1Credits,
     valid=True,
-    metadata=metadataSchemaDescription1Metadata,
 )
 
 # valid without url
 
 writeMetadataTest(
     identifier="metadata-schema-description-002",
-    title=metadataSchemaDescription2Title,
-    description=metadataSchemaDescription2Description,
-    credits=metadataSchemaDescription2Credits,
     valid=True,
-    metadata=metadataSchemaDescription2Metadata,
 )
 
 # valid one text element no language
 
 writeMetadataTest(
     identifier="metadata-schema-description-003",
-    title=metadataSchemaDescription3Title,
-    description=metadataSchemaDescription3Description,
-    credits=metadataSchemaDescription3Credits,
     valid=True,
-    metadata=metadataSchemaDescription3Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataTest(
     identifier="metadata-schema-description-004",
-    title=metadataSchemaDescription4Title,
-    description=metadataSchemaDescription4Description,
-    credits=metadataSchemaDescription4Credits,
     valid=True,
-    metadata=metadataSchemaDescription4Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataTest(
     identifier="metadata-schema-description-005",
-    title=metadataSchemaDescription5Title,
-    description=metadataSchemaDescription5Description,
-    credits=metadataSchemaDescription5Credits,
     valid=True,
-    metadata=metadataSchemaDescription5Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataTest(
     identifier="metadata-schema-description-006",
-    title=metadataSchemaDescription6Title,
-    description=metadataSchemaDescription6Description,
-    credits=metadataSchemaDescription6Credits,
     valid=True,
-    metadata=metadataSchemaDescription6Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataTest(
     identifier="metadata-schema-description-007",
-    title=metadataSchemaDescription7Title,
-    description=metadataSchemaDescription7Description,
-    credits=metadataSchemaDescription7Credits,
     valid=True,
-    metadata=metadataSchemaDescription7Metadata,
 )
 
 # more than one description
 
 writeMetadataTest(
     identifier="metadata-schema-description-008",
-    title=metadataSchemaDescription8Title,
-    description=metadataSchemaDescription8Description,
-    credits=metadataSchemaDescription8Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription8Metadata,
 )
 
 # no text element
 
 writeMetadataTest(
     identifier="metadata-schema-description-009",
-    title=metadataSchemaDescription9Title,
-    description=metadataSchemaDescription9Description,
-    credits=metadataSchemaDescription9Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription9Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-description-010",
-    title=metadataSchemaDescription10Title,
-    description=metadataSchemaDescription10Description,
-    credits=metadataSchemaDescription10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription10Metadata,
 )
 
 # unknown child element
 
 writeMetadataTest(
     identifier="metadata-schema-description-011",
-    title=metadataSchemaDescription11Title,
-    description=metadataSchemaDescription11Description,
-    credits=metadataSchemaDescription11Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription11Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-description-012",
-    title=metadataSchemaDescription12Title,
-    description=metadataSchemaDescription12Description,
-    credits=metadataSchemaDescription12Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription12Metadata,
 )
 
 # dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-description-013",
-    title=metadataSchemaDescription13Title,
-    description=metadataSchemaDescription13Description,
-    credits=metadataSchemaDescription13Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription13Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-description-014",
-    title=metadataSchemaDescription14Title,
-    description=metadataSchemaDescription14Description,
-    credits=metadataSchemaDescription14Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription14Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-description-015",
-    title=metadataSchemaDescription15Title,
-    description=metadataSchemaDescription15Description,
-    credits=metadataSchemaDescription15Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription15Metadata,
 )
 
 # class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-description-016",
-    title=metadataSchemaDescription16Title,
-    description=metadataSchemaDescription16Description,
-    credits=metadataSchemaDescription16Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription16Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-description-017",
-    title=metadataSchemaDescription17Title,
-    description=metadataSchemaDescription17Description,
-    credits=metadataSchemaDescription17Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription17Metadata,
 )
 
 # text element child element
 
 writeMetadataTest(
     identifier="metadata-schema-description-018",
-    title=metadataSchemaDescription18Title,
-    description=metadataSchemaDescription18Description,
-    credits=metadataSchemaDescription18Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription18Metadata,
 )
 
 # one div
 
 writeMetadataTest(
     identifier="metadata-schema-description-019",
-    title=metadataSchemaDescription19Title,
-    description=metadataSchemaDescription19Description,
-    credits=metadataSchemaDescription19Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription19Metadata,
 )
 
 # two div
 
 writeMetadataTest(
     identifier="metadata-schema-description-020",
-    title=metadataSchemaDescription20Title,
-    description=metadataSchemaDescription20Description,
-    credits=metadataSchemaDescription20Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription20Metadata,
 )
 
 # nested div
 
 writeMetadataTest(
     identifier="metadata-schema-description-021",
-    title=metadataSchemaDescription21Title,
-    description=metadataSchemaDescription21Description,
-    credits=metadataSchemaDescription21Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription21Metadata,
 )
 
 # div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-description-022",
-    title=metadataSchemaDescription22Title,
-    description=metadataSchemaDescription22Description,
-    credits=metadataSchemaDescription22Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription22Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-description-023",
-    title=metadataSchemaDescription23Title,
-    description=metadataSchemaDescription23Description,
-    credits=metadataSchemaDescription23Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription23Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-description-024",
-    title=metadataSchemaDescription24Title,
-    description=metadataSchemaDescription24Description,
-    credits=metadataSchemaDescription24Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription24Metadata,
 )
 
 # div with class
 
 writeMetadataTest(
     identifier="metadata-schema-description-025",
-    title=metadataSchemaDescription25Title,
-    description=metadataSchemaDescription25Description,
-    credits=metadataSchemaDescription25Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription25Metadata,
 )
 
 # one span
 
 writeMetadataTest(
     identifier="metadata-schema-description-026",
-    title=metadataSchemaDescription26Title,
-    description=metadataSchemaDescription26Description,
-    credits=metadataSchemaDescription26Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription26Metadata,
 )
 
 # two span
 
 writeMetadataTest(
     identifier="metadata-schema-description-027",
-    title=metadataSchemaDescription27Title,
-    description=metadataSchemaDescription27Description,
-    credits=metadataSchemaDescription27Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription27Metadata,
 )
 
 # nested span
 
 writeMetadataTest(
     identifier="metadata-schema-description-028",
-    title=metadataSchemaDescription28Title,
-    description=metadataSchemaDescription28Description,
-    credits=metadataSchemaDescription28Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription28Metadata,
 )
 
 # span with dir
 
 writeMetadataTest(
     identifier="metadata-schema-description-029",
-    title=metadataSchemaDescription29Title,
-    description=metadataSchemaDescription29Description,
-    credits=metadataSchemaDescription29Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription29Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-description-030",
-    title=metadataSchemaDescription30Title,
-    description=metadataSchemaDescription30Description,
-    credits=metadataSchemaDescription30Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription30Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-description-031",
-    title=metadataSchemaDescription31Title,
-    description=metadataSchemaDescription31Description,
-    credits=metadataSchemaDescription31Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaDescription31Metadata,
 )
 
 # span with class
 
 writeMetadataTest(
     identifier="metadata-schema-description-032",
-    title=metadataSchemaDescription32Title,
-    description=metadataSchemaDescription32Description,
-    credits=metadataSchemaDescription32Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaDescription32Metadata,
 )
 
 # ------------------------------------------
@@ -2057,376 +1737,244 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-license-001",
-    title=metadataSchemaLicense1Title,
-    description=metadataSchemaLicense1Description,
-    credits=metadataSchemaLicense1Credits,
     valid=True,
-    metadata=metadataSchemaLicense1Metadata,
 )
 
 # valid no url
 
 writeMetadataTest(
     identifier="metadata-schema-license-002",
-    title=metadataSchemaLicense2Title,
-    description=metadataSchemaLicense2Description,
-    credits=metadataSchemaLicense2Credits,
     valid=True,
-    metadata=metadataSchemaLicense2Metadata,
 )
 
 # valid no id
 
 writeMetadataTest(
     identifier="metadata-schema-license-003",
-    title=metadataSchemaLicense3Title,
-    description=metadataSchemaLicense3Description,
-    credits=metadataSchemaLicense3Credits,
     valid=True,
-    metadata=metadataSchemaLicense3Metadata,
 )
 
 # valid one text element no language
 
 writeMetadataTest(
     identifier="metadata-schema-license-004",
-    title=metadataSchemaLicense4Title,
-    description=metadataSchemaLicense4Description,
-    credits=metadataSchemaLicense4Credits,
     valid=True,
-    metadata=metadataSchemaLicense4Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataTest(
     identifier="metadata-schema-license-005",
-    title=metadataSchemaLicense5Title,
-    description=metadataSchemaLicense5Description,
-    credits=metadataSchemaLicense5Credits,
     valid=True,
-    metadata=metadataSchemaLicense5Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataTest(
     identifier="metadata-schema-license-006",
-    title=metadataSchemaLicense6Title,
-    description=metadataSchemaLicense6Description,
-    credits=metadataSchemaLicense6Credits,
     valid=True,
-    metadata=metadataSchemaLicense6Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataTest(
     identifier="metadata-schema-license-007",
-    title=metadataSchemaLicense7Title,
-    description=metadataSchemaLicense7Description,
-    credits=metadataSchemaLicense7Credits,
     valid=True,
-    metadata=metadataSchemaLicense7Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataTest(
     identifier="metadata-schema-license-008",
-    title=metadataSchemaLicense8Title,
-    description=metadataSchemaLicense8Description,
-    credits=metadataSchemaLicense8Credits,
     valid=True,
-    metadata=metadataSchemaLicense8Metadata,
 )
 
 # more than one license
 
 writeMetadataTest(
     identifier="metadata-schema-license-009",
-    title=metadataSchemaLicense9Title,
-    description=metadataSchemaLicense9Description,
-    credits=metadataSchemaLicense9Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense9Metadata,
 )
 
 # no text element
 
 writeMetadataTest(
     identifier="metadata-schema-license-010",
-    title=metadataSchemaLicense10Title,
-    description=metadataSchemaLicense10Description,
-    credits=metadataSchemaLicense10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense10Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-license-011",
-    title=metadataSchemaLicense11Title,
-    description=metadataSchemaLicense11Description,
-    credits=metadataSchemaLicense11Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense11Metadata,
 )
 
 # unknown child element
 
 writeMetadataTest(
     identifier="metadata-schema-license-012",
-    title=metadataSchemaLicense12Title,
-    description=metadataSchemaLicense12Description,
-    credits=metadataSchemaLicense12Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense12Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-license-013",
-    title=metadataSchemaLicense13Title,
-    description=metadataSchemaLicense13Description,
-    credits=metadataSchemaLicense13Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense13Metadata,
 )
 
 # text element dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-license-014",
-    title=metadataSchemaLicense14Title,
-    description=metadataSchemaLicense14Description,
-    credits=metadataSchemaLicense14Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense14Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-license-015",
-    title=metadataSchemaLicense15Title,
-    description=metadataSchemaLicense15Description,
-    credits=metadataSchemaLicense15Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense15Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-license-016",
-    title=metadataSchemaLicense16Title,
-    description=metadataSchemaLicense16Description,
-    credits=metadataSchemaLicense16Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense16Metadata,
 )
 
 # text element class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-license-017",
-    title=metadataSchemaLicense17Title,
-    description=metadataSchemaLicense17Description,
-    credits=metadataSchemaLicense17Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense17Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-license-018",
-    title=metadataSchemaLicense18Title,
-    description=metadataSchemaLicense18Description,
-    credits=metadataSchemaLicense18Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense18Metadata,
 )
 
 # text element child element
 
 writeMetadataTest(
     identifier="metadata-schema-license-019",
-    title=metadataSchemaLicense19Title,
-    description=metadataSchemaLicense19Description,
-    credits=metadataSchemaLicense19Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense19Metadata,
 )
 
 # one div
 
 writeMetadataTest(
     identifier="metadata-schema-license-020",
-    title=metadataSchemaLicense20Title,
-    description=metadataSchemaLicense20Description,
-    credits=metadataSchemaLicense20Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense20Metadata,
 )
 
 # two div
 
 writeMetadataTest(
     identifier="metadata-schema-license-021",
-    title=metadataSchemaLicense21Title,
-    description=metadataSchemaLicense21Description,
-    credits=metadataSchemaLicense21Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense21Metadata,
 )
 
 # nested div
 
 writeMetadataTest(
     identifier="metadata-schema-license-022",
-    title=metadataSchemaLicense22Title,
-    description=metadataSchemaLicense22Description,
-    credits=metadataSchemaLicense22Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense22Metadata,
 )
 
 # div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-license-023",
-    title=metadataSchemaLicense23Title,
-    description=metadataSchemaLicense23Description,
-    credits=metadataSchemaLicense23Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense23Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-license-024",
-    title=metadataSchemaLicense24Title,
-    description=metadataSchemaLicense24Description,
-    credits=metadataSchemaLicense24Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense24Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-license-025",
-    title=metadataSchemaLicense25Title,
-    description=metadataSchemaLicense25Description,
-    credits=metadataSchemaLicense25Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense25Metadata,
 )
 
 # div with class
 
 writeMetadataTest(
     identifier="metadata-schema-license-026",
-    title=metadataSchemaLicense26Title,
-    description=metadataSchemaLicense26Description,
-    credits=metadataSchemaLicense26Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense26Metadata,
 )
 
 # one span
 
 writeMetadataTest(
     identifier="metadata-schema-license-027",
-    title=metadataSchemaLicense27Title,
-    description=metadataSchemaLicense27Description,
-    credits=metadataSchemaLicense27Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense27Metadata,
 )
 
 # two span
 
 writeMetadataTest(
     identifier="metadata-schema-license-028",
-    title=metadataSchemaLicense28Title,
-    description=metadataSchemaLicense28Description,
-    credits=metadataSchemaLicense28Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense28Metadata,
 )
 
 # nested span
 
 writeMetadataTest(
     identifier="metadata-schema-license-029",
-    title=metadataSchemaLicense29Title,
-    description=metadataSchemaLicense29Description,
-    credits=metadataSchemaLicense29Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense29Metadata,
 )
 
 # span with dir
 
 writeMetadataTest(
     identifier="metadata-schema-license-030",
-    title=metadataSchemaLicense30Title,
-    description=metadataSchemaLicense30Description,
-    credits=metadataSchemaLicense30Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense30Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-license-031",
-    title=metadataSchemaLicense31Title,
-    description=metadataSchemaLicense31Description,
-    credits=metadataSchemaLicense31Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense31Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-license-032",
-    title=metadataSchemaLicense32Title,
-    description=metadataSchemaLicense32Description,
-    credits=metadataSchemaLicense32Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicense32Metadata,
 )
 
 # span with class
 
 writeMetadataTest(
     identifier="metadata-schema-license-033",
-    title=metadataSchemaLicense33Title,
-    description=metadataSchemaLicense33Description,
-    credits=metadataSchemaLicense33Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicense33Metadata,
 )
 
 # --------------------------------------------
@@ -2437,319 +1985,207 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-001",
-    title=metadataSchemaCopyright1Title,
-    description=metadataSchemaCopyright1Description,
-    credits=metadataSchemaCopyright1Credits,
     valid=True,
-    metadata=metadataSchemaCopyright1Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-002",
-    title=metadataSchemaCopyright2Title,
-    description=metadataSchemaCopyright2Description,
-    credits=metadataSchemaCopyright2Credits,
     valid=True,
-    metadata=metadataSchemaCopyright2Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-003",
-    title=metadataSchemaCopyright3Title,
-    description=metadataSchemaCopyright3Description,
-    credits=metadataSchemaCopyright3Credits,
     valid=True,
-    metadata=metadataSchemaCopyright3Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-004",
-    title=metadataSchemaCopyright4Title,
-    description=metadataSchemaCopyright4Description,
-    credits=metadataSchemaCopyright4Credits,
     valid=True,
-    metadata=metadataSchemaCopyright4Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-005",
-    title=metadataSchemaCopyright5Title,
-    description=metadataSchemaCopyright5Description,
-    credits=metadataSchemaCopyright5Credits,
     valid=True,
-    metadata=metadataSchemaCopyright5Metadata,
 )
 
 # more than one copyright
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-006",
-    title=metadataSchemaCopyright6Title,
-    description=metadataSchemaCopyright6Description,
-    credits=metadataSchemaCopyright6Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright6Metadata,
 )
 
 # no text element
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-007",
-    title=metadataSchemaCopyright7Title,
-    description=metadataSchemaCopyright7Description,
-    credits=metadataSchemaCopyright7Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright7Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-008",
-    title=metadataSchemaCopyright8Title,
-    description=metadataSchemaCopyright8Description,
-    credits=metadataSchemaCopyright8Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright8Metadata,
 )
 
 # unknown child element
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-009",
-    title=metadataSchemaCopyright9Title,
-    description=metadataSchemaCopyright9Description,
-    credits=metadataSchemaCopyright9Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright9Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-010",
-    title=metadataSchemaCopyright10Title,
-    description=metadataSchemaCopyright10Description,
-    credits=metadataSchemaCopyright10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright10Metadata,
 )
 
 # text element with dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-011",
-    title=metadataSchemaCopyright11Title,
-    description=metadataSchemaCopyright11Description,
-    credits=metadataSchemaCopyright11Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright11Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-012",
-    title=metadataSchemaCopyright12Title,
-    description=metadataSchemaCopyright12Description,
-    credits=metadataSchemaCopyright12Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright12Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-013",
-    title=metadataSchemaCopyright13Title,
-    description=metadataSchemaCopyright13Description,
-    credits=metadataSchemaCopyright13Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright13Metadata,
 )
 
 # text element with class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-014",
-    title=metadataSchemaCopyright14Title,
-    description=metadataSchemaCopyright14Description,
-    credits=metadataSchemaCopyright14Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright14Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-015",
-    title=metadataSchemaCopyright15Title,
-    description=metadataSchemaCopyright15Description,
-    credits=metadataSchemaCopyright15Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright15Metadata,
 )
 
 # text element child element
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-016",
-    title=metadataSchemaCopyright16Title,
-    description=metadataSchemaCopyright16Description,
-    credits=metadataSchemaCopyright16Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright16Metadata,
 )
 
 # one div
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-017",
-    title=metadataSchemaCopyright17Title,
-    description=metadataSchemaCopyright17Description,
-    credits=metadataSchemaCopyright17Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright17Metadata,
 )
 
 # two div
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-018",
-    title=metadataSchemaCopyright18Title,
-    description=metadataSchemaCopyright18Description,
-    credits=metadataSchemaCopyright18Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright18Metadata,
 )
 
 # div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-019",
-    title=metadataSchemaCopyright19Title,
-    description=metadataSchemaCopyright19Description,
-    credits=metadataSchemaCopyright19Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright19Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-020",
-    title=metadataSchemaCopyright20Title,
-    description=metadataSchemaCopyright20Description,
-    credits=metadataSchemaCopyright20Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright20Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-021",
-    title=metadataSchemaCopyright21Title,
-    description=metadataSchemaCopyright21Description,
-    credits=metadataSchemaCopyright21Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright21Metadata,
 )
 
 # div with class
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-022",
-    title=metadataSchemaCopyright22Title,
-    description=metadataSchemaCopyright22Description,
-    credits=metadataSchemaCopyright22Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright22Metadata,
 )
 
 # one span
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-023",
-    title=metadataSchemaCopyright23Title,
-    description=metadataSchemaCopyright23Description,
-    credits=metadataSchemaCopyright23Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright23Metadata,
 )
 
 # two span
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-024",
-    title=metadataSchemaCopyright24Title,
-    description=metadataSchemaCopyright24Description,
-    credits=metadataSchemaCopyright24Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright24Metadata,
 )
 
 # span with dir
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-025",
-    title=metadataSchemaCopyright25Title,
-    description=metadataSchemaCopyright25Description,
-    credits=metadataSchemaCopyright25Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright25Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-026",
-    title=metadataSchemaCopyright26Title,
-    description=metadataSchemaCopyright26Description,
-    credits=metadataSchemaCopyright26Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright26Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-027",
-    title=metadataSchemaCopyright27Title,
-    description=metadataSchemaCopyright27Description,
-    credits=metadataSchemaCopyright27Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaCopyright27Metadata,
 )
 
 # span with class
 
 writeMetadataTest(
     identifier="metadata-schema-copyright-028",
-    title=metadataSchemaCopyright28Title,
-    description=metadataSchemaCopyright28Description,
-    credits=metadataSchemaCopyright28Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaCopyright28Metadata,
 )
 
 # --------------------------------------------
@@ -2760,320 +2196,208 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-001",
-    title=metadataSchemaTrademark1Title,
-    description=metadataSchemaTrademark1Description,
-    credits=metadataSchemaTrademark1Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark1Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-002",
-    title=metadataSchemaTrademark2Title,
-    description=metadataSchemaTrademark2Description,
-    credits=metadataSchemaTrademark2Credits,
     valid=True,
-    metadata=metadataSchemaTrademark2Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-003",
-    title=metadataSchemaTrademark3Title,
-    description=metadataSchemaTrademark3Description,
-    credits=metadataSchemaTrademark3Credits,
     valid=True,
-    metadata=metadataSchemaTrademark3Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-004",
-    title=metadataSchemaTrademark4Title,
-    description=metadataSchemaTrademark4Description,
-    credits=metadataSchemaTrademark4Credits,
     valid=True,
-    metadata=metadataSchemaTrademark4Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-005",
-    title=metadataSchemaTrademark5Title,
-    description=metadataSchemaTrademark5Description,
-    credits=metadataSchemaTrademark5Credits,
     valid=True,
-    metadata=metadataSchemaTrademark5Metadata,
 )
 
 # more than one trademark
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-006",
-    title=metadataSchemaTrademark6Title,
-    description=metadataSchemaTrademark6Description,
-    credits=metadataSchemaTrademark6Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark6Metadata,
 )
 
 # no text element
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-007",
-    title=metadataSchemaTrademark7Title,
-    description=metadataSchemaTrademark7Description,
-    credits=metadataSchemaTrademark7Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark7Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-008",
-    title=metadataSchemaTrademark8Title,
-    description=metadataSchemaTrademark8Description,
-    credits=metadataSchemaTrademark8Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark8Metadata,
 )
 
 # unknown child element
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-009",
-    title=metadataSchemaTrademark9Title,
-    description=metadataSchemaTrademark9Description,
-    credits=metadataSchemaTrademark9Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark9Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-010",
-    title=metadataSchemaTrademark10Title,
-    description=metadataSchemaTrademark10Description,
-    credits=metadataSchemaTrademark10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark10Metadata,
 )
 
 # text element with dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-011",
-    title=metadataSchemaTrademark11Title,
-    description=metadataSchemaTrademark11Description,
-    credits=metadataSchemaTrademark11Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark11Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-012",
-    title=metadataSchemaTrademark12Title,
-    description=metadataSchemaTrademark12Description,
-    credits=metadataSchemaTrademark12Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark12Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-013",
-    title=metadataSchemaTrademark13Title,
-    description=metadataSchemaTrademark13Description,
-    credits=metadataSchemaTrademark13Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark13Metadata,
 )
 
 # text element with class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-014",
-    title=metadataSchemaTrademark14Title,
-    description=metadataSchemaTrademark14Description,
-    credits=metadataSchemaTrademark14Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark14Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-015",
-    title=metadataSchemaTrademark15Title,
-    description=metadataSchemaTrademark15Description,
-    credits=metadataSchemaTrademark15Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark15Metadata,
 )
 
 # text element child element
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-016",
-    title=metadataSchemaTrademark16Title,
-    description=metadataSchemaTrademark16Description,
-    credits=metadataSchemaTrademark16Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark16Metadata,
 )
 
 # one div
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-017",
-    title=metadataSchemaTrademark17Title,
-    description=metadataSchemaTrademark17Description,
-    credits=metadataSchemaTrademark17Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark17Metadata,
 )
 
 # two div
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-018",
-    title=metadataSchemaTrademark18Title,
-    description=metadataSchemaTrademark18Description,
-    credits=metadataSchemaTrademark18Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark18Metadata,
 )
 
 # div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-019",
-    title=metadataSchemaTrademark19Title,
-    description=metadataSchemaTrademark19Description,
-    credits=metadataSchemaTrademark19Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark19Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-020",
-    title=metadataSchemaTrademark20Title,
-    description=metadataSchemaTrademark20Description,
-    credits=metadataSchemaTrademark20Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark20Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-021",
-    title=metadataSchemaTrademark21Title,
-    description=metadataSchemaTrademark21Description,
-    credits=metadataSchemaTrademark21Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark21Metadata,
 )
 
 # div with class
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-022",
-    title=metadataSchemaTrademark22Title,
-    description=metadataSchemaTrademark22Description,
-    credits=metadataSchemaTrademark22Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark22Metadata,
 )
 
 # one span
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-023",
-    title=metadataSchemaTrademark23Title,
-    description=metadataSchemaTrademark23Description,
-    credits=metadataSchemaTrademark23Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark23Metadata,
 )
 
 # two span
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-024",
-    title=metadataSchemaTrademark24Title,
-    description=metadataSchemaTrademark24Description,
-    credits=metadataSchemaTrademark24Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark24Metadata,
 )
 
 # span with dir
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-025",
-    title=metadataSchemaTrademark25Title,
-    description=metadataSchemaTrademark25Description,
-    credits=metadataSchemaTrademark25Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark25Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-026",
-    title=metadataSchemaTrademark26Title,
-    description=metadataSchemaTrademark26Description,
-    credits=metadataSchemaTrademark26Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark26Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-027",
-    title=metadataSchemaTrademark27Title,
-    description=metadataSchemaTrademark27Description,
-    credits=metadataSchemaTrademark27Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaTrademark27Metadata,
 )
 
 # span with class
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-028",
-    title=metadataSchemaTrademark28Title,
-    description=metadataSchemaTrademark28Description,
-    credits=metadataSchemaTrademark28Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaTrademark28Metadata,
 )
 
 # -------------------------------------------
@@ -3084,115 +2408,75 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-001",
-    title=metadataSchemaLicensee1Title,
-    description=metadataSchemaLicensee1Description,
-    credits=metadataSchemaLicensee1Credits,
     valid=True,
-    metadata=metadataSchemaLicensee1Metadata,
 )
 
 # duplicate
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-002",
-    title=metadataSchemaLicensee2Title,
-    description=metadataSchemaLicensee2Description,
-    credits=metadataSchemaLicensee2Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicensee2Metadata,
 )
 
 # missing name
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-003",
-    title=metadataSchemaLicensee3Title,
-    description=metadataSchemaLicensee3Description,
-    credits=metadataSchemaLicensee3Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicensee3Metadata,
 )
 
 # dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-004",
-    title=metadataSchemaLicensee4Title,
-    description=metadataSchemaLicensee4Description,
-    credits=metadataSchemaLicensee4Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicensee4Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-005",
-    title=metadataSchemaLicensee5Title,
-    description=metadataSchemaLicensee5Description,
-    credits=metadataSchemaLicensee5Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicensee5Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-006",
-    title=metadataSchemaLicensee6Title,
-    description=metadataSchemaLicensee6Description,
-    credits=metadataSchemaLicensee6Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicensee6Metadata,
 )
 
 # class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-007",
-    title=metadataSchemaLicensee7Title,
-    description=metadataSchemaLicensee7Description,
-    credits=metadataSchemaLicensee7Credits,
     specLink="#conform-metadata-schemavalid",
     valid=True,
-    metadata=metadataSchemaLicensee7Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-008",
-    title=metadataSchemaLicensee8Title,
-    description=metadataSchemaLicensee8Description,
-    credits=metadataSchemaLicensee8Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicensee8Metadata,
 )
 
 # child element
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-009",
-    title=metadataSchemaLicensee9Title,
-    description=metadataSchemaLicensee9Description,
-    credits=metadataSchemaLicensee9Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicensee9Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-licensee-010",
-    title=metadataSchemaLicensee10Title,
-    description=metadataSchemaLicensee10Description,
-    credits=metadataSchemaLicensee10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaLicensee10Metadata,
 )
 
 # --------------------------------------------
@@ -3203,125 +2487,81 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-extension-001",
-    title=metadataSchemaExtension1Title,
-    description=metadataSchemaExtension1Description,
-    credits=metadataSchemaExtension1Credits,
     valid=True,
-    metadata=metadataSchemaExtension1Metadata,
 )
 
 # valid two extensions
 
 writeMetadataTest(
     identifier="metadata-schema-extension-002",
-    title=metadataSchemaExtension2Title,
-    description=metadataSchemaExtension2Description,
-    credits=metadataSchemaExtension2Credits,
     valid=True,
-    metadata=metadataSchemaExtension2Metadata,
 )
 
 # valid no id
 
 writeMetadataTest(
     identifier="metadata-schema-extension-003",
-    title=metadataSchemaExtension3Title,
-    description=metadataSchemaExtension3Description,
-    credits=metadataSchemaExtension3Credits,
     valid=True,
-    metadata=metadataSchemaExtension3Metadata,
 )
 
 # valid no name
 
 writeMetadataTest(
     identifier="metadata-schema-extension-004",
-    title=metadataSchemaExtension4Title,
-    description=metadataSchemaExtension4Description,
-    credits=metadataSchemaExtension4Credits,
     valid=True,
-    metadata=metadataSchemaExtension4Metadata,
 )
 
 # valid one untagged name one tagged name
 
 writeMetadataTest(
     identifier="metadata-schema-extension-005",
-    title=metadataSchemaExtension5Title,
-    description=metadataSchemaExtension5Description,
-    credits=metadataSchemaExtension5Credits,
     valid=True,
-    metadata=metadataSchemaExtension5Metadata,
 )
 
 # valid two tagged names
 
 writeMetadataTest(
     identifier="metadata-schema-extension-006",
-    title=metadataSchemaExtension6Title,
-    description=metadataSchemaExtension6Description,
-    credits=metadataSchemaExtension6Credits,
     valid=True,
-    metadata=metadataSchemaExtension6Metadata,
 )
 
 # valid more than one item
 
 writeMetadataTest(
     identifier="metadata-schema-extension-007",
-    title=metadataSchemaExtension7Title,
-    description=metadataSchemaExtension7Description,
-    credits=metadataSchemaExtension7Credits,
     valid=True,
-    metadata=metadataSchemaExtension7Metadata,
 )
 
 # no item
 
 writeMetadataTest(
     identifier="metadata-schema-extension-008",
-    title=metadataSchemaExtension8Title,
-    description=metadataSchemaExtension8Description,
-    credits=metadataSchemaExtension8Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension8Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-009",
-    title=metadataSchemaExtension9Title,
-    description=metadataSchemaExtension9Description,
-    credits=metadataSchemaExtension9Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension9Metadata,
 )
 
 # unknown child
 
 writeMetadataTest(
     identifier="metadata-schema-extension-010",
-    title=metadataSchemaExtension10Title,
-    description=metadataSchemaExtension10Description,
-    credits=metadataSchemaExtension10Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension10Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-extension-011",
-    title=metadataSchemaExtension11Title,
-    description=metadataSchemaExtension11Description,
-    credits=metadataSchemaExtension11Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension11Metadata,
 )
 
 # ---------------------------------------------------
@@ -3332,97 +2572,61 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-extension-012",
-    title=metadataSchemaExtension12Title,
-    description=metadataSchemaExtension12Description,
-    credits=metadataSchemaExtension12Credits,
     valid=True,
-    metadata=metadataSchemaExtension12Metadata,
 )
 
 # valid xml:lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-013",
-    title=metadataSchemaExtension13Title,
-    description=metadataSchemaExtension13Description,
-    credits=metadataSchemaExtension13Credits,
     valid=True,
-    metadata=metadataSchemaExtension13Metadata,
 )
 
 # valid lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-014",
-    title=metadataSchemaExtension14Title,
-    description=metadataSchemaExtension14Description,
-    credits=metadataSchemaExtension14Credits,
     valid=True,
-    metadata=metadataSchemaExtension14Metadata,
 )
 
 # dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-015",
-    title=metadataSchemaExtension15Title,
-    description=metadataSchemaExtension15Description,
-    credits=metadataSchemaExtension15Credits,
     valid=True,
-    metadata=metadataSchemaExtension15Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-extension-016",
-    title=metadataSchemaExtension16Title,
-    description=metadataSchemaExtension16Description,
-    credits=metadataSchemaExtension16Credits,
     valid=True,
-    metadata=metadataSchemaExtension16Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-extension-017",
-    title=metadataSchemaExtension17Title,
-    description=metadataSchemaExtension17Description,
-    credits=metadataSchemaExtension17Credits,
     valid=False,
-    metadata=metadataSchemaExtension17Metadata,
 )
 
 # class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-018",
-    title=metadataSchemaExtension18Title,
-    description=metadataSchemaExtension18Description,
-    credits=metadataSchemaExtension18Credits,
     valid=True,
-    metadata=metadataSchemaExtension18Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-019",
-    title=metadataSchemaExtension19Title,
-    description=metadataSchemaExtension19Description,
-    credits=metadataSchemaExtension19Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension19Metadata,
 )
 
 # child element
 
 writeMetadataTest(
     identifier="metadata-schema-extension-020",
-    title=metadataSchemaExtension20Title,
-    description=metadataSchemaExtension20Description,
-    credits=metadataSchemaExtension20Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension20Metadata,
 )
 
 # ---------------------------------------------------
@@ -3433,137 +2637,89 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-extension-021",
-    title=metadataSchemaExtension21Title,
-    description=metadataSchemaExtension21Description,
-    credits=metadataSchemaExtension21Credits,
     valid=True,
-    metadata=metadataSchemaExtension21Metadata,
 )
 
 # valid multiple languages
 
 writeMetadataTest(
     identifier="metadata-schema-extension-022",
-    title=metadataSchemaExtension22Title,
-    description=metadataSchemaExtension22Description,
-    credits=metadataSchemaExtension22Credits,
     valid=True,
-    metadata=metadataSchemaExtension22Metadata,
 )
 
 # valid no id
 
 writeMetadataTest(
     identifier="metadata-schema-extension-023",
-    title=metadataSchemaExtension23Title,
-    description=metadataSchemaExtension23Description,
-    credits=metadataSchemaExtension23Credits,
     valid=True,
-    metadata=metadataSchemaExtension23Metadata,
 )
 
 # valid name no tag and tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-024",
-    title=metadataSchemaExtension24Title,
-    description=metadataSchemaExtension24Description,
-    credits=metadataSchemaExtension24Credits,
     valid=True,
-    metadata=metadataSchemaExtension24Metadata,
 )
 
 # valid name two tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-025",
-    title=metadataSchemaExtension25Title,
-    description=metadataSchemaExtension25Description,
-    credits=metadataSchemaExtension25Credits,
     valid=True,
-    metadata=metadataSchemaExtension25Metadata,
 )
 
 # valid value no tag and tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-026",
-    title=metadataSchemaExtension26Title,
-    description=metadataSchemaExtension26Description,
-    credits=metadataSchemaExtension26Credits,
     valid=True,
-    metadata=metadataSchemaExtension26Metadata,
 )
 
 # valid value two tagged
 
 writeMetadataTest(
     identifier="metadata-schema-extension-027",
-    title=metadataSchemaExtension27Title,
-    description=metadataSchemaExtension27Description,
-    credits=metadataSchemaExtension27Credits,
     valid=True,
-    metadata=metadataSchemaExtension27Metadata,
 )
 
 # no name
 
 writeMetadataTest(
     identifier="metadata-schema-extension-028",
-    title=metadataSchemaExtension28Title,
-    description=metadataSchemaExtension28Description,
-    credits=metadataSchemaExtension28Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension28Metadata,
 )
 
 # no value
 
 writeMetadataTest(
     identifier="metadata-schema-extension-029",
-    title=metadataSchemaExtension29Title,
-    description=metadataSchemaExtension29Description,
-    credits=metadataSchemaExtension29Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension29Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-030",
-    title=metadataSchemaExtension30Title,
-    description=metadataSchemaExtension30Description,
-    credits=metadataSchemaExtension30Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension30Metadata,
 )
 
 # unknown child element
 
 writeMetadataTest(
     identifier="metadata-schema-extension-031",
-    title=metadataSchemaExtension31Title,
-    description=metadataSchemaExtension31Description,
-    credits=metadataSchemaExtension31Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension31Metadata,
 )
 
 # content
 
 writeMetadataTest(
     identifier="metadata-schema-extension-032",
-    title=metadataSchemaExtension32Title,
-    description=metadataSchemaExtension32Description,
-    credits=metadataSchemaExtension32Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension32Metadata,
 )
 
 # ----------------------------------------------------------
@@ -3574,97 +2730,61 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-extension-033",
-    title=metadataSchemaExtension33Title,
-    description=metadataSchemaExtension33Description,
-    credits=metadataSchemaExtension33Credits,
     valid=True,
-    metadata=metadataSchemaExtension33Metadata,
 )
 
 # valid xml:lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-034",
-    title=metadataSchemaExtension34Title,
-    description=metadataSchemaExtension34Description,
-    credits=metadataSchemaExtension34Credits,
     valid=True,
-    metadata=metadataSchemaExtension34Metadata,
 )
 
 # valid lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-035",
-    title=metadataSchemaExtension35Title,
-    description=metadataSchemaExtension35Description,
-    credits=metadataSchemaExtension35Credits,
     valid=True,
-    metadata=metadataSchemaExtension35Metadata,
 )
 
 # dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-036",
-    title=metadataSchemaExtension36Title,
-    description=metadataSchemaExtension36Description,
-    credits=metadataSchemaExtension36Credits,
     valid=True,
-    metadata=metadataSchemaExtension36Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-extension-037",
-    title=metadataSchemaExtension37Title,
-    description=metadataSchemaExtension37Description,
-    credits=metadataSchemaExtension37Credits,
     valid=True,
-    metadata=metadataSchemaExtension37Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-extension-038",
-    title=metadataSchemaExtension38Title,
-    description=metadataSchemaExtension38Description,
-    credits=metadataSchemaExtension38Credits,
     valid=False,
-    metadata=metadataSchemaExtension38Metadata,
 )
 
 # class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-039",
-    title=metadataSchemaExtension39Title,
-    description=metadataSchemaExtension39Description,
-    credits=metadataSchemaExtension39Credits,
     valid=True,
-    metadata=metadataSchemaExtension39Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-040",
-    title=metadataSchemaExtension40Title,
-    description=metadataSchemaExtension40Description,
-    credits=metadataSchemaExtension40Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension40Metadata,
 )
 
 # child element
 
 writeMetadataTest(
     identifier="metadata-schema-extension-041",
-    title=metadataSchemaExtension41Title,
-    description=metadataSchemaExtension41Description,
-    credits=metadataSchemaExtension41Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension41Metadata,
 )
 
 # -----------------------------------------------------------
@@ -3675,97 +2795,61 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-schema-extension-042",
-    title=metadataSchemaExtension42Title,
-    description=metadataSchemaExtension42Description,
-    credits=metadataSchemaExtension42Credits,
     valid=True,
-    metadata=metadataSchemaExtension42Metadata,
 )
 
 # valid xml:lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-043",
-    title=metadataSchemaExtension43Title,
-    description=metadataSchemaExtension43Description,
-    credits=metadataSchemaExtension43Credits,
     valid=True,
-    metadata=metadataSchemaExtension43Metadata,
 )
 
 # valid lang
 
 writeMetadataTest(
     identifier="metadata-schema-extension-044",
-    title=metadataSchemaExtension44Title,
-    description=metadataSchemaExtension44Description,
-    credits=metadataSchemaExtension44Credits,
     valid=True,
-    metadata=metadataSchemaExtension44Metadata,
 )
 
 # dir attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-045",
-    title=metadataSchemaExtension45Title,
-    description=metadataSchemaExtension45Description,
-    credits=metadataSchemaExtension45Credits,
     valid=True,
-    metadata=metadataSchemaExtension45Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-extension-046",
-    title=metadataSchemaExtension46Title,
-    description=metadataSchemaExtension46Description,
-    credits=metadataSchemaExtension46Credits,
     valid=True,
-    metadata=metadataSchemaExtension46Metadata,
 )
 
 writeMetadataTest(
     identifier="metadata-schema-extension-047",
-    title=metadataSchemaExtension47Title,
-    description=metadataSchemaExtension47Description,
-    credits=metadataSchemaExtension47Credits,
     valid=False,
-    metadata=metadataSchemaExtension47Metadata,
 )
 
 # class attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-048",
-    title=metadataSchemaExtension48Title,
-    description=metadataSchemaExtension48Description,
-    credits=metadataSchemaExtension48Credits,
     valid=True,
-    metadata=metadataSchemaExtension48Metadata,
 )
 
 # unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-extension-049",
-    title=metadataSchemaExtension49Title,
-    description=metadataSchemaExtension49Description,
-    credits=metadataSchemaExtension49Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension49Metadata,
 )
 
 # child element
 
 writeMetadataTest(
     identifier="metadata-schema-extension-050",
-    title=metadataSchemaExtension50Title,
-    description=metadataSchemaExtension50Description,
-    credits=metadataSchemaExtension50Credits,
     specLink="#conform-metadata-schemavalid",
     valid=False,
-    metadata=metadataSchemaExtension50Metadata,
 )
 
 # ------------------------------------

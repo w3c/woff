@@ -34,6 +34,7 @@ from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTes
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData
 from testCaseGeneratorLib.html import generateSFNTDisplayTestHTML, generateSFNTDisplayRefHTML, generateSFNTDisplayIndexHTML
 from testCaseGeneratorLib.paths import resourcesDirectory, userAgentDirectory, userAgentTestDirectory, userAgentTestResourcesDirectory, userAgentFontsToInstallDirectory
+from testCaseGeneratorLib import sharedCases
 from testCaseGeneratorLib.sharedCases import *
 
 # ------------------------
@@ -197,6 +198,21 @@ def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, cred
     This is a convenience functon that eliminates the need to make a complete
     WOFF when only the metadata is being tested.
     """
+    # dynamically get some data from the shared cases as needed
+    if title is None:
+        assert assertion is None
+        assert metadata is None
+        parts = identifier.split("-")
+        assert parts[0] == "metadatadisplay"
+        number = int(parts[-1])
+        group = parts[1:-1]
+        group = [i.title() for i in group]
+        group = "".join(group)
+        importBase = "metadata" + group + str(number)
+        title = getattr(sharedCases, importBase + "Title")
+        assertion = getattr(sharedCases, importBase + "Description")
+        credits = getattr(sharedCases, importBase + "Credits")
+        metadata = getattr(sharedCases, importBase + "Metadata")
     assert metadata is not None
     assert metadataIsValid is not None
     # compile the WOFF
@@ -1011,84 +1027,56 @@ writeFileStructureTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-001",
-    title=metadataWellFormed1Title,
-    assertion=metadataWellFormed1Description,
-    credits=metadataWellFormed1Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataWellFormed1Metadata,
 )
 
 # &
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-002",
-    title=metadataWellFormed2Title,
-    assertion=metadataWellFormed2Description,
-    credits=metadataWellFormed2Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataWellFormed2Metadata,
 )
 
 # mismatched elements
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-003",
-    title=metadataWellFormed3Title,
-    assertion=metadataWellFormed3Description,
-    credits=metadataWellFormed3Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataWellFormed3Metadata,
 )
 
 # unclosed element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-004",
-    title=metadataWellFormed4Title,
-    assertion=metadataWellFormed4Description,
-    credits=metadataWellFormed4Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataWellFormed4Metadata,
 )
 
 # case mismatch
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-005",
-    title=metadataWellFormed5Title,
-    assertion=metadataWellFormed5Description,
-    credits=metadataWellFormed5Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataWellFormed5Metadata,
 )
 
 # more than one root
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-006",
-    title=metadataWellFormed6Title,
-    assertion=metadataWellFormed6Description,
-    credits=metadataWellFormed6Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataWellFormed6Metadata,
 )
 
 # unknown encoding
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-well-formed-007",
-    title=metadataWellFormed7Title,
-    assertion=metadataWellFormed7Description,
-    credits=metadataWellFormed7Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataWellFormed7Metadata,
 )
 
 # --------------------------
@@ -1099,32 +1087,20 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-001",
-    title=metadataEncoding1Title,
-    assertion=metadataEncoding1Description,
-    credits=metadataEncoding1Credits,
     metadataIsValid=True,
-    metadata=metadataEncoding1Metadata,
 )
 
 # Invalid
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-002",
-    title=metadataEncoding2Title,
-    assertion=metadataEncoding2Description,
-    credits=metadataEncoding2Credits,
     metadataIsValid=False,
-    metadata=metadataEncoding2Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-encoding-003",
-    title=metadataEncoding3Title,
-    assertion=metadataEncoding3Description,
-    credits=metadataEncoding3Credits,
     metadataDisplaySpecLink="#conform-invalid-mustignore",
     metadataIsValid=False,
-    metadata=metadataEncoding3Metadata,
 )
 
 # -------------------------------------------
@@ -1135,55 +1111,35 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-001",
-    title=metadataSchemaMetadata1Title,
-    assertion=metadataSchemaMetadata1Description,
-    credits=metadataSchemaMetadata1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaMetadata1Metadata,
 )
 
 # missing version
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-002",
-    title=metadataSchemaMetadata2Title,
-    assertion=metadataSchemaMetadata2Description,
-    credits=metadataSchemaMetadata2Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaMetadata2Metadata,
 )
 
 # invalid version
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-003",
-    title=metadataSchemaMetadata3Title,
-    assertion=metadataSchemaMetadata3Description,
-    credits=metadataSchemaMetadata3Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaMetadata3Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-004",
-    title=metadataSchemaMetadata4Title,
-    assertion=metadataSchemaMetadata4Description,
-    credits=metadataSchemaMetadata4Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaMetadata4Metadata,
 )
 
 # unknown element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-005",
-    title=metadataSchemaMetadata5Title,
-    assertion=metadataSchemaMetadata5Description,
-    credits=metadataSchemaMetadata5Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaMetadata5Metadata,
 )
 
 # -------------------------------------------
@@ -1194,78 +1150,50 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-001",
-    title=metadataSchemaUniqueid1Title,
-    assertion=metadataSchemaUniqueid1Description,
-    credits=metadataSchemaUniqueid1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaUniqueid1Metadata,
 )
 
 # does not exist
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-002",
-    title=metadataSchemaUniqueid2Title,
-    assertion=metadataSchemaUniqueid2Description,
-    credits=metadataSchemaUniqueid2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaUniqueid2Metadata,
 )
 
 # duplicate
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-003",
-    title=metadataSchemaUniqueid3Title,
-    assertion=metadataSchemaUniqueid3Description,
-    credits=metadataSchemaUniqueid3Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaUniqueid3Metadata,
 )
 
 # missing id attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-004",
-    title=metadataSchemaUniqueid4Title,
-    assertion=metadataSchemaUniqueid4Description,
-    credits=metadataSchemaUniqueid4Credits,
     metadataDisplaySpecLink="#conform-metadata-id-required",
     metadataIsValid=False,
-    metadata=metadataSchemaUniqueid4Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-005",
-    title=metadataSchemaUniqueid5Title,
-    assertion=metadataSchemaUniqueid5Description,
-    credits=metadataSchemaUniqueid5Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaUniqueid5Metadata,
 )
 
 # unknown child
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-006",
-    title=metadataSchemaUniqueid6Title,
-    assertion=metadataSchemaUniqueid6Description,
-    credits=metadataSchemaUniqueid6Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaUniqueid6Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-uniqueid-007",
-    title=metadataSchemaUniqueid7Title,
-    assertion=metadataSchemaUniqueid7Description,
-    credits=metadataSchemaUniqueid7Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaUniqueid7Metadata,
 )
 
 # -----------------------------------------
@@ -1276,127 +1204,79 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-001",
-    title=metadataSchemaVendor1Title,
-    assertion=metadataSchemaVendor1Description,
-    credits=metadataSchemaVendor1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaVendor1Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-002",
-    title=metadataSchemaVendor2Title,
-    assertion=metadataSchemaVendor2Description,
-    credits=metadataSchemaVendor2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaVendor2Metadata,
 )
 
 # does not exist
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-003",
-    title=metadataSchemaVendor3Title,
-    assertion=metadataSchemaVendor3Description,
-    credits=metadataSchemaVendor3Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaVendor3Metadata,
 )
 
 # duplicate
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-004",
-    title=metadataSchemaVendor4Title,
-    assertion=metadataSchemaVendor4Description,
-    credits=metadataSchemaVendor4Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaVendor4Metadata,
 )
 
 # missing name attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-005",
-    title=metadataSchemaVendor5Title,
-    assertion=metadataSchemaVendor5Description,
-    credits=metadataSchemaVendor5Credits,
     metadataDisplaySpecLink="#conform-metadata-vendor-required",
     metadataIsValid=False,
-    metadata=metadataSchemaVendor5Metadata,
 )
 
 # dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-006",
-    title=metadataSchemaVendor6Title,
-    assertion=metadataSchemaVendor6Description,
-    credits=metadataSchemaVendor6Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaVendor6Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-007",
-    title=metadataSchemaVendor7Title,
-    assertion=metadataSchemaVendor7Description,
-    credits=metadataSchemaVendor7Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaVendor7Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-008",
-    title=metadataSchemaVendor8Title,
-    assertion=metadataSchemaVendor8Description,
-    credits=metadataSchemaVendor8Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaVendor8Metadata,
 )
 
 # class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-009",
-    title=metadataSchemaVendor9Title,
-    assertion=metadataSchemaVendor9Description,
-    credits=metadataSchemaVendor9Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaVendor9Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-010",
-    title=metadataSchemaVendor10Title,
-    assertion=metadataSchemaVendor10Description,
-    credits=metadataSchemaVendor10Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaVendor10Metadata,
 )
 
 # unknown child
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-011",
-    title=metadataSchemaVendor11Title,
-    assertion=metadataSchemaVendor11Description,
-    credits=metadataSchemaVendor11Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaVendor11Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-vendor-012",
-    title=metadataSchemaVendor12Title,
-    assertion=metadataSchemaVendor12Description,
-    credits=metadataSchemaVendor12Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaVendor12Metadata,
 )
 
 # ------------------------------------------
@@ -1407,77 +1287,49 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-001",
-    title=metadataSchemaCredits1Title,
-    assertion=metadataSchemaCredits1Description,
-    credits=metadataSchemaCredits1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredits1Metadata,
 )
 
 # valid - multiple credit elements
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-002",
-    title=metadataSchemaCredits2Title,
-    assertion=metadataSchemaCredits2Description,
-    credits=metadataSchemaCredits2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredits2Metadata,
 )
 
 # missing credit element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-003",
-    title=metadataSchemaCredits3Title,
-    assertion=metadataSchemaCredits3Description,
-    credits=metadataSchemaCredits3Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredits3Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-004",
-    title=metadataSchemaCredits4Title,
-    assertion=metadataSchemaCredits4Description,
-    credits=metadataSchemaCredits4Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredits4Metadata,
 )
 
 # unknown element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-005",
-    title=metadataSchemaCredits5Title,
-    assertion=metadataSchemaCredits5Description,
-    credits=metadataSchemaCredits5Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredits5Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-006",
-    title=metadataSchemaCredits6Title,
-    assertion=metadataSchemaCredits6Description,
-    credits=metadataSchemaCredits6Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredits6Metadata,
 )
 
 # multiple credits
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credits-007",
-    title=metadataSchemaCredits7Title,
-    assertion=metadataSchemaCredits7Description,
-    credits=metadataSchemaCredits7Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredits7Metadata,
 )
 
 # -----------------------------------------
@@ -1488,117 +1340,73 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-001",
-    title=metadataSchemaCredit1Title,
-    assertion=metadataSchemaCredit1Description,
-    credits=metadataSchemaCredit1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredit1Metadata,
 )
 
 # valid no url
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-002",
-    title=metadataSchemaCredit2Title,
-    assertion=metadataSchemaCredit2Description,
-    credits=metadataSchemaCredit2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredit2Metadata,
 )
 
 # valid no role
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-003",
-    title=metadataSchemaCredit3Title,
-    assertion=metadataSchemaCredit3Description,
-    credits=metadataSchemaCredit3Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredit3Metadata,
 )
 
 # no name
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-004",
-    title=metadataSchemaCredit4Title,
-    assertion=metadataSchemaCredit4Description,
-    credits=metadataSchemaCredit4Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredit4Metadata,
 )
 
 # dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-005",
-    title=metadataSchemaCredit5Title,
-    assertion=metadataSchemaCredit5Description,
-    credits=metadataSchemaCredit5Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredit5Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-006",
-    title=metadataSchemaCredit6Title,
-    assertion=metadataSchemaCredit6Description,
-    credits=metadataSchemaCredit6Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredit6Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-007",
-    title=metadataSchemaCredit7Title,
-    assertion=metadataSchemaCredit7Description,
-    credits=metadataSchemaCredit7Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredit7Metadata,
 )
 
 # class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-008",
-    title=metadataSchemaCredit8Title,
-    assertion=metadataSchemaCredit8Description,
-    credits=metadataSchemaCredit8Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCredit8Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-009",
-    title=metadataSchemaCredit9Title,
-    assertion=metadataSchemaCredit9Description,
-    credits=metadataSchemaCredit9Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredit9Metadata,
 )
 
 # child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-010",
-    title=metadataSchemaCredit10Title,
-    assertion=metadataSchemaCredit10Description,
-    credits=metadataSchemaCredit10Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredit10Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-credit-011",
-    title=metadataSchemaCredit11Title,
-    assertion=metadataSchemaCredit11Description,
-    credits=metadataSchemaCredit11Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCredit11Metadata,
 )
 
 # ----------------------------------------------
@@ -1609,340 +1417,212 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-001",
-    title=metadataSchemaDescription1Title,
-    assertion=metadataSchemaDescription1Description,
-    credits=metadataSchemaDescription1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription1Metadata,
 )
 
 # valid without url
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-002",
-    title=metadataSchemaDescription2Title,
-    assertion=metadataSchemaDescription2Description,
-    credits=metadataSchemaDescription2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription2Metadata,
 )
 
 # valid one text element no language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-003",
-    title=metadataSchemaDescription3Title,
-    assertion=metadataSchemaDescription3Description,
-    credits=metadataSchemaDescription3Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription3Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-004",
-    title=metadataSchemaDescription4Title,
-    assertion=metadataSchemaDescription4Description,
-    credits=metadataSchemaDescription4Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription4Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-005",
-    title=metadataSchemaDescription5Title,
-    assertion=metadataSchemaDescription5Description,
-    credits=metadataSchemaDescription5Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription5Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-006",
-    title=metadataSchemaDescription6Title,
-    assertion=metadataSchemaDescription6Description,
-    credits=metadataSchemaDescription6Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription6Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-007",
-    title=metadataSchemaDescription7Title,
-    assertion=metadataSchemaDescription7Description,
-    credits=metadataSchemaDescription7Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription7Metadata,
 )
 
 # more than one description
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-008",
-    title=metadataSchemaDescription8Title,
-    assertion=metadataSchemaDescription8Description,
-    credits=metadataSchemaDescription8Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription8Metadata,
 )
 
 # no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-009",
-    title=metadataSchemaDescription9Title,
-    assertion=metadataSchemaDescription9Description,
-    credits=metadataSchemaDescription9Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription9Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-010",
-    title=metadataSchemaDescription10Title,
-    assertion=metadataSchemaDescription10Description,
-    credits=metadataSchemaDescription10Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription10Metadata,
 )
 
 # unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-011",
-    title=metadataSchemaDescription11Title,
-    assertion=metadataSchemaDescription11Description,
-    credits=metadataSchemaDescription11Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription11Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-012",
-    title=metadataSchemaDescription12Title,
-    assertion=metadataSchemaDescription12Description,
-    credits=metadataSchemaDescription12Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription12Metadata,
 )
 
 # dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-013",
-    title=metadataSchemaDescription13Title,
-    assertion=metadataSchemaDescription13Description,
-    credits=metadataSchemaDescription13Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription13Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-014",
-    title=metadataSchemaDescription14Title,
-    assertion=metadataSchemaDescription14Description,
-    credits=metadataSchemaDescription14Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription14Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-015",
-    title=metadataSchemaDescription15Title,
-    assertion=metadataSchemaDescription15Description,
-    credits=metadataSchemaDescription15Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription15Metadata,
 )
 
 # class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-016",
-    title=metadataSchemaDescription16Title,
-    assertion=metadataSchemaDescription16Description,
-    credits=metadataSchemaDescription16Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription16Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-017",
-    title=metadataSchemaDescription17Title,
-    assertion=metadataSchemaDescription17Description,
-    credits=metadataSchemaDescription17Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription17Metadata,
 )
 
 # text element child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-018",
-    title=metadataSchemaDescription18Title,
-    assertion=metadataSchemaDescription18Description,
-    credits=metadataSchemaDescription18Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription18Metadata,
 )
 
 # one div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-019",
-    title=metadataSchemaDescription19Title,
-    assertion=metadataSchemaDescription19Description,
-    credits=metadataSchemaDescription19Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription19Metadata,
 )
 
 # two div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-020",
-    title=metadataSchemaDescription20Title,
-    assertion=metadataSchemaDescription20Description,
-    credits=metadataSchemaDescription20Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription20Metadata,
 )
 
 # nested div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-021",
-    title=metadataSchemaDescription21Title,
-    assertion=metadataSchemaDescription21Description,
-    credits=metadataSchemaDescription21Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription21Metadata,
 )
 
 # div with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-022",
-    title=metadataSchemaDescription22Title,
-    assertion=metadataSchemaDescription22Description,
-    credits=metadataSchemaDescription22Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription22Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-023",
-    title=metadataSchemaDescription23Title,
-    assertion=metadataSchemaDescription23Description,
-    credits=metadataSchemaDescription23Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription23Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-024",
-    title=metadataSchemaDescription24Title,
-    assertion=metadataSchemaDescription24Description,
-    credits=metadataSchemaDescription24Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription24Metadata,
 )
 
 # div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-025",
-    title=metadataSchemaDescription25Title,
-    assertion=metadataSchemaDescription25Description,
-    credits=metadataSchemaDescription25Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription25Metadata,
 )
 
 # one span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-026",
-    title=metadataSchemaDescription26Title,
-    assertion=metadataSchemaDescription26Description,
-    credits=metadataSchemaDescription26Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription26Metadata,
 )
 
 # two span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-027",
-    title=metadataSchemaDescription27Title,
-    assertion=metadataSchemaDescription27Description,
-    credits=metadataSchemaDescription27Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription27Metadata,
 )
 
 # nested span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-028",
-    title=metadataSchemaDescription28Title,
-    assertion=metadataSchemaDescription28Description,
-    credits=metadataSchemaDescription28Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription28Metadata,
 )
 
 # span with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-029",
-    title=metadataSchemaDescription29Title,
-    assertion=metadataSchemaDescription29Description,
-    credits=metadataSchemaDescription29Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription29Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-030",
-    title=metadataSchemaDescription30Title,
-    assertion=metadataSchemaDescription30Description,
-    credits=metadataSchemaDescription30Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription30Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-031",
-    title=metadataSchemaDescription31Title,
-    assertion=metadataSchemaDescription31Description,
-    credits=metadataSchemaDescription31Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaDescription31Metadata,
 )
 
 # span with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-description-032",
-    title=metadataSchemaDescription32Title,
-    assertion=metadataSchemaDescription32Description,
-    credits=metadataSchemaDescription32Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaDescription32Metadata,
 )
 
 # ------------------------------------------
@@ -1953,238 +1633,150 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-001",
-    title=metadataSchemaLicense1Title,
-    assertion=metadataSchemaLicense1Description,
-    credits=metadataSchemaLicense1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense1Metadata,
 )
 
 # valid no url
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-002",
-    title=metadataSchemaLicense2Title,
-    assertion=metadataSchemaLicense2Description,
-    credits=metadataSchemaLicense2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense2Metadata,
 )
 
 # valid no id
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-003",
-    title=metadataSchemaLicense3Title,
-    assertion=metadataSchemaLicense3Description,
-    credits=metadataSchemaLicense3Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense3Metadata,
 )
 
 # valid one text element no language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-004",
-    title=metadataSchemaLicense4Title,
-    assertion=metadataSchemaLicense4Description,
-    credits=metadataSchemaLicense4Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense4Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-005",
-    title=metadataSchemaLicense5Title,
-    assertion=metadataSchemaLicense5Description,
-    credits=metadataSchemaLicense5Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense5Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-006",
-    title=metadataSchemaLicense6Title,
-    assertion=metadataSchemaLicense6Description,
-    credits=metadataSchemaLicense6Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense6Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-007",
-    title=metadataSchemaLicense7Title,
-    assertion=metadataSchemaLicense7Description,
-    credits=metadataSchemaLicense7Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense7Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-008",
-    title=metadataSchemaLicense8Title,
-    assertion=metadataSchemaLicense8Description,
-    credits=metadataSchemaLicense8Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense8Metadata,
 )
 
 # more than one license
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-009",
-    title=metadataSchemaLicense9Title,
-    assertion=metadataSchemaLicense9Description,
-    credits=metadataSchemaLicense9Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense9Metadata,
 )
 
 # no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-010",
-    title=metadataSchemaLicense10Title,
-    assertion=metadataSchemaLicense10Description,
-    credits=metadataSchemaLicense10Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense10Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-011",
-    title=metadataSchemaLicense11Title,
-    assertion=metadataSchemaLicense11Description,
-    credits=metadataSchemaLicense11Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense11Metadata,
 )
 
 # unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-012",
-    title=metadataSchemaLicense12Title,
-    assertion=metadataSchemaLicense12Description,
-    credits=metadataSchemaLicense12Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense12Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-013",
-    title=metadataSchemaLicense13Title,
-    assertion=metadataSchemaLicense13Description,
-    credits=metadataSchemaLicense13Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense13Metadata,
 )
 
 # text element dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-014",
-    title=metadataSchemaLicense14Title,
-    assertion=metadataSchemaLicense14Description,
-    credits=metadataSchemaLicense14Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense14Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-015",
-    title=metadataSchemaLicense15Title,
-    assertion=metadataSchemaLicense15Description,
-    credits=metadataSchemaLicense15Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense15Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-016",
-    title=metadataSchemaLicense16Title,
-    assertion=metadataSchemaLicense16Description,
-    credits=metadataSchemaLicense16Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense16Metadata,
 )
 
 # text element class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-017",
-    title=metadataSchemaLicense17Title,
-    assertion=metadataSchemaLicense17Description,
-    credits=metadataSchemaLicense17Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense17Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-018",
-    title=metadataSchemaLicense18Title,
-    assertion=metadataSchemaLicense18Description,
-    credits=metadataSchemaLicense18Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense18Metadata,
 )
 
 # text element child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-019",
-    title=metadataSchemaLicense19Title,
-    assertion=metadataSchemaLicense19Description,
-    credits=metadataSchemaLicense19Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense19Metadata,
 )
 
 # one div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-020",
-    title=metadataSchemaLicense20Title,
-    assertion=metadataSchemaLicense20Description,
-    credits=metadataSchemaLicense20Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense20Metadata,
 )
 
 # two div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-021",
-    title=metadataSchemaLicense21Title,
-    assertion=metadataSchemaLicense21Description,
-    credits=metadataSchemaLicense21Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense21Metadata,
 )
 
 # nested div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-022",
-    title=metadataSchemaLicense22Title,
-    assertion=metadataSchemaLicense22Description,
-    credits=metadataSchemaLicense22Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense22Metadata,
 )
 
 
@@ -2192,113 +1784,69 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-023",
-    title=metadataSchemaLicense23Title,
-    assertion=metadataSchemaLicense23Description,
-    credits=metadataSchemaLicense23Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense23Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-024",
-    title=metadataSchemaLicense24Title,
-    assertion=metadataSchemaLicense24Description,
-    credits=metadataSchemaLicense24Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense24Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-025",
-    title=metadataSchemaLicense25Title,
-    assertion=metadataSchemaLicense25Description,
-    credits=metadataSchemaLicense25Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense25Metadata,
 )
 
 # div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-026",
-    title=metadataSchemaLicense26Title,
-    assertion=metadataSchemaLicense26Description,
-    credits=metadataSchemaLicense26Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense26Metadata,
 )
 
 # one span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-027",
-    title=metadataSchemaLicense27Title,
-    assertion=metadataSchemaLicense27Description,
-    credits=metadataSchemaLicense27Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense27Metadata,
 )
 
 # two span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-028",
-    title=metadataSchemaLicense28Title,
-    assertion=metadataSchemaLicense28Description,
-    credits=metadataSchemaLicense28Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense28Metadata,
 )
 
 # nested span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-029",
-    title=metadataSchemaLicense29Title,
-    assertion=metadataSchemaLicense29Description,
-    credits=metadataSchemaLicense29Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense29Metadata,
 )
 
 # span with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-030",
-    title=metadataSchemaLicense30Title,
-    assertion=metadataSchemaLicense30Description,
-    credits=metadataSchemaLicense30Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense30Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-031",
-    title=metadataSchemaLicense31Title,
-    assertion=metadataSchemaLicense31Description,
-    credits=metadataSchemaLicense31Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense31Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-032",
-    title=metadataSchemaLicense32Title,
-    assertion=metadataSchemaLicense32Description,
-    credits=metadataSchemaLicense32Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicense32Metadata,
 )
 
 # span with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-license-033",
-    title=metadataSchemaLicense33Title,
-    assertion=metadataSchemaLicense33Description,
-    credits=metadataSchemaLicense33Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicense33Metadata,
 )
 
 # --------------------------------------------
@@ -2309,296 +1857,184 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-001",
-    title=metadataSchemaCopyright1Title,
-    assertion=metadataSchemaCopyright1Description,
-    credits=metadataSchemaCopyright1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright1Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-002",
-    title=metadataSchemaCopyright2Title,
-    assertion=metadataSchemaCopyright2Description,
-    credits=metadataSchemaCopyright2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright2Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-003",
-    title=metadataSchemaCopyright3Title,
-    assertion=metadataSchemaCopyright3Description,
-    credits=metadataSchemaCopyright3Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright3Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-004",
-    title=metadataSchemaCopyright4Title,
-    assertion=metadataSchemaCopyright4Description,
-    credits=metadataSchemaCopyright4Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright4Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-005",
-    title=metadataSchemaCopyright5Title,
-    assertion=metadataSchemaCopyright5Description,
-    credits=metadataSchemaCopyright5Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright5Metadata,
 )
 
 # more than one copyright
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-006",
-    title=metadataSchemaCopyright6Title,
-    assertion=metadataSchemaCopyright6Description,
-    credits=metadataSchemaCopyright6Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright6Metadata,
 )
 
 # no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-007",
-    title=metadataSchemaCopyright7Title,
-    assertion=metadataSchemaCopyright7Description,
-    credits=metadataSchemaCopyright7Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright7Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-008",
-    title=metadataSchemaCopyright8Title,
-    assertion=metadataSchemaCopyright8Description,
-    credits=metadataSchemaCopyright8Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright8Metadata,
 )
 
 # unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-009",
-    title=metadataSchemaCopyright9Title,
-    assertion=metadataSchemaCopyright9Description,
-    credits=metadataSchemaCopyright9Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright9Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-010",
-    title=metadataSchemaCopyright10Title,
-    assertion=metadataSchemaCopyright10Description,
-    credits=metadataSchemaCopyright10Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright10Metadata,
 )
 
 # text element with dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-011",
-    title=metadataSchemaCopyright11Title,
-    assertion=metadataSchemaCopyright11Description,
-    credits=metadataSchemaCopyright11Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright11Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-012",
-    title=metadataSchemaCopyright12Title,
-    assertion=metadataSchemaCopyright12Description,
-    credits=metadataSchemaCopyright12Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright12Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-013",
-    title=metadataSchemaCopyright13Title,
-    assertion=metadataSchemaCopyright13Description,
-    credits=metadataSchemaCopyright13Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright13Metadata,
 )
 
 # text elemet with class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-014",
-    title=metadataSchemaCopyright14Title,
-    assertion=metadataSchemaCopyright14Description,
-    credits=metadataSchemaCopyright14Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright14Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-015",
-    title=metadataSchemaCopyright15Title,
-    assertion=metadataSchemaCopyright15Description,
-    credits=metadataSchemaCopyright15Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright15Metadata,
 )
 
 # text element child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-016",
-    title=metadataSchemaCopyright16Title,
-    assertion=metadataSchemaCopyright16Description,
-    credits=metadataSchemaCopyright16Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright16Metadata,
 )
 
 # one div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-017",
-    title=metadataSchemaCopyright17Title,
-    assertion=metadataSchemaCopyright17Description,
-    credits=metadataSchemaCopyright17Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright17Metadata,
 )
 
 # two div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-018",
-    title=metadataSchemaCopyright18Title,
-    assertion=metadataSchemaCopyright18Description,
-    credits=metadataSchemaCopyright18Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright18Metadata,
 )
 
 # div with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-019",
-    title=metadataSchemaCopyright19Title,
-    assertion=metadataSchemaCopyright19Description,
-    credits=metadataSchemaCopyright19Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright19Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-020",
-    title=metadataSchemaCopyright20Title,
-    assertion=metadataSchemaCopyright20Description,
-    credits=metadataSchemaCopyright20Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright20Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-021",
-    title=metadataSchemaCopyright21Title,
-    assertion=metadataSchemaCopyright21Description,
-    credits=metadataSchemaCopyright21Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright21Metadata,
 )
 
 # div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-022",
-    title=metadataSchemaCopyright22Title,
-    assertion=metadataSchemaCopyright22Description,
-    credits=metadataSchemaCopyright22Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright22Metadata,
 )
 
 # one span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-023",
-    title=metadataSchemaCopyright23Title,
-    assertion=metadataSchemaCopyright23Description,
-    credits=metadataSchemaCopyright23Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright23Metadata,
 )
 
 # two span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-024",
-    title=metadataSchemaCopyright24Title,
-    assertion=metadataSchemaCopyright24Description,
-    credits=metadataSchemaCopyright24Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright24Metadata,
 )
 
 # span with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-025",
-    title=metadataSchemaCopyright25Title,
-    assertion=metadataSchemaCopyright25Description,
-    credits=metadataSchemaCopyright25Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright25Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-026",
-    title=metadataSchemaCopyright26Title,
-    assertion=metadataSchemaCopyright26Description,
-    credits=metadataSchemaCopyright26Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright26Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-027",
-    title=metadataSchemaCopyright27Title,
-    assertion=metadataSchemaCopyright27Description,
-    credits=metadataSchemaCopyright27Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaCopyright27Metadata,
 )
 
 # span with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-copyright-028",
-    title=metadataSchemaCopyright28Title,
-    assertion=metadataSchemaCopyright28Description,
-    credits=metadataSchemaCopyright28Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaCopyright28Metadata,
 )
 
 # --------------------------------------------
@@ -2609,296 +2045,184 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-001",
-    title=metadataSchemaTrademark1Title,
-    assertion=metadataSchemaTrademark1Description,
-    credits=metadataSchemaTrademark1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark1Metadata,
 )
 
 # valid one text element with language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-002",
-    title=metadataSchemaTrademark2Title,
-    assertion=metadataSchemaTrademark2Description,
-    credits=metadataSchemaTrademark2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark2Metadata,
 )
 
 # valid one text element with language using lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-003",
-    title=metadataSchemaTrademark3Title,
-    assertion=metadataSchemaTrademark3Description,
-    credits=metadataSchemaTrademark3Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark3Metadata,
 )
 
 # valid two text elements no language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-004",
-    title=metadataSchemaTrademark4Title,
-    assertion=metadataSchemaTrademark4Description,
-    credits=metadataSchemaTrademark4Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark4Metadata,
 )
 
 # valid two text elements language and language
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-005",
-    title=metadataSchemaTrademark5Title,
-    assertion=metadataSchemaTrademark5Description,
-    credits=metadataSchemaTrademark5Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark5Metadata,
 )
 
 # more than one trademark
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-006",
-    title=metadataSchemaTrademark6Title,
-    assertion=metadataSchemaTrademark6Description,
-    credits=metadataSchemaTrademark6Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark6Metadata,
 )
 
 # no text element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-007",
-    title=metadataSchemaTrademark7Title,
-    assertion=metadataSchemaTrademark7Description,
-    credits=metadataSchemaTrademark7Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark7Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-008",
-    title=metadataSchemaTrademark8Title,
-    assertion=metadataSchemaTrademark8Description,
-    credits=metadataSchemaTrademark8Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark8Metadata,
 )
 
 # unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-009",
-    title=metadataSchemaTrademark9Title,
-    assertion=metadataSchemaTrademark9Description,
-    credits=metadataSchemaTrademark9Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark9Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-010",
-    title=metadataSchemaTrademark10Title,
-    assertion=metadataSchemaTrademark10Description,
-    credits=metadataSchemaTrademark10Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark10Metadata,
 )
 
 # text element dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-011",
-    title=metadataSchemaTrademark11Title,
-    assertion=metadataSchemaTrademark11Description,
-    credits=metadataSchemaTrademark11Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark11Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-012",
-    title=metadataSchemaTrademark12Title,
-    assertion=metadataSchemaTrademark12Description,
-    credits=metadataSchemaTrademark12Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark12Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-013",
-    title=metadataSchemaTrademark13Title,
-    assertion=metadataSchemaTrademark13Description,
-    credits=metadataSchemaTrademark13Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark13Metadata,
 )
 
 # text element with class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-014",
-    title=metadataSchemaTrademark14Title,
-    assertion=metadataSchemaTrademark14Description,
-    credits=metadataSchemaTrademark14Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark14Metadata,
 )
 
 # text element unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-015",
-    title=metadataSchemaTrademark15Title,
-    assertion=metadataSchemaTrademark15Description,
-    credits=metadataSchemaTrademark15Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark15Metadata,
 )
 
 # text element child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-016",
-    title=metadataSchemaTrademark16Title,
-    assertion=metadataSchemaTrademark16Description,
-    credits=metadataSchemaTrademark16Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark16Metadata,
 )
 
 # one div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-017",
-    title=metadataSchemaTrademark17Title,
-    assertion=metadataSchemaTrademark17Description,
-    credits=metadataSchemaTrademark17Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark17Metadata,
 )
 
 # two div
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-018",
-    title=metadataSchemaTrademark18Title,
-    assertion=metadataSchemaTrademark18Description,
-    credits=metadataSchemaTrademark18Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark18Metadata,
 )
 
 # div with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-019",
-    title=metadataSchemaTrademark19Title,
-    assertion=metadataSchemaTrademark19Description,
-    credits=metadataSchemaTrademark19Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark19Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-020",
-    title=metadataSchemaTrademark20Title,
-    assertion=metadataSchemaTrademark20Description,
-    credits=metadataSchemaTrademark20Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark20Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-021",
-    title=metadataSchemaTrademark21Title,
-    assertion=metadataSchemaTrademark21Description,
-    credits=metadataSchemaTrademark21Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark21Metadata,
 )
 
 # div with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-022",
-    title=metadataSchemaTrademark22Title,
-    assertion=metadataSchemaTrademark22Description,
-    credits=metadataSchemaTrademark22Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark22Metadata,
 )
 
 # one span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-023",
-    title=metadataSchemaTrademark23Title,
-    assertion=metadataSchemaTrademark23Description,
-    credits=metadataSchemaTrademark23Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark23Metadata,
 )
 
 # two span
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-024",
-    title=metadataSchemaTrademark24Title,
-    assertion=metadataSchemaTrademark24Description,
-    credits=metadataSchemaTrademark24Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark24Metadata,
 )
 
 # span with dir
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-025",
-    title=metadataSchemaTrademark25Title,
-    assertion=metadataSchemaTrademark25Description,
-    credits=metadataSchemaTrademark25Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark25Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-026",
-    title=metadataSchemaTrademark26Title,
-    assertion=metadataSchemaTrademark26Description,
-    credits=metadataSchemaTrademark26Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark26Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-027",
-    title=metadataSchemaTrademark27Title,
-    assertion=metadataSchemaTrademark27Description,
-    credits=metadataSchemaTrademark27Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaTrademark27Metadata,
 )
 
 # span with class
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-trademark-028",
-    title=metadataSchemaTrademark28Title,
-    assertion=metadataSchemaTrademark28Description,
-    credits=metadataSchemaTrademark28Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaTrademark28Metadata,
 )
 
 # -------------------------------------------
@@ -2909,106 +2233,66 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-001",
-    title=metadataSchemaLicensee1Title,
-    assertion=metadataSchemaLicensee1Description,
-    credits=metadataSchemaLicensee1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicensee1Metadata,
 )
 
 # duplicate
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-002",
-    title=metadataSchemaLicensee2Title,
-    assertion=metadataSchemaLicensee2Description,
-    credits=metadataSchemaLicensee2Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicensee2Metadata,
 )
 
 # missing name
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-003",
-    title=metadataSchemaLicensee3Title,
-    assertion=metadataSchemaLicensee3Description,
-    credits=metadataSchemaLicensee3Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicensee3Metadata,
 )
 
 # dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-004",
-    title=metadataSchemaLicensee4Title,
-    assertion=metadataSchemaLicensee4Description,
-    credits=metadataSchemaLicensee4Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicensee4Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-005",
-    title=metadataSchemaLicensee5Title,
-    assertion=metadataSchemaLicensee5Description,
-    credits=metadataSchemaLicensee5Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicensee5Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-006",
-    title=metadataSchemaLicensee6Title,
-    assertion=metadataSchemaLicensee6Description,
-    credits=metadataSchemaLicensee6Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicensee6Metadata,
 )
 
 # class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-007",
-    title=metadataSchemaLicensee7Title,
-    assertion=metadataSchemaLicensee7Description,
-    credits=metadataSchemaLicensee7Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaLicensee7Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-008",
-    title=metadataSchemaLicensee8Title,
-    assertion=metadataSchemaLicensee8Description,
-    credits=metadataSchemaLicensee8Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicensee8Metadata,
 )
 
 # child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-009",
-    title=metadataSchemaLicensee9Title,
-    assertion=metadataSchemaLicensee9Description,
-    credits=metadataSchemaLicensee9Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicensee9Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-licensee-010",
-    title=metadataSchemaLicensee10Title,
-    assertion=metadataSchemaLicensee10Description,
-    credits=metadataSchemaLicensee10Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaLicensee10Metadata,
 )
 
 # --------------------------------------------
@@ -3019,121 +2303,77 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-001",
-    title=metadataSchemaExtension1Title,
-    assertion=metadataSchemaExtension1Description,
-    credits=metadataSchemaExtension1Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension1Metadata,
 )
 
 # valid two extensions
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-002",
-    title=metadataSchemaExtension2Title,
-    assertion=metadataSchemaExtension2Description,
-    credits=metadataSchemaExtension2Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension2Metadata,
 )
 
 # valid no id
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-003",
-    title=metadataSchemaExtension3Title,
-    assertion=metadataSchemaExtension3Description,
-    credits=metadataSchemaExtension3Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension3Metadata,
 )
 
 # valid no name
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-004",
-    title=metadataSchemaExtension4Title,
-    assertion=metadataSchemaExtension4Description,
-    credits=metadataSchemaExtension4Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension4Metadata,
 )
 
 # valid one untagged name one tagged name
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-005",
-    title=metadataSchemaExtension5Title,
-    assertion=metadataSchemaExtension5Description,
-    credits=metadataSchemaExtension5Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension5Metadata,
 )
 
 # valid two tagged names
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-006",
-    title=metadataSchemaExtension6Title,
-    assertion=metadataSchemaExtension6Description,
-    credits=metadataSchemaExtension6Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension6Metadata,
 )
 
 # valid more than one item
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-007",
-    title=metadataSchemaExtension7Title,
-    assertion=metadataSchemaExtension7Description,
-    credits=metadataSchemaExtension7Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension7Metadata,
 )
 
 # no item
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-008",
-    title=metadataSchemaExtension8Title,
-    assertion=metadataSchemaExtension8Description,
-    credits=metadataSchemaExtension8Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension8Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-009",
-    title=metadataSchemaExtension9Title,
-    assertion=metadataSchemaExtension9Description,
-    credits=metadataSchemaExtension9Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension9Metadata,
 )
 
 # unknown child
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-010",
-    title=metadataSchemaExtension10Title,
-    assertion=metadataSchemaExtension10Description,
-    credits=metadataSchemaExtension10Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension10Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-011",
-    title=metadataSchemaExtension11Title,
-    assertion=metadataSchemaExtension11Description,
-    credits=metadataSchemaExtension11Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension11Metadata,
 )
 
 # ---------------------------------------------------
@@ -3144,95 +2384,59 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-012",
-    title=metadataSchemaExtension12Title,
-    assertion=metadataSchemaExtension12Description,
-    credits=metadataSchemaExtension12Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension12Metadata,
 )
 
 # valid xml:lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-013",
-    title=metadataSchemaExtension13Title,
-    assertion=metadataSchemaExtension13Description,
-    credits=metadataSchemaExtension13Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension13Metadata,
 )
 
 # valid lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-014",
-    title=metadataSchemaExtension14Title,
-    assertion=metadataSchemaExtension14Description,
-    credits=metadataSchemaExtension14Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension14Metadata,
 )
 
 # dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-015",
-    title=metadataSchemaExtension15Title,
-    assertion=metadataSchemaExtension15Description,
-    credits=metadataSchemaExtension15Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension15Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-016",
-    title=metadataSchemaExtension16Title,
-    assertion=metadataSchemaExtension16Description,
-    credits=metadataSchemaExtension16Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension16Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-017",
-    title=metadataSchemaExtension17Title,
-    assertion=metadataSchemaExtension17Description,
-    credits=metadataSchemaExtension17Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension17Metadata,
 )
 
 # class atribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-018",
-    title=metadataSchemaExtension18Title,
-    assertion=metadataSchemaExtension18Description,
-    credits=metadataSchemaExtension18Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension18Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-019",
-    title=metadataSchemaExtension19Title,
-    assertion=metadataSchemaExtension19Description,
-    credits=metadataSchemaExtension19Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension19Metadata,
 )
 
 # child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-020",
-    title=metadataSchemaExtension20Title,
-    assertion=metadataSchemaExtension20Description,
-    credits=metadataSchemaExtension20Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension20Metadata,
 )
 
 # ---------------------------------------------------
@@ -3243,132 +2447,84 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-021",
-    title=metadataSchemaExtension21Title,
-    assertion=metadataSchemaExtension21Description,
-    credits=metadataSchemaExtension21Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension21Metadata,
 )
 
 # valid multiple languages
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-022",
-    title=metadataSchemaExtension22Title,
-    assertion=metadataSchemaExtension22Description,
-    credits=metadataSchemaExtension22Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension22Metadata,
 )
 
 # valid no id
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-023",
-    title=metadataSchemaExtension23Title,
-    assertion=metadataSchemaExtension23Description,
-    credits=metadataSchemaExtension23Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension23Metadata,
 )
 
 # valid name no tag and tagged
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-024",
-    title=metadataSchemaExtension24Title,
-    assertion=metadataSchemaExtension24Description,
-    credits=metadataSchemaExtension24Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension24Metadata,
 )
 
 # valid name two tagged
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-025",
-    title=metadataSchemaExtension25Title,
-    assertion=metadataSchemaExtension25Description,
-    credits=metadataSchemaExtension25Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension25Metadata,
 )
 
 # valid value no tag and tagged
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-026",
-    title=metadataSchemaExtension26Title,
-    assertion=metadataSchemaExtension26Description,
-    credits=metadataSchemaExtension26Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension26Metadata,
 )
 
 # valid value two tagged
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-027",
-    title=metadataSchemaExtension27Title,
-    assertion=metadataSchemaExtension27Description,
-    credits=metadataSchemaExtension27Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension27Metadata,
 )
 
 # no name
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-028",
-    title=metadataSchemaExtension28Title,
-    assertion=metadataSchemaExtension28Description,
-    credits=metadataSchemaExtension28Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension28Metadata,
 )
 
 # no value
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-029",
-    title=metadataSchemaExtension29Title,
-    assertion=metadataSchemaExtension29Description,
-    credits=metadataSchemaExtension29Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension29Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-030",
-    title=metadataSchemaExtension30Title,
-    assertion=metadataSchemaExtension30Description,
-    credits=metadataSchemaExtension30Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension30Metadata,
 )
 
 # unknown child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-031",
-    title=metadataSchemaExtension31Title,
-    assertion=metadataSchemaExtension31Description,
-    credits=metadataSchemaExtension31Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension31Metadata,
 )
 
 # content
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-032",
-    title=metadataSchemaExtension32Title,
-    assertion=metadataSchemaExtension32Description,
-    credits=metadataSchemaExtension32Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension32Metadata,
 )
 
 # ----------------------------------------------------------
@@ -3379,95 +2535,59 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-033",
-    title=metadataSchemaExtension33Title,
-    assertion=metadataSchemaExtension33Description,
-    credits=metadataSchemaExtension33Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension33Metadata,
 )
 
 # valid xml:lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-034",
-    title=metadataSchemaExtension34Title,
-    assertion=metadataSchemaExtension34Description,
-    credits=metadataSchemaExtension34Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension34Metadata,
 )
 
 # valid lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-035",
-    title=metadataSchemaExtension35Title,
-    assertion=metadataSchemaExtension35Description,
-    credits=metadataSchemaExtension35Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension35Metadata,
 )
 
 # dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-036",
-    title=metadataSchemaExtension36Title,
-    assertion=metadataSchemaExtension36Description,
-    credits=metadataSchemaExtension36Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension36Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-037",
-    title=metadataSchemaExtension37Title,
-    assertion=metadataSchemaExtension37Description,
-    credits=metadataSchemaExtension37Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension37Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-038",
-    title=metadataSchemaExtension38Title,
-    assertion=metadataSchemaExtension38Description,
-    credits=metadataSchemaExtension38Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension38Metadata,
 )
 
 # class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-039",
-    title=metadataSchemaExtension39Title,
-    assertion=metadataSchemaExtension39Description,
-    credits=metadataSchemaExtension39Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension39Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-040",
-    title=metadataSchemaExtension40Title,
-    assertion=metadataSchemaExtension40Description,
-    credits=metadataSchemaExtension40Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension40Metadata,
 )
 
 # child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-041",
-    title=metadataSchemaExtension41Title,
-    assertion=metadataSchemaExtension41Description,
-    credits=metadataSchemaExtension41Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension41Metadata,
 )
 
 # -----------------------------------------------------------
@@ -3478,95 +2598,59 @@ writeMetadataSchemaValidityTest(
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-042",
-    title=metadataSchemaExtension42Title,
-    assertion=metadataSchemaExtension42Description,
-    credits=metadataSchemaExtension42Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension42Metadata,
 )
 
 # valid xml:lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-043",
-    title=metadataSchemaExtension43Title,
-    assertion=metadataSchemaExtension43Description,
-    credits=metadataSchemaExtension43Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension43Metadata,
 )
 
 # valid lang
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-044",
-    title=metadataSchemaExtension44Title,
-    assertion=metadataSchemaExtension44Description,
-    credits=metadataSchemaExtension44Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension44Metadata,
 )
 
 # dir attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-045",
-    title=metadataSchemaExtension45Title,
-    assertion=metadataSchemaExtension45Description,
-    credits=metadataSchemaExtension45Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension45Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-046",
-    title=metadataSchemaExtension46Title,
-    assertion=metadataSchemaExtension46Description,
-    credits=metadataSchemaExtension46Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension46Metadata,
 )
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-047",
-    title=metadataSchemaExtension47Title,
-    assertion=metadataSchemaExtension47Description,
-    credits=metadataSchemaExtension47Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension47Metadata,
 )
 
 # class attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-048",
-    title=metadataSchemaExtension48Title,
-    assertion=metadataSchemaExtension48Description,
-    credits=metadataSchemaExtension48Credits,
     metadataIsValid=True,
-    metadata=metadataSchemaExtension48Metadata,
 )
 
 # unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-049",
-    title=metadataSchemaExtension49Title,
-    assertion=metadataSchemaExtension49Description,
-    credits=metadataSchemaExtension49Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension49Metadata,
 )
 
 # child element
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-extension-050",
-    title=metadataSchemaExtension50Title,
-    assertion=metadataSchemaExtension50Description,
-    credits=metadataSchemaExtension50Credits,
     metadataIsValid=False,
-    metadata=metadataSchemaExtension50Metadata,
 )
 
 # ------------------
