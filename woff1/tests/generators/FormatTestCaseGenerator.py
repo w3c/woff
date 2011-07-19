@@ -1172,15 +1172,14 @@ writeMetadataTest(
     valid=True,
 )
 
-# missing version
+# top element not metadata
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-002",
-    specLink="#conform-metadata-schemavalid",
     valid=False,
 )
 
-# invalid version
+# missing version
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-003",
@@ -1188,7 +1187,7 @@ writeMetadataTest(
     valid=False,
 )
 
-# unknown attribute
+# invalid version
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-004",
@@ -1196,10 +1195,18 @@ writeMetadataTest(
     valid=False,
 )
 
-# unknown element
+# unknown attribute
 
 writeMetadataTest(
     identifier="metadata-schema-metadata-005",
+    specLink="#conform-metadata-schemavalid",
+    valid=False,
+)
+
+# unknown element
+
+writeMetadataTest(
+    identifier="metadata-schema-metadata-006",
     specLink="#conform-metadata-schemavalid",
     valid=False,
 )

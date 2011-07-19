@@ -1114,31 +1114,38 @@ writeMetadataSchemaValidityTest(
     metadataIsValid=True,
 )
 
-# missing version
+# top element not metadata
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-002",
     metadataIsValid=False,
 )
 
-# invalid version
+# missing version
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-003",
     metadataIsValid=False,
 )
 
-# unknown attribute
+# invalid version
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-004",
     metadataIsValid=False,
 )
 
-# unknown element
+# unknown attribute
 
 writeMetadataSchemaValidityTest(
     identifier="metadatadisplay-schema-metadata-005",
+    metadataIsValid=False,
+)
+
+# unknown element
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-schema-metadata-006",
     metadataIsValid=False,
 )
 
@@ -2254,7 +2261,7 @@ writeMetadataSchemaValidityTest(
 )
 
 # -------------------------------------------
-# Metadata Display: Schema Validity: uniqueid
+# Metadata Display: Schema Validity: licensee
 # -------------------------------------------
 
 # valid

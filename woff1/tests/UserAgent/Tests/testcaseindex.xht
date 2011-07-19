@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (288 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (289 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -1019,8 +1019,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-metadata-002">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-metadata-002">metadatadisplay-schema-metadata-002</a>: No version Attribute in metadata Element</h3>
-				<p>The metadata element does not contain the required version attribute.</p>
+				<h3><a href="#metadatadisplay-schema-metadata-002">metadatadisplay-schema-metadata-002</a>: Top element is Not metadata</h3>
+				<p>The top element is "INVALID" instead of "metadata".</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1035,8 +1035,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-metadata-003">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-metadata-003">metadatadisplay-schema-metadata-003</a>: Invalid version Attribute Value in metadata Element</h3>
-				<p>The metadata element version attribute is set to 'ABC'.</p>
+				<h3><a href="#metadatadisplay-schema-metadata-003">metadatadisplay-schema-metadata-003</a>: No version Attribute in metadata Element</h3>
+				<p>The metadata element does not contain the required version attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1051,8 +1051,8 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-metadata-004">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-metadata-004">metadatadisplay-schema-metadata-004</a>: Unknown Attrbute in metadata Element</h3>
-				<p>The metadata element contains an unknown attribute.</p>
+				<h3><a href="#metadatadisplay-schema-metadata-004">metadatadisplay-schema-metadata-004</a>: Invalid version Attribute Value in metadata Element</h3>
+				<p>The metadata element version attribute is set to 'ABC'.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -1067,13 +1067,29 @@
 		</div>
 		<div class="testCase" id="metadatadisplay-schema-metadata-005">
 			<div class="testCaseOverview">
-				<h3><a href="#metadatadisplay-schema-metadata-005">metadatadisplay-schema-metadata-005</a>: Unknown Child Element metadata Element</h3>
-				<p>The metadata element contains an unknown child element.</p>
+				<h3><a href="#metadatadisplay-schema-metadata-005">metadatadisplay-schema-metadata-005</a>: Unknown Attrbute in metadata Element</h3>
+				<p>The metadata element contains an unknown attribute.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="metadatadisplay-schema-metadata-005.xht">Test</a></p>
 					<p><a href="metadatadisplay-schema-metadata-005-ref.xht">Reference Rendering</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>
+					<p>Metadata Expectation: Reject <a href="#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="testCase" id="metadatadisplay-schema-metadata-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadatadisplay-schema-metadata-006">metadatadisplay-schema-metadata-006</a>: Unknown Child Element metadata Element</h3>
+				<p>The metadata element contains an unknown child element.</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="metadatadisplay-schema-metadata-006.xht">Test</a></p>
+					<p><a href="metadatadisplay-schema-metadata-006-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">(conform-metadata-noeffect)</a></p>

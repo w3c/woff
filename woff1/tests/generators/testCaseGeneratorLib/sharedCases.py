@@ -1005,53 +1005,65 @@ metadataSchemaMetadata1Title = "Valid metadata Element"
 metadataSchemaMetadata1Description = "The metadata element matches the schema."
 metadataSchemaMetadata1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# missing version
+# top element is not metadata
 
 metadataSchemaMetadata2Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<INVALID version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</INVALID>
+"""
+metadataSchemaMetadata2Title = "Top element is Not metadata"
+metadataSchemaMetadata2Description = "The top element is \"INVALID\" instead of \"metadata\"."
+metadataSchemaMetadata2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# missing version
+
+metadataSchemaMetadata3Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
     <uniqueid id="org.w3.webfonts.wofftest" />
 </metadata>
 """
-metadataSchemaMetadata2Title = "No version Attribute in metadata Element"
-metadataSchemaMetadata2Description = "The metadata element does not contain the required version attribute."
-metadataSchemaMetadata2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaMetadata3Title = "No version Attribute in metadata Element"
+metadataSchemaMetadata3Description = "The metadata element does not contain the required version attribute."
+metadataSchemaMetadata3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # invalid version
 
-metadataSchemaMetadata3Metadata = """
+metadataSchemaMetadata4Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="ABC">
     <uniqueid id="org.w3.webfonts.wofftest" />
 </metadata>
 """
-metadataSchemaMetadata3Title = "Invalid version Attribute Value in metadata Element"
-metadataSchemaMetadata3Description = "The metadata element version attribute is set to 'ABC'."
-metadataSchemaMetadata3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaMetadata4Title = "Invalid version Attribute Value in metadata Element"
+metadataSchemaMetadata4Description = "The metadata element version attribute is set to 'ABC'."
+metadataSchemaMetadata4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown attribute
 
-metadataSchemaMetadata4Metadata = """
+metadataSchemaMetadata5Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0" unknownattribute="Text">
     <uniqueid id="org.w3.webfonts.wofftest" />
 </metadata>
 """
-metadataSchemaMetadata4Title = "Unknown Attrbute in metadata Element"
-metadataSchemaMetadata4Description = "The metadata element contains an unknown attribute."
-metadataSchemaMetadata4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaMetadata5Title = "Unknown Attrbute in metadata Element"
+metadataSchemaMetadata5Description = "The metadata element contains an unknown attribute."
+metadataSchemaMetadata5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # unknown element
 
-metadataSchemaMetadata5Metadata = """
+metadataSchemaMetadata6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <unknown attribute="Text" />
 </metadata>
 """
-metadataSchemaMetadata5Title = "Unknown Child Element metadata Element"
-metadataSchemaMetadata5Description = "The metadata element contains an unknown child element."
-metadataSchemaMetadata5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaMetadata6Title = "Unknown Child Element metadata Element"
+metadataSchemaMetadata6Description = "The metadata element contains an unknown child element."
+metadataSchemaMetadata6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -------------------------------------------
 # Metadata Display: Schema Validity: uniqueid
