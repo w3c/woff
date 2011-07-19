@@ -3432,9 +3432,35 @@ metadataSchemaTrademark18Title = "Valid trademark Element With Two div Elements 
 metadataSchemaTrademark18Description = "The trademark element contains a text element that contains two div elements."
 metadataSchemaTrademark18Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# div with dir
+# nested div
 
 metadataSchemaTrademark19Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark url="http://w3c.org/Fonts">
+        <text>
+            <div>
+                div 1 start
+                <div>
+                    div 2 start
+                    <div>
+                        div 3
+                    </div>
+                    div 2 end
+                </div>
+                div 1 end
+            </div>
+        </text>
+    </trademark>
+</metadata>
+"""
+metadataSchemaTrademark19Title = "Valid trademark Element With Nested div Elements in text Element"
+metadataSchemaTrademark19Description = "The trademark element contains a text element that contains nested div elements."
+metadataSchemaTrademark19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# div with dir
+
+metadataSchemaTrademark20Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
@@ -3444,11 +3470,11 @@ metadataSchemaTrademark19Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark19Title = "Valid trademark Element With dir Attribute in div Element in text Element 1"
-metadataSchemaTrademark19Description = "The trademark element contains a text element that contains a div element with ltr as the value for the dir attribute."
-metadataSchemaTrademark19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark20Title = "Valid trademark Element With dir Attribute in div Element in text Element 1"
+metadataSchemaTrademark20Description = "The trademark element contains a text element that contains a div element with ltr as the value for the dir attribute."
+metadataSchemaTrademark20Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-metadataSchemaTrademark20Metadata = """
+metadataSchemaTrademark21Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
@@ -3458,11 +3484,11 @@ metadataSchemaTrademark20Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark20Title = "Valid trademark Element With dir Attribute in div Element in text Element 2"
-metadataSchemaTrademark20Description = "The trademark element contains a text element that contains a div element with rtl as the value for the dir attribute."
-metadataSchemaTrademark20Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark21Title = "Valid trademark Element With dir Attribute in div Element in text Element 2"
+metadataSchemaTrademark21Description = "The trademark element contains a text element that contains a div element with rtl as the value for the dir attribute."
+metadataSchemaTrademark21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-metadataSchemaTrademark21Metadata = """
+metadataSchemaTrademark22Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
@@ -3472,13 +3498,13 @@ metadataSchemaTrademark21Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark21Title = "Invalid trademark Element With dir Attribute in div Element in text Element"
-metadataSchemaTrademark21Description = "The trademark element contains a text element that contains a div element with INVALID as the value for the dir attribute."
-metadataSchemaTrademark21Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark22Title = "Invalid trademark Element With dir Attribute in div Element in text Element"
+metadataSchemaTrademark22Description = "The trademark element contains a text element that contains a div element with INVALID as the value for the dir attribute."
+metadataSchemaTrademark22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # div with class
 
-metadataSchemaTrademark22Metadata = """
+metadataSchemaTrademark23Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
@@ -3488,13 +3514,13 @@ metadataSchemaTrademark22Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark22Title = "Valid trademark Element With class Attribute in div Element in text Element"
-metadataSchemaTrademark22Description = "The trademark element contains a text element that contains a div element with \"class1 class2 class3\" as the value for the class attribute."
-metadataSchemaTrademark22Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark23Title = "Valid trademark Element With class Attribute in div Element in text Element"
+metadataSchemaTrademark23Description = "The trademark element contains a text element that contains a div element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaTrademark23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # one span
 
-metadataSchemaTrademark23Metadata = """
+metadataSchemaTrademark24Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
@@ -3504,13 +3530,13 @@ metadataSchemaTrademark23Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark23Title = "Valid trademark Element With One span Element in text Element"
-metadataSchemaTrademark23Description = "The trademark element contains a text element that contains a span element."
-metadataSchemaTrademark23Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+metadataSchemaTrademark24Title = "Valid trademark Element With One span Element in text Element"
+metadataSchemaTrademark24Description = "The trademark element contains a text element that contains a span element."
+metadataSchemaTrademark24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # two span
 
-metadataSchemaTrademark24Metadata = """
+metadataSchemaTrademark25Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
@@ -3520,39 +3546,37 @@ metadataSchemaTrademark24Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark24Title = "Valid trademark Element With Two span Elements in text Element"
-metadataSchemaTrademark24Description = "The trademark element contains a text element that contains two span elements."
-metadataSchemaTrademark24Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# span with dir
-
-metadataSchemaTrademark25Metadata = """
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
-        <text>
-            Text with <span>span</span>.
-        </text>
-    </trademark>
-</metadata>
-"""
-metadataSchemaTrademark25Title = "Valid trademark Element With dir Attribute in span Element in text Element 1"
-metadataSchemaTrademark25Description = "The trademark element contains a text element that contains a span element with ltr as the value for the dir attribute."
+metadataSchemaTrademark25Title = "Valid trademark Element With Two span Elements in text Element"
+metadataSchemaTrademark25Description = "The trademark element contains a text element that contains two span elements."
 metadataSchemaTrademark25Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# nested span
 
 metadataSchemaTrademark26Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+             <span>
+                 span 1 start
+                 <span>
+                     span 2 start
+                     <span>
+                         span 3
+                     </span>
+                     span 2 end
+                 </span>
+                 span 1 end
+             </span>
         </text>
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark26Title = "Valid trademark Element With dir Attribute in span Element in text Element 2"
-metadataSchemaTrademark26Description = "The trademark element contains a text element that contains a span element with rtl as the value for the dir attribute."
+metadataSchemaTrademark26Title = "Valid trademark Element With Nested span Elements in text Element"
+metadataSchemaTrademark26Description = "The trademark element contains a text element that contains nested span elements."
 metadataSchemaTrademark26Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with dir
 
 metadataSchemaTrademark27Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -3564,11 +3588,9 @@ metadataSchemaTrademark27Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark27Title = "Invalid trademark Element With dir Attribute in span Element in text Element"
-metadataSchemaTrademark27Description = "The trademark element contains a text element that contains a span element with INVALID as the value for the dir attribute."
+metadataSchemaTrademark27Title = "Valid trademark Element With dir Attribute in span Element in text Element 1"
+metadataSchemaTrademark27Description = "The trademark element contains a text element that contains a span element with ltr as the value for the dir attribute."
 metadataSchemaTrademark27Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
-# span with class
 
 metadataSchemaTrademark28Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -3580,9 +3602,39 @@ metadataSchemaTrademark28Metadata = """
     </trademark>
 </metadata>
 """
-metadataSchemaTrademark28Title = "Valid trademark Element With class Attribute in span Element in text Element"
-metadataSchemaTrademark28Description = "The trademark element contains a text element that contains a span element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaTrademark28Title = "Valid trademark Element With dir Attribute in span Element in text Element 2"
+metadataSchemaTrademark28Description = "The trademark element contains a text element that contains a span element with rtl as the value for the dir attribute."
 metadataSchemaTrademark28Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+metadataSchemaTrademark29Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </trademark>
+</metadata>
+"""
+metadataSchemaTrademark29Title = "Invalid trademark Element With dir Attribute in span Element in text Element"
+metadataSchemaTrademark29Description = "The trademark element contains a text element that contains a span element with INVALID as the value for the dir attribute."
+metadataSchemaTrademark29Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# span with class
+
+metadataSchemaTrademark30Metadata = """
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata version="1.0">
+    <trademark url="http://w3c.org/Fonts">
+        <text>
+            Text with <span>span</span>.
+        </text>
+    </trademark>
+</metadata>
+"""
+metadataSchemaTrademark30Title = "Valid trademark Element With class Attribute in span Element in text Element"
+metadataSchemaTrademark30Description = "The trademark element contains a text element that contains a span element with \"class1 class2 class3\" as the value for the class attribute."
+metadataSchemaTrademark30Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -------------------------------------------
 # Metadata Display: Schema Validity: licensee
