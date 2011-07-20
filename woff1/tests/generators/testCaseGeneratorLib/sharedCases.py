@@ -2036,7 +2036,7 @@ metadataSchemaDescription29Metadata = """
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="ltr">span</span>.
         </text>
     </description>
 </metadata>
@@ -2050,7 +2050,7 @@ metadataSchemaDescription30Metadata = """
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="rtl">span</span>.
         </text>
     </description>
 </metadata>
@@ -2064,7 +2064,7 @@ metadataSchemaDescription31Metadata = """
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="INVALID">span</span>.
         </text>
     </description>
 </metadata>
@@ -2080,7 +2080,7 @@ metadataSchemaDescription32Metadata = """
 <metadata version="1.0">
     <description url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span class="class1 class2 class3">span</span>.
         </text>
     </description>
 </metadata>
@@ -2587,7 +2587,7 @@ metadataSchemaLicense30Metadata = """
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="ltr">span</span>.
         </text>
     </license>
 </metadata>
@@ -2601,7 +2601,7 @@ metadataSchemaLicense31Metadata = """
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="rtl">span</span>.
         </text>
     </license>
 </metadata>
@@ -2615,7 +2615,7 @@ metadataSchemaLicense32Metadata = """
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="INVALID">span</span>.
         </text>
     </license>
 </metadata>
@@ -2631,7 +2631,7 @@ metadataSchemaLicense33Metadata = """
 <metadata version="1.0">
     <license url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span class="class1 class2 class3">span</span>.
         </text>
     </license>
 </metadata>
@@ -2911,7 +2911,7 @@ metadataSchemaCopyright16Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright17Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             <div>Paragraph 1</div>
         </text>
@@ -2927,7 +2927,7 @@ metadataSchemaCopyright17Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright18Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             <div>Paragraph 1</div>
             <div>Paragraph 2</div>
@@ -2944,7 +2944,7 @@ metadataSchemaCopyright18Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright19Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             <div>
                 div 1 start
@@ -2970,7 +2970,7 @@ metadataSchemaCopyright19Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright20Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             <div dir="ltr">Paragraph 1</div>
         </text>
@@ -2984,7 +2984,7 @@ metadataSchemaCopyright20Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright21Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             <div dir="rtl">Paragraph 1</div>
         </text>
@@ -2998,7 +2998,7 @@ metadataSchemaCopyright21Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright22Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             <div dir="INVALID">Paragraph 1</div>
         </text>
@@ -3014,7 +3014,7 @@ metadataSchemaCopyright22Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright23Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             <div class="class1 class2 class3">Paragraph 1</div>
         </text>
@@ -3030,7 +3030,7 @@ metadataSchemaCopyright23Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright24Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
             Text with <span>span</span>.
         </text>
@@ -3046,7 +3046,7 @@ metadataSchemaCopyright24Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright25Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
              Text with <span>span 1</span> and <span>span 2</span>.
         </text>
@@ -3062,7 +3062,7 @@ metadataSchemaCopyright25Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright26Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
              <span>
                  span 1 start
@@ -3088,9 +3088,9 @@ metadataSchemaCopyright26Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright27Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="ltr">span</span>.
         </text>
     </copyright>
 </metadata>
@@ -3102,9 +3102,9 @@ metadataSchemaCopyright27Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright28Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="rtl">span</span>.
         </text>
     </copyright>
 </metadata>
@@ -3116,9 +3116,9 @@ metadataSchemaCopyright28Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright29Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="INVALID">span</span>.
         </text>
     </copyright>
 </metadata>
@@ -3132,9 +3132,9 @@ metadataSchemaCopyright29Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaCopyright30Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <copyright url="http://w3c.org/Fonts">
+    <copyright>
         <text>
-            Text with <span>span</span>.
+            Text with <span class="class1 class2 class3">span</span>.
         </text>
     </copyright>
 </metadata>
@@ -3593,7 +3593,7 @@ metadataSchemaTrademark27Metadata = """
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="ltr">span</span>.
         </text>
     </trademark>
 </metadata>
@@ -3607,7 +3607,7 @@ metadataSchemaTrademark28Metadata = """
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="rtl">span</span>.
         </text>
     </trademark>
 </metadata>
@@ -3621,7 +3621,7 @@ metadataSchemaTrademark29Metadata = """
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span dir="INVALID">span</span>.
         </text>
     </trademark>
 </metadata>
@@ -3637,7 +3637,7 @@ metadataSchemaTrademark30Metadata = """
 <metadata version="1.0">
     <trademark url="http://w3c.org/Fonts">
         <text>
-            Text with <span>span</span>.
+            Text with <span class="class1 class2 class3">span</span>.
         </text>
     </trademark>
 </metadata>
