@@ -2788,8 +2788,8 @@ metadataSchemaCopyright9Metadata = """
         <text>
             Copyright without language.
         </text>
+        <unknown attribute="Text" />
     </copyright>
-    <unknown attribute="Text" />
 </metadata>
 """
 metadataSchemaCopyright9Title = "Unknown Child Element in copyright Element"
