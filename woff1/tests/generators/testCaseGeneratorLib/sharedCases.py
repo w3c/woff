@@ -807,8 +807,7 @@ makeMetadataCompression1Credits = [dict(title="Tal Leming", role="author", link=
 
 def makeMetaOrigLengthTest1():
     header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    metaOrigLength = header["metaOrigLength"]
-    metaOrigLength += 1
+    header["metaOrigLength"] += 1
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
     return data
 
@@ -820,8 +819,7 @@ makeMetaOrigLengthTest1Credits = [dict(title="Tal Leming", role="author", link="
 
 def makeMetaOrigLengthTest2():
     header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
-    metaOrigLength = header["metaOrigLength"]
-    metaOrigLength -= 1
+    header["metaOrigLength"] -= 1
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
     return data
 

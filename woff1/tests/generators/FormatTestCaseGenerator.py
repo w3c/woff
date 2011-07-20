@@ -757,7 +757,7 @@ writeTest(
 )
 
 # table is padded with something other than null bytes
-	 
+
 def makeTableData4Byte3():
     header, directory, tableData = defaultTestData()
     paddedAtLeastOne = False
