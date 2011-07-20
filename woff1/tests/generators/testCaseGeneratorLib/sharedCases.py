@@ -812,7 +812,7 @@ def makeMetaOrigLengthTest1():
     return data
 
 makeMetaOrigLengthTest1Title = "Decompressed Metadata Length Less Than metaOrigLength"
-makeMetaOrigLengthTest1Description = "The metadata decompressed to a length that is 1 byte smaller than the length defined in metaOrigLength"
+makeMetaOrigLengthTest1Description = "The metadata decompresses to a length that is 1 byte smaller than the length defined in metaOrigLength"
 makeMetaOrigLengthTest1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # >
@@ -824,7 +824,7 @@ def makeMetaOrigLengthTest2():
     return data
 
 makeMetaOrigLengthTest2Title = "Decompressed Metadata Length Greater Than metaOrigLength"
-makeMetaOrigLengthTest2Description = "The metadata decompressed to a length that is 1 byte greater than the length defined in metaOrigLength"
+makeMetaOrigLengthTest2Description = "The metadata decompresses to a length that is 1 byte greater than the length defined in metaOrigLength"
 makeMetaOrigLengthTest2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -----------------------------
