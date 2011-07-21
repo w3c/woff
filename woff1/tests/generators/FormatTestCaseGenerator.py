@@ -2351,13 +2351,15 @@ writeMetadataTest(
     valid=True,
 )
 
-# div with dir
+# nested div
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-019",
     specLink="#conform-metadata-schemavalid",
     valid=True,
 )
+
+# div with dir
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-020",
@@ -2368,18 +2370,16 @@ writeMetadataTest(
 writeMetadataTest(
     identifier="metadata-schema-trademark-021",
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
 )
-
-# div with class
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-022",
     specLink="#conform-metadata-schemavalid",
-    valid=True,
+    valid=False,
 )
 
-# one span
+# div with class
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-023",
@@ -2387,7 +2387,7 @@ writeMetadataTest(
     valid=True,
 )
 
-# two span
+# one span
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-024",
@@ -2395,7 +2395,7 @@ writeMetadataTest(
     valid=True,
 )
 
-# span with dir
+# two span
 
 writeMetadataTest(
     identifier="metadata-schema-trademark-025",
@@ -2403,14 +2403,30 @@ writeMetadataTest(
     valid=True,
 )
 
+# nested span
+
 writeMetadataTest(
     identifier="metadata-schema-trademark-026",
     specLink="#conform-metadata-schemavalid",
     valid=True,
 )
 
+# span with dir
+
 writeMetadataTest(
     identifier="metadata-schema-trademark-027",
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-028",
+    specLink="#conform-metadata-schemavalid",
+    valid=True,
+)
+
+writeMetadataTest(
+    identifier="metadata-schema-trademark-029",
     specLink="#conform-metadata-schemavalid",
     valid=False,
 )
@@ -2418,7 +2434,7 @@ writeMetadataTest(
 # span with class
 
 writeMetadataTest(
-    identifier="metadata-schema-trademark-028",
+    identifier="metadata-schema-trademark-030",
     specLink="#conform-metadata-schemavalid",
     valid=True,
 )

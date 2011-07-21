@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (299 tests)</h1>
+		<h1>WOFF: Format Test Suite (301 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -2316,7 +2316,7 @@
 				<p>The trademark element contains a text element that contains a div element with rtl as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-trademark-021-validity">No</span></p>
+					<p>Valid: <span id="metadata-schema-trademark-021-validity">Yes</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
@@ -2326,7 +2326,7 @@
 				<p>The trademark element contains a text element that contains a div element with INVALID as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-trademark-022-validity">Yes</span></p>
+					<p>Valid: <span id="metadata-schema-trademark-022-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
@@ -2376,7 +2376,7 @@
 				<p>The trademark element contains a text element that contains a span element with ltr as the value for the dir attribute.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="metadata-schema-trademark-027-validity">No</span></p>
+					<p>Valid: <span id="metadata-schema-trademark-027-validity">Yes</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>
@@ -2387,6 +2387,26 @@
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-schema-trademark-028-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-029">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-029">metadata-schema-trademark-029</a>: Invalid trademark Element With dir Attribute in span Element in text Element</h3>
+				<p>The trademark element contains a text element that contains a span element with INVALID as the value for the dir attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-029-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-schema-trademark-030">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-schema-trademark-030">metadata-schema-trademark-030</a>: Valid trademark Element With class Attribute in span Element in text Element</h3>
+				<p>The trademark element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-schema-trademark-030-validity">Yes</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-schemavalid">Documentation</a></p>
 			</div>
 		</div>

@@ -3423,7 +3423,7 @@ metadataSchemaTrademark16Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark17Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             <div>Paragraph 1</div>
         </text>
@@ -3439,7 +3439,7 @@ metadataSchemaTrademark17Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark18Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             <div>Paragraph 1</div>
             <div>Paragraph 2</div>
@@ -3456,7 +3456,7 @@ metadataSchemaTrademark18Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark19Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             <div>
                 div 1 start
@@ -3482,7 +3482,7 @@ metadataSchemaTrademark19Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark20Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             <div dir="ltr">Paragraph 1</div>
         </text>
@@ -3496,7 +3496,7 @@ metadataSchemaTrademark20Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark21Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             <div dir="rtl">Paragraph 1</div>
         </text>
@@ -3510,7 +3510,7 @@ metadataSchemaTrademark21Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark22Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             <div dir="INVALID">Paragraph 1</div>
         </text>
@@ -3526,7 +3526,7 @@ metadataSchemaTrademark22Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark23Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             <div class="class1 class2 class3">Paragraph 1</div>
         </text>
@@ -3542,7 +3542,7 @@ metadataSchemaTrademark23Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark24Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             Text with <span>span</span>.
         </text>
@@ -3558,7 +3558,7 @@ metadataSchemaTrademark24Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark25Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
              Text with <span>span 1</span> and <span>span 2</span>.
         </text>
@@ -3574,7 +3574,7 @@ metadataSchemaTrademark25Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark26Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
              <span>
                  span 1 start
@@ -3600,7 +3600,7 @@ metadataSchemaTrademark26Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark27Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             Text with <span dir="ltr">span</span>.
         </text>
@@ -3614,7 +3614,7 @@ metadataSchemaTrademark27Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark28Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             Text with <span dir="rtl">span</span>.
         </text>
@@ -3628,7 +3628,7 @@ metadataSchemaTrademark28Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark29Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             Text with <span dir="INVALID">span</span>.
         </text>
@@ -3644,7 +3644,7 @@ metadataSchemaTrademark29Credits = [dict(title="Tal Leming", role="author", link
 metadataSchemaTrademark30Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <trademark url="http://w3c.org/Fonts">
+    <trademark>
         <text>
             Text with <span class="class1 class2 class3">span</span>.
         </text>
