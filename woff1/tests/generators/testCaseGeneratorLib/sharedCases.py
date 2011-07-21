@@ -1472,7 +1472,9 @@ metadataSchemaCredit4Credits = [dict(title="Tal Leming", role="author", link="ht
 metadataSchemaCredit5Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="ltr" />
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="ltr" />
+    </credits>
 </metadata>
 """
 metadataSchemaCredit5Title = "Valid dir Attribute in credit Element 1"
@@ -1482,7 +1484,9 @@ metadataSchemaCredit5Credits = [dict(title="Tal Leming", role="author", link="ht
 metadataSchemaCredit6Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="rtl" />
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="rtl" />
+    </credits>
 </metadata>
 """
 metadataSchemaCredit6Title = "Valid dir Attribute in credit Element 2"
@@ -1492,7 +1496,9 @@ metadataSchemaCredit6Credits = [dict(title="Tal Leming", role="author", link="ht
 metadataSchemaCredit7Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="ltr" />
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" dir="INVALID" />
+    </credits>
 </metadata>
 """
 metadataSchemaCredit7Title = "Invalid dir Attribute in credit Element"
@@ -1504,7 +1510,9 @@ metadataSchemaCredit7Credits = [dict(title="Tal Leming", role="author", link="ht
 metadataSchemaCredit8Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
-    <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" class="class1 class2 class3" />
+    <credits>
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" class="class1 class2 class3" />
+    </credits>
 </metadata>
 """
 metadataSchemaCredit8Title = "Valid class Attribute in credit Element"
@@ -1522,7 +1530,7 @@ metadataSchemaCredit9Metadata = """
 </metadata>
 """
 metadataSchemaCredit9Title = "Unknown attribute in credit Element"
-metadataSchemaCredit9Description = "The credit element contains and unknown attribute."
+metadataSchemaCredit9Description = "The credit element contains an unknown attribute."
 metadataSchemaCredit9Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
@@ -1547,8 +1555,9 @@ metadataSchemaCredit11Metadata = """
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata version="1.0">
     <credits>
-        Text
-        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts" />
+        <credit name="Credit 1" role="Role 1" url="http://w3c.org/Fonts">
+            Text
+        </credit>
     </credits>
 </metadata>
 """
