@@ -4132,8 +4132,8 @@ metadataSchemaExtension19Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension19Title = "Unkown Attribute in name Element in extension Element"
-metadataSchemaExtension19Description = "The name element in the extension element contains an unkown attribute."
+metadataSchemaExtension19Title = "Unknown Attribute in name Element in extension Element"
+metadataSchemaExtension19Description = "The name element in the extension element contains an unknown attribute."
 metadataSchemaExtension19Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
@@ -4525,8 +4525,8 @@ metadataSchemaExtension40Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension40Title = "Unkown Attribute in name Element in item Element in extension Element"
-metadataSchemaExtension40Description = "The name element in the item element in the extension element contains an unkown attribute."
+metadataSchemaExtension40Title = "Unknown Attribute in name Element in item Element in extension Element"
+metadataSchemaExtension40Description = "The name element in the item element in the extension element contains an unknown attribute."
 metadataSchemaExtension40Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element
@@ -4690,8 +4690,8 @@ metadataSchemaExtension49Metadata = """
     </extension>
 </metadata>
 """
-metadataSchemaExtension49Title = "Unkown Attribute in value Element in item Element in extension Element"
-metadataSchemaExtension49Description = "The value element in the item element in the extension element contains an unkown attribute."
+metadataSchemaExtension49Title = "Unknown Attribute in value Element in item Element in extension Element"
+metadataSchemaExtension49Description = "The value element in the item element in the extension element contains an unknown attribute."
 metadataSchemaExtension49Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # child element

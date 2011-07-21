@@ -2316,7 +2316,7 @@ writeMetadataTest(
 writeMetadataTest(
     identifier="metadata-schema-trademark-014",
     specLink="#conform-metadata-schemavalid",
-    valid=False,
+    valid=True,
 )
 
 # text element unknown attribute
