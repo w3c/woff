@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (289 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (288 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -401,8 +401,8 @@
 		</div>
 		<div class="testCase" id="blocks-overlap-001">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-001">blocks-overlap-001</a>: Table Data Blocks Overlap</h3>
-				<p>The second table's offset is four bytes before the end of the first table's data.</p>
+				<h3><a href="#blocks-overlap-001">blocks-overlap-001</a>: Metadata Overlaps Table Data</h3>
+				<p>The metadata offset is four bytes before the end of the table data.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -417,8 +417,8 @@
 		</div>
 		<div class="testCase" id="blocks-overlap-002">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-002">blocks-overlap-002</a>: Metadata Overlaps Table Data</h3>
-				<p>The metadata offset is four bytes before the end of the table data.</p>
+				<h3><a href="#blocks-overlap-002">blocks-overlap-002</a>: Private Data Overlaps Table Data</h3>
+				<p>The private data offset is four bytes before the end of the table data.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
@@ -433,29 +433,13 @@
 		</div>
 		<div class="testCase" id="blocks-overlap-003">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-003">blocks-overlap-003</a>: Private Data Overlaps Table Data</h3>
-				<p>The private data offset is four bytes before the end of the table data.</p>
+				<h3><a href="#blocks-overlap-003">blocks-overlap-003</a>: Private Data Overlaps Metadata</h3>
+				<p>The private data offset is four bytes before the end of the metadata.</p>
 			</div>
 			<div class="testCaseDetails">
 				<div class="testCasePages">
 					<p><a href="blocks-overlap-003.xht">Test</a></p>
 					<p><a href="blocks-overlap-003-ref.xht">Reference Rendering</a></p>
-				</div>
-				<div class="testCaseExpectations">
-					<p>SFNT Expectation: Reject <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-overlap-reject">(conform-overlap-reject)</a></p>
-					<p>Metadata Expectation: None</p>
-				</div>
-			</div>
-		</div>
-		<div class="testCase" id="blocks-overlap-004">
-			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-004">blocks-overlap-004</a>: Private Data Overlaps Metadata</h3>
-				<p>The private data offset is four bytes before the end of the metadata.</p>
-			</div>
-			<div class="testCaseDetails">
-				<div class="testCasePages">
-					<p><a href="blocks-overlap-004.xht">Test</a></p>
-					<p><a href="blocks-overlap-004-ref.xht">Reference Rendering</a></p>
 				</div>
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Reject <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-overlap-reject">(conform-overlap-reject)</a></p>

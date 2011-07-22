@@ -467,7 +467,7 @@ writeTest(
 # File Structure: Data Blocks: Overlaps
 # -------------------------------------
 
-# two tables overlap
+# metadata overlaps the table data
 
 writeTest(
     identifier="blocks-overlap-001",
@@ -479,7 +479,7 @@ writeTest(
     data=makeOverlappingData1()
 )
 
-# metadata overlaps the table data
+# private data overlaps the table data
 
 writeTest(
     identifier="blocks-overlap-002",
@@ -491,7 +491,7 @@ writeTest(
     data=makeOverlappingData2()
 )
 
-# private data overlaps the table data
+# private data overlaps the metadata
 
 writeTest(
     identifier="blocks-overlap-003",
@@ -501,18 +501,6 @@ writeTest(
     valid=False,
     specLink="#conform-overlap-reject",
     data=makeOverlappingData3()
-)
-
-# private data overlaps the metadata
-
-writeTest(
-    identifier="blocks-overlap-004",
-    title=makeOverlappingData4Title,
-    description=makeOverlappingData4Description,
-    credits=makeOverlappingData4Credits,
-    valid=False,
-    specLink="#conform-overlap-reject",
-    data=makeOverlappingData4()
 )
 
 # -------------------------------------------------

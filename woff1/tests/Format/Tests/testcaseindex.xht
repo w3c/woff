@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (301 tests)</h1>
+		<h1>WOFF: Format Test Suite (300 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -276,8 +276,8 @@
 		</div>
 		<div class="testCase" id="blocks-overlap-001">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-001">blocks-overlap-001</a>: Table Data Blocks Overlap</h3>
-				<p>The second table's offset is four bytes before the end of the first table's data.</p>
+				<h3><a href="#blocks-overlap-001">blocks-overlap-001</a>: Metadata Overlaps Table Data</h3>
+				<p>The metadata offset is four bytes before the end of the table data.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-overlap-001-validity">No</span></p>
@@ -286,8 +286,8 @@
 		</div>
 		<div class="testCase" id="blocks-overlap-002">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-002">blocks-overlap-002</a>: Metadata Overlaps Table Data</h3>
-				<p>The metadata offset is four bytes before the end of the table data.</p>
+				<h3><a href="#blocks-overlap-002">blocks-overlap-002</a>: Private Data Overlaps Table Data</h3>
+				<p>The private data offset is four bytes before the end of the table data.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-overlap-002-validity">No</span></p>
@@ -296,21 +296,11 @@
 		</div>
 		<div class="testCase" id="blocks-overlap-003">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-003">blocks-overlap-003</a>: Private Data Overlaps Table Data</h3>
-				<p>The private data offset is four bytes before the end of the table data.</p>
-			</div>
-			<div class="testCaseDetails">
-					<p>Valid: <span id="blocks-overlap-003-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-overlap-reject">Documentation</a></p>
-			</div>
-		</div>
-		<div class="testCase" id="blocks-overlap-004">
-			<div class="testCaseOverview">
-				<h3><a href="#blocks-overlap-004">blocks-overlap-004</a>: Private Data Overlaps Metadata</h3>
+				<h3><a href="#blocks-overlap-003">blocks-overlap-003</a>: Private Data Overlaps Metadata</h3>
 				<p>The private data offset is four bytes before the end of the metadata.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="blocks-overlap-004-validity">No</span></p>
+					<p>Valid: <span id="blocks-overlap-003-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-overlap-reject">Documentation</a></p>
 			</div>
 		</div>

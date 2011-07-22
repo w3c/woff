@@ -345,32 +345,9 @@ makeExtraneousData8Credits = [dict(title="Tal Leming", role="author", link="http
 # File Structure: Data Blocks: Overlaps
 # -------------------------------------
 
-# two tables overlap
-
-def makeOverlappingData1():
-    header, directory, tableData = defaultTestData()
-    overlapLength = 4
-    # slice some data off the first table's compressed data
-    entry = directory[0]
-    tag = entry["tag"]
-    assert entry["compLength"] > overlapLength
-    origData, compData = tableData[tag]
-    tableData[tag] = (origData, compData[:-overlapLength])
-    # shift the offsets for all the other tables
-    for entry in directory[1:]:
-        entry["offset"] -= overlapLength
-    # adjust the header
-    header["length"] -= overlapLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
-makeOverlappingData1Title = "Table Data Blocks Overlap"
-makeOverlappingData1Description = "The second table's offset is four bytes before the end of the first table's data."
-makeOverlappingData1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
 # metadata overlaps the table data
 
-def makeOverlappingData2():
+def makeOverlappingData1():
     header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
     overlapLength = 4
     header["metaOffset"] -= overlapLength
@@ -378,13 +355,13 @@ def makeOverlappingData2():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)[:-overlapLength] + packTestMetadata(metadata)
     return data
 
-makeOverlappingData2Title = "Metadata Overlaps Table Data"
-makeOverlappingData2Description = "The metadata offset is four bytes before the end of the table data."
-makeOverlappingData2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeOverlappingData1Title = "Metadata Overlaps Table Data"
+makeOverlappingData1Description = "The metadata offset is four bytes before the end of the table data."
+makeOverlappingData1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # private data overlaps the table data
 
-def makeOverlappingData3():
+def makeOverlappingData2():
     header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
     overlapLength = 4
     header["privOffset"] -= overlapLength
@@ -392,13 +369,13 @@ def makeOverlappingData3():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)[:-overlapLength] + packTestPrivateData(privateData)
     return data
 
-makeOverlappingData3Title = "Private Data Overlaps Table Data"
-makeOverlappingData3Description = "The private data offset is four bytes before the end of the table data."
-makeOverlappingData3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeOverlappingData2Title = "Private Data Overlaps Table Data"
+makeOverlappingData2Description = "The private data offset is four bytes before the end of the table data."
+makeOverlappingData2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # private data overlaps the metadata
 
-def makeOverlappingData4():
+def makeOverlappingData3():
     header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
     overlapLength = 4
     header["privOffset"] -= overlapLength
@@ -406,9 +383,9 @@ def makeOverlappingData4():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata, havePrivateData=True)[:-overlapLength] + packTestPrivateData(privateData)
     return data
 
-makeOverlappingData4Title = "Private Data Overlaps Metadata"
-makeOverlappingData4Description = "The private data offset is four bytes before the end of the metadata."
-makeOverlappingData4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeOverlappingData3Title = "Private Data Overlaps Metadata"
+makeOverlappingData3Description = "The private data offset is four bytes before the end of the metadata."
+makeOverlappingData3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ------------------------------------------------
 # File Structure: Table Directory: 4-Byte Boundary
