@@ -1064,7 +1064,7 @@ def makeMetadataPadding1():
     paddingLength = calcPaddingLength(header["metaLength"])
     assert paddingLength > 0
     metadata, compMetadata = metadata
-    compMetadata = compMetadata[:-paddingLength] + ("\x01" * paddingLength)
+    compMetadata += ("\x01" * paddingLength)
     metadata = (metadata, compMetadata)
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata) + packTestPrivateData(privateData)
     return data
