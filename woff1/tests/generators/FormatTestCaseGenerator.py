@@ -614,15 +614,17 @@ def makeDataBlockOrdering1():
     metadataLength = header["metaLength"]
     # pad
     metadata, compMetadata = metadata
-    compMetadata += "\0" * calcPaddingLength(len(compMetadata))
+    paddingLength = calcPaddingLength(len(compMetadata))
+    compMetadata += "\0" * paddingLength
     metadata = (metadata, compMetadata)
+    header["length"] += paddingLength
     # offset tables
     offset = metadataStart + metadataLength + calcPaddingLength(metadataLength)
     for entry in directory:
         entry["offset"] = offset
         offset += entry["compLength"] + calcPaddingLength(entry["compLength"])
     # pack
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestMetadata(metadata) + packTestTableData(directory, tableData)
     # done
     return data
 
