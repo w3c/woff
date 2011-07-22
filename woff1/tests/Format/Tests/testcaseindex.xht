@@ -384,6 +384,16 @@
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#private-last">Documentation</a></p>
 			</div>
 		</div>
+		<div class="testCase" id="blocks-private-001">
+			<div class="testCaseOverview">
+				<h3><a href="#blocks-private-001">blocks-private-001</a>: Private Data Does Not Begin of 4-Byte Boundary</h3>
+				<p>The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="blocks-private-001-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-private-padalign">Documentation</a></p>
+			</div>
+		</div>
 
 		<h2 class="testCategory">WOFF Table Directory Tests</h2>
 		<div class="testCase" id="directory-4-byte-001">
@@ -590,6 +600,16 @@
 		</div>
 
 		<h2 class="testCategory">WOFF Metadata Tests</h2>
+		<div class="testCase" id="metadata-padding-001">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-padding-001">metadata-padding-001</a>: Padding Between Metadata and Private Data is Non-Null</h3>
+				<p>Metadata is padded with \01 instead of \00.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-padding-001-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-private-padalign">Documentation</a></p>
+			</div>
+		</div>
 		<div class="testCase" id="metadata-compression-001">
 			<div class="testCaseOverview">
 				<h3><a href="#metadata-compression-001">metadata-compression-001</a>: Metadata Invalid Compression</h3>
@@ -3002,25 +3022,5 @@
 		</div>
 
 		<h2 class="testCategory">WOFF Private Data Tests</h2>
-		<div class="testCase" id="privatedata-4-byte-001">
-			<div class="testCaseOverview">
-				<h3><a href="#privatedata-4-byte-001">privatedata-4-byte-001</a>: Private Data Does Not Begin of 4-Byte Boundary</h3>
-				<p>The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.</p>
-			</div>
-			<div class="testCaseDetails">
-					<p>Valid: <span id="privatedata-4-byte-001-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-private-padalign">Documentation</a></p>
-			</div>
-		</div>
-		<div class="testCase" id="privatedata-4-byte-002">
-			<div class="testCaseOverview">
-				<h3><a href="#privatedata-4-byte-002">privatedata-4-byte-002</a>: Padding Between Metadata and Private Data is Non-Null</h3>
-				<p>Metadata is padded with \01 instead of \00.</p>
-			</div>
-			<div class="testCaseDetails">
-					<p>Valid: <span id="privatedata-4-byte-002-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-private-padalign">Documentation</a></p>
-			</div>
-		</div>
 	</body>
 </html>
