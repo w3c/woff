@@ -206,8 +206,8 @@
 		</div>
 		<div class="testCase" id="blocks-extraneous-data-002">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-extraneous-data-002">blocks-extraneous-data-002</a>: Extraneous Data Between Tables</h3>
-				<p>There are four null bytes between each of the table data blocks.</p>
+				<h3><a href="#blocks-extraneous-data-002">blocks-extraneous-data-002</a>: Extraneous Data After Table Data</h3>
+				<p>There are four null bytes after the table data block and there is no metadata or private data.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-extraneous-data-002-validity">No</span></p>
@@ -216,8 +216,8 @@
 		</div>
 		<div class="testCase" id="blocks-extraneous-data-003">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-extraneous-data-003">blocks-extraneous-data-003</a>: Extraneous Data After Table Data</h3>
-				<p>There are four null bytes after the table data block and there is no metadata or private data.</p>
+				<h3><a href="#blocks-extraneous-data-003">blocks-extraneous-data-003</a>: Extraneous Data Between Table Data and Metadata</h3>
+				<p>There are four null bytes between the table data and the metadata.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-extraneous-data-003-validity">No</span></p>
@@ -226,8 +226,8 @@
 		</div>
 		<div class="testCase" id="blocks-extraneous-data-004">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-extraneous-data-004">blocks-extraneous-data-004</a>: Extraneous Data Between Table Data and Metadata</h3>
-				<p>There are four null bytes between the table data and the metadata.</p>
+				<h3><a href="#blocks-extraneous-data-004">blocks-extraneous-data-004</a>: Extraneous Data Between Table Data and Private Data</h3>
+				<p>There are four null bytes between the table data and the private data.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-extraneous-data-004-validity">No</span></p>
@@ -236,8 +236,8 @@
 		</div>
 		<div class="testCase" id="blocks-extraneous-data-005">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-extraneous-data-005">blocks-extraneous-data-005</a>: Extraneous Data Between Table Data and Private Data</h3>
-				<p>There are four null bytes between the table data and the private data.</p>
+				<h3><a href="#blocks-extraneous-data-005">blocks-extraneous-data-005</a>: Extraneous Data Between Metdata and Private Data</h3>
+				<p>There are four null bytes between the metadata and the private data.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-extraneous-data-005-validity">No</span></p>
@@ -246,8 +246,8 @@
 		</div>
 		<div class="testCase" id="blocks-extraneous-data-006">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-extraneous-data-006">blocks-extraneous-data-006</a>: Extraneous Data Between Metdata and Private Data</h3>
-				<p>There are four null bytes between the metadata and the private data.</p>
+				<h3><a href="#blocks-extraneous-data-006">blocks-extraneous-data-006</a>: Extraneous Data After Metadata</h3>
+				<p>There are four null bytes after the metadata and there is no private data.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-extraneous-data-006-validity">No</span></p>
@@ -256,21 +256,11 @@
 		</div>
 		<div class="testCase" id="blocks-extraneous-data-007">
 			<div class="testCaseOverview">
-				<h3><a href="#blocks-extraneous-data-007">blocks-extraneous-data-007</a>: Extraneous Data After Metadata</h3>
-				<p>There are four null bytes after the metadata and there is no private data.</p>
-			</div>
-			<div class="testCaseDetails">
-					<p>Valid: <span id="blocks-extraneous-data-007-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-noextraneous">Documentation</a></p>
-			</div>
-		</div>
-		<div class="testCase" id="blocks-extraneous-data-008">
-			<div class="testCaseOverview">
-				<h3><a href="#blocks-extraneous-data-008">blocks-extraneous-data-008</a>: Extraneous Data After Private Data</h3>
+				<h3><a href="#blocks-extraneous-data-007">blocks-extraneous-data-007</a>: Extraneous Data After Private Data</h3>
 				<p>There are four null bytes after the private data.</p>
 			</div>
 			<div class="testCaseDetails">
-					<p>Valid: <span id="blocks-extraneous-data-008-validity">No</span></p>
+					<p>Valid: <span id="blocks-extraneous-data-007-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-noextraneous">Documentation</a></p>
 			</div>
 		</div>
@@ -474,6 +464,16 @@
 			<div class="testCaseDetails">
 					<p>Valid: <span id="directory-overlaps-005-validity">No</span></p>
 					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-diroverlap-reject">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="directory-extraneous-data-001">
+			<div class="testCaseOverview">
+				<h3><a href="#directory-extraneous-data-001">directory-extraneous-data-001</a>: Extraneous Data Between Tables</h3>
+				<p>There are four null bytes between each of the table data blocks after the head table.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="directory-extraneous-data-001-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-noextraneous">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="directory-compLength-001">

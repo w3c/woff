@@ -454,7 +454,7 @@ writeFileStructureTest(
     data=makeExtraneousData1()
 )
 
-# between tables
+# after table data with no metadata or private data
 
 writeFileStructureTest(
     identifier="blocks-extraneous-data-002",
@@ -466,7 +466,7 @@ writeFileStructureTest(
     data=makeExtraneousData2()
 )
 
-# after table data with no metadata or private data
+# between tabledata and metadata
 
 writeFileStructureTest(
     identifier="blocks-extraneous-data-003",
@@ -478,7 +478,7 @@ writeFileStructureTest(
     data=makeExtraneousData3()
 )
 
-# between tabledata and metadata
+# between tabledata and private data
 
 writeFileStructureTest(
     identifier="blocks-extraneous-data-004",
@@ -490,7 +490,7 @@ writeFileStructureTest(
     data=makeExtraneousData4()
 )
 
-# between tabledata and private data
+# between metadata and private data
 
 writeFileStructureTest(
     identifier="blocks-extraneous-data-005",
@@ -502,7 +502,7 @@ writeFileStructureTest(
     data=makeExtraneousData5()
 )
 
-# between metadata and private data
+# after metadata with no private data
 
 writeFileStructureTest(
     identifier="blocks-extraneous-data-006",
@@ -514,7 +514,7 @@ writeFileStructureTest(
     data=makeExtraneousData6()
 )
 
-# after metadata with no private data
+# after private data
 
 writeFileStructureTest(
     identifier="blocks-extraneous-data-007",
@@ -524,18 +524,6 @@ writeFileStructureTest(
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-extraneous-reject",
     data=makeExtraneousData7()
-)
-
-# after private data
-
-writeFileStructureTest(
-    identifier="blocks-extraneous-data-008",
-    title=makeExtraneousData8Title,
-    assertion=makeExtraneousData8Description,
-    credits=makeExtraneousData8Credits,
-    shouldDisplaySFNT=False,
-    sfntDisplaySpecLink="#conform-extraneous-reject",
-    data=makeExtraneousData8()
 )
 
 # -------------------------------------
@@ -666,6 +654,22 @@ writeFileStructureTest(
     shouldDisplaySFNT=False,
     sfntDisplaySpecLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange5()
+)
+
+# ------------------------------------------------
+# File Structure: Table Directory: Extraneous Data
+# ------------------------------------------------
+
+# between tables
+
+writeFileStructureTest(
+    identifier="directory-extraneous-data-001",
+    title=makeTableDataExtraneousData1Title,
+    assertion=makeTableDataExtraneousData1Description,
+    credits=makeTableDataExtraneousData1Credits,
+    shouldDisplaySFNT=False,
+    sfntDisplaySpecLink="#conform-extraneous-reject",
+    data=makeTableDataExtraneousData1()
 )
 
 # -------------------------------------------

@@ -234,29 +234,9 @@ makeExtraneousData1Title = "Extraneous Data Between Directory and Table Data"
 makeExtraneousData1Description = "There are four null bytes between the table directory and the table data."
 makeExtraneousData1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
-# between tables
-
-def makeExtraneousData2():
-    header, directory, tableData = defaultTestData()
-    bogusByteLength = 4
-    bogusBytes = "\0" * bogusByteLength
-    inserted = False
-    # do not apply to the last table
-    for entry in directory[:-1]:
-        tag = entry["tag"]
-        origData, compData = tableData[tag]
-        compData += bogusBytes
-        header["length"] += bogusByteLength
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
-    return data
-
-makeExtraneousData2Title = "Extraneous Data Between Tables"
-makeExtraneousData2Description = "There are four null bytes between each of the table data blocks."
-makeExtraneousData2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
-
 # after table data with no metadata or private data
 
-def makeExtraneousData3():
+def makeExtraneousData2():
     header, directory, tableData = defaultTestData()
     bogusByteLength = 4
     bogusBytes = "\0" * bogusByteLength
@@ -264,13 +244,13 @@ def makeExtraneousData3():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + bogusBytes
     return data
 
-makeExtraneousData3Title = "Extraneous Data After Table Data"
-makeExtraneousData3Description = "There are four null bytes after the table data block and there is no metadata or private data."
-makeExtraneousData3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeExtraneousData2Title = "Extraneous Data After Table Data"
+makeExtraneousData2Description = "There are four null bytes after the table data block and there is no metadata or private data."
+makeExtraneousData2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # between tabledata and metadata
 
-def makeExtraneousData4():
+def makeExtraneousData3():
     header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
     bogusByteLength = 4
     bogusBytes = "\0" * bogusByteLength
@@ -279,13 +259,13 @@ def makeExtraneousData4():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + bogusBytes + packTestMetadata(metadata)
     return data
 
-makeExtraneousData4Title = "Extraneous Data Between Table Data and Metadata"
-makeExtraneousData4Description = "There are four null bytes between the table data and the metadata."
-makeExtraneousData4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeExtraneousData3Title = "Extraneous Data Between Table Data and Metadata"
+makeExtraneousData3Description = "There are four null bytes between the table data and the metadata."
+makeExtraneousData3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # between tabledata and private data
 
-def makeExtraneousData5():
+def makeExtraneousData4():
     header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
     bogusByteLength = 4
     bogusBytes = "\0" * bogusByteLength
@@ -294,13 +274,13 @@ def makeExtraneousData5():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + bogusBytes + packTestPrivateData(privateData)
     return data
 
-makeExtraneousData5Title = "Extraneous Data Between Table Data and Private Data"
-makeExtraneousData5Description = "There are four null bytes between the table data and the private data."
-makeExtraneousData5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeExtraneousData4Title = "Extraneous Data Between Table Data and Private Data"
+makeExtraneousData4Description = "There are four null bytes between the table data and the private data."
+makeExtraneousData4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # between metadata and private data
 
-def makeExtraneousData6():
+def makeExtraneousData5():
     header, directory, tableData, metadata, privateData = defaultTestData(metadata=testDataWOFFMetadata, privateData=testDataWOFFPrivateData)
     bogusByteLength = 4
     bogusBytes = "\0" * bogusByteLength
@@ -309,13 +289,13 @@ def makeExtraneousData6():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata, havePrivateData=True) + bogusBytes + packTestPrivateData(privateData)
     return data
 
-makeExtraneousData6Title = "Extraneous Data Between Metdata and Private Data"
-makeExtraneousData6Description = "There are four null bytes between the metadata and the private data."
-makeExtraneousData6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeExtraneousData5Title = "Extraneous Data Between Metdata and Private Data"
+makeExtraneousData5Description = "There are four null bytes between the metadata and the private data."
+makeExtraneousData5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # after metadata with no private data
 
-def makeExtraneousData7():
+def makeExtraneousData6():
     header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
     bogusByteLength = 4
     bogusBytes = "\0" * bogusByteLength
@@ -323,13 +303,13 @@ def makeExtraneousData7():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata) + bogusBytes
     return data
 
-makeExtraneousData7Title = "Extraneous Data After Metadata"
-makeExtraneousData7Description = "There are four null bytes after the metadata and there is no private data."
-makeExtraneousData7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeExtraneousData6Title = "Extraneous Data After Metadata"
+makeExtraneousData6Description = "There are four null bytes after the metadata and there is no private data."
+makeExtraneousData6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # after private data
 
-def makeExtraneousData8():
+def makeExtraneousData7():
     header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
     bogusByteLength = 4
     bogusBytes = "\0" * bogusByteLength
@@ -337,9 +317,9 @@ def makeExtraneousData8():
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData) + bogusBytes
     return data
 
-makeExtraneousData8Title = "Extraneous Data After Private Data"
-makeExtraneousData8Description = "There are four null bytes after the private data."
-makeExtraneousData8Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+makeExtraneousData7Title = "Extraneous Data After Private Data"
+makeExtraneousData7Description = "There are four null bytes after the private data."
+makeExtraneousData7Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -------------------------------------
 # File Structure: Data Blocks: Overlaps
@@ -584,6 +564,34 @@ def makeTableDataByteRange5():
 makeTableDataByteRange5Title = "Two Table Data Blocks Overlap"
 makeTableDataByteRange5Description = "The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header."
 makeTableDataByteRange5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# ------------------------------------------------
+# File Structure: Table Directory: Extraneous Data
+# ------------------------------------------------
+
+# between tables
+
+def makeTableDataExtraneousData1():
+    header, directory, tableData = defaultTestData()
+    bogusByteLength = 4
+    bogusBytes = "\0" * bogusByteLength
+    assert directory[0]["tag"] == "head"
+    # add the padding to the tables
+    prevTag = None
+    for index, entry in enumerate(directory[1:]):
+        if index > 0:
+            entry["offset"] += bogusByteLength * index
+        if index < len(directory) - 1:
+            tag = entry["tag"]
+            origData, compData = tableData[tag]
+            tableData[tag] = (origData, compData + bogusBytes)
+            header["length"] += bogusByteLength
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
+    return data
+
+makeTableDataExtraneousData1Title = "Extraneous Data Between Tables"
+makeTableDataExtraneousData1Description = "There are four null bytes between each of the table data blocks after the head table."
+makeTableDataExtraneousData1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -------------------------------------------
 # File Structure: Table Directory: compLength

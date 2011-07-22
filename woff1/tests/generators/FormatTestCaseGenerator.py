@@ -379,7 +379,7 @@ writeTest(
     data=makeExtraneousData1()
 )
 
-# between tables
+# after table data with no metadata or private data
 
 writeTest(
     identifier="blocks-extraneous-data-002",
@@ -391,7 +391,7 @@ writeTest(
     data=makeExtraneousData2()
 )
 
-# after table data with no metadata or private data
+# between tabledata and metadata
 
 writeTest(
     identifier="blocks-extraneous-data-003",
@@ -403,7 +403,7 @@ writeTest(
     data=makeExtraneousData3()
 )
 
-# between tabledata and metadata
+# between tabledata and private data
 
 writeTest(
     identifier="blocks-extraneous-data-004",
@@ -415,7 +415,7 @@ writeTest(
     data=makeExtraneousData4()
 )
 
-# between tabledata and private data
+# between metadata and private data
 
 writeTest(
     identifier="blocks-extraneous-data-005",
@@ -427,7 +427,7 @@ writeTest(
     data=makeExtraneousData5()
 )
 
-# between metadata and private data
+# after metadata with no private data
 
 writeTest(
     identifier="blocks-extraneous-data-006",
@@ -439,7 +439,7 @@ writeTest(
     data=makeExtraneousData6()
 )
 
-# after metadata with no private data
+# after private data
 
 writeTest(
     identifier="blocks-extraneous-data-007",
@@ -449,18 +449,6 @@ writeTest(
     valid=False,
     specLink="#conform-noextraneous",
     data=makeExtraneousData7()
-)
-
-# after private data
-
-writeTest(
-    identifier="blocks-extraneous-data-008",
-    title=makeExtraneousData8Title,
-    description=makeExtraneousData8Description,
-    credits=makeExtraneousData8Credits,
-    valid=False,
-    specLink="#conform-noextraneous",
-    data=makeExtraneousData8()
 )
 
 # -------------------------------------
@@ -831,6 +819,22 @@ writeTest(
     valid=False,
     specLink="#conform-diroverlap-reject",
     data=makeTableDataByteRange5()
+)
+
+# ------------------------------------------------
+# File Structure: Table Directory: Extraneous Data
+# ------------------------------------------------
+
+# between tables
+
+writeTest(
+    identifier="directory-extraneous-data-001",
+    title=makeTableDataExtraneousData1Title,
+    description=makeTableDataExtraneousData1Description,
+    credits=makeTableDataExtraneousData1Credits,
+    valid=False,
+    specLink="#conform-noextraneous",
+    data=makeTableDataExtraneousData1()
 )
 
 # -------------------------------------------
