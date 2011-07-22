@@ -677,14 +677,9 @@ def makeDataBlockOrdering3():
     header["metaOffset"] = header["privOffset"] + privateLength
     # remove padding
     assert calcPaddingLength(privateLength) == 0
-    metaPaddingLength = calcPaddingLength(header["metaLength"])
-    if metaPaddingLength:
-        header["length"] -= metaPaddingLength
-        metadata, compMetadata = metadata
-        compMetadata = compMetadata[:-metaPaddingLength]
-        metadata = (metadata, compMetadata)
+    header["length"] -= calcPaddingLength(header["metaLength"])
     # pack
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData) + packTestMetadata(metadata)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData) + metadata[1]
     # done
     return data
 
