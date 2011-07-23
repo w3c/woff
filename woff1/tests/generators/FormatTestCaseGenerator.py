@@ -494,7 +494,7 @@ writeTest(
 # -------------------------------------------------
 # File Structure: Data Blocks: Metadata Not Present
 # -------------------------------------------------
-	 
+
 # metadata length is not 0 but the offset = 0
 
 def makeMetadataZeroData1():
@@ -517,10 +517,10 @@ writeTest(
 # metadata length = zero but the offset > zero
 
 def makeMetadataZeroData2():
-    header, directory, tableData, metadata = defaultTestData(metadata=testDataWOFFMetadata)
+    header, directory, tableData = defaultTestData()
     header["metaLength"] = 0
     header["metaOffset"] = header["length"]
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestMetadata(metadata)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
     return data
 
 writeTest(
