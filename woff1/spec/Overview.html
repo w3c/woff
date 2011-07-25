@@ -693,7 +693,7 @@ there SHOULD be no additional padding after the end of the block</span>.</p>
 it is invalid</span>.
 <span class="conform ff" id="conform-metadata-decompressible">It is also invalid if it cannot be decompressed
 by zlib's <tt>uncompress()</tt> function (or equivalent)</span>,
-or <span class="conform ff" id="conform-metaOrigLength"> if the length of the decompressed data does not match the <tt>metaOrigLength</tt> value specified in the WOFF header.
+or <span class="conform ff" id="conform-metaOrigLength"> if the length of the decompressed data does not match the <tt>metaOrigLength</tt> value specified in the WOFF header.</span>
 Thus, valid metadata is well formed, conforms to the schema below,
 and is stored in compressed form in the WOFF file.
 <span class="conform ua" id="conform-invalid-mustignore">
@@ -718,7 +718,7 @@ New content SHOULD instead use <tt>xml:lang</tt>.</p>
 BCP47 [<cite><a href="#ref-BCP47">BCP47</a></cite>].
 A user agent displaying metadata SHOULD choose a preferred language/locale to display from among those available, following BCP47.</p>
 
-<span class="conform ua" id="conform-langselect">The user agent SHOULD choose which of the available <tt>text</tt>
+<p><span class="conform ua" id="conform-langselect">The user agent SHOULD choose which of the available <tt>text</tt>
 elements to display as follows</span>:</p>
 <ol>
 <li>If a <tt>text</tt> element is available that matches the user's
@@ -988,7 +988,7 @@ in an <tt>extension</tt> element.
 that displays metadata SHOULD choose the name with most the appropriate language
 from among those available for each named <tt>extension</tt> element.
 This child element is OPTIONAL in <tt>extension</tt> elements;
-anonymous extension elements are also permissible.</p>
+anonymous extension elements are also permissible.</span></p>
 <p>One or more <tt>name</tt> elements are also used to provide
 a human-friendly name for a specific extended metadata item. A user agent
 that displays metadata SHOULD choose the name with the most appropriate language from
@@ -1056,6 +1056,7 @@ This attribute is OPTIONAL.</td></tr>
 <tr><td>span</td><td>Contains an inline run of text.</td></tr>
 </table>
 </dd>
+    </dl>
 
 <dl class="xmlspec">
 <dt><tt>div</tt> element</dt>
@@ -1297,7 +1298,7 @@ which, when viewed as plain text, has paragraph formatting.</p>
 </pre>
 </div>
 
-<p>Using the <tt>div</tt> element, this could become:
+<p>Using the <tt>div</tt> element, this could become:</p>
 
 <div class="metadata">
 <pre>
@@ -1458,10 +1459,10 @@ for elements, clarified their required parents.</li>
 <li>Added this Changes appendix.</li>
 <li>Language attributes now reference BCP47, and use <tt>xml:lang</tt>.</li>
 <li>Added optional <tt>div</tt> and <tt>span</tt> elements that can be used to provide structure within metadata text.</li>
-<li>Added <tt>dir</tt> and <tt>class</tt> attributes to metadata elements.</tt>
+<li>Added <tt>dir</tt> and <tt>class</tt> attributes to metadata elements.</li>
 <li>Removed summary of conformance requirements (duplicated material from the main body of the specification).</li>
 <li>Somewhat rearranged and clarified description of the metadata format.</li>
-<li>Noted that same-origin requirements are at risk, in the expectation that CSS3 Fonts will handle this instead.</tt>
+<li>Noted that same-origin requirements are at risk, in the expectation that CSS3 Fonts will handle this instead.</li>
 <li>Mention the need to compute the binary search fields when reconstructing an sfnt header.</li>
 <li>Require that metadata be encoded in UTF-8, rather than allowing either UTF-8 or UTF-16.</li>
 </ul>
