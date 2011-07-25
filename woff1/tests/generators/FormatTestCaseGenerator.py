@@ -559,10 +559,10 @@ writeTest(
 # private data length = 0 but the offset > 0
 
 def makePrivateDataZeroData2():
-    header, directory, tableData, privateData = defaultTestData(privateData=testDataWOFFPrivateData)
+    header, directory, tableData = defaultTestData()
     header["privLength"] = 0
     header["privOffset"] = header["length"]
-    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData) + packTestPrivateData(privateData)
+    data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
     return data
 
 writeTest(
