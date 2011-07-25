@@ -467,6 +467,8 @@ makeTableDataByteRange1Credits = [dict(title="Tal Leming", role="author", link="
 def makeTableDataByteRange2():
     header, directory, tableData = defaultTestData()
     directory[-1]["compLength"] += 4
+    directory[-1]["origLength"] += 4
+    header["totalSfntSize"] += 4
     data = packTestHeader(header) + packTestDirectory(directory) + packTestTableData(directory, tableData)
     return data
 
