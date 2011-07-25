@@ -484,10 +484,12 @@ def makeTableDataByteRange3():
     entry = directory[-1]
     entryLength = entry["compLength"] + calcPaddingLength(entry["compLength"])
     compData = tableData[entry["tag"]][1]
+    # move the header offset
+    header["metaOffset"] -= entryLength
+    # update the header
+    header["length"] -= entryLength
     # make the bogus offset
     entry["offset"] = header["metaOffset"] + 4
-    # remove the length for the table from the total length
-    header["length"] -= entryLength
     # pack the header and directory
     data = packTestHeader(header) + packTestDirectory(directory)
     # pad and combine all tables
