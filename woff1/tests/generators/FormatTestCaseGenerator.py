@@ -1198,7 +1198,27 @@ writeMetadataTest(
 
 writeMetadataTest(
     identifier="metadata-encoding-003",
-    specLink="#conform-metaOrigLength",
+    valid=False,
+)
+
+# no encoding
+
+writeMetadataTest(
+    identifier="metadata-encoding-004",
+    valid=True,
+)
+
+# UTF-8 BOM
+
+writeMetadataTest(
+    identifier="metadata-encoding-005",
+    valid=True,
+)
+
+# UTF-16 BOM
+
+writeMetadataTest(
+    identifier="metadata-encoding-006",
     valid=False,
 )
 

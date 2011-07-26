@@ -1095,6 +1095,28 @@ writeMetadataSchemaValidityTest(
     metadataIsValid=False,
 )
 
+# no encoding
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-encoding-004",
+    metadataIsValid=True,
+)
+
+# UTF-8 BOM
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-encoding-005",
+    metadataIsValid=True,
+)
+
+# UTF-16 BOM
+
+writeMetadataSchemaValidityTest(
+    identifier="metadatadisplay-encoding-006",
+    metadataDisplaySpecLink="#conform-invalid-mustignore",
+    metadataIsValid=False,
+)
+
 # -------------------------------------------
 # Metadata Display: Schema Validity: metadata
 # -------------------------------------------

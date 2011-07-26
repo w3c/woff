@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: Format Test Suite (300 tests)</h1>
+		<h1>WOFF: Format Test Suite (303 tests)</h1>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
 		<div class="testCase" id="valid-001">
@@ -722,7 +722,7 @@
 		</div>
 		<div class="testCase" id="metadata-encoding-002">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-encoding-002">metadata-encoding-002</a>: Invalid Encoding 1</h3>
+				<h3><a href="#metadata-encoding-002">metadata-encoding-002</a>: Invalid Encoding: UTF-16</h3>
 				<p>The xml encoding is set to UTF-16.</p>
 			</div>
 			<div class="testCaseDetails">
@@ -732,12 +732,42 @@
 		</div>
 		<div class="testCase" id="metadata-encoding-003">
 			<div class="testCaseOverview">
-				<h3><a href="#metadata-encoding-003">metadata-encoding-003</a>: Invalid Encoding 2</h3>
+				<h3><a href="#metadata-encoding-003">metadata-encoding-003</a>: Invalid Encoding: ISO-8859-1</h3>
 				<p>The xml encoding is set to ISO-8859-1.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="metadata-encoding-003-validity">No</span></p>
-					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metaOrigLength">Documentation</a></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-encoding-004">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-encoding-004">metadata-encoding-004</a>: Implied UTF-8</h3>
+				<p>The xml encoding is not declared and there is no BOM.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-encoding-004-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-encoding-005">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-encoding-005">metadata-encoding-005</a>: UTF-8 BOM</h3>
+				<p>The xml encoding is not declared and there is a UTF-8 BOM.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-encoding-005-validity">Yes</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
+			</div>
+		</div>
+		<div class="testCase" id="metadata-encoding-006">
+			<div class="testCaseOverview">
+				<h3><a href="#metadata-encoding-006">metadata-encoding-006</a>: Invalid Encoding: UTF-8 BOM</h3>
+				<p>The xml encoding is not declared and there is a UTF-16 BOM.</p>
+			</div>
+			<div class="testCaseDetails">
+					<p>Valid: <span id="metadata-encoding-006-validity">No</span></p>
+					<p><a href="http://dev.w3.org/webfonts/WOFF/spec/#Metadata">Documentation</a></p>
 			</div>
 		</div>
 		<div class="testCase" id="metadata-schema-metadata-001">

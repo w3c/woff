@@ -1,5 +1,6 @@
 import os
 import zlib
+import codecs
 from copy import deepcopy
 from fontTools.ttLib.sfnt import sfntDirectoryEntrySize
 from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData,\
@@ -964,7 +965,9 @@ metadataEncoding2Metadata = """
     <uniqueid id="org.w3.webfonts.wofftest" />
 </metadata>
 """.strip().replace("    ", "\t").encode("utf-16")
-metadataEncoding2Title = "Invalid Encoding 1"
+if metadataEncoding2Metadata.startswith(codecs.BOM_UTF16):
+    metadataEncoding2Metadata = metadataEncoding2Metadata.replace(codecs.BOM_UTF16, "")
+metadataEncoding2Title = "Invalid Encoding: UTF-16"
 metadataEncoding2Description = "The xml encoding is set to UTF-16."
 metadataEncoding2Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
@@ -974,9 +977,46 @@ metadataEncoding3Metadata = """
     <uniqueid id="org.w3.webfonts.wofftest" />
 </metadata>
 """
-metadataEncoding3Title = "Invalid Encoding 2"
+metadataEncoding3Title = "Invalid Encoding: ISO-8859-1"
 metadataEncoding3Description = "The xml encoding is set to ISO-8859-1."
 metadataEncoding3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# no encoding
+
+metadataEncoding4Metadata = """
+<?xml version="1.0"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+"""
+metadataEncoding4Title = "Implied UTF-8"
+metadataEncoding4Description = "The xml encoding is not declared and there is no BOM."
+metadataEncoding4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# UTF-8 BOM
+
+metadataEncoding5Metadata = """
+%s<?xml version="1.0"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+""" % codecs.BOM_UTF8
+metadataEncoding5Title = "UTF-8 BOM"
+metadataEncoding5Description = "The xml encoding is not declared and there is a UTF-8 BOM."
+metadataEncoding5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
+
+# UTF-16 BOM
+
+metadataEncoding6Metadata = """
+<?xml version="1.0"?>
+<metadata version="1.0">
+    <uniqueid id="org.w3.webfonts.wofftest" />
+</metadata>
+""".strip().replace("    ", "\t").encode("utf-16")
+assert metadataEncoding6Metadata.startswith(codecs.BOM_UTF16)
+metadataEncoding6Title = "Invalid Encoding: UTF-8 BOM"
+metadataEncoding6Description = "The xml encoding is not declared and there is a UTF-16 BOM."
+metadataEncoding6Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # -------------------------------------------
 # Metadata Display: Schema Validity: metadata
