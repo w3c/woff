@@ -398,7 +398,7 @@ def makeInvalidBlocks1():
 writeTest(
     identifier="invalidsfnt-blocks-001",
     title="Table Data Blocks Overlap",
-    description="Two table blocks overlap. This will cause checksums to be incorrect.",
+    description="Two table blocks overlap.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#conform-incorrect-reject",
     data=makeInvalidBlocks1()
