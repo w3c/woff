@@ -297,7 +297,7 @@
 		<div class="testCase" id="blocks-metadata-absent-001">
 			<div class="testCaseOverview">
 				<h3><a href="#blocks-metadata-absent-001">blocks-metadata-absent-001</a>: Metadata Length Not Set to Zero</h3>
-				<p>The metadata length is set to one but the offset is zero. This test case also fails for other reasons: the offset/length creates an overlap with the header block, the metadata won't decompress.</p>
+				<p>The metadata length is set to one but the offset is zero.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-metadata-absent-001-validity">No</span></p>
@@ -317,7 +317,7 @@
 		<div class="testCase" id="blocks-private-absent-001">
 			<div class="testCaseOverview">
 				<h3><a href="#blocks-private-absent-001">blocks-private-absent-001</a>: Private Data Length Not Set to Zero</h3>
-				<p>The private data length is set to one but the offset is zero. This test case also fails for another reason: the offset/length creates an overlap with the header block.</p>
+				<p>The private data length is set to one but the offset is zero.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-private-absent-001-validity">No</span></p>
@@ -429,7 +429,7 @@
 		<div class="testCase" id="directory-overlaps-001">
 			<div class="testCaseOverview">
 				<h3><a href="#directory-overlaps-001">directory-overlaps-001</a>: Font Table Data Offset Past End of File</h3>
-				<p>The offset to the data block for the final table data is four bytes beyond the end of the file.</p>
+				<p>The offset to the final table is four bytes beyond the end of the file.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="directory-overlaps-001-validity">No</span></p>

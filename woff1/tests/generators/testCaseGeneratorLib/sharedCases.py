@@ -460,7 +460,7 @@ def makeTableDataByteRange1():
     return data
 
 makeTableDataByteRange1Title = "Font Table Data Offset Past End of File"
-makeTableDataByteRange1Description = "The offset to the data block for the final table data is four bytes beyond the end of the file."
+makeTableDataByteRange1Description = "The offset to the final table is four bytes beyond the end of the file."
 makeTableDataByteRange1Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # offset + length goes past the end of the file

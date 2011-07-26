@@ -507,7 +507,7 @@ def makeMetadataZeroData1():
 writeTest(
     identifier="blocks-metadata-absent-001",
     title="Metadata Length Not Set to Zero",
-    description="The metadata length is set to one but the offset is zero. This test case also fails for other reasons: the offset/length creates an overlap with the header block, the metadata won't decompress.",
+    description="The metadata length is set to one but the offset is zero.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     valid=False,
     specLink="#conform-zerometaprivate",
@@ -549,7 +549,7 @@ def makePrivateDataZeroData1():
 writeTest(
     identifier="blocks-private-absent-001",
     title="Private Data Length Not Set to Zero",
-    description="The private data length is set to one but the offset is zero. This test case also fails for another reason: the offset/length creates an overlap with the header block.",
+    description="The private data length is set to one but the offset is zero.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     valid=False,
     specLink="#conform-zerometaprivate",
