@@ -387,7 +387,7 @@
 		<div class="testCase" id="blocks-private-001">
 			<div class="testCaseOverview">
 				<h3><a href="#blocks-private-001">blocks-private-001</a>: Private Data Does Not Begin of 4-Byte Boundary</h3>
-				<p>The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.</p>
+				<p>The private data does not begin on a four byte boundary because the metadata is not padded.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="blocks-private-001-validity">No</span></p>
@@ -449,7 +449,7 @@
 		<div class="testCase" id="directory-overlaps-003">
 			<div class="testCaseOverview">
 				<h3><a href="#directory-overlaps-003">directory-overlaps-003</a>: Font Table Data Overlaps Metadata</h3>
-				<p>The final table starts four bytes after the start of the metadata. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length) will not match the stored length in the header.</p>
+				<p>The final table starts four bytes after the start of the metadata.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="directory-overlaps-003-validity">No</span></p>
@@ -459,7 +459,7 @@
 		<div class="testCase" id="directory-overlaps-004">
 			<div class="testCaseOverview">
 				<h3><a href="#directory-overlaps-004">directory-overlaps-004</a>: Font Table Data Overlaps Private Data</h3>
-				<p>The final table starts four bytes after the start of the private data. This will fail for another reason: the calculated length (header length + directory length + entry lengths + private data length) will not match the stored length in the header.</p>
+				<p>The final table starts four bytes after the start of the private data.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="directory-overlaps-004-validity">No</span></p>
@@ -469,7 +469,7 @@
 		<div class="testCase" id="directory-overlaps-005">
 			<div class="testCaseOverview">
 				<h3><a href="#directory-overlaps-005">directory-overlaps-005</a>: Two Table Data Blocks Overlap</h3>
-				<p>The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header.</p>
+				<p>The final table starts four bytes before the end of the previous table.</p>
 			</div>
 			<div class="testCaseDetails">
 					<p>Valid: <span id="directory-overlaps-005-validity">No</span></p>

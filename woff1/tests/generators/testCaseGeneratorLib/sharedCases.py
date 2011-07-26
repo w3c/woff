@@ -507,7 +507,7 @@ def makeTableDataByteRange3():
     return data
 
 makeTableDataByteRange3Title = "Font Table Data Overlaps Metadata"
-makeTableDataByteRange3Description = "The final table starts four bytes after the start of the metadata. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length) will not match the stored length in the header."
+makeTableDataByteRange3Description = "The final table starts four bytes after the start of the metadata."
 makeTableDataByteRange3Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # overlaps private data
@@ -540,7 +540,7 @@ def makeTableDataByteRange4():
     return data
 
 makeTableDataByteRange4Title = "Font Table Data Overlaps Private Data"
-makeTableDataByteRange4Description = "The final table starts four bytes after the start of the private data. This will fail for another reason: the calculated length (header length + directory length + entry lengths + private data length) will not match the stored length in the header."
+makeTableDataByteRange4Description = "The final table starts four bytes after the start of the private data."
 makeTableDataByteRange4Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # two tables overlap
@@ -569,7 +569,7 @@ def makeTableDataByteRange5():
     return data
 
 makeTableDataByteRange5Title = "Two Table Data Blocks Overlap"
-makeTableDataByteRange5Description = "The final table starts four bytes before the end of the previous table. This will fail for another reason: the calculated length (header length + directory length + entry lengths) will not match the stored length in the header."
+makeTableDataByteRange5Description = "The final table starts four bytes before the end of the previous table."
 makeTableDataByteRange5Credits = [dict(title="Tal Leming", role="author", link="http://typesupply.com")]
 
 # ------------------------------------------------

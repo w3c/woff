@@ -722,7 +722,7 @@ def makeDataBlockPrivateData1():
 writeTest(
     identifier="blocks-private-001",
     title="Private Data Does Not Begin of 4-Byte Boundary",
-    description="The private data does not begin on a four byte boundary because the metadata is not padded. This will fail for another reason: the calculated length (header length + directory length + entry lengths + metadata length + private data length) will not match the stored length in the header.",
+    description="The private data does not begin on a four byte boundary because the metadata is not padded.",
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     valid=False,
     specLink="#conform-private-padalign",
