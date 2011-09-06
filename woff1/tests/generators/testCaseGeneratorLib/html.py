@@ -301,6 +301,10 @@ def generateFormatIndexHTML(directory=None, testCases=[]):
         "\t<body>",
         "\t\t<h1>WOFF: Format Test Suite (%d tests)</h1>" % testCount,
     ]
+    # add a download note
+    html.append("\t\t<div class=\"mainNote\">")
+    html.append("\t\t\tThe files used in these test can be obtained <a href=\"/\">here</a>.")
+    html.append("\t\t</div>")
     # add the test groups
     for group in testCases:
         title = group["title"]
@@ -370,6 +374,10 @@ def generateAuthoringToolIndexHTML(directory=None, testCases=[], note=None):
         "\t<body>",
         "\t\t<h1>WOFF: Authoring Tool Test Suite (%d tests)</h1>" % testCount,
     ]
+    # add a download note
+    html.append("\t\t<div class=\"mainNote\">")
+    html.append("\t\t\tThe files used in these test can be obtained <a href=\"/\">here</a>.")
+    html.append("\t\t</div>")
     # add the note
     if note:
         html.append("\t\t<div class=\"mainNote\">")
