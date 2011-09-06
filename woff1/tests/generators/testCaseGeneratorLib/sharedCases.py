@@ -1,3 +1,7 @@
+"""
+Test cases that can be shared between two or more suites.
+"""
+
 import os
 import zlib
 import codecs

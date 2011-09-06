@@ -1,3 +1,22 @@
+"""
+This script generates the authoring tool test cases. It will create a directory
+one level up from the directory containing this script called "AuthoringTool".
+That directory will have the structure:
+
+    /Format
+        README.txt - information about how the tests were generated and how they should be modified
+        /Tests
+            testcaseindex.xht - index of all test cases
+            test-case-name-number.otf/ttf - individual SFNT test case
+            /resources
+                index.css - index CSS file
+
+Within this script, each test case is generated with a call to the
+writeTest function. In this, SFNT data must be passed along with
+details about the data. This function will generate the SFNT
+and register the case in the suite index.
+"""
+
 import os
 import shutil
 import glob
@@ -102,7 +121,37 @@ registeredIdentifiers = set()
 registeredTitles = set()
 registeredDescriptions = set()
 
-def writeTest(identifier, title, description, data, specLink=None, credits=[], shouldConvert=False, flavor="cff"):
+def writeTest(identifier, title, description, data, specLink=None, credits=[], shouldConvert=False, flavor="CFF"):
+    """
+    This function generates all of the files needed by a test case and
+    registers the case with the suite. The arguments:
+
+    identifier: The identifier for the test case. The identifier must be
+    a - separated sequence of group name (from the groupDefinitions
+    listed above), test case description (arbitrary length) and a number
+    to make the name unique. The number should be zero padded to a length
+    of three characters (ie "001" instead of "1").
+
+    title: A thorough, but not too long, title for the test case.
+
+    description: A detailed statement about what the test case is proving.
+
+    data: The complete binary data for the SFNT.
+
+    specLink: The anchor in the WOFF spec that the test case is testing.
+
+    credits: A list of dictionaries defining the credits for the test case. The
+    dictionaries must have this form:
+
+        title="Name of the autor or reviewer",
+        role="author or reviewer",
+        link="mailto:email or http://contactpage"
+
+    shouldConvert: A boolean indicating if the SFNT is valid enough for
+    conversion to WOFF.
+
+    flavor: The flavor of the WOFF data. The options are CFF or TTF.
+    """
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     assert title not in registeredTitles, "Duplicate title! %s" % title
@@ -118,7 +167,7 @@ def writeTest(identifier, title, description, data, specLink=None, credits=[], s
 
     # generate the SFNT
     sfntPath = os.path.join(authoringToolTestDirectory, identifier)
-    if flavor == "cff":
+    if flavor == "CFF":
         sfntPath += ".otf"
     else:
         sfntPath += ".ttf"
@@ -162,7 +211,7 @@ writeTest(
 # TTF
 
 def makeValidSFNT2():
-    header, directory, tableData = defaultSFNTTestData(flavor="ttf")
+    header, directory, tableData = defaultSFNTTestData(flavor="TTF")
     data = packSFNT(header, directory, tableData)
     return data
 
@@ -174,7 +223,7 @@ writeTest(
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#conform-checksumvalidate",
     data=makeValidSFNT2(),
-    flavor="ttf"
+    flavor="TTF"
 )
 
 # -----------------
@@ -680,7 +729,7 @@ writeTest(
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#conform-identical",
     data=makeValidSFNT2(),
-    flavor="ttf"
+    flavor="TTF"
 )
 
 # add bogus DSIG
@@ -766,7 +815,7 @@ writeTest(
 # unusual order in CFF
 
 def makeBitwiseIdenticalNotRecommendedTableOrder1():
-    header, directory, tableData = defaultSFNTTestData(flavor="ttf")
+    header, directory, tableData = defaultSFNTTestData(flavor="TTF")
     # make the new order
     newOrder = "CFF ,maxp,hhea,name,post,cmap,OS/2,head".split(",")
     newOrder = [tag for tag in newOrder if tag in tableData]
@@ -831,7 +880,7 @@ writeTest(
     credits=[dict(title="Tal Leming", role="author", link="http://typesupply.com")],
     specLink="#conform-identical",
     data=makeBitwiseIdenticalNotRecommendedTableOrder2(),
-    flavor="ttf"
+    flavor="TTF"
 )
 
 # ------------------

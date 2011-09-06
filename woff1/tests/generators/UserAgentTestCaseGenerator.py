@@ -1,30 +1,28 @@
 """
-This script generates the User Agent test cases.
-Each test is set up in the following way:
+This script generates the User Agent test cases. It will create a directory
+one level up from the directory containing this script called "UserAgent".
+That directory will have the structure:
 
-# Create the WOFF data to test.
-def woffDataGeneratingFunction():
-    return data
+    /UserAgent
+        README.txt - information about how the tests were generated and how they should be modified
+        /FontsToInstall
+            fonts that must be installed locally
+        /Tests
+            testcaseindex.xht - index of all test cases
+            test-case-name-number.xht - individual test case
+            test-case-name-number-ref - reference that uses locally installed fonts for rendering comparison
+            /resources
+                index.css - index CSS file
+                test-case-name-number.woff - individual WOFF test case
 
-# Register and write the test case.
-writeFileStructureTest(
-    identifier="group-description-###",
-    title="Descriptive Title",
-    assertion="Details about what makes the WOFF valid/invalid.",
-    credits=[
-        dict(
-            title="name of individual or organization",
-            role="author, reviewer, etc.",
-            link="email or contact page"
-            ),
-            # More credits as needed
-    ],
-    shouldDisplaySFNT=True,
-    data=woffDataGeneratingFunction()
-)
+The individual test cases follow the CSS Test Format
+(http://wiki.csswg.org/test/css2.1/format).
 
-These will generate a WOFF and the appropriate test case files for User Agents
-following the CSS Test Format (http://wiki.csswg.org/test/css2.1/format).
+Within this script, each test case is generated with a call to the
+writeFileStructureTest function or the writeMetadataSchemaValidityTest
+function. In these, WOFF data must be passed along with details about
+the data. This function will generate the WOFF and HTML files and
+it will register the case in the suite index.
 """
 
 import os
@@ -96,7 +94,6 @@ if os.path.exists(destPath):
     os.remove(destPath)
 shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 
-
 # ---------------
 # Test Case Index
 # ---------------
@@ -138,6 +135,53 @@ def writeFileStructureTest(identifier, flavor="CFF",
         data=None, metadataToDisplay=None,
         extraSFNTNotes=[], extraMetadataNotes=[]
         ):
+    """
+    This function generates all of the files needed by a test case and
+    registers the case with the suite. The arguments:
+
+    identifier: The identifier for the test case. The identifier must be
+    a - separated sequence of group name (from the groupDefinitions
+    listed above), test case description (arbitrary length) and a number
+    to make the name unique. The number should be zero padded to a length
+    of three characters (ie "001" instead of "1").
+
+    flavor: The flavor of the WOFF data. The options are CFF or TTF.
+
+    title: A thorough, but not too long, title for the test case.
+
+    assertion: A detailed statement about what the test case is proving.
+
+    sfntDisplaySpecLink: The anchor in the WOFF spec that the test case
+    is testing. This anchor should only reference the SFNT display conformance.
+
+    metadataDisplaySpecLink: The anchor in the WOFF spec that the test case
+    is testing. This anchor should only reference the metadata display conformance.
+
+    credits: A list of dictionaries defining the credits for the test case. The
+    dictionaries must have this form:
+
+        title="Name of the autor or reviewer",
+        role="author or reviewer",
+        link="mailto:email or http://contactpage"
+
+    flags: A list of requirement flags. The options are defined in the
+    CSS Test Format specification.
+
+    shouldDisplaySFNT: A boolean indicating if the SFNT should be used for display or not.
+
+    metadataIsValid: A boolean indicating if the metadata is valid.
+
+    data: The complete binary data for the WOFF.
+
+    metadataToDisplay: A string of metadata to display in the HTML. This should
+    be set when the metadata is valid.
+
+    extraSFNTNotes: Additional notes about the SFNT data that should be
+    displayed in the HTML.
+
+    extraMetadataNotes: Additional notes about the metadata that should be
+    displayed in the HTML.
+    """
     print "Compiling %s..." % identifier
     assert identifier not in registeredIdentifiers, "Duplicate identifier! %s" % identifier
     assert title not in registeredTitles, "Duplicate title! %s" % title
@@ -193,10 +237,19 @@ def writeFileStructureTest(identifier, flavor="CFF",
         )
     )
 
-def writeMetadataSchemaValidityTest(identifier, title=None, assertion=None, credits=[], sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, metadataIsValid=None, metadata=None):
+def writeMetadataSchemaValidityTest(identifier,
+    title=None,
+    assertion=None,
+    credits=[],
+    sfntDisplaySpecLink=None,
+    metadataDisplaySpecLink=None,
+    metadataIsValid=None,
+    metadata=None):
     """
-    This is a convenience functon that eliminates the need to make a complete
-    WOFF when only the metadata is being tested.
+    This is a convenience functon that eliminates the need to
+    make a complete WOFF when only the metadata is being tested.
+    Refer to the writeFileStructureTest documentation for
+    the meaning of the various arguments.
     """
     # dynamically get some data from the shared cases as needed
     if title is None:
