@@ -19,7 +19,6 @@ testCSS = """
 	src: url("resources/%s.woff") format("woff");
 }
 body {
-	font-family;
 	font-size: 20px;
 }
 pre {
@@ -34,7 +33,6 @@ pre {
 
 refCSS = """
 body {
-	font-family;
 	font-size: 20px;
 }
 pre {
