@@ -1,10 +1,2 @@
-blocks-extraneous-data-001		blocks-extraneous-data-001	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes between the table directory and the table data.
-blocks-extraneous-data-002		blocks-extraneous-data-002	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes after the table data block and there is no metadata or private data.
-blocks-extraneous-data-003		blocks-extraneous-data-003	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes between the table data and the metadata.
-blocks-extraneous-data-004		blocks-extraneous-data-004	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes between the table data and the private data.
-blocks-extraneous-data-005		blocks-extraneous-data-005	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes between the metadata and the private data.
-blocks-extraneous-data-006		blocks-extraneous-data-006	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes after the metadata and there is no private data.
-blocks-extraneous-data-007		blocks-extraneous-data-007	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes after the private data.
-blocks-overlap-001		blocks-overlap-001	font	 #conform-overlap-reject 	 DUMMY 	 DUMMY 	 The metadata offset is four bytes before the end of the table data.
-blocks-overlap-002		blocks-overlap-002	font	 #conform-overlap-reject 	 DUMMY 	 DUMMY 	 The private data offset is four bytes before the end of the table data.
-blocks-overlap-003		blocks-overlap-003	font	 #conform-overlap-reject 	 DUMMY 	 DUMMY 	 The private data offset is four bytes before the end of the metadata.
+blocks-extraneous-data-001		Extraneous Data Between Directory and Table Data	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes between the table directory and the table data.
+blocks-extraneous-data-002		Extraneous Data After Table Data	font	 #conform-extraneous-reject 	 DUMMY 	 DUMMY 	 There are four null bytes after the table data block and there is no metadata or private data.
