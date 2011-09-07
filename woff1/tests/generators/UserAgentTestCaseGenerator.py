@@ -193,6 +193,8 @@ def writeFileStructureTest(identifier, flavor="CFF",
     if sfntDisplaySpecLink is None:
         sfntDisplaySpecLink = ""
     sfntDisplaySpecLink = specificationURL + sfntDisplaySpecLink
+    if metadataDisplaySpecLink is not None:
+        metadataDisplaySpecLink = specificationURL + metadataDisplaySpecLink
     flags = list(flags)
     flags += ["font"] # fonts must be installed for all of these tests
 
