@@ -105,24 +105,27 @@ def _generateSFNTDisplayTestHTML(
     s = "\t\t<p><a href=\"../FontsToInstall\">Test fonts</a> must be installed for this test. The WOFF being tested will be loaded over the network so please wait until the download is complete before determing the success of this test.</p>"
     html.append(s)
     ## note
-    s = "\t\t<p>Test passes if the word PASS appears below.</p>"
+    if metadataIsValid is None:
+        s = "\t\t<p>Test passes if the word PASS appears below.</p>"
+    else:
+        if not metadataIsValid:
+            s = "\t\t<p>If the UA does not display WOFF metadata, the test passes if the word PASS appears below.</p>\n"
+            s += "\t\t<p>The Extended Metadata Block is not valid and must not be displayed. If the UA does display it, the test fails.</p>"
+        else:
+            s = "\t\t<p>Test passes if the word PASS appears below.</p>\n"
+            s += "\t\t<p>The Extended Metadata Block is valid and may be displayed to the user upon request.</p>"
     html.append(s)
+    # extra notes
     for note in extraSFNTNotes:
+        s = "\t\t<p>%s</p>" % cgi.escape(note)
+        html.append(s)
+    for note in extraMetadataNotes:
         s = "\t\t<p>%s</p>" % cgi.escape(note)
         html.append(s)
     ## test case
     s = "\t\t<div class=\"test\">%s</div>" % bodyCharacter
     html.append(s)
-    ## show metadata statement
-    if metadataIsValid is not None:
-        if metadataIsValid:
-            s = "\t\t<p>The Extended Metadata Block is valid and may be displayed to the user upon request.</p>"
-        else:
-            s = "\t\t<p>The Extended Metadata Block is not valid and must not be displayed.</p>"
-        html.append(s)
-    for note in extraMetadataNotes:
-        s = "\t\t<p>%s</p>" % cgi.escape(note)
-        html.append(s)
+    ## show metadata
     if metadataToDisplay:
         s = "\t\t<p>The XML contained in the Extended Metadata Block is below.</p>"
         html.append(s)
