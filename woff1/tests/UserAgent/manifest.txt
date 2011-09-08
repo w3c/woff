@@ -1,11 +1,11 @@
-valid-001	valid-001-ref	Valid WOFF 1	font		DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with no metadata and no private data
-valid-002	valid-002-ref	Valid WOFF 2	font	#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with metadata
-valid-003	valid-003-ref	Valid WOFF 3	font		DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with private data
-valid-004	valid-004-ref	Valid WOFF 4	font	#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with metadata and private data
-valid-005	valid-005-ref	Valid WOFF 5	font		DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with no metadata and no private data
-valid-006	valid-006-ref	Valid WOFF 6	font	#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with metadata
-valid-007	valid-007-ref	Valid WOFF 7	font		DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with private data
-valid-008	valid-008-ref	Valid WOFF 8	font	#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with metadata and private data
+valid-001	valid-001-ref	Valid WOFF 1	font	#conform-metadata-noeffect,#conform-private-noeffect	DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with no metadata and no private data
+valid-002	valid-002-ref	Valid WOFF 2	font	#conform-metadata-noeffect,#conform-private-noeffect,#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with metadata
+valid-003	valid-003-ref	Valid WOFF 3	font	#conform-metadata-noeffect,#conform-private-noeffect	DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with private data
+valid-004	valid-004-ref	Valid WOFF 4	font	#conform-metadata-noeffect,#conform-private-noeffect,#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid CFF flavored WOFF with metadata and private data
+valid-005	valid-005-ref	Valid WOFF 5	font	#conform-metadata-noeffect,#conform-private-noeffect	DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with no metadata and no private data
+valid-006	valid-006-ref	Valid WOFF 6	font	#conform-metadata-noeffect,#conform-private-noeffect,#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with metadata
+valid-007	valid-007-ref	Valid WOFF 7	font	#conform-metadata-noeffect,#conform-private-noeffect	DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with private data
+valid-008	valid-008-ref	Valid WOFF 8	font	#conform-metadata-noeffect,#conform-private-noeffect,#conform-metadata-maydisplay	DUMMY	Tal Leming <http://typesupply.com>	Valid TTF flavored WOFF with metadata and private data
 header-signature-001	header-signature-001-ref	Header Signature Invalid Value	font	#conform-nomagicnumber-reject	DUMMY	Tal Leming <http://typesupply.com>	The signature field contains XXXX instead of wOFF.
 header-length-001	header-length-001-ref	Header Length Too Short	font	#WOFFHeader	DUMMY	Tal Leming <http://typesupply.com>	The length field contains a value that is four bytes shorter than the actual data.
 header-length-002	header-length-002-ref	Header Length Too Long	font	#WOFFHeader	DUMMY	Tal Leming <http://typesupply.com>	The length field contains a value that is four bytes longer than the actual data.

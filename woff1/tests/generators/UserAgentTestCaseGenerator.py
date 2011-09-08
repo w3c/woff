@@ -151,8 +151,9 @@ def writeFileStructureTest(identifier, flavor="CFF",
 
     assertion: A detailed statement about what the test case is proving.
 
-    sfntDisplaySpecLink: The anchor in the WOFF spec that the test case
-    is testing. This anchor should only reference the SFNT display conformance.
+    sfntDisplaySpecLink: A space separated list of anchors in the WOFF spec
+    that the test case is testing. This anchor should only reference the
+    SFNT display conformance.
 
     metadataDisplaySpecLink: The anchor in the WOFF spec that the test case
     is testing. This anchor should only reference the metadata display conformance.
@@ -192,7 +193,7 @@ def writeFileStructureTest(identifier, flavor="CFF",
 
     if sfntDisplaySpecLink is None:
         sfntDisplaySpecLink = ""
-    sfntDisplaySpecLink = specificationURL + sfntDisplaySpecLink
+    sfntDisplaySpecLink = [specificationURL + i for i in sfntDisplaySpecLink.split(" ")]
     if metadataDisplaySpecLink is not None:
         metadataDisplaySpecLink = specificationURL + metadataDisplaySpecLink
     flags = list(flags)
@@ -310,6 +311,7 @@ writeFileStructureTest(
     assertion=makeValidWOFF1Description,
     credits=makeValidWOFF1Credits,
     shouldDisplaySFNT=True,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     data=makeValidWOFF1()
 )
 
@@ -320,6 +322,7 @@ writeFileStructureTest(
     credits=makeValidWOFF2Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     data=makeValidWOFF2(),
     metadataToDisplay=testDataWOFFMetadata,
     metadataDisplaySpecLink="#conform-metadata-maydisplay"
@@ -330,6 +333,7 @@ writeFileStructureTest(
     title=makeValidWOFF3Title,
     assertion=makeValidWOFF3Description,
     credits=makeValidWOFF3Credits,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     shouldDisplaySFNT=True,
     data=makeValidWOFF3()
 )
@@ -341,6 +345,7 @@ writeFileStructureTest(
     credits=makeValidWOFF4Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     data=makeValidWOFF4(),
     metadataToDisplay=testDataWOFFMetadata,
     metadataDisplaySpecLink="#conform-metadata-maydisplay"
@@ -354,6 +359,7 @@ writeFileStructureTest(
     title=makeValidWOFF5Title,
     assertion=makeValidWOFF5Description,
     credits=makeValidWOFF5Credits,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     shouldDisplaySFNT=True,
     data=makeValidWOFF5()
 )
@@ -366,6 +372,7 @@ writeFileStructureTest(
     credits=makeValidWOFF6Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     data=makeValidWOFF6(),
     metadataToDisplay=testDataWOFFMetadata,
     metadataDisplaySpecLink="#conform-metadata-maydisplay"
@@ -378,6 +385,7 @@ writeFileStructureTest(
     assertion=makeValidWOFF7Description,
     credits=makeValidWOFF7Credits,
     shouldDisplaySFNT=True,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     data=makeValidWOFF7()
 )
 
@@ -389,6 +397,7 @@ writeFileStructureTest(
     credits=makeValidWOFF8Credits,
     shouldDisplaySFNT=True,
     metadataIsValid=True,
+    sfntDisplaySpecLink="#conform-metadata-noeffect #conform-private-noeffect",
     data=makeValidWOFF8(),
     metadataToDisplay=testDataWOFFMetadata,
     metadataDisplaySpecLink="#conform-metadata-maydisplay"
@@ -2790,8 +2799,10 @@ for tag, title, url in groupDefinitions:
         flags = ",".join(flags)
         # gather the links
         links = []
-        if testCase["sfntURL"] and "#" in testCase["sfntURL"]:
-            links.append("#" + testCase["sfntURL"].split("#")[-1])
+        if testCase["sfntURL"]:
+            for url in testCase["sfntURL"]:
+                if "#" in url:
+                    links.append("#" + url.split("#")[-1])
         if testCase["metadataURL"] and "#" in testCase["metadataURL"]:
             links.append("#" + testCase["metadataURL"].split("#")[-1])
         links = ",".join(links)

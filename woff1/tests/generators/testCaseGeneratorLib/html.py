@@ -145,7 +145,11 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
     if shouldDisplay:
         bodyCharacter = testPassCharacter
     css = testCSS % (fileName, flavor)
-    specLinks = [i for i in (sfntDisplaySpecLink, metadataDisplaySpecLink) if i is not None]
+    specLinks = []
+    if sfntDisplaySpecLink:
+        specLinks += sfntDisplaySpecLink
+    if metadataDisplaySpecLink:
+        specLinks.append(metadataDisplaySpecLink)
     html = _generateSFNTDisplayTestHTML(
         css, bodyCharacter,
         fileName=fileName, flavor=flavor,
@@ -167,7 +171,11 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
 def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
     bodyCharacter = refPassCharacter
     css = refCSS % flavor
-    specLinks = [i for i in (sfntDisplaySpecLink, metadataDisplaySpecLink) if i is not None]
+    specLinks = []
+    if sfntDisplaySpecLink:
+        specLinks += sfntDisplaySpecLink
+    if metadataDisplaySpecLink:
+        specLinks.append(metadataDisplaySpecLink)
     html = _generateSFNTDisplayTestHTML(
         css, bodyCharacter,
         fileName=fileName, flavor=flavor,
@@ -254,11 +262,15 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
             # sfnt expectation
             string = "SFNT Expectation: %s" % sfntExpectation
             if sfntURL:
-                if "#" in sfntURL:
-                    s = "(%s)" % sfntURL.split("#")[-1]
-                else:
-                    s = "(documentation)"
-                string += " <a href=\"%s\">%s</a>" % (sfntURL, s)
+                links = []
+                for url in sfntURL:
+                    if "#" in url:
+                        url = "<a href=\"%s\">%s</a>" % (url, url.split("#")[-1])
+                        links.append(url)
+                    else:
+                        url = "<a href=\"%s\">documentation</a>" % url
+                        links.append(url)
+                string += " (%s)" % " ".join(links)
             html.append("\t\t\t\t\t<p>%s</p>" % string)
             # metadata expectation
             string = "Metadata Expectation: %s" % metadataExpectation
