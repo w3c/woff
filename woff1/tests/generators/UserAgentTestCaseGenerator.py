@@ -2790,9 +2790,9 @@ for tag, title, url in groupDefinitions:
         flags = ",".join(flags)
         # gather the links
         links = []
-        if testCase["sfntURL"]:
+        if testCase["sfntURL"] and "#" in testCase["sfntURL"]:
             links.append("#" + testCase["sfntURL"].split("#")[-1])
-        if testCase["metadataURL"]:
+        if testCase["metadataURL"] and "#" in testCase["metadataURL"]:
             links.append("#" + testCase["metadataURL"].split("#")[-1])
         links = ",".join(links)
         # gather the credits
