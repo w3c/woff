@@ -236,6 +236,7 @@ def writeFileStructureTest(identifier, flavor="CFF",
             sfntURL=sfntDisplaySpecLink,
             metadataURL=metadataDisplaySpecLink,
             metadataExpectation=metadataIsValid,
+            credits=credits
         )
     )
 
@@ -2770,6 +2771,54 @@ for tag, title, url in groupDefinitions:
     testGroups.append(group)
 
 generateSFNTDisplayIndexHTML(directory=userAgentTestDirectory, testCases=testGroups)
+
+# ---------------------
+# Generate the Manifest
+# ---------------------
+
+print "Compiling manifest..."
+
+manifest = []
+
+for tag, title, url in groupDefinitions:
+    for testCase in testRegistry[tag]:
+        identifier = testCase["identifier"]
+        title = testCase["title"]
+        assertion = testCase["assertion"]
+        # gather the flags
+        flags = testCase["flags"]
+        flags = ",".join(flags)
+        # gather the links
+        links = []
+        if testCase["sfntURL"]:
+            links.append("#" + testCase["sfntURL"].split("#")[-1])
+        if testCase["metadataURL"]:
+            links.append("#" + testCase["metadataURL"].split("#")[-1])
+        links = ",".join(links)
+        # gather the credits
+        credits = testCase["credits"]
+        credits = ["%s <%s>" % (credit["title"], credit["link"]) for credit in credits]
+        credits = ",".join(credits)
+        # format the line
+        line = "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
+            identifier,             # id
+            identifier + "-ref",    # reference
+            title,                  # title
+            flags,                  # flags
+            links,                  # links
+            "DUMMY",                # revision
+            credits,                # credits
+            assertion               # assertion
+        )
+        # store
+        manifest.append(line)
+
+path = os.path.join(userAgentDirectory, "manifest.txt")
+if os.path.exists(path):
+    os.remove(path)
+f = open(path, "wb")
+f.write("\n".join(manifest))
+f.close()
 
 # -----------------------
 # Check for Unknown Files
