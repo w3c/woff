@@ -46,7 +46,6 @@ pre {
 """.strip()
 
 def escapeAttributeText(text):
-    text = cgi.escape(text)
     replacements = {
         "\"" : "&quot;",
     }
