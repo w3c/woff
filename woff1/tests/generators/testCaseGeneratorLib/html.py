@@ -45,6 +45,15 @@ pre {
 }
 """.strip()
 
+def escapeAttributeText(text):
+    text = cgi.escape(text)
+    replacements = {
+        "\"" : "&quot;",
+    }
+    for before, after in replacements.items():
+        text = text.replace(before, after)
+    return text
+
 def _generateSFNTDisplayTestHTML(
     css, bodyCharacter,
     fileName=None, flavor=None,
@@ -90,7 +99,7 @@ def _generateSFNTDisplayTestHTML(
         s = "\t\t<meta name=\"flags\" content=\"%s\" />" % " ".join(flags)
         html.append(s)
     ## assertion
-    s = "\t\t<meta name=\"assert\" content=\"%s\" />" % cgi.escape(assertion)
+    s = "\t\t<meta name=\"assert\" content=\"%s\" />" % escapeAttributeText(assertion)
     html.append(s)
     ## css
     html.append("\t\t<style type=\"text/css\"><![CDATA[")
