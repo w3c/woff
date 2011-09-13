@@ -96,7 +96,7 @@ def _generateSFNTDisplayTestHTML(
     s = "\t\t<link rel=\"help\" href=\"%s\" />" % chapterURL
     html.append(s)
     for link in specLinks:
-        s = "\t\t<link rel=\"help\" href=\"%s\" />" % link
+        s = "\t\t<link rel=\"help\" href=\"%s\" />" % ("#" + link.split("#")[-1])
         html.append(s)
     ## flags
     if flags:

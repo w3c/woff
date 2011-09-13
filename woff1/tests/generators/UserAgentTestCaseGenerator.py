@@ -121,7 +121,7 @@ for group in groupDefinitions:
 
 groupChapterURLs = {}
 for tag, title, url in groupDefinitions:
-    groupChapterURLs[tag] = url
+    groupChapterURLs[tag] = "#" + url.split("#")[-1]
 
 # ---------------
 # File Generators
