@@ -3016,6 +3016,43 @@ for tag, title, url in groupDefinitions:
 
 generateFormatIndexHTML(directory=formatTestDirectory, testCases=testGroups)
 
+# ---------------------
+# Generate the Manifest
+# ---------------------
+
+print "Compiling manifest..."
+
+manifest = []
+
+for tag, title, url in groupDefinitions:
+    for testCase in testRegistry[tag]:
+        identifier = testCase["identifier"]
+        title = testCase["title"]
+        assertion = testCase["description"]
+        links = "#" + testCase["specLink"].split("#")[-1]
+        flags = ""
+        credits = ""
+        # format the line
+        line = "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
+            identifier,             # id
+            "",                     # reference
+            title,                  # title
+            flags,                  # flags
+            links,                  # links
+            "DUMMY",                # revision
+            credits,                # credits
+            assertion               # assertion
+        )
+        # store
+        manifest.append(line)
+
+path = os.path.join(formatDirectory, "manifest.txt")
+if os.path.exists(path):
+    os.remove(path)
+f = open(path, "wb")
+f.write("\n".join(manifest))
+f.close()
+
 # -----------------------
 # Check for Unknown Files
 # -----------------------

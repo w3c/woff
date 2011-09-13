@@ -1,0 +1,303 @@
+valid-001		Valid WOFF 1		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid CFF flavored WOFF with no metadata and no private data
+valid-002		Valid WOFF 2		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid CFF flavored WOFF with metadata
+valid-003		Valid WOFF 3		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid CFF flavored WOFF with private data
+valid-004		Valid WOFF 4		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid CFF flavored WOFF with metadata and private data
+valid-005		Valid WOFF 5		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid TTF flavored WOFF with no metadata and no private data
+valid-006		Valid WOFF 6		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid TTF flavored WOFF with metadata
+valid-007		Valid WOFF 7		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid TTF flavored WOFF with private data
+valid-008		Valid WOFF 8		#http://dev.w3.org/webfonts/WOFF/spec/	DUMMY		Valid TTF flavored WOFF with metadata and private data
+header-signature-001		Header Signature Invalid Value		#conform-magicnumber	DUMMY		The signature field contains XXXX instead of wOFF.
+header-flavor-001		Header Flavor Incorrectly Set to 0x00010000		#WOFFHeader	DUMMY		The header flavor is set to 0x00010000 but the table data contains CFF data, not TTF data.
+header-flavor-002		Header Flavor Incorrectly Set to OTTO		#WOFFHeader	DUMMY		The header flavor is set to OTTO but the table data contains TTF data, not CFF data.
+header-length-001		Header Length Too Short		#WOFFHeader	DUMMY		The length field contains a value that is four bytes shorter than the actual data.
+header-length-002		Header Length Too Long		#WOFFHeader	DUMMY		The length field contains a value that is four bytes longer than the actual data.
+header-numTables-001		Header Number of Tables Set to Zero		#WOFFHeader	DUMMY		The header contains 0 in the numTables field. A table directory and table data are present.
+header-totalSfntSize-001		Header Total SFNT Size Not a Multiple of 4		#conform-totalsize-longword	DUMMY		The totalSfntSize field contains a value that is missing padding bytes between two tables.
+header-totalSfntSize-002		Header Total SFNT Size Too Long		#conform-totalsize-longword	DUMMY		The totalSfntSize field contains a value that is is four bytes too long.
+header-totalSfntSize-003		Header Total SFNT Size Too Short		#conform-totalsize-longword	DUMMY		The totalSfntSize field contains a value that is is four bytes too short.
+header-reserved-001		Header Reserved Invalid Value		#conform-reserved	DUMMY		The reserved field contains 1.
+blocks-extraneous-data-001		Extraneous Data Between Directory and Table Data		#conform-noextraneous	DUMMY		There are four null bytes between the table directory and the table data.
+blocks-extraneous-data-002		Extraneous Data After Table Data		#conform-noextraneous	DUMMY		There are four null bytes after the table data block and there is no metadata or private data.
+blocks-extraneous-data-003		Extraneous Data Between Table Data and Metadata		#conform-noextraneous	DUMMY		There are four null bytes between the table data and the metadata.
+blocks-extraneous-data-004		Extraneous Data Between Table Data and Private Data		#conform-noextraneous	DUMMY		There are four null bytes between the table data and the private data.
+blocks-extraneous-data-005		Extraneous Data Between Metdata and Private Data		#conform-noextraneous	DUMMY		There are four null bytes between the metadata and the private data.
+blocks-extraneous-data-006		Extraneous Data After Metadata		#conform-noextraneous	DUMMY		There are four null bytes after the metadata and there is no private data.
+blocks-extraneous-data-007		Extraneous Data After Private Data		#conform-noextraneous	DUMMY		There are four null bytes after the private data.
+blocks-overlap-001		Metadata Overlaps Table Data		#conform-overlap-reject	DUMMY		The metadata offset is four bytes before the end of the table data.
+blocks-overlap-002		Private Data Overlaps Table Data		#conform-overlap-reject	DUMMY		The private data offset is four bytes before the end of the table data.
+blocks-overlap-003		Private Data Overlaps Metadata		#conform-overlap-reject	DUMMY		The private data offset is four bytes before the end of the metadata.
+blocks-metadata-absent-001		Metadata Length Not Set to Zero		#conform-zerometaprivate	DUMMY		The metadata length is set to one but the offset is zero.
+blocks-metadata-absent-002		Metadata Offset Not Set to Zero		#conform-zerometaprivate	DUMMY		The metadata length is set to zero but the offset is set to the end of the file.
+blocks-private-absent-001		Private Data Length Not Set to Zero		#conform-zerometaprivate	DUMMY		The private data length is set to one but the offset is zero.
+blocks-private-absent-002		Private Data Offset Not Set to Zero		#conform-zerometaprivate	DUMMY		The private data length is set to zero but the offset is set to the end of the file.
+blocks-metadata-padding-001		Metadata Has Unnecessary Padding		#conform-metadata-noprivatepad	DUMMY		The metadata block is padded to a four-byte boundary but there is no private data.
+blocks-ordering-001		Table Data After Metadata		#conform-afterdirectory	DUMMY		The table data block is stored after the metadata block.
+blocks-ordering-002		Table Data After Private Data		#conform-afterdirectory	DUMMY		The table data block is stored after the private data block.
+blocks-ordering-003		Metadata After Private Data		#metadata-afterfonttable	DUMMY		The metadata block is stored after the private data block.
+blocks-ordering-004		Private Data Before Metadata		#private-last	DUMMY		The private data block is stored before the metadata block.
+blocks-private-001		Private Data Does Not Begin of 4-Byte Boundary		#conform-private-padalign	DUMMY		The private data does not begin on a four byte boundary because the metadata is not padded.
+directory-4-byte-001		Font Table Data Not On 4-Byte Boundary		#conform-tablesize-longword	DUMMY		Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.
+directory-4-byte-002		Final Font Table Data Not Padded		#conform-tablesize-longword	DUMMY		The final table in the table data block is not padded to a 4-byte boundary.
+directory-4-byte-003		Font Table Data Padded With Non-Null		#conform-tablesize-longword	DUMMY		Table data is padded with \01 instead of \00.
+directory-overlaps-001		Font Table Data Offset Past End of File		#conform-diroverlap-reject	DUMMY		The offset to the final table is four bytes beyond the end of the file.
+directory-overlaps-002		Font Table Data Offset+Length Past End of File		#conform-diroverlap-reject	DUMMY		The defined length for the final table causes the data block to be four bytes beyond the end of the file.
+directory-overlaps-003		Font Table Data Overlaps Metadata		#conform-diroverlap-reject	DUMMY		The final table starts four bytes after the start of the metadata.
+directory-overlaps-004		Font Table Data Overlaps Private Data		#conform-diroverlap-reject	DUMMY		The final table starts four bytes after the start of the private data.
+directory-overlaps-005		Two Table Data Blocks Overlap		#conform-diroverlap-reject	DUMMY		The final table starts four bytes before the end of the previous table.
+directory-extraneous-data-001		Extraneous Data Between Tables		#conform-noextraneous	DUMMY		There are four null bytes between each of the table data blocks after the head table.
+directory-compLength-001		Font Table Data Compressed Length Greater Than Original Length		#conform-compressedlarger	DUMMY		At least one table's compLength is larger than the origLength.
+directory-origLength-001		Original Length Less Than Decompressed Length		#conform-origLength	DUMMY		The CFF table when decompressed has a length that is four bytes longer than the value listed in origLength.
+directory-origLength-002		Original Length Greater Than Decompressed Length		#conform-origLength	DUMMY		The CFF table when decompressed has a length that is four bytes shorter than the value listed in origLength.
+directory-origCheckSum-001		Font Table Directory Contains Invalid Original CheckSum		#conform-checksumvalidate	DUMMY		The checksum for the CFF table is set to 0.
+directory-origCheckSum-002		Font head Table Incorrect CheckSum Adjustment		#conform-checksumvalidate	DUMMY		The head table checksum adjustment is set to 0.
+directory-ascending-001		Font Table Directory Not In Ascending Order		#conform-ascending	DUMMY		The tables in the directory are in descending order.
+tabledata-compression-001		Font Table Data Not Compressed		#conform-mustuncompress	DUMMY		None of the tables are stored in compressed form.
+tabledata-compression-002		Font Table Data Is Compressed When Possible		#conform-mustuncompress	DUMMY		All of the tables (excpet head) that will be smaller when compressed are stored in their compressed state.
+tabledata-compression-003		Not All Font Table Data Is Compressed When Possible		#conform-mustuncompress	DUMMY		Only one of the tables that would be smaller when compressed is stored in the compressed state.
+tabledata-compression-004		Font Table Data Is Compressed At Different Levels		#conform-mustuncompress	DUMMY		The font data tables are compressed using at least two different levels.
+tabledata-zlib-001		Font Table Data Invalid Compressed Data		#conform-mustzlib	DUMMY		One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.
+metadata-padding-001		Padding Between Metadata and Private Data is Non-Null		#conform-private-padalign	DUMMY		Metadata is padded with \01 instead of \00.
+metadata-compression-001		Metadata Invalid Compression		#conform-metadata-alwayscompress	DUMMY		The metadata is stored in an uncompressed state and therefore does not have the proper compression format.
+metadata-metaOrigLength-001		Decompressed Metadata Length Less Than metaOrigLength		#conform-metaOrigLength	DUMMY		The metadata decompresses to a length that is 1 byte smaller than the length defined in metaOrigLength
+metadata-metaOrigLength-002		Decompressed Metadata Length Greater Than metaOrigLength		#conform-metaOrigLength	DUMMY		The metadata decompresses to a length that is 1 byte greater than the length defined in metaOrigLength
+metadata-well-formed-001		Unescaped < in Content		#conform-metaOrigLength	DUMMY		The text element in the description element contains an unescaped <.
+metadata-well-formed-002		Unescaped & in Content		#conform-metaOrigLength	DUMMY		The text element in the description element contains an unescaped &.
+metadata-well-formed-003		Mismatched Element Tags		#conform-metaOrigLength	DUMMY		One element begins with <description> but ends with </mismatch>.
+metadata-well-formed-004		Unclosed Element Tag		#conform-metaOrigLength	DUMMY		The text element element in the description element is not closed.
+metadata-well-formed-005		Case Mismatch in Element Tags		#conform-metaOrigLength	DUMMY		The <description> element is closed with <DESCRIPTION>.
+metadata-well-formed-006		More Than One Root Element		#conform-metaOrigLength	DUMMY		The metadata root element occurs twice.
+metadata-well-formed-007		Unknown Encoding		#conform-metaOrigLength	DUMMY		The xml encoding is set to 'VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING'.
+metadata-encoding-001		UTF-8 Encoding		#Metadata	DUMMY		The xml encoding is set to UTF-8.
+metadata-encoding-002		Invalid Encoding: UTF-16		#Metadata	DUMMY		The xml encoding is set to UTF-16.
+metadata-encoding-003		Invalid Encoding: ISO-8859-1		#Metadata	DUMMY		The xml encoding is set to ISO-8859-1.
+metadata-encoding-004		Implied UTF-8		#Metadata	DUMMY		The xml encoding is not declared and there is no BOM.
+metadata-encoding-005		UTF-8 BOM		#Metadata	DUMMY		The xml encoding is not declared and there is a UTF-8 BOM.
+metadata-encoding-006		Invalid Encoding: UTF-8 BOM		#Metadata	DUMMY		The xml encoding is not declared and there is a UTF-16 BOM.
+metadata-schema-metadata-001		Valid metadata Element		#Metadata	DUMMY		The metadata element matches the schema.
+metadata-schema-metadata-002		Top element is Not metadata		#Metadata	DUMMY		The top element is "INVALID" instead of "metadata".
+metadata-schema-metadata-003		No version Attribute in metadata Element		#conform-metadata-schemavalid	DUMMY		The metadata element does not contain the required version attribute.
+metadata-schema-metadata-004		Invalid version Attribute Value in metadata Element		#conform-metadata-schemavalid	DUMMY		The metadata element version attribute is set to 'ABC'.
+metadata-schema-metadata-005		Unknown Attrbute in metadata Element		#conform-metadata-schemavalid	DUMMY		The metadata element contains an unknown attribute.
+metadata-schema-metadata-006		Unknown Child Element metadata Element		#conform-metadata-schemavalid	DUMMY		The metadata element contains an unknown child element.
+metadata-schema-uniqueid-001		Valid uniqueid Element		#Metadata	DUMMY		The uniqueid element matches the schema.
+metadata-schema-uniqueid-002		No uniqueid Element		#Metadata	DUMMY		The uniqueid element doesn't exist.
+metadata-schema-uniqueid-003		More Than One uniqueid Element		#conform-metadata-schemavalid	DUMMY		The uniqueid element occurs twice.
+metadata-schema-uniqueid-004		No id Attribute in uniqueid Element		#conform-metadata-id-required	DUMMY		The uniqueid element does not contain the required id attribute.
+metadata-schema-uniqueid-005		Unknown Attribute in uniqueid Element		#conform-metadata-schemavalid	DUMMY		The uniqueid element contains an unknown attribute.
+metadata-schema-uniqueid-006		Child Element in uniqueid Element		#conform-metadata-schemavalid	DUMMY		The uniqueid element contains a child element.
+metadata-schema-uniqueid-007		Content in uniqueid Element		#conform-metadata-schemavalid	DUMMY		The uniqueid element contains content.
+metadata-schema-vendor-001		Valid vendor Element		#Metadata	DUMMY		The vendor element matches the schema.
+metadata-schema-vendor-002		Valid vendor Element Without url Attribute		#Metadata	DUMMY		The vendor element does not contain a url attribute but it still matches the schema.
+metadata-schema-vendor-003		No vendor Element		#Metadata	DUMMY		The vendor element doesn't exist.
+metadata-schema-vendor-004		More Than One vendor Element		#conform-metadata-schemavalid	DUMMY		The vendor element occurs twice.
+metadata-schema-vendor-005		No name Attribute in vendor Element		#conform-metadata-vendor-required	DUMMY		The vendor element does not contain the required name attribute.
+metadata-schema-vendor-006		Valid dir Attribute in vendor Element 1		#Metadata	DUMMY		The vendor element contains ltr as the value for the dir attribute.
+metadata-schema-vendor-007		Valid dir Attribute in vendor Element 2		#Metadata	DUMMY		The vendor element contains rtl as the value for the dir attribute.
+metadata-schema-vendor-008		Invalid dir Attribute in vendor Element		#Metadata	DUMMY		The vendor element contains INVALID as the value for the dir attribute.
+metadata-schema-vendor-009		Valid class Attribute in vendor Element		#Metadata	DUMMY		The vendor element contains "class1 class2 class3" as the value for the class attribute.
+metadata-schema-vendor-010		Unknown Attribute in vendor Element		#conform-metadata-schemavalid	DUMMY		The vendor element contains an unknown attribute.
+metadata-schema-vendor-011		Child Element in vendor Element		#conform-metadata-schemavalid	DUMMY		The vendor element contains a child element.
+metadata-schema-vendor-012		Content in vendor Element		#conform-metadata-schemavalid	DUMMY		The vendor element contains content.
+metadata-schema-credits-001		Valid credits Element With No Language Attribute And A Single credit Element		#Metadata	DUMMY		The credits element matches the schema and it contains one credit child element.
+metadata-schema-credits-002		Valid credits Element With Two credit Elements		#Metadata	DUMMY		The credits element matches the schema and it contains two credit child elements.
+metadata-schema-credits-003		No credit Element in credits Element		#conform-metadata-schemavalid	DUMMY		The credits element does not contain a credit child element.
+metadata-schema-credits-004		Unknown Attribute in credits Element		#conform-metadata-schemavalid	DUMMY		The credits element contains an unknown attribute.
+metadata-schema-credits-005		Unknown Child Element in credits Element		#conform-metadata-schemavalid	DUMMY		The credits element contains an unknown child element.
+metadata-schema-credits-006		Content in credits Element		#conform-metadata-schemavalid	DUMMY		The credits element contains an content.
+metadata-schema-credits-007		Multiple credits Elements		#conform-metadata-schemavalid	DUMMY		The credits element occurs more than once.
+metadata-schema-credit-001		Valid credit Element		#Metadata	DUMMY		The credit element matches the schema.
+metadata-schema-credit-002		Valid credit Element Without url Attribute		#Metadata	DUMMY		The credit element does not contain a url attribute but it still matches the schema.
+metadata-schema-credit-003		Valid credit Element Without role Attribute		#Metadata	DUMMY		The credit element does not contain a role attribute but it still matches the schema.
+metadata-schema-credit-004		No name attribute in credit Element		#conform-metadata-schemavalid	DUMMY		The credit element does not contain a name attribute.
+metadata-schema-credit-005		Valid dir Attribute in credit Element 1		#Metadata	DUMMY		The credit element contains ltr as the value for the dir attribute.
+metadata-schema-credit-006		Valid dir Attribute in credit Element 2		#Metadata	DUMMY		The credit element contains rtl as the value for the dir attribute.
+metadata-schema-credit-007		Invalid dir Attribute in credit Element		#Metadata	DUMMY		The credit element contains INVALID as the value for the dir attribute.
+metadata-schema-credit-008		Valid class Attribute in credit Element		#Metadata	DUMMY		The credit element contains "class1 class2 class3" as the value for the class attribute.
+metadata-schema-credit-009		Unknown attribute in credit Element		#conform-metadata-schemavalid	DUMMY		The credit element contains an unknown attribute.
+metadata-schema-credit-010		Child Element in credit Element		#conform-metadata-schemavalid	DUMMY		The credit element contains a child element.
+metadata-schema-credit-011		Content in credit Element		#conform-metadata-schemavalid	DUMMY		The credit element contains content.
+metadata-schema-description-001		Valid description Element		#Metadata	DUMMY		The description element matches the schema.
+metadata-schema-description-002		Valid description Element Without url Attribute		#Metadata	DUMMY		The description element does not contain a url attribute but it still matches the schema.
+metadata-schema-description-003		Valid description Element With One No Language Tagged text Element		#Metadata	DUMMY		The description element matches the schema. It contains one text element that does not have a language tag.
+metadata-schema-description-004		Valid description Element With One Language Tagged text Element		#Metadata	DUMMY		The description element matches the schema. It contains one text element that has a language tag.
+metadata-schema-description-005		Valid description Element With One Language Tagged (using lang) text Element		#Metadata	DUMMY		The description element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+metadata-schema-description-006		Valid description Element With Mixed text Element Language Tags 1		#Metadata	DUMMY		The description element matches the schema. One text element does not have a language tag. One text element has a language tag.
+metadata-schema-description-007		Valid description Element With Mixed text Element Language Tags 2		#Metadata	DUMMY		The description element matches the schema. Two text elements have a language tags.
+metadata-schema-description-008		More Than One description Element		#conform-metadata-schemavalid	DUMMY		The description element occurs more than once.
+metadata-schema-description-009		No text Element in description Element		#conform-metadata-schemavalid	DUMMY		The description element does not contain a text child element.
+metadata-schema-description-010		Unknown Attribute in description Element		#conform-metadata-schemavalid	DUMMY		The description element contains an unknown attribute.
+metadata-schema-description-011		Unknown Child Element in description Element		#conform-metadata-schemavalid	DUMMY		The description element contains an unknown child element.
+metadata-schema-description-012		Content in description Element		#conform-metadata-schemavalid	DUMMY		The description element contains content.
+metadata-schema-description-013		Valid description Element With dir Attribute in text Element 1		#conform-metadata-schemavalid	DUMMY		The description element contains a text element with ltr as the value for the dir attribute.
+metadata-schema-description-014		Valid description Element With dir Attribute in text Element 2		#conform-metadata-schemavalid	DUMMY		The description element contains a text element with rtl as the value for the dir attribute.
+metadata-schema-description-015		Invalid description Element With dir Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element with INVALID as the value for the dir attribute.
+metadata-schema-description-016		Valid description Element With class Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-description-017		Unknown Attribute in description Element text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element with an unknown attribute.
+metadata-schema-description-018		Unknown Child Element in description Element text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element with an unknown child element.
+metadata-schema-description-019		Valid description Element With One div Element in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a div element.
+metadata-schema-description-020		Valid description Element With Two div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains two div elements.
+metadata-schema-description-021		Valid description Element With Nested div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains nested div elements.
+metadata-schema-description-022		Valid description Element With dir Attribute in div Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a div element with ltr as the value for the dir attribute.
+metadata-schema-description-023		Valid description Element With dir Attribute in div Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a div element with rtl as the value for the dir attribute.
+metadata-schema-description-024		Invalid description Element With dir Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+metadata-schema-description-025		Valid description Element With class Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-description-026		Valid description Element With One span Element in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a span element.
+metadata-schema-description-027		Valid description Element With Two span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains two span elements.
+metadata-schema-description-028		Valid description Element With Nested span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains nested span elements.
+metadata-schema-description-029		Valid description Element With dir Attribute in span Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a span element with ltr as the value for the dir attribute.
+metadata-schema-description-030		Valid description Element With dir Attribute in span Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a span element with rtl as the value for the dir attribute.
+metadata-schema-description-031		Invalid description Element With dir Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+metadata-schema-description-032		Valid description Element With class Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The description element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-license-001		Valid license Element		#Metadata	DUMMY		The license element matches the schema.
+metadata-schema-license-002		Valid license Element Without url Attribute		#Metadata	DUMMY		The license element does not have a url attribute but it still matches the schema.
+metadata-schema-license-003		Valid license Element Without id Attribute		#Metadata	DUMMY		The license element does not have an id attribute but it still matches the schema.
+metadata-schema-license-004		Valid license Element With One No Language Tagged text Element		#Metadata	DUMMY		The license element matches the schema. It contains one text element that does not have a language tag.
+metadata-schema-license-005		Valid license Element With One Language Tagged text Element		#Metadata	DUMMY		The license element matches the schema. It contains one text element that has a language tag.
+metadata-schema-license-006		Valid license Element With One Language Tagged (using lang) text Element		#Metadata	DUMMY		The license element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+metadata-schema-license-007		Valid license Element With Mixed text Element Language Tags 1		#Metadata	DUMMY		The license element matches the schema. One text element does not have a language tag. One text element has a language tag.
+metadata-schema-license-008		Valid license Element With Mixed text Element Language Tags 2		#Metadata	DUMMY		The license element matches the schema. Two text elements have a language tags.
+metadata-schema-license-009		More Than One license Element		#conform-metadata-schemavalid	DUMMY		The license element occurs more than once.
+metadata-schema-license-010		No text Element in license Element		#conform-metadata-schemavalid	DUMMY		The license element does not contain a text child element.
+metadata-schema-license-011		Unknown Attribute in license Element		#conform-metadata-schemavalid	DUMMY		The license element contains an unknown attribute.
+metadata-schema-license-012		Unknown Child Element in license Element		#conform-metadata-schemavalid	DUMMY		The license element contains an unknown child element.
+metadata-schema-license-013		Content in license Element		#conform-metadata-schemavalid	DUMMY		The license element contains content.
+metadata-schema-license-014		Valid license Element With dir Attribute in text Element 1		#conform-metadata-schemavalid	DUMMY		The license element contains a text element with ltr as the value for the dir attribute.
+metadata-schema-license-015		Valid license Element With dir Attribute in text Element 2		#conform-metadata-schemavalid	DUMMY		The license element contains a text element with rtl as the value for the dir attribute.
+metadata-schema-license-016		Invalid license Element With dir Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element with INVALID as the value for the dir attribute.
+metadata-schema-license-017		Valid license Element With class Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-license-018		Unknown Attribute in license Element text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element with an unknown attribute.
+metadata-schema-license-019		Unknown Child Element in license Element text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element with an unknown child element.
+metadata-schema-license-020		Valid license Element With One div Element in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a div element.
+metadata-schema-license-021		Valid license Element With Two div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains two div elements.
+metadata-schema-license-022		Valid license Element With Nested div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains nested div elements.
+metadata-schema-license-023		Valid license Element With dir Attribute in div Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a div element with ltr as the value for the dir attribute.
+metadata-schema-license-024		Valid license Element With dir Attribute in div Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a div element with rtl as the value for the dir attribute.
+metadata-schema-license-025		Invalid license Element With dir Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+metadata-schema-license-026		Valid license Element With class Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-license-027		Valid license Element With One span Element in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a span element.
+metadata-schema-license-028		Valid license Element With Two span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains two span elements.
+metadata-schema-license-029		Valid license Element With Nested span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains nested span elements.
+metadata-schema-license-030		Valid license Element With dir Attribute in span Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a span element with ltr as the value for the dir attribute.
+metadata-schema-license-031		Valid license Element With dir Attribute in span Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a span element with rtl as the value for the dir attribute.
+metadata-schema-license-032		Invalid license Element With dir Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+metadata-schema-license-033		Valid license Element With class Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The license element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-copyright-001		Valid copyright Element With One No Language Tagged text Element		#Metadata	DUMMY		The copyright element matches the schema. It contains one text element that does not have a language tag.
+metadata-schema-copyright-002		Valid copyright Element With One Language Tagged text Element		#Metadata	DUMMY		The copyright element matches the schema. It contains one text element that has a language tag.
+metadata-schema-copyright-003		Valid copyright Element With One Language Tagged (using lang) text Element		#Metadata	DUMMY		The copyright element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+metadata-schema-copyright-004		Valid copyright Element With Mixed text Element Language Tags 1		#Metadata	DUMMY		The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.
+metadata-schema-copyright-005		Valid copyright Element With Mixed text Element Language Tags 2		#Metadata	DUMMY		The copyright element matches the schema. Two text elements have a language tags.
+metadata-schema-copyright-006		More Than One copyright Element		#conform-metadata-schemavalid	DUMMY		The copyright element occurs more than once.
+metadata-schema-copyright-007		No text Element in copyright Element		#conform-metadata-schemavalid	DUMMY		The copyright element does not contain a text child element.
+metadata-schema-copyright-008		Unknown Attribute in copyright Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains an unknown attribute.
+metadata-schema-copyright-009		Unknown Child Element in copyright Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains an unknown child element.
+metadata-schema-copyright-010		Content in copyright Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains content.
+metadata-schema-copyright-011		Valid copyright Element With dir Attribute in text Element 1		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element with ltr as the value for the dir attribute.
+metadata-schema-copyright-012		Valid copyright Element With dir Attribute in text Element 2		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element with rtl as the value for the dir attribute.
+metadata-schema-copyright-013		Invalid copyright Element With dir Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element with INVALID as the value for the dir attribute.
+metadata-schema-copyright-014		Valid copyright Element With class Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-copyright-015		Unknown Attribute in copyright Element text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element with an unknown attribute.
+metadata-schema-copyright-016		Unknown Child Element in copyright Element text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element with an unknown child element.
+metadata-schema-copyright-017		Valid copyright Element With One div Element in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a div element.
+metadata-schema-copyright-018		Valid copyright Element With Nested div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains nested div elements.
+metadata-schema-copyright-019		Valid copyright Element With Two div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains two div elements.
+metadata-schema-copyright-020		Valid copyright Element With dir Attribute in div Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a div element with ltr as the value for the dir attribute.
+metadata-schema-copyright-021		Valid copyright Element With dir Attribute in div Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a div element with rtl as the value for the dir attribute.
+metadata-schema-copyright-022		Invalid copyright Element With dir Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+metadata-schema-copyright-023		Valid copyright Element With class Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-copyright-024		Valid copyright Element With One span Element in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a span element.
+metadata-schema-copyright-025		Valid copyright Element With Two span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains two span elements.
+metadata-schema-copyright-026		Valid copyright Element With Nested span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains nested span elements.
+metadata-schema-copyright-027		Valid copyright Element With dir Attribute in span Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a span element with ltr as the value for the dir attribute.
+metadata-schema-copyright-028		Valid copyright Element With dir Attribute in span Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a span element with rtl as the value for the dir attribute.
+metadata-schema-copyright-029		Invalid copyright Element With dir Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+metadata-schema-copyright-030		Valid copyright Element With class Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The copyright element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-trademark-001		Valid trademark Element With One No Language Tagged text Element		#conform-metadata-schemavalid	DUMMY		The trademark element matches the schema. It contains one text element that does not have a language tag.
+metadata-schema-trademark-002		Valid trademark Element With One Language Tagged text Element		#Metadata	DUMMY		The trademark element matches the schema. It contains one text element that has a language tag.
+metadata-schema-trademark-003		Valid trademark Element With One Language Tagged (using lang) text Element		#Metadata	DUMMY		The trademark element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+metadata-schema-trademark-004		Valid trademark Element With Mixed text Element Language Tags 1		#Metadata	DUMMY		The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.
+metadata-schema-trademark-005		Valid trademark Element With Mixed text Element Language Tags 2		#Metadata	DUMMY		The trademark element matches the schema. Two text elements have a language tags.
+metadata-schema-trademark-006		More Than One trademark Element		#conform-metadata-schemavalid	DUMMY		The trademark element occurs more than once.
+metadata-schema-trademark-007		No text Element in trademark Element		#conform-metadata-schemavalid	DUMMY		The trademark element does not contain a text child element.
+metadata-schema-trademark-008		Unknown Attribute in trademark Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains an unknown attribute.
+metadata-schema-trademark-009		Unknown Child Element in trademark Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains an unknown child element.
+metadata-schema-trademark-010		Content in trademark Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains content.
+metadata-schema-trademark-011		Valid trademark Element With dir Attribute in text Element 1		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element with ltr as the value for the dir attribute.
+metadata-schema-trademark-012		Valid trademark Element With dir Attribute in text Element 2		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element with rtl as the value for the dir attribute.
+metadata-schema-trademark-013		Invalid trademark Element With dir Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element with INVALID as the value for the dir attribute.
+metadata-schema-trademark-014		Valid trademark Element With class Attribute in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-trademark-015		Unknown Attribute in trademark Element text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element with an unknown attribute.
+metadata-schema-trademark-016		Unknown Child Element in trademark Element text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element with an unknown child element.
+metadata-schema-trademark-017		Valid trademark Element With One div Element in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a div element.
+metadata-schema-trademark-018		Valid trademark Element With Two div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains two div elements.
+metadata-schema-trademark-019		Valid trademark Element With Nested div Elements in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains nested div elements.
+metadata-schema-trademark-020		Valid trademark Element With dir Attribute in div Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a div element with ltr as the value for the dir attribute.
+metadata-schema-trademark-021		Valid trademark Element With dir Attribute in div Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a div element with rtl as the value for the dir attribute.
+metadata-schema-trademark-022		Invalid trademark Element With dir Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+metadata-schema-trademark-023		Valid trademark Element With class Attribute in div Element in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-trademark-024		Valid trademark Element With One span Element in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a span element.
+metadata-schema-trademark-025		Valid trademark Element With Two span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains two span elements.
+metadata-schema-trademark-026		Valid trademark Element With Nested span Elements in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains nested span elements.
+metadata-schema-trademark-027		Valid trademark Element With dir Attribute in span Element in text Element 1		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a span element with ltr as the value for the dir attribute.
+metadata-schema-trademark-028		Valid trademark Element With dir Attribute in span Element in text Element 2		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a span element with rtl as the value for the dir attribute.
+metadata-schema-trademark-029		Invalid trademark Element With dir Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+metadata-schema-trademark-030		Valid trademark Element With class Attribute in span Element in text Element		#conform-metadata-schemavalid	DUMMY		The trademark element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+metadata-schema-licensee-001		Valid licensee Element		#Metadata	DUMMY		The licensee element matches the schema.
+metadata-schema-licensee-002		More Than One licensee Element		#conform-metadata-schemavalid	DUMMY		The licensee element occurs more than once.
+metadata-schema-licensee-003		No name Attribute in licensee Element		#conform-metadata-schemavalid	DUMMY		The licensee element does not contain the required name attribute.
+metadata-schema-licensee-004		Valid licensee Element With dir Attribute 1		#conform-metadata-schemavalid	DUMMY		The licensee element has ltr as the value for the dir attribute.
+metadata-schema-licensee-005		Valid licensee Element With dir Attribute 2		#conform-metadata-schemavalid	DUMMY		The licensee element has rtl as the value for the dir attribute.
+metadata-schema-licensee-006		Invalid licensee Element With dir Attribute		#conform-metadata-schemavalid	DUMMY		The licensee element has INVALID as the value for the dir attribute.
+metadata-schema-licensee-007		Valid licensee Element With class Attribute		#conform-metadata-schemavalid	DUMMY		The licensee element has "class1 class2 class3" as the value for the class attribute.
+metadata-schema-licensee-008		Unknown Attribute in licensee Element		#conform-metadata-schemavalid	DUMMY		The licensee element occures more than once.
+metadata-schema-licensee-009		Child Element in licensee Element		#conform-metadata-schemavalid	DUMMY		The licensee element contains a child element.
+metadata-schema-licensee-010		Content in licensee Element		#conform-metadata-schemavalid	DUMMY		The licensee element contains content.
+metadata-schema-extension-001		Valid extension Element		#Metadata	DUMMY		The extension element matches the schema.
+metadata-schema-extension-002		Two Valid extension Elements		#Metadata	DUMMY		Two extension elements match the schema.
+metadata-schema-extension-003		Valid extension Element Without id Attribute		#Metadata	DUMMY		The extension element does not have an id attribute but it still matches the schema.
+metadata-schema-extension-004		Valid extension Element Without name Element		#Metadata	DUMMY		The extension element does not have a name child element but it still matches the schema.
+metadata-schema-extension-005		Valid extension Element With Two name Elements 1		#Metadata	DUMMY		The extension element contains one name element without a lang attribute and another with a lang attribute.
+metadata-schema-extension-006		Valid extension Element With Two name Elements 2		#Metadata	DUMMY		The extension element contains two name elements with lang attributes.
+metadata-schema-extension-007		Valid extension Element With Two item Elements		#Metadata	DUMMY		The extension element contains two item child elements.
+metadata-schema-extension-008		No item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The extension element does not contain an item child element.
+metadata-schema-extension-009		Unknown Attribute in extension Element		#conform-metadata-schemavalid	DUMMY		The extension element contains an unknown attribute.
+metadata-schema-extension-010		Unknown Child Element in extension Element		#conform-metadata-schemavalid	DUMMY		The extension element contains an unknown child element.
+metadata-schema-extension-011		Content in extension Element		#conform-metadata-schemavalid	DUMMY		The extension element contains content.
+metadata-schema-extension-012		Valid name Element in extension Element		#Metadata	DUMMY		The name element in the extension element matches the schema.
+metadata-schema-extension-013		Valid name Element With xml:lang Attribute in extension Element		#Metadata	DUMMY		The name element in the extension element contains a xml:lang attribute and it matches the schema.
+metadata-schema-extension-014		Valid name Element With lang Attribute in extension Element		#Metadata	DUMMY		The name element in the extension element contains a lang attribute and it matches the schema.
+metadata-schema-extension-015		Valid name Element With dir Attribute in extension Element 1		#Metadata	DUMMY		The name element in the extension element has ltr as the value for the dir attribute.
+metadata-schema-extension-016		Valid name Element With dir Attribute in extension Element 2		#Metadata	DUMMY		The name element in the extension element has rtl as the value for the dir attribute.
+metadata-schema-extension-017		Invalid name Element With dir Attribute in extension Element		#Metadata	DUMMY		The name element in the extension element has INVALID as the value for the dir attribute.
+metadata-schema-extension-018		Valid name Element With class Attribute in extension Element		#Metadata	DUMMY		The name element in the extension element has "class1 class2 class3" as the value for the class attribute.
+metadata-schema-extension-019		Unknown Attribute in name Element in extension Element		#conform-metadata-schemavalid	DUMMY		The name element in the extension element contains an unknown attribute.
+metadata-schema-extension-020		Child Element in name Element in extension Element		#conform-metadata-schemavalid	DUMMY		The name element in the extension element contains a child element.
+metadata-schema-extension-021		Valid item Element in extension Element		#Metadata	DUMMY		The item element in the extension element matches the schema.
+metadata-schema-extension-022		Valid item Element With Multiple Languages in extension Element		#Metadata	DUMMY		The item element in the extension element contains a variety of languages.
+metadata-schema-extension-023		Valid item Element Without id Attribute in extension Element		#Metadata	DUMMY		The item element in the extension element does not contain an id attribute but it still matches the schema.
+metadata-schema-extension-024		Valid item Element With Two name Elements in extension Element 1		#Metadata	DUMMY		The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute.
+metadata-schema-extension-025		Valid item Element With Two name Elements in extension Element 2		#Metadata	DUMMY		The item element in the extension element contains two name child elements with lang attributes.
+metadata-schema-extension-026		Valid item Element With Two value Elements in extension Element 1		#Metadata	DUMMY		The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute.
+metadata-schema-extension-027		Valid item Element With Two value Elements in extension Element 2		#Metadata	DUMMY		The item element in the extension element contains two value child elements with lang attributes.
+metadata-schema-extension-028		No name Element in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The item element in the extension element does not contain a name child element.
+metadata-schema-extension-029		No value Element in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The item element in the extension element does not contain a value child element.
+metadata-schema-extension-030		Unknown Attribute in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The item element in the extension element contains an unknown attribute.
+metadata-schema-extension-031		Unknown Child Element in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The item element in the extension element contains an unknown child element.
+metadata-schema-extension-032		Content in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The item element in the extension element contains content.
+metadata-schema-extension-033		Valid name Element in item Element in extension Element		#Metadata	DUMMY		The name element in the item element in the extension element matches the schema.
+metadata-schema-extension-034		Valid name Element With xml:lang Attribute in item Element in extension Element		#Metadata	DUMMY		The name element in the item element in the extension element contains a xml:lang attribute and it matches the schema.
+metadata-schema-extension-035		Valid name Element With lang Attribute in item Element in extension Element		#Metadata	DUMMY		The name element in the item element in the extension element contains a lang attribute and it matches the schema.
+metadata-schema-extension-036		Valid name Element With dir Attribute in item Element in extension Element 1		#Metadata	DUMMY		The name element in the item element in the extension element has ltr as the value for the dir attribute.
+metadata-schema-extension-037		Valid name Element With dir Attribute in item Element in extension Element 2		#Metadata	DUMMY		The name element in the item element in the extension element has rtl as the value for the dir attribute.
+metadata-schema-extension-038		Invalid name Element With dir Attribute in item Element in extension Element		#Metadata	DUMMY		The name element in the item element in the extension element has INVALID as the value for the dir attribute.
+metadata-schema-extension-039		Valid name Element With class Attribute in item Element in extension Element		#Metadata	DUMMY		The name element in the item element in the extension element has "class1 class2 class3" as the value for the class attribute.
+metadata-schema-extension-040		Unknown Attribute in name Element in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The name element in the item element in the extension element contains an unknown attribute.
+metadata-schema-extension-041		Child Element in name Element in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The name element in the item element in the extension element contains a child element.
+metadata-schema-extension-042		Valid value Element in item Element in extension Element		#Metadata	DUMMY		The value element in the item element in the extension element matches the schema.
+metadata-schema-extension-043		Valid value Element With xml:lang Attribute in item Element in extension Element		#Metadata	DUMMY		The value element in the item element in the extension element contains a xml:lang attribute and it matches the schema.
+metadata-schema-extension-044		Valid value Element With lang Attribute in item Element in extension Element		#Metadata	DUMMY		The value element in the item element in the extension element contains a lang attribute and it matches the schema.
+metadata-schema-extension-045		Valid value Element With dir Attribute in item Element in extension Element 1		#Metadata	DUMMY		The value element in the item element in the extension element has ltr as the value for the dir attribute.
+metadata-schema-extension-046		Valid value Element With dir Attribute in item Element in extension Element 2		#Metadata	DUMMY		The value element in the item element in the extension element has rtl as the value for the dir attribute.
+metadata-schema-extension-047		Invalid value Element With dir Attribute in item Element in extension Element		#Metadata	DUMMY		The value element in the item element in the extension element has INVALID as the value for the dir attribute.
+metadata-schema-extension-048		Valid value Element With class Attribute in item Element in extension Element		#Metadata	DUMMY		The value element in the item element in the extension element has "class1 class2 class3" as the value for the dir attribute.
+metadata-schema-extension-049		Unknown Attribute in value Element in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The value element in the item element in the extension element contains an unknown attribute.
+metadata-schema-extension-050		Child Element in value Element in item Element in extension Element		#conform-metadata-schemavalid	DUMMY		The value element in the item element in the extension element contains a child element.
