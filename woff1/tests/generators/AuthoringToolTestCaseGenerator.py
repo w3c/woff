@@ -212,7 +212,7 @@ writeTest(
 
 def makeValidSFNT2():
     header, directory, tableData = defaultSFNTTestData(flavor="TTF")
-    data = packSFNT(header, directory, tableData)
+    data = packSFNT(header, directory, tableData, flavor="TTF")
     return data
 
 writeTest(

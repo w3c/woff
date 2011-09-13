@@ -57,6 +57,10 @@ def packSFNT(header, directory, tableData, flavor="cff",
         entrySelector = cEntrySelector
     if rangeShift is None:
         rangeShift = cRangeShift
+    if flavor == "cff":
+        header["sfntVersion"] = "OTTO"
+    else:
+        header["sfntVersion"] = "\000\001\000\000"
     header["searchRange"] = searchRange
     header["entrySelector"] = entrySelector
     header["rangeShift"] = rangeShift
