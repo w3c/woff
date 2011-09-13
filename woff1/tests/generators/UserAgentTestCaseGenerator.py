@@ -104,7 +104,7 @@ shutil.copy(os.path.join(resourcesDirectory, "index.css"), destPath)
 
 groupDefinitions = [
     # identifier, title, spec section
-    ("valid", "Valid WOFFs", None),
+    ("valid", "Valid WOFFs", specificationURL+"#OverallStructure"),
     ("header", "WOFF Header Tests", specificationURL+"#WOFFHeader"),
     ("blocks", "WOFF Data Block Tests", specificationURL+"#OverallStructure"),
     ("directory", "WOFF Table Directory Tests", specificationURL+"#TableDirectory"),
@@ -118,6 +118,10 @@ testRegistry = {}
 for group in groupDefinitions:
     tag = group[0]
     testRegistry[tag] = []
+
+groupChapterURLs = {}
+for tag, title, url in groupDefinitions:
+    groupChapterURLs[tag] = url
 
 # ---------------
 # File Generators
@@ -199,6 +203,8 @@ def writeFileStructureTest(identifier, flavor="CFF",
     flags = list(flags)
     flags += ["font"] # fonts must be installed for all of these tests
 
+    tag = identifier.split("-")[0]
+
     # generate the WOFF
     woffPath = os.path.join(userAgentTestResourcesDirectory, identifier) + ".woff"
     f = open(woffPath, "wb")
@@ -220,13 +226,13 @@ def writeFileStructureTest(identifier, flavor="CFF",
         metadataIsValid=metadataIsValid,
         metadataToDisplay=metadataToDisplay,
         extraSFNTNotes=extraSFNTNotes,
-        extraMetadataNotes=extraMetadataNotes
+        extraMetadataNotes=extraMetadataNotes,
+        chapterURL=groupChapterURLs[tag]
     )
     generateSFNTDisplayTestHTML(**kwargs)
     generateSFNTDisplayRefHTML(**kwargs)
 
     # register the test
-    tag = identifier.split("-")[0]
     testRegistry[tag].append(
         dict(
             identifier=identifier,

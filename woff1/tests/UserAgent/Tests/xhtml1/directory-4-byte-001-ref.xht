@@ -4,6 +4,7 @@
 		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 		<title>WOFF Test: Font Table Data Not On 4-Byte Boundary</title>
 		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
+		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#TableDirectory" />
 		<link rel="help" href="http://dev.w3.org/webfonts/WOFF/spec/#conform-tablesize-longword" />
 		<meta name="flags" content="font" />
 		<meta name="assert" content="Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly." />

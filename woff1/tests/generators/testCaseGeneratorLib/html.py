@@ -62,7 +62,8 @@ def _generateSFNTDisplayTestHTML(
     metadataIsValid=None,
     metadataToDisplay=None,
     extraSFNTNotes=[],
-    extraMetadataNotes=[]
+    extraMetadataNotes=[],
+    chapterURL=None
     ):
     assert flavor is not None
     assert title is not None
@@ -91,6 +92,9 @@ def _generateSFNTDisplayTestHTML(
             s += " <!-- %s -->" % date
         html.append(s)
     ## link
+    assert chapterURL is not None
+    s = "\t\t<link rel=\"help\" href=\"%s\" />" % chapterURL
+    html.append(s)
     for link in specLinks:
         s = "\t\t<link rel=\"help\" href=\"%s\" />" % link
         html.append(s)
@@ -149,7 +153,14 @@ def _generateSFNTDisplayTestHTML(
     html = "\n".join(html)
     return html
 
-def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, title=None, sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
+def generateSFNTDisplayTestHTML(
+    fileName=None, directory=None, flavor=None, title=None,
+    sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, assertion=None,
+    credits=[], flags=[],
+    shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None,
+    extraSFNTNotes=[], extraMetadataNotes=[],
+    chapterURL=None
+    ):
     bodyCharacter = testFailCharacter
     if shouldDisplay:
         bodyCharacter = testPassCharacter
@@ -169,7 +180,8 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
         metadataIsValid=metadataIsValid,
         metadataToDisplay=metadataToDisplay,
         extraSFNTNotes=extraSFNTNotes,
-        extraMetadataNotes=extraMetadataNotes
+        extraMetadataNotes=extraMetadataNotes,
+        chapterURL=chapterURL
     )
     # write the file
     path = os.path.join(directory, fileName) + ".xht"
@@ -177,7 +189,14 @@ def generateSFNTDisplayTestHTML(fileName=None, directory=None, flavor=None, titl
     f.write(html)
     f.close()
 
-def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title=None, sfntDisplaySpecLink=None, metadataDisplaySpecLink=None, assertion=None, credits=[], flags=[], shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None, extraSFNTNotes=[], extraMetadataNotes=[]):
+def generateSFNTDisplayRefHTML(
+        fileName=None, directory=None, flavor=None, title=None,
+        sfntDisplaySpecLink=None, metadataDisplaySpecLink=None,
+        assertion=None, credits=[], flags=[],
+        shouldDisplay=None, metadataIsValid=None, metadataToDisplay=None,
+        extraSFNTNotes=[], extraMetadataNotes=[],
+        chapterURL=None
+    ):
     bodyCharacter = refPassCharacter
     css = refCSS % flavor
     specLinks = []
@@ -195,7 +214,8 @@ def generateSFNTDisplayRefHTML(fileName=None, directory=None, flavor=None, title
         metadataIsValid=metadataIsValid,
         metadataToDisplay=metadataToDisplay,
         extraSFNTNotes=extraSFNTNotes,
-        extraMetadataNotes=extraMetadataNotes
+        extraMetadataNotes=extraMetadataNotes,
+        chapterURL=chapterURL
     )
     # write the file
     path = os.path.join(directory, fileName) + "-ref.xht"
