@@ -1054,7 +1054,9 @@ def _testTableDirectoryChecksums(data, reporter):
             continue
         newChecksum = calcChecksum(tag, decompressedData)
         if newChecksum != origChecksum:
-            reporter.logError(message="The \"%s\" table directory entry original checksum (%s) does not match the checksum (%s) calculated from the data." % (tag, hex(origChecksum), hex(newChecksum)))
+            newChecksum = hex(newChecksum).strip("L")
+            origChecksum = hex(origChecksum).strip("L")
+            reporter.logError(message="The \"%s\" table directory entry original checksum (%s) does not match the checksum (%s) calculated from the data." % (tag, origChecksum, newChecksum))
         else:
             reporter.logPass(message="The \"%s\" table directory entry original checksum is correct." % tag)
     # check the head checksum adjustment
@@ -1066,7 +1068,9 @@ def _testTableDirectoryChecksums(data, reporter):
         try:
             checksum = struct.unpack(">L", data[8:12])[0]
             if checksum != newChecksum:
-                reporter.logError(message="The \"head\" table checkSumAdjustment (%s) does not match the calculated checkSumAdjustment (%s)." % (hex(checksum), hex(newChecksum)))
+                checksum = hex(checksum).strip("L")
+                newChecksum = hex(newChecksum).strip("L")
+                reporter.logError(message="The \"head\" table checkSumAdjustment (%s) does not match the calculated checkSumAdjustment (%s)." % (checksum, newChecksum))
             else:
                 reporter.logPass(message="The \"head\" table checkSumAdjustment is valid.")
         except:
