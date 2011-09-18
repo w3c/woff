@@ -10,7 +10,7 @@ from validator import validateFont
 testSuiteDirectory = os.path.dirname(__file__)           # /validator
 testSuiteDirectory = os.path.dirname(testSuiteDirectory) # /tools
 testSuiteDirectory = os.path.dirname(testSuiteDirectory) # /WOFF
-testSuiteDirectory = os.path.join(testSuiteDirectory, "tests", "Format", "Tests")
+testSuiteDirectory = os.path.join(testSuiteDirectory, "tests", "Format", "Tests", "xhtml1")
 if not os.path.exists(testSuiteDirectory):
     print "Test suite could not be located!"
     print "Aborting."
@@ -18,6 +18,8 @@ if not os.path.exists(testSuiteDirectory):
 
 testSuiteIndexPath = os.path.join(testSuiteDirectory, "testcaseindex.xht")
 testSuiteExpectationPath = os.path.join(os.path.dirname(__file__), "test_validatorExpectations.txt")
+
+harnessReportPath = os.path.join(os.path.dirname(__file__), "testsuiteresults.txt")
 
 # -------------
 # Main Function
@@ -33,9 +35,23 @@ def testValidator():
     # the expected results are in sync
     checkExpectedResultSync(expectedResults)
     # test each case
+    harnessResults = []
     errors = 0
     for identifier, testCase in sorted(expectedResults.items()):
-        errors += not performTest(testCase)
+        failed = not performTest(testCase)
+        errors += failed
+        if failed:
+            s = "%s\tfail\t" % identifier
+        else:
+            s = "%s\tpass\t" % identifier
+        harnessResults.append(s)
+    # write the test suite harness fail
+    harnessResults = "\n".join(harnessResults)
+    if os.path.exists(harnessReportPath):
+        os.remove(harnessReportPath)
+    f = open(harnessReportPath, "wb")
+    f.write(harnessResults)
+    f.close()
     print "=" * 70
     print "%d errors found in %d tests." % (errors, len(expectedResults))
     print
