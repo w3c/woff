@@ -236,7 +236,7 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
         "\t</head>",
         "\t<body>",
         "\t\t<h1>WOFF: User Agent Test Suite (%d tests)</h1>" % testCount,
-        "\t\t<p class=\"installFontsNote\">All of these tests require special fonts to be installed. The fonts can be obtained <a href=\"../FontsToInstall\">here</a>.</p>"
+        "\t\t<p class=\"installFontsNote\">All of these tests require special fonts to be installed. The fonts can be obtained <a href=\"../../FontsToInstall\">here</a>.</p>"
     ]
     # add the test groups
     for group in testCases:
@@ -345,7 +345,7 @@ def generateFormatIndexHTML(directory=None, testCases=[]):
     ]
     # add a download note
     html.append("\t\t<div class=\"mainNote\">")
-    html.append("\t\t\tThe files used in these test can be obtained <a href=\"../Tests\">here</a>.")
+    html.append("\t\t\tThe files used in these test can be obtained <a href=\"../xhtml1\">here</a>.")
     html.append("\t\t</div>")
     # add the test groups
     for group in testCases:
@@ -418,7 +418,7 @@ def generateAuthoringToolIndexHTML(directory=None, testCases=[], note=None):
     ]
     # add a download note
     html.append("\t\t<div class=\"mainNote\">")
-    html.append("\t\t\tThe files used in these test can be obtained <a href=\"../Tests\">here</a>.")
+    html.append("\t\t\tThe files used in these test can be obtained <a href=\"../xhtml1\">here</a>.")
     html.append("\t\t</div>")
     # add the note
     if note:
