@@ -22,6 +22,7 @@ import os
 import shutil
 import glob
 import struct
+import zipfile
 import sstruct
 from testCaseGeneratorLib.woff import packTestHeader, packTestDirectory, packTestTableData, packTestMetadata, packTestPrivateData
 from testCaseGeneratorLib.defaultData import defaultTestData, testDataWOFFMetadata, testDataWOFFPrivateData
@@ -3015,6 +3016,25 @@ for tag, title, url in groupDefinitions:
     testGroups.append(group)
 
 generateFormatIndexHTML(directory=formatTestDirectory, testCases=testGroups)
+
+# ----------------
+# Generate the zip
+# ----------------
+
+print "Compiling zip file..."
+
+zipPath = os.path.join(formatTestDirectory, "FormatTestFonts.zip")
+if os.path.exists(zipPath):
+    os.remove(zipPath)
+
+allBinariesZip = zipfile.ZipFile(zipPath, "w")
+
+pattern = os.path.join(formatTestDirectory, "*.woff")
+for path in glob.glob(pattern):
+    ext = os.path.splitext(path)[1]
+    allBinariesZip.write(path, os.path.basename(path))
+
+allBinariesZip.close()
 
 # ---------------------
 # Generate the Manifest
