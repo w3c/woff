@@ -21,6 +21,7 @@ import os
 import shutil
 import glob
 import struct
+import zipfile
 import sstruct
 from fontTools.ttLib.sfnt import sfntDirectorySize, sfntDirectoryEntrySize
 from testCaseGeneratorLib.defaultData import defaultSFNTTestData
@@ -896,6 +897,26 @@ for tag, title, url, note in groupDefinitions:
     testGroups.append(group)
 
 generateAuthoringToolIndexHTML(directory=authoringToolTestDirectory, testCases=testGroups, note=indexNote)
+
+# ----------------
+# Generate the zip
+# ----------------
+
+print "Compiling zip file..."
+
+zipPath = os.path.join(authoringToolTestDirectory, "AuthoringToolTestFonts.zip")
+if os.path.exists(zipPath):
+    os.remove(zipPath)
+
+allBinariesZip = zipfile.ZipFile(zipPath, "w")
+
+pattern = os.path.join(authoringToolTestDirectory, "*.*tf")
+for path in glob.glob(pattern):
+    ext = os.path.splitext(path)[1]
+    assert ext in (".otf", ".ttf")
+    allBinariesZip.write(path, os.path.basename(path))
+
+allBinariesZip.close()
 
 # ---------------------
 # Generate the Manifest
