@@ -710,7 +710,7 @@ makeTableCompressionTest2Credits = [dict(title="Tal Leming", role="author", link
 
 def makeTableCompressionTest3():
     tableData = deepcopy(sfntCFFTableData)
-    haveStoredCompressed = True
+    haveStoredCompressed = False
     for tag, (origData, compData) in tableData.items():
         if haveStoredCompressed and len(compData) < len(origData):
             compData = origData
