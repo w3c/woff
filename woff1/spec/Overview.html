@@ -50,8 +50,8 @@ dl.xmlspec dd {
 }
      </style>
        <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css"/>
-        <!--  <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/> -->
-       <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-CR"/>
+       <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
+        <!--  <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-CR"/> -->
 
    </head>
    <body>
@@ -64,19 +64,18 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Candidate Recommendation 04 August 2011
+<h2 id="W3C-doctype">W3C Editor's Draft 04 January 2012
 </h2>
 
 <dl>
   <dt>This version:</dt>
-  <!-- <dd><a href="http://dev.w3.org/webfonts/WOFF/spec/">http://dev.w3.org/webfonts/WOFF/spec/</a></dd> -->
-    <dd><a href="http://www.w3.org/TR/2011/CR-WOFF-20110804">http://www.w3.org/TR/2011/CR-WOFF-20110804</a></dd>
+  <dd><a href="http://dev.w3.org/webfonts/WOFF/spec/">http://dev.w3.org/webfonts/WOFF/spec/</a></dd>
 
   <dt>Latest version:</dt>
   <dd><a href="http://www.w3.org/TR/WOFF">http://www.w3.org/TR/WOFF</a></dd>
 
   <dt>Previous version:</dt>
-  <dd><a href="http://www.w3.org/TR/2010/WD-WOFF-20101116">http://www.w3.org/TR/2010/WD-WOFF-20101116</a></dd>
+    <dd><a href="http://www.w3.org/TR/2011/CR-WOFF-20110804">http://www.w3.org/TR/2011/CR-WOFF-20110804</a></dd>
 
 </dl>
 
@@ -89,7 +88,7 @@ dl.xmlspec dd {
 
 
   <p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
-  &copy; 2011 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>&reg;</sup>
+  &copy; 2012 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>&reg;</sup>
   (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
   <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
   <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved.
@@ -177,11 +176,6 @@ individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy
 information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.
 </p>
 
-<p>This document identifies two features as being 
-<a href="http://www.w3.org/2005/10/Process-20051014/tr.html#cfi">at risk</a>: the 
-<a href="#atrisk-SOR">default Same Origin Restriction 
-(SOR)</a> and the <a href="#atrisk-CORS">mechanism used to relax the SOR, Cross Origin Resource Sharing (CORS)</a>.</p>
-
 <h2 id="toc">Table of Contents</h2>
 
 <p><a href="#Introduction">1.&nbsp;Introduction</a>
@@ -249,24 +243,7 @@ but are not part of the normative text.
 
 <p>The primary purpose of the WOFF format is to package fonts linked to Web documents
 by means of CSS <tt>@font-face</tt> rules.
-<span class="conform ua" id="conform-same-origin">When using such fonts, user agents MUST implement a 'same-origin restriction'
-on the downloading of WOFF files
-using the same-origin matching algorithm described in the HTML5 specification</span> ([<cite><a href="#ref-HTML5">HTML5</a> <a href="http://www.w3.org/TR/html5/origin-0.html#origin-0">Section 5.3:
-Origin</a></cite>]).
-<span class="conform ua" id="conform-doc-origin">The origin of the stylesheet containing <tt>@font-face</tt> declarations
-is not used when deciding whether a WOFF file is same-origin or not,
-only the origin of containing document is used</span>.</p>
-
-<p id="atrisk-SOR" class="ednote">Feature at risk: The WebFonts WG believes that the default Same-Origin restriction would be better applied to all fonts referenced from <tt>@font-face</tt>, rather than one specific format. Therefore, if CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] adds a normative requirement for a Same-Origin restriction, the WebFonts WG will drop it from the WOFF specification and instead refer to CSS3 Fonts.</p>
-
-<p><span class="conform ua" id="conform-cors">User agents MUST also implement the ability to relax this restriction
-using Cross-Origin Resource Sharing</span> [<cite><a href="#ref-CORS">CORS</a></cite>].
-Thus, sites can explicitly allow cross-site downloading of WOFF files
-using the <tt>Access-Control-Allow-Origin</tt> HTTP header.</p>
-
-<p id="atrisk-CORS" class="ednote">Feature at risk: The WebFonts WG suspects that the From-Origin header may be a better way to infer a default Same-Origin for fonts, and the same mechanism can also be used to relax the restriction to allow font sharing across domains. Therefore, once CSS3 Fonts [<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>] mandates a mechanism, WebFonts WG will drop the requirement to use CORS from this specification.</p>
-
-<p><span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for linked fonts MUST respect
+<span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for linked fonts MUST respect
 the requirements of the CSS3 Fonts specification</span> ([<cite><a  href="#ref-CSS3-Fonts"
     >CSS3-Fonts</a></cite>] <a href="http://www.w3.org/TR/css3-fonts/#font-face-rule">Section 4.1:
 The @font-face rule</a>). In particular,
@@ -1482,6 +1459,15 @@ for elements, clarified their required parents.</li>
 
 <p>A <a href="http://dev.w3.org/cvsweb/webfonts/WOFF/spec/Overview.html.diff?r1=1.58;r2=1.96;f=h">color-coded diff</a> between the editors draft used to prepare the Last Call Working Draft, and the editors draft used to prepare this Candidate Recommendation, is available.</p>
 
+<p>The following changes were made after publication of the Candidate Recommendation:</p>
+
+<ul>
+<li>Removed (previously at-risk) text specifying same-origin requirements
+for loading WOFF fonts, and CORS mechanism to relax the restriction,
+as the CSS WG agreed to include this in CSS3 Fonts
+as part of the specification of the @font-face rule.</li>
+</ul>
+
 <hr/>
 
 <h2 id="References">References</h2>
@@ -1493,21 +1479,9 @@ for elements, clarified their required parents.</li>
 <dd><cite><a
 href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">BCP 47</a> Tags for Identifying Languages and Matching of Language Tags</cite></dd>
 
-<dt id="ref-CORS">[CORS]</dt>
-<dd><cite><a
-href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a>, A. van Kesteren, Editor. World Wide Web Consortium, 27 July 2010. The <a
-href="http://www.w3.org/TR/cors/">latest version of CORS</a> is available at http://www.w3.org/TR/cors/. (Work in Progress)</cite></dd>
-
 <dt id="ref-CSS3-Fonts">[CSS3-Fonts]</dt>
 <dd><cite><a
 href="http://www.w3.org/TR/css3-fonts/">CSS Fonts Module Level 3</a>. J. Daggett, Editor. World Wide Web Consortium, 18 June 2009. The <a href="http://www.w3.org/TR/css3-fonts/">latest version of CSS3 Fonts</a> is available at http://www.w3.org/TR/css3-fonts/. (Work in Progress).
-</cite></dd>
-
-<dt id="ref-HTML5">[HTML5]</dt>
-<dd><cite><a
-href="http://www.w3.org/TR/2010/WD-html5-20101019/">HTML5</a>. I Hickson, Editor. World Wide Web Consortium, 
-19 October 2010. The <a href="http://www.w3.org/TR/html5/">latest edition of HTML5</a>
-is available at http://www.w3.org/TR/html5/. (Work in Progress).
 </cite></dd>
 
 <dt id="ref-OFF">[OFF]</dt>
