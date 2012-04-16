@@ -530,11 +530,14 @@ def testHeader(data, reporter):
         _testHeaderTotalSFNTSize,
         _testHeaderNumTables
     ]
+    nonStoppingError = False
     for function in functions:
-        shouldStop = function(data, reporter)
-        if shouldStop:
-            return True
-    return False
+        stoppingError, nsError = function(data, reporter)
+        if nsError:
+            nonStoppingError = True
+        if stoppingError:
+            return True, nonStoppingError
+    return False, nonStoppingError
 
 
 headerFormat = """
@@ -564,7 +567,8 @@ def _testHeaderStructure(data, reporter):
         reporter.logPass(message="The header structure is correct.")
     except:
         reporter.logError(message="The header is not properly structured.")
-        return True
+        return True, False
+    return False, False
 
 def _testHeaderSignature(data, reporter):
     """
@@ -575,9 +579,10 @@ def _testHeaderSignature(data, reporter):
     signature = header["signature"]
     if signature != "wOFF":
         reporter.logError(message="Invalid signature: %s." % signature)
-        return True
+        return True, False
     else:
         reporter.logPass(message="The signature is correct.")
+    return False, False
 
 def _testHeaderFlavor(data, reporter):
     """
@@ -596,12 +601,15 @@ def _testHeaderFlavor(data, reporter):
             tags = [table["tag"] for table in unpackDirectory(data)]
             if "CFF " in tags and flavor != "OTTO":
                 reporter.logError(message="A \"CFF\" table is defined in the font and the flavor is not set to \"OTTO\".")
+                return False, True
             elif "CFF " not in tags and flavor == "OTTO":
                 reporter.logError(message="The flavor is set to \"OTTO\" but no \"CFF\" table is defined.")
+                return False, True
             else:
                 reporter.logPass(message="The flavor is a correct value.")
         except:
             reporter.logWarning(message="Could not validate the flavor.")
+    return False, False
 
 def _testHeaderLength(data, reporter):
     """
@@ -617,10 +625,10 @@ def _testHeaderLength(data, reporter):
     minLength = headerSize + (directorySize * numTables)
     if length != len(data):
         reporter.logError(message="Defined length (%d) does not match actual length of the data (%d)." % (length, len(data)))
-        return
+        return False, True
     if length < minLength:
         reporter.logError(message="Invalid length defined (%d) for number of tables defined." % length)
-        return
+        return False, True
     directory = unpackDirectory(data)
     for entry in directory:
         compLength = entry["compLength"]
@@ -637,8 +645,9 @@ def _testHeaderLength(data, reporter):
     minLength += metaLength + privLength
     if length < minLength:
         reporter.logError(message="Defined length (%d) does not match the required length of the data (%d)." % (length, minLength))
-        return
+        return False, True
     reporter.logPass(message="The length defined in the header is correct.")
+    return False, False
 
 def _testHeaderReserved(data, reporter):
     """
@@ -649,8 +658,10 @@ def _testHeaderReserved(data, reporter):
     reserved = header["reserved"]
     if reserved != 0:
         reporter.logError(message="Invalid value in reserved field (%d)." % reserved)
+        return False, True
     else:
         reporter.logPass(message="The value in the reserved field is correct.")
+    return False, False
 
 def _testHeaderTotalSFNTSize(data, reporter):
     """
@@ -679,6 +690,7 @@ def _testHeaderTotalSFNTSize(data, reporter):
             isValid = False
     if isValid:
         reporter.logPass(message="The total sfnt size is valid.")
+    return False, not isValid
 
 def _testHeaderNumTables(data, reporter):
     """
@@ -690,15 +702,16 @@ def _testHeaderNumTables(data, reporter):
     numTables = header["numTables"]
     if numTables < 1:
         reporter.logError(message="Invalid number of tables defined in header structure (%d)." % numTables)
-        return
+        return False, True
     data = data[headerSize:]
     for index in range(numTables):
         try:
             d, data = structUnpack(directoryFormat, data)
         except:
             reporter.logError(message="The defined number of tables in the header (%d) does not match the actual number of tables (%d)." % (numTables, index))
-            return
+            return False, True
     reporter.logPass(message="The number of tables defined in the header is valid.")
+    return False, False
 
 # -------------
 # Tests: Tables
@@ -712,10 +725,14 @@ def testDataBlocks(data, reporter):
         _testBlocksOffsetLengthZero,
         _testBlocksPositioning
     ]
+    nonStoppingError = False
     for function in functions:
-        shouldStop = function(data, reporter)
-        if shouldStop:
-            return True
+        stoppingError, nsError = function(data, reporter)
+        if nsError:
+            nonStoppingError = True
+        if stoppingError:
+            return True, nonStoppingError
+    return False, nonStoppingError
 
 def _testBlocksOffsetLengthZero(data, reporter):
     """
@@ -723,6 +740,7 @@ def _testBlocksOffsetLengthZero(data, reporter):
     - The private data must have the offset and length set to zero consistently.
     """
     header = unpackHeader(data)
+    haveError = False
     # metadata
     metaOffset = header["metaOffset"]
     metaLength = header["metaLength"]
@@ -731,6 +749,7 @@ def _testBlocksOffsetLengthZero(data, reporter):
             reporter.logPass(message="The length and offset are appropriately set for empty metadata.")
         else:
             reporter.logError(message="The metadata offset (%d) and metadata length (%d) are not properly set. If one is 0, they both must be 0." % (metaOffset, metaLength))
+            haveError = True
     # private data
     privOffset = header["privOffset"]
     privLength = header["privLength"]
@@ -739,6 +758,8 @@ def _testBlocksOffsetLengthZero(data, reporter):
             reporter.logPass(message="The length and offset are appropriately set for empty private data.")
         else:
             reporter.logError(message="The private data offset (%d) and private data length (%d) are not properly set. If one is 0, they both must be 0." % (privOffset, privLength))
+            haveError = True
+    return False, haveError
 
 def _testBlocksPositioning(data, reporter):
     """
@@ -751,15 +772,17 @@ def _testBlocksPositioning(data, reporter):
     - The private data must end at the edge of the file.
     """
     header = unpackHeader(data)
+    haveError = False
     # table data start
     directory = unpackDirectory(data)
     if not directory:
-        return
+        return False, False
     expectedTableDataStart = headerSize + (directorySize * header["numTables"])
     offsets = [entry["offset"] for entry in directory]
     tableDataStart = min(offsets)
     if expectedTableDataStart != tableDataStart:
         reporter.logError(message="The table data does not start (%d) in the required position (%d)." % (tableDataStart, expectedTableDataStart))
+        haveError = True
     else:
         reporter.logPass(message="The table data begins in the required position.")
     # table data end
@@ -774,6 +797,7 @@ def _testBlocksPositioning(data, reporter):
     expectedTableDataEnd = max(ends)
     if expectedTableDataEnd != definedTableDataEnd:
         reporter.logError(message="The table data end (%d) is not in the required position (%d)." % (definedTableDataEnd, expectedTableDataEnd))
+        haveError = True
     else:
         reporter.logPass(message="The table data ends in the required position.")
     # metadata
@@ -783,6 +807,7 @@ def _testBlocksPositioning(data, reporter):
         definedMetaStart = header["metaOffset"]
         if expectedMetaStart != definedMetaStart:
             reporter.logError(message="The metadata does not start (%d) in the required position (%d)." % (definedMetaStart, expectedMetaStart))
+            haveError = True
         else:
             reporter.logPass(message="The metadata begins in the required position.")
         # end
@@ -797,6 +822,7 @@ def _testBlocksPositioning(data, reporter):
             expectedMetaEnd += calcPaddingLength(header["metaLength"])
         if expectedMetaEnd != definedMetaEnd:
             reporter.logError(message="The metadata end (%d) is not in the required position (%d)." % (definedMetaEnd, expectedMetaEnd))
+            haveError = True
         else:
             reporter.logPass(message="The metadata ends in the required position.")
     # private data
@@ -809,6 +835,7 @@ def _testBlocksPositioning(data, reporter):
         definedPrivateStart = header["privOffset"]
         if expectedPrivateStart != definedPrivateStart:
             reporter.logError(message="The private data does not start (%d) in the required position (%d)." % (definedPrivateStart, expectedPrivateStart))
+            haveError = True
         else:
             reporter.logPass(message="The private data begins in the required position.")
         # end
@@ -816,8 +843,10 @@ def _testBlocksPositioning(data, reporter):
         definedPrivateEnd = header["privOffset"] + header["privLength"]
         if expectedPrivateEnd != definedPrivateEnd:
             reporter.logError(message="The private data end (%d) is not in the required position (%d)." % (definedPrivateEnd, expectedPrivateEnd))
+            haveError = True
         else:
             reporter.logPass(message="The private data ends in the required position.")
+    return False, haveError
 
 # ----------------------
 # Tests: Table Directory
@@ -837,10 +866,14 @@ def testTableDirectory(data, reporter):
         _testTableDirectoryChecksums,
         _testTableDirectoryTableOrder
     ]
+    nonStoppingError = False
     for function in functions:
-        shouldStop = function(data, reporter)
-        if shouldStop:
-            return True
+        stoppingError, nsError = function(data, reporter)
+        if nsError:
+            nonStoppingError = True
+        if stoppingError:
+            return True, nonStoppingError
+    return False, nonStoppingError
 
 directoryFormat = """
     tag:            4s
@@ -865,7 +898,8 @@ def _testTableDirectoryStructure(data, reporter):
         reporter.logPass(message="The table directory structure is correct.")
     except:
         reporter.logError(message="The table directory is not properly structured.")
-        return True
+        return True, False
+    return False, False
 
 def _testTableDirectory4ByteOffsets(data, reporter):
     """
@@ -873,13 +907,16 @@ def _testTableDirectory4ByteOffsets(data, reporter):
     - The font tables must each begin on a 4-byte boundary.
     """
     directory = unpackDirectory(data)
+    haveError = False
     for table in directory:
         tag = table["tag"]
         offset = table["offset"]
         if offset % 4:
             reporter.logError(message="The \"%s\" table does not begin on a 4-byte boundary (%d)." % (tag, offset))
+            haveError = True
         else:
             reporter.logPass(message="The \"%s\" table begins on a 4-byte boundary." % tag)
+    return False, haveError
 
 def _testTableDirectoryPadding(data, reporter):
     """
@@ -889,6 +926,7 @@ def _testTableDirectoryPadding(data, reporter):
     """
     header = unpackHeader(data)
     directory = unpackDirectory(data)
+    haveError = False
     # test final table
     endError = False
     sfntEnd = None
@@ -900,6 +938,7 @@ def _testTableDirectoryPadding(data, reporter):
         sfntEnd = header["length"]
     if sfntEnd % 4:
         reporter.logError(message="The sfnt data does not end with proper padding.")
+        haveError = True
     else:
         reporter.logPass(message="The sfnt data ends with proper padding.")
     # test the bytes used for padding
@@ -914,8 +953,10 @@ def _testTableDirectoryPadding(data, reporter):
             expectedPadding = "\0" * paddingLength
             if padding != expectedPadding:
                 reporter.logError(message="The \"%s\" table is not padded with null bytes." % tag)
+                haveError = True
             else:
                 reporter.logPass(message="The \"%s\" table is padded with null bytes." % tag)
+    return False, haveError
 
 def _testTableDirectoryPositions(data, reporter):
     """
@@ -928,6 +969,7 @@ def _testTableDirectoryPositions(data, reporter):
     """
     directory = unpackDirectory(data)
     tablesWithProblems = set()
+    haveError = False
     # test for overlapping tables
     locations = []
     for table in directory:
@@ -943,6 +985,7 @@ def _testTableDirectoryPositions(data, reporter):
                 reporter.logError(message="The \"%s\" table overlaps the \"%s\" table." % (tag, otherTag))
                 tablesWithProblems.add(tag)
                 tablesWithProblems.add(otherTag)
+                haveError = True
     # test for invalid offset, length and combo
     header = unpackHeader(data)
     if header["metaOffset"] != 0:
@@ -963,16 +1006,19 @@ def _testTableDirectoryPositions(data, reporter):
             tablesWithProblems.add(tag)
             message = "The \"%s\" table directory entry offset (%d) is before the start of the table data block (%d)." % (tag, offset, minOffset)
             reporter.logError(message=message)
+            haveError = True
         # offset is after the end of the table data block
         elif offset > tableDataEnd:
             tablesWithProblems.add(tag)
             message = "The \"%s\" table directory entry offset (%d) is past the end of the table data block (%d)." % (tag, offset, tableDataEnd)
             reporter.logError(message=message)
+            haveError = True
         # offset + length is after the end of the table tada block
         elif (offset + length) > tableDataEnd:
             tablesWithProblems.add(tag)
             message = "The \"%s\" table directory entry offset (%d) + length (%d) is past the end of the table data block (%d)." % (tag, offset, length, tableDataEnd)
             reporter.logError(message=message)
+            haveError = True
     # test for gaps
     tables = []
     for table in directory:
@@ -990,12 +1036,14 @@ def _testTableDirectoryPositions(data, reporter):
             tablesWithProblems.add(prevTag)
             tablesWithProblems.add(tag)
             reporter.logError(message="Extraneous data between the \"%s\" and \"%s\" tables." % (prevTag, tag))
+            haveError = True
     # log passes
     for entry in directory:
         tag = entry["tag"]
         if tag in tablesWithProblems:
             continue
         reporter.logPass(message="The \"%s\" table directory entry has a valid offset and length." % tag)
+    return False, haveError
 
 def _testTableDirectoryCompressedLength(data, reporter):
     """
@@ -1003,14 +1051,19 @@ def _testTableDirectoryCompressedLength(data, reporter):
     - The compressed length must be less than or equal to the original length.
     """
     directory = unpackDirectory(data)
+    haveError = False
     for table in directory:
         tag = table["tag"]
         compLength = table["compLength"]
         origLength = table["origLength"]
         if compLength > origLength:
             reporter.logError(message="The \"%s\" table directory entry has a compressed length (%d) larger than the original length (%d)." % (tag, compLength, origLength))
+            haveError = True
+        elif compLength == origLength:
+            reporter.logPass(message="The \"%s\" table directory entry is not compressed." % tag)
         else:
             reporter.logPass(message="The \"%s\" table directory entry has proper compLength and origLength values." % tag)
+    return False, haveError
 
 def _testTableDirectoryDecompressedLength(data, reporter):
     """
@@ -1019,6 +1072,7 @@ def _testTableDirectoryDecompressedLength(data, reporter):
     """
     directory = unpackDirectory(data)
     tableData = unpackTableData(data)
+    haveError = False
     for table in directory:
         tag = table["tag"]
         offset = table["offset"]
@@ -1033,8 +1087,10 @@ def _testTableDirectoryDecompressedLength(data, reporter):
         decompressedLength = len(decompressedData)
         if origLength != decompressedLength:
             reporter.logError(message="The \"%s\" table directory entry has an original length (%d) that does not match the actual length of the decompressed data (%d)." % (tag, origLength, decompressedLength))
+            haveError = True
         else:
             reporter.logPass(message="The \"%s\" table directory entry has a proper original length compared to the actual decompressed data." % tag)
+    return False, haveError
 
 def _testTableDirectoryChecksums(data, reporter):
     """
@@ -1045,6 +1101,7 @@ def _testTableDirectoryChecksums(data, reporter):
     # check the table directory checksums
     directory = unpackDirectory(data)
     tables = unpackTableData(data)
+    haveError = False
     for entry in directory:
         tag = entry["tag"]
         origChecksum = entry["origChecksum"]
@@ -1057,6 +1114,7 @@ def _testTableDirectoryChecksums(data, reporter):
             newChecksum = hex(newChecksum).strip("L")
             origChecksum = hex(origChecksum).strip("L")
             reporter.logError(message="The \"%s\" table directory entry original checksum (%s) does not match the checksum (%s) calculated from the data." % (tag, origChecksum, newChecksum))
+            haveError = True
         else:
             reporter.logPass(message="The \"%s\" table directory entry original checksum is correct." % tag)
     # check the head checksum adjustment
@@ -1071,11 +1129,13 @@ def _testTableDirectoryChecksums(data, reporter):
                 checksum = hex(checksum).strip("L")
                 newChecksum = hex(newChecksum).strip("L")
                 reporter.logError(message="The \"head\" table checkSumAdjustment (%s) does not match the calculated checkSumAdjustment (%s)." % (checksum, newChecksum))
+                haveError = True
             else:
                 reporter.logPass(message="The \"head\" table checkSumAdjustment is valid.")
         except:
             reporter.logError(message="The \"head\" table is not properly structured.")
-
+            haveError = True
+    return False, haveError
 
 def _testTableDirectoryTableOrder(data, reporter):
     """
@@ -1085,8 +1145,10 @@ def _testTableDirectoryTableOrder(data, reporter):
     storedOrder = [table["tag"] for table in unpackDirectory(data)]
     if storedOrder != sorted(storedOrder):
         reporter.logError(message="The table directory entries are not stored in alphabetical order.")
+        return False, True
     else:
         reporter.logPass(message="The table directory entries are stored in the proper order.")
+        return False, False
 
 # -----------------
 # Tests: Table Data
@@ -1099,11 +1161,14 @@ def testTableData(data, reporter):
     functions = [
         _testTableDataDecompression
     ]
+    nonStoppingError = False
     for function in functions:
-        shouldStop = function(data, reporter)
-        if shouldStop:
-            return True
-    return False
+        stoppingError, nsError = function(data, reporter)
+        if nsError:
+            nonStoppingError = True
+        if stoppingError:
+            return True, nonStoppingError
+    return False, nonStoppingError
 
 def _testTableDataDecompression(data, reporter):
     """
@@ -1111,6 +1176,7 @@ def _testTableDataDecompression(data, reporter):
     - The table data, when the defined compressed length is less
       than the original length, must be properly compressed.
     """
+    haveError = False
     for table in unpackDirectory(data):
         tag = table["tag"]
         offset = table["offset"]
@@ -1124,6 +1190,8 @@ def _testTableDataDecompression(data, reporter):
             reporter.logPass(message="The \"%s\" table data can be decompressed with zlib." % tag)
         except zlib.error:
             reporter.logError(message="The \"%s\" table data can not be decompressed with zlib." % tag)
+            haveError = True
+    return False, haveError
 
 # ----------------
 # Tests: Metadata
@@ -1134,7 +1202,7 @@ def testMetadata(data, reporter):
     Test the WOFF metadata.
     """
     if _shouldSkipMetadataTest(data, reporter):
-        return False
+        return False, False
     functions = [
         _testMetadataPadding,
         _testMetadataDecompression,
@@ -1143,11 +1211,14 @@ def testMetadata(data, reporter):
         _testMetadataEncoding,
         _testMetadataStructure
     ]
+    nonStoppingError = False
     for function in functions:
-        shouldStop = function(data, reporter)
-        if shouldStop:
-            return True
-    return False
+        stoppingError, nsError = function(data, reporter)
+        if nsError:
+            nonStoppingError = True
+        if stoppingError:
+            return True, nonStoppingError
+    return False, nonStoppingError
 
 def _shouldSkipMetadataTest(data, reporter):
     """
@@ -1167,17 +1238,19 @@ def _testMetadataPadding(data, reporter):
     """
     header = unpackHeader(data)
     if not header["metaOffset"] or not header["privOffset"]:
-        return
+        return False, False
     paddingLength = calcPaddingLength(header["metaLength"])
     if not paddingLength:
-        return
+        return False, False
     paddingOffset = header["metaOffset"] + header["metaLength"]
     padding = data[paddingOffset:paddingOffset + paddingLength]
     expectedPadding = "\0" * paddingLength
     if padding != expectedPadding:
         reporter.logError(message="The metadata is not padded with null bytes.")
+        return False, True
     else:
         reporter.logPass(message="The metadata is padded with null bytes,")
+        return False, False
 
 # does this need to be tested?
 #
@@ -1202,14 +1275,15 @@ def _testMetadataDecompression(data, reporter):
     - Metadata must be compressed with zlib.
     """
     if _shouldSkipMetadataTest(data, reporter):
-        return
+        return False, False
     compData = unpackMetadata(data, decompress=False, parse=False)
     try:
         zlib.decompress(compData)
     except zlib.error:
         reporter.logError(message="The metadata can not be decompressed with zlib.")
-        return True
+        return True, False
     reporter.logPass(message="The metadata can be decompressed with zlib.")
+    return False, False
 
 def _testMetadataDecompressedLength(data, reporter):
     """
@@ -1217,15 +1291,17 @@ def _testMetadataDecompressedLength(data, reporter):
     - The length of the decompressed metadata must match the defined original length.
     """
     if _shouldSkipMetadataTest(data, reporter):
-        return
+        return False, False
     header = unpackHeader(data)
     metadata = unpackMetadata(data, parse=False)
     metaOrigLength = header["metaOrigLength"]
     decompressedLength = len(metadata)
     if metaOrigLength != decompressedLength:
         reporter.logError(message="The decompressed metadata length (%d) does not match the original metadata length (%d) in the header." % (decompressedLength, metaOrigLength))
+        return False, True
     else:
         reporter.logPass(message="The decompressed metadata length matches the original metadata length in the header.")
+        return False, False
 
 def _testMetadataParse(data, reporter):
     """
@@ -1233,14 +1309,15 @@ def _testMetadataParse(data, reporter):
     - The metadata must be well-formed.
     """
     if _shouldSkipMetadataTest(data, reporter):
-        return
+        return False, False
     metadata = unpackMetadata(data, parse=False)
     try:
         tree = ElementTree.fromstring(metadata)
     except (ExpatError, LookupError):
         reporter.logError(message="The metadata can not be parsed.")
-        return True
+        return True, False
     reporter.logPass(message="The metadata can be parsed.")
+    return False, False
 
 def _testMetadataEncoding(data, reporter):
     """
@@ -1248,7 +1325,7 @@ def _testMetadataEncoding(data, reporter):
     - The metadata must be UTF-8 encoded.
     """
     if _shouldSkipMetadataTest(data, reporter):
-        return
+        return False, False
     metadata = unpackMetadata(data, parse=False)
     errorMessage = "The metadata encoding is not valid."
     encoding = None
@@ -1256,7 +1333,7 @@ def _testMetadataEncoding(data, reporter):
     if not metadata.startswith("<"):
         if not metadata.startswith(codecs.BOM_UTF8):
             reporter.logError(message=errorMessage)
-            return
+            return False, True
         else:
             encoding = "UTF-8"
     # sniff the encoding
@@ -1266,7 +1343,7 @@ def _testMetadataEncoding(data, reporter):
         # other encodings such as: <\x00?\x00x\x00m\x00l
         if not metadata.startswith("<?xml"):
             reporter.logError(message=errorMessage)
-            return
+            return False, True
         # go to the first occurance of >
         line = metadata.split(">", 1)[0]
         # find an encoding string
@@ -1287,25 +1364,27 @@ def _testMetadataEncoding(data, reporter):
     # report
     if encoding != "UTF-8":
         reporter.logError(message=errorMessage)
+        return False, True
     else:
         reporter.logPass(message="The metadata is properly encoded.")
+        return False, False
 
 def _testMetadataStructure(data, reporter):
     """
     Test the metadata structure.
     """
     if _shouldSkipMetadataTest(data, reporter):
-        return
+        return False, False
     tree = unpackMetadata(data)
     # make sure the top element is metadata
     if tree.tag != "metadata":
         reporter.logError("The top element is not \"metadata\".")
-        return
+        return False, True
     # sniff the version
     version = tree.attrib.get("version")
     if not version:
         reporter.logError("The \"version\" attribute is not defined.")
-        return
+        return False, True
     # grab the appropriate specification
     versionSpecs = {
         "1.0" : metadataSpec_1_0
@@ -1313,10 +1392,11 @@ def _testMetadataStructure(data, reporter):
     spec = versionSpecs.get(version)
     if spec is None:
         reporter.logError("Unknown version (\"%s\")." % version)
-        return
+        return False, True
     haveError = _validateMetadataElement(tree, spec, reporter)
     if not haveError:
         reporter.logPass("The \"metadata\" element is properly formatted.")
+    return False, haveError
 
 def _validateMetadataElement(element, spec, reporter, parentTree=[]):
     haveError = False
@@ -1609,6 +1689,66 @@ def _formatMetadataResultMessage(message, elementTag, parentTree):
     message += "."
     return message
 
+# ----------------
+# Metadata Display
+# ----------------
+
+def getMetadataForDisplay(data):
+    """
+    Build a tree of the metadata. The value returned will
+    be a list of elements in the following dict form:
+
+        {
+            tag : {
+                attributes : {
+                    attribute : value
+                },
+            text : string,
+            children : []
+            }
+        }
+
+    The value for "children" will be a list of elements
+    folowing the same structure defined above.
+    """
+    test = unpackMetadata(data, parse=False)
+    if not test:
+        return None
+    metadata = unpackMetadata(data)
+    tree = []
+    for element in metadata:
+        _recurseMetadataElement(element, tree)
+    return tree
+
+def _recurseMetadataElement(element, tree):
+    # tag
+    tag = element.tag
+    # text
+    text = element.text
+    if text:
+        text = text.strip()
+    if not text:
+        text = None
+    # attributes
+    attributes = {}
+    ns = "{http://www.w3.org/XML/1998/namespace}"
+    for key, value in element.attrib.items():
+        if key.startswith(ns):
+            key = "xml:" + key[len(ns):]
+        attributes[key] = value
+    # compile the dictionary
+    d = dict(
+        tag=tag,
+        attributes=attributes,
+        text=text,
+        children=[]
+    )
+    tree.append(d)
+    # run through the children
+    for sub in element:
+        _recurseMetadataElement(sub, d["children"])
+
+
 # -------------------------
 # Support: Misc. SFNT Stuff
 # -------------------------
@@ -1799,6 +1939,7 @@ class BaseReporter(object):
     def __init__(self):
         self.title = ""
         self.fileInfo = []
+        self.metadata = None
         self.testResults = []
         self.haveReadError = False
 
@@ -1807,6 +1948,9 @@ class BaseReporter(object):
 
     def logFileInfo(self, title, value):
         self.fileInfo.append((title, value))
+
+    def logMetadata(self, data):
+        self.metadata = data
 
     def logTableInfo(self, tag=None, offset=None, compLength=None, origLength=None, origChecksum=None):
         self.tableInfo.append((tag, offset, compLength, origLength, origChecksum))
@@ -1846,6 +1990,8 @@ class TextReporter(BaseReporter):
 
     def getReport(self, reportNote=True, reportWarning=True, reportError=True, reportPass=True):
         report = []
+        if self.metadata is not None:
+            report.append("METADATA DISPLAY")
         for group in self.testResults:
             for result in group:
                 typ = result["type"]
@@ -1871,6 +2017,9 @@ class HTMLReporter(BaseReporter):
         # write major error alert
         if self.haveReadError:
             self._writeMajorError(writer)
+        # write the metadata
+        if self.metadata:
+            self._writeMetadata(writer)
         # write the test overview
         self._writeTestResultsOverview(writer)
         # write the test groups
@@ -1911,6 +2060,63 @@ class HTMLReporter(BaseReporter):
         writer.begintag("h2", c_l_a_s_s="readError")
         writer.write("The file contains major structural errors!")
         writer.endtag("h2")
+
+    def _writeMetadata(self, writer):
+        # start the block
+        writer.begintag("div", c_l_a_s_s="infoBlock")
+        # title
+        writer.begintag("h3", c_l_a_s_s="infoBlockTitle")
+        writer.write("Metadata ")
+        writer.endtag("h3")
+        # content
+        for element in self.metadata:
+            self._writeMetadataElement(element, writer)
+        # close the block
+        writer.endtag("div")
+
+    def _writeMetadataElement(self, element, writer):
+        writer.begintag("div", c_l_a_s_s="metadataElement")
+        # tag
+        writer.begintag("h5", c_l_a_s_s="metadata")
+        writer.write(element["tag"])
+        writer.endtag("h5")
+        # attributes
+        attributes = element["attributes"]
+        if len(attributes):
+            writer.begintag("h6", c_l_a_s_s="metadata")
+            writer.write("Attributes:")
+            writer.endtag("h6")
+            # key, value pairs
+            writer.begintag("table", c_l_a_s_s="metadata")
+            for key, value in sorted(attributes.items()):
+                writer.begintag("tr")
+                writer.begintag("td", c_l_a_s_s="key")
+                writer.write(key)
+                writer.endtag("td")
+                writer.begintag("td", c_l_a_s_s="value")
+                writer.write(value)
+                writer.endtag("td")
+                writer.endtag("tr")
+            writer.endtag("table")
+        # text
+        text = element["text"]
+        if text is not None and text.strip():
+            writer.begintag("h6", c_l_a_s_s="metadata")
+            writer.write("Text:")
+            writer.endtag("h6")
+            writer.begintag("p", c_l_a_s_s="metadata")
+            writer.write(text)
+            writer.endtag("p")
+        # child elements
+        children = element["children"]
+        if len(children):
+            writer.begintag("h6", c_l_a_s_s="metadata")
+            writer.write("Child Elements:")
+            writer.endtag("h6")
+            for child in children:
+                self._writeMetadataElement(child, writer)
+        # close
+        writer.endtag("div")
 
     def _writeTestResultsOverview(self, writer):
         ## tabulate
@@ -2393,14 +2599,6 @@ def findUniqueFileName(path):
 # Public Function
 # ---------------
 
-tests = [
-    ("Header",          testHeader),
-    ("Data Blocks",     testDataBlocks),
-    ("Table Directory", testTableDirectory),
-    ("Table Data",      testTableData),
-    ("Metadata",        testMetadata)
-]
-
 def validateFont(path, options, writeFile=True):
     # start the reporter
     if options.outputFormat == "html":
@@ -2418,16 +2616,65 @@ def validateFont(path, options, writeFile=True):
     f = open(path, "rb")
     data = f.read()
     f.close()
-    shouldStop = False
-    for title, func in tests:
-        # skip groups that are not specified in the options
-        if options.testGroups and title not in options.testGroups:
-            continue 
-        reporter.logTestTitle(title)
-        shouldStop = func(data, reporter)
-        if shouldStop:
+    haveReadError = False
+    canDisplayMetadata = True
+    while 1:
+        # the goal here is to locate as many errors as possible in
+        # one session, rather than stopping validation at the first
+        # instance of an error. to do this, each test function returns
+        # two booleans indicating the following:
+        #   1. errors were found that should cease all further tests.
+        #   2. errors were found, but futurther tests can proceed.
+        # this is important because displaying metadata for a file
+        # with errors must not happen.
+
+        # header
+        reporter.logTestTitle("Header")
+        stoppingError, nonStoppingError = testHeader(data, reporter)
+        if nonStoppingError:
+            canDisplayMetadata = False
+        if stoppingError:
+            haveReadError = True
             break
-    reporter.haveReadError = shouldStop
+        # data blocks
+        reporter.logTestTitle("Data Blocks")
+        stoppingError, nonStoppingError = testDataBlocks(data, reporter)
+        if nonStoppingError:
+            canDisplayMetadata = False
+        if stoppingError:
+            haveReadError = True
+            break
+        # table directory
+        reporter.logTestTitle("Table Directory")
+        stoppingError, nonStoppingError = testTableDirectory(data, reporter)
+        if nonStoppingError:
+            canDisplayMetadata = False
+        if stoppingError:
+            haveReadError = True
+            break
+        # table data
+        reporter.logTestTitle("Table Data")
+        stoppingError, nonStoppingError = testTableData(data, reporter)
+        if nonStoppingError:
+            canDisplayMetadata = False
+        if stoppingError:
+            haveReadError = True
+            break
+        # metadata
+        reporter.logTestTitle("Metadata")
+        stoppingError, nonStoppingError = testMetadata(data, reporter)
+        if nonStoppingError:
+            canDisplayMetadata = False
+        if stoppingError:
+            haveReadError = True
+            break
+        # done
+        break
+    reporter.haveReadError = haveReadError
+    # report the metadata
+    if not haveReadError and canDisplayMetadata:
+        metadata = getMetadataForDisplay(data)
+        reporter.logMetadata(metadata)
     # get the report
     report = reporter.getReport()
     # write
