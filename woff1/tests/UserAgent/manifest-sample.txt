@@ -1,2 +1,0 @@
-blocks-extraneous-data-001	blocks-extraneous-data-001-ref	Extraneous Data Between Directory and Table Data	font	 #conform-extraneous-reject 	 DUMMY 	 Tal Leming <http://typesupply.com> 	 There are four null bytes between the table directory and the table data.
-blocks-extraneous-data-002	blocks-extraneous-data-002-ref	Extraneous Data After Table Data	font	 #conform-extraneous-reject 	 DUMMY 	 Tal Leming <http://typesupply.com> 	 There are four null bytes after the table data block and there is no metadata or private data.
