@@ -305,6 +305,149 @@ def writeMetadataSchemaValidityTest(identifier,
         **kwargs
     )
 
+# --------------------
+# General Requirements
+# --------------------
+
+# the HTML for this case is generated manually
+# as is the index entry
+
+available1 = """
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+		<title>WOFF Test: Font access</title>
+		<link rel="author" title="Chris Lilley" href="http://www.w3.org/People" />
+		<link rel="help" href="#General" />
+		<link rel="help" href="#conform-css3font-available" />
+		<meta name="flags" content="font" />
+		<meta name="assert" content="Linked fonts are only available to the documents that reference them" />
+		<style type="text/css"><![CDATA[
+			body {
+				font-size: 20px;
+			}
+			pre {
+				font-size: 12px;
+			}
+			iframe { 
+				width: 24em; 
+				height: 300px; 
+				border: thin solid green 
+			}
+		]]></style>
+	</head>
+	<body>
+		<p><a href="../../FontsToInstall">Test fonts</a> must be installed for this test. The WOFF being tested will be loaded over the network so please wait until the download is complete before determing the success of this test.</p>
+		<p>Test passes if the word PASS appears <em>twice</em> below.</p>
+		<iframe src="available-001a.xht" />
+		<iframe src="available-001b.xht" />
+
+	</body>
+</html>
+""".strip()
+p = os.path.join(userAgentTestDirectory, "available-001.xht")
+f = open(p, "wb")
+f.write(available1)
+f.close()
+
+available2 = """
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+		<title>WOFF Test: Font access</title>
+		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
+		<link rel="author" title="Chris Lilley" href="http://www.w3.org/People" />
+		<link rel="help" href="#General" />
+		<link rel="help" href="#conform-css3font-available" />
+		<meta name="flags" content="font" />
+		<meta name="assert" content="Linked fonts are only available to the documents that reference them" />
+		<style type="text/css"><![CDATA[
+			@font-face {
+				font-family: "WOFF Test";
+				src: url("resources/valid-001.woff") format("woff");
+			}
+			body {
+				font-size: 20px;
+			}
+			pre {
+				font-size: 12px;
+			}
+			.test {
+				font-family: "WOFF Test", "WOFF Test CFF Fallback";
+				font-size: 200px;
+				margin-top: 50px;
+			}
+		]]></style>
+	</head>
+	<body>
+		<div class="test">P</div>
+	</body>
+</html>
+""".strip()
+p = os.path.join(userAgentTestDirectory, "available-001a.xht")
+f = open(p, "wb")
+f.write(available2)
+f.close()
+
+available3 = """
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+		<title>WOFF Test: Font access</title>
+		<link rel="author" title="Tal Leming" href="http://typesupply.com" />
+		<link rel="author" title="Chris Lilley" href="http://www.w3.org/People" />
+		<link rel="help" href="#General" />
+		<link rel="help" href="#conform-css3font-available" />
+		<meta name="flags" content="font" />
+		<meta name="assert" content="Linked fonts are only available to the documents that reference them" />
+		<style type="text/css"><![CDATA[
+			body {
+				font-size: 20px;
+			}
+			pre {
+				font-size: 12px;
+			}
+			.test {
+				font-family: "WOFF Test", "WOFF Test CFF Fallback";
+				font-size: 200px;
+				margin-top: 50px;
+			}
+		]]></style>
+	</head>
+	<body>
+		<div class="test">F</div>
+	</body>
+</html>
+""".strip()
+p = os.path.join(userAgentTestDirectory, "available-001b.xht")
+f = open(p, "wb")
+f.write(available3)
+f.close()
+
+identifier = "available-001"
+title = "Font access"
+assertion = "Linked fonts are only available to the documents that reference them"
+
+testRegistry[tag].append(
+    dict(
+        identifier=identifier,
+        flags=["font"],
+        title=title,
+        assertion=assertion,
+        sfntExpectation=True,
+        sfntURL="#General #conform-css3font-available",
+        metadataExpectation=None,
+        metadataURL=None,
+        credits=[dict(title="Chris Lilley", role="author", link="http://www.w3.org/People")]
+    )
+)
+registeredIdentifiers.add(identifier)
+registeredTitles.add(title)
+registeredAssertions.add(assertion)
+
 # -----------
 # Valid Files
 # -----------
@@ -2841,7 +2984,7 @@ f.close()
 # Check for Unknown Files
 # -----------------------
 
-skip = "testcaseindex".split(" ")
+skip = "testcaseindex available-001a available-001b".split(" ")
 
 xhtPattern = os.path.join(userAgentTestDirectory, "*.xht")
 woffPattern = os.path.join(userAgentTestResourcesDirectory, "*.woff")
