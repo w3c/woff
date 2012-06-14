@@ -7,7 +7,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>WOFF: User Agent Test Suite (291 tests)</h1>
+		<h1>WOFF: User Agent Test Suite (292 tests)</h1>
 		<p class="installFontsNote">All of these tests require special fonts to be installed. The fonts can be obtained <a href="../../FontsToInstall">here</a>.</p>
 
 		<h2 class="testCategory">Valid WOFFs</h2>
@@ -4678,6 +4678,23 @@
 				<div class="testCaseExpectations">
 					<p>SFNT Expectation: Display (<a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-metadata-noeffect">conform-metadata-noeffect</a>)</p>
 					<p>Metadata Expectation: Reject <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-invalid-mustignore">(conform-invalid-mustignore)</a></p>
+				</div>
+			</div>
+		</div>
+
+		<h2 class="testCategory">Availability</h2>
+		<div class="testCase" id="available-001">
+			<div class="testCaseOverview">
+				<h3><a href="#available-001">available-001</a>: Font access</h3>
+				<p>Linked fonts are only available to the documents that reference them</p>
+			</div>
+			<div class="testCaseDetails">
+				<div class="testCasePages">
+					<p><a href="available-001.xht">Test</a></p>
+				</div>
+				<div class="testCaseExpectations">
+					<p>SFNT Expectation: Display (<a href="http://dev.w3.org/webfonts/WOFF/spec/#General">General</a> <a href="http://dev.w3.org/webfonts/WOFF/spec/#conform-css3font-available">conform-css3font-available</a>)</p>
+					<p>Metadata Expectation: None</p>
 				</div>
 			</div>
 		</div>
