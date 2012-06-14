@@ -932,17 +932,17 @@ for tag, title, url, note in groupDefinitions:
         title = testCase["title"]
         assertion = testCase["description"]
         links = "#" + testCase["specLink"].split("#")[-1]
+        # XXX force the chapter onto the links
+        links = "#TableDirectory," + links
         flags = ""
         credits = ""
         # format the line
-        line = "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
+        line = "%s\t%s\t%s\t%s\t%s\t%s" % (
             identifier,             # id
             "",                     # reference
             title,                  # title
             flags,                  # flags
             links,                  # links
-            "DUMMY",                # revision
-            credits,                # credits
             assertion               # assertion
         )
         # store
