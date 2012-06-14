@@ -283,7 +283,8 @@ def generateSFNTDisplayIndexHTML(directory=None, testCases=[]):
             # test page
             html.append("\t\t\t\t\t<p><a href=\"%s.xht\">Test</a></p>" % identifier)
             # reference page
-            html.append("\t\t\t\t\t<p><a href=\"%s-ref.xht\">Reference Rendering</a></p>" % identifier)
+            if test["hasReferenceRendering"]:
+                html.append("\t\t\t\t\t<p><a href=\"%s-ref.xht\">Reference Rendering</a></p>" % identifier)
             # close the pages div
             html.append("\t\t\t\t</div>")
             # start the expectations div
