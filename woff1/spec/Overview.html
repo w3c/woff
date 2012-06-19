@@ -224,8 +224,8 @@ but are not part of the normative text.
 
 <p>The primary purpose of the WOFF format is to package fonts linked to Web documents
 by means of CSS <tt>@font-face</tt> rules.
-<span class="conform ua" id="conform-css3font">User agents supporting the WOFF file format for linked fonts MUST respect
-the requirements of the CSS3 Fonts specification</span> ([<cite><a  href="#ref-CSS3-Fonts"
+User agents supporting the WOFF file format for linked fonts must respect
+the requirements of the CSS3 Fonts specification ([<cite><a  href="#ref-CSS3-Fonts"
     >CSS3-Fonts</a></cite>] <a href="http://www.w3.org/TR/css3-fonts/#font-face-rule">Section 4.1:
 The @font-face rule</a>). In particular,
 <span class="conform ua" id="conform-css3font-available">such linked fonts are only available to the documents that reference them;
@@ -1447,6 +1447,8 @@ for elements, clarified their required parents.</li>
 for loading WOFF fonts, and CORS mechanism to relax the restriction,
 as the CSS WG agreed to include this in CSS3 Fonts
 as part of the specification of the @font-face rule.</li>
+<li>Moved CSS3-Fonts from normative to informative section, due to removal of at-risk items.</li>
+<li>Corrected erroneous use of MUST in a general introductory statement</li>
 </ul>
 
 <hr/>
@@ -1460,10 +1462,6 @@ as part of the specification of the @font-face rule.</li>
 <dd><cite><a
 href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt">BCP 47</a> Tags for Identifying Languages and Matching of Language Tags</cite></dd>
 
-<dt id="ref-CSS3-Fonts">[CSS3-Fonts]</dt>
-<dd><cite><a
-href="http://www.w3.org/TR/css3-fonts/">CSS Fonts Module Level 3</a>. J. Daggett, Editor. World Wide Web Consortium, 18 June 2009. The <a href="http://www.w3.org/TR/css3-fonts/">latest version of CSS3 Fonts</a> is available at http://www.w3.org/TR/css3-fonts/. (Work in Progress).
-</cite></dd>
 
 <dt id="ref-OFF">[OFF]</dt>
 <dd><cite><a
@@ -1487,6 +1485,11 @@ Compressed Data Format Specification. P. Deutsch, J-L. Gailly, Editors. Internet
 <dt id="ref-Compress2">[Compress2]</dt>
 <dd><cite><a
 href="http://refspecs.freestandards.org/LSB_3.0.0/LSB-Core-generic/LSB-Core-generic/zlib-compress2-1.html">zlib compress2() function</a></cite></dd>
+
+<dt id="ref-CSS3-Fonts">[CSS3-Fonts]</dt>
+<dd><cite><a
+href="http://www.w3.org/TR/css3-fonts/">CSS Fonts Module Level 3</a>. J. Daggett, Editor. World Wide Web Consortium, 4 October 2011. The <a href="http://www.w3.org/TR/css3-fonts/">latest version of CSS3 Fonts</a> is available at http://www.w3.org/TR/css3-fonts/. (Work in Progress).
+</cite></dd>
 
 <dt id="ref-OT">[OpenType]</dt>
 <dd><cite><a href="http://www.microsoft.com/typography/otspec/">Microsoft OpenType
