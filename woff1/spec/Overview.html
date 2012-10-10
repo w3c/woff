@@ -99,7 +99,7 @@ dl.xmlspec dd {
 
 
 <div id="Abstract">
-<h2>Abstract</h2>
+<h2 id="abstract">Abstract</h2>
 <p>This document specifies the WOFF font packaging format.
 This format was designed to provide lightweight, easy-to-implement compression of font data,
 suitable for use with CSS <tt>@font-face</tt> rules.
@@ -135,13 +135,13 @@ the <a href="http://www.w3.org/TR/2010/WD-WOFF-20101116/">Last Call</a> review p
 
 <p>This specification has been edited, relative to the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/">4 August 2011 Candidate Recommendation</a>, to remove the two features at risk:  the 
 <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-SOR">default Same Origin Restriction 
-(SOR)</a> and the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-CORS">mechanism used to relax the SOR, Cross Origin Resource Sharing (CORS)</a>. This functionality is now in the <a href="http://dev.w3.org/csswg/css3-fonts/">CSS3 Fonts Editors Draft</a>. There is a <a href="#changes">changes appendix</a> describing the changes made.
+(SOR)</a> and the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-CORS">mechanism used to relax the SOR, Cross Origin Resource Sharing (CORS)</a>. This functionality is now in the <a href="http://dev.w3.org/csswg/css3-fonts/">CSS3 Fonts Editors Draft</a>. There is a <a href="#changes">changes appendix</a> describing the changes made.</p>
 
 <p>The CR exit criteria were:</p>
 <ol><li>Sufficient reports of implementation experience have been gathered to demonstrate that the “WOFF File Format 1.0” syntax and features are implementable and are interpreted in a consistent manner. To do so, the Working Group would insure that all features have been implemented in at least two implementation in an interoperable way.</li>
 <li>The implementations have been developed independently.</li>
 </ol>
-<p>he Working Group has developed public test suites as follows:</p>
+<p>The Working Group has developed public test suites as follows:</p>
 
 <ul><li><a href="http://dev.w3.org/webfonts/WOFF/tests/UserAgent/Tests/xhtml1/testcaseindex.xht">User Agent tests</a></li>
 <li><a href="http://dev.w3.org/webfonts/WOFF/tests/AuthoringTool/Tests/xhtml1/testcaseindex.xht">Authoring Tool tests</a></li>
@@ -151,7 +151,7 @@ the <a href="http://www.w3.org/TR/2010/WD-WOFF-20101116/">Last Call</a> review p
 <p>A <a href="http://dev.w3.org/webfonts/WOFF/tools/validator/">WOFF validator</a> was developed, to make all the file format 
 checks indicated in the specification. The validator passes 100% of these tests. The new W3C Test Harness was used to deploy the tests:
 <a href="http://www.w3c-test.org/framework/suite/woff-at/">Authoring Tools test harness</a> and
-<a href="http://www.w3c-test.org/framework/suite/woff-ua/">User Agent test harness</a>.
+<a href="http://www.w3c-test.org/framework/suite/woff-ua/">User Agent test harness</a>.</p>
  
 <p>The <a href="http://w3c-test.org/framework/review/woff-ua/">User Agents implementation report</a> and 
 <a href="http://w3c-test.org/framework/review/woff-at/">Authoring Tools implementation report</a> are available.</p>
