@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
       <title>WOFF File Format 1.0</title>
       <style type="text/css">
-      .toadd {background: yellow; padding-left:3px; padding-right: 3px}
       .conform:hover {background: #DFD}
       .conform:target {padding: 2px; border: 2px solid #ACA; background: #DFD }
       </style>
@@ -50,8 +48,8 @@ dl.xmlspec dd {
 }
      </style>
        <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css"/>
-       <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>
-        <!--  <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-CR"/> -->
+       <!-- <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>-->
+        <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-PR"/>
 
    </head>
    <body>
@@ -64,12 +62,13 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Editor's Draft 04 January 2012
+<h2 id="W3C-doctype">W3C Proposed Recommendation 11 October 2012
 </h2>
 
 <dl>
   <dt>This version:</dt>
-  <dd><a href="http://dev.w3.org/webfonts/WOFF/spec/">http://dev.w3.org/webfonts/WOFF/spec/</a></dd>
+  <!--<dd><a href="http://dev.w3.org/webfonts/WOFF/spec/">http://dev.w3.org/webfonts/WOFF/spec/</a></dd>-->
+    <dd><a href="http://www.w3.org/TR/2012/PR-WOFF-20121011">http://www.w3.org/TR/2012/PR-WOFF-20121011</a></dd>
 
   <dt>Latest version:</dt>
   <dd><a href="http://www.w3.org/TR/WOFF">http://www.w3.org/TR/WOFF</a></dd>
@@ -127,25 +126,46 @@ document. A list of current W3C publications and the latest
 revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at
 http://www.w3.org/TR/.</em></p>
 
+<p>This is the W3C Proposed Recommendation of "WOFF File Format 1.0". W3C publishes a technical report as a Proposed Recommendation to indicate that the document is a mature technical report that has received wide review for technical soundness and implementability and to request final endorsement from the W3C Advisory Committee. Proposed Recommendation status is described in section 7.1.1 of the <a href="http://www.w3.org/2004/02/Process-20040205/tr.html#maturity-levels">Process Document</a>.</p>
+
+<p>The W3C Membership and other interested parties are invited to review the document and send comments through 8 November 2012. Comments may be sent to
+<a href="mailto:www-font@w3.org">www-font@w3.org</a> (with
+<a href="http://lists.w3.org/Archives/Public/www-font/">public archive</a>). Advisory Committee Representatives should consult their <a href="http://www.w3.org/2002/09/wbs/myQuestionnaires">WBS questionnaires</a>. Note that substantive technical comments were expected during 
+the <a href="http://www.w3.org/TR/2010/WD-WOFF-20101116/">Last Call</a> review period that ended 14 December 2010.</p>
+
 <p>This specification has been edited, relative to the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/">4 August 2011 Candidate Recommendation</a>, to remove the two features at risk:  the 
 <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-SOR">default Same Origin Restriction 
-(SOR)</a> and the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-CORS">mechanism used to relax the SOR, Cross Origin Resource Sharing (CORS)</a>. This functionality is now in the <a href="http://dev.w3.org/csswg/css3-fonts/">CSS3 Fonts Editors Draft</a>.
+(SOR)</a> and the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-CORS">mechanism used to relax the SOR, Cross Origin Resource Sharing (CORS)</a>. This functionality is now in the <a href="http://dev.w3.org/csswg/css3-fonts/">CSS3 Fonts Editors Draft</a>. There is a <a href="#changes">changes appendix</a> describing the changes made.
+
+<p>The CR exit criteria were:</p>
+<ol><li>Sufficient reports of implementation experience have been gathered to demonstrate that the “WOFF File Format 1.0” syntax and features are implementable and are interpreted in a consistent manner. To do so, the Working Group would insure that all features have been implemented in at least two implementation in an interoperable way.</li>
+<li>The implementations have been developed independently.</li>
+</ol>
+<p>he Working Group has developed public test suites as follows:</p>
+
+<ul><li><a href="http://dev.w3.org/webfonts/WOFF/tests/UserAgent/Tests/xhtml1/testcaseindex.xht">User Agent tests</a></li>
+<li><a href="http://dev.w3.org/webfonts/WOFF/tests/AuthoringTool/Tests/xhtml1/testcaseindex.xht">Authoring Tool tests</a></li>
+<li>Test data for <a href="http://dev.w3.org/webfonts/WOFF/tests/Format/Tests/xhtml1/testcaseindex.xht">the file format itself</a></li> 
+</ol>
+
+<p>A <a href="http://dev.w3.org/webfonts/WOFF/tools/validator/">WOFF validator</a> was developed, to make all the file format 
+checks indicated in the specification. The validator passes 100% of these tests. The new W3C Test Harness was used to deploy the tests:
+<a href="http://www.w3c-test.org/framework/suite/woff-at/">Authoring Tools test harness</a> and
+<a href="http://www.w3c-test.org/framework/suite/woff-ua/">User Agent test harness</a>.
  
-<p>Comments may be sent to
-<a href="mailto:www-font@w3.org">www-font@w3.org</a> (with
-<a href="http://lists.w3.org/Archives/Public/www-font/">public archive</a>).</p>
+<p>The <a href="http://w3c-test.org/framework/review/woff-ua/">User Agents implementation report</a> and 
+<a href="http://w3c-test.org/framework/review/woff-at/">Authoring Tools implementation report</a> are available.</p>
 
 <p>This document was initially developed by contributors to the <a href="mailto:www-font@w3.org">www-font@w3.org</a> mailing list.
     After trial implementation, it became the  <a href="http://www.w3.org/Submission/2010/SUBM-WOFF-20100408/">WOFF Submission</a> 
     and is being further developed at W3C.
 </p>
 
-
        <p>This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
 
 <p>
 This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
-February 2004 W3C Patent Policy</a>. 
+February 2004 W3C Patent Policy</a>.
 
 W3C maintains a <a rel="disclosure" href="http://www.w3.org/2004/01/pp-impl/44556/status">public list
 of any patent disclosures</a> made in connection with the
