@@ -1382,6 +1382,15 @@ Fonts are interpreted data structures that represent collections of glyph outlin
 
 <p>WOFF uses gzip compression. The WOFF header contains the uncompressed length of each compressed table. Applications may therefore constrain the size of memory buffer allocated for decompression and may stop writing if a maliciously crafted WOFF file in fact contains more data than is indicated.
 </p>
+
+<p>WOFF does not provide privacy protections internally; if needed, these should be provided externally.</p>
+ 
+<p>WOFF has a private data block facility, which may contain
+  arbitrary binary data. WOFF does not provide a means to access
+  this, or to execute any code contained therein. WOFF 
+  <a href="#conform-private-noeffect">requires</a> that
+   the content of this block not affect font rendering in any way.
+</p>
 </dd>
 <dt>Interoperability considerations:</dt>
 <dd><p></p></dd>
@@ -1485,8 +1494,15 @@ as part of the specification of the @font-face rule.</li>
 <li>Corrected erroneous use of MUST in a general introductory statement</li>
 </ul>
 
-<p> A <a href="http://dev.w3.org/cvsweb/webfonts/WOFF/spec/Overview.html.diff?r1=1.99;r2=1.112;f=h">olor-coded diff</a> between the editors draft used to prepare the Candidate Recommendation, and the editors draft used to prepare this Proposed Recommendation, is available.</p>
+<p> A <a href="http://dev.w3.org/cvsweb/webfonts/WOFF/spec/Overview.html.diff?r1=1.99;r2=1.112;f=h">olor-coded diff</a> between the editors draft used to prepare the Candidate Recommendation, and the editors draft used to prepare the Proposed Recommendation, is available.</p>
 
+<p id="changes-postPR">The following changes were made after publication of the Proposed Recommendation:</p>
+
+<ul>
+<li>The security considerations section of the Media Type Registration appendix was updated to point into the body of the specification,
+alerting the reader to the private data block and indicating that WOFF does not provide a mechanism to execute any binary code that might be
+contained therein. This change was made at the request of the IANA Expert Reviewer.</li>
+</ul>
 <hr/>
 
 <h2 id="References">References</h2>
