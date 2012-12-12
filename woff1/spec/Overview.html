@@ -49,7 +49,7 @@ dl.xmlspec dd {
      </style>
        <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css"/>
        <!-- <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-ED"/>-->
-        <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-PR"/>
+        <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-REC"/>
 
    </head>
    <body>
@@ -62,19 +62,19 @@ dl.xmlspec dd {
 
 <h1 style="clear: both;" id="title">WOFF File Format 1.0</h1>
 
-<h2 id="W3C-doctype">W3C Proposed Recommendation 11 October 2012
+<h2 id="W3C-doctype">W3C Recommendation 13 December 2012
 </h2>
 
 <dl>
   <dt>This version:</dt>
   <!--<dd><a href="http://dev.w3.org/webfonts/WOFF/spec/">http://dev.w3.org/webfonts/WOFF/spec/</a></dd>-->
-    <dd><a href="http://www.w3.org/TR/2012/PR-WOFF-20121011/">http://www.w3.org/TR/2012/PR-WOFF-20121011/</a></dd>
+    <dd><a href="http://www.w3.org/TR/2012/REC-WOFF-20121213/">http://www.w3.org/TR/2012/REC-WOFF-20121213/</a></dd>
 
   <dt>Latest version:</dt>
   <dd><a href="http://www.w3.org/TR/WOFF/">http://www.w3.org/TR/WOFF/</a></dd>
 
   <dt>Previous version:</dt>
-    <dd><a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/">http://www.w3.org/TR/2011/CR-WOFF-20110804/</a></dd>
+    <dd><a href="http://www.w3.org/TR/2012/PR-WOFF-20121011/">http://www.w3.org/TR/2012/PR-WOFF-20121011/</a></dd>
 
 </dl>
 
@@ -84,6 +84,8 @@ dl.xmlspec dd {
   <dd>Tal Leming (Type Supply)</dd>
   <dd>Erik van Blokland (LettError)</dd>
   </dl>
+  
+<p>See also <a href=" http://www.w3.org/2003/03/Translations/byTechnology?technology=woff"> <strong>translations</strong></a>.</p>
 
 
   <p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
@@ -126,16 +128,17 @@ document. A list of current W3C publications and the latest
 revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at
 http://www.w3.org/TR/.</em></p>
 
-<p>This is the W3C Proposed Recommendation of "WOFF File Format 1.0". W3C publishes a technical report as a Proposed Recommendation to indicate that the document is a mature technical report that has received wide review for technical soundness and implementability and to request final endorsement from the W3C Advisory Committee. Proposed Recommendation status is described in section 7.1.1 of the <a href="http://www.w3.org/2004/02/Process-20040205/tr.html#maturity-levels">Process Document</a>.</p>
+<!--
+<p>This is the W3C  Recommendation of "WOFF File Format 1.0". W3C publishes a technical report as a Proposed Recommendation to indicate that the document is a mature technical report that has received wide review for technical soundness and implementability and to request final endorsement from the W3C Advisory Committee. Proposed Recommendation status is described in section 7.1.1 of the <a href="http://www.w3.org/2004/02/Process-20040205/tr.html#maturity-levels">Process Document</a>.</p>-->
 
-<p>The W3C Membership and other interested parties are invited to review the document and send comments through 8 November 2012. Comments may be sent to
+<p>This is the W3C  Recommendation of "WOFF File Format 1.0". This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p>
+
+<p>Please send comments about this document to 
 <a href="mailto:www-font@w3.org">www-font@w3.org</a> (with
-<a href="http://lists.w3.org/Archives/Public/www-font/">public archive</a>). Advisory Committee Representatives should consult their <a href="http://www.w3.org/2002/09/wbs/myQuestionnaires">WBS questionnaires</a>. Note that substantive technical comments were expected during 
-the <a href="http://www.w3.org/TR/2010/WD-WOFF-20101116/">Last Call</a> review period that ended 14 December 2010.</p>
+<a href="http://lists.w3.org/Archives/Public/www-font/">public archive</a>).</p>
 
-<p>This specification has been edited, relative to the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/">4 August 2011 Candidate Recommendation</a>, to remove the two features at risk:  the 
-<a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-SOR">default Same Origin Restriction 
-(SOR)</a> and the <a href="http://www.w3.org/TR/2011/CR-WOFF-20110804/#atrisk-CORS">mechanism used to relax the SOR, Cross Origin Resource Sharing (CORS)</a>. This functionality is now in the <a href="http://dev.w3.org/csswg/css3-fonts/">CSS3 Fonts Editors Draft</a>. There is a <a href="#changes">changes appendix</a> describing the changes made.</p>
+<p>This specification has been edited, relative to the <a href="http://www.w3.org/TR/2012/PR-WOFF-20121011/">11 October 2011 Proposed Recommendation</a>, to 
+incorporate minor changes to the Internet Media Type registration, as a result of IANA expert review. There is a <a href="#changes">changes appendix</a> describing the changes made.</p>
 
 <p>The CR exit criteria were:</p>
 <ol><li>Sufficient reports of implementation experience have been gathered to demonstrate that the “WOFF File Format 1.0” syntax and features are implementable and are interpreted in a consistent manner. To do so, the Working Group would insure that all features have been implemented in at least two implementation in an interoperable way.</li>
@@ -160,22 +163,6 @@ checks indicated in the specification. The validator passes 100% of these tests.
     After trial implementation, it became the  <a href="http://www.w3.org/Submission/2010/SUBM-WOFF-20100408/">WOFF Submission</a> 
     and was further developed by the <a href="http://www.w3.org/Fonts/WG/">WebFonts Working Group</a> at W3C.
 </p>
-
-<p>
-This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
-February 2004 W3C Patent Policy</a>. 
-
-W3C maintains a <a rel="disclosure" href="http://www.w3.org/2004/01/pp-impl/44556/status">public list
-of any patent disclosures</a> made in connection with the
-deliverables of the group; that page also includes 
-instructions for disclosing a patent.
-
-An individual who has actual knowledge of a patent which the
-individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the
-information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.
-</p>
-
-<p>Publication as a Proposed Recommendation does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
 
 <p>
 This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
