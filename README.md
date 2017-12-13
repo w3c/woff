@@ -1,5 +1,7 @@
 
-# Specification 'woff'
+# WOFF File Format
 
-This is the repository for woff. You're welcome to contribute! Let's make the Web rock our socks
-off!
+This is the repository for the WOFF File Format.
+
+
+https://w3c.github.io/w3c/woff/woff2/
