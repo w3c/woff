@@ -43,7 +43,7 @@
         <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
       </p>
       <h1 style="clear:both" id="title">WOFF File Format 2.0 </h1>
-      <h2 id="W3C-doctype">W3C Editor's Draft 07 July 2017</h2>
+      <h2 id="W3C-doctype">W3C Editor's Draft 13 December 2017</h2>
       <dl>
         <dt>This version:</dt>
         <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
@@ -63,7 +63,7 @@
       </dl>
       <p class="copyright">
           <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
-          2017  
+          2017
           <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
           (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
           <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
@@ -960,7 +960,7 @@
       collectively become the contents of the reconstructed <span class=tt>loca</span> table
       (see <a href="#loca_table_format">subclause 5.3</a> below for more information about
       the reconstruction of the <span class=tt>loca</span> table).</p>
-    
+
     <section id="ReconstructingGlyhs">
        <h4 id="ReconstructingGlyhs-0">Reconstruction of Glyph Records</h4>
 
@@ -1455,8 +1455,8 @@
    <section  id="IMT">
      <h2 id="IMT-0"><span class='secno'>A. </span> Internet Media Type Registration</h2>
 
-   <p>This appendix registers a new Internet Media type, under the proposed
-   <span class="tt">font</span> top level type [<cite><a href="#ref-justfont">JustFont</a></cite>].
+   <p>This appendix registers a new Internet Media type, under the
+   <span class="tt">font</span> top level type [<cite><a href="#ref-RFC-8081">RFC8081</a></cite>].
    This appendix is in conformance with
      <a href="http://www.ietf.org/rfc/rfc4288.txt">BCP 13</a> and
      <a href="https://www.w3.org/2002/06/registering-mediatype.html">W3CRegMedia</a>.
@@ -1505,11 +1505,7 @@
     <dt>Macintosh file type code(s):</dt><dd>(no code specified)</dd>
     <dt>Macintosh Universal Type Identifier code:  </dt><dd><span style="font-family: monospace">org.w3c.woff2</span> </dd>
     <dt>@font-face Format:</dt><dd>woff2</dd>
-    <dt>Fragment Identifiers</dt><dd>Optional, for collections encoded as WOFF 2.0. A positive integer.
-    For example, #2 refers to the second font
-    in the collection. If a fragment is not specified, it is the same as #1 i.e. the first font
-    in the collection (or the only font, if it is not a collection). If a fragment is specified, and
-    the WOFF does not encode a collection, the fragment is ignored.</dd>
+    <dt>Fragment Identifiers</dt><dd>See Section 4.2 of [<a href="#ref-RFC-8081">RFC8081</a>]</dd>
   </dl>
   </dd>
   <dt>Person &amp; email address to contact for further information:</dt>
@@ -1538,13 +1534,56 @@
 
     </section>
     <section id="changes" class='informative'>
-      <h2 id="changes-0"><span class='secno'>B. </span>Changes</h2>
+      <h2><span class='secno'>B. </span>Changes</h2>
 
       <p>This appendix is <em>informative</em>.</p>
 
-      <p>The following changes have been made, relative to the
-      <a href="https://www.w3.org/TR/2014/WD-WOFF2-20140508/">First Public Working Draft</a> published on May 8, 2014.
+      <section id="changes-since-CR">
+        <h3>Changes since the <a href="https://www.w3.org/TR/2016/CR-WOFF2-20160315/">Candidate Recommendation</a> of 15 March 2016</h3>
+      <ul>
+        <li>Updated the Brotli reference from an Internet Draft to Informational RFC</li>
+        <li>Updated the font top-level type reference from an internet Draft to Proposed Standard RFC</li>
+        <li>Updated the Internet Media Type appendix to conform to RFC 8081 on fragment identifiers</li>
+      </ul>
+
+      </section>
+
+      <section id="changes-since-WD">
+        <h3>Changes since the <a href="https://www.w3.org/TR/2015/WD-WOFF2-20150414/">Working Draft</a>
+          of 14 April 2015</h3>
+
+    <ul>
+      <li>Added a note describing the reasons for possible variations of reconstructed glyf table data and
+          clarified that determining an adequate size of memory allocations for reconstructed glyf table
+          data is a responsibility of WOFF2 decoder implementations.</li>
+      <li>Added a note describing the optional pre-processing step that can be applied to OpenType CFF fonts,
+          where the process of CFF data de-subroutinization can be applied prior to WOFF2 encoding to minimize
+          the compressed font size.</li>
+      <li>Removed the notion of "nominal size" for decompressed WOFF 2.0 font since the font size can vary
+          dramatically based on applied data optimization steps, and removed conformance requirements
+          associated with the decoder memory allocations and the original glyf table size definition.</li>
+      <li>Added transformation version indication in Table directory flags and added new subclause 5.4 with
+          the description of the 'hmtx' table transform.</li>
+      <li>Updated transformation version indication in Table directory flags adding null trnsform provisions
+          for 'glyf' and 'loca' tables, added clarifications for transform of shared 'hmtx' table.</li>
+      <li>Added pseudo-code for UIntBase128 data type, various editorial updates.</li>
+      <li>Updated the description of empty glyph reconstruction process in 'glyf' table transform, added additional
+          check in the 'hmtx' transform for left side bearing value of an empty glyph, minor editorial updates.</li>
+      <li>Added new confromance requirements for testing mismatch conditions where total font size and the
+          original size of the 'glyf' table differ from the sizes declared as part of the WOFF2 file header
+          or table directory.</li>
+      <li>Added Considerations for Security and Privacy appendix.</li>
+      <li>Referenced new font/* top level type being developed at IETF, trimmed Internet Media Type registration appendix to just WOFF 2.0.</li>
+    </ul>
+    <p>A <a href="https://dev.w3.org/webfonts/WOFF2/spec/diff.html">color-coded diff</a> between the 14 April 2015 Working Draft and the
+      Editors's Draft used to prepare the Candidate Recommendation is available.
     </p>
+      </section>
+
+      <section id="changes-since-FPWD">
+        <h3>Changes since the <a href="https://www.w3.org/TR/2014/WD-WOFF2-20140508/">First Public
+          Working Draft</a> of May 8, 2014</h3>
+
     <ul>
       <li>Clarified that the spec mandates table directory sorting, while the table order itself
           should follow the OpenType/OFF recommended order.</li>
@@ -1579,36 +1618,7 @@
       between the editors draft used to prepare the First Public Working Draft and the editors draft used to prepare
       the Last Call Working Draft is available.</p>
 
-      <hr>
-
-    <p id="changes2">The following changes have been made after the
-      <a href="https://www.w3.org/TR/2015/WD-WOFF2-20150414/">14 April 2015 Working Draft</a>.
-      A <a href="diff.html">color-coded diff</a> between the 14 April 2015 Working Draft and the
-      Editors's Draft used to prepare this Candidate Recommendation is available.
-    </p>
-    <ul>
-      <li>Added a note describing the reasons for possible variations of reconstructed glyf table data and
-          clarified that determining an adequate size of memory allocations for reconstructed glyf table
-          data is a responsibility of WOFF2 decoder implementations.</li>
-      <li>Added a note describing the optional pre-processing step that can be applied to OpenType CFF fonts,
-          where the process of CFF data de-subroutinization can be applied prior to WOFF2 encoding to minimize
-          the compressed font size.</li>
-      <li>Removed the notion of "nominal size" for decompressed WOFF 2.0 font since the font size can vary
-          dramatically based on applied data optimization steps, and removed conformance requirements
-          associated with the decoder memory allocations and the original glyf table size definition.</li>
-      <li>Added transformation version indication in Table directory flags and added new subclause 5.4 with
-          the description of the 'hmtx' table transform.</li>
-      <li>Updated transformation version indication in Table directory flags adding null trnsform provisions
-          for 'glyf' and 'loca' tables, added clarifications for transform of shared 'hmtx' table.</li>
-      <li>Added pseudo-code for UIntBase128 data type, various editorial updates.</li>
-      <li>Updated the description of empty glyph reconstruction process in 'glyf' table transform, added additional
-          check in the 'hmtx' transform for left side bearing value of an empty glyph, minor editorial updates.</li>
-      <li>Added new confromance requirements for testing mismatch conditions where total font size and the
-          original size of the 'glyf' table differ from the sizes declared as part of the WOFF2 file header
-          or table directory.</li>
-      <li>Added Considerations for Security and Privacy appendix.</li>
-      <li>Referenced new font/* top level type being developed at IETF, trimmed Internet Media Type registration appendix to just WOFF 2.0.</li>
-    </ul>
+    </section>
 
     </section>
     <section id="security-privacy-considerations" class='informative'>
@@ -1674,7 +1684,7 @@
      <p>No.</p>
    </li></ol>
    <p>The Security section of the <span class="tt">font</span> top level type
-   [<cite><a href="#ref-justfont">JustFont</a></cite>] contains
+   [<cite><a href="#ref-RFC-8081">RFC8081</a></cite>] contains
    additional security-related information relevant to WOFF2.</p>
    <p>WOFF2 uses Brotli compression. The Security Considerations section of the Brotli
    specification [<cite><a href="#ref-Brotli">Brotli</a></cite>] should be consulted, in addition to this appendix.
@@ -1698,15 +1708,15 @@
       <dd><cite><a href="http://standards.iso.org/ittf/PubliclyAvailableStandards/c066391_ISO_IEC_14496-22_2015.zip">Open
             Font Format specification</a> (ISO/IEC 14496-22:2015).</cite></dd>
       <dt id="ref-Brotli">[Brotli]</dt>
-      <dd><cite><a href="">Brotli Compressed Data Format, RFC 7932</a> J.
+      <dd><cite><a href="https://tools.ietf.org/html/rfc7932">Brotli Compressed Data Format, RFC 7932</a> J.
       Alakuijala and Z. Szabadka, July 2016.</cite></dd>
       <dt id="ref-RFC-2119">[RFC2119]</dt>
       <dd><cite><a href="http://tools.ietf.org/html/rfc2119">RFC 2119:</a> Key
           words for use in RFCs to Indicate Requirement Levels. S. Bradner,
           Editor. Internet Engineering Task Force, March 1997. </cite></dd>
-      <dt id="ref-justfont">[Justfont]</dt>
-      <dd><cite><a href="https://datatracker.ietf.org/doc/draft-ietf-justfont-toplevel/">The
-      font Top Level Type, draft-ietf-justfont-toplevel-01 </a> C. Lilley, February 2016.</cite></dd>
+      <dt id="ref-RFC-8081">[RFC8081]</dt>
+      <dd><cite><a href="https://tools.ietf.org/html/rfc8081">The
+      font Top Level Type, RFC 8081 </a> C. Lilley, February 2017.</cite></dd>
 
 
     </dl>
