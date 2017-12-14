@@ -4,4 +4,4 @@
 This is the repository for the WOFF File Format.
 
 
-https://w3c.github.io/w3c/woff/woff2/
+https://w3c.github.io/woff/woff2/
