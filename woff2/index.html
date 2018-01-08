@@ -4,6 +4,7 @@
     <title>WOFF File Format 2.0</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="https://www.w3.org/TR/WOFF2/">
 <style type="text/css">
      table.spec {border: 2px solid #444;}
      span.tt {font-family: monospaced;}
@@ -11,7 +12,7 @@
      a:hover { text-decoration: underline}
 	.tt { font-family: monospace }
     </style>
-<!-- Embedded conformance stylesheet -->
+<!-- Embedded conformance stylesheet
     <style type="text/css" title="Conformance">
       .conform:hover {background: #DFD}
       .conform:target {padding: 2px; border: 2px solid #ACA; background: #DFD }
@@ -30,7 +31,7 @@
       }
 
     </style>
-<!-- -->
+ -->
 
 <!-- Conformance stylesheet - enable for online viewing -->
     <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css">
@@ -43,10 +44,10 @@
         <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
       </p>
       <h1 style="clear:both" id="title">WOFF File Format 2.0 </h1>
-      <h2 id="W3C-doctype">W3C Editor's Draft 13 December 2017</h2>
+      <h2 id="W3C-doctype">W3C Editors Draft 11 January 2018</h2>
       <dl>
         <dt>This version:</dt>
-        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
+        <dd><a href="https://www.w3.org/TR/2018/PR-WOFF2-20180111/">https://www.w3.org/TR/2018/PR-WOFF2-20180111/</a>
         <dt>Latest version:</dt>
         <dd> <a href="https://www.w3.org/TR/WOFF2/">https://www.w3.org/TR/WOFF2/</a>
         </dd>
@@ -63,7 +64,7 @@
       </dl>
       <p class="copyright">
           <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
-          2017
+          2018
           <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
           (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
           <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
@@ -88,12 +89,17 @@
     </section>
     <section id="sotd">
         <h2 id="status-of-this-document">Status of This Document</h2>
-    <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/">W3C technical reports index</a> at http://www.w3.org/TR/.</em></p>
-    <!-- <p> This is a First Public Working Draft of WOFF 2.0. </p> -->
-    <p><!--This is an Editors Draft of the WOFF 2.0 specification.-->
-    This document was developed by the <a href="https://www.w3.org/Fonts/WG/">WebFonts
+        <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/">W3C technical reports index</a> at https://www.w3.org/TR/.</em></p>
+
+    <p>This document was developed by the <a href="https://www.w3.org/Fonts/WG/">WebFonts
         Working Group</a> as a Candiate Recommendation.
-        A complete <a href="#changes2">list of
+        This document will remain a Proposed Recommendation at least until <time class="status-deadline"
+        datetime="2018-02-11">11 February 2018</time> in order
+          to ensure the opportunity for wide review.  The W3C Membership and other interested parties are invited to review the document and send comments.
+          Advisory Committee Representatives should consult their
+          <a href="https://www.w3.org/2002/09/wbs/myQuestionnaires">WBS questionnaires</a>.
+
+        <p>A complete <a href="#changes-since-CR">list of
         changes</a> to this document since the last publication is available.
            </p>
     <p class=custom>Supporting material, including results of compression measurements, may be found in the
@@ -103,25 +109,16 @@
     WOFF2 <a href="/Fonts/WG/wiki/TestPlan20-AuthoringTool" title="TestPlan20-AuthoringTool">encoders</a>,
     <a href="/Fonts/WG/wiki/TestPlan20-Decoder" title="TestPlan20-Decoder">decoders</a>,
   <a href="/Fonts/WG/wiki/TestPlan20-UserAgent" title="TestPlan20-UserAgent">browsers</a>, and for <a href="/Fonts/WG/wiki/TestPlan20-Format" title="TestPlan20-Format">the format itself</a> (a WOFF2 validator).
-  The source to build these tests is <a href="https://github.com/w3c/woff2-tests">available on GitHub</a>.
-   The
-  WebFonts Group expects to request that the Director advance this
-  document to Proposed Recommendation once the Working Group has
-  demonstrated two implementations passing each test in the encoder,
-  decoder, and browser categories.
+  The source to build these tests is <a href="https://github.com/w3c/woff2-tests">available on GitHub</a>.</p>
+  <p>An <a href="https://www.w3.org/Fonts/WG/WOFF2/Implementation.html">Implementation Report</a> is available.</p>
 
-    <p>This document is intended to become a W3C Recommendation
-    on or after
-  15 June 2016. The Working Group expects to
-  update the preliminary <a href="https://dev.w3.org/webfonts/WOFF2/implementation/Overview.html">implementation report</a> over the course of the implementation period. The
-  Working Group does not plan to request to advance to Proposed
-  Recommendation prior to 15 June 2016, in order to ensure the
-  opportunity for wide review.</p>
 
-    <p>Please send comments about this document to <a href="mailto:www-font@w3.org">www-font@w3.org</a>
+    <p>Please send comments about this document
+      <!--to <a href="mailto:www-font@w3.org">www-font@w3.org</a>
       (with <a href="https://lists.w3.org/Archives/Public/www-font/">public
-        archive</a>).</p>
-    <p>Publication as a Candidate Recommendation does not imply endorsement
+        archive</a>)-->
+        as <a href="https://github.com/w3c/woff/issues">GitHub issues</a>.</p>
+    <p>Publication as a Proposed Recommendation does not imply endorsement
   by the W3C Membership. This is a draft document and may be updated,
   replaced or obsoleted by other documents at any time. It is
   inappropriate to cite this document as other than work in progress.</p>
@@ -145,7 +142,7 @@
         <h2 class="introductory" id="table-of-contents">Table of Contents</h2>
 
     <ol class='toc'>
-       <li class='tocline'><a href="#introduction"><span class="secno">1. </span>Introduction</a>
+       <li class='tocline'><a href="#Introduction"><span class="secno">1. </span>Introduction</a>
         <ol class='toc'>
          <li class='tocline'><a href="#Notation"><span class='secno'>1.1. </span>Notational Conventions</a></li>
          </ol>
@@ -179,8 +176,8 @@
        <li class='tocline'><a href="#security-privacy-considerations"><span class='secno'>C. </span>Security and Privacy Considerations</a></li>
     <li class='tocline'><a href="#References"><span class='secno'>D. </span>References</a>
       <ol class="toc">
-          <li class='tocline'><a href="#normative"><span class='secno'>D.1 </span>Normative References</li>
-          <li class='tocline'><a href="#informative"><span class='secno'>D.2 </span>Informative References</li>
+          <li class='tocline'><a href="#normative"><span class='secno'>D.1 </span>Normative References</a></li>
+          <li class='tocline'><a href="#informative"><span class='secno'>D.2 </span>Informative References</a></li>
       </ol>
     </li>
     </ol>
@@ -196,7 +193,7 @@
       optimization step that reduces built-in redundancy of various font data structures.
       The details about WOFF 2.0 development history can be found in the WOFF 2.0
       Evaluation Report [<cite><a href="#ref-woff20er">WOFF2ER</a></cite>].</p>
-    <section id="Notation"><h3 id="Notation"><span class='secno'>1.1 </span>Notational Conventions</h3>
+    <section id="Notation"><h3 id="Notation_1"><span class='secno'>1.1 </span>Notational Conventions</h3>
     <p>The all-uppercase key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
       "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"
       in this document are to be interpreted as described in RFC 2119 [<cite><a
@@ -221,7 +218,7 @@
       the WOFF2 file format for linked fonts must respect the requirements of the
       CSS3 Fonts specification
       ([<cite><a href="#ref-CSS3-Fonts">CSS3-Fonts</a></cite>]
-      <a href="https://www.w3.org/TR/css3-fonts/#font-face-rule">
+      <a href="https://www.w3.org/TR/css-fonts-3/#font-face-rule">
       Section 4.1: The @font-face rule</A>). In particular,
       <span class="conform ua" id="conform-css3font-available">such linked fonts are
       only available to the documents that reference them; they MUST NOT be made
@@ -722,7 +719,7 @@
 
 
     </section>
-    </section><section id="table_format"><h2 id="table_format-0"><span class='secno'>5.&nbsp;Compressed data format</h2>
+    </section><section id="table_format"><h2 id="table_format-0"><span class='secno'>5.&nbsp;</span>Compressed data format</h2>
 
     <p>The CompressedFontData field in a WOFF2 file contains the concatenation of
       data for each table in the font, in the order that entries appear in the WOFF2
@@ -1545,7 +1542,7 @@
         <li>Updated the font top-level type reference from an internet Draft to Proposed Standard RFC.</li>
         <li>Mention of fragment identifiers updated to conform to RFC 8081 (the normative definition), resulting in a change to the
           Internet Media Type appendix and deletion of a requirement to maintain order in font collections.</li>
-        <li>CSS Fonts 3 was used normatively (must, so moved from Informative to Normative references section.</li>
+        <li>CSS Fonts 3 was used normatively (<em>must</em>), so moved from Informative to Normative references section.</li>
       </ul>
 
       </section>
@@ -1717,7 +1714,7 @@
       <dd><cite><a href="https://tools.ietf.org/html/rfc7932">Brotli Compressed Data Format, RFC 7932</a> J.
       Alakuijala and Z. Szabadka, Editors. Internet Engineering Task Force, Informational, July 2016.</cite></dd>
       <dt id="ref-RFC-2119">[RFC2119]</dt>
-      <dd><cite><a href="http://tools.ietf.org/html/rfc2119">RFC 2119:</a> Key
+      <dd><cite><a href="https://tools.ietf.org/html/rfc2119">RFC 2119:</a> Key
           words for use in RFCs to Indicate Requirement Levels. S. Bradner,
           Editor. Internet Engineering Task Force, Best Current practice, March 1997. </cite></dd>
       <dt id="ref-RFC-8081">[RFC8081]</dt>
@@ -1744,8 +1741,8 @@
           specification</a>. OpenType is a registered trademark of Microsoft Corporation.</cite></dd>
 
       <dt id="ref-TTF">[TrueType]</dt>
-      <dd> <cite><a href="http://developer.apple.com/fonts/TTRefMan/">Apple TrueType
-          Reference manual</a>. Apple, 2002. TrueType is a registered trademark of Apple, Inc.</cite></dd>
+      <dd> <cite><a href="https://developer.apple.com/fonts/TrueType-Reference-Manual/">Apple TrueType
+          Reference manual</a>. Apple, 2014. TrueType is a registered trademark of Apple, Inc.</cite></dd>
 
       <dt id="ref-mtx">[MTX]</dt>
       <dd> <cite><a href="https://www.w3.org/Submission/2008/SUBM-MTX-20080305/">MicroType® Express (MTX) Font Format</a> Sarah Martin, Al Ristow, Steve Martin,
@@ -1754,6 +1751,8 @@
 
     </dl>
     </section>
+    </section>
+    <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to top">↑</abbr></a></p>
     <script src="//www.w3.org/scripts/TR/2016/fixup.js"></script>
   </body>
 </html>
