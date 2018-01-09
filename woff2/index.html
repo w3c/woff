@@ -12,7 +12,7 @@
      a:hover { text-decoration: underline}
 	.tt { font-family: monospace }
     </style>
-<!-- Embedded conformance stylesheet
+<!-- Embedded conformance stylesheet -->
     <style type="text/css" title="Conformance">
       .conform:hover {background: #DFD}
       .conform:target {padding: 2px; border: 2px solid #ACA; background: #DFD }
@@ -31,7 +31,7 @@
       }
 
     </style>
- -->
+ <!-- -->
 
 <!-- Conformance stylesheet - enable for online viewing -->
     <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css">
@@ -110,8 +110,12 @@
     <a href="/Fonts/WG/wiki/TestPlan20-Decoder" title="TestPlan20-Decoder">decoders</a>,
   <a href="/Fonts/WG/wiki/TestPlan20-UserAgent" title="TestPlan20-UserAgent">browsers</a>, and for <a href="/Fonts/WG/wiki/TestPlan20-Format" title="TestPlan20-Format">the format itself</a> (a WOFF2 validator).
   The source to build these tests is <a href="https://github.com/w3c/woff2-tests">available on GitHub</a>.</p>
-  <p>An <a href="https://www.w3.org/Fonts/WG/WOFF2/Implementation.html">Implementation Report</a> is available.</p>
-
+  <p>An <a href="https://www.w3.org/Fonts/WG/WOFF2/Implementation.html">Implementation Report</a> is available.
+    Note that, for OpenType Collections (previously, TrueType Collections) while there are two tested
+    implementations of encoding and of decoding, no user
+    agent is yet shown to <em>use</em> them after decoding.  Browser support
+    for font collections is expected to improve, and once it does WOFF 2.0 already has
+    the needed support.</p>
 
     <p>Please send comments about this document
       <!--to <a href="mailto:www-font@w3.org">www-font@w3.org</a>
