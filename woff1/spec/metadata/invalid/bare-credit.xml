@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <!-- invalid, credit must be a child of credits -->
+    <credit name="Chris Lilley" role="breakage"/>
+</metadata>
+

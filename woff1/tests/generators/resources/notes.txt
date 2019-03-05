@@ -1,0 +1,21 @@
+This directory contains the resources needed for generating the various test cases.
+
+-----
+Fonts
+-----
+
+The fonts are given in both .ttx and SFNT format. The .ttx files are the source and the SFNT are compiled from those using TTX. (TTX can be obtained at http://fonttools.sf.net).
+
+The fonts have the following glyph/unicode to visual representation mapping:
+
+SFNT-CFF.otf and SFNT-TTF.ttf
+	P PASS
+	F FAIL
+
+SFNT-CFF-Fallback.otf and SFNT-TTF-Fallback.ttf
+	P FAIL
+	F PASS
+
+SFNT-CFF-Reference.otf and SFNT-TTF-Reference.ttf
+	P PASS
+	F FAIL

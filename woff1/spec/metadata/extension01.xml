@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <vendor name="Acme Corp" />
+    <extension id="a7">
+        <name xml:lang="en-GB">Cleaned</name>
+        <item id="w3">
+            <name>OpenType validator</name>
+            <value>Supa-Cleaner 1.0</value>
+        </item>
+    </extension>
+</metadata>

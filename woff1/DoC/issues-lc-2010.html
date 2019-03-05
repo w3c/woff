@@ -1,0 +1,1138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+    <head>
+        <title>WOFF Disposition of Comments </title>
+        <style type="text/css">
+            a {text-decoration: none}
+            a:hover {text-decoration: underline; background: #FE9 }
+            div.issue {padding-left: 1em}
+            div:target {border: 2px solid maroon}
+            div.toc table td {padding: 0.5em}
+            td.accept { background: #6F6;}
+            td.reject { background: #D66;}
+            td.noreply { background: #999;}
+            td.nochange {background: #CCF;}
+        </style>
+        <link rel="stylesheet" type="text/css" media="screen"
+            href="http://www.w3.org/StyleSheets/TR/base.css"/>
+    </head>
+
+    <body>
+        <div class="head">
+            <a href="http://www.w3.org/">
+                <img src="http://www.w3.org/Icons/WWW/w3c_home" alt="W3C"/>
+            </a>
+            <h1>WOFF Disposition of Comments </h1>
+            <h2>2011-July-13</h2>
+
+            <hr/>
+
+            <h2>Abstract</h2>
+            <p>This document outlines the way in which the WebFonts Working Group addressed the
+                comments submitted during the Last Call period of WOFF 1.0.</p>
+            <h2>Status of this document</h2>
+            <p>During the Last Call period of the 16 November 2010 Working Draft of <a
+                    href="http://www.w3.org/TR/2010/WD-WOFF-20101116/">WOFF 1.0</a>, a number of
+                comments were received. This document summarizes those comments and describes the
+                ways in which the comments were addressed by the WebFonts Working Group. Editorial
+                changes have been made in the <a href="http://dev.w3.org/webfonts/WOFF/spec/"
+                    >editors draft</a>.</p>
+
+        </div>
+
+        <div class="toc">
+            <h2 id="toc">Table of Contents</h2>
+            <table>
+                <tr>
+                    <th>Issue</th>
+                    <th>WG Action</th>
+                    <th>Commenter Response</th>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-1">1. No problems</a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-2">2. Mention benefits in supporting materials</a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-3">3. Put WOFF elements in a namespace</a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-4">4. Allow multiple &lt;text> elements as child of
+                            &lt;description></a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-5">5. Support pronunciation and sorting metadata with
+                            structured text</a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-6">6. Extensibility by other namespaces</a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-7">7. xsd:NCName is too constraining for lang attributes</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-8">8. Add @url and @id to &lt;text> elements inside
+                            &lt;license></a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-9">9. I18n-ISSUE-2: Why not using xml:lang?</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-10">10. I18n-ISSUE-4: Language tag references</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-11">11. I18n-ISSUE-5: Use of attributes for human readable text</a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-12">12. I18N-ISSUE-6: Localization mechanism too restricted</a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-13">13. I18N-ISSUE-7: Paragraphs and inline content </a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-14">14. I18N-ISSUE-8: Direction attributes needed</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-15">15. Description of text elements</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-16">16. I18N-ISSUE-9: OpenType feature preservation [WOFF]</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-17">17. Conflicting statements on WOFF font table order </a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-18">18. license element text subelements</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-19">19. letting a URL carry information about the meaning of a resource is bad </a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-20">20. clear and careful language</a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-21">21. Why padding after private data block</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-22">22. Change metadata section to use XMP</a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-23">23. Wasteful to use four bytes to store an origLength</a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-24">24. A context-free grammar for WOFF would be nice</a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-25">25. Why align tables to 4-byte boundaries</a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-26">26 Does compression optionality break DSIG on WOFF?</a>
+                    </td>
+                    <td class="nochange">No Change</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-27">27. Why "version 1.0"</a>
+                    </td>
+                    <td class="nochange">No change</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-28">28. Summary appendix could conflict with normative sections</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-29">29. Mention of "extra data" superfluous</a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-30">30. Move normative statements from introduction </a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-31">31. Concern that metadata is not wellformed, due to @id </a>
+                    </td>
+                    <td class="reject">Reject</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-32">32. Content model unclear </a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-33">33. Don't duplicate conformance requirements in an appendix </a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#issue-34">34. Some fields in OT header are not mentioned in WOFF spec </a>
+                    </td>
+                    <td class="accept">Accept</td>
+                    <td class="accept">Accept</td>
+                </tr>
+                <!--
+                <tr>
+                    <td>
+                        <a href="#issue-"></a>
+                    </td>
+                    <td class=""></td>
+                    <td class="noreply">No reply</td>
+                </tr>
+                -->
+
+            </table>
+        </div>
+
+        <div class="main">
+            <h2>Comments and resolutions</h2>
+
+
+            <div id="issue-1" class="issue">
+                <h3>Issue 1</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>WOFF does not pose any accessibility risks. No changes requested.</dd>
+                    <dt> Raised by</dt>
+                    <dd>Michael Cooper for WAI Protocols and Formats WG</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0077.html"
+                            >Michael Cooper</a> | <a
+                            href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0078.html"
+                            >Chris Lilley</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Thanks. No change.</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd>No changes requested or made.</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-2" class="issue">
+                <h3>Issue 2</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Mention accessibility benefits in supporting materials.</dd>
+                    <dt> Raised by</dt>
+                    <dd>Michael Cooper for WAI Protocols and Formats WG</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0077.html"
+                            >Michael Cooper</a> | <a
+                            href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0078.html"
+                            >Chris Lilley</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Supporting materials do mention benefits, will be further improved.</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd> </dd>
+                    <dt>Status</dt>
+                    <dd>No changes to specification requested.</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-3" class="issue">
+                <h3>Issue 3</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Put WOFF elements in a namespace</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >Christopher Slye for Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >Tal Leming</a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >Chris Lilley</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0087.html"
+                            >Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0088.html"
+                            >Chris Lilley</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0064.html">Chris Lilley</a>
+                            </dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>No change</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/public-webfonts-wg/2011Apr/0021.html">Accept</a> </dd>
+                    <dt>Status</dt>
+                    <dd>Closed</dd>
+                    <dd/>
+
+                </dl>
+            </div>
+
+            <div id="issue-4" class="issue">
+                <h3>Issue 4</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Allow multiple &lt;text> elements as child of &lt;description></dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >Christopher Slye for Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >Tal Leming</a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >Chris Lilley</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0087.html"
+                            >Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0088.html"
+                            >Chris Lilley</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Spec prose already allows this; change RNG to match</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/public-webfonts-wg/2011Apr/0021.html">Accept</a> </dd>
+                    <dt>Status</dt>
+                    <dd>Chris edited RNG</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-5" class="issue">
+                <h3>Issue 5</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Support pronunciation and sorting metadata with structured text</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >Christopher Slye for Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >Tal Leming</a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >Chris Lilley</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>No change</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/public-webfonts-wg/2011Apr/0021.html">Accept</a> </dd>
+                    <dt>Status</dt>
+                    <dd>No Change</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-6" class="issue">
+                <h3>Issue 6</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Extensibility by other namespaces</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >Christopher Slye for Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >Tal Leming</a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >Chris Lilley</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>No change</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/public-webfonts-wg/2011Apr/0021.html">Accept</a> </dd>
+                    <dt>Status</dt>
+                    <dd>Closed</dd>
+                    <dd/>
+
+                </dl>
+            </div>
+
+            <div id="issue-7" class="issue">
+                <h3>Issue 7</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>xsd:NCName is too constraining for lang attributes</dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >Christopher Slye for Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >Tal Leming</a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >Chris Lilley</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Agree, fix RNG</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/public-webfonts-wg/2011Apr/0021.html">Accept</a> </dd>
+                    <dt>Status</dt>
+                    <dd>RNG has been updated</dd>
+
+                </dl>
+            </div>
+
+            <div id="issue-8" class="issue">
+                <h3>Issue 8</h3>
+                <dl>
+                    <dt>Summary</dt>
+                    <dd>Add @url and @id to &lt;text> elements inside &lt;license> </dd>
+                    <dt> Raised by</dt>
+                    <dd>Eric Muller, Adobe</dd>
+
+                    <dt>Links</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0083.html"
+                        >Christopher Slye for Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0085.html"
+                            >Tal Leming</a> |
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0086.html"
+                            >Chris Lilley</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0087.html"
+                            >Eric Muller</a> | 
+                        <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0088.html"
+                            >Chris Lilley</a></dd>
+                    <dt>Proposed Resolution</dt>
+                    <dd>Agree</dd>
+                    <dt>Reporter&#039;s response to resolution</dt>
+                    <dd><a href="http://lists.w3.org/Archives/Public/public-webfonts-wg/2011Apr/0021.html">Accept</a> </dd>
+                    <dt>Status</dt>
+                    <dd>Edited RNG and spec</dd>
+
+                </dl>
+            </div>
+            
+            <div id="issue-9" class="issue">
+<h3>Issue 9</h3>
+<dl>
+<dt>Summary</dt>
+<dd>I18n-ISSUE-2: Why not using xml:lang? </dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida for I18N-Core WG </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0092.html">
+Richard Ishida </a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0093.html">
+Richard Ishida</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0094.html">
+Richard Ishida</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0100.html">
+Martin J. Dürst </a> | 
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0063.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0032.html">Chris Lilley</a> | 
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0039.html">Richard Ishida</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0038.html">Richard Ishida</a>
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Accept; we will change to xml:lang</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0037.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>RNG updated to use xml:lang. Examples (apart from historical, real-world ones) updated to xml:lang. Spec edited.</dd>
+
+</dl>
+</div>
+
+<div id="issue-10" class="issue">
+<h3>Issue 10</h3>
+<dl>
+<dt>Summary</dt>
+<dd> I18n-ISSUE-4: Language tag references</dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida for I18N-Core WG </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0102.html">
+Internationalization Core Working Group Issue Tracker</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0007.html">
+Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0033.html">Chris Lilley</a>  |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0040.html">Richard Ishida</a>
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Accept; reference BCP47 rather than requiring a single tag from the IANA Subtag Registry</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0040.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>Spec has been edited</dd>
+
+</dl>
+</div>
+
+<div id="issue-11" class="issue">
+<h3>Issue 11</h3>
+<dl>
+<dt>Summary</dt>
+<dd>I18n-ISSUE-5: Use of attributes for human readable text </dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida for I18N-Core WG </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0104.html">
+Internationalization Core Working Group Issue Tracker</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0003.html">Chris Lilley</a>
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Reject due to complexity/benefit tradeoff for these particular attributes </dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0041.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>No change</dd>
+
+</dl>
+</div>
+
+<div id="issue-12" class="issue">
+<h3>Issue 12</h3>
+<dl>
+<dt>Summary</dt>
+<dd>I18N-ISSUE-6: Localization mechanism too restricted </dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida for I18N-Core WG </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0105.html">
+Richard Ishida</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0108.html">
+Tab Atkins</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0045.html">Richard Ishida</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JulSep/0015.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JulSep/0021.html">Richard Ishida</a>
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>No change in this version</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JulSep/0021.html">Accept</a></dd>
+<dt>Status</dt>
+<dd>No change, in this version.</dd>
+
+</dl>
+</div>
+
+<div id="issue-13" class="issue">
+<h3>Issue 13</h3>
+<dl>
+<dt>Summary</dt>
+<dd>I18N-ISSUE-7: Paragraphs and inline content </dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida for I18N-Core WG </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0106.html">
+Internationalization Core Working Group Issue Tracker</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0000.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0001.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0005.html">Sylvain Galineau</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0007.html">Chris Lilley</a>
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0035.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0036.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0043.html">Richard Ishida</a>
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Agree; we will add div and span elements for this</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0043.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>Chris sent examples to list; Chris asked i18n for more examples; 
+Jonathan has edited spec to add description and examples; Chris has edited RNG to add these and edited/revalidated examples.</dd>
+
+</dl>
+</div>
+
+<div id="issue-14" class="issue">
+<h3>Issue 14</h3>
+<dl>
+<dt>Summary</dt>
+<dd>I18N-ISSUE-8: Direction attributes needed</dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida for I18N-Core WG </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0107.html">
+15 Dec 2010 19:14:23 +0000</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0008.html">
+12 Jan 2011 15:49:52 +0100</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0010.html">Kang-Hao (Kenny) Lu</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0011.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0008.html">Richard Ishida</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0034.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0044.html">Richard Ishida</a> 
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Accept; we will add @dir to metadata elements</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0044.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>Spec edit made. Richard offered to provide examples.</dd>
+
+</dl>
+</div>
+
+<div id="issue-15" class="issue">
+<h3>Issue 15</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Description of text elements </dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0110.html">Richard Ishida</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0036.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0052.html">Chris Lilley</a>
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0058.html">Richard Ishida</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0060.html">Chris Lilley</a>
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>We have clearly indicated the content model of these elements in the human-readable prose of the spec</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>Spec edited, but text element not described like the others.</dd>
+
+</dl>
+</div>
+
+<div id="issue-16" class="issue">
+<h3>Issue 16</h3>
+<dl>
+<dt>Summary</dt>
+<dd>I18N-ISSUE-9: OpenType feature preservation [WOFF] </dd>
+<dt> Raised by</dt>
+<dd>Richard Ishida for I18N-Core WG </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0109.html">Richard Ishida</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0112.html">John Daggett</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0113.html">Christopher Slye</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0114.html">Vladimir Levantovsky</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0115.html">John Hudson</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0116.html">Christopher Slye</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0117.html">Addison Phillips</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Mostly out of scope for WOFF spec, but we will add an informative note.</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0117.html">Accept</a></dd>
+<dt>Status</dt>
+<dd>Needs informative note added</dd>
+
+</dl>
+</div>
+
+<div id="issue-17" class="issue">
+<h3>Issue 17</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Conflicting statements on WOFF font table order </dd>
+<dt> Raised by</dt>
+<dd>Julio Gonzalez </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0095.html">Julio Gonzalez</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0096.html">Jonathan Kew</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0097.html">Julio Gonzalez</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0098.html">Jonathan Kew</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0099.html">Julio Gonzalez</a> </dd>
+<dt>Proposed Resolution</dt>
+<dd>No change required for spec; commentor was confused by wording </dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0099.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>Closed</dd>
+
+</dl>
+</div>
+
+<div id="issue-18" class="issue">
+<h3>Issue 18</h3>
+<dl>
+<dt>Summary</dt>
+<dd>license element text subelements</dd>
+<dt> Raised by</dt>
+<dd>Tal Leming  </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0090.html">Tal Leming </a> | <a href="http://lists.w3.org/Archives/Public/www-font/2010OctDec/0091.html">Sylvain Galineau</a> </dd>
+<dt>Proposed Resolution</dt>
+<dd>Agree</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://www.w3.org/2011/04/06-webfonts-minutes.html#talagree">Agree</a> </dd>
+<dt>Status</dt>
+<dd>Spec up to date, example added.</dd>
+
+</dl>
+</div>
+
+<div id="issue-19" class="issue">
+<h3>Issue 19</h3>
+<dl>
+<dt>Summary</dt>
+<dd>letting a URL carry information  
+about the meaning of a resource is bad </dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0025.html">Vladimir Levantovsky</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0046.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0086.html">Bert Bos</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0088.html">Liam R E Quin</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0090.html">Sylvain Galineau</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Reject, the claims of architectural violation and of the superiority of EOT asre not convincing</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>Clarification requested from commentor, no response, no change.</dd>
+
+</dl>
+</div>
+
+<div id="issue-20" class="issue">
+<h3>Issue 20</h3>
+<dl>
+<dt>Summary</dt>
+<dd>clear and careful language</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0038.html">Chris Lilley</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Thanks; no change </dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>Closed</dd>
+
+</dl>
+</div>
+
+<div id="issue-21" class="issue">
+<h3>Issue 21</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Why padding after private data block</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0037.html">Chris Lilley</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Agree; padding after private removed</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>Closed</dd>
+
+</dl>
+</div>
+
+<div id="issue-22" class="issue">
+<h3>Issue 22</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Change metadata section to use XMP</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0045.html">Chris Lilley </a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0084.html">Bert Bos</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0056.html">Chris Lilley</a>
+
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Reject; large unmotivated change with no backwards compatibility</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>No response, no change</dd>
+
+</dl>
+</div>
+
+<div id="issue-23" class="issue">
+<h3>Issue 23</h3>
+<dl>
+<dt>Summary</dt>
+<dd>wasteful to use four bytes to store an  
+origLength</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0043.html">Jonathan Kew </a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0083.html">Bert Bos</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Reject: origLength avoids multiple passes on decompress</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0083.html">Agree</a> </dd>
+<dt>Status</dt>
+<dd>Closed</dd>
+
+</dl>
+</div>
+
+<div id="issue-24" class="issue">
+<h3>Issue 24</h3>
+<dl>
+<dt>Summary</dt>
+<dd>A context-free grammar for WOFF would be nice</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0047.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0085.html">Bert Bos</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0059.html">Chris Lilley</a>
+
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Reject</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>No change</dd>
+
+</dl>
+</div>
+
+<div id="issue-25" class="issue">
+<h3>Issue 25</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Why align tables to 4-byte boundaries</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0009.html">Chris Lilley</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>No change</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0049.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>No change</dd>
+
+</dl>
+</div>
+
+<div id="issue-26" class="issue">
+<h3>Issue 26</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Does compression optionality break DSIG on WOFF?</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0010.html">Chris Lilley</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>No change, DSIG is not broken by WOFF</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0048.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>No change.</dd>
+
+</dl>
+</div>
+
+<div id="issue-27" class="issue">
+<h3>Issue 27</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Why "version 1.0"</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0077.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0087.html">Bert Bos</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>No change</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0087.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>Closed</dd>
+
+</dl>
+</div>
+
+<div id="issue-28" class="issue">
+<h3>Issue 28</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Summary appendix could conflict with normative sections</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0049.html">Chris Lilley</a> |
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0054.html">Chris Lilley</a>
+</dd>
+<dt>Proposed Resolution</dt>
+<dd>Agreed, remove section</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>Spec edited</dd>
+
+</dl>
+</div>
+
+<div id="issue-29" class="issue">
+<h3>Issue 29</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Mention of "extra data" superfluous</dd>
+<dt> Raised by</dt>
+<dd>Bert Bos </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0009.html">Bert Bos</a> | 
+<a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0055.html">Chris Lilley</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Remove entire section as condusing duplication</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>Spec edited</dd>
+
+</dl>
+</div>
+
+<div id="issue-30" class="issue">
+<h3>Issue 30</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Move normative statements from introduction </dd>
+<dt> Raised by</dt>
+<dd>Steve Zilles </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0001.html">Steve Zilles</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0032.html">Chris Lilley</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0039.html">Steve Zilles</a> </dd>
+<dt>Proposed Resolution</dt>
+<dd>Agree; moved to new section </dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0039.html">Agree</a> </dd>
+<dt>Status</dt>
+<dd>Spec edited.</dd>
+
+</dl>
+</div>
+
+<div id="issue-31" class="issue">
+<h3>Issue 31</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Concern that metadata is not wellformed, due to @id </dd>
+<dt> Raised by</dt>
+<dd>Steve Zilles </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0001.html">Steve Zilles</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0033.html">Chris Lilley</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0040.html">Steve Zilles</a> </dd>
+<dt>Proposed Resolution</dt>
+<dd>Reject; commentor misunderstood spec, which has however been clarified</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0040.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>Closed</dd>
+
+</dl>
+</div>
+
+<div id="issue-32" class="issue">
+<h3>Issue 32</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Content model unclear </dd>
+<dt> Raised by</dt>
+<dd>Steve Zilles </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0001.html">Steve Zilles</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011AprJun/0053.html">Chris Lilley</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Agree; spec will clarify</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>Spec edited.</dd>
+
+</dl>
+</div>
+
+<div id="issue-33" class="issue">
+<h3>Issue 33</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Don't duplicate conformance requirements in an appendix </dd>
+<dt> Raised by</dt>
+<dd>Steve Zilles </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0001.html">Steve Zilles</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0035.html">Chris Lilley</a> | <a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0041.html">Steve Zilles</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Agree </dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0041.html">Accept</a> </dd>
+<dt>Status</dt>
+<dd>Section removed.</dd>
+
+</dl>
+</div>
+
+<div id="issue-34" class="issue">
+<h3>Issue 34</h3>
+<dl>
+<dt>Summary</dt>
+<dd>Some fields in OT header are not mentioned in WOFF spec </dd>
+<dt> Raised by</dt>
+<dd>Sergey Malkin </dd>
+
+<dt>Links</dt>
+<dd><a href="http://lists.w3.org/Archives/Public/www-font/2011JanMar/0005.html">Sergey Malkin</a> |
+<a href="http://www.w3.org/2011/03/16-webfonts-minutes.html#item02">WebFonts WG</a></dd>
+<dt>Proposed Resolution</dt>
+<dd>Accept. WOFF spec should mentioned them in two places. First, it has to reference OpenType spec for calculation algorithm. And second, conformance requirements have to mention that these fields should be correct in original font to ensure complete roundtrip.</dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd>
+Spec edited.</dd>
+
+</dl>
+</div>
+            <!--
+
+<div id="issue-n" class="issue">
+<h3>Issue n</h3>
+<dl>
+<dt>Summary</dt>
+<dd> </dd>
+<dt> Raised by</dt>
+<dd> </dd>
+
+<dt>Links</dt>
+<dd>N/A</dd>
+<dt>Proposed Resolution</dt>
+<dd> </dd>
+<dt>Reporter&#039;s response to resolution</dt>
+<dd> </dd>
+<dt>Status</dt>
+<dd></dd>
+
+</dl>
+</div>
+
+-->
+
+            <hr/>
+            <address>Chris Lilley <br/>
+        $Id$</address>
+        </div>
+    </body>
+</html>

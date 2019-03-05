@@ -1,0 +1,1931 @@
+#
+# This file defines the expected output when the Format Test Suite
+# is pushed through the validator with the test_validator script is run.
+#
+
+identifier: valid-001
+title: Valid WOFF 1
+description: Valid CFF flavored WOFF with no metadata and no private data
+valid: True
+
+identifier: valid-002
+title: Valid WOFF 2
+description: Valid CFF flavored WOFF with metadata
+valid: True
+
+identifier: valid-003
+title: Valid WOFF 3
+description: Valid CFF flavored WOFF with private data
+valid: True
+
+identifier: valid-004
+title: Valid WOFF 4
+description: Valid CFF flavored WOFF with metadata and private data
+valid: True
+
+identifier: valid-005
+title: Valid WOFF 5
+description: Valid TTF flavored WOFF with no metadata and no private data
+valid: True
+
+identifier: valid-006
+title: Valid WOFF 6
+description: Valid TTF flavored WOFF with metadata
+valid: True
+
+identifier: valid-007
+title: Valid WOFF 7
+description: Valid TTF flavored WOFF with private data
+valid: True
+
+identifier: valid-008
+title: Valid WOFF 8
+description: Valid TTF flavored WOFF with metadata and private data
+valid: True
+
+identifier: header-signature-001
+title: Header Signature Invalid Value
+description: The signature field contains XXXX instead of wOFF.
+valid: False
+report:
+ERROR - Header: Invalid signature: XXXX.
+
+identifier: header-flavor-001
+title: Header Flavor Incorrectly Set to 0x00010000
+description: The header flavor is set to 0x00010000 but the table data contains CFF data, not TTF data.
+valid: False
+report:
+ERROR - Header: A "CFF" table is defined in the font and the flavor is not set to "OTTO".
+ERROR - Table Directory: The "head" table checkSumAdjustment (0x44e44878) does not match the calculated checkSumAdjustment (0x94379cc7).
+
+identifier: header-flavor-002
+title: Header Flavor Incorrectly Set to OTTO
+description: The header flavor is set to OTTO but the table data contains TTF data, not CFF data.
+valid: False
+report:
+ERROR - Header: The flavor is set to "OTTO" but no "CFF" table is defined.
+ERROR - Table Directory: The "head" table checkSumAdjustment (0x9a9ddc76) does not match the calculated checkSumAdjustment (0x4b4a8827).
+
+identifier: header-length-001
+title: Header Length Too Short
+description: The length field contains a value that is four bytes shorter than the actual data.
+valid: False
+report:
+ERROR - Header: Defined length (1340) does not match actual length of the data (1344).
+ERROR - Data Blocks: The table data end (1340) is not in the required position (1344).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1328) + length (16) is past the end of the table data block (1340).
+
+identifier: header-length-002
+title: Header Length Too Long
+description: The length field contains a value that is four bytes longer than the actual data.
+valid: False
+report:
+ERROR - Header: Defined length (1348) does not match actual length of the data (1344).
+ERROR - Data Blocks: The table data end (1348) is not in the required position (1344).
+
+identifier: header-numTables-001
+title: Header Number of Tables Set to Zero
+description: The header contains 0 in the numTables field. A table directory and table data are present.
+valid: False
+report:
+ERROR - Header: The flavor is set to "OTTO" but no "CFF" table is defined.
+ERROR - Header: The total sfnt size (1856) does not match the required sfnt size (12).
+ERROR - Header: Invalid number of tables defined in header structure (0).
+
+identifier: header-totalSfntSize-001
+title: Header Total SFNT Size Not a Multiple of 4
+description: The totalSfntSize field contains a value that is missing padding bytes between two tables.
+valid: False
+report:
+ERROR - Header: The total sfnt size (1854) is not a multiple of four.
+
+identifier: header-totalSfntSize-002
+title: Header Total SFNT Size Too Long
+description: The totalSfntSize field contains a value that is is four bytes too long.
+valid: False
+report:
+ERROR - Header: The total sfnt size (1860) does not match the required sfnt size (1856).
+
+identifier: header-totalSfntSize-003
+title: Header Total SFNT Size Too Short
+description: The totalSfntSize field contains a value that is is four bytes too short.
+valid: False
+report:
+ERROR - Header: The total sfnt size (1852) does not match the required sfnt size (1856).
+
+identifier: header-reserved-001
+title: Header Reserved Invalid Value
+description: The reserved field contains 1.
+valid: False
+report:
+ERROR - Header: Invalid value in reserved field (1).
+
+identifier: blocks-extraneous-data-001
+title: Extraneous Data Between Directory and Table Data
+description: There are four null bytes between the table directory and the table data.
+valid: False
+report:
+ERROR - Data Blocks: The table data does not start (228) in the required position (224).
+
+identifier: blocks-extraneous-data-002
+title: Extraneous Data After Table Data
+description: There are four null bytes after the table data block and there is no metadata or private data.
+valid: False
+report:
+ERROR - Data Blocks: The table data end (1348) is not in the required position (1344).
+
+identifier: blocks-extraneous-data-003
+title: Extraneous Data Between Table Data and Metadata
+description: There are four null bytes between the table data and the metadata.
+valid: False
+report:
+ERROR - Data Blocks: The table data end (1348) is not in the required position (1344).
+ERROR - Data Blocks: The metadata does not start (1348) in the required position (1344).
+
+identifier: blocks-extraneous-data-004
+title: Extraneous Data Between Table Data and Private Data
+description: There are four null bytes between the table data and the private data.
+valid: False
+report:
+ERROR - Data Blocks: The table data end (1348) is not in the required position (1344).
+ERROR - Data Blocks: The private data does not start (1348) in the required position (1344).
+
+identifier: blocks-extraneous-data-005
+title: Extraneous Data Between Metdata and Private Data
+description: There are four null bytes between the metadata and the private data.
+valid: False
+report:
+ERROR - Data Blocks: The metadata end (1924) is not in the required position (1920).
+ERROR - Data Blocks: The private data does not start (1924) in the required position (1920).
+
+identifier: blocks-extraneous-data-006
+title: Extraneous Data After Metadata
+description: There are four null bytes after the metadata and there is no private data.
+valid: False
+report:
+ERROR - Data Blocks: The metadata end (1922) is not in the required position (1918).
+
+identifier: blocks-extraneous-data-007
+title: Extraneous Data After Private Data
+description: There are four null bytes after the private data.
+valid: False
+report:
+ERROR - Data Blocks: The private data end (1444) is not in the required position (1448).
+
+identifier: blocks-overlap-001
+title: Metadata Overlaps Table Data
+description: The metadata offset is four bytes before the end of the table data.
+valid: False
+report:
+ERROR - Header: Defined length (1914) does not match the required length of the data (1918).
+ERROR - Data Blocks: The table data end (1340) is not in the required position (1344).
+ERROR - Data Blocks: The metadata does not start (1340) in the required position (1344).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1328) + length (16) is past the end of the table data block (1340).
+# this error occurs because the last four bytes of the table are overlapped by the metadata
+ERROR - Table Directory: The "hmtx" table directory entry original checksum (0x17d700c8) does not match the checksum (0x8778adfb) calculated from the data.
+
+identifier: blocks-overlap-002
+title: Private Data Overlaps Table Data
+description: The private data offset is four bytes before the end of the table data.
+valid: False
+report:
+ERROR - Header: Defined length (1440) does not match the required length of the data (1444).
+ERROR - Data Blocks: The table data end (1340) is not in the required position (1344).
+ERROR - Data Blocks: The private data does not start (1340) in the required position (1344).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1328) + length (16) is past the end of the table data block (1340).
+# this error occurs because the last four bytes of the table are overlapped by the private data
+ERROR - Table Directory: The "hmtx" table directory entry original checksum (0x17d700c8) does not match the checksum (0xedc0064) calculated from the data.
+
+identifier: blocks-overlap-003
+title: Private Data Overlaps Metadata
+description: The private data offset is four bytes before the end of the metadata.
+valid: False
+report:
+ERROR - Header: Defined length (2016) does not match the required length of the data (2020).
+ERROR - Data Blocks: The metadata end (1916) is not in the required position (1920).
+ERROR - Data Blocks: The private data does not start (1916) in the required position (1920).
+ERROR - Metadata: The metadata can not be decompressed with zlib.
+
+identifier: blocks-metadata-absent-001
+title: Metadata Length Not Set to Zero
+description: The metadata length is set to one but the offset is zero.
+valid: False
+report:
+ERROR - Data Blocks: The metadata offset (0) and metadata length (1) are not properly set. If one is 0, they both must be 0.
+
+identifier: blocks-metadata-absent-002
+title: Metadata Offset Not Set to Zero
+description: The metadata length is set to zero but the offset is set to the end of the file.
+valid: False
+report:
+ERROR - Data Blocks: The metadata offset (1344) and metadata length (0) are not properly set. If one is 0, they both must be 0.
+
+identifier: blocks-private-absent-001
+title: Private Data Length Not Set to Zero
+description: The private data length is set to one but the offset is zero.
+valid: False
+report:
+ERROR - Data Blocks: The private data offset (0) and private data length (1) are not properly set. If one is 0, they both must be 0.
+
+identifier: blocks-private-absent-002
+title: Private Data Offset Not Set to Zero
+description: The private data length is set to zero but the offset is set to the end of the file.
+valid: False
+report:
+ERROR - Data Blocks: The private data offset (1344) and private data length (0) are not properly set. If one is 0, they both must be 0.
+
+identifier: blocks-metadata-padding-001
+title: Metadata Has Unnecessary Padding
+description: The metadata block is padded to a four-byte boundary but there is no private data.
+valid: False
+report:
+ERROR - Data Blocks: The metadata end (1920) is not in the required position (1918).
+
+identifier: blocks-ordering-001
+title: Table Data After Metadata
+description: The table data block is stored after the metadata block.
+valid: False
+report:
+ERROR - Data Blocks: The table data does not start (800) in the required position (224).
+ERROR - Data Blocks: The table data end (224) is not in the required position (1920).
+ERROR - Data Blocks: The metadata does not start (224) in the required position (1920).
+ERROR - Data Blocks: The metadata end (1920) is not in the required position (798).
+# the validator expects the tables to end before the start of the metadata.
+# since that isn't happening in this case, the following errors are raised.
+ERROR - Table Directory: The "CFF " table directory entry offset (1436) is past the end of the table data block (224).
+ERROR - Table Directory: The "OS/2" table directory entry offset (896) is past the end of the table data block (224).
+ERROR - Table Directory: The "cmap" table directory entry offset (1340) is past the end of the table data block (224).
+ERROR - Table Directory: The "head" table directory entry offset (800) is past the end of the table data block (224).
+ERROR - Table Directory: The "hhea" table directory entry offset (856) is past the end of the table data block (224).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1904) is past the end of the table data block (224).
+ERROR - Table Directory: The "maxp" table directory entry offset (888) is past the end of the table data block (224).
+ERROR - Table Directory: The "name" table directory entry offset (968) is past the end of the table data block (224).
+ERROR - Table Directory: The "post" table directory entry offset (1416) is past the end of the table data block (224).
+
+identifier: blocks-ordering-002
+title: Table Data After Private Data
+description: The table data block is stored after the private data block.
+valid: False
+report:
+ERROR - Data Blocks: The table data does not start (324) in the required position (224).
+ERROR - Data Blocks: The table data end (224) is not in the required position (1444).
+ERROR - Data Blocks: The private data does not start (224) in the required position (1444).
+ERROR - Data Blocks: The private data end (324) is not in the required position (1444).
+# the validator expects the tables to end before the start of the private data.
+# since that isn't happening in this case, the following errors are raised.
+ERROR - Table Directory: The "CFF " table directory entry offset (960) is past the end of the table data block (224).
+ERROR - Table Directory: The "OS/2" table directory entry offset (420) is past the end of the table data block (224).
+ERROR - Table Directory: The "cmap" table directory entry offset (864) is past the end of the table data block (224).
+ERROR - Table Directory: The "head" table directory entry offset (324) is past the end of the table data block (224).
+ERROR - Table Directory: The "hhea" table directory entry offset (380) is past the end of the table data block (224).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1428) is past the end of the table data block (224).
+ERROR - Table Directory: The "maxp" table directory entry offset (412) is past the end of the table data block (224).
+ERROR - Table Directory: The "name" table directory entry offset (492) is past the end of the table data block (224).
+ERROR - Table Directory: The "post" table directory entry offset (940) is past the end of the table data block (224).
+
+identifier: blocks-ordering-003
+title: Metadata After Private Data
+description: The metadata block is stored after the private data block.
+valid: False
+report:
+ERROR - Header: Defined length (2018) does not match the required length of the data (2020).
+ERROR - Data Blocks: The table data end (1444) is not in the required position (1344).
+ERROR - Data Blocks: The metadata does not start (1444) in the required position (1344).
+ERROR - Data Blocks: The metadata end (1344) is not in the required position (2020).
+ERROR - Data Blocks: The private data does not start (1344) in the required position (2020).
+ERROR - Data Blocks: The private data end (1444) is not in the required position (2018).
+# the validator expects the metadata to be padded since there is private data in the file
+ERROR - Metadata: The metadata is not padded with null bytes.
+
+identifier: blocks-ordering-004
+title: Private Data Before Metadata
+description: The private data block is stored before the metadata block.
+valid: False
+report:
+ERROR - Header: Defined length (2018) does not match the required length of the data (2020).
+ERROR - Data Blocks: The table data end (1444) is not in the required position (1344).
+ERROR - Data Blocks: The metadata does not start (1444) in the required position (1344).
+ERROR - Data Blocks: The metadata end (1344) is not in the required position (2020).
+ERROR - Data Blocks: The private data does not start (1344) in the required position (2020).
+ERROR - Data Blocks: The private data end (1444) is not in the required position (2018).
+ERROR - Metadata: The metadata is not padded with null bytes.
+
+identifier: blocks-private-001
+title: Private Data Does Not Begin of 4-Byte Boundary
+description: The private data does not begin on a four byte boundary because the metadata is not padded.
+valid: False
+report:
+ERROR - Header: Defined length (2018) does not match the required length of the data (2020).
+ERROR - Data Blocks: The metadata end (1918) is not in the required position (1920).
+ERROR - Data Blocks: The private data does not start (1918) in the required position (1920).
+
+identifier: directory-4-byte-001
+title: Font Table Data Not On 4-Byte Boundary
+description: Two vendor-space tables are inserted into the table directory and data: AAAA is three bytes long. AAAB is five bytes long. AAAA is not padded so that the AAAB table does not begin on a four-byte boundary. The tables that follow are all aligned correctly.
+valid: False
+report:
+ERROR - Header: Defined length (1392) does not match the required length of the data (1396).
+ERROR - Header: The total sfnt size (1896) does not match the required sfnt size (1900).
+ERROR - Table Directory: The "AAAB" table does not begin on a 4-byte boundary (267).
+ERROR - Table Directory: The "AAAA" table is not padded with null bytes.
+ERROR - Table Directory: The "AAAB" table is not padded with null bytes.
+ERROR - Table Directory: The "AAAB" table overlaps the "AAAA" table.
+ERROR - Table Directory: The "head" table overlaps the "AAAB" table.
+ERROR - Table Directory: The "head" table checkSumAdjustment (0x44e44878) does not match the calculated checkSumAdjustment (0xbc5bbec3).
+
+identifier: directory-4-byte-002
+title: Final Font Table Data Not Padded
+description: The final table in the table data block is not padded to a 4-byte boundary.
+valid: False
+report:
+ERROR - Header: Defined length (1366) does not match the required length of the data (1368).
+ERROR - Data Blocks: The table data end (1366) is not in the required position (1368).
+ERROR - Table Directory: The sfnt data does not end with proper padding.
+ERROR - Table Directory: The "zzzz" table is not padded with null bytes.
+
+identifier: directory-4-byte-003
+title: Font Table Data Padded With Non-Null
+description: Table data is padded with \01 instead of \00.
+valid: False
+report:
+ERROR - Table Directory: The "CFF " table is not padded with null bytes.
+ERROR - Table Directory: The "OS/2" table is not padded with null bytes.
+ERROR - Table Directory: The "maxp" table is not padded with null bytes.
+ERROR - Table Directory: The "name" table is not padded with null bytes.
+ERROR - Table Directory: The "post" table is not padded with null bytes.
+
+identifier: directory-overlaps-001
+title: Font Table Data Offset Past End of File
+description: The offset to the final table is four bytes beyond the end of the file.
+valid: False
+report:
+ERROR - Data Blocks: The table data end (1344) is not in the required position (1364).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1348) is past the end of the table data block (1344).
+ERROR - Table Directory: Extraneous data between the "CFF " and "hmtx" tables.
+ERROR - Table Directory: The "hmtx" table directory entry original checksum (0x17d700c8) does not match the checksum (0x0) calculated from the data.
+
+identifier: directory-overlaps-002
+title: Font Table Data Offset+Length Past End of File
+description: The defined length for the final table causes the data block to be four bytes beyond the end of the file.
+valid: False
+report:
+ERROR - Header: Defined length (1344) does not match the required length of the data (1348).
+ERROR - Data Blocks: The table data end (1344) is not in the required position (1348).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1328) + length (20) is past the end of the table data block (1344).
+
+identifier: directory-overlaps-003
+title: Font Table Data Overlaps Metadata
+description: The final table starts four bytes after the start of the metadata.
+valid: False
+report:
+ERROR - Header: Defined length (1902) does not match the required length of the data (1918).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1332) is past the end of the table data block (1328).
+ERROR - Table Directory: Extraneous data between the "CFF " and "hmtx" tables.
+ERROR - Metadata: The metadata can not be decompressed with zlib.
+# these two are raised because the validator looks at the edge of the table data and expects the metadata to begin there
+ERROR - Data Blocks: The table data end (1328) is not in the required position (1348).
+ERROR - Data Blocks: The metadata does not start (1328) in the required position (1348).
+
+identifier: directory-overlaps-004
+title: Font Table Data Overlaps Private Data
+description: The final table starts four bytes after the start of the private data.
+valid: False
+report:
+ERROR - Header: Defined length (1428) does not match the required length of the data (1444).
+ERROR - Table Directory: The "hmtx" table directory entry offset (1332) is past the end of the table data block (1328).
+ERROR - Table Directory: Extraneous data between the "CFF " and "hmtx" tables.
+# these two are raised because the validator looks at the edge of the table data and expects the private data to begin there
+ERROR - Data Blocks: The table data end (1328) is not in the required position (1348).
+ERROR - Data Blocks: The private data does not start (1328) in the required position (1348).
+
+identifier: directory-overlaps-005
+title: Two Table Data Blocks Overlap
+description: The final table starts four bytes before the end of the previous table.
+valid: False
+report:
+ERROR - Header: Defined length (1340) does not match the required length of the data (1344).
+ERROR - Table Directory: The "CFF " table is not padded with null bytes.
+ERROR - Table Directory: The "hmtx" table overlaps the "CFF " table.
+ERROR - Table Data: The "CFF " table data can not be decompressed with zlib.
+
+identifier: directory-extraneous-data-001
+title: Extraneous Data Between Tables
+description: There are four null bytes between each of the table data blocks after the head table.
+valid: False
+report:
+ERROR - Data Blocks: The table data end (1376) is not in the required position (1372).
+ERROR - Table Directory: Extraneous data between the "hhea" and "maxp" tables.
+ERROR - Table Directory: Extraneous data between the "maxp" and "OS/2" tables.
+ERROR - Table Directory: Extraneous data between the "OS/2" and "name" tables.
+ERROR - Table Directory: Extraneous data between the "name" and "cmap" tables.
+ERROR - Table Directory: Extraneous data between the "cmap" and "post" tables.
+ERROR - Table Directory: Extraneous data between the "post" and "CFF " tables.
+ERROR - Table Directory: Extraneous data between the "CFF " and "hmtx" tables.
+
+identifier: directory-compLength-001
+title: Font Table Data Compressed Length Greater Than Original Length
+description: At least one table's compLength is larger than the origLength.
+valid: False
+report:
+ERROR - Table Directory: The "hmtx" table directory entry has a compressed length (22) larger than the original length (16).
+ERROR - Table Directory: The "maxp" table directory entry has a compressed length (14) larger than the original length (6).
+# The checksum errors are the result of the validator not decompressing the table data.
+# It follows the spec and only decompresses when the compLength is < origLength.
+ERROR - Table Directory: The "hmtx" table directory entry original checksum (0x17d700c8) does not match the checksum (0x83cb0cc8) calculated from the data.
+ERROR - Table Directory: The "maxp" table directory entry original checksum (0x45000) does not match the checksum (0x8251c50a) calculated from the data.
+
+identifier: directory-origLength-001
+title: Original Length Less Than Decompressed Length
+description: The CFF table when decompressed has a length that is four bytes longer than the value listed in origLength.
+valid: False
+report:
+ERROR - Table Directory: The "CFF " table directory entry has an original length (554) that does not match the actual length of the decompressed data (558).
+
+identifier: directory-origLength-002
+title: Original Length Greater Than Decompressed Length
+description: The CFF table when decompressed has a length that is four bytes shorter than the value listed in origLength.
+valid: False
+report:
+ERROR - Table Directory: The "CFF " table directory entry has an original length (562) that does not match the actual length of the decompressed data (558).
+
+identifier: directory-origCheckSum-001
+title: Font Table Directory Contains Invalid Original CheckSum
+description: The checksum for the CFF table is set to 0.
+valid: False
+report:
+ERROR - Table Directory: The "CFF " table directory entry original checksum (0x0) does not match the checksum (0x89dc3aff) calculated from the data.
+
+identifier: directory-origCheckSum-002
+title: Font head Table Incorrect CheckSum Adjustment
+description: The head table checksum adjustment is set to 0.
+valid: False
+report:
+ERROR - Table Directory: The "head" table checkSumAdjustment (0x0) does not match the calculated checkSumAdjustment (0x44e44878).
+
+identifier: directory-ascending-001
+title: Font Table Directory Not In Ascending Order
+description: The tables in the directory are in descending order.
+valid: False
+report:
+ERROR - Table Directory: The table directory entries are not stored in alphabetical order.
+
+identifier: tabledata-compression-001
+title: Font Table Data Not Compressed
+description: None of the tables are stored in compressed form.
+valid: True
+
+identifier: tabledata-compression-002
+title: Font Table Data Is Compressed When Possible
+description: All of the tables (excpet head) that will be smaller when compressed are stored in their compressed state.
+valid: True
+
+identifier: tabledata-compression-003
+title: Not All Font Table Data Is Compressed When Possible
+description: Only one of the tables that would be smaller when compressed is stored in the compressed state.
+valid: True
+
+identifier: tabledata-compression-004
+title: Font Table Data Is Compressed At Different Levels
+description: The font data tables are compressed using at least two different levels.
+valid: True
+
+identifier: tabledata-zlib-001
+title: Font Table Data Invalid Compressed Data
+description: One compressed table has had its compressed data replaced with \01 making it incompatible with zlib.
+valid: False
+report:
+ERROR - Table Data: The "name" table data can not be decompressed with zlib.
+
+identifier: metadata-padding-001
+title: Padding Between Metadata and Private Data is Non-Null
+description: Metadata is padded with \01 instead of \00.
+valid: False
+report:
+ERROR - Metadata: The metadata is not padded with null bytes.
+
+identifier: metadata-compression-001
+title: Metadata Invalid Compression
+description: The metadata is stored in an uncompressed state and therefore does not have the proper compression format.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be decompressed with zlib.
+
+identifier: metadata-metaOrigLength-001
+title: Decompressed Metadata Length Less Than metaOrigLength
+description: The metadata decompresses to a length that is 1 byte smaller than the length defined in metaOrigLength
+valid: False
+report:
+ERROR - Metadata: The decompressed metadata length (3575) does not match the original metadata length (3576) in the header.
+
+identifier: metadata-metaOrigLength-002
+title: Decompressed Metadata Length Greater Than metaOrigLength
+description: The metadata decompresses to a length that is 1 byte greater than the length defined in metaOrigLength
+valid: False
+report:
+ERROR - Metadata: The decompressed metadata length (3575) does not match the original metadata length (3574) in the header.
+
+identifier: metadata-well-formed-001
+title: Unescaped < in Content
+description: The text element in the description element contains an unescaped <.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be parsed.
+
+identifier: metadata-well-formed-002
+title: Unescaped & in Content
+description: The text element in the description element contains an unescaped &.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be parsed.
+
+identifier: metadata-well-formed-003
+title: Mismatched Element Tags
+description: One element begins with <description> but ends with </mismatch>.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be parsed.
+
+identifier: metadata-well-formed-004
+title: Unclosed Element Tag
+description: The text element element in the description element is not closed.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be parsed.
+
+identifier: metadata-well-formed-005
+title: Case Mismatch in Element Tags
+description: The <description> element is closed with <DESCRIPTION>.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be parsed.
+
+identifier: metadata-well-formed-006
+title: More Than One Root Element
+description: The metadata root element occurs twice.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be parsed.
+
+identifier: metadata-well-formed-007
+title: Unknown Encoding
+description: The xml encoding is set to 'VSCACS-GFV-X-CQ34QTAB2Q-IS-NOT-A-VALID-ENCODING'.
+valid: False
+report:
+ERROR - Metadata: The metadata can not be parsed.
+
+identifier: metadata-encoding-001
+title: UTF-8 Encoding
+description: The xml encoding is set to UTF-8.
+valid: True
+
+identifier: metadata-encoding-002
+title: Invalid Encoding: UTF-16
+description: The xml encoding is set to UTF-16.
+valid: False
+report:
+ERROR - Metadata: The metadata encoding is not valid.
+
+identifier: metadata-encoding-003
+title: Invalid Encoding: ISO-8859-1
+description: The xml encoding is set to ISO-8859-1.
+valid: False
+report:
+ERROR - Metadata: The metadata encoding is not valid.
+
+identifier: metadata-encoding-004
+title: Implied UTF-8
+description: The xml encoding is not declared and there is no BOM.
+valid: True
+report:
+
+identifier: metadata-encoding-005
+title: UTF-8 BOM
+description: The xml encoding is not declared and there is a UTF-8 BOM.
+valid: True
+report:
+
+identifier: metadata-encoding-006
+title: Invalid Encoding: UTF-8 BOM
+description: The xml encoding is not declared and there is a UTF-16 BOM.
+valid: False
+report:
+ERROR - Metadata: The metadata encoding is not valid.
+
+identifier: metadata-schema-metadata-001
+title: Valid metadata Element
+description: The metadata element matches the schema.
+valid: True
+
+identifier: metadata-schema-metadata-002
+title: Top element is Not metadata
+description: The top element is "INVALID" instead of "metadata".
+valid: False
+report:
+ERROR - Metadata: The top element is not "metadata".
+
+identifier: metadata-schema-metadata-003
+title: No version Attribute in metadata Element
+description: The metadata element does not contain the required version attribute.
+valid: False
+report:
+ERROR - Metadata: The "version" attribute is not defined.
+
+identifier: metadata-schema-metadata-004
+title: Invalid version Attribute Value in metadata Element
+description: The metadata element version attribute is set to 'ABC'.
+valid: False
+report:
+ERROR - Metadata: Unknown version ("ABC").
+
+identifier: metadata-schema-metadata-005
+title: Unknown Attrbute in metadata Element
+description: The metadata element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute").
+
+identifier: metadata-schema-metadata-006
+title: Unknown Child Element metadata Element
+description: The metadata element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown").
+
+identifier: metadata-schema-uniqueid-001
+title: Valid uniqueid Element
+description: The uniqueid element matches the schema.
+valid: True
+
+identifier: metadata-schema-uniqueid-002
+title: No uniqueid Element
+description: The uniqueid element doesn't exist.
+valid: True
+
+identifier: metadata-schema-uniqueid-003
+title: More Than One uniqueid Element
+description: The uniqueid element occurs twice.
+valid: False
+report:
+ERROR - Metadata: Recommended "uniqueid" child-element defined more than once.
+
+identifier: metadata-schema-uniqueid-004
+title: No id Attribute in uniqueid Element
+description: The uniqueid element does not contain the required id attribute.
+valid: False
+report:
+ERROR - Metadata: Required "id" attribute not defined in "uniqueid".
+
+identifier: metadata-schema-uniqueid-005
+title: Unknown Attribute in uniqueid Element
+description: The uniqueid element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "uniqueid".
+
+identifier: metadata-schema-uniqueid-006
+title: Child Element in uniqueid Element
+description: The uniqueid element contains a child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "uniqueid".
+
+identifier: metadata-schema-uniqueid-007
+title: Content in uniqueid Element
+description: The uniqueid element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "uniqueid".
+
+identifier: metadata-schema-vendor-001
+title: Valid vendor Element
+description: The vendor element matches the schema.
+valid: True
+
+identifier: metadata-schema-vendor-002
+title: Valid vendor Element Without url Attribute
+description: The vendor element does not contain a url attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-vendor-003
+title: No vendor Element
+description: The vendor element doesn't exist.
+valid: True
+
+identifier: metadata-schema-vendor-004
+title: More Than One vendor Element
+description: The vendor element occurs twice.
+valid: False
+report:
+ERROR - Metadata: Optional "vendor" child-element defined more than once.
+
+identifier: metadata-schema-vendor-005
+title: No name Attribute in vendor Element
+description: The vendor element does not contain the required name attribute.
+valid: False
+report:
+ERROR - Metadata: Required "name" attribute not defined in "vendor".
+
+identifier: metadata-schema-vendor-006
+title: Valid dir Attribute in vendor Element 1
+description: The vendor element contains ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-vendor-007
+title: Valid dir Attribute in vendor Element 2
+description: The vendor element contains rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-vendor-008
+title: Invalid dir Attribute in vendor Element
+description: The vendor element contains INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "vendor".
+
+identifier: metadata-schema-vendor-009
+title: Valid class Attribute in vendor Element
+description: The vendor element contains "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-vendor-010
+title: Unknown Attribute in vendor Element
+description: The vendor element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "vendor".
+
+identifier: metadata-schema-vendor-011
+title: Child Element in vendor Element
+description: The vendor element contains a child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "vendor".
+
+identifier: metadata-schema-vendor-012
+title: Content in vendor Element
+description: The vendor element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "vendor".
+
+identifier: metadata-schema-credits-001
+title: Valid credits Element With No Language Attribute And A Single credit Element
+description: The credits element matches the schema and it contains one credit child element.
+valid: True
+
+identifier: metadata-schema-credits-002
+title: Valid credits Element With Two credit Elements
+description: The credits element matches the schema and it contains two credit child elements.
+valid: True
+
+identifier: metadata-schema-credits-003
+title: No credit Element in credits Element
+description: The credits element does not contain a credit child element.
+valid: False
+report:
+ERROR - Metadata: Required "credit" child-element not defined in "credits".
+
+identifier: metadata-schema-credits-004
+title: Unknown Attribute in credits Element
+description: The credits element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "credits".
+
+identifier: metadata-schema-credits-005
+title: Unknown Child Element in credits Element
+description: The credits element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "credits".
+
+identifier: metadata-schema-credits-006
+title: Content in credits Element
+description: The credits element contains an content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "credits".
+
+identifier: metadata-schema-credits-007
+title: Multiple credits Elements
+description: The credits element occurs more than once.
+valid: False
+report:
+ERROR - Metadata: Optional "credits" child-element defined more than once.
+
+identifier: metadata-schema-credit-001
+title: Valid credit Element
+description: The credit element matches the schema.
+valid: True
+
+identifier: metadata-schema-credit-002
+title: Valid credit Element Without url Attribute
+description: The credit element does not contain a url attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-credit-003
+title: Valid credit Element Without role Attribute
+description: The credit element does not contain a role attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-credit-004
+title: No name attribute in credit Element
+description: The credit element does not contain a name attribute.
+valid: False
+report:
+ERROR - Metadata: Required "name" attribute not defined in "credit" in "credits".
+
+identifier: metadata-schema-credit-005
+title: Valid dir Attribute in credit Element 1
+description: The credit element contains ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-credit-006
+title: Valid dir Attribute in credit Element 2
+description: The credit element contains rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-credit-007
+title: Invalid dir Attribute in credit Element
+description: The credit element contains INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "credit" in "credits".
+
+identifier: metadata-schema-credit-008
+title: Valid class Attribute in credit Element
+description: The credit element contains "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-credit-009
+title: Unknown attribute in credit Element
+description: The credit element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "credit" in "credits".
+
+identifier: metadata-schema-credit-010
+title: Child Element in credit Element
+description: The credit element contains a child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "credit" in "credits".
+
+identifier: metadata-schema-credit-011
+title: Content in credit Element
+description: The credit element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "credit" in "credits".
+
+identifier: metadata-schema-description-001
+title: Valid description Element
+description: The description element matches the schema.
+valid: True
+
+identifier: metadata-schema-description-002
+title: Valid description Element Without url Attribute
+description: The description element does not contain a url attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-description-003
+title: Valid description Element With One No Language Tagged text Element
+description: The description element matches the schema. It contains one text element that does not have a language tag.
+valid: True
+
+identifier: metadata-schema-description-004
+title: Valid description Element With One Language Tagged text Element
+description: The description element matches the schema. It contains one text element that has a language tag.
+valid: True
+
+identifier: metadata-schema-description-005
+title: Valid description Element With One Language Tagged (using lang) text Element
+description: The description element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+valid: True
+
+identifier: metadata-schema-description-006
+title: Valid description Element With Mixed text Element Language Tags 1
+description: The description element matches the schema. One text element does not have a language tag. One text element has a language tag.
+valid: True
+
+identifier: metadata-schema-description-007
+title: Valid description Element With Mixed text Element Language Tags 2
+description: The description element matches the schema. Two text elements have a language tags.
+valid: True
+
+identifier: metadata-schema-description-008
+title: More Than One description Element
+description: The description element occurs more than once.
+valid: False
+report:
+ERROR - Metadata: Optional "description" child-element defined more than once.
+
+identifier: metadata-schema-description-009
+title: No text Element in description Element
+description: The description element does not contain a text child element.
+valid: False
+report:
+ERROR - Metadata: Required "text" child-element not defined in "description".
+
+identifier: metadata-schema-description-010
+title: Unknown Attribute in description Element
+description: The description element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "description".
+
+identifier: metadata-schema-description-011
+title: Unknown Child Element in description Element
+description: The description element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "description".
+
+identifier: metadata-schema-description-012
+title: Content in description Element
+description: The description element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "description".
+
+identifier: metadata-schema-description-013
+title: Valid description Element With dir Attribute in text Element 1
+description: The description element contains a text element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-description-014
+title: Valid description Element With dir Attribute in text Element 2
+description: The description element contains a text element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-description-015
+title: Invalid description Element With dir Attribute in text Element
+description: The description element contains a text element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "text" in "description".
+
+identifier: metadata-schema-description-016
+title: Valid description Element With class Attribute in text Element
+description: The description element contains a text element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-description-017
+title: Unknown Attribute in description Element text Element
+description: The description element contains a text element with an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "text" in "description".
+
+identifier: metadata-schema-description-018
+title: Unknown Child Element in description Element text Element
+description: The description element contains a text element with an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "text" in "description".
+
+identifier: metadata-schema-description-019
+title: Valid description Element With One div Element in text Element
+description: The description element contains a text element that contains a div element.
+valid: True
+
+identifier: metadata-schema-description-020
+title: Valid description Element With Two div Elements in text Element
+description: The description element contains a text element that contains two div elements.
+valid: True
+
+identifier: metadata-schema-description-021
+title: Valid description Element With Nested div Elements in text Element
+description: The description element contains a text element that contains nested div elements.
+valid: True
+
+identifier: metadata-schema-description-022
+title: Valid description Element With dir Attribute in div Element in text Element 1
+description: The description element contains a text element that contains a div element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-description-023
+title: Valid description Element With dir Attribute in div Element in text Element 2
+description: The description element contains a text element that contains a div element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-description-024
+title: Invalid description Element With dir Attribute in div Element in text Element
+description: The description element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "div" in "text" in "description".
+
+identifier: metadata-schema-description-025
+title: Valid description Element With class Attribute in div Element in text Element
+description: The description element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-description-026
+title: Valid description Element With One span Element in text Element
+description: The description element contains a text element that contains a span element.
+valid: True
+
+identifier: metadata-schema-description-027
+title: Valid description Element With Two span Elements in text Element
+description: The description element contains a text element that contains two span elements.
+valid: True
+
+identifier: metadata-schema-description-028
+title: Valid description Element With Nested span Elements in text Element
+description: The description element contains a text element that contains nested span elements.
+valid: True
+
+identifier: metadata-schema-description-029
+title: Valid description Element With dir Attribute in span Element in text Element 1
+description: The description element contains a text element that contains a span element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-description-030
+title: Valid description Element With dir Attribute in span Element in text Element 2
+description: The description element contains a text element that contains a span element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-description-031
+title: Invalid description Element With dir Attribute in span Element in text Element
+description: The description element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "span" in "text" in "description".
+
+identifier: metadata-schema-description-032
+title: Valid description Element With class Attribute in span Element in text Element
+description: The description element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-license-001
+title: Valid license Element
+description: The license element matches the schema.
+valid: True
+
+identifier: metadata-schema-license-002
+title: Valid license Element Without url Attribute
+description: The license element does not have a url attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-license-003
+title: Valid license Element Without id Attribute
+description: The license element does not have an id attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-license-004
+title: Valid license Element With One No Language Tagged text Element
+description: The license element matches the schema. It contains one text element that does not have a language tag.
+valid: True
+
+identifier: metadata-schema-license-005
+title: Valid license Element With One Language Tagged text Element
+description: The license element matches the schema. It contains one text element that has a language tag.
+valid: True
+
+identifier: metadata-schema-license-006
+title: Valid license Element With One Language Tagged (using lang) text Element
+description: The license element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+valid: True
+
+identifier: metadata-schema-license-007
+title: Valid license Element With Mixed text Element Language Tags 1
+description: The license element matches the schema. One text element does not have a language tag. One text element has a language tag.
+valid: True
+
+identifier: metadata-schema-license-008
+title: Valid license Element With Mixed text Element Language Tags 2
+description: The license element matches the schema. Two text elements have a language tags.
+valid: True
+
+identifier: metadata-schema-license-009
+title: More Than One license Element
+description: The license element occurs more than once.
+valid: False
+report:
+ERROR - Metadata: Optional "license" child-element defined more than once.
+
+identifier: metadata-schema-license-010
+title: No text Element in license Element
+description: The license element does not contain a text child element.
+valid: True
+
+identifier: metadata-schema-license-011
+title: Unknown Attribute in license Element
+description: The license element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "license".
+
+identifier: metadata-schema-license-012
+title: Unknown Child Element in license Element
+description: The license element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "license".
+
+identifier: metadata-schema-license-013
+title: Content in license Element
+description: The license element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "license".
+
+identifier: metadata-schema-license-014
+title: Valid license Element With dir Attribute in text Element 1
+description: The license element contains a text element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-license-015
+title: Valid license Element With dir Attribute in text Element 2
+description: The license element contains a text element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-license-016
+title: Invalid license Element With dir Attribute in text Element
+description: The license element contains a text element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "text" in "license".
+
+identifier: metadata-schema-license-017
+title: Valid license Element With class Attribute in text Element
+description: The license element contains a text element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-license-018
+title: Unknown Attribute in license Element text Element
+description: The license element contains a text element with an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "text" in "license".
+
+identifier: metadata-schema-license-019
+title: Unknown Child Element in license Element text Element
+description: The license element contains a text element with an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "text" in "license".
+
+identifier: metadata-schema-license-020
+title: Valid license Element With One div Element in text Element
+description: The license element contains a text element that contains a div element.
+valid: True
+
+identifier: metadata-schema-license-021
+title: Valid license Element With Two div Elements in text Element
+description: The license element contains a text element that contains two div elements.
+valid: True
+
+identifier: metadata-schema-license-022
+title: Valid license Element With Nested div Elements in text Element
+description: The license element contains a text element that contains nested div elements.
+valid: True
+
+identifier: metadata-schema-license-023
+title: Valid license Element With dir Attribute in div Element in text Element 1
+description: The license element contains a text element that contains a div element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-license-024
+title: Valid license Element With dir Attribute in div Element in text Element 2
+description: The license element contains a text element that contains a div element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-license-025
+title: Invalid license Element With dir Attribute in div Element in text Element
+description: The license element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "div" in "text" in "license".
+
+identifier: metadata-schema-license-026
+title: Valid license Element With class Attribute in div Element in text Element
+description: The license element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-license-027
+title: Valid license Element With One span Element in text Element
+description: The license element contains a text element that contains a span element.
+valid: True
+
+identifier: metadata-schema-license-028
+title: Valid license Element With Two span Elements in text Element
+description: The license element contains a text element that contains two span elements.
+valid: True
+
+identifier: metadata-schema-license-029
+title: Valid license Element With Nested span Elements in text Element
+description: The license element contains a text element that contains nested span elements.
+valid: True
+
+identifier: metadata-schema-license-030
+title: Valid license Element With dir Attribute in span Element in text Element 1
+description: The license element contains a text element that contains a span element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-license-031
+title: Valid license Element With dir Attribute in span Element in text Element 2
+description: The license element contains a text element that contains a span element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-license-032
+title: Invalid license Element With dir Attribute in span Element in text Element
+description: The license element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "span" in "text" in "license".
+
+identifier: metadata-schema-license-033
+title: Valid license Element With class Attribute in span Element in text Element
+description: The license element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-copyright-001
+title: Valid copyright Element With One No Language Tagged text Element
+description: The copyright element matches the schema. It contains one text element that does not have a language tag.
+valid: True
+
+identifier: metadata-schema-copyright-002
+title: Valid copyright Element With One Language Tagged text Element
+description: The copyright element matches the schema. It contains one text element that has a language tag.
+valid: True
+
+identifier: metadata-schema-copyright-003
+title: Valid copyright Element With One Language Tagged (using lang) text Element
+description: The copyright element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+valid: True
+
+identifier: metadata-schema-copyright-004
+title: Valid copyright Element With Mixed text Element Language Tags 1
+description: The copyright element matches the schema. One text element does not have a language tag. One text element has a language tag.
+valid: True
+
+identifier: metadata-schema-copyright-005
+title: Valid copyright Element With Mixed text Element Language Tags 2
+description: The copyright element matches the schema. Two text elements have a language tags.
+valid: True
+
+identifier: metadata-schema-copyright-006
+title: More Than One copyright Element
+description: The copyright element occurs more than once.
+valid: False
+report:
+ERROR - Metadata: Optional "copyright" child-element defined more than once.
+
+identifier: metadata-schema-copyright-007
+title: No text Element in copyright Element
+description: The copyright element does not contain a text child element.
+valid: False
+report:
+ERROR - Metadata: Required "text" child-element not defined in "copyright".
+
+identifier: metadata-schema-copyright-008
+title: Unknown Attribute in copyright Element
+description: The copyright element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "copyright".
+
+identifier: metadata-schema-copyright-009
+title: Unknown Child Element in copyright Element
+description: The copyright element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "copyright".
+
+identifier: metadata-schema-copyright-010
+title: Content in copyright Element
+description: The copyright element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "copyright".
+
+identifier: metadata-schema-copyright-011
+title: Valid copyright Element With dir Attribute in text Element 1
+description: The copyright element contains a text element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-copyright-012
+title: Valid copyright Element With dir Attribute in text Element 2
+description: The copyright element contains a text element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-copyright-013
+title: Invalid copyright Element With dir Attribute in text Element
+description: The copyright element contains a text element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "text" in "copyright".
+
+identifier: metadata-schema-copyright-014
+title: Valid copyright Element With class Attribute in text Element
+description: The copyright element contains a text element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-copyright-015
+title: Unknown Attribute in copyright Element text Element
+description: The copyright element contains a text element with an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "text" in "copyright".
+
+identifier: metadata-schema-copyright-016
+title: Unknown Child Element in copyright Element text Element
+description: The copyright element contains a text element with an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "text" in "copyright".
+
+identifier: metadata-schema-copyright-017
+title: Valid copyright Element With One div Element in text Element
+description: The copyright element contains a text element that contains a div element.
+valid: True
+
+identifier: metadata-schema-copyright-018
+title: Valid copyright Element With Nested div Elements in text Element
+description: The copyright element contains a text element that contains nested div elements.
+valid: True
+
+identifier: metadata-schema-copyright-019
+title: Valid copyright Element With Two div Elements in text Element
+description: The copyright element contains a text element that contains two div elements.
+valid: True
+
+identifier: metadata-schema-copyright-020
+title: Valid copyright Element With dir Attribute in div Element in text Element 1
+description: The copyright element contains a text element that contains a div element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-copyright-021
+title: Valid copyright Element With dir Attribute in div Element in text Element 2
+description: The copyright element contains a text element that contains a div element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-copyright-022
+title: Invalid copyright Element With dir Attribute in div Element in text Element
+description: The copyright element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "div" in "text" in "copyright".
+
+identifier: metadata-schema-copyright-023
+title: Valid copyright Element With class Attribute in div Element in text Element
+description: The copyright element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-copyright-024
+title: Valid copyright Element With One span Element in text Element
+description: The copyright element contains a text element that contains a span element.
+valid: True
+
+identifier: metadata-schema-copyright-025
+title: Valid copyright Element With Two span Elements in text Element
+description: The copyright element contains a text element that contains two span elements.
+valid: True
+
+identifier: metadata-schema-copyright-026
+title: Valid copyright Element With Nested span Elements in text Element
+description: The copyright element contains a text element that contains nested span elements.
+valid: True
+
+identifier: metadata-schema-copyright-027
+title: Valid copyright Element With dir Attribute in span Element in text Element 1
+description: The copyright element contains a text element that contains a span element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-copyright-028
+title: Valid copyright Element With dir Attribute in span Element in text Element 2
+description: The copyright element contains a text element that contains a span element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-copyright-029
+title: Invalid copyright Element With dir Attribute in span Element in text Element
+description: The copyright element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "span" in "text" in "copyright".
+
+identifier: metadata-schema-copyright-030
+title: Valid copyright Element With class Attribute in span Element in text Element
+description: The copyright element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-trademark-001
+title: Valid trademark Element With One No Language Tagged text Element
+description: The trademark element matches the schema. It contains one text element that does not have a language tag.
+valid: True
+
+identifier: metadata-schema-trademark-002
+title: Valid trademark Element With One Language Tagged text Element
+description: The trademark element matches the schema. It contains one text element that has a language tag.
+valid: True
+
+identifier: metadata-schema-trademark-003
+title: Valid trademark Element With One Language Tagged (using lang) text Element
+description: The trademark element matches the schema. It contains one text element that has a language tag using the lang tag instead of xml:lang.
+valid: True
+
+identifier: metadata-schema-trademark-004
+title: Valid trademark Element With Mixed text Element Language Tags 1
+description: The trademark element matches the schema. One text element does not have a language tag. One text element has a language tag.
+valid: True
+
+identifier: metadata-schema-trademark-005
+title: Valid trademark Element With Mixed text Element Language Tags 2
+description: The trademark element matches the schema. Two text elements have a language tags.
+valid: True
+
+identifier: metadata-schema-trademark-006
+title: More Than One trademark Element
+description: The trademark element occurs more than once.
+valid: False
+report:
+ERROR - Metadata: Optional "trademark" child-element defined more than once.
+
+identifier: metadata-schema-trademark-007
+title: No text Element in trademark Element
+description: The trademark element does not contain a text child element.
+valid: False
+report:
+ERROR - Metadata: Required "text" child-element not defined in "trademark".
+
+identifier: metadata-schema-trademark-008
+title: Unknown Attribute in trademark Element
+description: The trademark element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "trademark".
+
+identifier: metadata-schema-trademark-009
+title: Unknown Child Element in trademark Element
+description: The trademark element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown").
+
+identifier: metadata-schema-trademark-010
+title: Content in trademark Element
+description: The trademark element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "trademark".
+
+identifier: metadata-schema-trademark-011
+title: Valid trademark Element With dir Attribute in text Element 1
+description: The trademark element contains a text element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-trademark-012
+title: Valid trademark Element With dir Attribute in text Element 2
+description: The trademark element contains a text element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-trademark-013
+title: Invalid trademark Element With dir Attribute in text Element
+description: The trademark element contains a text element with INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "text" in "trademark".
+
+identifier: metadata-schema-trademark-014
+title: Valid trademark Element With class Attribute in text Element
+description: The trademark element contains a text element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+report:
+
+identifier: metadata-schema-trademark-015
+title: Unknown Attribute in trademark Element text Element
+description: The trademark element contains a text element with an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "text" in "trademark".
+
+identifier: metadata-schema-trademark-016
+title: Unknown Child Element in trademark Element text Element
+description: The trademark element contains a text element with an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "text" in "trademark".
+
+identifier: metadata-schema-trademark-017
+title: Valid trademark Element With One div Element in text Element
+description: The trademark element contains a text element that contains a div element.
+valid: True
+
+identifier: metadata-schema-trademark-018
+title: Valid trademark Element With Two div Elements in text Element
+description: The trademark element contains a text element that contains two div elements.
+valid: True
+
+identifier: metadata-schema-trademark-019
+title: Valid trademark Element With Nested div Elements in text Element
+description: The trademark element contains a text element that contains nested div elements.
+valid: True
+
+identifier: metadata-schema-trademark-020
+title: Valid trademark Element With dir Attribute in div Element in text Element 1
+description: The trademark element contains a text element that contains a div element with ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-trademark-021
+title: Valid trademark Element With dir Attribute in div Element in text Element 2
+description: The trademark element contains a text element that contains a div element with rtl as the value for the dir attribute.
+valid: True
+report:
+
+identifier: metadata-schema-trademark-022
+title: Invalid trademark Element With dir Attribute in div Element in text Element
+description: The trademark element contains a text element that contains a div element with INVALID as the value for the dir attribute.
+valid: False
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "div" in "text" in "trademark".
+
+identifier: metadata-schema-trademark-023
+title: Valid trademark Element With class Attribute in div Element in text Element
+description: The trademark element contains a text element that contains a div element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-trademark-024
+title: Valid trademark Element With One span Element in text Element
+description: The trademark element contains a text element that contains a span element.
+valid: True
+
+identifier: metadata-schema-trademark-025
+title: Valid trademark Element With Two span Elements in text Element
+description: The trademark element contains a text element that contains two span elements.
+valid: True
+
+identifier: metadata-schema-trademark-026
+title: Valid trademark Element With Nested span Elements in text Element
+description: The trademark element contains a text element that contains nested span elements.
+valid: True
+
+identifier: metadata-schema-trademark-027
+title: Valid trademark Element With dir Attribute in span Element in text Element 1
+description: The trademark element contains a text element that contains a span element with ltr as the value for the dir attribute.
+valid: True
+report:
+
+identifier: metadata-schema-trademark-028
+title: Valid trademark Element With dir Attribute in span Element in text Element 2
+description: The trademark element contains a text element that contains a span element with rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-trademark-029
+title: Invalid trademark Element With dir Attribute in span Element in text Element
+description: The trademark element contains a text element that contains a span element with INVALID as the value for the dir attribute.
+valid: False
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "span" in "text" in "trademark".
+
+identifier: metadata-schema-trademark-030
+title: Valid trademark Element With class Attribute in span Element in text Element
+description: The trademark element contains a text element that contains a span element with "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-licensee-001
+title: Valid licensee Element
+description: The licensee element matches the schema.
+valid: True
+
+identifier: metadata-schema-licensee-002
+title: More Than One licensee Element
+description: The licensee element occurs more than once.
+valid: False
+report:
+ERROR - Metadata: Optional "licensee" child-element defined more than once.
+
+identifier: metadata-schema-licensee-003
+title: No name Attribute in licensee Element
+description: The licensee element does not contain the required name attribute.
+valid: False
+report:
+ERROR - Metadata: Required "name" attribute not defined in "licensee".
+
+identifier: metadata-schema-licensee-004
+title: Valid licensee Element With dir Attribute 1
+description: The licensee element has ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-licensee-005
+title: Valid licensee Element With dir Attribute 2
+description: The licensee element has rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-licensee-006
+title: Invalid licensee Element With dir Attribute
+description: The licensee element has INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "licensee".
+
+identifier: metadata-schema-licensee-007
+title: Valid licensee Element With class Attribute
+description: The licensee element has "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-licensee-008
+title: Unknown Attribute in licensee Element
+description: The licensee element occures more than once.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "licensee".
+
+identifier: metadata-schema-licensee-009
+title: Child Element in licensee Element
+description: The licensee element contains a child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "licensee".
+
+identifier: metadata-schema-licensee-010
+title: Content in licensee Element
+description: The licensee element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "licensee".
+
+identifier: metadata-schema-extension-001
+title: Valid extension Element
+description: The extension element matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-002
+title: Two Valid extension Elements
+description: Two extension elements match the schema.
+valid: True
+
+identifier: metadata-schema-extension-003
+title: Valid extension Element Without id Attribute
+description: The extension element does not have an id attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-004
+title: Valid extension Element Without name Element
+description: The extension element does not have a name child element but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-005
+title: Valid extension Element With Two name Elements 1
+description: The extension element contains one name element without a lang attribute and another with a lang attribute.
+valid: True
+
+identifier: metadata-schema-extension-006
+title: Valid extension Element With Two name Elements 2
+description: The extension element contains two name elements with lang attributes.
+valid: True
+
+identifier: metadata-schema-extension-007
+title: Valid extension Element With Two item Elements
+description: The extension element contains two item child elements.
+valid: True
+
+identifier: metadata-schema-extension-008
+title: No item Element in extension Element
+description: The extension element does not contain an item child element.
+valid: False
+report:
+ERROR - Metadata: Required "item" child-element not defined in "extension".
+
+identifier: metadata-schema-extension-009
+title: Unknown Attribute in extension Element
+description: The extension element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "extension".
+
+identifier: metadata-schema-extension-010
+title: Unknown Child Element in extension Element
+description: The extension element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown").
+
+identifier: metadata-schema-extension-011
+title: Content in extension Element
+description: The extension element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "extension".
+
+identifier: metadata-schema-extension-012
+title: Valid name Element in extension Element
+description: The name element in the extension element matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-013
+title: Valid name Element With xml:lang Attribute in extension Element
+description: The name element in the extension element contains a xml:lang attribute and it matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-014
+title: Valid name Element With lang Attribute in extension Element
+description: The name element in the extension element contains a lang attribute and it matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-015
+title: Valid name Element With dir Attribute in extension Element 1
+description: The name element in the extension element has ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-extension-016
+title: Valid name Element With dir Attribute in extension Element 2
+description: The name element in the extension element has rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-extension-017
+title: Invalid name Element With dir Attribute in extension Element
+description: The name element in the extension element has INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "name" in "extension".
+
+identifier: metadata-schema-extension-018
+title: Valid name Element With class Attribute in extension Element
+description: The name element in the extension element has "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-extension-019
+title: Unknown Attribute in name Element in extension Element
+description: The name element in the extension element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "name" in "extension".
+
+identifier: metadata-schema-extension-020
+title: Child Element in name Element in extension Element
+description: The name element in the extension element contains a child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "name" in "extension".
+
+identifier: metadata-schema-extension-021
+title: Valid item Element in extension Element
+description: The item element in the extension element matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-022
+title: Valid item Element With Multiple Languages in extension Element
+description: The item element in the extension element contains a variety of languages.
+valid: True
+
+identifier: metadata-schema-extension-023
+title: Valid item Element Without id Attribute in extension Element
+description: The item element in the extension element does not contain an id attribute but it still matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-024
+title: Valid item Element With Two name Elements in extension Element 1
+description: The item element in the extension element contains one name child element with no lang attribute and one with a lang attribute.
+valid: True
+
+identifier: metadata-schema-extension-025
+title: Valid item Element With Two name Elements in extension Element 2
+description: The item element in the extension element contains two name child elements with lang attributes.
+valid: True
+
+identifier: metadata-schema-extension-026
+title: Valid item Element With Two value Elements in extension Element 1
+description: The item element in the extension element contains one value child element with no lang attribute and one with a lang attribute.
+valid: True
+
+identifier: metadata-schema-extension-027
+title: Valid item Element With Two value Elements in extension Element 2
+description: The item element in the extension element contains two value child elements with lang attributes.
+valid: True
+
+identifier: metadata-schema-extension-028
+title: No name Element in item Element in extension Element
+description: The item element in the extension element does not contain a name child element.
+valid: False
+report:
+ERROR - Metadata: Required "name" child-element not defined in "item" in "extension".
+
+identifier: metadata-schema-extension-029
+title: No value Element in item Element in extension Element
+description: The item element in the extension element does not contain a value child element.
+valid: False
+report:
+ERROR - Metadata: Required "value" child-element not defined in "item" in "extension".
+
+identifier: metadata-schema-extension-030
+title: Unknown Attribute in item Element in extension Element
+description: The item element in the extension element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "item" in "extension".
+
+identifier: metadata-schema-extension-031
+title: Unknown Child Element in item Element in extension Element
+description: The item element in the extension element contains an unknown child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "item" in "extension".
+
+identifier: metadata-schema-extension-032
+title: Content in item Element in extension Element
+description: The item element in the extension element contains content.
+valid: False
+report:
+ERROR - Metadata: Content defined in "item" in "extension".
+
+identifier: metadata-schema-extension-033
+title: Valid name Element in item Element in extension Element
+description: The name element in the item element in the extension element matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-034
+title: Valid name Element With xml:lang Attribute in item Element in extension Element
+description: The name element in the item element in the extension element contains a xml:lang attribute and it matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-035
+title: Valid name Element With lang Attribute in item Element in extension Element
+description: The name element in the item element in the extension element contains a lang attribute and it matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-036
+title: Valid name Element With dir Attribute in item Element in extension Element 1
+description: The name element in the item element in the extension element has ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-extension-037
+title: Valid name Element With dir Attribute in item Element in extension Element 2
+description: The name element in the item element in the extension element has rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-extension-038
+title: Invalid name Element With dir Attribute in item Element in extension Element
+description: The name element in the item element in the extension element has INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "name" in "item" in "extension".
+
+identifier: metadata-schema-extension-039
+title: Valid name Element With class Attribute in item Element in extension Element
+description: The name element in the item element in the extension element has "class1 class2 class3" as the value for the class attribute.
+valid: True
+
+identifier: metadata-schema-extension-040
+title: Unknown Attribute in name Element in item Element in extension Element
+description: The name element in the item element in the extension element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "name" in "item" in "extension".
+
+identifier: metadata-schema-extension-041
+title: Child Element in name Element in item Element in extension Element
+description: The name element in the item element in the extension element contains a child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "name" in "item" in "extension".
+
+identifier: metadata-schema-extension-042
+title: Valid value Element in item Element in extension Element
+description: The value element in the item element in the extension element matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-043
+title: Valid value Element With xml:lang Attribute in item Element in extension Element
+description: The value element in the item element in the extension element contains a xml:lang attribute and it matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-044
+title: Valid value Element With lang Attribute in item Element in extension Element
+description: The value element in the item element in the extension element contains a lang attribute and it matches the schema.
+valid: True
+
+identifier: metadata-schema-extension-045
+title: Valid value Element With dir Attribute in item Element in extension Element 1
+description: The value element in the item element in the extension element has ltr as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-extension-046
+title: Valid value Element With dir Attribute in item Element in extension Element 2
+description: The value element in the item element in the extension element has rtl as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-extension-047
+title: Invalid value Element With dir Attribute in item Element in extension Element
+description: The value element in the item element in the extension element has INVALID as the value for the dir attribute.
+valid: False
+report:
+ERROR - Metadata: Invalid value ("INVALID") for the "dir" attribute in "value" in "item" in "extension".
+
+identifier: metadata-schema-extension-048
+title: Valid value Element With class Attribute in item Element in extension Element
+description: The value element in the item element in the extension element has "class1 class2 class3" as the value for the dir attribute.
+valid: True
+
+identifier: metadata-schema-extension-049
+title: Unknown Attribute in value Element in item Element in extension Element
+description: The value element in the item element in the extension element contains an unknown attribute.
+valid: False
+report:
+ERROR - Metadata: Unknown attribute ("unknownattribute") in "value" in "item" in "extension".
+
+identifier: metadata-schema-extension-050
+title: Child Element in value Element in item Element in extension Element
+description: The value element in the item element in the extension element contains a child element.
+valid: False
+report:
+ERROR - Metadata: Unknown child-element ("unknown") in "value" in "item" in "extension".

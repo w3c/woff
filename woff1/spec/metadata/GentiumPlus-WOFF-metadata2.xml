@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GentiumPlus-webfont-example.html
+Gentium Plus v1.501-test
+6 Oct 2010
+This file is part of Gentium Plus font family (http://scripts.sil.org/Gentium)
+and is Copyright (c) 2003-2010 SIL International (http://www.sil.org/),
+with Reserved Font Names "Gentium" and "SIL". This Font Software is licensed
+under the SIL Open Font License, Version 1.1. You should have received a copy
+of the license along with this Font Software. If this is not the case, go to
+(http://scripts.sil.org/OFL) for all the details including a FAQ.
+-->
+<?oxygen RNGSchema="woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <uniqueid id="org.sil.fonts.gentiumplus.1501" />
+    <vendor name="SIL International" url="http://scripts.sil.org" />
+    <credits>
+        <credit
+            name="Victor Gaultney"
+            url="http://www.sil.org/~gaultney/"
+            role="Original Designer" />
+        <credit
+            name="Annie Olsen"
+            url="http://scripts.sil.org/"
+            role="Contributed some extended Latin glyphs" />
+        <credit
+            name="Iska Routamaa"
+            url="http://scripts.sil.org/"
+            role="Contributed some extended Latin glyphs and extensive work on the italic" />
+        <credit
+        	name="SIL font engineers"
+        	url="http://scripts.sil.org/"
+        	role="OpenType code and build support" />
+    </credits>
+    <description>
+        <text xml:lang="en">
+			<div>Gentium ("belonging to the nations" in Latin) is a Unicode typeface family 
+			designed to enable the many diverse ethnic groups around the world who use 
+			the Latin, Cyrillic and Greek scripts to produce readable, high-quality
+			publications. The design is intended to be highly readable, reasonably
+			compact, and visually attractive. Gentium has won a "Certificate of Excellence
+			in Typeface Design" in two major international typeface design competitions: 
+			bukva:raz! (2001), TDC2003 (2003).</div>
+
+			<div>The Gentium Plus font family is based on the original design. It currently 
+			comes with regular and italic face only, although additional weights are in
+			develoment.</div>
+
+			<div>The goal for this product is to provide a single Unicode-based font family
+			that contains a comprehensive inventory of glyphs needed for almost any
+			Roman- or Cyrillic-based writing system, whether used for phonetic or
+			orthographic needs, and provide a matching Greek face. In addition, there
+			is provision for other characters and symbols useful to linguists. This
+			font makes use of state-of-the-art font technologies to support complex
+			typographic issues, such as the need to position arbitrary combinations
+			of base glyphs and diacritics optimally.</div>
+
+			<div>Two fonts from this typeface family are included in this release:
+
+			     <div class="list">
+			     <span>* Gentium Plus Regular</span>
+			     <span>* Gentium Plus Italic</span>
+			     </div>
+
+			Work is ongoing to provide bold and bold-italic weights, as well as a
+			complete book-weight family.</div>
+
+			<div>For detailed documentation see the contents of the 'documentation' folder.</div>
+
+
+			<div class="log">ChangeLog
+			
+			<div>(This should list both major and minor changes, most recent first.)</div>
+
+			<div>1 Sep 2010 (SIL NRSI team) Gentium Plus version 1.501-test beta release
+			<div class="list">- FOR TESTING ONLY
+			- Regular and Italic weights only
+			- New OpenType and Graphite support
+			- New extended Cyrillic script support, inc. Serbian alternates
+			- Character set and features up to same level as Charis SIL 4.106
+			- Support for more historic Greek characters and alternate seriffed beta
+			- No separate GentiumAlt fonts (replaced by font features)</div>
+			</div>
+
+				<div  class="list">28 Nov 2005 (Victor Gaultney)  Gentium version 1.02
+			- Changed licensing to the SIL Open Font License
+			- Included FontLab source files
+			- Fixed some duplicate PostScript glyph names
+			- Fixed italic angle</div>
+
+				<div  class="list">19 Sep 2003 (Victor Gaultney)  Gentium version 1.01 
+			- Maintenance release focused on changing internal font
+			- Information to reflect the changeover to an SIL project
+			- There is only one bug fix - the Greek mu PS name was changed to try and fix 
+			a display/printing problem. There is still no manual hinting.</div>
+
+				<div  class="list">16 Sep 2002 (Victor Gaultney)  Gentium version 1.00
+			- First public release
+			- No manual hinting is included in this version. Some has been done - with 
+			good results - but is not yet complete enough.</div>
+			</div>
+		</text>
+    </description>
+    <license url="http://scripts.sil.org/ofl"
+             id="org.sil.ofl.11">
+        <text xml:lang="en">
+			Copyright (c) 2003-2010 SIL International (http://www.sil.org/),
+			with Reserved Font Names "Gentium" and "SIL".
+
+			This Font Software is licensed under the SIL Open Font License, Version 1.1.
+			This license is copied below, and is also available with a FAQ at:
+			http://scripts.sil.org/OFL
+
+
+			-----------------------------------------------------------
+			SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+			-----------------------------------------------------------
+
+			PREAMBLE
+			The goals of the Open Font License (OFL) are to stimulate worldwide
+			development of collaborative font projects, to support the font creation
+			efforts of academic and linguistic communities, and to provide a free and
+			open framework in which fonts may be shared and improved in partnership
+			with others.
+
+			The OFL allows the licensed fonts to be used, studied, modified and
+			redistributed freely as long as they are not sold by themselves. The
+			fonts, including any derivative works, can be bundled, embedded, 
+			redistributed and/or sold with any software provided that any reserved
+			names are not used by derivative works. The fonts and derivatives,
+			however, cannot be released under any other type of license. The
+			requirement for fonts to remain under this license does not apply
+			to any document created using the fonts or their derivatives.
+
+			DEFINITIONS
+			"Font Software" refers to the set of files released by the Copyright
+			Holder(s) under this license and clearly marked as such. This may
+			include source files, build scripts and documentation.
+
+			"Reserved Font Name" refers to any names specified as such after the
+			copyright statement(s).
+
+			"Original Version" refers to the collection of Font Software components as
+			distributed by the Copyright Holder(s).
+
+			"Modified Version" refers to any derivative made by adding to, deleting,
+			or substituting -- in part or in whole -- any of the components of the
+			Original Version, by changing formats or by porting the Font Software to a
+			new environment.
+
+			"Author" refers to any designer, engineer, programmer, technical
+			writer or other person who contributed to the Font Software.
+
+			PERMISSION &amp; CONDITIONS
+			Permission is hereby granted, free of charge, to any person obtaining
+			a copy of the Font Software, to use, study, copy, merge, embed, modify,
+			redistribute, and sell modified and unmodified copies of the Font
+			Software, subject to the following conditions:
+
+			1) Neither the Font Software nor any of its individual components,
+			in Original or Modified Versions, may be sold by itself.
+
+			2) Original or Modified Versions of the Font Software may be bundled,
+			redistributed and/or sold with any software, provided that each copy
+			contains the above copyright notice and this license. These can be
+			included either as stand-alone text files, human-readable headers or
+			in the appropriate machine-readable metadata fields within text or
+			binary files as long as those fields can be easily viewed by the user.
+
+			3) No Modified Version of the Font Software may use the Reserved Font
+			Name(s) unless explicit written permission is granted by the corresponding
+			Copyright Holder. This restriction only applies to the primary font name as
+			presented to the users.
+
+			4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+			Software shall not be used to promote, endorse or advertise any
+			Modified Version, except to acknowledge the contribution(s) of the
+			Copyright Holder(s) and the Author(s) or with their explicit written
+			permission.
+
+			5) The Font Software, modified or unmodified, in part or in whole,
+			must be distributed entirely under this license, and must not be
+			distributed under any other license. The requirement for fonts to
+			remain under this license does not apply to any document created
+			using the Font Software.
+
+			TERMINATION
+			This license becomes null and void if any of the above conditions are
+			not met.
+
+			DISCLAIMER
+			THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+			EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+			MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+			OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+			COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+			INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+			DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+			FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+			OTHER DEALINGS IN THE FONT SOFTWARE.
+		</text>
+    </license>
+    <copyright>
+        <text xml:lang="en">Copyright (c) 2003-2010 SIL International (http://www.sil.org/)</text>
+    </copyright>
+    <trademark>
+        <text xml:lang="en">Gentium is a trademark of SIL International</text>
+    </trademark>
+</metadata>

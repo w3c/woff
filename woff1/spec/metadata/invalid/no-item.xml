@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../woffmeta.rng" type="xml"?>
+<metadata version="1.0">
+    <extension id="a7">
+        <name>Busted</name>
+        <!-- at least one item element must be present in an extension -->
+    </extension>
+</metadata>
