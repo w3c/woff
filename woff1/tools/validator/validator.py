@@ -1881,7 +1881,7 @@ class XMLWriter(object):
         tree = ElementTree.ElementTree(self._root)
         indent(tree.getroot())
         tree.write(f, encoding=encoding)
-        text = f.getvalue()
+        text = f.getvalue().decode()
         del f
         return text
 
@@ -2511,7 +2511,7 @@ def finishHTML(writer):
     writer.endtag("html")
     # get the text
     text = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
-    text += writer.compile().decode()
+    text += writer.compile()
     text = text.replace("c_l_a_s_s", "class")
     text = text.replace("a_p_o_s_t_r_o_p_h_e", "'")
     text = text.replace("l_e_s_s", "<")
