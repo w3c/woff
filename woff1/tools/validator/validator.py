@@ -910,7 +910,7 @@ def _testTableDirectory4ByteOffsets(data, reporter):
     directory = unpackDirectory(data)
     haveError = False
     for table in directory:
-        tag = table["tag"]
+        tag = table["tag"].decode()
         offset = table["offset"]
         if offset % 4:
             reporter.logError(message="The \"%s\" table does not begin on a 4-byte boundary (%d)." % (tag, offset))
@@ -942,7 +942,7 @@ def _testTableDirectoryPadding(data, reporter):
         reporter.logPass(message="The sfnt data ends with proper padding.")
     # test the bytes used for padding
     for table in directory:
-        tag = table["tag"]
+        tag = table["tag"].decode()
         offset = table["offset"]
         length = table["compLength"]
         paddingLength = calcPaddingLength(length)
@@ -1033,14 +1033,14 @@ def _testTableDirectoryPositions(data, reporter):
         if prevEnd < start:
             tablesWithProblems.add(prevTag)
             tablesWithProblems.add(tag)
-            reporter.logError(message="Extraneous data between the \"%s\" and \"%s\" tables." % (prevTag, tag))
+            reporter.logError(message="Extraneous data between the \"%s\" and \"%s\" tables." % (prevTag.decode(), tag.decode()))
             haveError = True
     # log passes
     for entry in directory:
         tag = entry["tag"]
         if tag in tablesWithProblems:
             continue
-        reporter.logPass(message="The \"%s\" table directory entry has a valid offset and length." % tag)
+        reporter.logPass(message="The \"%s\" table directory entry has a valid offset and length." % tag.decode())
     return False, haveError
 
 def _testTableDirectoryCompressedLength(data, reporter):
@@ -1051,7 +1051,7 @@ def _testTableDirectoryCompressedLength(data, reporter):
     directory = unpackDirectory(data)
     haveError = False
     for table in directory:
-        tag = table["tag"]
+        tag = table["tag"].decode()
         compLength = table["compLength"]
         origLength = table["origLength"]
         if compLength > origLength:
@@ -1083,10 +1083,10 @@ def _testTableDirectoryDecompressedLength(data, reporter):
             continue
         decompressedLength = len(decompressedData)
         if origLength != decompressedLength:
-            reporter.logError(message="The \"%s\" table directory entry has an original length (%d) that does not match the actual length of the decompressed data (%d)." % (tag, origLength, decompressedLength))
+            reporter.logError(message="The \"%s\" table directory entry has an original length (%d) that does not match the actual length of the decompressed data (%d)." % (tag.decode(), origLength, decompressedLength))
             haveError = True
         else:
-            reporter.logPass(message="The \"%s\" table directory entry has a proper original length compared to the actual decompressed data." % tag)
+            reporter.logPass(message="The \"%s\" table directory entry has a proper original length compared to the actual decompressed data." % tag.decode())
     return False, haveError
 
 def _testTableDirectoryChecksums(data, reporter):
@@ -1110,10 +1110,10 @@ def _testTableDirectoryChecksums(data, reporter):
         if newChecksum != origChecksum:
             newChecksum = hex(newChecksum).strip("L")
             origChecksum = hex(origChecksum).strip("L")
-            reporter.logError(message="The \"%s\" table directory entry original checksum (%s) does not match the checksum (%s) calculated from the data." % (tag, origChecksum, newChecksum))
+            reporter.logError(message="The \"%s\" table directory entry original checksum (%s) does not match the checksum (%s) calculated from the data." % (tag.decode(), origChecksum, newChecksum))
             haveError = True
         else:
-            reporter.logPass(message="The \"%s\" table directory entry original checksum is correct." % tag)
+            reporter.logPass(message="The \"%s\" table directory entry original checksum is correct." % tag.decode())
     # check the head checksum adjustment
     if "head".encode() not in tables.keys():
         reporter.logWarning(message="The font does not contain a \"head\" table.")
@@ -1175,7 +1175,7 @@ def _testTableDataDecompression(data, reporter):
     """
     haveError = False
     for table in unpackDirectory(data):
-        tag = table["tag"]
+        tag = table["tag"].decode()
         offset = table["offset"]
         compLength = table["compLength"]
         origLength = table["origLength"]
