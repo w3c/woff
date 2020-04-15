@@ -2518,7 +2518,7 @@ def finishHTML(writer):
     text = text.replace("g_r_e_a_t_e_r", ">")
     text = text.replace("http_equiv", "http-equiv")
     # return
-    return text.encode()
+    return text
 
 # ------------------
 # Support: Unpackers
@@ -2699,9 +2699,7 @@ def validateFont(path, options, writeFile=True):
         reportPath = os.path.join(directory, fileName)
         reportPath = findUniqueFileName(reportPath)
         f = open(reportPath, "wb")
-        if isinstance(report, basestring):
-            report = report.encode()
-        f.write(report)
+        f.write(report.encode())
         f.close()
     return reportPath, report
 
