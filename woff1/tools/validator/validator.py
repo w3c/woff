@@ -10,7 +10,6 @@ This can also be used as a command line tool for validating WOFF files.
 # import
 
 from __future__ import division, print_function
-from past.builtins import basestring
 import os
 import re
 import time
@@ -19,12 +18,13 @@ import struct
 import zlib
 import optparse
 import codecs
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import BytesIO
 from xml.etree import ElementTree
 from xml.parsers.expat import ExpatError
+try:
+    basestring
+except NameError:
+    basestring = str
 
 # ----------------------
 # Support: Metadata Spec
@@ -1877,7 +1877,7 @@ class XMLWriter(object):
             self._elements[-1].text += text
 
     def compile(self, encoding="utf-8"):
-        f = StringIO()
+        f = BytesIO()
         tree = ElementTree.ElementTree(self._root)
         indent(tree.getroot())
         tree.write(f, encoding=encoding)
@@ -2511,14 +2511,14 @@ def finishHTML(writer):
     writer.endtag("html")
     # get the text
     text = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
-    text += writer.compile()
+    text += writer.compile().decode()
     text = text.replace("c_l_a_s_s", "class")
     text = text.replace("a_p_o_s_t_r_o_p_h_e", "'")
     text = text.replace("l_e_s_s", "<")
     text = text.replace("g_r_e_a_t_e_r", ">")
     text = text.replace("http_equiv", "http-equiv")
     # return
-    return text
+    return text.encode()
 
 # ------------------
 # Support: Unpackers
@@ -2733,7 +2733,8 @@ def main():
             sys.exit()
         else:
             print("Testing: %s..." % fontPath)
-            fontPath = fontPath.decode("utf-8")
+            if hasattr(fontPath, "decode"):
+                fontPath = fontPath.decode("utf-8")
             outputPath, report = validateFont(fontPath, options)
             print("Wrote report to: %s" % outputPath)
 
