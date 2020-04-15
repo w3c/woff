@@ -2699,7 +2699,7 @@ def validateFont(path, options, writeFile=True):
         reportPath = os.path.join(directory, fileName)
         reportPath = findUniqueFileName(reportPath)
         f = open(reportPath, "wb")
-        f.write(report)
+        f.write(report.encode())
         f.close()
     return reportPath, report
 
