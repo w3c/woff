@@ -9,7 +9,7 @@ This can also be used as a command line tool for validating WOFF files.
 
 # import
 
-from __future__ import division
+from __future__ import division, print_function
 from past.builtins import basestring
 import os
 import re
