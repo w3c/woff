@@ -594,7 +594,7 @@ def _testHeaderFlavor(data, reporter):
     - If the directory cannot be unpacked, the flavor can not be validated. Issue a warning.
     """
     header = unpackHeader(data)
-    flavor = header["flavor"]
+    flavor = header["flavor"].decode()
     if flavor not in ("OTTO", "\000\001\000\000", "true"):
         reporter.logWarning(message="Unknown flavor: %s." % flavor)
     else:
