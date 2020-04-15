@@ -1115,11 +1115,11 @@ def _testTableDirectoryChecksums(data, reporter):
         else:
             reporter.logPass(message="The \"%s\" table directory entry original checksum is correct." % tag)
     # check the head checksum adjustment
-    if "head" not in tables:
+    if "head".encode() not in tables.keys():
         reporter.logWarning(message="The font does not contain a \"head\" table.")
     else:
         newChecksum = calcHeadChecksum(data)
-        data = tables["head"]
+        data = tables["head".encode()]
         try:
             checksum = struct.unpack(">L", data[8:12])[0]
             if checksum != newChecksum:
