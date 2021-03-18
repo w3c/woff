@@ -9,6 +9,7 @@ This can also be used as a command line tool for validating WOFF files.
 
 # import
 
+from __future__ import division, print_function
 import os
 import re
 import time
@@ -17,9 +18,13 @@ import struct
 import zlib
 import optparse
 import codecs
-from cStringIO import StringIO
+from io import BytesIO
 from xml.etree import ElementTree
 from xml.parsers.expat import ExpatError
+try:
+    basestring
+except NameError:
+    basestring = str
 
 # ----------------------
 # Support: Metadata Spec
@@ -456,10 +461,6 @@ metadataSpec_1_0 = {
             "maximumOccurrences" : 1,
             "spec" : licenseeSpec_1_0
         },
-        "licensee" : {
-            "maximumOccurrences" : 1,
-            "spec" : licenseeSpec_1_0
-        },
         "extension" : {
             "maximumOccurrences" : None,
             "spec" : extensionSpec_1_0
@@ -576,7 +577,7 @@ def _testHeaderSignature(data, reporter):
     - The signature must be "wOFF".
     """
     header = unpackHeader(data)
-    signature = header["signature"]
+    signature = header["signature"].decode()
     if signature != "wOFF":
         reporter.logError(message="Invalid signature: %s." % signature)
         return True, False
@@ -593,7 +594,7 @@ def _testHeaderFlavor(data, reporter):
     - If the directory cannot be unpacked, the flavor can not be validated. Issue a warning.
     """
     header = unpackHeader(data)
-    flavor = header["flavor"]
+    flavor = header["flavor"].decode()
     if flavor not in ("OTTO", "\000\001\000\000", "true"):
         reporter.logWarning(message="Unknown flavor: %s." % flavor)
     else:
@@ -909,7 +910,7 @@ def _testTableDirectory4ByteOffsets(data, reporter):
     directory = unpackDirectory(data)
     haveError = False
     for table in directory:
-        tag = table["tag"]
+        tag = table["tag"].decode()
         offset = table["offset"]
         if offset % 4:
             reporter.logError(message="The \"%s\" table does not begin on a 4-byte boundary (%d)." % (tag, offset))
@@ -928,8 +929,6 @@ def _testTableDirectoryPadding(data, reporter):
     directory = unpackDirectory(data)
     haveError = False
     # test final table
-    endError = False
-    sfntEnd = None
     if header["metaOffset"] != 0:
         sfntEnd = header["metaOffset"]
     elif header["privOffset"] != 0:
@@ -943,14 +942,14 @@ def _testTableDirectoryPadding(data, reporter):
         reporter.logPass(message="The sfnt data ends with proper padding.")
     # test the bytes used for padding
     for table in directory:
-        tag = table["tag"]
+        tag = table["tag"].decode()
         offset = table["offset"]
         length = table["compLength"]
         paddingLength = calcPaddingLength(length)
         if paddingLength:
             paddingOffset = offset + length
             padding = data[paddingOffset:paddingOffset+paddingLength]
-            expectedPadding = "\0" * paddingLength
+            expectedPadding = ("\0" * paddingLength).encode()
             if padding != expectedPadding:
                 reporter.logError(message="The \"%s\" table is not padded with null bytes." % tag)
                 haveError = True
@@ -996,7 +995,6 @@ def _testTableDirectoryPositions(data, reporter):
         tableDataEnd = header["length"]
     numTables = header["numTables"]
     minOffset = headerSize + (directorySize * numTables)
-    maxLength = tableDataEnd - minOffset
     for table in directory:
         tag = table["tag"]
         offset = table["offset"]
@@ -1035,14 +1033,14 @@ def _testTableDirectoryPositions(data, reporter):
         if prevEnd < start:
             tablesWithProblems.add(prevTag)
             tablesWithProblems.add(tag)
-            reporter.logError(message="Extraneous data between the \"%s\" and \"%s\" tables." % (prevTag, tag))
+            reporter.logError(message="Extraneous data between the \"%s\" and \"%s\" tables." % (prevTag.decode(), tag.decode()))
             haveError = True
     # log passes
     for entry in directory:
         tag = entry["tag"]
         if tag in tablesWithProblems:
             continue
-        reporter.logPass(message="The \"%s\" table directory entry has a valid offset and length." % tag)
+        reporter.logPass(message="The \"%s\" table directory entry has a valid offset and length." % tag.decode())
     return False, haveError
 
 def _testTableDirectoryCompressedLength(data, reporter):
@@ -1053,7 +1051,7 @@ def _testTableDirectoryCompressedLength(data, reporter):
     directory = unpackDirectory(data)
     haveError = False
     for table in directory:
-        tag = table["tag"]
+        tag = table["tag"].decode()
         compLength = table["compLength"]
         origLength = table["origLength"]
         if compLength > origLength:
@@ -1075,7 +1073,6 @@ def _testTableDirectoryDecompressedLength(data, reporter):
     haveError = False
     for table in directory:
         tag = table["tag"]
-        offset = table["offset"]
         compLength = table["compLength"]
         origLength = table["origLength"]
         if compLength >= origLength:
@@ -1086,10 +1083,10 @@ def _testTableDirectoryDecompressedLength(data, reporter):
             continue
         decompressedLength = len(decompressedData)
         if origLength != decompressedLength:
-            reporter.logError(message="The \"%s\" table directory entry has an original length (%d) that does not match the actual length of the decompressed data (%d)." % (tag, origLength, decompressedLength))
+            reporter.logError(message="The \"%s\" table directory entry has an original length (%d) that does not match the actual length of the decompressed data (%d)." % (tag.decode(), origLength, decompressedLength))
             haveError = True
         else:
-            reporter.logPass(message="The \"%s\" table directory entry has a proper original length compared to the actual decompressed data." % tag)
+            reporter.logPass(message="The \"%s\" table directory entry has a proper original length compared to the actual decompressed data." % tag.decode())
     return False, haveError
 
 def _testTableDirectoryChecksums(data, reporter):
@@ -1113,16 +1110,16 @@ def _testTableDirectoryChecksums(data, reporter):
         if newChecksum != origChecksum:
             newChecksum = hex(newChecksum).strip("L")
             origChecksum = hex(origChecksum).strip("L")
-            reporter.logError(message="The \"%s\" table directory entry original checksum (%s) does not match the checksum (%s) calculated from the data." % (tag, origChecksum, newChecksum))
+            reporter.logError(message="The \"%s\" table directory entry original checksum (%s) does not match the checksum (%s) calculated from the data." % (tag.decode(), origChecksum, newChecksum))
             haveError = True
         else:
-            reporter.logPass(message="The \"%s\" table directory entry original checksum is correct." % tag)
+            reporter.logPass(message="The \"%s\" table directory entry original checksum is correct." % tag.decode())
     # check the head checksum adjustment
-    if "head" not in tables:
+    if "head".encode() not in tables.keys():
         reporter.logWarning(message="The font does not contain a \"head\" table.")
     else:
         newChecksum = calcHeadChecksum(data)
-        data = tables["head"]
+        data = tables["head".encode()]
         try:
             checksum = struct.unpack(">L", data[8:12])[0]
             if checksum != newChecksum:
@@ -1178,7 +1175,7 @@ def _testTableDataDecompression(data, reporter):
     """
     haveError = False
     for table in unpackDirectory(data):
-        tag = table["tag"]
+        tag = table["tag"].decode()
         offset = table["offset"]
         compLength = table["compLength"]
         origLength = table["origLength"]
@@ -1186,7 +1183,7 @@ def _testTableDataDecompression(data, reporter):
             continue
         entryData = data[offset:offset+compLength]
         try:
-            decompressed = zlib.decompress(entryData)
+            zlib.decompress(entryData)
             reporter.logPass(message="The \"%s\" table data can be decompressed with zlib." % tag)
         except zlib.error:
             reporter.logError(message="The \"%s\" table data can not be decompressed with zlib." % tag)
@@ -1312,7 +1309,7 @@ def _testMetadataParse(data, reporter):
         return False, False
     metadata = unpackMetadata(data, parse=False)
     try:
-        tree = ElementTree.fromstring(metadata)
+        ElementTree.fromstring(metadata)
     except (ExpatError, LookupError):
         reporter.logError(message="The metadata can not be parsed.")
         return True, False
@@ -1326,9 +1323,8 @@ def _testMetadataEncoding(data, reporter):
     """
     if _shouldSkipMetadataTest(data, reporter):
         return False, False
-    metadata = unpackMetadata(data, parse=False)
+    metadata = unpackMetadata(data, parse=False).decode()
     errorMessage = "The metadata encoding is not valid."
-    encoding = None
     # check the BOM
     if not metadata.startswith("<"):
         if not metadata.startswith(codecs.BOM_UTF8):
@@ -1402,7 +1398,11 @@ def _validateMetadataElement(element, spec, reporter, parentTree=[]):
     haveError = False
     # unknown attributes
     knownAttributes = []
-    for attrib in spec["requiredAttributes"].keys() + spec["recommendedAttributes"].keys() + spec["optionalAttributes"].keys():
+    for attrib in (
+        list(spec["requiredAttributes"].keys())
+        + list(spec["recommendedAttributes"].keys())
+        + list(spec["optionalAttributes"].keys())
+    ):
         attrib = _parseAttribute(attrib)
         knownAttributes.append(attrib)
     for attrib in sorted(element.attrib.keys()):
@@ -1437,7 +1437,11 @@ def _validateMetadataElement(element, spec, reporter, parentTree=[]):
             if e:
                 haveError = True
     # unknown child-elements
-    knownChildElements = spec["requiredChildElements"].keys() + spec["recommendedChildElements"].keys() + spec["optionalChildElements"].keys()
+    knownChildElements = (
+        list(spec["requiredChildElements"].keys())
+        + list(spec["recommendedChildElements"].keys())
+        + list(spec["optionalChildElements"].keys())
+    )
     for childElement in element:
         if childElement.tag not in knownChildElements:
            _logMetadataResult(
@@ -1522,10 +1526,6 @@ def _validateAttributes(element, spec, reporter, parentTree, requirementLevel):
             if attrib in element.attrib:
                 found.append(attrib)
         # make strings for reporting
-        if len(attribs) > 1:
-            attribString = ", ".join(["\"%s\"" % _unEtreeAttribute(i) for i in attribs])
-        else:
-            attribString = "\"%s\"" % attribs[0]
         if len(found) == 0:
             pass
         elif len(found) > 1:
@@ -1792,7 +1792,7 @@ def calcPaddingLength(length):
     return 4 - (length % 4)
 
 def padData(data):
-    data += "\0" * calcPaddingLength(len(data))
+    data += "\0".encode() * calcPaddingLength(len(data))
     return data
 
 def sumDataULongs(data):
@@ -1801,8 +1801,8 @@ def sumDataULongs(data):
     return value
 
 def calcChecksum(tag, data):
-    if tag == "head":
-        data = data[:8] + "\0\0\0\0" + data[12:]
+    if tag.decode() == "head":
+        data = data[:8] + "\0\0\0\0".encode() + data[12:]
     data = padData(data)
     value = sumDataULongs(data)
     return value
@@ -1841,7 +1841,7 @@ def calcHeadChecksum(data):
     checkSums = [entry["checkSum"] for entry in sfntEntries.values()]
     checkSums.append(sumDataULongs(sfntData))
     checkSum = sum(checkSums)
-    checkSum = (0xB1B0AFBA - checkSum) & 0xffffffff
+    checkSum = (0xB1B0AFBA - checkSum) & 0xFFFFFFFF
     return checkSum
 
 # ------------------
@@ -1877,11 +1877,11 @@ class XMLWriter(object):
             self._elements[-1].text += text
 
     def compile(self, encoding="utf-8"):
-        f = StringIO()
+        f = BytesIO()
         tree = ElementTree.ElementTree(self._root)
         indent(tree.getroot())
         tree.write(f, encoding=encoding)
-        text = f.getvalue()
+        text = f.getvalue().decode()
         del f
         return text
 
@@ -2699,7 +2699,7 @@ def validateFont(path, options, writeFile=True):
         reportPath = os.path.join(directory, fileName)
         reportPath = findUniqueFileName(reportPath)
         f = open(reportPath, "wb")
-        f.write(report)
+        f.write(report.encode())
         f.close()
     return reportPath, report
 
@@ -2725,17 +2725,19 @@ def main():
     options.outputFormat = "html"
     options.testGroups = None # don't expose this to the commandline. it's for testing only.
     if outputDirectory is not None and not os.path.exists(outputDirectory):
-        print "Directory does not exist:", outputDirectory
+        print("Directory does not exist:", outputDirectory)
         sys.exit()
     for fontPath in args:
         if not os.path.exists(fontPath):
-            print "File does not exist:", fontPath
+            print("File does not exist:", fontPath)
             sys.exit()
         else:
-            print "Testing: %s..." % fontPath
-            fontPath = fontPath.decode("utf-8")
+            print("Testing: %s..." % fontPath)
+            if hasattr(fontPath, "decode"):
+                fontPath = fontPath.decode("utf-8")
             outputPath, report = validateFont(fontPath, options)
-            print "Wrote report to: %s" % outputPath
+            print("Wrote report to: %s" % outputPath)
+
 
 if __name__ == "__main__":
     main()
