@@ -283,12 +283,21 @@
     <section  id="DataTypes">
       <h3 id="DataTypes-0"><span class='secno'>3.1. </span>Data types</h3>
 
+    <div class="correction" id="c3">
+        <span class="marker">Candidate Correction 3:</span>
+        The definition of the UInt32 type was omitted
+    </div>
+
     <table>
       <col class="type"/><col class="desc"/>
       <tr class="types"><th colspan="2" style="background-color: #F8F8F8">Data Types</th></tr>
       <tr><td>UInt8&nbsp;</td><td>8-bit unsigned integer.&nbsp;</td></tr>
       <tr><td>Int16&nbsp;</td><td>16-bit signed integer in 2's complement format, stored big-endian.&nbsp;</td></tr>
       <tr><td>UInt16&nbsp;</td><td>16-bit unsigned integer, stored big-endian.&nbsp;</td></tr>
+      <tr>
+          <td><del cite="#c3"></del><ins cite="#c3">UInt32&nbsp;</ins></td>
+          <td><del cite="#c3"></del><ins cite="#c3">32-bit unsigned integer, stored big-endian.&nbsp;</ins></td>
+      </tr>
       <tr><td>255UInt16&nbsp;</td><td>Variable-length encoding of a 16-bit unsigned integer for optimized intermediate font data storage.&nbsp;</td></tr>
       <tr><td>UIntBase128&nbsp;</td><td>Variable-length encoding of 32-bit unsigned integers.&nbsp;</td></tr>
     </table>
@@ -1592,8 +1601,9 @@
       <section id="changes-since-REC">
         <h3>Changes since the <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/">Recommendation</a> of 01 March 2018</h3>
         <ul>
-          <li>Candidate Correction <a href="#c1">for a typo</a></li>
-          <li>Candidate Correction <a href="#c2">preserve optional symple glyph overlap flag</a> </li>
+          <li>Candidate Correction 1: <a href="#c1">for a typo</a></li>
+          <li>Candidate Correction 2: <a href="#c2">preserve optional symple glyph overlap flag</a> </li>
+          <li>Candidate Correction 3: <a href="#c3">definition of the UInt32 type was omitted</a></li>
         </ul>
 
       </section>
