@@ -434,7 +434,7 @@
       <tr><td>UInt32</td><td>length</td><td>Total size of the WOFF file.</td></tr>
       <tr><td>UInt16</td><td>numTables</td><td>Number of entries in directory of font
       tables.</td></tr>
-      <tr><td>UInt16</td><td>reserved</td><td>Reserved; set to 0.</td></tr>
+      <tr id="newflags"><td>UInt16</td><td><del cite="#c2">reserved</del><ins cite="#c2">flags</td><td><del cite="#c2">Reserved;</del><ins cite="#c2">Bit 0: Overlap flag; bits 1-15: reserved;</ins>set to 0.</td></tr>
       <tr><td>UInt32</td><td>totalSfntSize</td><td>Total size needed for the
       uncompressed font data, including the sfnt header, <br/>directory,
       and font tables (including padding).</td></tr>
@@ -455,7 +455,8 @@
 
     <p>The interpretation of the WOFF2 Header is the same as the WOFF Header in
       [<cite><a href="#ref-woff10">WOFF1</a></cite>], with the addition of one new
-      <span class="tt">totalCompressedSize</span> field.
+      <span class="tt">totalCompressedSize</span> field<del  cite="#c2">.</del>
+      <ins cite="#c2">and one flags field, previously reserved.</ins>
       <span class="conform ff" id="conform-magicNumber">The <span class="tt">signature</span> field
       in the WOFF2 header MUST contain the value of 0x774F4632 ('wOF2')</span>, which distinguishes
       it from WOFF 1.0 files. <span class="conform ua" id="conform-noMagicNumber-reject">If the field
@@ -890,8 +891,8 @@
       record for each entry of the original <span class=tt>glyf</span> table.</p>
 
       <div class="correction" id="c2">
-        <span class="marker">Candidate Correction 2:</span>
-        <p><a href="https://docs.microsoft.com/en-us/typography/opentype/spec/glyf">Simple glyph flags</a> define the format of x/y coordinate vectors for each
+        <p><span class="marker">Candidate Correction 2:</span>
+          <a href="https://docs.microsoft.com/en-us/typography/opentype/spec/glyf">Simple glyph flags</a> define the format of x/y coordinate vectors for each
           point of the glyph outline. In WOFF2, the pre-processing step converts both
           the flags and the coordinates themselves into different data streams. Six
           different flags (bits 0-5) can be set to define on/off-curve point and the
@@ -910,16 +911,20 @@
           and it's an issue for some rasterizers that still rely on flag bit 6 setting
           to deal with contour overlaps.</p>
         <p>This Candidate Correction solves the problem, firstly,
-          by redefining <a href="#woff20Header">a previously 16-bit reserved field</a>
-          in the WOFF2Header. One of these 16 bits has been redefined to be used as a flag
+          by redefining <a href="#newflags">a previously 16-bit reserved field</a>
+          in the <a href="#woff20Header">WOFF2Header</a>.
+          One of these 16 bits has been redefined to be used as a flag
           indicating the presence of the new data stream, which has been used to encode
-          overlap flag (bit 6) values.
+          the presence of overlap flag (bit 6) values.
           Secondly, since the bit 6 flag can only be set once per glyph,
           a new numGlyphs-long bit
           array has been defined and
           <a href="">appended</a> to the end of the WOFF2 transformed 'glyf'
-          table.
-        </p>
+          table.</p>
+          <details>
+            <summary>This change has tests</summary>
+            Well, it will have!
+          </details>
       </div>
 
     <table>
@@ -1579,7 +1584,7 @@
         <h3>Changes since the <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/">Recommendation</a> of 01 March 2018</h3>
         <ul>
           <li>Candidate Correction <a href="#c1">for a typo</a></li>
-          <li>Candidate Correction <a href="#c2"></a> </li>
+          <li>Candidate Correction <a href="#c2">preserve optional symple glyph overlap flag</a> </li>
         </ul>
 
       </section>
