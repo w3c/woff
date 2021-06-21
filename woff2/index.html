@@ -921,6 +921,14 @@
           array has been defined and
           <a href="">appended</a> to the end of the WOFF2 transformed 'glyf'
           table.</p>
+          <p>This change has been tested, and found to
+            be 100% backward compatible - legacy WOFF2 decoders do not care
+            about reserved bit values,
+            and do not expect or read an additional bit array
+            at the end of the glyph table.
+            Thus, legacy decoders continue to function as always,
+            and updated decoders now preserve this optional bit.
+          </p>
           <details>
             <summary>This change has tests</summary>
             Well, it will have!
@@ -954,6 +962,7 @@
       <tr><td>UInt8</td><td>bboxBitmap[]</td><td>Bitmap (a numGlyphs-long bit array) indicating explicit bounding boxes</td></tr>
       <tr><td>Int16</td><td>bboxStream[]</td><td>Stream of Int16 values representing glyph bounding box data</td></tr>
       <tr><td>UInt8</td><td>instructionStream[]</td><td>Stream of UInt8 values representing a set of instructions for each corresponding glyph</td></tr>
+      <tr><td><del cite="#c2"></del><ins cite="#c2">UInt8</ins></td><td><del cite="#c2"></del><ins cite="#c2">overlapFlagStream[]</ins></td><td><del cite="#c2"></del><ins cite="#c2">Stream of numGlyphs bit values representing overlap flags for each glyph.</ins></td></tr>
     </table>
 
     <p>The format is best characterized by describing the decoding process, especially
