@@ -900,13 +900,13 @@
       record for each entry of the original <span class=tt>glyf</span> table.</p>
 
       <div class="correction" id="c2">
-        <p><span class="marker">Candidate Correction 2:</span>
+        <span class="marker">Candidate Correction 2:</span>
           <a href="https://docs.microsoft.com/en-us/typography/opentype/spec/glyf">Simple glyph flags</a> define the format of x/y coordinate vectors for each
           point of the glyph outline. In WOFF2, the pre-processing step converts both
           the flags and the coordinates themselves into different data streams. Six
           different flags (bits 0-5) can be set to define on/off-curve point and the
           format for each set of point coordinates, flags can be shared among multiple
-          point coordinates.</p>
+          point coordinates.
         <p>The bit 6 flag (OVERLAP_SIMPLE) is different, it can only be set once on the
           first flag of the glyph. If set, it indicates that contours of the glyph
           _may_ overlap. The OpenType spec doesn't require this flag be set, and some
@@ -1612,6 +1612,7 @@
           <li>Candidate Correction 1: <a href="#c1">for a typo</a></li>
           <li>Candidate Correction 2: <a href="#c2">preserve optional symple glyph overlap flag</a> </li>
           <li>Candidate Correction 3: <a href="#c3">definition of the UInt32 type was omitted</a></li>
+          <li>Candidate Correction 4: <a href="#c4">polarity of on-curve flag bit</a></li>
         </ul>
 
       </section>
