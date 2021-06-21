@@ -1133,8 +1133,16 @@
       the coordinate values are stored as part of the glyph data stream using a
       variable-length encoding format consuming a total of 2-5 bytes per point.</p>
 
+    <div class="correction" id="c4">
+      <span class="marker">Candidate Correction 4:</span>
+      Whether on-curve was indicated by the bit being set, or unset, was unclear.
+    </div>
+
     <p>The most significant bit of a flag indicates whether the point is on-
-      or off-curve point, the remaining seven bits of the flag determine the format of
+      or off-curve point
+      <del cite="#c4"></del><ins cite="#c4">(if the most significant bit is 0,
+        then the point is on-curve)</ins>,
+      the remaining seven bits of the flag determine the format of
       X and Y coordinate values and specify 128 possible combinations of indices that have been
       assigned taking into consideration typical statistical distribution of data found
       in TrueType fonts. When X and Y coordinate values are recorded using nibbles
