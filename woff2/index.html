@@ -387,6 +387,12 @@
       2<sup>32</sup>-1</span>. The "C-like" pseudo-code describing how to read the
       UIntBase128 format is presented below:</p>
 
+      <div class="correction" id="c1">
+        <span class="marker">Candidate Correction 1:</span>
+        Correct a typo in the code,
+        "=" was used where "==" was meant.
+      </div>
+
     <pre class='def'>
     bool ReadUIntBase128( data, *result )
     {
@@ -396,7 +402,7 @@
             UInt8 data_byte = data.getNextUInt8();
 
             // No leading 0's
-            if (i == 0 &amp;&amp; data_byte == 0x80) return false;
+            <ins cite="#c1">if (i == 0 &amp;&amp; data_byte == 0x80) return false;</ins><del cite="#c1">if (i == 0 &amp;&amp; data_byte = 0x80) return false;</del>
 
             // If any of top 7 bits are set then &lt;&lt; 7 would overflow
             if (accum &amp; 0xFE000000) return false;
