@@ -35,7 +35,7 @@
 
 <!-- Conformance stylesheet - enable for online viewing -->
     <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css">
-    <link rel="stylesheet" type="text/css" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"/>
+    <link rel="stylesheet" type="text/css" href="https://www.w3.org/StyleSheets/TR/2016/W3C-REC"/>
 
   </head>
   <body>
@@ -44,15 +44,15 @@
         <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
       </p>
       <h1 style="clear:both" id="title">WOFF File Format 2.0 </h1>
-      <h2 id="W3C-doctype">W3C Editors Draft 11 January 2018</h2>
+      <h2 id="W3C-doctype">W3C Recommendation 21 June 2021</h2>
       <dl>
         <dt>This version:</dt>
-        <dd><a href="https://www.w3.org/TR/2018/PR-WOFF2-20180111/">https://www.w3.org/TR/2018/PR-WOFF2-20180111/</a>
+        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
         <dt>Latest version:</dt>
         <dd> <a href="https://www.w3.org/TR/WOFF2/">https://www.w3.org/TR/WOFF2/</a>
         </dd>
         <dt>Previous Version:</dt>
-        <dd> <a href="https://www.w3.org/TR/2016/CR-WOFF2-20160315/">https://www.w3.org/TR/2016/CR-WOFF2-20160315/</a></dd>
+        <dd> <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/">https://www.w3.org/TR/2018/REC-WOFF2-20180301/</a></dd>
         <dt>Latest editor's draft:</dt>
         <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
         </dd>
@@ -91,17 +91,18 @@
         <h2 id="status-of-this-document">Status of This Document</h2>
         <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/">W3C technical reports index</a> at https://www.w3.org/TR/.</em></p>
 
-    <p>This document was developed by the <a href="https://www.w3.org/Fonts/WG/">WebFonts
-        Working Group</a> as a Candiate Recommendation.
-        This document will remain a Proposed Recommendation at least until <time class="status-deadline"
-        datetime="2018-02-11">11 February 2018</time> in order
-          to ensure the opportunity for wide review.  The W3C Membership and other interested parties are invited to review the document and send comments.
-          Advisory Committee Representatives should consult their
-          <a href="https://www.w3.org/2002/09/wbs/myQuestionnaires">WBS questionnaires</a>.
+    <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p>
 
-        <p>A complete <a href="#changes-since-CR">list of
+    <p>This document was developed by the <a href="https://www.w3.org/Fonts/WG/">WebFonts
+        Working Group</a>.</p>
+
+    <p>The WOFF 2.0 specification is implemented in all major browsers, and is widely used on production websites. It supports the entirety of the TrueType and OpenType specifications, including Variable fonts, Chromatic fonts, and font Collections.</p>
+
+
+        <p>A complete <a href="#changes-since-REC">list of
         changes</a> to this document since the last publication is available.
            </p>
+
     <p class=custom>Supporting material, including results of compression measurements, may be found in the
     companion <a href="https://www.w3.org/TR/WOFF20ER/">WOFF 2.0 Evaluation Report</a>. The Working Group has
     <a href="https://github.com/w3c/woff2-compiled-tests">created
@@ -118,14 +119,7 @@
     the needed support.</p>
 
     <p>Please send comments about this document
-      <!--to <a href="mailto:www-font@w3.org">www-font@w3.org</a>
-      (with <a href="https://lists.w3.org/Archives/Public/www-font/">public
-        archive</a>)-->
         as <a href="https://github.com/w3c/woff/issues">GitHub issues</a>.</p>
-    <p>Publication as a Proposed Recommendation does not imply endorsement
-  by the W3C Membership. This is a draft document and may be updated,
-  replaced or obsoleted by other documents at any time. It is
-  inappropriate to cite this document as other than work in progress.</p>
 
     <p>This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>. W3C maintains a <a rel="disclosure"
 
@@ -895,6 +889,39 @@
       where data from various separate substreams are recombined to create a complete glyph
       record for each entry of the original <span class=tt>glyf</span> table.</p>
 
+      <div class="correction" id="c2">
+        <span class="marker">Candidate Correction 2:</span>
+        <p><a href="https://docs.microsoft.com/en-us/typography/opentype/spec/glyf">Simple glyph flags</a> define the format of x/y coordinate vectors for each
+          point of the glyph outline. In WOFF2, the pre-processing step converts both
+          the flags and the coordinates themselves into different data streams. Six
+          different flags (bits 0-5) can be set to define on/off-curve point and the
+          format for each set of point coordinates, flags can be shared among multiple
+          point coordinates.</p>
+        <p>The bit 6 flag (OVERLAP_SIMPLE) is different, it can only be set once on the
+          first flag of the glyph. If set, it indicates that contours of the glyph
+          _may_ overlap. The OpenType spec doesn't require this flag be set, and some
+          (but not all) rasterizers would ignore this bit. Bit7 is reserved / unused.</p>
+        <p>Since
+          flag bit6 is not required and bit 7 is reserved,
+          in the original WOFF2 Recommendation they could simply be omitted
+          when the source data wass encoded, and set to '0' upon reconstruction of glyph
+          data. Apparently, this has caused the loss of data for flag bit 6 in some
+          fonts that have glyphs with overlapping contours where this optional bit 6 is set,
+          and it's an issue for some rasterizers that still rely on flag bit 6 setting
+          to deal with contour overlaps.</p>
+        <p>This Candidate Correction solves the problem, firstly,
+          by redefining <a href="#woff20Header">a previously 16-bit reserved field</a>
+          in the WOFF2Header. One of these 16 bits has been redefined to be used as a flag
+          indicating the presence of the new data stream, which has been used to encode
+          overlap flag (bit 6) values.
+          Secondly, since the bit 6 flag can only be set once per glyph,
+          a new numGlyphs-long bit
+          array has been defined and
+          <a href="">appended</a> to the end of the WOFF2 transformed 'glyf'
+          table.
+        </p>
+      </div>
+
     <table>
       <tr class="header"><th colspan="3" style="background-color: #F8F8F8">Transformed <span class=tt>glyf</span> Table</th></tr>
       <tr>
@@ -1547,6 +1574,15 @@
       <h2><span class='secno'>B. </span>Changes</h2>
 
       <p>This appendix is <em>informative</em>.</p>
+
+      <section id="changes-since-REC">
+        <h3>Changes since the <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/">Recommendation</a> of 01 March 2018</h3>
+        <ul>
+          <li>Candidate Correction <a href="#c1">for a typo</a></li>
+          <li>Candidate Correction <a href="#c2"></a> </li>
+        </ul>
+
+      </section>
 
       <section id="changes-since-CR">
         <h3>Changes since the <a href="https://www.w3.org/TR/2016/CR-WOFF2-20160315/">Candidate Recommendation</a> of 15 March 2016</h3>
