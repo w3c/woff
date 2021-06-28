@@ -920,15 +920,18 @@
           and it's an issue for some rasterizers that still rely on flag bit 6 setting
           to deal with contour overlaps.</p>
         <p>This Candidate Correction solves the problem, firstly,
-          by redefining <a href="#newflags">a previously 16-bit reserved field</a>
-          in the <a href="#woff20Header">WOFF2Header</a>.
-          One of these 16 bits has been redefined to be used as a flag
-          indicating the presence of the new data stream, which has been used to encode
+          by redefining <a href="#">the previously 32-bit version field</a>
+          in the <a href="#glyf_table_format">transformed 'glyf' table</a>
+          to 16 bits, and adding a 16-bit new 'optionFlags' field
+          in the space vacated.
+          One of these bits has been defined to be used as a flag
+          indicating the presence of the new data stream,
+          which has been used to encode
           the presence of overlap flag (bit 6) values.
           Secondly, since the bit 6 flag can only be set once per glyph,
-          a new numGlyphs-long bit
+          a <a href="#overlapSimpleBitmap">new numGlyphs-long bit
           array has been defined and
-          <a href="">appended</a> to the end of the WOFF2 transformed 'glyf'
+          appended</a> to the end of the WOFF2 transformed 'glyf'
           table.</p>
           <p>This change has been tested, and found to
             be 100% backward compatible - legacy WOFF2 decoders do not care
@@ -951,7 +954,15 @@
        <th style="background-color: #F8F8F8; width: 30%;">Semantic</th>
        <th style="background-color: #F8F8F8; width: 60%;">Description and value type (if applicable)</th>
       </tr>
-      <tr><td>Fixed</td><td>version</td><td>= 0x00000000</td></tr>
+      <tr><td><del cite="#c2">Fixed</del><ins cite="#c2">UInt16</ins></td><td>version</td><td><del cite="#c2">= 0x00000000</del><ins cite="#c2">0x0000</ins></td></tr>
+      <tr>
+        <td><del cite="#c2"></del><ins cite="#c2">UInt16</ins></td>
+        <td><del cite="#c2"></del><ins cite="#c2">optionFlags</ins></td>
+        <td><del cite="#c2"></del><ins cite="#c2">Bit 0: if set,
+          indicates the presence of the overlapSimpleBitmap[] bit array.
+          Bits 1-15: Reserved.
+        </ins></td>
+      </tr>
       <tr><td>UInt16</td><td>numGlyphs</td><td>Number of glyphs</td></tr>
       <tr><td>UInt16</td><td>indexFormat</td><td>Offset format for <span class=tt>loca</span> table, should be consistent with
                              <span class=tt>indexToLocFormat</span> of the original <span class=tt>head</span> table (see
@@ -971,7 +982,11 @@
       <tr><td>UInt8</td><td>bboxBitmap[]</td><td>Bitmap (a numGlyphs-long bit array) indicating explicit bounding boxes</td></tr>
       <tr><td>Int16</td><td>bboxStream[]</td><td>Stream of Int16 values representing glyph bounding box data</td></tr>
       <tr><td>UInt8</td><td>instructionStream[]</td><td>Stream of UInt8 values representing a set of instructions for each corresponding glyph</td></tr>
-      <tr><td><del cite="#c2"></del><ins cite="#c2">UInt8</ins></td><td><del cite="#c2"></del><ins cite="#c2">overlapFlagStream[]</ins></td><td><del cite="#c2"></del><ins cite="#c2">Stream of numGlyphs bit values representing overlap flags for each glyph.</ins></td></tr>
+      <tr id="overlapSimpleBitmap"><td><del cite="#c2"></del><ins cite="#c2">UInt8</ins></td><td><del cite="#c2"></del><ins cite="#c2">overlapSimpleBitmap[]</ins></td><td><del cite="#c2"></del><ins cite="#c2">A numGlyphs-long bit array that provides values for the overlap flag [bit 6] for each
+        simple glyph.
+        (Flag values for composite glyphs
+        are already encoded as part
+        of the compositeStream[]).</ins></td></tr>
     </table>
 
     <p>The format is best characterized by describing the decoding process, especially
@@ -1080,7 +1095,37 @@
     <li>Read instructionLength bytes from instructionStream, and store these in
       the reconstituted glyph as instructions.</li>
     </ol>
+
+    <p><del cite="#c2"></del><ins cite="#c2">The optionFlags field bit 0 indicates the presence of the additional
+      overlapSimpleBitmap[] bit array. All other bits are reserved and should be cleared.
+      If all simple glyphs of the input font have OVERLAP_SIMPLE flags set to
+      zero, <span class="conform at" id="conform-noOverlap">
+      the encoder MUST clear bit 0 of the optionFlags field and omit the
+      overlapSimpleBitmap[] bit array</span>.
+      If at least one of the simple glyphs in the input
+      font have the flags bit 6 set,
+      <span class="conform at" id="conform-hasOverlap">
+      the encoder must set the optionFlags bit 0 to
+      "1", and MUST create the additional overlapSimpleBitmap[] bit array where the
+      corresponding bits MUST be set to the values of the flag bit 6 of each
+      simple glyph in the input font</span>.</ins></p>
+    <p><del cite="#c2"></del><ins cite="#c2">The decoder
+      <span class="conform ua" id="conform-mustCheckOptionsFlag0">
+      MUST check the optionFlags bit0 value</span>
+      to determine whether the
+      additional overlapSimpleBitmap[] is included as part of the transformed 'glyf'
+      table. If the additional overlapSimpleBitmap[] bit array is not present, upon
+      reconstruction of the simple glyphs flags
+      <span class="conform ua" id="conform-mustZeroOverlap">
+      the decoder MUST set all
+      OVERLAP_SIMPLE flag values to zero</span>.
+      If overlapSimpleBitmap[] is included, the decoder
+      <span class="conform ua" id="conform-mustReconstructOverlap">
+      MUST use overlapSimpleBitmap[] bit settings to reconstruct OVERLAP_SIMPLE flag
+      values, and set the corresponding overlapSimpleBitmap[] bit value as flag bit 6 on
+      the first flag byte for each simple glyph of the output font</span>.</ins></p>
     </section>
+
     <section id="CompositeGlyph">
 
     <h4 id="CompositeGlyph0">Decoding of Composite Glyphs</h4>
