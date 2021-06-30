@@ -1136,10 +1136,23 @@
       between 4 and 14 additional argument bytes, interpreted as glyph index,
       arg1, arg2, and optional scale or affine matrix.</p>
 
-    <p>2a. Read the number of argument bytes as determined in step 2a from the
+      <div class="correction" id="c5">
+        <span class="marker">Candidate Correction 5:</span>
+        During editing of the specification,
+        an item was split and part of it renamed (from 2a to 1a)
+        but the cross references were not updated,
+        resulting in item 2a referring to itself,
+        rather than the preceeding step 1a as intended.
+        Implementations have made the obvious correction,
+        and this Candidate Correction brings
+        specification and implementations
+        back into alignment.
+      </div>
+
+    <p>2a. Read the number of argument bytes as determined in step <del cite="#c5">2</del><ins cite="#c5">1</ins>a from the
       composite stream, and store these in the reconstructed glyph. If the flag
-      word read in step 2a has the FLAG_MORE_COMPONENTS bit (bit 5) set,
-      go back to step 2a.
+      word read in step <del cite="#c5">2</del><ins cite="#c5">1</ins>a has the FLAG_MORE_COMPONENTS bit (bit 5) set,
+      go back to step <del cite="#c5">2</del><ins cite="#c5">1</ins>a.
 
     <p>3a. If any of the flag words had the FLAG_WE_HAVE_INSTRUCTIONS bit
      (bit 8) set, then read the instructions from the glyph and store them
@@ -1657,6 +1670,7 @@
           <li>Candidate Correction 2: <a href="#c2">preserve optional symple glyph overlap flag</a> </li>
           <li>Candidate Correction 3: <a href="#c3">definition of the UInt32 type was omitted</a></li>
           <li>Candidate Correction 4: <a href="#c4">polarity of on-curve flag bit</a></li>
+          <li>Candidate Correction 5: <a href="#c5">typo in list numbering</a></li>
         </ul>
 
       </section>
