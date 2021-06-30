@@ -44,10 +44,11 @@
         <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
       </p>
       <h1 style="clear:both" id="title">WOFF File Format 2.0 </h1>
-      <h2 id="W3C-doctype">W3C Recommendation 21 June 2021</h2>
+      <h2 id="W3C-doctype">W3C Recommendation 06 July 2021</h2>
       <dl>
         <dt>This version:</dt>
-        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
+        <dd><a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">https://www.w3.org/TR/2021/REC-WOFF2-20210706/</a>
+          <!-- <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a> -->
         <dt>Latest version:</dt>
         <dd> <a href="https://www.w3.org/TR/WOFF2/">https://www.w3.org/TR/WOFF2/</a>
         </dd>
@@ -56,21 +57,16 @@
         <dt>Latest editor's draft:</dt>
         <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
         </dd>
+        <dd>Implementation Report:</dd>
+        <dt><a href="https://www.w3.org/Fonts/WG/WOFF2/Implementation.html">https://www.w3.org/Fonts/WG/WOFF2/Implementation.html</a></dt>
       </dl>
       <dl>
         <dt>Editors:</dt>
-        <dd>Vladimir Levantovsky (Monotype)</dd>
-        <dd>Raph Levien (Google)</dd>
+        <dd data-editor-id="43052">Vladimir Levantovsky (Monotype)</dd>
+        <dd data-editor-id="51758 ">Raph Levien (Google)</dd>
       </dl>
-      <p class="copyright">
-          <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
-          2018
-          <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
-          (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
-          <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-          <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
-          <abbr title="World Wide Web Consortium">W3C</abbr> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-          <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <p>Please check the <a href="https://www.w3.org/Fonts/REC-WOFF2-20210706-errata.html">errata</a> for any errors or issues reported since publication.</p>
+      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
               <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a>
           rules apply.
         </p>
@@ -92,6 +88,8 @@
         <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/">W3C technical reports index</a> at https://www.w3.org/TR/.</em></p>
 
     <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p>
+
+    <p>A W3C Recommendation is a specification that, after extensive consensus-building, has received the endorsement of the W3C and its Members. W3C recommends the wide deployment of this specification as a standard for the Web.</p>
 
     <p>This document was developed by the <a href="https://www.w3.org/Fonts/WG/">WebFonts
         Working Group</a>.</p>
@@ -940,10 +938,10 @@
             Thus, legacy decoders continue to function as always,
             and updated decoders now preserve this optional bit.
           </p>
-          <details>
+          <!-- <details>
             <summary>This change has tests</summary>
             Well, it will have!
-          </details>
+          </details> -->
       </div>
 
     <table>
@@ -953,7 +951,7 @@
        <th style="background-color: #F8F8F8; width: 30%;">Semantic</th>
        <th style="background-color: #F8F8F8; width: 60%;">Description and value type (if applicable)</th>
       </tr>
-      <tr><td><del cite="#c2">Fixed</del><ins cite="#c2">UInt16</ins></td><td>version</td><td><del cite="#c2">= 0x00000000</del><ins cite="#c2">0x0000</ins></td></tr>
+      <tr><td><del cite="#c2">Fixed</del><ins cite="#c2">UInt16</ins></td><td><del cite="#c2">version</del><ins cite="#c2">reserved</ins></td><td><del cite="#c2">= 0x00000000</del><ins cite="#c2">0x0000</ins></td></tr>
       <tr>
         <td><del cite="#c2"></del><ins cite="#c2">UInt16</ins></td>
         <td><del cite="#c2"></del><ins cite="#c2">optionFlags</ins></td>
