@@ -44,10 +44,11 @@
         <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
       </p>
       <h1 style="clear:both" id="title">WOFF File Format 2.0 </h1>
-      <h2 id="W3C-doctype">W3C Recommendation 21 June 2021</h2>
+      <h2 id="W3C-doctype">W3C Recommendation 06 July 2021</h2>
       <dl>
         <dt>This version:</dt>
-        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
+        <dd><a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">https://www.w3.org/TR/2021/REC-WOFF2-20210706/</a>
+          <!-- <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a> -->
         <dt>Latest version:</dt>
         <dd> <a href="https://www.w3.org/TR/WOFF2/">https://www.w3.org/TR/WOFF2/</a>
         </dd>
@@ -56,21 +57,18 @@
         <dt>Latest editor's draft:</dt>
         <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
         </dd>
+        <dt>Implementation Report:</dt>
+        <dd><a href="https://www.w3.org/Fonts/WG/WOFF2/Implementation.html">https://www.w3.org/Fonts/WG/WOFF2/Implementation.html</a></dd>
+        <dt>Issue Tracking: </dt>
+        <dd><a href="https://github.com/w3c/woff/issues">WOFF &amp; WOFF2 issues</a></dd>
       </dl>
       <dl>
-        <dt>Editors:</dt>
-        <dd>Vladimir Levantovsky (Monotype)</dd>
-        <dd>Raph Levien (Google)</dd>
+        <dt class="editor">Editors:</dt>
+        <dd class="editor"  data-editor-id="43052">Vladimir Levantovsky (W3C Invited Experts)</dd>
+        <dd class="editor"  data-editor-id="51758">Raph Levien (Google)</dd>
       </dl>
-      <p class="copyright">
-          <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> ©
-          2018
-          <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
-          (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
-          <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
-          <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
-          <abbr title="World Wide Web Consortium">W3C</abbr> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-          <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <p>Please check the <a href="https://www.w3.org/Fonts/REC-WOFF2-20210706-errata.html">errata</a> for any errors or issues reported since publication.</p>
+      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
               <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a>
           rules apply.
         </p>
@@ -91,10 +89,9 @@
         <h2 id="status-of-this-document">Status of This Document</h2>
         <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/">W3C technical reports index</a> at https://www.w3.org/TR/.</em></p>
 
-    <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p>
+        <p>This document was published by the <a href="https://www.w3.org/Fonts/WG/">Web Fonts Working Group</a> as a <strong>Recommendation</strong>.</p>
 
-    <p>This document was developed by the <a href="https://www.w3.org/Fonts/WG/">WebFonts
-        Working Group</a>.</p>
+      <p>A W3C Recommendation is a specification that, after extensive consensus-building, has received the endorsement of the W3C and its Members. W3C recommends the wide deployment of this specification as a standard for the Web.</p>
 
     <p>The WOFF 2.0 specification is implemented in all major browsers, and is widely used on production websites. It supports the entirety of the TrueType and OpenType specifications, including Variable fonts, Chromatic fonts, and font Collections.</p>
 
@@ -121,7 +118,7 @@
     <p>Please send comments about this document
         as <a href="https://github.com/w3c/woff/issues">GitHub issues</a>.</p>
 
-    <p>This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>. W3C maintains a <a rel="disclosure"
+    <p>This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/">W3C Patent Policy</a>. W3C maintains a <a rel="disclosure"
 
         href="https://www.w3.org/2004/01/pp-impl/44556/status">public list of any
         patent disclosures</a> made in connection with the deliverables of the
@@ -133,10 +130,13 @@
         <p>For the Brotli compression scheme used in WOFF 2.0, Google has made an
          <a href="https://www.w3.org/2004/01/pp-impl/44556/show-license#x35662">RF licensing commitment</a> for use in this specification.</p>
 
-<p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2017/Process-20170301/">1 March 2017 W3C Process Document</a>. </p>
+    <p>This document is governed by the <a href="https://www.w3.org/2020/Process-20200915/" id="w3c_process_revision">15 September 2020 W3C Process Document</a>. </p>
 
-<div class="correction"><a href="https://www.w3.org/Consortium/Process/#candidate-correction">Candidate corrections</a> are marked in the document.</div>
-  </div>
+<!-- <div class="correction"><a href="https://www.w3.org/Consortium/Process/#candidate-correction">Candidate corrections</a> are marked in the document.</div>
+
+pubrules checker objects to this
+-->
+
 
         </section>
     <nav id="toc">
@@ -940,10 +940,10 @@
             Thus, legacy decoders continue to function as always,
             and updated decoders now preserve this optional bit.
           </p>
-          <details>
+          <!-- <details>
             <summary>This change has tests</summary>
             Well, it will have!
-          </details>
+          </details> -->
       </div>
 
     <table>
@@ -953,7 +953,7 @@
        <th style="background-color: #F8F8F8; width: 30%;">Semantic</th>
        <th style="background-color: #F8F8F8; width: 60%;">Description and value type (if applicable)</th>
       </tr>
-      <tr><td><del cite="#c2">Fixed</del><ins cite="#c2">UInt16</ins></td><td>version</td><td><del cite="#c2">= 0x00000000</del><ins cite="#c2">0x0000</ins></td></tr>
+      <tr><td><del cite="#c2">Fixed</del><ins cite="#c2">UInt16</ins></td><td><del cite="#c2">version</del><ins cite="#c2">reserved</ins></td><td><del cite="#c2">= 0x00000000</del><ins cite="#c2">0x0000</ins></td></tr>
       <tr>
         <td><del cite="#c2"></del><ins cite="#c2">UInt16</ins></td>
         <td><del cite="#c2"></del><ins cite="#c2">optionFlags</ins></td>
@@ -1136,10 +1136,23 @@
       between 4 and 14 additional argument bytes, interpreted as glyph index,
       arg1, arg2, and optional scale or affine matrix.</p>
 
-    <p>2a. Read the number of argument bytes as determined in step 2a from the
+      <div class="correction" id="c5">
+        <span class="marker">Candidate Correction 5:</span>
+        During editing of the specification,
+        an item was split and part of it renamed (from 2a to 1a)
+        but the cross references were not updated,
+        resulting in item 2a referring to itself,
+        rather than the preceeding step 1a as intended.
+        Implementations have made the obvious correction,
+        and this Candidate Correction brings
+        specification and implementations
+        back into alignment.
+      </div>
+
+    <p>2a. Read the number of argument bytes as determined in step <del cite="#c5">2</del><ins cite="#c5">1</ins>a from the
       composite stream, and store these in the reconstructed glyph. If the flag
-      word read in step 2a has the FLAG_MORE_COMPONENTS bit (bit 5) set,
-      go back to step 2a.
+      word read in step <del cite="#c5">2</del><ins cite="#c5">1</ins>a has the FLAG_MORE_COMPONENTS bit (bit 5) set,
+      go back to step <del cite="#c5">2</del><ins cite="#c5">1</ins>a.
 
     <p>3a. If any of the flag words had the FLAG_WE_HAVE_INSTRUCTIONS bit
      (bit 8) set, then read the instructions from the glyph and store them
@@ -1657,6 +1670,7 @@
           <li>Candidate Correction 2: <a href="#c2">preserve optional symple glyph overlap flag</a> </li>
           <li>Candidate Correction 3: <a href="#c3">definition of the UInt32 type was omitted</a></li>
           <li>Candidate Correction 4: <a href="#c4">polarity of on-curve flag bit</a></li>
+          <li>Candidate Correction 5: <a href="#c5">typo in list numbering</a></li>
         </ul>
 
       </section>
