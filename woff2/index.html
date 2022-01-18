@@ -44,16 +44,16 @@
         <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
       </p>
       <h1 style="clear:both" id="title">WOFF File Format 2.0 </h1>
-      <h2 id="W3C-doctype">W3C Recommendation 06 July 2021</h2>
+      <h2 id="W3C-doctype">W3C Recommendation 18 January 2022</h2>
       <dl>
         <dt>This version:</dt>
-        <dd><a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">https://www.w3.org/TR/2021/REC-WOFF2-20210706/</a>
-          <!-- <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a> -->
+        <!-- <dd><a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">https://www.w3.org/TR/2021/REC-WOFF2-20210706/</a> -->
+          <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
         <dt>Latest version:</dt>
         <dd> <a href="https://www.w3.org/TR/WOFF2/">https://www.w3.org/TR/WOFF2/</a>
         </dd>
         <dt>Previous Version:</dt>
-        <dd> <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/">https://www.w3.org/TR/2018/REC-WOFF2-20180301/</a></dd>
+        <dd><a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">https://www.w3.org/TR/2021/REC-WOFF2-20210706/</a>
         <dt>Latest editor's draft:</dt>
         <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
         </dd>
@@ -293,8 +293,8 @@ pubrules checker objects to this
       <tr><td>Int16&nbsp;</td><td>16-bit signed integer in 2's complement format, stored big-endian.&nbsp;</td></tr>
       <tr><td>UInt16&nbsp;</td><td>16-bit unsigned integer, stored big-endian.&nbsp;</td></tr>
       <tr>
-          <td><del cite="#c3"></del><ins cite="#c3">UInt32&nbsp;</ins></td>
-          <td><del cite="#c3"></del><ins cite="#c3">32-bit unsigned integer, stored big-endian.&nbsp;</ins></td>
+          <td>UInt32&nbsp;</td>
+          <td>32-bit unsigned integer, stored big-endian.&nbsp;</td>
       </tr>
       <tr><td>255UInt16&nbsp;</td><td>Variable-length encoding of a 16-bit unsigned integer for optimized intermediate font data storage.&nbsp;</td></tr>
       <tr><td>UIntBase128&nbsp;</td><td>Variable-length encoding of 32-bit unsigned integers.&nbsp;</td></tr>
@@ -391,11 +391,6 @@ pubrules checker objects to this
       2<sup>32</sup>-1</span>. The "C-like" pseudo-code describing how to read the
       UIntBase128 format is presented below:</p>
 
-      <div class="correction" id="c1">
-        <span class="marker">Candidate Correction 1:</span>
-        Correct a typo in the code,
-        "=" was used where "==" was meant.
-      </div>
 
     <pre class='def'>
     bool ReadUIntBase128( data, *result )
@@ -406,7 +401,7 @@ pubrules checker objects to this
             UInt8 data_byte = data.getNextUInt8();
 
             // No leading 0's
-            <ins cite="#c1">if (i == 0 &amp;&amp; data_byte == 0x80) return false;</ins><del cite="#c1">if (i == 0 &amp;&amp; data_byte = 0x80) return false;</del>
+            if (i == 0 &amp;&amp; data_byte == 0x80) return false;
 
             // If any of top 7 bits are set then &lt;&lt; 7 would overflow
             if (accum &amp; 0xFE000000) return false;
@@ -896,8 +891,8 @@ pubrules checker objects to this
       where data from various separate substreams are recombined to create a complete glyph
       record for each entry of the original <span class=tt>glyf</span> table.</p>
 
-      <div class="correction" id="c2">
-        <span class="marker">Candidate Correction 2:</span>
+      <div class="correction" id="p1">
+        <span class="marker">Proposed Correction 1:</span>
           <a href="https://docs.microsoft.com/en-us/typography/opentype/spec/glyf">Simple glyph flags</a> define the format of x/y coordinate vectors for each
           point of the glyph outline. In WOFF2, the pre-processing step converts both
           the flags and the coordinates themselves into different data streams. Six
@@ -916,7 +911,7 @@ pubrules checker objects to this
           fonts that have glyphs with overlapping contours where this optional bit 6 is set,
           and it's an issue for some rasterizers that still rely on flag bit 6 setting
           to deal with contour overlaps.</p>
-        <p>This Candidate Correction solves the problem, firstly,
+        <p>This Proposed Correction solves the problem, firstly,
           by redefining <a href="#">the previously 32-bit version field</a>
           in the <a href="#glyf_table_format">transformed 'glyf' table</a>
           to 16 bits, and adding a 16-bit new 'optionFlags' field
@@ -951,11 +946,11 @@ pubrules checker objects to this
        <th style="background-color: #F8F8F8; width: 30%;">Semantic</th>
        <th style="background-color: #F8F8F8; width: 60%;">Description and value type (if applicable)</th>
       </tr>
-      <tr><td><del cite="#c2">Fixed</del><ins cite="#c2">UInt16</ins></td><td><del cite="#c2">version</del><ins cite="#c2">reserved</ins></td><td><del cite="#c2">= 0x00000000</del><ins cite="#c2">0x0000</ins></td></tr>
+      <tr><td><del cite="#p1">Fixed</del><ins cite="#p1">UInt16</ins></td><td><del cite="#p1">version</del><ins cite="#p1">reserved</ins></td><td><del cite="#p1">= 0x00000000</del><ins cite="#p1">0x0000</ins></td></tr>
       <tr>
-        <td><del cite="#c2"></del><ins cite="#c2">UInt16</ins></td>
-        <td><del cite="#c2"></del><ins cite="#c2">optionFlags</ins></td>
-        <td><del cite="#c2"></del><ins cite="#c2">Bit 0: if set,
+        <td><del cite="#p1"></del><ins cite="#p1">UInt16</ins></td>
+        <td><del cite="#p1"></del><ins cite="#p1">optionFlags</ins></td>
+        <td><del cite="#p1"></del><ins cite="#p1">Bit 0: if set,
           indicates the presence of the overlapSimpleBitmap[] bit array.
           Bits 1-15: Reserved.
         </ins></td>
@@ -979,7 +974,7 @@ pubrules checker objects to this
       <tr><td>UInt8</td><td>bboxBitmap[]</td><td>Bitmap (a numGlyphs-long bit array) indicating explicit bounding boxes</td></tr>
       <tr><td>Int16</td><td>bboxStream[]</td><td>Stream of Int16 values representing glyph bounding box data</td></tr>
       <tr><td>UInt8</td><td>instructionStream[]</td><td>Stream of UInt8 values representing a set of instructions for each corresponding glyph</td></tr>
-      <tr id="overlapSimpleBitmap"><td><del cite="#c2"></del><ins cite="#c2">UInt8</ins></td><td><del cite="#c2"></del><ins cite="#c2">overlapSimpleBitmap[]</ins></td><td><del cite="#c2"></del><ins cite="#c2">A numGlyphs-long bit array that provides values for the overlap flag [bit 6] for each
+      <tr id="overlapSimpleBitmap"><td><del cite="#p1"></del><ins cite="#p1">UInt8</ins></td><td><del cite="#p1"></del><ins cite="#p1">overlapSimpleBitmap[]</ins></td><td><del cite="#p1"></del><ins cite="#p1">A numGlyphs-long bit array that provides values for the overlap flag [bit 6] for each
         simple glyph.
         (Flag values for composite glyphs
         are already encoded as part
@@ -1093,7 +1088,7 @@ pubrules checker objects to this
       the reconstituted glyph as instructions.</li>
     </ol>
 
-    <p><del cite="#c2"></del><ins cite="#c2">The optionFlags field bit 0 indicates the presence of the additional
+    <p><del cite="#p1"></del><ins cite="#p1">The optionFlags field bit 0 indicates the presence of the additional
       overlapSimpleBitmap[] bit array. All other bits are reserved and should be cleared.
       If all simple glyphs of the input font have OVERLAP_SIMPLE flags set to
       zero, <span class="conform at" id="conform-noOverlap">
@@ -1106,7 +1101,7 @@ pubrules checker objects to this
       "1", and MUST create the additional overlapSimpleBitmap[] bit array where the
       corresponding bits MUST be set to the values of the flag bit 6 of each
       simple glyph in the input font</span>.</ins></p>
-    <p><del cite="#c2"></del><ins cite="#c2">The decoder
+    <p><del cite="#p1"></del><ins cite="#p1">The decoder
       <span class="conform ua" id="conform-mustCheckOptionsFlag0">
       MUST check the optionFlags bit0 value</span>
       to determine whether the
@@ -1147,10 +1142,10 @@ pubrules checker objects to this
         back into alignment.
       </div>
 
-    <p>2a. Read the number of argument bytes as determined in step <del cite="#c5">2</del><ins cite="#c5">1</ins>a from the
+    <p>2a. Read the number of argument bytes as determined in step 1a from the
       composite stream, and store these in the reconstructed glyph. If the flag
-      word read in step <del cite="#c5">2</del><ins cite="#c5">1</ins>a has the FLAG_MORE_COMPONENTS bit (bit 5) set,
-      go back to step <del cite="#c5">2</del><ins cite="#c5">1</ins>a.
+      word read in step 1a has the FLAG_MORE_COMPONENTS bit (bit 5) set,
+      go back to step 1a.
 
     <p>3a. If any of the flag words had the FLAG_WE_HAVE_INSTRUCTIONS bit
      (bit 8) set, then read the instructions from the glyph and store them
@@ -1188,14 +1183,14 @@ pubrules checker objects to this
       the coordinate values are stored as part of the glyph data stream using a
       variable-length encoding format consuming a total of 2-5 bytes per point.</p>
 
-    <div class="correction" id="c4">
-      <span class="marker">Candidate Correction 4:</span>
+    <div class="proposed correction" id="p2">
+      <span class="marker">Proposed Correction 2:</span>
       Whether on-curve was indicated by the bit being set, or unset, was unclear.
     </div>
 
     <p>The most significant bit of a flag indicates whether the point is on-
       or off-curve point
-      <del cite="#c4"></del><ins cite="#c4">(if the most significant bit is 0,
+      <del cite="#p2"></del><ins cite="#p2">(if the most significant bit is 0,
         then the point is on-curve)</ins>,
       the remaining seven bits of the flag determine the format of
       X and Y coordinate values and specify 128 possible combinations of indices that have been
@@ -1661,14 +1656,26 @@ pubrules checker objects to this
 
       <p>This appendix is <em>informative</em>.</p>
 
+      <section id="changes-since-2021">
+        <h3>Changes since the <a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">W3C Recommendation 06 July 2021</a></h3>
+
+        <ul>
+          <li>Previous Candidate Corrections 1, 3 5 and 6 were deemed editorial and have been merged</li>
+          <li>Previous Candidate Correction 2, concerning the symple glyph overlap flag, is now <a href="#p1">Proposed Correction 1</a></li>
+          <li>Previous Candidate Correction 4, concerning polarity of on-curve flag bit, is now <a href="#p2">Proposed Correction 2</a></li>
+          <li>References updated to most current versions</li>
+        </ul>
+
+      </section>
+
       <section id="changes-since-REC">
         <h3>Changes since the <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/">Recommendation</a> of 01 March 2018</h3>
         <ul>
-          <li>Candidate Correction 1: <a href="#c1">for a typo</a></li>
-          <li>Candidate Correction 2: <a href="#c2">preserve optional symple glyph overlap flag</a> </li>
-          <li>Candidate Correction 3: <a href="#c3">definition of the UInt32 type was omitted</a></li>
-          <li>Candidate Correction 4: <a href="#c4">polarity of on-curve flag bit</a></li>
-          <li>Candidate Correction 5: <a href="#c5">typo in list numbering</a></li>
+          <li>Candidate Correction 1: <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/#c1">for a typo</a></li>
+          <li>Candidate Correction 2: <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/#c2">preserve optional symple glyph overlap flag</a> </li>
+          <li>Candidate Correction 3: <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/#c3">definition of the UInt32 type was omitted</a></li>
+          <li>Candidate Correction 4: <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/#c4">polarity of on-curve flag bit</a></li>
+          <li>Candidate Correction 5: <a href="https://www.w3.org/TR/2018/REC-WOFF2-20180301/#c5">typo in list numbering</a></li>
           <li>(Editorial) updated IETF links</a></li>
         </ul>
 
