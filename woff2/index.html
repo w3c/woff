@@ -35,7 +35,7 @@
 
 <!-- Conformance stylesheet - enable for online viewing -->
     <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css">
-    <link rel="stylesheet" type="text/css" href="https://www.w3.org/StyleSheets/TR/2021/W3C-REC"/>
+    <link rel="stylesheet" type="text/css" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"/>
 
   </head>
   <body>
@@ -44,21 +44,23 @@
         <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" alt="W3C" width="72" height="48"></a>
       </p>
       <h1 id="title">WOFF File Format 2.0 </h1>
-      <p id="w3c-state"><a href="https://www.w3.org/standards/types#REC">W3C Recommendation</a>, <time class="dt-updated" datetime="2022-03-10">10 March 2022</time></p>
+      <!-- <p id="w3c-state"><a href="https://www.w3.org/standards/types#REC">W3C Recommendation</a>, <time class="dt-updated" datetime="2022-03-10">10 March 2022</time></p> -->
+      <p id="w3c-state">Editors Draft
+        <time datetime="2022-03-10">10 March 2022</time>
+      </p>
 
       <details open><summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt>
-        <dd><a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/">https://www.w3.org/TR/2022/REC-WOFF2-20220310/</a>
-          <!-- <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a> --></dd>
+        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
+        </dd>
         <dt>Latest version:</dt>
         <dd> <a href="https://www.w3.org/TR/WOFF2/">https://www.w3.org/TR/WOFF2/</a>
         </dd>
         <dt>Previous Version:</dt>
-        <dd><a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">https://www.w3.org/TR/2021/REC-WOFF2-20210706/</a></dd>
+        <dd><a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/">https://www.w3.org/TR/2022/REC-WOFF2-20220310/</a>
         <dt>Latest editor's draft:</dt>
-        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
-        </dd>
+
         <dt>History:</dt>
         <dd><a href="https://www.w3.org/standards/history/WOFF2">https://www.w3.org/standards/history/WOFF2</a></dd>
         <dt>Implementation Report:</dt>
@@ -1148,19 +1150,6 @@
       flag word as in the TrueType spec. Based on the flag values, there are
       between 4 and 14 additional argument bytes, interpreted as glyph index,
       arg1, arg2, and optional scale or affine matrix.</p>
-
-      <div class="proposed correction" id="c5">
-        <span class="marker">Candidate Correction 5:</span>
-        During editing of the specification,
-        an item was split and part of it renamed (from 2a to 1a)
-        but the cross references were not updated,
-        resulting in item 2a referring to itself,
-        rather than the preceeding step 1a as intended.
-        Implementations have made the obvious correction,
-        and this Candidate Correction brings
-        specification and implementations
-        back into alignment.
-      </div>
 
     <p>2a. Read the number of argument bytes as determined in step 1a from the
       composite stream, and store these in the reconstructed glyph. If the flag
