@@ -77,7 +77,7 @@
 
       <p>Please check the <a href="https://www.w3.org/Fonts/REC-WOFF2-20220310-errata.html">errata</a> for any errors or issues reported since publication.</p>
 
-      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2024 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
               <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a>
           rules apply.
         </p>
@@ -134,8 +134,9 @@
 
     <p>Please send comments about this document
         as <a href="https://github.com/w3c/woff/issues">GitHub issues</a>.
-    Comments are due by <time class="dt-updated"
-    datetime="2022-05-10">10 May 2022</time>.</p>
+    <!-- Comments are due by <time class="dt-updated"
+    datetime="2022-05-10">10 May 2022</time>. -->
+  </p>
 
     <p>This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/">W3C Patent Policy</a>. W3C maintains a <a rel="disclosure"
 
@@ -158,8 +159,6 @@
       </p>
 
     <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 W3C Process Document</a>. </p>
-
-    <p class="correction proposed">Proposed corrections are marked in the document.</p>
 
 
   </section>
@@ -913,54 +912,6 @@
       where data from various separate substreams are recombined to create a complete glyph
       record for each entry of the original <span class=tt>glyf</span> table.</p>
 
-      <div class="correction" id="p1">
-        <span class="marker">Proposed Correction 1:</span>
-          <a href="https://docs.microsoft.com/en-us/typography/opentype/spec/glyf">Simple glyph flags</a> define the format of x/y coordinate vectors for each
-          point of the glyph outline. In WOFF2, the pre-processing step converts both
-          the flags and the coordinates themselves into different data streams. Six
-          different flags (bits 0-5) can be set to define on/off-curve point and the
-          format for each set of point coordinates, flags can be shared among multiple
-          point coordinates.
-        <p>The bit 6 flag (OVERLAP_SIMPLE) is different, it can only be set once on the
-          first flag of the glyph. If set, it indicates that contours of the glyph
-          _may_ overlap. The OpenType spec doesn't require this flag be set, and some
-          (but not all) rasterizers would ignore this bit. Bit7 is reserved / unused.</p>
-        <p>Since
-          flag bit6 is not required and bit 7 is reserved,
-          in the original WOFF2 Recommendation they could simply be omitted
-          when the source data was encoded, and set to '0' upon reconstruction of glyph
-          data. Apparently, this has caused the loss of data for flag bit 6 in some
-          fonts that have glyphs with overlapping contours where this optional bit 6 is set,
-          and it's an issue for some rasterizers that still rely on flag bit 6 setting
-          to deal with contour overlaps.</p>
-        <p>This Proposed Correction solves the problem, firstly,
-          by redefining <a href="#">the previously 32-bit version field</a>
-          in the <a href="#glyf_table_format">transformed 'glyf' table</a>
-          to 16 bits, and adding a 16-bit new 'optionFlags' field
-          in the space vacated.
-          One of these bits has been defined to be used as a flag
-          indicating the presence of the new data stream,
-          which has been used to encode
-          the presence of overlap flag (bit 6) values.
-          Secondly, since the bit 6 flag can only be set once per glyph,
-          a <a href="#overlapSimpleBitmap">new numGlyphs-long bit
-          array has been defined and
-          appended</a> to the end of the WOFF2 transformed 'glyf'
-          table.</p>
-          <p>This change has been tested, and found to
-            be 100% backward compatible - legacy WOFF2 decoders do not care
-            about reserved bit values,
-            and do not expect or read an additional bit array
-            at the end of the glyph table.
-            Thus, legacy decoders continue to function as always,
-            and updated decoders now preserve this optional bit.
-          </p>
-          <!-- <details>
-            <summary>This change has tests</summary>
-            Well, it will have!
-          </details> -->
-      </div>
-
     <table>
       <tr class="header"><th colspan="3" style="background-color: #F8F8F8">Transformed <span class=tt>glyf</span> Table</th></tr>
       <tr>
@@ -968,14 +919,14 @@
        <th style="background-color: #F8F8F8; width: 30%;">Semantic</th>
        <th style="background-color: #F8F8F8; width: 60%;">Description and value type (if applicable)</th>
       </tr>
-      <tr><td><del cite="#p1">Fixed</del><ins cite="#p1">UInt16</ins></td><td><del cite="#p1">version</del><ins cite="#p1">reserved</ins></td><td><del cite="#p1">= 0x00000000</del><ins cite="#p1">0x0000</ins></td></tr>
+      <tr><td>UInt16</td><td>reserved</td><td>0x0000</td></tr>
       <tr>
-        <td><del cite="#p1"></del><ins cite="#p1">UInt16</ins></td>
-        <td><del cite="#p1"></del><ins cite="#p1">optionFlags</ins></td>
-        <td><del cite="#p1"></del><ins cite="#p1">Bit 0: if set,
+        <td>UInt16</td>
+        <td>optionFlags</td>
+        <td>Bit 0: if set,
           indicates the presence of the overlapSimpleBitmap[] bit array.
           Bits 1-15: Reserved.
-        </ins></td>
+        </td>
       </tr>
       <tr><td>UInt16</td><td>numGlyphs</td><td>Number of glyphs</td></tr>
       <tr><td>UInt16</td><td>indexFormat</td><td>Offset format for <span class=tt>loca</span> table, should be consistent with
@@ -1200,8 +1151,8 @@
 
     <p>The most significant bit of a flag indicates whether the point is on-
       or off-curve point
-      <del cite="#p2"></del><ins cite="#p2">(if the most significant bit is 0,
-        then the point is on-curve)</ins>,
+      (if the most significant bit is 0,
+        then the point is on-curve),
       the remaining seven bits of the flag determine the format of
       X and Y coordinate values and specify 128 possible combinations of indices that have been
       assigned taking into consideration typical statistical distribution of data found
@@ -1665,6 +1616,16 @@
       <h2><span class='secno'>B. </span>Changes</h2>
 
       <p>This appendix is <em>informative</em>.</p>
+
+      <section id="changes-since-2022">
+        <h3>Changes since the <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/">W3C Recommendation</a> of 10 March 2022</h3>
+
+        <ul>
+          <li>Previous <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/#p1">Proposed Correction 1</a> has been made normative.</li>
+          <li>Previous <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/#p2">Proposed Correction 2</a> has been made normative.</li>
+        </ul>
+
+      </section>
 
       <section id="changes-since-2021">
         <h3>Changes since the <a href="https://www.w3.org/TR/2021/REC-WOFF2-20210706/">W3C Recommendation</a> of 06 July 2021</h3>
