@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <style>
+    .header th {
+        padding-bottom: 0.7em;
+    }
+    .passes-all {
+        background: #81c784;
+    }
+    .passes-most {
+        background: #aed581;
+    }
+    .passes-lots, .passes-unclear {
+        background: #dce775;
+    }
+    .passes-none {
+        background: #e57373;
+    }
+    .note {
+        margin-left: 2em;
+    }
+    .tests  table {
+        margin-left: 2em;
+        /* width: 96%; */
+    }
+    .tests table td.result {
+        width:8em;
+    }
+    .tests table td.testname {
+        width:28em
+    }
+    footer {
+        margin-top: 1.5em;
+    }
+    </style>
+    <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css">
+
+    <body>
+        <div class="head">
+            <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
+  
+            <h1>WOFF File Format 2.0:<br>Implementation Report</h1>
+            <dl>
+                <dt>Editor:</dt>
+                <dd>Chris Lilley</dd>
+                <dt>Last modified:</dt>
+                <dd>2024-07-30</dd>
+            </dl>
+        </div>
+        <main>
+
+            <section id="intro">
+                <h2>Introduction</h2>
+                <p>
+                    This report summarizes the implementation status of
+                    WOFF File Format 2.0  
+                    <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/">W3C Recommendation, 10 March 2022</a>
+                    in browsers, woff2 encoders, and woff2 decoders.
+                </p>
+
+                <p>
+                    Only the status of the two
+                    <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/#changes-since-2021">Proposed Corrections</a>
+                    are described;
+                    the <a href="https://www.w3.org/Fonts/WG/WOFF2/Implementation.html">WOFF 2.0 Implementation Report</a> of 11 Dec 2017 is a snapshot of the existing woff2 features.
+                </p>
+
+                <p>
+                    The input data and tools to build the 
+                    <a href="https://github.com/w3c/woff2-tests">woff2 test suite</a>
+                    are on GitHub.
+                </p>
+
+            </section>
+
+            <section id="pc1">
+                <h2>1. Simple glyph flags </h2>
+                <p>
+                    <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/#p1">Proposed Correction 1</a> avoids data loss of an optional flag bit which indicates the presence of overlapping glyph contours.
+                    This correction affects woff2 encoders and decoders;
+                    it cannot be tested directly in User Agents as there is no effect on rendering.
+                </p>
+
+                <p>
+                    Implemented in <a href="https://github.com/fonttools/fonttools"><strong>FontTools</strong></a>,
+                    a library to manipulate font files from Python.
+                    [<a href="https://github.com/fonttools/fonttools/issues/2576">added Nov 11, 2022</a>].
+                </p>    
+
+
+                <p>
+                    Implemented in <a href="https://github.com/google/woff2"><strong>Google woff2</strong></a>, a C++ woff2 encoder and decoder.
+                    [<a href="https://github.com/google/woff2/pull/149/files">added Mar 30, 2022</a>].
+                </p>
+
+                <section class="tests" id="tests-pc1">
+                    <h3>Overlap Flag</h3>
+                    <p>
+                        [<a href="https://github.com/w3c/woff2-tests/commit/b0a0fbdfad7696fe0b119e8ae53738e8311eed5c">tests added Jun 24, 2022</a>]
+                    </p>
+                    <table>
+                        <tr class="header">
+                            <th></th>
+                            <th>FontTools</th>
+                            <th>Google woff2</th>
+                        </tr>
+                        <tr class="test">
+                            <td class="testname">tabledata-transform-glyf-006</td>
+                            <td class="result passes-all"></td>
+                            <td class="result passes-all"></td>
+                        </tr>
+                        <tr class="test">
+                            <td class="testname">tabledata-transform-glyf-007</td>
+                            <td class="result passes-all"></td>
+                            <td class="result passes-all"></td>
+                        </tr>
+                    </table>
+
+                    <h3>Round Trip</h3>
+                    <p>
+                        [<a href="https://github.com/w3c/woff2-tests/commit/b0a0fbdfad7696fe0b119e8ae53738e8311eed5c">tests added Jun 24, 2022</a>]
+                    </p>
+                    <table>
+                        <tr class="header">
+                            <th></th>
+                            <th>FontTools</th>
+                            <th>Google woff2</th>
+                        </tr>
+                        <tr class="test">
+                            <td class="testname">roundtrip-glyf-overlaps-001</td>
+                            <td class="result passes-all"></td>
+                            <td class="result passes-all"></td>
+                        </tr>
+                        <tr class="test">
+                            <td class="testname">roundtrip-glyf-overlaps-002</td>
+                            <td class="result passes-all"></td>
+                            <td class="result passes-all"></td>
+                        </tr>
+                    </table>
+
+                </section>
+
+
+                <section id="pc2">
+                    <h2>2. Polarity of on-curve bit</h2>
+                    <p>
+                        The specification was unclear whether a bit flag,
+                        used to indicate whether a point was on the curve or off the curve,
+                        was indicated by the bit being set or unset.
+                        <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/#p2">This Proposed Correction</a> explicitly states that a value of 0 corresponds to on-curve.
+                    </p>
+
+                    <p>
+                        In practice, implementations were already assuming that 0 means on-curve,
+                        the same as described in
+                        <a href="https://www.w3.org/submissions/MTX/#SimpleCTF">MicroType® Express (MTX) Font Format</a> submission.
+                    </p>
+
+                   
+    
+                    <section class="tests" id="cicp-chunk">
+                        <h3>On-curve bit</h3>
+
+                        <p>
+                            There are no tests, as implementations were already conforming;
+                            the specification was corrected to document this.
+                        </p>
+
+                    </section>
+                </section>
+            </section>
+        </main>
+        <footer>
+            <hr>
+            <address>Chris Lilley</address>
+        </footer>
+    </body>
