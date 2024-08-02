@@ -947,11 +947,11 @@
       <tr><td>UInt8</td><td>bboxBitmap[]</td><td>Bitmap (a numGlyphs-long bit array) indicating explicit bounding boxes</td></tr>
       <tr><td>Int16</td><td>bboxStream[]</td><td>Stream of Int16 values representing glyph bounding box data</td></tr>
       <tr><td>UInt8</td><td>instructionStream[]</td><td>Stream of UInt8 values representing a set of instructions for each corresponding glyph</td></tr>
-      <tr id="overlapSimpleBitmap"><td><del cite="#p1"></del><ins cite="#p1">UInt8</ins></td><td><del cite="#p1"></del><ins cite="#p1">overlapSimpleBitmap[]</ins></td><td><del cite="#p1"></del><ins cite="#p1">A numGlyphs-long bit array that provides values for the overlap flag [bit 6] for each
+      <tr id="overlapSimpleBitmap"><td>UInt8</ins></td><td>overlapSimpleBitmap[]</td><td>A numGlyphs-long bit array that provides values for the overlap flag [bit 6] for each
         simple glyph.
         (Flag values for composite glyphs
         are already encoded as part
-        of the compositeStream[]).</ins></td></tr>
+        of the compositeStream[]).</td></tr>
     </table>
 
     <p>The format is best characterized by describing the decoding process, especially
@@ -1061,7 +1061,7 @@
       the reconstituted glyph as instructions.</li>
     </ol>
 
-    <p><del cite="#p1"></del><ins cite="#p1">The optionFlags field bit 0 indicates the presence of the additional
+    <p>The optionFlags field bit 0 indicates the presence of the additional
       overlapSimpleBitmap[] bit array. All other bits are reserved and should be cleared.
       If all simple glyphs of the input font have OVERLAP_SIMPLE flags set to
       zero, <span class="conform at" id="conform-noOverlap">
@@ -1073,8 +1073,8 @@
       the encoder must set the optionFlags bit 0 to
       "1", and MUST create the additional overlapSimpleBitmap[] bit array where the
       corresponding bits MUST be set to the values of the flag bit 6 of each
-      simple glyph in the input font</span>.</ins></p>
-    <p><del cite="#p1"></del><ins cite="#p1">The decoder
+      simple glyph in the input font</span>.</p>
+    <p>The decoder
       <span class="conform ua" id="conform-mustCheckOptionsFlag0">
       MUST check the optionFlags bit0 value</span>
       to determine whether the
@@ -1088,7 +1088,7 @@
       <span class="conform ua" id="conform-mustReconstructOverlap">
       MUST use overlapSimpleBitmap[] bit settings to reconstruct OVERLAP_SIMPLE flag
       values, and set the corresponding overlapSimpleBitmap[] bit value as flag bit 6 on
-      the first flag byte for each simple glyph of the output font</span>.</ins></p>
+      the first flag byte for each simple glyph of the output font</span>.</p>
     </section>
 
 
