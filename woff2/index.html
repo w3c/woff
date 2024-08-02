@@ -1162,7 +1162,9 @@
      in the reconstructed glyph, using the same process as described in steps 4 and
      5 above.
 
-    <p>Finally, for both simple and composite glyphs, if the corresponding bit
+    <h4 id="BoundingBox">Decoding of Bounding Boxes</h4>
+
+    <p>For both simple and composite glyphs, if the corresponding bit
       in the bounding box bit vector is set, then additionally read 4 Int16 values
       from the bbox stream, representing xMin, yMin, xMax, and yMax, respectively,
       and record these into the corresponding fields of the reconstructed glyph.
