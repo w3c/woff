@@ -34,53 +34,54 @@
  <!-- -->
 
 <!-- Conformance stylesheet - enable for online viewing -->
-    <link rel="alternate stylesheet" type="text/css" title="Conformance" href="conform.css">
-    <link rel="stylesheet" type="text/css" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"/>
+    <link rel="alternate stylesheet" title="Conformance" href="conform.css">
+    <link rel="stylesheet" type="text/css" href="https://www.w3.org/StyleSheets/TR/2021/W3C-REC"/>
 
   </head>
   <body>
     <div class="head">
       <p>
-        <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" alt="W3C" width="72" height="48"></a>
+        <a href="https://www.w3.org/"><img height="48" width="72" alt="W3C" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C"/></a>
       </p>
       <h1 id="title">WOFF File Format 2.0 </h1>
-      <!-- <p id="w3c-state"><a href="https://www.w3.org/standards/types#REC">W3C Recommendation</a>, <time class="dt-updated" datetime="2022-03-10">10 March 2022</time></p> -->
-      <p id="w3c-state">Editors Draft
+      <p id="w3c-state"><a href="https://www.w3.org/standards/types#REC">W3C Recommendation</a>, <time class="dt-updated" datetime="2024-08-08">08 August 2024</time></p>
+      <!-- <p id="w3c-state">Editors Draft
         <time datetime="2022-03-10">10 March 2022</time>
-      </p>
+      </p> -->
 
       <details open><summary>More details about this document</summary>
       <dl>
         <dt>This version:</dt>
-        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
-        </dd>
+        <dd><a href="https://www.w3.org/TR/2024/REC-WOFF2-20240808/">https://www.w3.org/TR/2024/REC-WOFF2-20240808/</a></dd>
+        <!-- <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
+        </dd> -->
         <dt>Latest version:</dt>
         <dd> <a href="https://www.w3.org/TR/WOFF2/">https://www.w3.org/TR/WOFF2/</a>
         </dd>
         <dt>Previous Version:</dt>
         <dd><a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/">https://www.w3.org/TR/2022/REC-WOFF2-20220310/</a>
         <dt>Latest editor's draft:</dt>
-
+        <dd><a href="https://w3c.github.io/woff/woff2/">https://w3c.github.io/woff/woff2/</a>
+        </dd>
         <dt>History:</dt>
         <dd><a href="https://www.w3.org/standards/history/WOFF2">https://www.w3.org/standards/history/WOFF2</a></dd>
         <dt>Implementation Report:</dt>
         <dd><a href="https://www.w3.org/Fonts/WG/WOFF2/Implementation.html">https://www.w3.org/Fonts/WG/WOFF2/Implementation.html</a></dd>
-        <dt class="editor">Editors:</dt>
+        <dd><a href="https://w3c.github.io/woff/woff2/ImpRpt/">https://w3c.github.io/woff/woff2/ImpRpt/</a></dd>
+        <dt class="editor">Editor:</dt>
         <dd class="editor"  data-editor-id="43052">Vladimir Levantovsky (W3C Invited Experts)</dd>
+        <dt>Previous Editor:</dt>
         <dd class="editor"  data-editor-id="51758">Raph Levien (Google)</dd>
         <dt>Feedback: </dt>
         <dd><a href="https://github.com/w3c/woff/issues">WOFF &amp; WOFF2 issues</a></dd>
         <dt>Errata:</dt>
-        <dd><a href="https://www.w3.org/Fonts/REC-WOFF2-20220310-errata.html">https://www.w3.org/Fonts/REC-WOFF2-20220310-errata.html</a></dd>
+        <dd><a href="https://www.w3.org/Fonts/REC-WOFF2-20240808-errata.html">https://www.w3.org/Fonts/REC-WOFF2-20240808-errata.html</a></dd>
       </dl>
       </details>
 
-      <p>Please check the <a href="https://www.w3.org/Fonts/REC-WOFF2-20220310-errata.html">errata</a> for any errors or issues reported since publication.</p>
+      <!-- <p>Please check the <a href="https://www.w3.org/Fonts/REC-WOFF2-20220310-errata.html">errata</a> for any errors or issues reported since publication.</p> -->
 
-      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2024 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
-              <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a>
-          rules apply.
-        </p>
+      <p class="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/">permissive document license</a> rules apply.</p>
         <hr title="Separator for header">
     </div>
 
@@ -100,14 +101,14 @@
 
     <p><em>This section describes the status of this document at the time of its publication. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/">W3C technical reports index</a> at https://www.w3.org/TR/.</em></p>
 
-    <p>This document was published by the <a href="https://www.w3.org/groups/wg/webfonts">Web
-      Fonts Working Group</a> as a Recommendation using the Recommendation track.
-    </p>
-
-
     <p>W3C recommends the wide deployment of this specification as a standard for the Web.</p>
 
-    <p>A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members, and has commitments from Working Group members to <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Requirements">royalty-free licensing</a> for implementations.</p>
+    <p>This document was published by the <a href="https://www.w3.org/groups/wg/webfonts">Web
+      Fonts Working Group</a> as a Recommendation using the <a href="https://www.w3.org/policies/process/20231103/#recs-and-notes">Recommendation track</a>.
+    </p>
+
+    <p>A W3C Recommendation is a specification that, after extensive consensus-building, is endorsed by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members, and has commitments from Working Group members to <a href="https://www.w3.org/policies/patent-policy/#sec-Requirements">royalty-free licensing</a> for implementations.</p>
+
 
     <p>The WOFF 2.0 specification is implemented in all major browsers, and is widely used on production websites.
     It supports the entirety of the TrueType and OpenType specifications, including Variable fonts, Chromatic fonts, and font Collections.</p>
@@ -138,27 +139,19 @@
     datetime="2022-05-10">10 May 2022</time>. -->
   </p>
 
-    <p>This document was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy-20200915/">W3C Patent Policy</a>. W3C maintains a <a rel="disclosure"
-
-      href="https://www.w3.org/2004/01/pp-impl/44556/status">public list of any
-      patent disclosures</a> made in connection with the deliverables of the
-      group; that page also includes instructions for disclosing a patent. An
-      individual who has actual knowledge of a patent which the individual
-      believes contains <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential
-      Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section
-      6 of the W3C Patent Policy</a>. </p>
+  <p>This document was produced by a group operating under the <a href="https://www.w3.org/policies/patent-policy/">W3C Patent Policy</a>. W3C maintains a <a rel="disclosure" href="https://www.w3.org/groups/wg/webfonts/ipr/">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="https://www.w3.org/policies/patent-policy/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="https://www.w3.org/policies/patent-policy/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p>
 
     <!-- <p>For the Brotli compression scheme used in WOFF 2.0, Google has made an
       <a href="https://www.w3.org/2004/01/pp-impl/44556/show-license#x35662">RF licensing commitment</a> for use in this specification.</p> -->
 
       <p>For the Brotli compression scheme used in WOFF 2.0, Google has made an
-        <a href="https://www.w3.org/standards/licensing/#3">Royalty Free licensing commitment</a> for use in this specification.</p>
+        <a href="https://www.w3.org/standards/licensing/#google-incs-additional-licensing-information-for-the-web-fonts-working-group-specifications">Royalty Free licensing commitment</a> for use in this specification.</p>
 
       <p>For WOFF 2.0, Monotype Imaging has made a
-        <a href="https://www.w3.org/standards/licensing/#2">Royalty Free licensing commitment</a> for use in this specification.
+        <a href="https://www.w3.org/standards/licensing/#monotype-imaging-incs-additional-licensing-information-for-the-web-fonts-working-group-specification-woff-file-format-20">Royalty Free licensing commitment</a> for use in this specification.
       </p>
 
-    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 W3C Process Document</a>. </p>
+      <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/policies/process/20231103/">03 November 2023 W3C Process Document</a>. </p>
 
 
   </section>
@@ -947,7 +940,7 @@
       <tr><td>UInt8</td><td>bboxBitmap[]</td><td>Bitmap (a numGlyphs-long bit array) indicating explicit bounding boxes</td></tr>
       <tr><td>Int16</td><td>bboxStream[]</td><td>Stream of Int16 values representing glyph bounding box data</td></tr>
       <tr><td>UInt8</td><td>instructionStream[]</td><td>Stream of UInt8 values representing a set of instructions for each corresponding glyph</td></tr>
-      <tr id="overlapSimpleBitmap"><td>UInt8</ins></td><td>overlapSimpleBitmap[]</td><td>A numGlyphs-long bit array that provides values for the overlap flag [bit 6] for each
+      <tr id="overlapSimpleBitmap"><td>UInt8</td><td>overlapSimpleBitmap[]</td><td>A numGlyphs-long bit array that provides values for the overlap flag [bit 6] for each
         simple glyph.
         (Flag values for composite glyphs
         are already encoded as part
@@ -1629,8 +1622,8 @@
 
         <ul>
           <li>Previous Candidate Corrections 1, 3 5 and 6 were deemed editorial and have been merged</li>
-          <li>Previous Candidate Correction 2, concerning the symple glyph overlap flag, is now <a href="#p1">Proposed Correction 1</a></li>
-          <li>Previous Candidate Correction 4, concerning polarity of on-curve flag bit, is now <a href="#p2">Proposed Correction 2</a></li>
+          <li>Previous Candidate Correction 2, concerning the symple glyph overlap flag, is now <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/#p1">Proposed Correction 1</a></li>
+          <li>Previous Candidate Correction 4, concerning polarity of on-curve flag bit, is now <a href="https://www.w3.org/TR/2022/REC-WOFF2-20220310/#p2">Proposed Correction 2</a></li>
           <li>References updated to most current versions</li>
         </ul>
 
@@ -1863,7 +1856,7 @@
           Reference manual</a>. Apple, 2014. TrueType is a registered trademark of Apple, Inc.</cite></dd>
 
       <dt id="ref-mtx">[MTX]</dt>
-      <dd> <cite><a href="https://www.w3.org/Submission/2008/SUBM-MTX-20080305/">MicroType® Express (MTX) Font Format</a> Sarah Martin, Al Ristow, Steve Martin,
+      <dd> <cite><a href="https://www.w3.org/submissions/2008/SUBM-MTX-20080305/">MicroType® Express (MTX) Font Format</a> Sarah Martin, Al Ristow, Steve Martin,
         Vladimir Levantovsky, and Christopher Chapman. W3C Member Submission, 5 March 2008.</cite></dd>
 
 
